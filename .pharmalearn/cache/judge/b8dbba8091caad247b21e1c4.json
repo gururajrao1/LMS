@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "blocking",
+  "explanation": "Evidence only documents one network meta-analysis (no OS difference). No evidence supports claims about a second NMA favoring ribociclib, PALMARES-2 PFS results, or a US claims analysis on treatment duration.",
+  "suggested_rewrite": "Remove or provide separate evidence for the second NMA, PALMARES-2, and US claims analysis claims; retain only the supported NMA finding of no significant OS difference."
+}

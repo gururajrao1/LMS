@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "Evidence only covers itraconazole (87% AUC increase, 34% Cmax increase). No evidence provided for rifampin's '~85% decrease' claim or for the grapefruit avoidance statement, both asserted as label facts.",
+  "suggested_rewrite": "State only the itraconazole finding evidenced (AUC +87%, Cmax +34%); cite separate label sections/evidence for rifampin's magnitude and the grapefruit avoidance recommendation before including them."
+}

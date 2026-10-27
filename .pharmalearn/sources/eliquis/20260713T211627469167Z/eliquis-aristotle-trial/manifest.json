@@ -1,0 +1,40 @@
+{
+  "schema_version": 2,
+  "drug_id": "eliquis",
+  "source_id": "eliquis-aristotle-trial",
+  "fetched_at": "2026-07-13T21:17:22.097752+00:00",
+  "status": "fetched",
+  "access_level": "full_text",
+  "coverage": {
+    "nct": "NCT00412984",
+    "has_results": true,
+    "attachments_found": 0
+  },
+  "warnings": [],
+  "error": null,
+  "registry": {
+    "id": "eliquis-aristotle-trial",
+    "kind": "trial_registry",
+    "authority": "ClinicalTrials.gov",
+    "title": "ARISTOTLE",
+    "url": "https://clinicaltrials.gov/study/NCT00412984",
+    "identifiers": {
+      "nct": "NCT00412984"
+    },
+    "required": true,
+    "reason": "Pivotal apixaban-versus-warfarin NVAF study."
+  },
+  "files": [
+    {
+      "path": "raw/study.json",
+      "role": "study_record",
+      "request_url": "https://clinicaltrials.gov/api/v2/studies/NCT00412984",
+      "final_url": "https://clinicaltrials.gov/api/v2/studies/NCT00412984",
+      "content_type": "application/json",
+      "bytes": 679192,
+      "sha256": "233690a3ff4928c0ba4c803cde28ae2ed32065b969cf9d0f9da05026e30a0f3e",
+      "last_modified": null,
+      "etag": "\"0/0.34.1/mrizrqiw\""
+    }
+  ]
+}

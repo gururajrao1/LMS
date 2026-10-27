@@ -1,0 +1,38 @@
+{
+  "title": "IBRANCE (palbociclib): Reading the Pivotal Trial Data",
+  "questions": [
+    {
+      "id": "f1",
+      "caption": "Median progression-free survival with palbociclib plus letrozole vs letrozole plus placebo as first-line therapy in postmenopausal women with HR+/HER2- advanced breast cancer (PALOMA-2 primary analysis, NEJM).",
+      "chart_kind": "bar",
+      "x_title": "Treatment arm",
+      "y_title": "Median progression-free survival",
+      "y_suffix": " mo",
+      "series": [
+        {
+          "name": "Progression-free survival",
+          "points": [
+            {
+              "label": "Palbociclib + Letrozole",
+              "value": 24.8
+            },
+            {
+              "label": "Letrozole + Placebo",
+              "value": 14.5
+            }
+          ]
+        }
+      ],
+      "prompt": "placeholder",
+      "options": {
+        "a": "placeholder",
+        "b": "placeholder",
+        "c": "placeholder",
+        "d": "placeholder"
+      },
+      "correct_index": 0,
+      "rationale": "placeholder",
+      "citations": []
+    }
+  ]
+}

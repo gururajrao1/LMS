@@ -1,0 +1,6 @@
+{
+  "verdict": "supported",
+  "severity": "minor",
+  "explanation": "The text matches the evidence: monitor for symptoms, interrupt for suspected ILD/pneumonitis, and permanently discontinue for severe cases. The added context on fatal/life-threatening reports is consistent with typical labeling framing.",
+  "suggested_rewrite": ""
+}

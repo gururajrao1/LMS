@@ -1,0 +1,41 @@
+{
+  "schema_version": 2,
+  "drug_id": "ibrance",
+  "source_id": "ibrance-paloma3-publication",
+  "fetched_at": "2026-07-13T21:00:33.055003+00:00",
+  "status": "fetched",
+  "access_level": "abstract_only",
+  "coverage": {
+    "pmid": "26030518",
+    "pmcid": null
+  },
+  "warnings": [],
+  "error": null,
+  "registry": {
+    "id": "ibrance-paloma3-publication",
+    "kind": "peer_reviewed_publication",
+    "authority": "PubMed",
+    "title": "Palbociclib in Hormone-Receptor-Positive Advanced Breast Cancer",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/26030518/",
+    "identifiers": {
+      "pmid": "26030518",
+      "doi": "10.1056/NEJMoa1505270",
+      "nct": "NCT01942135"
+    },
+    "required": true,
+    "reason": "Primary PALOMA-3 publication."
+  },
+  "files": [
+    {
+      "path": "raw/pubmed.xml",
+      "role": "pubmed_record",
+      "request_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=26030518&retmode=xml",
+      "final_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=26030518&retmode=xml",
+      "content_type": "text/xml; charset=UTF-8",
+      "bytes": 31095,
+      "sha256": "9313090887926778e2f03d198af9113467ad8a81ae2c37ac771cd9051754dcc4",
+      "last_modified": null,
+      "etag": null
+    }
+  ]
+}

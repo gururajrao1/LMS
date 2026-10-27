@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "Evidence never mentions PALOMA-2 or its population; only general AI+CDK4/6 first-line guideline recommendation and PALOMA-3 details are given. The specific claim that AI combination reflects 'the PALOMA-2 first-line trial population' has no evidentiary basis.",
+  "suggested_rewrite": "State that AI+CDK4/6 is the guideline-recommended first-line regimen for most patients, without naming a specific first-line trial unless evidence for PALOMA-2 is provided."
+}

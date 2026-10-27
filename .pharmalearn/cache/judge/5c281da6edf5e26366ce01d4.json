@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "blocking",
+  "explanation": "The evidence provided contains no data on a dalpiciclib-inclusive network meta-analysis showing ribociclib significantly improved OS versus palbociclib, nor on a US real-world IPW cohort showing no OS differences. Both claims are unsupported by the given evidence.",
+  "suggested_rewrite": "Remove or provide evidence for the dalpiciclib NMA claim and the US real-world IPW cohort claim; restrict comparisons to the two evidenced sources (7-trial NMA and PALMARES-2)."
+}

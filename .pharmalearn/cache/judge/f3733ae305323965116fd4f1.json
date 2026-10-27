@@ -1,0 +1,6 @@
+{
+  "verdict": "needs_context",
+  "severity": "minor",
+  "explanation": "The evidence provided covers PFS and OS results but does not mention the specific enrollment figure (666) or the eligibility detail 'no prior therapy for advanced disease,' which are asserted without supporting citation.",
+  "suggested_rewrite": "Cite the source establishing the 666 patient enrollment count and 'no prior therapy for advanced disease' eligibility criterion, or remove these specifics if unverified."
+}

@@ -1,0 +1,314 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE, chrome=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="dc.title" content="Drugs@FDA: FDA-Approved Drugs" />
+    <meta name="ROBOTS" content="noindex, nofollow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drug Approval Package: ELIQUIS (APIXABAN) 2.5 AND 5 MG TABLETS</title>
+    <link rel="stylesheet" media="all" href="/scripts/includes/fdagov/css/css_accessdata_stylesheet.css" type="text/css">
+    <link rel="stylesheet" media="all" href="/scripts/includes/fdagov/css/css_bootstrap_stylesheet.css" type="text/css">
+    <link rel="stylesheet" media="all" href="/scripts/includes/fdagov/css/css_responsive_stylesheet.css" type="text/css">
+    <style>
+        #pageTitle {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #003366;
+        }
+    </style>
+    <script src="/scripts/includes/fdagov/js/js_jquery.js"></script>
+    <script src="/scripts/includes/fdagov/js/js_bootstrap.js"></script>
+</head>
+<body>
+
+<script>
+// ============================================================================
+// EDIT SECTION: All editable variables are located here for easy modification
+// ============================================================================
+
+// Drug Information Variables - EDIT THESE VALUES AS NEEDED
+var drugName = "Eliquis (apixaban) 2.5 and 5 mg Tablets";
+var companyName = "Bristol-Myers Squibb";
+var applicationNumber = "202155";
+var approvalDate = "12/28/2012";
+var dateCreated = "February 13, 2013";
+
+// Individual Application Numbers for Drugs@FDA Links
+var applicationNumbers = ["202155"];
+
+// PDF File Flags - SET TO 1 TO SHOW, 0 TO HIDE LINKS
+var pdfFiles = {
+    // Approval and Labeling Files
+    approv: 1,
+    lbl: 1,
+    
+    // Review Files
+    chemR: 1,
+    clinPharmR: 1,
+    integratedR: 0,
+    medR: 1,
+    crossR: 0,
+    memo: 0,
+    microR: 0,
+    otherActionLtrs: 1,
+    multidisciplineR: 0,
+    pharmR: 1,
+    nameR: 1,
+    oeList: 1,
+    otherR: 1,
+    rems: 1,
+    rems1: 0,
+    riskR: 1,
+    statR: 1,
+    sumR: 1,
+    adminCorres: 1
+};
+
+// PDF Filenames extracted from CFM content or generated from CFM filename
+var pdfFilenames = {
+    admincorres: "202155Orig1s000Admincorres.pdf",
+    approv: "202155Orig1s000Approv.pdf",
+    chemr: "202155Orig1s000ChemR.pdf",
+    clinpharmr: "202155Orig1s000ClinPharmR.pdf",
+    lbl: "202155Orig1s000Lbl_ini.pdf",
+    medr: "202155Orig1s000MedR.pdf",
+    namer: "202155Orig1s000NameR.pdf",
+    oelist: "202155Orig1s000OEList_ini.pdf",
+    otheractionltrs: "202155Orig1s000OtherActionLtrs.pdf",
+    otherr: "202155Orig1s000OtherR.pdf",
+    pharmr: "202155Orig1s000PharmR.pdf",
+    rems: "202155Orig1s000REMS_ini.pdf",
+    riskr: "202155Orig1s000RiskR.pdf",
+    statr: "202155Orig1s000StatR.pdf",
+    sumr: "202155Orig1s000SumR.pdf"
+};
+
+// Function to get PDF filename with fallback to default naming
+function getPdfFilename(flag, defaultSuffix) {
+    var flagLower = flag.toLowerCase();
+    if (pdfFilenames && pdfFilenames[flagLower]) {
+        return pdfFilenames[flagLower];
+    }
+    return applicationNumber + defaultSuffix;
+}
+
+// ============================================================================
+// END EDIT SECTION - NO NEED TO EDIT BEYOND THIS LINE!
+// ============================================================================
+
+// Function to populate page content from variables above
+function populatePageContent() {
+    // Update page title
+    document.getElementById('pageTitle').innerHTML = 'Drug Approval Package: ' + drugName.toUpperCase();
+    document.title = 'Drug Approval Package: ' + drugName.toUpperCase();
+    
+    // Update drug information panel
+    document.getElementById('companyName').innerHTML = companyName;
+    document.getElementById('applicationNumber').innerHTML = applicationNumber;
+    document.getElementById('approvalDate').innerHTML = approvalDate;
+    document.getElementById('dateCreated').innerHTML = dateCreated;
+    
+    // Generate Drugs@FDA links
+    var drugsAtFdaHtml = '';
+    for (var i = 0; i < applicationNumbers.length; i++) {
+        var appNum = applicationNumbers[i];
+        var url = 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&varApplNo=' + appNum;
+        var displayText = applicationNumbers.length === 1 ? 
+            'Drugs@FDA information for ' + drugName : 
+            'Drugs@FDA information available about Application ' + appNum;
+        drugsAtFdaHtml += '<div style="margin-bottom: 8px;">';
+        drugsAtFdaHtml += '<a href="' + url + '" title="Go to Drugs@FDA for Application ' + appNum + '" target="_blank">';
+        drugsAtFdaHtml += displayText;
+        drugsAtFdaHtml += '</a>';
+        drugsAtFdaHtml += '<span aria-hidden="true" class="icon-info-sign" style="margin-left: 5px;"></span>';
+        drugsAtFdaHtml += '</div>';
+    }
+    document.getElementById('drugsAtFdaLinks').innerHTML = drugsAtFdaHtml;
+    
+    // Generate approval documents using extracted or generated filenames
+    var approvalHtml = '';
+    if (pdfFiles.approv == 1) {
+        var filename = getPdfFilename('approv', 'Approv.pdf');
+        approvalHtml += '<li><a href="' + filename + '" title="Go to approval letter" target="_blank">Approval Letter(s)</a> (PDF)</li>';
+    }
+    if (pdfFiles.lbl == 1) {
+        var filename = getPdfFilename('lbl', 'Lbl.pdf');
+        approvalHtml += '<li><a href="' + filename + '" title="Go to printed labeling" target="_blank">Printed Labeling</a> (PDF)</li>';
+    }
+    document.getElementById('approvalDocuments').innerHTML = approvalHtml;
+    
+    // Generate review documents using extracted or generated filenames
+    var reviewHtml = '';
+    if (pdfFiles.chemR == 1) {
+        var filename = getPdfFilename('chemr', 'ChemR.pdf');
+        reviewHtml += '<li><a href="' + filename + '" title="Go to product quality review(s)" target="_blank">Product Quality Review(s)</a> (PDF)</li>';
+    }
+    if (pdfFiles.clinPharmR == 1) {
+        var filename = getPdfFilename('clinpharmr', 'ClinPharmR.pdf');
+        reviewHtml += '<li><a href="' + filename + '" title="Go to clinical pharmacology and biopharmaceutics review(s)" target="_blank">Clinical Pharmacology and Biopharmaceutics Review(s)</a> (PDF)</li>';
+    }
+    if (pdfFiles.integratedR == 1) {
+        var filename = getPdfFilename('integratedr', 'IntegratedR.pdf');
+        reviewHtml += '<li><a href="' + filename + '" title="Go to integrated review" target="_blank">Integrated Review</a> (PDF)</li>';
+    }
+    if (pdfFiles.medR == 1) {
+        var filename = getPdfFilename('medr', 'MedR.pdf');
+        reviewHtml += '<li><a href="' + filename + '" title="Go to clinical review(s)" target="_blank">Clinical Review(s)</a> (PDF)</li>';
+    }
+    if (pdfFiles.crossR == 1) {
+        var filename = getPdfFilename('crossr', 'CrossR.pdf');
+        reviewHtml += '<li><a href="' + filename + '" title="Go to cross discipline team leader review" target="_blank">Cross Discipline Team Leader Review</a> (PDF)</li>';
+    }
+    if (pdfFiles.memo == 1) {
+        var filename = getPdfFilename('memo', 'Memo.pdf');
+        reviewHtml += '<li><a href="' + filename + '" title="Go to office director memo" target="_blank">Office Director Memo</a> (PDF)</li>';
+    }
+    if (pdfFiles.microR == 1) {
+        var filename = getPdfFilename('micror', 'MicroR.pdf');
+        reviewHtml += '<li><a href="' + filename + '" title="Go to clinical microbiology/virology review(s)" target="_blank">Clinical Microbiology/Virology Review(s)</a> (PDF)</li>';
+    }
+    if (pdfFiles.otherActionLtrs == 1) {
+        var filename = getPdfFilename('otheractionltrs', 'OtherActionLtrs.pdf');
+        reviewHtml += '<li><a href="' + filename + '" title="Go to other action letters" target="_blank">Other Action Letters</a> (PDF)</li>';
+    }
+    if (pdfFiles.multidisciplineR == 1) {
+        var filename = getPdfFilename('multidiscipliner', 'MultidisciplineR.pdf');
+        reviewHtml += '<li><a href="' + filename + '" title="Go to multi-discipline review" target="_blank">Multi-Discipline Review</a> (PDF)</li>';
+    }
+    if (pdfFiles.pharmR == 1) {
+        var filename = getPdfFilename('pharmr', 'PharmR.pdf');
+        reviewHtml += '<li><a href="' + filename + '" title="Go to non-clinical review(s)" target="_blank">Non-Clinical Review(s)</a> (PDF)</li>';
+    }
+    if (pdfFiles.nameR == 1) {
+        var filename = getPdfFilename('namer', 'NameR.pdf');
+        reviewHtml += '<li><a href="' + filename + '" title="Go to proprietary name review(s)" target="_blank">Proprietary Name Review(s)</a> (PDF)</li>';
+    }
+    if (pdfFiles.oeList == 1) {
+        var filename = getPdfFilename('oelist', 'OEList.pdf');
+        reviewHtml += '<li><a href="' + filename + '" title="Go to officer/employee list" target="_blank">Officer/Employee List</a> (PDF)</li>';
+    }
+    if (pdfFiles.otherR == 1) {
+        var filename = getPdfFilename('otherr', 'OtherR.pdf');
+        reviewHtml += '<li><a href="' + filename + '" title="Go to other review(s)" target="_blank">Other Review(s)</a> (PDF)</li>';
+    }
+    if (pdfFiles.rems == 1) {
+        var filename = getPdfFilename('rems', 'REMS.pdf');
+        reviewHtml += '<li><a href="' + filename + '" title="Go to rems" target="_blank">REMS</a> (PDF)</li>';
+    }
+    if (pdfFiles.rems1 == 1) {
+        var filename = getPdfFilename('rems1', 'REMS1.pdf');
+        reviewHtml += '<li><a href="' + filename + '" title="Go to rems program" target="_blank">REMS Program</a> (PDF)</li>';
+    }
+    if (pdfFiles.riskR == 1) {
+        var filename = getPdfFilename('riskr', 'RiskR.pdf');
+        reviewHtml += '<li><a href="' + filename + '" title="Go to risk assessment and risk mitigation review(s)" target="_blank">Risk Assessment and Risk Mitigation Review(s)</a> (PDF)</li>';
+    }
+    if (pdfFiles.statR == 1) {
+        var filename = getPdfFilename('statr', 'StatR.pdf');
+        reviewHtml += '<li><a href="' + filename + '" title="Go to statistical review(s)" target="_blank">Statistical Review(s)</a> (PDF)</li>';
+    }
+    if (pdfFiles.sumR == 1) {
+        var filename = getPdfFilename('sumr', 'SumR.pdf');
+        reviewHtml += '<li><a href="' + filename + '" title="Go to summary review" target="_blank">Summary Review</a> (PDF)</li>';
+    }
+    if (pdfFiles.adminCorres == 1) {
+        var filename = getPdfFilename('admincorres', 'AdminCorres.pdf');
+        reviewHtml += '<li><a href="' + filename + '" title="Go to administrative and correspondence documents" target="_blank">Administrative and Correspondence Documents</a> (PDF)</li>';
+    }
+    document.getElementById('reviewDocuments').innerHTML = reviewHtml;
+}
+
+// Call the function when page loads
+window.onload = function() {
+    populatePageContent();
+};
+</script>
+
+    <div id="header-container"></div>
+    <section id="block-entityviewcontent-15" class="clearfix">
+        <ol class="lcds-breadcrumb">
+            <li><a href="http://www.fda.gov/">FDA</a></li>
+            <li><a href="http://www.fda.gov/Drugs/default.htm">Drugs</a></li>
+            <li><a href="http://www.fda.gov/Drugs/InformationOnDrugs/default.htm">Drug Approvals and Databases</a></li>
+            <li><a href="http://www.accessdata.fda.gov/scripts/cder/drugsatfda/index.cfm">Drugs@FDA</a></li>
+            <li class="active">Drug Approval Package</li>
+        </ol>
+    </section>
+    
+    <div class="container">
+        <h1 id="pageTitle">Drug Approval Package: LOADING...</h1>
+
+        <!-- Drug Information Panels -->
+        <div class="row">
+            <div class="col-sm-6">    
+                <div class="panel panel-primary">
+                    <div class="panel-body">
+                        <strong>
+                            Company: <span id="companyName">Loading...</span>
+                            <br />Application Number: <span id="applicationNumber">Loading...</span>
+                            <br />Approval Date: <span id="approvalDate">Loading...</span>
+                        </strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <strong>Drugs@FDA Links</strong>
+                    </div>
+                    <div class="panel-body">
+                        <strong>
+                            <div id="drugsAtFdaLinks">Loading...</div>
+                        </strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p>Persons with disabilities having problems accessing the PDF files below may call (301) 796-3634 for assistance.</p>
+        <div style="height:10px"></div>
+
+        <!-- Document Sections -->
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <span aria-hidden="true" class="icon-ok icon-1x"></span> 
+                        <strong>FDA Approval Letter and Labeling</strong>
+                    </div>
+                    <div class="panel-body">
+                        <ul id="approvalDocuments">
+                            Loading...
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-sm-6">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <span aria-hidden="true" class="icon-list-alt icon-1x"></span> 
+                        <strong>FDA Application Review Files</strong>
+                    </div>
+                    <div class="panel-body">
+                        <ul id="reviewDocuments">
+                            Loading...
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p>Date created: <span id="dateCreated">Loading...</span></p>
+        <p><strong><a name="note" id="note"></a></strong>Vision impaired people having problems accessing certain pages of a PDF file may call (301) 796-3634 for assistance.</p>
+        <p>Note: Documents in PDF format require the <a href="http://get.adobe.com/reader/">Adobe Acrobat Reader</a>.</p>
+    </div>
+    
+    <div id="footer-container"></div>
+    <script src="../../includes/js/header.js"></script>
+    <script src="../../includes/js/footer.js"></script>   
+    <script src="../../includes/js/loadhtml_content.js"></script>
+<script type="text/javascript"  src="/8BndJxoARsagqM-ZO8rG/tON7VGV6fQG6G6S9/DFcpSVE/MjojI2Y/CPDUB"></script></body>
+</html>

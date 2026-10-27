@@ -1,0 +1,6 @@
+{
+  "verdict": "needs_context",
+  "severity": "minor",
+  "explanation": "The 25% non-response figure and PFS/OS distinction are directly supported. The claim 'no validated biomarker yet predicts resistance' is an inference from 'not yet fully understood at a molecular level,' not an explicit statement about biomarker validation status.",
+  "suggested_rewrite": "Our patient's story reflects broader open questions: resistance mechanisms are not yet fully understood at a molecular level, and roughly a quarter of patients don't respond at all. As an MSL, your role is to translate this evidence honestly\u2014distinguishing confirmed PFS benefit from unresolved OS and resistance questions, flagging off-label or indirect-comparison content, and escalating safety signals or complex unsolicited requests through appropriate compliance channels rather than answering from memory alone."
+}

@@ -1,0 +1,38 @@
+{
+  "title": "Ibrance MSL knowledge check",
+  "passing_score": 75,
+  "questions": [
+    {
+      "id": "msl-q1",
+      "prompt": "Which statement keeps mechanism and clinical evidence appropriately separated?",
+      "options": ["Palbociclib inhibits CDK4/6 in preclinical models; clinical outcomes should be described from trial evidence", "CDK4/6 inhibition proves an overall-survival benefit", "The mechanism makes trial limitations irrelevant", "Cell-cycle arrest establishes superiority over other treatments"],
+      "correct_index": 0,
+      "rationale": "The label describes CDK4/6 inhibition and G1-to-S blockade in ER-positive breast cancer cell lines; clinical conclusions require their own evidence.",
+      "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Section 12.1"}]
+    },
+    {
+      "id": "msl-q2",
+      "prompt": "Which is the most balanced summary of PALOMA-2 in the reviewed evidence?",
+      "options": ["Median PFS was 24.8 vs 14.5 months, while final OS was not statistically significant", "Both PFS and OS showed statistically significant improvement", "The trial established superiority over every CDK4/6 inhibitor", "The PFS result can be treated as an OS result"],
+      "correct_index": 0,
+      "rationale": "The reviewed label reports the PFS values and notes that the prespecified final OS analysis was not statistically significant.",
+      "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Section 14, Table 10"}]
+    },
+    {
+      "id": "msl-q3",
+      "prompt": "An HCP requests an unsupported cross-trial superiority conclusion. What is the best response?",
+      "options": ["Explain that the sources do not establish a direct comparison and use the appropriate medical-information path", "Select the most favorable endpoint from each study", "Infer superiority from mechanism alone", "Answer without discussing study differences"],
+      "correct_index": 0,
+      "rationale": "Scientific exchange should distinguish direct evidence from cross-trial interpretation and avoid unsupported superiority claims.",
+      "citations": []
+    },
+    {
+      "id": "msl-q4",
+      "prompt": "Which monitoring detail should be quoted exactly from the label?",
+      "options": ["CBC on Day 15 of the first two cycles in addition to baseline and cycle-start checks", "CBC only when symptoms develop", "CBC on Day 7 of every cycle", "No routine CBC monitoring is described"],
+      "correct_index": 0,
+      "rationale": "The label specifies Day 15 CBC monitoring in the first two cycles in addition to baseline and cycle-start checks.",
+      "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Section 5.1"}]
+    }
+  ]
+}

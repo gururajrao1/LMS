@@ -1,0 +1,6 @@
+{
+  "verdict": "overreach",
+  "severity": "major",
+  "explanation": "Evidence states resistance mechanisms are 'not yet fully understood at a molecular level,' but text asserts absolutely 'no validated biomarker yet predicts' resistance\u2014a stronger, more definitive claim not directly established by the source.",
+  "suggested_rewrite": "No biomarker reliably predicts palbociclib resistance yet, as underlying molecular mechanisms remain incompletely understood, and roughly a quarter of patients don't respond at all."
+}

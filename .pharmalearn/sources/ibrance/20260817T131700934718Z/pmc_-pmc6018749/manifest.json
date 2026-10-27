@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "drug_id": "ibrance",
+  "source_id": "pmc_-pmc6018749",
+  "fetched_at": "2026-08-17T13:17:36.787100+00:00",
+  "status": "fetched",
+  "access_level": "full_text",
+  "coverage": {
+    "pmcid": "PMC6018749"
+  },
+  "warnings": [],
+  "error": null,
+  "registry": {
+    "id": "pmc_-pmc6018749",
+    "kind": "pmc_article",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6018749/",
+    "title": "Cdk4/6 inhibitors and overall survival: power of first-line trials in metastatic breast cancer",
+    "identifiers": {
+      "pmcid": "PMC6018749"
+    }
+  },
+  "files": [
+    {
+      "path": "raw/fulltext.xml",
+      "role": "full_text",
+      "request_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC6018749&retmode=xml",
+      "final_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC6018749&retmode=xml",
+      "content_type": "text/xml; charset=UTF-8",
+      "bytes": 34699,
+      "sha256": "51308c06001ad6a71fd5200485420a17245bb30801d1bc45c055e6d0cd9281a7",
+      "last_modified": null,
+      "etag": null
+    }
+  ]
+}

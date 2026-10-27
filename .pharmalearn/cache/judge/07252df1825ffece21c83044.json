@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "Evidence shows PALOMA-3 exploratory analysis had 'improved median OS' but never states statistical significance was reached; PALOMA-2 final OS non-significance is not addressed in evidence at all, only PFS data is given.",
+  "suggested_rewrite": "State OS results as 'improved' per PALOMA-3 exploratory analysis without asserting statistical significance; omit PALOMA-2 OS claim unless evidence is provided."
+}

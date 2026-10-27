@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "The claim 'the effect is not cumulative across cycles' is not stated in any evidence. Evidence only says neutropenia is mostly transient/manageable by dose modification; it does not address cumulative effect across cycles.",
+  "suggested_rewrite": "Median duration of Grade 3+ neutropenia was 7 days; neutropenia was mostly transient and manageable by dose modification without appearing to compromise efficacy (omit cumulative-effect claim)."
+}

@@ -1,0 +1,25 @@
+{
+  "answer": "IBRANCE (palbociclib) is approved for HR+/HER2- advanced or metastatic breast cancer in several settings: (1) with an aromatase inhibitor (e.g., letrozole) as initial endocrine-based therapy in postmenopausal women/men (originally accelerated approval based on PFS, contingent on confirmatory trial verification); (2) with fulvestrant after disease progression on prior endocrine therapy; (3) with inavolisib and fulvestrant for PIK3CA-mutated disease progressing after adjuvant endocrine therapy; and (4) as maintenance with trastuzumab \u00b1 pertuzumab and endocrine therapy for HER2+ disease. It is also approved for men with HR+/HER2- metastatic breast cancer. For full eligibility criteria, please consult the current label or Medical Information.",
+  "citations": [
+    {
+      "title": "Ibrance DailyMed Label - FDA.report",
+      "url": "https://fda.report/DailyMed/86718885-da44-4d3d-b3ca-06cbcedcffd8",
+      "locator": "Highlights/Indications and Usage (1), Clinical Studies (14) cross-reference"
+    },
+    {
+      "title": "FDA approves palbociclib with trastuzumab...maintenance treatment",
+      "url": "https://www.fda.gov/drugs/resources-information-approved-drugs/fda-approves-palbociclib-trastuzumab-or-without-pertuzumab-and-endocrine-therapy-maintenance",
+      "locator": "Dosage recommendation"
+    },
+    {
+      "title": "U.S. FDA Approves IBRANCE (palbociclib) for the Treatment of Men with HR+, HER2- Metastatic Breast Cancer | Pfizer",
+      "url": "https://www.pfizer.com/news/press-release/press-release-detail/u_s_fda_approves_ibrance_palbociclib_for_the_treatment_of_men_with_hr_her2_metastatic_breast_cancer",
+      "locator": "Pfizer press release"
+    },
+    {
+      "title": "full prescribing information for IBRANCE",
+      "url": "https://labeling.pfizer.com/showlabeling.aspx?id=2191",
+      "locator": "Indications and Usage"
+    }
+  ]
+}

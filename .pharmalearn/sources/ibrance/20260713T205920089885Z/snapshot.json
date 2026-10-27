@@ -1,0 +1,92 @@
+{
+  "schema_version": 2,
+  "snapshot_id": "20260713T205920089885Z",
+  "drug_id": "ibrance",
+  "created_at": "2026-07-13T21:00:40.462267+00:00",
+  "status": "complete_with_limits",
+  "registry_path": "config/sources/pfizer_us.toml",
+  "registry_sha256": "07177b3e9044b767fca8a5d8028af28ca3a7ce82342e933d84b558675a7040c5",
+  "sources": [
+    {
+      "source_id": "ibrance-label-tablet",
+      "status": "fetched",
+      "access_level": "full_text",
+      "warnings": [],
+      "error": null
+    },
+    {
+      "source_id": "ibrance-label-capsule",
+      "status": "fetched",
+      "access_level": "full_text",
+      "warnings": [],
+      "error": null
+    },
+    {
+      "source_id": "ibrance-fda-capsule",
+      "status": "fetched",
+      "access_level": "full_text",
+      "warnings": [],
+      "error": null
+    },
+    {
+      "source_id": "ibrance-fda-tablet",
+      "status": "fetched",
+      "access_level": "full_text",
+      "warnings": [
+        "https://www.accessdata.fda.gov/drugsatfda_docs/nda/2019/212436Orig1s000OtherActionLtrs.pdf: Client error '404 Not Found' for url 'https://www.accessdata.fda.gov/drugsatfda_docs/nda/2019/212436Orig1s000OtherActionLtrs.pdf'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+      ],
+      "error": null
+    },
+    {
+      "source_id": "ibrance-paloma2-trial",
+      "status": "fetched",
+      "access_level": "full_text",
+      "warnings": [],
+      "error": null
+    },
+    {
+      "source_id": "ibrance-paloma2-publication",
+      "status": "fetched",
+      "access_level": "abstract_only",
+      "warnings": [],
+      "error": null
+    },
+    {
+      "source_id": "ibrance-paloma3-trial",
+      "status": "fetched",
+      "access_level": "full_text",
+      "warnings": [],
+      "error": null
+    },
+    {
+      "source_id": "ibrance-paloma3-publication",
+      "status": "fetched",
+      "access_level": "abstract_only",
+      "warnings": [],
+      "error": null
+    },
+    {
+      "source_id": "ibrance-inavo120-trial",
+      "status": "fetched",
+      "access_level": "full_text",
+      "warnings": [],
+      "error": null
+    },
+    {
+      "source_id": "ibrance-inavo120-publication",
+      "status": "fetched",
+      "access_level": "abstract_only",
+      "warnings": [],
+      "error": null
+    },
+    {
+      "source_id": "ibrance-asco-guideline",
+      "status": "fetched",
+      "access_level": "abstract_only",
+      "warnings": [
+        "PMC PMC8659999: PMC response did not contain an article body"
+      ],
+      "error": null
+    }
+  ]
+}

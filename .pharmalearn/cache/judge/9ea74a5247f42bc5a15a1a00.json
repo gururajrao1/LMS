@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "The claim about 'dysregulated cyclin D-CDK4/6-Rb pathway activity' driving HR+/HER2- disease is not supported by either evidence source, which cover epidemiology and NCCN treatment recommendations only, not underlying receptor/pathway biology.",
+  "suggested_rewrite": "Remove or cite separate evidence for the cyclin D-CDK4/6-Rb pathway mechanism, or note it as general background not tied to the cited sources."
+}

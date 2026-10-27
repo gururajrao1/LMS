@@ -1,0 +1,53 @@
+{
+  "schema_version": 2,
+  "snapshot_id": "20260713T211738950160Z",
+  "drug_id": "vyndaqel",
+  "created_at": "2026-07-13T21:18:31.187813+00:00",
+  "status": "complete_with_limits",
+  "registry_path": "config/sources/pfizer_us.toml",
+  "registry_sha256": "07177b3e9044b767fca8a5d8028af28ca3a7ce82342e933d84b558675a7040c5",
+  "sources": [
+    {
+      "source_id": "vyndaqel-label",
+      "status": "fetched",
+      "access_level": "full_text",
+      "warnings": [],
+      "error": null
+    },
+    {
+      "source_id": "vyndaqel-fda",
+      "status": "fetched",
+      "access_level": "full_text",
+      "warnings": [],
+      "error": null
+    },
+    {
+      "source_id": "vyndamax-fda",
+      "status": "fetched",
+      "access_level": "full_text",
+      "warnings": [],
+      "error": null
+    },
+    {
+      "source_id": "vyndaqel-attr-act-trial",
+      "status": "fetched",
+      "access_level": "full_text",
+      "warnings": [],
+      "error": null
+    },
+    {
+      "source_id": "vyndaqel-attr-act-publication",
+      "status": "fetched",
+      "access_level": "abstract_only",
+      "warnings": [],
+      "error": null
+    },
+    {
+      "source_id": "vyndaqel-acc-guidance",
+      "status": "fetched",
+      "access_level": "metadata_only",
+      "warnings": [],
+      "error": null
+    }
+  ]
+}

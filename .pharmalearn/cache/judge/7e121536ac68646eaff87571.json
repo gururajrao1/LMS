@@ -1,0 +1,6 @@
+{
+  "verdict": "overreach",
+  "severity": "major",
+  "explanation": "The evidence states CDK4/6 inhibitors target cell-cycle machinery and induce arrest, but does not establish that 'dysregulated' cyclin D-CDK4/6-Rb signaling 'drives proliferation' in this subtype\u2014that causal disease-mechanism claim is not present in the cited sources.",
+  "suggested_rewrite": "The cyclin D-CDK4/6-Rb pathway is a key cell-cycle target in this subtype, providing the rationale for combining CDK4/6 inhibitors with endocrine therapy."
+}

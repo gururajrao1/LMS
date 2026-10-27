@@ -1,0 +1,6 @@
+{
+  "verdict": "overreach",
+  "severity": "minor",
+  "explanation": "Evidence confirms palbociclib is a time-dependent CYP3A inhibitor but never characterizes it as 'weak'; adding that qualifier states more precision about inhibition strength than the cited or dossier evidence supports.",
+  "suggested_rewrite": "Palbociclib is metabolized primarily by CYP3A and SULT2A1, and it is itself a time-dependent inhibitor of CYP3A in vivo (strength not specified in label)."
+}

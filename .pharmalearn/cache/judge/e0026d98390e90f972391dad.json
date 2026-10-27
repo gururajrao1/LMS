@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "The evidence provides no specific PALOMA-3 median OS figures (34.9 vs 28.0 months), HR of 0.81 for either analysis, or CI (0.65-0.99). Evidence only states OS was 'improved' at 44.8 months and 'continued' at 73.3 months, without numbers.",
+  "suggested_rewrite": "State that PALOMA-3 showed improved median OS with palbociclib at both 44.8- and 73.3-month follow-ups, without citing specific HR, CI, or median values not found in the source evidence."
+}

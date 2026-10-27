@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "Evidence does not include the 125 mg dose, 21/7-day schedule, food requirements (capsules with food, tablets without), the word 'split', or advice to dose at the same time daily. Only vomited/missed-dose and swallow-whole instructions are supported.",
+  "suggested_rewrite": "Cite label sections 2 (Dosage and Administration) for dose, schedule, and food instructions; retain only vomited/missed-dose and swallow-whole language matching the provided evidence."
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "drug_id": "ibrance",
+  "source_id": "pmc_-pmc8188964",
+  "fetched_at": "2026-08-17T13:16:50.076892+00:00",
+  "status": "fetched",
+  "access_level": "full_text",
+  "coverage": {
+    "pmcid": "PMC8188964"
+  },
+  "warnings": [],
+  "error": null,
+  "registry": {
+    "id": "pmc_-pmc8188964",
+    "kind": "pmc_article",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8188964/",
+    "title": "Hormone Receptor Positive/HER2 Negative Breast Cancer With Isolated Bladder Metastasis: A Rare Case - PMC",
+    "identifiers": {
+      "pmcid": "PMC8188964"
+    }
+  },
+  "files": [
+    {
+      "path": "raw/fulltext.xml",
+      "role": "full_text",
+      "request_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC8188964&retmode=xml",
+      "final_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC8188964&retmode=xml",
+      "content_type": "text/xml; charset=UTF-8",
+      "bytes": 32623,
+      "sha256": "112ef558aaad49e51af43a98d82cf34067b6b9fc6050a1c20ed96bb58256b08d",
+      "last_modified": null,
+      "etag": null
+    }
+  ]
+}

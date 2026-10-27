@@ -1,0 +1,6 @@
+{
+  "verdict": "supported",
+  "severity": "minor",
+  "explanation": "All specific figures (PFS 9.5 vs 4.6, HR 0.46 CI 0.36-0.59; final OS 34.9 vs 28.0, HR 0.81 CI 0.64-1.03; exploratory 73.3-month OS HR 0.81 CI 0.65-0.99) match the evidence provided, including correct framing as exploratory/post-hoc, not primary powered analysis.",
+  "suggested_rewrite": "No rewrite needed; figures and framing align with cited and supplementary evidence."
+}

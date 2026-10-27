@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "The specific trial-level incidence figures (80% in PALOMA-2, 83% in PALOMA-3) and the claim that neutropenia is 'non-cumulative' appear nowhere in the cited or additional evidence, which only gives combined PALOMA-2/3 figures for febrile neutropenia, not per-trial any-grade neutropenia rates.",
+  "suggested_rewrite": "Neutropenia is the most common adverse reaction in PALOMA-2/PALOMA-3 (any grade); onset is early (median ~15 days; Grade \u22653 ~28 days), with median Grade \u22653 episode duration of 7 days."
+}

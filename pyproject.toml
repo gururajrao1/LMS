@@ -1,0 +1,19 @@
+[project]
+name = "pharmalearn"
+version = "0.1.0"
+requires-python = ">=3.13"
+dependencies = [
+  "anthropic>=0.75",
+  "fastapi>=0.120",
+  "httpx>=0.28",
+  "python-dotenv>=1.1",
+  "python-multipart>=0.0.32",
+  "uvicorn[standard]>=0.38",
+]
+
+[dependency-groups]
+dev = ["pytest>=9"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+

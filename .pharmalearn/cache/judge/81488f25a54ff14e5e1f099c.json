@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "Evidence only states that severe/fatal ILD/pneumonitis can occur with IBRANCE plus endocrine therapy; it contains no instructions to monitor, interrupt immediately, evaluate, or permanently discontinue for severe cases.",
+  "suggested_rewrite": "Cite the specific label section (e.g., Dosage Modifications table) that states the monitor/interrupt/discontinue instructions, not just the ILD risk statement."
+}

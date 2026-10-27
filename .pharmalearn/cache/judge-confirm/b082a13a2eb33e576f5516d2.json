@@ -1,0 +1,6 @@
+{
+  "verdict": "overreach",
+  "severity": "major",
+  "explanation": "Evidence supports bioavailability, half-life, accumulation, steady-state timing, and hepatic dose reduction. But claims about capsule-must-be-with-food vs tablet-food-optional, and metabolism via CYP3A/SULT2A1 with weak time-dependent CYP3A inhibition, are not supported by any evidence shown.",
+  "suggested_rewrite": "Remove or separately cite the formulation-food requirements and CYP3A/SULT2A1 metabolism/inhibition claims until supporting label evidence is provided; retain only PK and hepatic-dose statements backed by cited evidence."
+}

@@ -1,0 +1,6 @@
+{
+  "verdict": "needs_context",
+  "severity": "minor",
+  "explanation": "The text omits the confidence intervals (24.8 mo CI 22.1\u2013NE; 14.5 mo CI 12.9\u201317.1) and that PFS was investigator-assessed, presenting point estimates as more precise/certain than the evidence indicates.",
+  "suggested_rewrite": "...median PFS was 24.8 months (95% CI, 22.1\u2013not estimable) with palbociclib plus letrozole versus 14.5 months (95% CI, 12.9\u201317.1) with placebo, as investigator-assessed, meeting the primary endpoint."
+}

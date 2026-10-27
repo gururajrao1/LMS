@@ -1,0 +1,53 @@
+{
+  "schema_version": 2,
+  "drug_id": "prevnar",
+  "source_id": "prevnar-pivotal-adult-publication",
+  "fetched_at": "2026-07-13T21:26:27.736974+00:00",
+  "status": "fetched",
+  "access_level": "full_text",
+  "coverage": {
+    "pmid": "34940806",
+    "pmcid": "PMC9427137"
+  },
+  "warnings": [],
+  "error": null,
+  "registry": {
+    "id": "prevnar-pivotal-adult-publication",
+    "kind": "peer_reviewed_publication",
+    "authority": "PubMed",
+    "title": "Pivotal Phase 3 Randomized Clinical Trial of 20-Valent Pneumococcal Conjugate Vaccine in Adults",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/34940806/",
+    "identifiers": {
+      "pmid": "34940806",
+      "pmcid": "PMC9427137",
+      "doi": "10.1093/cid/ciab990",
+      "nct": "NCT03760146"
+    },
+    "required": true,
+    "reason": "Primary publication for the pivotal adult study."
+  },
+  "files": [
+    {
+      "path": "raw/pubmed.xml",
+      "role": "pubmed_record",
+      "request_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=34940806&retmode=xml",
+      "final_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=34940806&retmode=xml",
+      "content_type": "text/xml; charset=UTF-8",
+      "bytes": 26874,
+      "sha256": "74fa4bf87ff82f5f2ad05fa66c9dd35d76e6396ab6c47b269018f5673ab061f6",
+      "last_modified": null,
+      "etag": null
+    },
+    {
+      "path": "raw/fulltext.xml",
+      "role": "full_text",
+      "request_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC9427137&retmode=xml",
+      "final_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC9427137&retmode=xml",
+      "content_type": "text/xml; charset=UTF-8",
+      "bytes": 85353,
+      "sha256": "6ffb2f3b4fb5e2719c15fff246732c1c5367ce63902711df0ae9f98455335238",
+      "last_modified": null,
+      "etag": null
+    }
+  ]
+}

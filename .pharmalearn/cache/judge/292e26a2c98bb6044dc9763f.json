@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "blocking",
+  "explanation": "Evidence gives no incidence percentages (1%, 0.1%) for ILD/pneumonitis, no trial-specific fatality data, no male contraception duration (3 months), and no mention of CYP3A inducers or grapefruit restrictions\u2014these specifics are not established by the cited sources.",
+  "suggested_rewrite": "State ILD/pneumonitis as a labeled risk without specific percentages; cite only female contraception \u22653 weeks; limit CYP3A guidance to strong inhibitors like itraconazole per evidence."
+}

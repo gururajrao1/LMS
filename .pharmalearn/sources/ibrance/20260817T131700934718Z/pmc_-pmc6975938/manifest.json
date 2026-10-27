@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "drug_id": "ibrance",
+  "source_id": "pmc_-pmc6975938",
+  "fetched_at": "2026-08-17T13:17:45.306325+00:00",
+  "status": "fetched",
+  "access_level": "full_text",
+  "coverage": {
+    "pmcid": "PMC6975938"
+  },
+  "warnings": [],
+  "error": null,
+  "registry": {
+    "id": "pmc_-pmc6975938",
+    "kind": "pmc_article",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6975938/",
+    "title": "Palbociclib with Letrozole in Postmenopausal Women with ER+/HER2\u2212 Advanced Breast Cancer: Hematologic Safety Analysis of the Randomized PALOMA-2 Trial",
+    "identifiers": {
+      "pmcid": "PMC6975938"
+    }
+  },
+  "files": [
+    {
+      "path": "raw/fulltext.xml",
+      "role": "full_text",
+      "request_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC6975938&retmode=xml",
+      "final_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC6975938&retmode=xml",
+      "content_type": "text/xml; charset=UTF-8",
+      "bytes": 87985,
+      "sha256": "17472de47491ed653350ee47be79ba881671a3d0f97556657760798213831cc2",
+      "last_modified": null,
+      "etag": null
+    }
+  ]
+}

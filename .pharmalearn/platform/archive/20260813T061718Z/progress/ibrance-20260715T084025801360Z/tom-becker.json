@@ -1,0 +1,42 @@
+{
+  "run_id": "ibrance-20260715T084025801360Z",
+  "user_id": "tom-becker",
+  "started_at": "2026-07-24T00:00:00+00:00",
+  "modules": {
+    "deck": {
+      "completed_at": "2026-07-24T00:00:00+00:00"
+    },
+    "videos": {
+      "completed_at": "2026-07-24T02:00:00+00:00"
+    }
+  },
+  "attempts": [
+    {
+      "id": "6962caf94afb",
+      "kind": "baseline",
+      "score": 40,
+      "correct": 2,
+      "total": 5,
+      "passing_score": 0,
+      "passed": true,
+      "answers": {
+        "q1": 0,
+        "q3": 0,
+        "q5": 2,
+        "q7": 2,
+        "q9": 2
+      },
+      "created_at": "2026-07-24T00:00:00+00:00"
+    }
+  ],
+  "certificate": null,
+  "feedback": [
+    {
+      "id": "3ca4836aec2f",
+      "module_id": "deck",
+      "rating": 4,
+      "comment": "Dense but well organised.",
+      "created_at": "2026-08-12T21:46:57.108617+00:00"
+    }
+  ]
+}

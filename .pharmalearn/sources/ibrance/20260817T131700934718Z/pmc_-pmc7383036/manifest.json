@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "drug_id": "ibrance",
+  "source_id": "pmc_-pmc7383036",
+  "fetched_at": "2026-08-17T13:17:23.109277+00:00",
+  "status": "fetched",
+  "access_level": "full_text",
+  "coverage": {
+    "pmcid": "PMC7383036"
+  },
+  "warnings": [],
+  "error": null,
+  "registry": {
+    "id": "pmc_-pmc7383036",
+    "kind": "pmc_article",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7383036/",
+    "title": "Overall survival results from the randomized phase 2 study of palbociclib in combination with letrozole versus letrozole alone... (PALOMA-1, TRIO-18)",
+    "identifiers": {
+      "pmcid": "PMC7383036"
+    }
+  },
+  "files": [
+    {
+      "path": "raw/fulltext.xml",
+      "role": "full_text",
+      "request_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC7383036&retmode=xml",
+      "final_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC7383036&retmode=xml",
+      "content_type": "text/xml; charset=UTF-8",
+      "bytes": 104873,
+      "sha256": "f203e0d3a2e6cffa208e441dd2d1db8471be3e9aac7bde7b853ac6e44e6d0966",
+      "last_modified": null,
+      "etag": null
+    }
+  ]
+}

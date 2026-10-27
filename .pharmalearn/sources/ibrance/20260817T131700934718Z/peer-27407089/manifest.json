@@ -1,0 +1,36 @@
+{
+  "schema_version": 2,
+  "drug_id": "ibrance",
+  "source_id": "peer-27407089",
+  "fetched_at": "2026-08-17T13:17:31.762703+00:00",
+  "status": "fetched",
+  "access_level": "abstract_only",
+  "coverage": {
+    "pmid": "27407089",
+    "pmcid": null
+  },
+  "warnings": [],
+  "error": null,
+  "registry": {
+    "id": "peer-27407089",
+    "kind": "peer_reviewed_publication",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/27407089/",
+    "title": "FDA Approval of Palbociclib in Combination with Fulvestrant for the Treatment of Hormone Receptor-Positive, HER2-Negative Metastatic Breast Cancer",
+    "identifiers": {
+      "pmid": "27407089"
+    }
+  },
+  "files": [
+    {
+      "path": "raw/pubmed.xml",
+      "role": "pubmed_record",
+      "request_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=27407089&retmode=xml",
+      "final_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=27407089&retmode=xml",
+      "content_type": "text/xml; charset=UTF-8",
+      "bytes": 13199,
+      "sha256": "0042ba916d06397c469122a69e6b27ef257db67cc95381a61c9e6b7dac1cba7e",
+      "last_modified": null,
+      "etag": null
+    }
+  ]
+}

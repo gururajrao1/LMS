@@ -1,0 +1,1125 @@
+{
+  "run_id": "ibrance-20260715T084025801360Z",
+  "version": 2,
+  "status": "published",
+  "comments": [
+    {
+      "id": "347392ac8ad9",
+      "target": "deck",
+      "severity": "blocking",
+      "body": "Slide 14: Key Takeaways and Application to Practice\nConfirmed against the whole dossier: IBRANCE is FDA-approved only for HR+/HER2-negative disease in combination with an AI, fulvestrant, or inavolisib+fulvestrant. No evidence supports approval with 'trastuzumab-based therapy,' which targets HER2-positive disease and contradicts the drug's HER2-negative indication.\n\nSuggested: Ibrance (palbociclib) combined with an aromatase inhibitor, fulvestrant, or inavolisib plus fulvestrant is FDA-approved across defined HR-positive, HER2-negative breast cancer populations.",
+      "status": "closed",
+      "resolution": "Claim rewritten to the labelled indication; the trastuzumab reference removed.",
+      "version": 1,
+      "author_id": "pharmalearn-checker",
+      "author_name": "PharmaLearn checker",
+      "author_title": "Automated pre-review",
+      "created_at": "2026-07-16T03:52:36.203707+00:00",
+      "resolved_at": "2026-07-16T20:40:36.203707+00:00",
+      "finding_id": "hcp:deck-14:unsupported:Slide 14: Key Takeaways and Application #f059becb",
+      "origin": "automated_check",
+      "check": "unsupported",
+      "resolved_by_id": "priya-raman",
+      "resolved_by_name": "Priya Raman",
+      "resolved_by_title": "Medical education lead",
+      "closed_in_version": 2
+    },
+    {
+      "id": "ba7153ac8528",
+      "target": "quiz",
+      "severity": "blocking",
+      "body": "Question q3\nOnly 0% of the recorded supporting quote appears in the stored source document. Treat this citation as unverified until a reviewer confirms it.",
+      "status": "closed",
+      "resolution": "Quotation replaced with the exact label sentence and the locator corrected.",
+      "version": 1,
+      "author_id": "pharmalearn-checker",
+      "author_name": "PharmaLearn checker",
+      "author_title": "Automated pre-review",
+      "created_at": "2026-07-16T04:40:36.203707+00:00",
+      "resolved_at": "2026-07-16T21:19:00.203707+00:00",
+      "finding_id": "hcp:quiz-q3:quote_not_found:Question q3#a717ed56",
+      "origin": "automated_check",
+      "check": "quote_not_found",
+      "resolved_by_id": "priya-raman",
+      "resolved_by_name": "Priya Raman",
+      "resolved_by_title": "Medical education lead",
+      "closed_in_version": 2
+    },
+    {
+      "id": "341b03078429",
+      "target": "quiz",
+      "severity": "blocking",
+      "body": "Question q3\nOnly 12% of the recorded supporting quote appears in the stored source document. Treat this citation as unverified until a reviewer confirms it.",
+      "status": "closed",
+      "resolution": "Quotation replaced with the exact label sentence and the locator corrected.",
+      "version": 1,
+      "author_id": "pharmalearn-checker",
+      "author_name": "PharmaLearn checker",
+      "author_title": "Automated pre-review",
+      "created_at": "2026-07-16T05:28:36.203707+00:00",
+      "resolved_at": "2026-07-16T21:57:24.203707+00:00",
+      "finding_id": "hcp:quiz-q3:quote_not_found:Question q3#ae225489",
+      "origin": "automated_check",
+      "check": "quote_not_found",
+      "resolved_by_id": "priya-raman",
+      "resolved_by_name": "Priya Raman",
+      "resolved_by_title": "Medical education lead",
+      "closed_in_version": 2
+    },
+    {
+      "id": "8bbc0371d6b3",
+      "target": "deck",
+      "severity": "blocking",
+      "body": "Slide 17: MSL Scientific Exchange: Handling Unsolicited and Off-Label Questions\nOnly 12% of the recorded supporting quote appears in the stored source document. Treat this citation as unverified until a reviewer confirms it.",
+      "status": "closed",
+      "resolution": "Quotation replaced with the exact label sentence and the locator corrected.",
+      "version": 1,
+      "author_id": "pharmalearn-checker",
+      "author_name": "PharmaLearn checker",
+      "author_title": "Automated pre-review",
+      "created_at": "2026-07-16T06:16:36.203707+00:00",
+      "resolved_at": "2026-07-16T22:35:48.203707+00:00",
+      "finding_id": "msl:deck-17:quote_not_found:Slide 17: MSL Scientific Exchange: Handl#abd4dfd8",
+      "origin": "automated_check",
+      "check": "quote_not_found",
+      "resolved_by_id": "priya-raman",
+      "resolved_by_name": "Priya Raman",
+      "resolved_by_title": "Medical education lead",
+      "closed_in_version": 2
+    },
+    {
+      "id": "70e38320add1",
+      "target": "deck",
+      "severity": "blocking",
+      "body": "Slide 17: MSL Scientific Exchange: Handling Unsolicited and Off-Label Questions\nConfirmed against the whole dossier: The text lists 'HER2+ maintenance combination' as a current FDA-approved indication. All evidence shown states IBRANCE (palbociclib) is approved only for HR+/HER2-NEGATIVE disease (AI, fulvestrant, or inavolisib+fulvestrant). No evidence supports a HER2+ indication; this appears to contradict the cited labeling.\n\nSuggested: Remove 'HER2+ maintenance combination.' On-label discussion should be limited to HR+/HER2-negative advanced/metastatic breast cancer: AI combination, fulvestrant combination, or inavolisib+fulvestrant for PIK3CA-mutated disease, per current Prescribing Information.",
+      "status": "closed",
+      "resolution": "Claim rewritten to the labelled indication; the trastuzumab reference removed.",
+      "version": 1,
+      "author_id": "pharmalearn-checker",
+      "author_name": "PharmaLearn checker",
+      "author_title": "Automated pre-review",
+      "created_at": "2026-07-16T07:04:36.203707+00:00",
+      "resolved_at": "2026-07-16T23:14:12.203707+00:00",
+      "finding_id": "msl:deck-17:unsupported:Slide 17: MSL Scientific Exchange: Handl#abd4dfd8",
+      "origin": "automated_check",
+      "check": "unsupported",
+      "resolved_by_id": "priya-raman",
+      "resolved_by_name": "Priya Raman",
+      "resolved_by_title": "Medical education lead",
+      "closed_in_version": 2
+    },
+    {
+      "id": "3295b900581c",
+      "target": "storyboard",
+      "severity": "blocking",
+      "body": "Scene 5: Subgroups and Special Populations\nCitation \u201cPalbociclib Plus Letrozole as First-Line Therapy in Postmenopausal Asi\u201d does not match any claim collected during research, so there is no recorded evidence behind it.",
+      "status": "closed",
+      "resolution": "Citation removed; the scene now cites the trial record already in the dossier.",
+      "version": 1,
+      "author_id": "pharmalearn-checker",
+      "author_name": "PharmaLearn checker",
+      "author_title": "Automated pre-review",
+      "created_at": "2026-07-16T07:52:36.203707+00:00",
+      "resolved_at": "2026-07-16T23:52:36.203707+00:00",
+      "finding_id": "msl:scene-5:untraceable:Scene 5: Subgroups and Special Populatio#639ebd60",
+      "origin": "automated_check",
+      "check": "untraceable",
+      "resolved_by_id": "priya-raman",
+      "resolved_by_name": "Priya Raman",
+      "resolved_by_title": "Medical education lead",
+      "closed_in_version": 2
+    },
+    {
+      "id": "f0f0bcb1dbb0",
+      "target": "storyboard",
+      "severity": "blocking",
+      "body": "Scene 6: Class Comparisons: Handle Indirect Data with Care\nCitation \u201cReal-world effectiveness comparison of first-line palbociclib, ribocic\u201d does not match any claim collected during research, so there is no recorded evidence behind it.",
+      "status": "closed",
+      "resolution": "Citation removed; the scene now cites the trial record already in the dossier.",
+      "version": 1,
+      "author_id": "pharmalearn-checker",
+      "author_name": "PharmaLearn checker",
+      "author_title": "Automated pre-review",
+      "created_at": "2026-07-16T08:40:36.203707+00:00",
+      "resolved_at": "2026-07-17T00:31:00.203707+00:00",
+      "finding_id": "msl:scene-6:untraceable:Scene 6: Class Comparisons: Handle Indir#366fb468",
+      "origin": "automated_check",
+      "check": "untraceable",
+      "resolved_by_id": "priya-raman",
+      "resolved_by_name": "Priya Raman",
+      "resolved_by_title": "Medical education lead",
+      "closed_in_version": 2
+    },
+    {
+      "id": "89a3065f4d29",
+      "target": "deck",
+      "severity": "major",
+      "body": "Slide 10: Newer Approved Combinations: Expanding the Evidence Base\nConfirmed against the whole dossier: No evidence shown provides INAVO120 PFS data (15.0 vs 7.3 months); only dosing regimen is cited. The PATINA HR and immature OS claims are well supported, but the INAVO120 efficacy figures lack supporting evidence here.\n\nSuggested: For INAVO120, cite the specific PFS outcome data source; if unavailable in evidence set, remove or flag the 15.0 vs 7.3 month figures pending citation of primary trial results.",
+      "status": "closed",
+      "resolution": "Claim rewritten to the labelled indication; the trastuzumab reference removed.",
+      "version": 1,
+      "author_id": "pharmalearn-checker",
+      "author_name": "PharmaLearn checker",
+      "author_title": "Automated pre-review",
+      "created_at": "2026-07-16T09:28:36.203707+00:00",
+      "resolved_at": "2026-07-17T01:09:24.203707+00:00",
+      "finding_id": "hcp:deck-10:unsupported:Slide 10: Newer Approved Combinations: E#3250d1ca",
+      "origin": "automated_check",
+      "check": "unsupported",
+      "resolved_by_id": "priya-raman",
+      "resolved_by_name": "Priya Raman",
+      "resolved_by_title": "Medical education lead",
+      "closed_in_version": 2
+    },
+    {
+      "id": "597712db3bf0",
+      "target": "deck",
+      "severity": "major",
+      "body": "Slide 11: Safety: Neutropenia (Most Common Adverse Reaction)\nThe recorded supporting quote is only 85% verbatim \u2014 part of it does not appear in the source document, so it reads as a stitched or paraphrased quotation.",
+      "status": "dismissed",
+      "resolution": "Quote spans two adjacent label paragraphs. Acceptable as an excerpt; left as is.",
+      "version": 1,
+      "author_id": "pharmalearn-checker",
+      "author_name": "PharmaLearn checker",
+      "author_title": "Automated pre-review",
+      "created_at": "2026-07-16T10:16:36.203707+00:00",
+      "resolved_at": "2026-07-17T01:47:48.203707+00:00",
+      "finding_id": "hcp:deck-11:quote_not_verbatim:Slide 11: Safety: Neutropenia (Most Comm#be9ff470",
+      "origin": "automated_check",
+      "check": "quote_not_verbatim",
+      "override": {
+        "reason": "Checked against Section 5.1 by hand: the excerpt is faithful and the break between paragraphs is not material. Accepting the partial match.",
+        "check": "quote_not_verbatim",
+        "actor_id": "anil-shekhar",
+        "actor_name": "Dr. Anil Shekhar",
+        "actor_title": "Therapeutic area expert, oncology",
+        "at": "2026-08-17T12:36:42.049007+00:00"
+      },
+      "resolved_by_id": "anil-shekhar",
+      "resolved_by_name": "Dr. Anil Shekhar",
+      "resolved_by_title": "Therapeutic area expert, oncology"
+    },
+    {
+      "id": "eaca91fa9cfe",
+      "target": "deck",
+      "severity": "major",
+      "body": "Slide 11: Safety: Neutropenia (Most Common Adverse Reaction)\nConfirmed against the whole dossier: The claim that neutropenia's 'effect is not cumulative across cycles' is not supported by any evidence shown here; none of the cited or additional evidence addresses cumulative vs. non-cumulative neutropenia across treatment cycles.\n\nSuggested: Remove or verify separately the claim that neutropenia is not cumulative across cycles, as no evidence provided supports this specific assertion; retain the timing/duration data which are supported.",
+      "status": "closed",
+      "resolution": "Claim rewritten to the labelled indication; the trastuzumab reference removed.",
+      "version": 1,
+      "author_id": "pharmalearn-checker",
+      "author_name": "PharmaLearn checker",
+      "author_title": "Automated pre-review",
+      "created_at": "2026-07-16T11:04:36.203707+00:00",
+      "resolved_at": "2026-07-17T02:26:12.203707+00:00",
+      "finding_id": "hcp:deck-11:unsupported:Slide 11: Safety: Neutropenia (Most Comm#577d9314",
+      "origin": "automated_check",
+      "check": "unsupported",
+      "resolved_by_id": "priya-raman",
+      "resolved_by_name": "Priya Raman",
+      "resolved_by_title": "Medical education lead",
+      "closed_in_version": 2
+    },
+    {
+      "id": "3f6c577b37e0",
+      "target": "deck",
+      "severity": "major",
+      "body": "Slide 12: Safety: ILD/Pneumonitis and Embryo-Fetal Toxicity\nConfirmed against the whole dossier: No evidence provided states that 'additional fatalities have been reported in the postmarketing setting' for ILD/pneumonitis. All other claims (monitoring, interruption, contraception, contraindications) are supported, but this specific postmarketing fatality claim is not backed by any cited or additional evidence.\n\nSuggested: Interrupt IBRANCE immediately for suspected ILD/pneumonitis and evaluate; permanently discontinue for severe cases, per current labeling guidance.",
+      "status": "closed",
+      "resolution": "Claim rewritten to the labelled indication; the trastuzumab reference removed.",
+      "version": 1,
+      "author_id": "pharmalearn-checker",
+      "author_name": "PharmaLearn checker",
+      "author_title": "Automated pre-review",
+      "created_at": "2026-07-16T11:52:36.203707+00:00",
+      "resolved_at": "2026-07-17T03:04:36.203707+00:00",
+      "finding_id": "hcp:deck-12:unsupported:Slide 12: Safety: ILD/Pneumonitis and Em#5ee26c1f",
+      "origin": "automated_check",
+      "check": "unsupported",
+      "resolved_by_id": "priya-raman",
+      "resolved_by_name": "Priya Raman",
+      "resolved_by_title": "Medical education lead",
+      "closed_in_version": 2
+    },
+    {
+      "id": "ce82ff91176a",
+      "target": "quiz",
+      "severity": "blocking",
+      "body": "Question 4 states the PFS benefit as an absolute month gain. The label reports a range and the confidence interval crosses into a smaller effect \u2014 rewrite it to match the labelled wording.",
+      "status": "closed",
+      "resolution": "Rewritten to the labelled PFS range with the confidence interval shown alongside.",
+      "version": 1,
+      "author_id": "anil-shekhar",
+      "author_name": "Dr. Anil Shekhar",
+      "author_title": "Therapeutic area expert, oncology",
+      "created_at": "2026-07-16T12:40:36.203707+00:00",
+      "resolved_at": "2026-07-17T03:43:00.203707+00:00",
+      "resolved_by_id": "priya-raman",
+      "resolved_by_name": "Priya Raman",
+      "resolved_by_title": "Medical education lead",
+      "closed_in_version": 2
+    },
+    {
+      "id": "c7212d95cb3b",
+      "target": "deck",
+      "severity": "major",
+      "body": "Slide 11 shows the neutropenia rate without the dose-modification guidance that follows it. An MSL quoting this in the field will get asked 'and then what?' immediately.",
+      "status": "closed",
+      "resolution": "Added the dose-interruption and reduction table as slide 12, cited to Section 2.2 of the label.",
+      "version": 1,
+      "author_id": "anil-shekhar",
+      "author_name": "Dr. Anil Shekhar",
+      "author_title": "Therapeutic area expert, oncology",
+      "created_at": "2026-07-16T13:28:36.203707+00:00",
+      "resolved_at": "2026-07-17T04:21:24.203707+00:00",
+      "resolved_by_id": "priya-raman",
+      "resolved_by_name": "Priya Raman",
+      "resolved_by_title": "Medical education lead",
+      "closed_in_version": 2
+    },
+    {
+      "id": "558dce929706",
+      "target": "faq",
+      "severity": "major",
+      "body": "The answer on combination use should name the FDA-approved test requirement for the PIK3CA-mutated population. As written it implies broader eligibility than the label supports.",
+      "status": "closed",
+      "resolution": "Answer now names the companion diagnostic requirement and links the label section.",
+      "version": 1,
+      "author_id": "maria-alvarez",
+      "author_name": "Dr. Maria Alvarez",
+      "author_title": "Regulatory and medical affairs",
+      "created_at": "2026-07-16T14:16:36.203707+00:00",
+      "resolved_at": "2026-07-17T04:59:48.203707+00:00",
+      "resolved_by_id": "priya-raman",
+      "resolved_by_name": "Priya Raman",
+      "resolved_by_title": "Medical education lead",
+      "closed_in_version": 2
+    },
+    {
+      "id": "84dc797b4821",
+      "target": "sources",
+      "severity": "minor",
+      "body": "Several claims lean on manufacturer-hosted pages. Where a DailyMed or FDA equivalent exists, that should be the primary citation and the Pfizer page secondary.",
+      "status": "closed",
+      "resolution": "Primary citations repointed to DailyMed and Drugs@FDA where an equivalent exists.",
+      "version": 1,
+      "author_id": "maria-alvarez",
+      "author_name": "Dr. Maria Alvarez",
+      "author_title": "Regulatory and medical affairs",
+      "created_at": "2026-07-16T15:04:36.203707+00:00",
+      "resolved_at": "2026-07-17T05:38:12.203707+00:00",
+      "resolved_by_id": "priya-raman",
+      "resolved_by_name": "Priya Raman",
+      "resolved_by_title": "Medical education lead",
+      "closed_in_version": 2
+    },
+    {
+      "id": "f9e38e6bd396",
+      "target": "storyboard",
+      "severity": "minor",
+      "body": "Scene 3 narration says 'stops the cell cycle'. Prefer 'inhibits progression from G1 into S phase' \u2014 the audience is oncology-literate and the loose phrasing will read as imprecise.",
+      "status": "closed",
+      "resolution": "Narration reworded to the mechanistic phrasing.",
+      "version": 1,
+      "author_id": "anil-shekhar",
+      "author_name": "Dr. Anil Shekhar",
+      "author_title": "Therapeutic area expert, oncology",
+      "created_at": "2026-07-16T15:52:36.203707+00:00",
+      "resolved_at": "2026-07-17T06:16:36.203707+00:00",
+      "resolved_by_id": "priya-raman",
+      "resolved_by_name": "Priya Raman",
+      "resolved_by_title": "Medical education lead",
+      "closed_in_version": 2
+    }
+  ],
+  "versions": [
+    {
+      "version": 1,
+      "summary": "Agent-generated first draft",
+      "author_id": "agent",
+      "author_name": "PharmaLearn agent",
+      "addressed": [],
+      "created_at": null
+    },
+    {
+      "version": 2,
+      "summary": "Label-aligned PFS wording, dose-modification table, companion-diagnostic detail",
+      "author_id": "priya-raman",
+      "author_name": "Priya Raman",
+      "addressed": [
+        "347392ac8ad9",
+        "ba7153ac8528",
+        "341b03078429",
+        "8bbc0371d6b3",
+        "70e38320add1",
+        "3295b900581c",
+        "f0f0bcb1dbb0",
+        "89a3065f4d29",
+        "eaca91fa9cfe",
+        "3f6c577b37e0",
+        "ce82ff91176a",
+        "c7212d95cb3b",
+        "558dce929706",
+        "84dc797b4821",
+        "f9e38e6bd396"
+      ],
+      "unverified": [],
+      "created_at": "2026-07-17T08:40:36.203707+00:00"
+    }
+  ],
+  "signoffs": [
+    {
+      "id": "28e33a3df0cf",
+      "version": 2,
+      "decision": "approved",
+      "note": "Clinically accurate and traceable to the label.",
+      "author_id": "anil-shekhar",
+      "author_name": "Dr. Anil Shekhar",
+      "author_title": "Therapeutic area expert, oncology",
+      "created_at": "2026-07-17T18:16:36.203707+00:00"
+    },
+    {
+      "id": "69a0d3ab096d",
+      "version": 2,
+      "decision": "approved",
+      "note": "Citations and promotional balance acceptable for field use.",
+      "author_id": "maria-alvarez",
+      "author_name": "Dr. Maria Alvarez",
+      "author_title": "Regulatory and medical affairs",
+      "created_at": "2026-07-17T23:04:36.203707+00:00"
+    }
+  ],
+  "publication": {
+    "version": 2,
+    "published_at": "2026-07-18T08:40:36.203707+00:00",
+    "published_by": "Priya Raman",
+    "overrides": [
+      {
+        "comment_id": "597712db3bf0",
+        "severity": "major",
+        "target": "deck",
+        "reason": "Checked against Section 5.1 by hand: the excerpt is faithful and the break between paragraphs is not material. Accepting the partial match.",
+        "check": "quote_not_verbatim",
+        "actor_id": "anil-shekhar",
+        "actor_name": "Dr. Anil Shekhar",
+        "actor_title": "Therapeutic area expert, oncology",
+        "at": "2026-08-17T12:36:42.049007+00:00"
+      }
+    ],
+    "starts_on": "2026-07-18",
+    "due_on": "2026-08-17",
+    "message": "Complete before the advisory board. The final assessment is required for field use.",
+    "assignees": [
+      "ken-osei",
+      "lucy-whitfield",
+      "jordan-feld",
+      "sara-nakamura",
+      "tom-becker"
+    ],
+    "notifications": [
+      {
+        "to": "ken.osei@pharmalearn.local",
+        "name": "Dr. Ken Osei",
+        "subject": "Training assigned: complete by 2026-08-17",
+        "sent_at": "2026-07-18T08:40:36.203707+00:00"
+      },
+      {
+        "to": "lucy.whitfield@pharmalearn.local",
+        "name": "Dr. Lucy Whitfield",
+        "subject": "Training assigned: complete by 2026-08-17",
+        "sent_at": "2026-07-18T08:40:36.203707+00:00"
+      },
+      {
+        "to": "jordan.feld@pharmalearn.local",
+        "name": "Jordan Feld",
+        "subject": "Training assigned: complete by 2026-08-17",
+        "sent_at": "2026-07-18T08:40:36.203707+00:00"
+      },
+      {
+        "to": "sara.nakamura@pharmalearn.local",
+        "name": "Sara Nakamura",
+        "subject": "Training assigned: complete by 2026-08-17",
+        "sent_at": "2026-07-18T08:40:36.203707+00:00"
+      },
+      {
+        "to": "tom.becker@pharmalearn.local",
+        "name": "Dr. Tom Becker",
+        "subject": "Training assigned: complete by 2026-08-17",
+        "sent_at": "2026-07-18T08:40:36.203707+00:00"
+      }
+    ]
+  },
+  "audit": [
+    {
+      "id": "348c0bce9da4",
+      "at": "2026-08-17T12:36:41.868168+00:00",
+      "action": "comment.raised",
+      "actor_id": "pharmalearn-checker",
+      "actor_name": "PharmaLearn checker",
+      "actor_title": "Automated pre-review",
+      "actor_role": "checker",
+      "summary": "PharmaLearn checker raised a blocking comment on deck",
+      "detail": {
+        "comment_id": "347392ac8ad9",
+        "severity": "blocking",
+        "target": "deck"
+      }
+    },
+    {
+      "id": "1a9e0b3d6042",
+      "at": "2026-08-17T12:36:41.868723+00:00",
+      "action": "comment.raised",
+      "actor_id": "pharmalearn-checker",
+      "actor_name": "PharmaLearn checker",
+      "actor_title": "Automated pre-review",
+      "actor_role": "checker",
+      "summary": "PharmaLearn checker raised a blocking comment on quiz",
+      "detail": {
+        "comment_id": "ba7153ac8528",
+        "severity": "blocking",
+        "target": "quiz"
+      }
+    },
+    {
+      "id": "98ed036df347",
+      "at": "2026-08-17T12:36:41.869338+00:00",
+      "action": "comment.raised",
+      "actor_id": "pharmalearn-checker",
+      "actor_name": "PharmaLearn checker",
+      "actor_title": "Automated pre-review",
+      "actor_role": "checker",
+      "summary": "PharmaLearn checker raised a blocking comment on quiz",
+      "detail": {
+        "comment_id": "341b03078429",
+        "severity": "blocking",
+        "target": "quiz"
+      }
+    },
+    {
+      "id": "99bbbcde7e6e",
+      "at": "2026-08-17T12:36:41.869744+00:00",
+      "action": "comment.raised",
+      "actor_id": "pharmalearn-checker",
+      "actor_name": "PharmaLearn checker",
+      "actor_title": "Automated pre-review",
+      "actor_role": "checker",
+      "summary": "PharmaLearn checker raised a blocking comment on deck",
+      "detail": {
+        "comment_id": "8bbc0371d6b3",
+        "severity": "blocking",
+        "target": "deck"
+      }
+    },
+    {
+      "id": "005b98789034",
+      "at": "2026-08-17T12:36:41.870253+00:00",
+      "action": "comment.raised",
+      "actor_id": "pharmalearn-checker",
+      "actor_name": "PharmaLearn checker",
+      "actor_title": "Automated pre-review",
+      "actor_role": "checker",
+      "summary": "PharmaLearn checker raised a blocking comment on deck",
+      "detail": {
+        "comment_id": "70e38320add1",
+        "severity": "blocking",
+        "target": "deck"
+      }
+    },
+    {
+      "id": "b0bd42fa46a4",
+      "at": "2026-08-17T12:36:41.870734+00:00",
+      "action": "comment.raised",
+      "actor_id": "pharmalearn-checker",
+      "actor_name": "PharmaLearn checker",
+      "actor_title": "Automated pre-review",
+      "actor_role": "checker",
+      "summary": "PharmaLearn checker raised a blocking comment on storyboard",
+      "detail": {
+        "comment_id": "3295b900581c",
+        "severity": "blocking",
+        "target": "storyboard"
+      }
+    },
+    {
+      "id": "dbbdcdf18ed4",
+      "at": "2026-08-17T12:36:41.871195+00:00",
+      "action": "comment.raised",
+      "actor_id": "pharmalearn-checker",
+      "actor_name": "PharmaLearn checker",
+      "actor_title": "Automated pre-review",
+      "actor_role": "checker",
+      "summary": "PharmaLearn checker raised a blocking comment on storyboard",
+      "detail": {
+        "comment_id": "f0f0bcb1dbb0",
+        "severity": "blocking",
+        "target": "storyboard"
+      }
+    },
+    {
+      "id": "7b4349051a51",
+      "at": "2026-08-17T12:36:41.872444+00:00",
+      "action": "comment.raised",
+      "actor_id": "pharmalearn-checker",
+      "actor_name": "PharmaLearn checker",
+      "actor_title": "Automated pre-review",
+      "actor_role": "checker",
+      "summary": "PharmaLearn checker raised a major comment on deck",
+      "detail": {
+        "comment_id": "89a3065f4d29",
+        "severity": "major",
+        "target": "deck"
+      }
+    },
+    {
+      "id": "cb8b22fd0702",
+      "at": "2026-08-17T12:36:41.873029+00:00",
+      "action": "comment.raised",
+      "actor_id": "pharmalearn-checker",
+      "actor_name": "PharmaLearn checker",
+      "actor_title": "Automated pre-review",
+      "actor_role": "checker",
+      "summary": "PharmaLearn checker raised a major comment on deck",
+      "detail": {
+        "comment_id": "597712db3bf0",
+        "severity": "major",
+        "target": "deck"
+      }
+    },
+    {
+      "id": "9092a75128b0",
+      "at": "2026-08-17T12:36:41.873741+00:00",
+      "action": "comment.raised",
+      "actor_id": "pharmalearn-checker",
+      "actor_name": "PharmaLearn checker",
+      "actor_title": "Automated pre-review",
+      "actor_role": "checker",
+      "summary": "PharmaLearn checker raised a major comment on deck",
+      "detail": {
+        "comment_id": "eaca91fa9cfe",
+        "severity": "major",
+        "target": "deck"
+      }
+    },
+    {
+      "id": "c6c2dda81aa3",
+      "at": "2026-08-17T12:36:41.874335+00:00",
+      "action": "comment.raised",
+      "actor_id": "pharmalearn-checker",
+      "actor_name": "PharmaLearn checker",
+      "actor_title": "Automated pre-review",
+      "actor_role": "checker",
+      "summary": "PharmaLearn checker raised a major comment on deck",
+      "detail": {
+        "comment_id": "3f6c577b37e0",
+        "severity": "major",
+        "target": "deck"
+      }
+    },
+    {
+      "id": "8c5c6592688e",
+      "at": "2026-08-17T12:36:41.875110+00:00",
+      "action": "comment.resolved",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman marked addressed a blocking comment on deck",
+      "detail": {
+        "comment_id": "347392ac8ad9",
+        "severity": "blocking",
+        "target": "deck",
+        "was": "open",
+        "now": "addressed",
+        "resolution": "Claim rewritten to the labelled indication; the trastuzumab reference removed.",
+        "origin": "automated_check",
+        "check": "unsupported"
+      }
+    },
+    {
+      "id": "a73653de39fa",
+      "at": "2026-08-17T12:36:41.875378+00:00",
+      "action": "comment.resolved",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman marked addressed a blocking comment on quiz",
+      "detail": {
+        "comment_id": "ba7153ac8528",
+        "severity": "blocking",
+        "target": "quiz",
+        "was": "open",
+        "now": "addressed",
+        "resolution": "Quotation replaced with the exact label sentence and the locator corrected.",
+        "origin": "automated_check",
+        "check": "quote_not_found"
+      }
+    },
+    {
+      "id": "e85acc2e96e9",
+      "at": "2026-08-17T12:36:41.875638+00:00",
+      "action": "comment.resolved",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman marked addressed a blocking comment on quiz",
+      "detail": {
+        "comment_id": "341b03078429",
+        "severity": "blocking",
+        "target": "quiz",
+        "was": "open",
+        "now": "addressed",
+        "resolution": "Quotation replaced with the exact label sentence and the locator corrected.",
+        "origin": "automated_check",
+        "check": "quote_not_found"
+      }
+    },
+    {
+      "id": "b5ec91b3a206",
+      "at": "2026-08-17T12:36:41.875900+00:00",
+      "action": "comment.resolved",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman marked addressed a blocking comment on deck",
+      "detail": {
+        "comment_id": "8bbc0371d6b3",
+        "severity": "blocking",
+        "target": "deck",
+        "was": "open",
+        "now": "addressed",
+        "resolution": "Quotation replaced with the exact label sentence and the locator corrected.",
+        "origin": "automated_check",
+        "check": "quote_not_found"
+      }
+    },
+    {
+      "id": "653dae9d1ea3",
+      "at": "2026-08-17T12:36:41.876426+00:00",
+      "action": "comment.resolved",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman marked addressed a blocking comment on deck",
+      "detail": {
+        "comment_id": "70e38320add1",
+        "severity": "blocking",
+        "target": "deck",
+        "was": "open",
+        "now": "addressed",
+        "resolution": "Claim rewritten to the labelled indication; the trastuzumab reference removed.",
+        "origin": "automated_check",
+        "check": "unsupported"
+      }
+    },
+    {
+      "id": "6d6bfbb41a6a",
+      "at": "2026-08-17T12:36:41.876793+00:00",
+      "action": "comment.resolved",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman marked addressed a blocking comment on storyboard",
+      "detail": {
+        "comment_id": "3295b900581c",
+        "severity": "blocking",
+        "target": "storyboard",
+        "was": "open",
+        "now": "addressed",
+        "resolution": "Citation removed; the scene now cites the trial record already in the dossier.",
+        "origin": "automated_check",
+        "check": "untraceable"
+      }
+    },
+    {
+      "id": "a32d30331343",
+      "at": "2026-08-17T12:36:41.877183+00:00",
+      "action": "comment.resolved",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman marked addressed a blocking comment on storyboard",
+      "detail": {
+        "comment_id": "f0f0bcb1dbb0",
+        "severity": "blocking",
+        "target": "storyboard",
+        "was": "open",
+        "now": "addressed",
+        "resolution": "Citation removed; the scene now cites the trial record already in the dossier.",
+        "origin": "automated_check",
+        "check": "untraceable"
+      }
+    },
+    {
+      "id": "71616a54fad1",
+      "at": "2026-08-17T12:36:41.878053+00:00",
+      "action": "comment.resolved",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman marked addressed a major comment on deck",
+      "detail": {
+        "comment_id": "89a3065f4d29",
+        "severity": "major",
+        "target": "deck",
+        "was": "open",
+        "now": "addressed",
+        "resolution": "Claim rewritten to the labelled indication; the trastuzumab reference removed.",
+        "origin": "automated_check",
+        "check": "unsupported"
+      }
+    },
+    {
+      "id": "dc12f572249d",
+      "at": "2026-08-17T12:36:41.967412+00:00",
+      "action": "dismissal.challenged",
+      "actor_id": "anil-shekhar",
+      "actor_name": "Dr. Anil Shekhar",
+      "actor_title": "Therapeutic area expert, oncology",
+      "actor_role": "reviewer",
+      "summary": "Dr. Anil Shekhar tried to dismiss a major comment on deck; the quote_not_verbatim check still fails",
+      "detail": {
+        "comment_id": "597712db3bf0",
+        "severity": "major",
+        "target": "deck",
+        "check": "quote_not_verbatim",
+        "reason": "Quote spans two adjacent label paragraphs. Acceptable as an excerpt; left as is."
+      }
+    },
+    {
+      "id": "36d7fb727799",
+      "at": "2026-08-17T12:36:42.049036+00:00",
+      "action": "dismissal.overridden",
+      "actor_id": "anil-shekhar",
+      "actor_name": "Dr. Anil Shekhar",
+      "actor_title": "Therapeutic area expert, oncology",
+      "actor_role": "reviewer",
+      "summary": "Dr. Anil Shekhar overrode a still-failing quote_not_verbatim check on deck",
+      "detail": {
+        "comment_id": "597712db3bf0",
+        "severity": "major",
+        "target": "deck",
+        "check": "quote_not_verbatim",
+        "reason": "Checked against Section 5.1 by hand: the excerpt is faithful and the break between paragraphs is not material. Accepting the partial match."
+      }
+    },
+    {
+      "id": "55b9ebc121e2",
+      "at": "2026-08-17T12:36:42.049048+00:00",
+      "action": "comment.resolved",
+      "actor_id": "anil-shekhar",
+      "actor_name": "Dr. Anil Shekhar",
+      "actor_title": "Therapeutic area expert, oncology",
+      "actor_role": "reviewer",
+      "summary": "Dr. Anil Shekhar dismissed a major comment on deck",
+      "detail": {
+        "comment_id": "597712db3bf0",
+        "severity": "major",
+        "target": "deck",
+        "was": "open",
+        "now": "dismissed",
+        "resolution": "Quote spans two adjacent label paragraphs. Acceptable as an excerpt; left as is.",
+        "origin": "automated_check",
+        "check": "quote_not_verbatim"
+      }
+    },
+    {
+      "id": "6c31f948714d",
+      "at": "2026-08-17T12:36:42.050198+00:00",
+      "action": "comment.resolved",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman marked addressed a major comment on deck",
+      "detail": {
+        "comment_id": "eaca91fa9cfe",
+        "severity": "major",
+        "target": "deck",
+        "was": "open",
+        "now": "addressed",
+        "resolution": "Claim rewritten to the labelled indication; the trastuzumab reference removed.",
+        "origin": "automated_check",
+        "check": "unsupported"
+      }
+    },
+    {
+      "id": "b342fb065e8e",
+      "at": "2026-08-17T12:36:42.050683+00:00",
+      "action": "comment.resolved",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman marked addressed a major comment on deck",
+      "detail": {
+        "comment_id": "3f6c577b37e0",
+        "severity": "major",
+        "target": "deck",
+        "was": "open",
+        "now": "addressed",
+        "resolution": "Claim rewritten to the labelled indication; the trastuzumab reference removed.",
+        "origin": "automated_check",
+        "check": "unsupported"
+      }
+    },
+    {
+      "id": "5c14a51013a6",
+      "at": "2026-08-17T12:36:42.051420+00:00",
+      "action": "comment.raised",
+      "actor_id": "anil-shekhar",
+      "actor_name": "Dr. Anil Shekhar",
+      "actor_title": "Therapeutic area expert, oncology",
+      "actor_role": "reviewer",
+      "summary": "Dr. Anil Shekhar raised a blocking comment on quiz",
+      "detail": {
+        "comment_id": "ce82ff91176a",
+        "severity": "blocking",
+        "target": "quiz"
+      }
+    },
+    {
+      "id": "ad277b26e282",
+      "at": "2026-08-17T12:36:42.051817+00:00",
+      "action": "comment.resolved",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman marked addressed a blocking comment on quiz",
+      "detail": {
+        "comment_id": "ce82ff91176a",
+        "severity": "blocking",
+        "target": "quiz",
+        "was": "open",
+        "now": "addressed",
+        "resolution": "Rewritten to the labelled PFS range with the confidence interval shown alongside."
+      }
+    },
+    {
+      "id": "e8f7cef67624",
+      "at": "2026-08-17T12:36:42.052441+00:00",
+      "action": "comment.raised",
+      "actor_id": "anil-shekhar",
+      "actor_name": "Dr. Anil Shekhar",
+      "actor_title": "Therapeutic area expert, oncology",
+      "actor_role": "reviewer",
+      "summary": "Dr. Anil Shekhar raised a major comment on deck",
+      "detail": {
+        "comment_id": "c7212d95cb3b",
+        "severity": "major",
+        "target": "deck"
+      }
+    },
+    {
+      "id": "647a4e6cdba3",
+      "at": "2026-08-17T12:36:42.052899+00:00",
+      "action": "comment.resolved",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman marked addressed a major comment on deck",
+      "detail": {
+        "comment_id": "c7212d95cb3b",
+        "severity": "major",
+        "target": "deck",
+        "was": "open",
+        "now": "addressed",
+        "resolution": "Added the dose-interruption and reduction table as slide 12, cited to Section 2.2 of the label."
+      }
+    },
+    {
+      "id": "4d8507e7dffd",
+      "at": "2026-08-17T12:36:42.053596+00:00",
+      "action": "comment.raised",
+      "actor_id": "maria-alvarez",
+      "actor_name": "Dr. Maria Alvarez",
+      "actor_title": "Regulatory and medical affairs",
+      "actor_role": "reviewer",
+      "summary": "Dr. Maria Alvarez raised a major comment on faq",
+      "detail": {
+        "comment_id": "558dce929706",
+        "severity": "major",
+        "target": "faq"
+      }
+    },
+    {
+      "id": "4d0e35b8f92b",
+      "at": "2026-08-17T12:36:42.054017+00:00",
+      "action": "comment.resolved",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman marked addressed a major comment on faq",
+      "detail": {
+        "comment_id": "558dce929706",
+        "severity": "major",
+        "target": "faq",
+        "was": "open",
+        "now": "addressed",
+        "resolution": "Answer now names the companion diagnostic requirement and links the label section."
+      }
+    },
+    {
+      "id": "945db635d680",
+      "at": "2026-08-17T12:36:42.054597+00:00",
+      "action": "comment.raised",
+      "actor_id": "maria-alvarez",
+      "actor_name": "Dr. Maria Alvarez",
+      "actor_title": "Regulatory and medical affairs",
+      "actor_role": "reviewer",
+      "summary": "Dr. Maria Alvarez raised a minor comment on sources",
+      "detail": {
+        "comment_id": "84dc797b4821",
+        "severity": "minor",
+        "target": "sources"
+      }
+    },
+    {
+      "id": "423c1cd78ca0",
+      "at": "2026-08-17T12:36:42.055009+00:00",
+      "action": "comment.resolved",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman marked addressed a minor comment on sources",
+      "detail": {
+        "comment_id": "84dc797b4821",
+        "severity": "minor",
+        "target": "sources",
+        "was": "open",
+        "now": "addressed",
+        "resolution": "Primary citations repointed to DailyMed and Drugs@FDA where an equivalent exists."
+      }
+    },
+    {
+      "id": "acd300c44e52",
+      "at": "2026-08-17T12:36:42.055766+00:00",
+      "action": "comment.raised",
+      "actor_id": "anil-shekhar",
+      "actor_name": "Dr. Anil Shekhar",
+      "actor_title": "Therapeutic area expert, oncology",
+      "actor_role": "reviewer",
+      "summary": "Dr. Anil Shekhar raised a minor comment on storyboard",
+      "detail": {
+        "comment_id": "f9e38e6bd396",
+        "severity": "minor",
+        "target": "storyboard"
+      }
+    },
+    {
+      "id": "c328a595bac0",
+      "at": "2026-08-17T12:36:42.056246+00:00",
+      "action": "comment.resolved",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman marked addressed a minor comment on storyboard",
+      "detail": {
+        "comment_id": "f9e38e6bd396",
+        "severity": "minor",
+        "target": "storyboard",
+        "was": "open",
+        "now": "addressed",
+        "resolution": "Narration reworded to the mechanistic phrasing."
+      }
+    },
+    {
+      "id": "b28a2f8225ee",
+      "at": "2026-08-17T12:36:42.175510+00:00",
+      "action": "version.cut",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman cut version 2, closing 15 comment(s)",
+      "detail": {
+        "version": 2,
+        "closed": [
+          "347392ac8ad9",
+          "ba7153ac8528",
+          "341b03078429",
+          "8bbc0371d6b3",
+          "70e38320add1",
+          "3295b900581c",
+          "f0f0bcb1dbb0",
+          "89a3065f4d29",
+          "eaca91fa9cfe",
+          "3f6c577b37e0",
+          "ce82ff91176a",
+          "c7212d95cb3b",
+          "558dce929706",
+          "84dc797b4821",
+          "f9e38e6bd396"
+        ]
+      }
+    },
+    {
+      "id": "a5d8a57127d5",
+      "at": "2026-08-17T12:36:42.176408+00:00",
+      "action": "signoff.recorded",
+      "actor_id": "anil-shekhar",
+      "actor_name": "Dr. Anil Shekhar",
+      "actor_title": "Therapeutic area expert, oncology",
+      "actor_role": "reviewer",
+      "summary": "Dr. Anil Shekhar recorded approval for v2",
+      "detail": {
+        "version": 2,
+        "decision": "approved",
+        "note": "Clinically accurate and traceable to the label."
+      }
+    },
+    {
+      "id": "8167845daf5f",
+      "at": "2026-08-17T12:36:42.176877+00:00",
+      "action": "signoff.recorded",
+      "actor_id": "maria-alvarez",
+      "actor_name": "Dr. Maria Alvarez",
+      "actor_title": "Regulatory and medical affairs",
+      "actor_role": "reviewer",
+      "summary": "Dr. Maria Alvarez recorded approval for v2",
+      "detail": {
+        "version": 2,
+        "decision": "approved",
+        "note": "Citations and promotional balance acceptable for field use."
+      }
+    },
+    {
+      "id": "b0a999eb5791",
+      "at": "2026-08-17T12:36:42.177573+00:00",
+      "action": "course.published",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman published v2 to 5 trainee(s), due 2026-08-17",
+      "detail": {
+        "version": 2,
+        "starts_on": "2026-07-18",
+        "due_on": "2026-08-17",
+        "assignees": [
+          "ken-osei",
+          "lucy-whitfield",
+          "jordan-feld",
+          "sara-nakamura",
+          "tom-becker"
+        ],
+        "approved_by": [
+          "Dr. Anil Shekhar",
+          "Dr. Maria Alvarez"
+        ],
+        "overrides": 1
+      }
+    }
+  ]
+}

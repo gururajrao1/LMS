@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "The evidence only supports avoiding strong CYP3A inhibitors and grapefruit; it says nothing about CYP3A inducers or rifampin, so that claim is not established by the provided sources.",
+  "suggested_rewrite": "Avoid concomitant strong CYP3A inhibitors (e.g., clarithromycin, itraconazole, ketoconazole) and grapefruit or grapefruit juice during treatment; consult full labeling regarding CYP3A inducers."
+}

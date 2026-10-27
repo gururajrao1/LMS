@@ -1,0 +1,6 @@
+{
+  "verdict": "supported",
+  "severity": "minor",
+  "explanation": "Core claims (PFS benefit, non-significant PALOMA-2 OS, neutropenia predominance, class/indication caveats) are directly matched by evidence. The PALOMA-3 'exploratory analysis reaching significance' point isn't explicitly quantified in the cited excerpts, but is consistent with the broader trial evidence described.",
+  "suggested_rewrite": "PALOMA-3 OS: primary analysis (44.8 mo) was not significant; a later exploratory analysis (73.3 mo, updated OS) showed a significant benefit in the endocrine-sensitive subgroup\u2014distinguish primary vs. exploratory endpoints."
+}

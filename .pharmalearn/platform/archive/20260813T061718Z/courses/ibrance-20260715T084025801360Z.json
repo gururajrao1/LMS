@@ -1,0 +1,175 @@
+{
+  "run_id": "ibrance-20260715T084025801360Z",
+  "version": 2,
+  "status": "published",
+  "comments": [
+    {
+      "id": "40a1fe220518",
+      "target": "quiz",
+      "severity": "blocking",
+      "body": "Question 4 states the PFS benefit as an absolute month gain. The label reports a range and the confidence interval crosses into a smaller effect \u2014 rewrite it to match the labelled wording.",
+      "status": "closed",
+      "resolution": "Rewritten to the labelled PFS range with the confidence interval shown alongside.",
+      "version": 1,
+      "author_id": "anil-shekhar",
+      "author_name": "Dr. Anil Shekhar",
+      "author_title": "Therapeutic area expert, oncology",
+      "created_at": "2026-07-16T03:52:36.203707+00:00",
+      "resolved_at": "2026-07-16T23:04:36.203707+00:00",
+      "closed_in_version": 2
+    },
+    {
+      "id": "822e48e3ecdd",
+      "target": "deck",
+      "severity": "major",
+      "body": "Slide 11 shows the neutropenia rate without the dose-modification guidance that follows it. An MSL quoting this in the field will get asked 'and then what?' immediately.",
+      "status": "closed",
+      "resolution": "Added the dose-interruption and reduction table as slide 12, cited to Section 2.2 of the label.",
+      "version": 1,
+      "author_id": "anil-shekhar",
+      "author_name": "Dr. Anil Shekhar",
+      "author_title": "Therapeutic area expert, oncology",
+      "created_at": "2026-07-16T06:16:36.203707+00:00",
+      "resolved_at": "2026-07-17T01:28:36.203707+00:00",
+      "closed_in_version": 2
+    },
+    {
+      "id": "6c00ce71b357",
+      "target": "faq",
+      "severity": "major",
+      "body": "The answer on combination use should name the FDA-approved test requirement for the PIK3CA-mutated population. As written it implies broader eligibility than the label supports.",
+      "status": "closed",
+      "resolution": "Answer now names the companion diagnostic requirement and links the label section.",
+      "version": 1,
+      "author_id": "maria-alvarez",
+      "author_name": "Dr. Maria Alvarez",
+      "author_title": "Regulatory and medical affairs",
+      "created_at": "2026-07-16T08:40:36.203707+00:00",
+      "resolved_at": "2026-07-17T03:52:36.203707+00:00",
+      "closed_in_version": 2
+    },
+    {
+      "id": "5ca8af0e8684",
+      "target": "sources",
+      "severity": "minor",
+      "body": "Several claims lean on manufacturer-hosted pages. Where a DailyMed or FDA equivalent exists, that should be the primary citation and the Pfizer page secondary.",
+      "status": "closed",
+      "resolution": "Primary citations repointed to DailyMed and Drugs@FDA where an equivalent exists.",
+      "version": 1,
+      "author_id": "maria-alvarez",
+      "author_name": "Dr. Maria Alvarez",
+      "author_title": "Regulatory and medical affairs",
+      "created_at": "2026-07-16T11:04:36.203707+00:00",
+      "resolved_at": "2026-07-17T06:16:36.203707+00:00",
+      "closed_in_version": 2
+    },
+    {
+      "id": "17393141809b",
+      "target": "storyboard",
+      "severity": "minor",
+      "body": "Scene 3 narration says 'stops the cell cycle'. Prefer 'inhibits progression from G1 into S phase' \u2014 the audience is oncology-literate and the loose phrasing will read as imprecise.",
+      "status": "closed",
+      "resolution": "Narration reworded to the mechanistic phrasing.",
+      "version": 1,
+      "author_id": "anil-shekhar",
+      "author_name": "Dr. Anil Shekhar",
+      "author_title": "Therapeutic area expert, oncology",
+      "created_at": "2026-07-16T13:28:36.203707+00:00",
+      "resolved_at": "2026-07-17T08:40:36.203707+00:00",
+      "closed_in_version": 2
+    }
+  ],
+  "versions": [
+    {
+      "version": 1,
+      "summary": "Agent-generated first draft",
+      "author_id": "agent",
+      "author_name": "PharmaLearn agent",
+      "addressed": [],
+      "created_at": null
+    },
+    {
+      "version": 2,
+      "summary": "Label-aligned PFS wording, dose-modification table, companion-diagnostic detail",
+      "author_id": "priya-raman",
+      "author_name": "Priya Raman",
+      "addressed": [
+        "40a1fe220518",
+        "822e48e3ecdd",
+        "6c00ce71b357",
+        "5ca8af0e8684",
+        "17393141809b"
+      ],
+      "created_at": "2026-07-17T08:40:36.203707+00:00"
+    }
+  ],
+  "signoffs": [
+    {
+      "id": "716fc2312b7d",
+      "version": 2,
+      "decision": "approved",
+      "note": "Clinically accurate and traceable to the label.",
+      "author_id": "anil-shekhar",
+      "author_name": "Dr. Anil Shekhar",
+      "author_title": "Therapeutic area expert, oncology",
+      "created_at": "2026-07-17T18:16:36.203707+00:00"
+    },
+    {
+      "id": "92be27285086",
+      "version": 2,
+      "decision": "approved",
+      "note": "Citations and promotional balance acceptable for field use.",
+      "author_id": "maria-alvarez",
+      "author_name": "Dr. Maria Alvarez",
+      "author_title": "Regulatory and medical affairs",
+      "created_at": "2026-07-17T23:04:36.203707+00:00"
+    }
+  ],
+  "publication": {
+    "version": 2,
+    "published_at": "2026-07-18T08:40:36.203707+00:00",
+    "published_by": "Priya Raman",
+    "starts_on": "2026-07-18",
+    "due_on": "2026-08-17",
+    "message": "Complete before the advisory board. The final assessment is required for field use.",
+    "assignees": [
+      "ken-osei",
+      "lucy-whitfield",
+      "jordan-feld",
+      "sara-nakamura",
+      "tom-becker"
+    ],
+    "notifications": [
+      {
+        "to": "ken.osei@pharmalearn.local",
+        "name": "Dr. Ken Osei",
+        "subject": "Training assigned: complete by 2026-08-17",
+        "sent_at": "2026-07-18T08:40:36.203707+00:00"
+      },
+      {
+        "to": "lucy.whitfield@pharmalearn.local",
+        "name": "Dr. Lucy Whitfield",
+        "subject": "Training assigned: complete by 2026-08-17",
+        "sent_at": "2026-07-18T08:40:36.203707+00:00"
+      },
+      {
+        "to": "jordan.feld@pharmalearn.local",
+        "name": "Jordan Feld",
+        "subject": "Training assigned: complete by 2026-08-17",
+        "sent_at": "2026-07-18T08:40:36.203707+00:00"
+      },
+      {
+        "to": "sara.nakamura@pharmalearn.local",
+        "name": "Sara Nakamura",
+        "subject": "Training assigned: complete by 2026-08-17",
+        "sent_at": "2026-07-18T08:40:36.203707+00:00"
+      },
+      {
+        "to": "tom.becker@pharmalearn.local",
+        "name": "Dr. Tom Becker",
+        "subject": "Training assigned: complete by 2026-08-17",
+        "sent_at": "2026-07-18T08:40:36.203707+00:00"
+      }
+    ]
+  }
+}

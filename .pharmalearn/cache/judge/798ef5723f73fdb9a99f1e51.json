@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "Evidence only covers grapefruit avoidance and dosing reminders. It provides no support for missed-dose instructions, Day 15 CBC timing, infection-reporting specifics, or the claim that Ibrance plus endocrine therapy 'can be confidently managed as first-line care.'",
+  "suggested_rewrite": "Remove the efficacy/certainty claim about first-line management; cite the specific missed-dose and monitoring guidance sources, or qualify as general counseling points without asserting confident first-line outcomes."
+}

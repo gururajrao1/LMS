@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "No evidence provided states that 'additional fatalities have been reported in the postmarketing setting' for ILD/pneumonitis. All other claims (monitoring, interruption, contraception, contraindications) are supported, but this specific postmarketing fatality claim is not backed by any cited or additional evidence.",
+  "suggested_rewrite": "Interrupt IBRANCE immediately for suspected ILD/pneumonitis and evaluate; permanently discontinue for severe cases, per current labeling guidance."
+}

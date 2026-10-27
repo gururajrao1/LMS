@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "The claim that neutropenia's 'effect is not cumulative across cycles' is not supported by any evidence shown here; none of the cited or additional evidence addresses cumulative vs. non-cumulative neutropenia across treatment cycles.",
+  "suggested_rewrite": "Remove or verify separately the claim that neutropenia is not cumulative across cycles, as no evidence provided supports this specific assertion; retain the timing/duration data which are supported."
+}

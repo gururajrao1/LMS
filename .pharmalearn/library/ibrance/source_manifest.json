@@ -1,0 +1,45 @@
+{
+  "scope": "US educational demo",
+  "accessed_at": "2026-07-14",
+  "sources": [
+    {
+      "source_id": "DM-IBRANCE-2026",
+      "type": "prescribing_information",
+      "title": "IBRANCE (palbociclib) tablet, film coated",
+      "publisher": "DailyMed / U.S. National Library of Medicine",
+      "version": "SPL version 13, published July 6, 2026",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=fecbdd7d-b729-41b5-9872-231b8fe104ce",
+      "query": "DailyMed API v2: drug_name=ibrance",
+      "selected_because": "Current Pfizer tablet prescribing information"
+    },
+    {
+      "source_id": "CT-PALOMA2",
+      "type": "trial_registry",
+      "title": "PALOMA-2 (NCT01740427)",
+      "publisher": "ClinicalTrials.gov",
+      "url": "https://clinicaltrials.gov/study/NCT01740427",
+      "query": "ClinicalTrials.gov API v2: query.intr=palbociclib",
+      "selected_because": "Pivotal Phase 3 trial referenced in the label"
+    },
+    {
+      "source_id": "PUB-PALOMA2-2019",
+      "type": "peer_reviewed_publication",
+      "title": "Palbociclib plus letrozole as first-line therapy with extended follow-up",
+      "publisher": "PubMed",
+      "version": "PMID 30632023",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30632023/",
+      "query": "PubMed E-utilities: palbociclib AND PALOMA-2",
+      "selected_because": "Peer-reviewed extended follow-up publication"
+    },
+    {
+      "source_id": "FDA-NDA-212436",
+      "type": "regulatory_history",
+      "title": "IBRANCE tablets NDA 212436",
+      "publisher": "U.S. Food and Drug Administration",
+      "url": "https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=212436",
+      "query": "Drugs@FDA application 212436",
+      "selected_because": "Approval history and FDA review documents"
+    }
+  ]
+}
+

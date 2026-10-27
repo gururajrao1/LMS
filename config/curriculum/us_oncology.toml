@@ -1,0 +1,158 @@
+# What a US oncology field-training course has to cover to be complete.
+#
+# Accuracy asks whether what the course says is true. This asks whether anything a
+# knowledgeable reader would expect is missing — a different failure, and a worse
+# one: a course can be entirely accurate and still be dangerous because it never
+# mentions a contraindication.
+#
+# The topic list follows the structure of a US Prescribing Information, because
+# that is the document a medical reviewer already reads against, plus the few
+# audience-specific things a field team is asked in practice.
+#
+# This file is the tuning surface. A medical education lead should be able to edit
+# it without touching code: add a topic, change a severity, widen the patterns.
+#
+# `patterns` are lowercase substrings. They detect whether a topic is addressed at
+# all — never whether it is addressed *well*. That judgement stays with the
+# reviewer, which is why a gap is raised as a comment rather than scored.
+
+schema_version = 1
+name = "US oncology field training"
+jurisdiction = "US"
+reviewed_on = "2026-08-17"
+
+[[topic]]
+id = "indications"
+title = "Approved indications"
+why = "Field teams are asked what the drug is licensed for before anything else, and an unstated indication is how off-label discussion starts."
+severity = "blocking"
+audiences = ["hcp", "msl"]
+patterns = ["indicated for", "indication", "approved for", "fda-approved", "fda approved"]
+min_units = 2
+
+[[topic]]
+id = "contraindications"
+title = "Contraindications"
+why = "The one section whose absence can directly harm a patient."
+severity = "blocking"
+audiences = ["hcp", "msl"]
+patterns = ["contraindicat", "hypersensitiv", "should not be used", "must not be given"]
+min_units = 2
+
+[[topic]]
+id = "warnings"
+title = "Warnings and precautions"
+why = "The labelled risks a prescriber is expected to have been told about."
+severity = "blocking"
+audiences = ["hcp", "msl"]
+patterns = ["warnings and precautions", "precaution", "embryo-fetal", "risk of"]
+min_units = 2
+
+[[topic]]
+id = "adverse_reactions"
+title = "Adverse reactions"
+why = "Incidence and severity of what actually happens to patients on therapy."
+severity = "blocking"
+audiences = ["hcp", "msl"]
+patterns = ["adverse reaction", "adverse event", "side effect", "neutropenia", "grade 3", "grade 4"]
+min_units = 2
+
+[[topic]]
+id = "dosing"
+title = "Dosing and administration"
+why = "The starting dose and the schedule; without them the course is not actionable."
+severity = "major"
+audiences = ["hcp", "msl"]
+patterns = ["dosing", "starting dose", "recommended dose", "mg once daily", "administration", "with food"]
+min_units = 2
+
+[[topic]]
+id = "dose_modification"
+title = "Dose modification"
+why = "What to do when toxicity appears. An MSL quoting a rate without this is asked 'and then what?' immediately."
+severity = "major"
+audiences = ["hcp", "msl"]
+patterns = ["dose reduction", "dose modification", "dose interruption", "reduce the dose", "withhold"]
+min_units = 2
+
+[[topic]]
+id = "interactions"
+title = "Drug interactions"
+why = "Oncology patients are almost never on one medicine."
+severity = "major"
+audiences = ["hcp", "msl"]
+patterns = ["drug interaction", "cyp3a", "concomitant", "co-administration", "inducer"]
+min_units = 2
+
+[[topic]]
+id = "special_populations"
+title = "Use in specific populations"
+why = "Pregnancy, lactation, hepatic and renal impairment, and age are where general guidance stops applying."
+severity = "major"
+audiences = ["hcp", "msl"]
+patterns = ["pregnan", "lactation", "hepatic impairment", "renal impairment", "geriatric", "pediatric", "nursing"]
+min_units = 2
+
+[[topic]]
+id = "monitoring"
+title = "Monitoring requirements"
+why = "The labelled tests and their cadence; the practical half of managing a known toxicity."
+severity = "major"
+audiences = ["hcp", "msl"]
+patterns = ["monitor", "blood count", "complete blood", "cbc"]
+min_units = 2
+
+[[topic]]
+id = "mechanism"
+title = "Mechanism of action"
+why = "An oncology-literate audience will not accept clinical claims without the biology behind them."
+severity = "major"
+audiences = ["hcp", "msl"]
+patterns = ["mechanism of action", "cdk4", "cdk 4", "kinase", "cell cycle", "cyclin"]
+min_units = 2
+
+[[topic]]
+id = "trial_evidence"
+title = "Pivotal trial evidence"
+why = "The named studies, populations and endpoints the approval rests on."
+severity = "major"
+audiences = ["hcp", "msl"]
+patterns = ["phase 3", "phase iii", "randomized", "median progression", "hazard ratio", "paloma"]
+min_units = 2
+
+[[topic]]
+id = "unmet_need"
+title = "Unmet need"
+why = "The question an MSL is actually asked in a scientific exchange, and the one a purely label-derived course never answers."
+severity = "major"
+audiences = ["msl"]
+patterns = ["unmet need", "remaining need", "disease burden", "resistance"]
+min_units = 2
+
+[[topic]]
+id = "competitive_context"
+title = "Class and competitive context"
+why = "Where the drug sits among alternatives, framed as cross-trial rather than comparative."
+severity = "minor"
+audiences = ["msl"]
+patterns = ["compared with", "versus", "other cdk", "ribociclib", "abemaciclib"]
+min_units = 2
+
+[[topic]]
+id = "off_label_handling"
+title = "Handling off-label questions"
+why = "The procedure for an unsolicited request is a compliance requirement, not an optional module."
+severity = "major"
+audiences = ["msl"]
+patterns = ["off-label", "off label", "unsolicited", "medical information", "scientific exchange"]
+min_units = 2
+
+[[topic]]
+id = "patient_counseling"
+title = "Patient counselling"
+why = "What the prescriber tells the patient: adherence, what to report, and when."
+severity = "minor"
+audiences = ["hcp"]
+patterns = ["counsel", "inform patients", "patients should", "adherence", "missed dose"]
+min_units = 2
+

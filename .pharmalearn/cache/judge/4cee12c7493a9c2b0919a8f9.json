@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "blocking",
+  "explanation": "The evidence provided concerns CYP3A inhibitors and grapefruit interactions, not vomiting/missed dose guidance. No evidence supports the claim about vomiting after a dose or missed dose instructions.",
+  "suggested_rewrite": "Cite the actual label section on missed/vomited doses (Dosage and Administration) rather than the CYP3A/grapefruit interaction evidence, which does not address this scenario."
+}

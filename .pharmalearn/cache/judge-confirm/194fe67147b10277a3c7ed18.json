@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "No evidence shown states the aromatase-inhibitor combination was approved via accelerated approval based on PFS, or that it converted to full approval. This specific regulatory history claim is not established by any cited or collected evidence.",
+  "suggested_rewrite": "IBRANCE plus an aromatase inhibitor is FDA-approved as initial endocrine-based therapy for HR+/HER2- advanced or metastatic breast cancer; confirm current label status and approval pathway details from the official prescribing information before counseling patients."
+}

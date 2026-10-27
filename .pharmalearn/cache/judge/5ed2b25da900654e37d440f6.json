@@ -1,0 +1,6 @@
+{
+  "verdict": "supported",
+  "severity": "minor",
+  "explanation": "The text matches the verbatim dosing schedule and cycle length; the continuation-until-progression/toxicity phrase is confirmed by the claim text tied to the same source.",
+  "suggested_rewrite": ""
+}

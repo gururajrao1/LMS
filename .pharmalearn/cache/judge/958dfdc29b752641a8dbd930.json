@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "Evidence only covers female contraception (3 weeks) and fetal harm from animal reproduction data. The male-partner 3-month contraception recommendation and 'genotoxicity' rationale are not present in the provided evidence.",
+  "suggested_rewrite": "Limit to females of reproductive potential needing effective contraception during treatment and for at least 3 weeks after the last dose, per the cited evidence; remove male-partner and genotoxicity claims unless separately sourced."
+}

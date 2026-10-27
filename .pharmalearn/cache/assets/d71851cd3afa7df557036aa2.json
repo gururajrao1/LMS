@@ -1,0 +1,129 @@
+{
+  "title": "IBRANCE (palbociclib) PALOMA Program: Reading the Pivotal Trial Numbers",
+  "questions": [
+    {
+      "id": "f1-paloma2-pfs",
+      "caption": "Median investigator-assessed progression-free survival in PALOMA-2 (first-line, postmenopausal HR+/HER2- advanced breast cancer, n=666), primary analysis, from the NEJM primary publication.",
+      "chart_kind": "bar",
+      "x_title": "Treatment arm",
+      "y_title": "Median progression-free survival",
+      "y_suffix": " mo",
+      "series": [
+        {
+          "name": "PALOMA-2 primary PFS analysis",
+          "points": [
+            {
+              "label": "Palbociclib + letrozole",
+              "value": 24.8
+            },
+            {
+              "label": "Placebo + letrozole",
+              "value": 14.5
+            }
+          ]
+        }
+      ],
+      "prompt": "According to the chart, what is the absolute difference in median PFS between the palbociclib plus letrozole arm and the letrozole-alone arm in PALOMA-2?",
+      "options": {
+        "a": "10.3 months",
+        "b": "14.5 months",
+        "c": "24.8 months",
+        "d": "6.6 months"
+      },
+      "correct_index": 0,
+      "rationale": "The chart shows median PFS of 24.8 months with palbociclib plus letrozole versus 14.5 months with placebo plus letrozole; the absolute difference is 24.8 \\=. Answer (b) is simply the control-arm value, (c) is the treatment-arm value, and (d) is the PALOMA-3 updated (non-prespecified) PFS difference, not the PALOMA-2 figure shown here.",
+      "citations": [
+        {
+          "title": "Palbociclib and Letrozole in Advanced Breast Cancer | NEJM",
+          "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1607303",
+          "locator": "Results"
+        }
+      ]
+    },
+    {
+      "id": "f2-paloma3-pfs",
+      "caption": "Median PFS in PALOMA-3 (post-endocrine-therapy progression, HR+/HER2- advanced breast cancer, n=521), primary analysis supporting FDA approval of palbociclib plus fulvestrant.",
+      "chart_kind": "bar",
+      "x_title": "Treatment arm",
+      "y_title": "Median progression-free survival",
+      "y_suffix": " mo",
+      "series": [
+        {
+          "name": "PALOMA-3 primary PFS analysis",
+          "points": [
+            {
+              "label": "Palbociclib + fulvestrant",
+              "value": 9.5
+            },
+            {
+              "label": "Placebo + fulvestrant",
+              "value": 4.6
+            }
+          ]
+        }
+      ],
+      "prompt": "What was the median PFS improvement (in months) with palbociclib plus fulvestrant compared with placebo plus fulvestrant in the PALOMA-3 primary analysis shown here?",
+      "options": {
+        "a": "4.9 months",
+        "b": "9.5 months",
+        "c": "4.6 months",
+        "d": "6.6 months"
+      },
+      "correct_index": 0,
+      "rationale": "The chart shows 9.5 months with palbociclib plus fulvestrant versus 4.6 months with placebo plus fulvestrant; the difference is 4.9 months (HR 0.46). Options (b) and (c) restate single arm values rather than the difference, and (d) is the 6.6-month difference from a later, non-prespecified updated PFS analysis of PALOMA-3, not the primary analysis plotted here.",
+      "citations": [
+        {
+          "title": "FDA Approval of Palbociclib in Combination with Fulvestrant for HR+, HER2- Metastatic Breast Cancer",
+          "url": "https://aacrjournals.org/clincancerres/article/22/20/4968/124844/FDA-Approval-of-Palbociclib-in-Combination-with",
+          "locator": "Results"
+        }
+      ]
+    },
+    {
+      "id": "f3-os-comparison",
+      "caption": "Median overall survival by trial and arm: PALOMA-2 final OS analysis (median follow-up 90 months) and PALOMA-3 OS analysis, both secondary endpoints, per Pfizer trial result announcements.",
+      "chart_kind": "bar",
+      "x_title": "Trial (endocrine partner)",
+      "y_title": "Median overall survival",
+      "y_suffix": " mo",
+      "series": [
+        {
+          "name": "Palbociclib + endocrine therapy",
+          "points": [
+            {
+              "label": "PALOMA-2 (letrozole)",
+              "value": 53.9
+            },
+            {
+              "label": "PALOMA-3 (fulvestrant)",
+              "value": 34.9
+            }
+          ]
+        },
+        {
+          "name": "Placebo + endocrine therapy alone",
+          "points": [
+            {
+              "label": "PALOMA-2 (letrozole)",
+              "value": 51.2
+            },
+            {
+              "label": "PALOMA-3 (fulvestrant)",
+              "value": 28.0
+            }
+          ]
+        }
+      ],
+      "prompt": "placeholder",
+      "options": {
+        "a": "placeholder",
+        "b": "placeholder",
+        "c": "placeholder",
+        "d": "placeholder"
+      },
+      "correct_index": 0,
+      "rationale": "placeholder",
+      "citations": []
+    }
+  ]
+}

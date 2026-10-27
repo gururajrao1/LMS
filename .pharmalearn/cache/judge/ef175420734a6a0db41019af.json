@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "Evidence only supports capsule swallowing/missed-dose instructions. The specific 125 mg dose, 21-days-on/7-off cycle, food requirements for capsules vs tablets, and 'same time each day' guidance are not established by any evidence provided.",
+  "suggested_rewrite": "Cite label sections specifying starting dose (125 mg), the 21/7-day cycle, and food administration requirements for capsules versus tablets before presenting these specifics."
+}

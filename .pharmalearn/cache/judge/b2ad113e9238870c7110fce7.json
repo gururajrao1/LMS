@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "blocking",
+  "explanation": "Evidence only states palbociclib blocks G1-to-S progression in vitro in ER+ lines. It does not establish Rb phosphorylation, E2F/DP release, cyclin D1 as an ER transcriptional target, or that cyclin D1-CDK4/6 hyperactivation is 'particularly common' in ER+ cancer.",
+  "suggested_rewrite": "Cite direct evidence for Rb/E2F mechanism, cyclin D1's ER-target status, and prevalence data for cyclin D1-CDK4/6 hyperactivation in ER+ breast cancer before including these specific mechanistic claims."
+}

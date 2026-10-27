@@ -1,0 +1,6 @@
+{
+  "verdict": "needs_context",
+  "severity": "minor",
+  "explanation": "Text says 'advanced or metastatic' throughout, but evidence specifies 'locally advanced or metastatic' for the inavolisib and trastuzumab/pertuzumab indications, a qualifier consistently dropped.",
+  "suggested_rewrite": "Use 'locally advanced or metastatic breast cancer' for the inavolisib and trastuzumab-maintenance indications to match FDA label language exactly."
+}

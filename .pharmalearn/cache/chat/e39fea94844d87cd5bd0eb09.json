@@ -1,0 +1,30 @@
+{
+  "answer": "Based on the evidence provided, documented unmet needs with palbociclib (IBRANCE) include: (1) Safety/tolerability\u2014risk of ILD/pneumonitis requiring permanent discontinuation in severe cases, and hematologic toxicity, with 38.4% of patients needing dose modifications and 5.2% permanently discontinuing due to adverse reactions; (2) Efficacy limitations\u2014the final PALOMA-2 analysis showed no statistically significant overall survival benefit over letrozole alone (HR=0.956), and real-world data show substantially reduced PFS when used later-line (7.8 months) versus first-line (22.8 months); (3) Access/value\u2014payer value assessments remain limited given immature survival data. This does not comprehensively address all unmet needs in the underlying disease itself; for broader epidemiologic or unmet-need context beyond these specific claims, please escalate to Medical Information.",
+  "citations": [
+    {
+      "title": "Full Prescribing Information for IBRANCE",
+      "url": "https://labeling.pfizer.com/showlabeling.aspx?id=2191",
+      "locator": "Full prescribing information, Warnings and Precautions"
+    },
+    {
+      "title": "IBRANCE Palbociclib prescribing information (labeling.pfizer.com)",
+      "url": "https://labeling.pfizer.com/ShowLabeling.aspx?id=16410",
+      "locator": "Prescribing information, adverse reactions section"
+    },
+    {
+      "title": "PALOMA-2: No Overall Survival Benefit Reported With Palbociclib/Letrozole in Advanced Breast Cancer",
+      "url": "https://ascopost.com/issues/august-10-2022/no-overall-survival-benefit-reported-with-palbociclibletrozole-in-advanced-breast-cancer/",
+      "locator": "ASCO Post article, Aug 10 2022"
+    },
+    {
+      "title": "A real-world study of the first use of palbociclib... UK National Health Service... Ibrance Patient Program",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10449843/",
+      "locator": "PMC article"
+    },
+    {
+      "title": "FDA Approves Palbociclib for HR+, HER2+ Breast Cancer Maintenance",
+      "url": "https://www.ajmc.com/view/fda-approves-palbociclib-for-hr-her2-breast-cancer-maintenance",
+      "locator": "AJMC article"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "Evidence covers only PALOMA-2 details and PALOMA-3 efficacy; nothing supports PALOMA-1's phase 1/2 design, PALOMA-3's 521-patient count, or the claim that all three trials used 'investigator-assessed' PFS as primary endpoint.",
+  "suggested_rewrite": "Cite specific sources for PALOMA-1 design, PALOMA-3 enrollment number, and endpoint assessment method (investigator vs. independent review) for each trial before asserting these details."
+}

@@ -1,0 +1,6 @@
+{
+  "verdict": "supported",
+  "severity": "minor",
+  "explanation": "All specific claims\u2014OS numbers, HR/CI, non-significance, secondary endpoint status, and missing/censored data limitation\u2014are directly supported by the cited and other evidence for PALOMA-2.",
+  "suggested_rewrite": "No rewrite needed; content is well-supported by the evidence provided."
+}

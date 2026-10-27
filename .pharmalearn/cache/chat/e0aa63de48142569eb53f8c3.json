@@ -1,0 +1,25 @@
+{
+  "answer": "Based on the provided evidence, neutropenia is the most common adverse reaction with IBRANCE (80% in PALOMA-2, 83% in PALOMA-3, any grade) [4][5]. In PALOMA-2/-3, median time to first any-grade neutropenia was 15 days, with median duration of Grade \u22653 neutropenia of 7 days, and it was generally reversible, non-cumulative, and manageable without growth factor support [2][3]. However, the evidence set does not specify exact CBC monitoring intervals or dose-adjustment thresholds recommended in the label. For complete monitoring guidance (e.g., baseline and periodic CBC schedule), please consult the full Prescribing Information or escalate to Medical Information.",
+  "citations": [
+    {
+      "title": "IBRANCE\u00ae tablets (palbociclib) Patient information | Pfizer Medical - US | Warnings and Precautions - Neutropenia",
+      "url": "https://www.pfizermedical.com/patient/ibrance-tablets",
+      "locator": "Warnings and Precautions - Neutropenia"
+    },
+    {
+      "title": "IBRANCE\u00ae capsules (palbociclib) Warnings and Precautions | Pfizer Medical Information - US | Neutropenia section",
+      "url": "https://www.pfizermedicalinformation.com/ibrance/warnings",
+      "locator": "Neutropenia section"
+    },
+    {
+      "title": "PALbociclib CoLlaborative Adjuvant Study (PALLAS) Protocol | Background section",
+      "url": "https://cdn.clinicaltrials.gov/large-docs/94/NCT02513394/Prot_SAP_000.pdf",
+      "locator": "Background section"
+    },
+    {
+      "title": "Pfizer Announces Overall Survival Results from Phase 3 PALOMA-3 Trial of IBRANCE | Safety information section",
+      "url": "https://www.pfizer.com/news/press-release/press-release-detail/pfizer_announces_overall_survival_results_from_phase_3_paloma_3_trial_of_ibrance_palbociclib_in_hr_her2_metastatic_breast_cancer-0",
+      "locator": "Safety information section"
+    }
+  ]
+}

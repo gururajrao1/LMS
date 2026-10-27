@@ -1,0 +1,80 @@
+{
+  "schema_version": 2,
+  "drug_id": "prevnar",
+  "source_id": "prevnar-fda",
+  "fetched_at": "2026-07-13T21:26:18.008828+00:00",
+  "status": "fetched",
+  "access_level": "unavailable",
+  "coverage": {
+    "application": "BLA125731",
+    "supporting_documents": 0
+  },
+  "warnings": [
+    "openFDA BLA125731: Client error '404 Not Found' for url 'https://api.fda.gov/drug/drugsfda.json?search=application_number%3A%22BLA125731%22&limit=1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404",
+    "application page: Client error '404 Not Found' for url 'https://www.fda.gov/apology_objects/abuse-detection-apology.html'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404",
+    "https://www.fda.gov/media/149987/download?attachment=: Client error '404 Not Found' for url 'https://www.fda.gov/apology_objects/abuse-detection-apology.html'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404",
+    "https://www.fda.gov/media/150021/download?attachment=: Client error '404 Not Found' for url 'https://www.fda.gov/apology_objects/abuse-detection-apology.html'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404",
+    "https://www.fda.gov/media/150388/download?attachment=: Client error '404 Not Found' for url 'https://www.fda.gov/apology_objects/abuse-detection-apology.html'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404",
+    "https://www.fda.gov/media/150459/download?attachment=: Client error '404 Not Found' for url 'https://www.fda.gov/apology_objects/abuse-detection-apology.html'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404",
+    "https://www.fda.gov/media/162042/download?attachment=: Client error '404 Not Found' for url 'https://www.fda.gov/apology_objects/abuse-detection-apology.html'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404",
+    "https://www.fda.gov/media/167637/download?attachment=: Client error '404 Not Found' for url 'https://www.fda.gov/apology_objects/abuse-detection-apology.html'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404",
+    "https://www.fda.gov/media/169126/download?attachment=: Client error '404 Not Found' for url 'https://www.fda.gov/apology_objects/abuse-detection-apology.html'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404",
+    "https://www.fda.gov/media/169128/download?attachment=: Client error '404 Not Found' for url 'https://www.fda.gov/apology_objects/abuse-detection-apology.html'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  ],
+  "error": null,
+  "registry": {
+    "id": "prevnar-fda",
+    "kind": "fda_application",
+    "authority": "FDA",
+    "title": "PREVNAR 20 FDA product and supporting documents",
+    "url": "https://www.fda.gov/vaccines-blood-biologics/vaccines/prevnar-20",
+    "identifiers": {
+      "application": "BLA125731"
+    },
+    "required": true,
+    "reason": "FDA approval letters, reviews, and summary basis for regulatory action.",
+    "artifacts": [
+      {
+        "name": "package-insert.pdf",
+        "role": "package_insert",
+        "url": "https://www.fda.gov/media/149987/download?attachment="
+      },
+      {
+        "name": "clinical-review-2021.pdf",
+        "role": "clinical_review",
+        "url": "https://www.fda.gov/media/150459/download?attachment="
+      },
+      {
+        "name": "clinical-review-2023.pdf",
+        "role": "clinical_review",
+        "url": "https://www.fda.gov/media/169126/download?attachment="
+      },
+      {
+        "name": "statistical-review-2023.pdf",
+        "role": "statistical_review",
+        "url": "https://www.fda.gov/media/169128/download?attachment="
+      },
+      {
+        "name": "approval-letter-2023.pdf",
+        "role": "approval_letter",
+        "url": "https://www.fda.gov/media/167637/download?attachment="
+      },
+      {
+        "name": "approval-letter-2022.pdf",
+        "role": "approval_letter",
+        "url": "https://www.fda.gov/media/162042/download?attachment="
+      },
+      {
+        "name": "approval-letter-2021.pdf",
+        "role": "approval_letter",
+        "url": "https://www.fda.gov/media/150021/download?attachment="
+      },
+      {
+        "name": "summary-basis-regulatory-action-2021.pdf",
+        "role": "regulatory_summary",
+        "url": "https://www.fda.gov/media/150388/download?attachment="
+      }
+    ]
+  },
+  "files": []
+}

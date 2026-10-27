@@ -1,0 +1,28 @@
+{"stage": "resolve_drug", "status": "running", "progress": 4, "message": "Preparing the learning dossier for Ibrance", "timestamp": "2026-07-15T08:40:25.816221+00:00"}
+{"stage": "research_01_disease_foundation", "status": "running", "progress": 8, "message": "Researching disease foundation", "timestamp": "2026-07-15T08:40:26.168439+00:00"}
+{"stage": "research_02_product_science", "status": "running", "progress": 11, "message": "Researching product science", "timestamp": "2026-07-15T08:40:26.988566+00:00"}
+{"stage": "research_03_clinical_evidence", "status": "running", "progress": 14, "message": "Researching clinical evidence", "timestamp": "2026-07-15T08:40:27.356101+00:00"}
+{"stage": "research_04_regulatory_label", "status": "running", "progress": 17, "message": "Researching regulatory label", "timestamp": "2026-07-15T08:40:27.716074+00:00"}
+{"stage": "research_05_safety", "status": "running", "progress": 20, "message": "Researching safety", "timestamp": "2026-07-15T08:40:28.079809+00:00"}
+{"stage": "research_06_market_context", "status": "running", "progress": 23, "message": "Researching market context", "timestamp": "2026-07-15T08:40:28.440792+00:00"}
+{"stage": "research_07_compliance", "status": "running", "progress": 26, "message": "Researching compliance", "timestamp": "2026-07-15T08:40:28.799612+00:00"}
+{"stage": "research_08_scientific_narrative", "status": "running", "progress": 29, "message": "Researching scientific narrative", "timestamp": "2026-07-15T08:40:29.164463+00:00"}
+{"stage": "research_09_patient_support", "status": "running", "progress": 32, "message": "Researching patient support", "timestamp": "2026-07-15T08:40:29.524754+00:00"}
+{"stage": "research_10_role_considerations", "status": "running", "progress": 35, "message": "Researching role considerations", "timestamp": "2026-07-15T08:40:29.887987+00:00"}
+{"stage": "research_11_current_treatments", "status": "running", "progress": 38, "message": "Researching current treatments", "timestamp": "2026-07-15T08:40:30.247433+00:00"}
+{"stage": "research_12_comparisons", "status": "running", "progress": 41, "message": "Researching comparisons", "timestamp": "2026-07-15T08:40:30.606205+00:00"}
+{"stage": "research_13_unmet_needs", "status": "running", "progress": 44, "message": "Researching unmet needs", "timestamp": "2026-07-15T08:40:30.967473+00:00"}
+{"stage": "research_14_moa_onset_duration", "status": "running", "progress": 47, "message": "Researching moa onset duration", "timestamp": "2026-07-15T08:40:31.328853+00:00"}
+{"stage": "build_master_dossier", "status": "running", "progress": 50, "message": "Combining the researched sections into the master dossier", "timestamp": "2026-07-15T08:40:31.686424+00:00"}
+{"stage": "generate_msl_ppt", "status": "running", "progress": 55, "message": "Building MSL ppt", "timestamp": "2026-07-15T08:40:32.052383+00:00"}
+{"stage": "generate_hcp_ppt", "status": "running", "progress": 60, "message": "Building HCP ppt", "timestamp": "2026-07-15T08:40:32.420478+00:00"}
+{"stage": "generate_msl_storyboard", "status": "running", "progress": 65, "message": "Building MSL storyboard", "timestamp": "2026-07-15T08:40:32.786671+00:00"}
+{"stage": "generate_hcp_storyboard", "status": "running", "progress": 70, "message": "Building HCP storyboard", "timestamp": "2026-07-15T08:40:33.156332+00:00"}
+{"stage": "generate_msl_faq", "status": "running", "progress": 75, "message": "Building MSL faq", "timestamp": "2026-07-15T08:40:33.523968+00:00"}
+{"stage": "generate_hcp_faq", "status": "running", "progress": 80, "message": "Building HCP faq", "timestamp": "2026-07-15T08:40:33.891392+00:00"}
+{"stage": "generate_msl_quiz", "status": "running", "progress": 85, "message": "Building MSL quiz", "timestamp": "2026-07-15T08:40:34.263155+00:00"}
+{"stage": "generate_hcp_quiz", "status": "running", "progress": 90, "message": "Building HCP quiz", "timestamp": "2026-07-15T08:40:34.627406+00:00"}
+{"stage": "render_msl_pptx", "status": "running", "progress": 95, "message": "Rendering MSL PowerPoint", "timestamp": "2026-07-15T08:40:34.992443+00:00"}
+{"stage": "render_hcp_pptx", "status": "running", "progress": 97, "message": "Rendering HCP PowerPoint", "timestamp": "2026-07-15T08:40:35.432832+00:00"}
+{"stage": "attach_citations", "status": "running", "progress": 98, "message": "Attaching citations and preparing the course", "timestamp": "2026-07-15T08:40:35.815033+00:00"}
+{"stage": "complete", "status": "completed", "progress": 100, "message": "MSL and HCP learning assets are ready", "timestamp": "2026-07-15T08:40:36.204431+00:00"}

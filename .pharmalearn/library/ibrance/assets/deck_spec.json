@@ -1,0 +1,13 @@
+{
+  "title": "Ibrance field medical essentials",
+  "subtitle": "A concise, citation-backed learning module",
+  "audience": "MSLs and HCPs",
+  "slides": [
+    {"number": 1, "title": "Ibrance field medical essentials", "purpose": "Set the learning contract", "content": ["Approved-use context", "Mechanism and pivotal evidence", "Dosing, monitoring, and safety"]},
+    {"number": 2, "title": "The treatment setting starts with HR-positive, HER2-negative disease", "purpose": "Anchor the labeled clinical setting", "content": ["Advanced or metastatic breast cancer", "Combination regimens depend on treatment setting and prior endocrine therapy"], "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Section 1"}]},
+    {"number": 3, "title": "CDK4/6 inhibition interrupts progression into S phase", "purpose": "Explain the mechanism", "content": ["Palbociclib inhibits CDK4 and CDK6", "In ER-positive breast cancer cell lines, G1-to-S progression is blocked"], "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Section 12.1"}]},
+    {"number": 4, "title": "PALOMA-2 improved PFS; final OS was not statistically significant", "purpose": "Interpret pivotal evidence with balance", "content": ["Median PFS: 24.8 vs 14.5 months", "Hazard ratio: 0.576", "Final OS analysis: not statistically significant"], "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Section 14, Table 10"}, {"source_id": "CT-PALOMA2", "locator": "Study results"}]},
+    {"number": 5, "title": "A 28-day schedule pairs with proactive monitoring", "purpose": "Apply dosing and safety", "content": ["125 mg once daily for 21 days, then 7 days off", "CBC before treatment, each cycle start, and Day 15 of Cycles 1 and 2", "Interrupt and evaluate suspected ILD or pneumonitis"], "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Sections 2.1, 5.1, and 5.2"}]},
+    {"number": 6, "title": "Apply the evidence at the point of care", "purpose": "Close with practical recall", "content": ["Confirm the labeled setting", "Use the exact schedule", "Monitor counts and pulmonary symptoms", "Return to the current prescribing information for decisions"], "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Full prescribing information"}]}
+  ]
+}

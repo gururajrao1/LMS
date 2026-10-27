@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "minor",
+  "explanation": "The evidence describes palbociclib only as 'an inhibitor of CDK4/6'; none of the cited or dossier evidence states it is 'selective,' 'oral,' or 'reversible,' so these specific descriptors lack support in the shown evidence.",
+  "suggested_rewrite": "Palbociclib is an inhibitor of cyclin-dependent kinases 4 and 6 (CDK4/6); cyclin D1 and CDK4/6 lie downstream of proliferative signaling pathways, and inhibition blocks Rb phosphorylation, arresting cells in G1 phase."
+}

@@ -1,0 +1,65 @@
+[
+  {
+    "id": "pharmalearn-checker",
+    "name": "PharmaLearn checker",
+    "email": "checks@pharmalearn.local",
+    "role": "checker",
+    "title": "Automated pre-review"
+  },
+  {
+    "id": "priya-raman",
+    "name": "Priya Raman",
+    "email": "priya.raman@pharmalearn.local",
+    "role": "admin",
+    "title": "Medical education lead"
+  },
+  {
+    "id": "anil-shekhar",
+    "name": "Dr. Anil Shekhar",
+    "email": "anil.shekhar@pharmalearn.local",
+    "role": "reviewer",
+    "title": "Therapeutic area expert, oncology"
+  },
+  {
+    "id": "maria-alvarez",
+    "name": "Dr. Maria Alvarez",
+    "email": "maria.alvarez@pharmalearn.local",
+    "role": "reviewer",
+    "title": "Regulatory and medical affairs"
+  },
+  {
+    "id": "jordan-feld",
+    "name": "Jordan Feld",
+    "email": "jordan.feld@pharmalearn.local",
+    "role": "msl",
+    "title": "MSL, oncology West"
+  },
+  {
+    "id": "sara-nakamura",
+    "name": "Sara Nakamura",
+    "email": "sara.nakamura@pharmalearn.local",
+    "role": "msl",
+    "title": "MSL, oncology East"
+  },
+  {
+    "id": "ken-osei",
+    "name": "Dr. Ken Osei",
+    "email": "ken.osei@pharmalearn.local",
+    "role": "hcp",
+    "title": "Medical oncologist"
+  },
+  {
+    "id": "lucy-whitfield",
+    "name": "Dr. Lucy Whitfield",
+    "email": "lucy.whitfield@pharmalearn.local",
+    "role": "hcp",
+    "title": "Breast oncology, community practice"
+  },
+  {
+    "id": "tom-becker",
+    "name": "Dr. Tom Becker",
+    "email": "tom.becker@pharmalearn.local",
+    "role": "hcp",
+    "title": "Oncology nurse practitioner"
+  }
+]

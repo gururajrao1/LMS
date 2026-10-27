@@ -1,0 +1,6 @@
+{
+  "verdict": "overreach",
+  "severity": "major",
+  "explanation": "The text states the PALOMA-3 73.3-month exploratory OS analysis showed HR 0.81 (95% CI 0.65-0.99), implying statistical significance. Evidence shown for this analysis gives HR 0.81 (95% CI 0.64-1.03, 1-sided p=0.0429), which crosses 1 and is not significant. The CI cited is unsupported.",
+  "suggested_rewrite": "...a later exploratory analysis with longer follow-up (73.3 months) reported HR 0.81 (95% CI 0.64-1.03; 1-sided p=0.0429), still not meeting significance criteria."
+}

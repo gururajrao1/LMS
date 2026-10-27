@@ -1,0 +1,314 @@
+{
+  "id": "clinical-evidence",
+  "title": "Clinical Evidence for Ibrance (palbociclib)",
+  "summary": "Ibrance (palbociclib), an oral CDK4/6 inhibitor, was developed through the PALOMA clinical trial program in hormone receptor-positive (HR+), HER2-negative advanced/metastatic breast cancer. Accelerated FDA approval in February 2015 was based on the phase I/II PALOMA-1 trial, and full approval followed confirmation of progression-free survival (PFS) benefit in the phase III PALOMA-2 (first-line, with letrozole) and PALOMA-3 (post-endocrine-therapy progression, with fulvestrant) trials. Across the program, palbociclib combinations consistently and substantially prolonged PFS (the primary endpoint in all three trials) versus endocrine therapy alone, with hazard ratios in the range of 0.46\u20130.61, while overall survival (a secondary endpoint) showed numerical but not statistically significant improvements in both PALOMA-2 and PALOMA-3. The most consistent and dominant safety signal across trials is hematologic toxicity, particularly neutropenia, which is reversible, non-cumulative, and manageable with dose modification. Palbociclib has since been extended to additional indications (e.g., HER2+ maintenance with trastuzumab in PATINA, and combination with inavolisib/fulvestrant for PIK3CA-mutated disease), and an adjuvant trial (PALLAS) was also conducted, though detailed sourced results for PALLAS were not available in the material reviewed here.",
+  "claims": [
+    {
+      "text": "Palbociclib (Ibrance) is an oral small-molecule inhibitor of cyclin-dependent kinases 4 and 6 (CDK4/6), which are key regulators of the cell cycle; preclinical studies showed it preferentially inhibits growth of estrogen-receptor-positive breast cancer cells, acts synergistically with antiestrogens, and can reverse endocrine resistance.",
+      "evidence_type": "preclinical/mechanistic, peer-reviewed",
+      "citations": [
+        {
+          "title": "Palbociclib and Letrozole in Advanced Breast Cancer | NEJM",
+          "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1607303",
+          "locator": "paragraph on palbociclib mechanism",
+          "supporting_text": "Palbociclib (Ibrance, Pfizer) is a small-molecule inhibitor of CDK4 and CDK6.4 Preclinical studies of palbociclib have shown its ability to preferentially inhibit the growth of estrogen-receptor (ER)\u2013positive breast cancer cells, act synergistically with antiestrogens, and reverse endocrine resistance."
+        }
+      ]
+    },
+    {
+      "text": "The development program began with PALOMA-1 (TRIO-18), an open-label, randomized, proof-of-concept phase I/II study evaluating palbociclib plus letrozole versus letrozole alone as first-line therapy in postmenopausal women with ER-positive, HER2-negative advanced breast cancer; this trial randomized 165 patients (66 in a biomarker-unselected cohort 1 and 99 in a biomarker-positive cohort 2) to palbociclib 125 mg/day (3 weeks on/1 week off) plus letrozole 2.5 mg/day, or letrozole alone, with investigator-assessed PFS as the major efficacy outcome measure.",
+      "evidence_type": "pivotal trial design, FDA review/peer-reviewed",
+      "citations": [
+        {
+          "title": "FDA Approval: Palbociclib for the Treatment of Postmenopausal Patients with ER-Positive, HER2-Negative Metastatic Breast Cancer",
+          "url": "https://aacrjournals.org/clincancerres/article/21/21/4760/175337/FDA-Approval-Palbociclib-for-the-Treatment-of",
+          "locator": "Abstract/approval basis section",
+          "supporting_text": "The approval is based on a randomized, multicenter, open-label phase I/II trial (PALOMA-1) in 165 patients randomized to palbociclib (125 mg orally daily for 21 consecutive days, followed by 7 days off treatment) plus letrozole (2.5 mg orally daily) or letrozole alone... The phase II portion of the trial was divided into two cohorts: cohort 1 enrolled 66 biomarker-unselected patients and cohort 2 enrolled 99 biomarker-positive patients. The major efficacy outcome measure was investigator-assessed progression-free survival (PFS)."
+        }
+      ]
+    },
+    {
+      "text": "PALOMA-1 demonstrated a large magnitude of PFS improvement with palbociclib plus letrozole versus letrozole alone (hazard ratio 0.488; 95% CI, 0.319\u20130.748), and multiple sensitivity analyses supported clinical benefit; the most common adverse reaction was neutropenia, with grade \u22653 adverse events (\u22655% incidence) in the palbociclib plus letrozole arm including neutropenia (48% grade 3, 6% grade 4) and leukopenia (19% grade 3).",
+      "evidence_type": "pivotal trial results, FDA review",
+      "citations": [
+        {
+          "title": "FDA Approval: Palbociclib for the Treatment of Postmenopausal Patients with ER-Positive, HER2-Negative Metastatic Breast Cancer",
+          "url": "https://aacrjournals.org/clincancerres/article/21/21/4760/175337/FDA-Approval-Palbociclib-for-the-Treatment-of",
+          "locator": "Results section",
+          "supporting_text": "A large magnitude of improvement in PFS was observed in patients receiving palbociclib plus letrozole compared with patients receiving letrozole alone (HR, 0.488; 95% confidence interval, 0.319\u20130.748)... The most common adverse reaction in patients receiving palbociclib plus letrozole was neutropenia... The most common (\u22655%) grade \u22653 AEs in the palbociclib plus letrozole arm were neutropenia (48% grade 3, 6% grade 4), leukopenia (19% grade 3, no grade..."
+        }
+      ]
+    },
+    {
+      "text": "Based on PALOMA-1 results, the FDA granted accelerated approval to palbociclib on February 3, 2015, for use in combination with letrozole as initial endocrine-based therapy for postmenopausal women with ER-positive, HER2-negative advanced breast cancer, with continued approval contingent upon verification of clinical benefit in the confirmatory phase 3 PALOMA-2 trial.",
+      "evidence_type": "regulatory/FDA",
+      "citations": [
+        {
+          "title": "FDA Approval: Palbociclib for the Treatment of Postmenopausal Patients with ER-Positive, HER2-Negative Metastatic Breast Cancer",
+          "url": "https://aacrjournals.org/clincancerres/article/21/21/4760/175337/FDA-Approval-Palbociclib-for-the-Treatment-of",
+          "locator": "Abstract",
+          "supporting_text": "On February 3, 2015, the FDA granted accelerated approval to palbociclib (IBRANCE, Pfizer Inc.), an inhibitor of cyclin-dependent kinases 4 and 6 (CDK4 and CDK6), for use in combination with letrozole for the treatment of postmenopausal women with estrogen receptor (ER)\u2013positive, HER2-negative advanced breast cancer as initial endocrine-based therapy for their metastatic disease."
+        }
+      ]
+    },
+    {
+      "text": "PALOMA-2 was the confirmatory phase 3, double-blind trial that randomized 666 postmenopausal women with ER-positive, HER2-negative advanced breast cancer who had not received prior systemic therapy for advanced disease, in a 2:1 ratio, to palbociclib plus letrozole or placebo plus letrozole.",
+      "evidence_type": "pivotal trial design, peer-reviewed",
+      "citations": [
+        {
+          "title": "Palbociclib and Letrozole in Advanced Breast Cancer | NEJM",
+          "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1607303",
+          "locator": "Methods/design paragraph",
+          "supporting_text": "In this double-blind study, we randomly assigned, in a 2:1 ratio, 666 postmenopausal women with ER-positive, HER2-negative breast cancer, who had not had prior treatment for advanced disease, to receive palbociclib plus letrozole or placebo plus letrozole."
+        }
+      ]
+    },
+    {
+      "text": "PALOMA-2 met its primary endpoint, showing a median investigator-assessed PFS of 24.8 months (95% CI, 22.1 to not estimable) with palbociclib plus letrozole compared with 14.5 months (95% CI, 12.9 to 17.1) with placebo plus letrozole.",
+      "evidence_type": "pivotal trial results, peer-reviewed (primary publication)",
+      "citations": [
+        {
+          "title": "Palbociclib and Letrozole in Advanced Breast Cancer | NEJM",
+          "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1607303",
+          "locator": "Results",
+          "supporting_text": "PALOMA-2 met its primary end point by showing a median progression-free survival of 24.8 months (95% confidence interval [CI], 22.1 to not estimable) in the palbociclib\u2013letrozole group, as compared with 14.5 months (95% CI, 12.9 to 17.1) in..."
+        }
+      ]
+    },
+    {
+      "text": "In an updated PALOMA-2 analysis with longer follow-up (37.6 months), median PFS by blinded independent central review was 35.7 months (95% CI: 27.7\u201338.9) with palbociclib plus letrozole versus 19.5 months (95% CI: 16.6\u201326.6) with placebo plus letrozole (HR=0.611; 95% CI: 0.485\u20130.769).",
+      "evidence_type": "pivotal trial results, secondary/updated analysis (peer-reviewed source cited)",
+      "citations": [
+        {
+          "title": "IBRANCE\u00ae (palbociclib) | PALOMA-2 Progression-free survival | PfizerPro Ireland",
+          "url": "https://www.pfizerpro.ie/medicine/ibrance/clinical-efficacy-safety/paloma2/progression-free-survival",
+          "locator": "PFS data section",
+          "supporting_text": "35.7 months of mPFS with IBRANCE + letrozole (95% CI: 27.7\u201338.9) vs 19.5 months with placebo + letrozole (95% CI: 16.6\u201326.6) in a blinded independent central review (HR=0.611; 95% CI: 0.485\u20130.769)"
+        }
+      ]
+    },
+    {
+      "text": "In the final overall survival analysis of PALOMA-2, with a median follow-up of 90 months, patients receiving palbociclib plus letrozole had numerically longer OS than those receiving placebo plus letrozole (median 53.9 months [95% CI 49.8\u201360.8] vs 51.2 months [95% CI 43.7\u201358.9]; HR=0.956 [95% CI, 0.777\u20131.177]), a difference that was not statistically significant; OS was a secondary endpoint in PALOMA-2, with PFS as the primary endpoint.",
+      "evidence_type": "pivotal trial results, secondary endpoint (press release corroborated by peer-reviewed JCO publication)",
+      "citations": [
+        {
+          "title": "Pfizer Announces Overall Survival Results from Phase 3 PALOMA-2 Trial of IBRANCE",
+          "url": "https://www.pfizer.com/news/press-release/press-release-detail/pfizer-announces-overall-survival-results-phase-3-paloma-2",
+          "locator": "Results paragraph",
+          "supporting_text": "With a median follow-up of 90 months, patients receiving IBRANCE in combination with letrozole had numerically longer OS compared to placebo plus letrozole (median (95% CI) 53.9 months (49.8\u201360.8) vs median 51.2 months (43.7\u201358.9)); the results were not statistically significant (Hazard Ratio (HR)=0.956 [95% CI, 0.777\u20131.177])."
+        },
+        {
+          "title": "Pfizer Announces Overall Survival Results from Phase 3 PALOMA-2 Trial of IBRANCE",
+          "url": "https://www.pfizer.com/news/press-release/press-release-detail/pfizer-announces-overall-survival-results-phase-3-paloma-2",
+          "locator": "Trial design paragraph",
+          "supporting_text": "The PALOMA-2 trial was designed for a primary endpoint of progression-free survival (PFS) with OS as one of the secondary endpoints."
+        }
+      ]
+    },
+    {
+      "text": "In a prespecified subgroup analysis of PALOMA-2 in postmenopausal Asian women, palbociclib plus letrozole significantly improved PFS consistent with the overall study population, though hematologic toxicities (including neutropenia) were more frequent in Asian versus non-Asian patients but were manageable with early dose modification while maintaining quality of life.",
+      "evidence_type": "subgroup analysis, peer-reviewed",
+      "citations": [
+        {
+          "title": "Palbociclib Plus Letrozole as First-Line Therapy in Postmenopausal Asian Women With Metastatic Breast Cancer: PALOMA-2 - PubMed",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/31125276/",
+          "locator": "Conclusion",
+          "supporting_text": "Consistent with the overall study population, the addition of palbociclib to letrozole significantly improved PFS in Asians. Hematologic toxicities were more frequent in Asians versus non-Asians but manageable with early dose modifications while maintaining QOL."
+        }
+      ]
+    },
+    {
+      "text": "An exploratory analysis of PALOMA-2 found that in the intent-to-treat population, an objective response was achieved by 44% (194/444) of patients on palbociclib plus letrozole versus 35% (77/222) on placebo plus letrozole (odds ratio 1.5; 95% CI 1.0\u20132.1; P=.0156), and that PFS was significantly prolonged with palbociclib plus letrozole regardless of whether patients achieved an objective response or not (median PFS 37.2 vs 27.4 months in responders [HR 0.66], and 10.9 vs 5.6 months in non-responders [HR 0.72]).",
+      "evidence_type": "post-hoc/exploratory analysis, peer-reviewed",
+      "citations": [
+        {
+          "title": "Progression-free Survival Outcome Is Independent of Objective Response... Analysis From PALOMA-2 - ScienceDirect",
+          "url": "https://www.sciencedirect.com/science/article/pii/S1526820919306688",
+          "locator": "Results",
+          "supporting_text": "In the intent-to-treat population, OR was achieved by 194 (44%) of 444 and 77 (35%) of 222 patients in the palbociclib and placebo arms, respectively (odds ratio, 1.5; 95% confidence interval [CI], 1.0-2.1; P = .0156)... The median PFS was significantly prolonged with palbociclib + letrozole versus placebo + letrozole in patients with measurable disease in both OR (37.2 months... hazard ratio, 0.66... and non-OR groups (10.9 months... hazard ratio, 0.72..."
+        }
+      ]
+    },
+    {
+      "text": "PALOMA-3 was a phase 3, double-blind trial (NCT01942135) that evaluated palbociclib plus fulvestrant versus placebo plus fulvestrant in women with HR-positive, HER2-negative metastatic breast cancer whose disease had progressed after prior endocrine therapy; it enrolled 521 patients between October 2013 and August 2014.",
+      "evidence_type": "pivotal trial design, peer-reviewed",
+      "citations": [
+        {
+          "title": "Treating metastatic breast cancer: Analysis of the Paloma-3 Trial - FORCE XRAYS",
+          "url": "https://www.facingourrisk.org/XRAY/palbociclib-overall-survival-metastatic-breast-cancer",
+          "locator": "Trial description",
+          "supporting_text": "The study enrolled 521 patients between Oct 7, 2013 and Aug. 26, 2014."
+        },
+        {
+          "title": "Overall Survival with Palbociclib and Fulvestrant in Advanced Breast Cancer | NEJM",
+          "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1810527",
+          "locator": "Funding statement",
+          "supporting_text": "(Funded by Pfizer; PALOMA-3 ClinicalTrials.gov number, NCT01942135.)"
+        }
+      ]
+    },
+    {
+      "text": "PALOMA-3's primary endpoint of PFS showed a statistically significant and clinically meaningful improvement with palbociclib plus fulvestrant (9.5 months) versus placebo plus fulvestrant (4.6 months), HR 0.46 (95% CI, 0.36\u20130.59); this PFS result formed the basis for FDA approval of palbociclib plus fulvestrant in pretreated HR+/HER2- metastatic breast cancer.",
+      "evidence_type": "pivotal trial results, FDA review",
+      "citations": [
+        {
+          "title": "FDA Approval of Palbociclib in Combination with Fulvestrant for HR+, HER2- Metastatic Breast Cancer",
+          "url": "https://aacrjournals.org/clincancerres/article/22/20/4968/124844/FDA-Approval-of-Palbociclib-in-Combination-with",
+          "locator": "Results",
+          "supporting_text": "A statistically significant and clinically meaningful improvement in PFS (9.5 months vs. 4.6 months) was observed in patients receiving palbociclib plus fulvestrant [HR 0.46; 95% confidence interval (CI), 0.36\u20130.59; P"
+        }
+      ]
+    },
+    {
+      "text": "In an updated (non-prespecified) PFS analysis of PALOMA-3, palbociclib plus fulvestrant showed a statistically significant and clinically meaningful 6.6-month median PFS improvement compared with placebo plus fulvestrant (11.2 vs. 4.6 months; HR=0.50, 95% CI 0.40\u20130.62, p<0.000001).",
+      "evidence_type": "updated/non-prespecified analysis, industry press release",
+      "citations": [
+        {
+          "title": "Pfizer Presents Overall Survival Data From PALOMA-3 Trial of IBRANCE",
+          "url": "https://www.pfizer.com/news/press-release/press-release-detail/pfizer_presents_overall_survival_data_from_paloma_3_trial_of_ibrance_palbociclib_in_patients_with_hr_her2_metastatic_breast_cancer",
+          "locator": "PFS update paragraph",
+          "supporting_text": "In the updated PFS analysis for this study (non-prespecified), the combination of IBRANCE plus fulvestrant showed a statistically significant and clinically meaningful 6.6-month mPFS improvement compared to placebo plus fulvestrant (11.2 vs. 4.6 months; HR=0.50 [95% CI: 0.40-0.62], p<0.000001)."
+        }
+      ]
+    },
+    {
+      "text": "In the final overall survival analysis of PALOMA-3, there was a numerical improvement in OS of nearly seven months with palbociclib plus fulvestrant versus placebo plus fulvestrant (median OS 34.9 months [95% CI 28.8\u201340.0] vs 28.0 months [95% CI 23.6\u201334.6]; HR=0.81 [95% CI 0.64\u20131.03], 1-sided p=0.0429), which did not reach the prespecified threshold for statistical significance; OS was a secondary endpoint and the trial was not powered to detect a statistically significant OS difference.",
+      "evidence_type": "pivotal trial results, secondary endpoint",
+      "citations": [
+        {
+          "title": "Pfizer Presents Overall Survival Data From PALOMA-3 Trial of IBRANCE",
+          "url": "https://www.pfizer.com/news/press-release/press-release-detail/pfizer_presents_overall_survival_data_from_paloma_3_trial_of_ibrance_palbociclib_in_patients_with_hr_her2_metastatic_breast_cancer",
+          "locator": "OS results paragraph",
+          "supporting_text": "there was a numerical improvement in OS of nearly seven months with IBRANCE plus fulvestrant compared to placebo plus fulvestrant, although this difference did not reach the prespecified threshold for statistical significance (median OS: 34.9 months [95% CI: 28.8, 40.0] versus 28.0 months [95% CI: 23.6, 34.6]; HR=0.81 [95% CI: 0.64, 1.03], 1-sided p=0.0429)."
+        },
+        {
+          "title": "Pfizer Announces Overall Survival Results from Phase 3 PALOMA-3 Trial of IBRANCE",
+          "url": "https://www.pfizer.com/news/press-release/press-release-detail/pfizer_announces_overall_survival_results_from_phase_3_paloma_3_trial_of_ibrance_palbociclib_in_hr_her2_metastatic_breast_cancer-0",
+          "locator": "OS design paragraph",
+          "supporting_text": "Overall survival is a secondary endpoint of the PALOMA-3 trial and, as such, the trial design was not optimized to detect a statistically significant difference in OS."
+        }
+      ]
+    },
+    {
+      "text": "Neutropenia was the most frequently reported adverse reaction across the pivotal trials: reported in 80% of patients in PALOMA-2 and 83% of patients in PALOMA-3; Grade 3 neutropenia occurred in 56% and Grade 4 in 10% of patients on palbociclib plus letrozole in PALOMA-2, and Grade 3 in 55% and Grade 4 in 11% of patients on palbociclib plus fulvestrant in PALOMA-3.",
+      "evidence_type": "pooled safety data, industry press release citing label/safety information",
+      "citations": [
+        {
+          "title": "Pfizer Announces Overall Survival Results from Phase 3 PALOMA-3 Trial of IBRANCE",
+          "url": "https://www.pfizer.com/news/press-release/press-release-detail/pfizer_announces_overall_survival_results_from_phase_3_paloma_3_trial_of_ibrance_palbociclib_in_hr_her2_metastatic_breast_cancer-0",
+          "locator": "Safety information section",
+          "supporting_text": "Neutropenia was the most frequently reported adverse reaction in PALOMA-2 (80%) and PALOMA-3 (83%). In PALOMA-2, Grade 3 (56%) or 4 (10%) decreased neutrophil counts were reported in patients receiving IBRANCE plus letrozole... In PALOMA-3, Grade 3 (55%) or Grade 4 (11%) decreased neutrophil counts were reported in patients receiving IBRANCE plus fulvestr..."
+        }
+      ]
+    },
+    {
+      "text": "In the PALOMA-3 FDA safety review, the most common adverse events (any grade) in the palbociclib plus fulvestrant arm were neutropenia (83%), leukopenia (53%), infections (47%), fatigue (41%), nausea (34%), anemia (30%), and stomatitis (28%); the most common Grade \u22653 AEs (\u22655% incidence) were neutropenia (56% grade 3, 11% grade 4) and leukopenia (30% grade 3, 1% grade 4). Although febrile neutropenia incidence was low and grade 3/4 infection rates were comparable between arms, clinicians are advised to remain vigilant for infection and myelosuppression-related complications.",
+      "evidence_type": "FDA safety review",
+      "citations": [
+        {
+          "title": "FDA Approval of Palbociclib in Combination with Fulvestrant for HR+, HER2- Metastatic Breast Cancer",
+          "url": "https://aacrjournals.org/clincancerres/article/22/20/4968/124844/FDA-Approval-of-Palbociclib-in-Combination-with",
+          "locator": "Safety section",
+          "supporting_text": "The most common adverse events (AEs) were neutropenia (83%), leukopenia (53%), infections (47%), fatigue (41%), nausea (34%), anemia (30%), and stomatitis (28%). The most common (\u22655%) grade \u22653 AEs in the palbociclib plus fulvestrant arm were neutropenia (56% grade 3, 11% grade 4), and leukopenia (30% grade 3, 1% grade 4)... Although the incidence of febrile neutropenia was low and the rate of grade 3 or 4 infections were comparable between the two treatment arms in PALOMA-3, providers must remain diligent in monitoring patients for signs of infection and other complications related to myelosuppression while receiving palbociclib."
+        }
+      ]
+    },
+    {
+      "text": "Palbociclib-associated neutropenia has a characteristic clinical pattern: onset is early during treatment (median time to any grade, Grade \u22653, and Grade 4 neutropenia of 20, 28, and 16 days respectively), it is not cumulative (incidence decreases over subsequent cycles), and US prescribing information recommends checking absolute neutrophil count on day 1 and day 14 of the first two treatment cycles.",
+      "evidence_type": "pooled/expanded subgroup analysis, peer-reviewed",
+      "citations": [
+        {
+          "title": "Efficacy and safety of palbociclib in combination with letrozole as first-line treatment... expanded analyses of subgroups from PALOMA-1/TRIO-18 - PMC",
+          "url": "https://ncbi.nlm.nih.gov/pmc/articles/PMC4924326",
+          "locator": "Discussion",
+          "supporting_text": "The current US Prescribing Information for Palbociclib (Ibrance\u00ae) recommends checking the absolute neutrophil count on day 1 and day 14 of the first two cycles of therapy. This monitoring schedule was chosen considering that the onset of neutropenia occurred early during treatment, with median time to any grade, Grade \u22653, and Grade 4 neutropenia being 20 days, 28 days, and 16 days, respectively. The study data demonstrate that there is no cumulative toxicity with regard to neutropenia; instead, its incidence decreases over time."
+        }
+      ]
+    },
+    {
+      "text": "Palbociclib-associated neutropenia in the PALOMA trials was described as generally reversible, non-cumulative, and manageable without growth factor support.",
+      "evidence_type": "trial protocol/background citing pivotal trial data",
+      "citations": [
+        {
+          "title": "PALbociclib CoLlaborative Adjuvant Study (PALLAS) Protocol",
+          "url": "https://cdn.clinicaltrials.gov/large-docs/94/NCT02513394/Prot_SAP_000.pdf",
+          "locator": "Background section",
+          "supporting_text": "The clinical picture of neutropenia seen with the palbociclib/letrozole combination in PALOMA-1 is notable for being quickly reversible, noncumulative and uncomplicated and managed without the use of growth stimulating factors."
+        }
+      ]
+    },
+    {
+      "text": "An adjuvant-setting phase 3 trial of palbociclib, PALLAS (NCT02513394), was conducted in patients with early-stage, HR-positive, HER2-negative breast cancer who had completed adequate initial local treatment (surgical resection \u00b1 radiotherapy) and were planned to receive standard adjuvant endocrine therapy, with or without prior chemotherapy.",
+      "evidence_type": "trial design, ClinicalTrials.gov protocol",
+      "citations": [
+        {
+          "title": "PALbociclib CoLlaborative Adjuvant Study (PALLAS) Protocol",
+          "url": "https://cdn.clinicaltrials.gov/large-docs/94/NCT02513394/Prot_SAP_000.pdf",
+          "locator": "Eligibility/design section",
+          "supporting_text": "In the PALLAS trial, all study participants are expected to have undergone adequate initial local treatment for their breast cancer including surgical resection, with or without adjuvant radiotherapy... Participants are also expected to have selected an appropriate systemic therapy plan, with or without chemotherapy and have decided to receive endocrine therapy. All patients, regardless of randomization arm, will receive standard adjuvant endocrine treatment according to institutional standards."
+        }
+      ]
+    },
+    {
+      "text": "Beyond the original PALOMA program, palbociclib's approved uses have been extended: the FDA approved palbociclib in combination with trastuzumab, with or without pertuzumab, and endocrine therapy for maintenance treatment of adults with HR-positive, HER2-positive locally advanced or metastatic breast cancer following induction treatment, based on the PATINA trial (NCT02947685), a randomized, open-label study in 518 patients who had no evidence of disease progression after induction treatment with a taxane and trastuzumab (with or without pertuzumab).",
+      "evidence_type": "regulatory/FDA, newer indication",
+      "citations": [
+        {
+          "title": "FDA approves palbociclib with trastuzumab...for maintenance treatment of HR-positive, HER2-positive metastatic breast cancer | FDA",
+          "url": "https://www.fda.gov/drugs/resources-information-approved-drugs/fda-approves-palbociclib-trastuzumab-or-without-pertuzumab-and-endocrine-therapy-maintenance",
+          "locator": "Approval summary",
+          "supporting_text": "On June 24, 2026, the Food and Drug Administration approved palbociclib (Ibrance, Pfizer Inc.) in combination with trastuzumab, with or without pertuzumab, and endocrine therapy for the maintenance treatment of adults with HR-positive, HER2-positive locally advanced or metastatic breast cancer following induction treatment... Efficacy was evaluated in PATINA (NCT02947685), a randomized, open-label trial in 518 patients with HR-positive, HER2-positive locally advanced or metastatic breast cancer who had no evidence of disease progression after induction treatment with a taxane and trastuzumab, with or without pertuzumab, for their advanced disease."
+        }
+      ]
+    },
+    {
+      "text": "Palbociclib's indications have also expanded to include use in combination with inavolisib and fulvestrant for endocrine-resistant, PIK3CA-mutated, HR-positive, HER2-negative locally advanced or metastatic breast cancer (detected by an FDA-approved test) in adults following recurrence on or after completing adjuvant endocrine therapy.",
+      "evidence_type": "regulatory/FDA approval history",
+      "citations": [
+        {
+          "title": "Ibrance (palbociclib) FDA Approval History - Drugs.com",
+          "url": "https://www.drugs.com/history/ibrance.html",
+          "locator": "Indications list",
+          "supporting_text": "endocrine-resistant, PIK3CA-mutated, HR-positive, HER2-negative, locally advanced or metastatic breast cancer, as detected by an FDA-approved test, in combination with inavolisib and fulvestrant in adults following recurrence on or after completing adjuvant endocrine therapy."
+        }
+      ]
+    },
+    {
+      "text": "Key warnings and precautions in current Ibrance labeling include neutropenia (which may lead to serious, potentially fatal infections), interstitial lung disease/pneumonitis, and embryo-fetal toxicity; palbociclib may also cause fertility problems in males. Common adverse reactions across Ibrance combination regimens include decreased blood cell counts, infections, diarrhea, sore mouth, nausea, and tiredness.",
+      "evidence_type": "current label summary",
+      "citations": [
+        {
+          "title": "Ibrance (palbociclib) FDA Approval History - Drugs.com",
+          "url": "https://www.drugs.com/history/ibrance.html",
+          "locator": "Warnings and adverse reactions section",
+          "supporting_text": "Ibrance warnings and precautions include neutropenia, which may lead to serious infections that can be fatal; interstitial lung disease/pneumonitis; and embryo-fetal toxicity. Ibrance may also cause fertility problems in males... Common adverse reactions across Ibrance combinations include decreased blood cell counts, infections, diarrhea, sore mouth, nausea, tiredness,"
+        }
+      ]
+    },
+    {
+      "text": "A 2019 FDA safety communication noted that CDK4/6 inhibitors, including Ibrance (palbociclib), Kisqali (ribociclib), and Verzenio (abemaciclib), may cause rare but severe interstitial lung disease/pneumonitis.",
+      "evidence_type": "FDA safety alert (as referenced in secondary source)",
+      "citations": [
+        {
+          "title": "Treating metastatic breast cancer: Analysis of the Paloma-3 Trial - FORCE XRAYS",
+          "url": "https://www.facingourrisk.org/XRAY/palbociclib-overall-survival-metastatic-breast-cancer",
+          "locator": "Note dated 09/13/19",
+          "supporting_text": "On 09/13/19 the FDA issued a safety alert that Ibrance (palbociclib), Kisqali (ribociclib), and Verzenio (abemaciclib) may cause a rare but severe inflammation of the lungs."
+        }
+      ]
+    }
+  ],
+  "gaps": [
+    "Detailed, sourced primary efficacy and safety results from the PALLAS adjuvant trial (NCT02513394) were not retrieved in this research pass; only the trial protocol/background was available. This is a known important negative/early-stopped trial in the adjuvant CDK4/6 inhibitor space (contrasted with monarchE for abemaciclib), but specific PALLAS results data were not confirmed against a primary source here and should be separately verified before inclusion in any comparative discussion.",
+    "Systematic real-world evidence (e.g., large observational/registry studies of palbociclib effectiveness or safety outside clinical trials) was not specifically searched or retrieved in this session; only trial-based and regulatory sources were reviewed.",
+    "Full FDA label safety tables (e.g., complete adverse reaction incidence tables, dose modification guidance, drug interaction data such as CYP3A interactions) were not directly pulled from DailyMed/FDA label PDF in this session; some safety data are sourced from secondary summaries (press releases, Drugs.com) rather than the primary FDA label/DailyMed text.",
+    "Detailed results of the newer inavolisib/palbociclib/fulvestrant combination trial (supporting the PIK3CA-mutated indication) were not retrieved; only the existence of this indication was confirmed via an approval-history summary.",
+    "Comparative efficacy data versus other CDK4/6 inhibitors (ribociclib, abemaciclib) were not part of this search and are not included; any such comparison would require indirect/cross-trial comparison, which should be treated cautiously given differing trial designs and populations."
+  ],
+  "warnings": [
+    "Some efficacy/safety figures (e.g., updated PALOMA-2 PFS with extended follow-up, PALOMA-3 OS details) are sourced from Pfizer press releases and a Pfizer promotional/professional site (pfizerpro.ie) rather than exclusively from peer-reviewed publications or the FDA label; these are official company sources but are not primary regulatory or independent peer-reviewed documents, so figures should be cross-checked against the peer-reviewed NEJM/JCO publications and the FDA label where precision is critical.",
+    "Overall survival findings in both PALOMA-2 and PALOMA-3 were secondary, non-prespecified-as-powered endpoints; neither trial was statistically powered to detect an OS difference, and the numerical OS improvements observed did not reach statistical significance. These should not be interpreted as demonstrating a survival benefit.",
+    "Some PFS analyses (e.g., PALOMA-2 subgroup analyses by patient characteristics, and PALOMA-3 updated 'non-prespecified' PFS analysis) are explicitly described in the sources as non-prespecified or exploratory/post-hoc; these are hypothesis-generating and distinct from the prespecified primary endpoint analyses.",
+    "This section did not directly access DailyMed or the full FDA-approved package insert; label-derived safety statistics were obtained via secondary summaries of FDA reviews and press materials, which is a limitation for exhaustive completeness of the boxed warnings, contraindications, and full adverse reaction tables."
+  ]
+}

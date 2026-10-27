@@ -1,0 +1,48 @@
+{
+  "run_id": "ibrance-20260715T084025801360Z",
+  "user_id": "sara-nakamura",
+  "started_at": "2026-07-22T00:00:00+00:00",
+  "modules": {
+    "deck": {
+      "completed_at": "2026-07-22T00:00:00+00:00"
+    },
+    "videos": {
+      "completed_at": "2026-07-22T02:00:00+00:00"
+    },
+    "storyboard": {
+      "completed_at": "2026-07-22T04:00:00+00:00"
+    },
+    "faq": {
+      "completed_at": "2026-07-22T06:00:00+00:00"
+    }
+  },
+  "attempts": [
+    {
+      "id": "04ea9cb8b81a",
+      "kind": "baseline",
+      "score": 40,
+      "correct": 2,
+      "total": 5,
+      "passing_score": 0,
+      "passed": true,
+      "answers": {
+        "q1": 0,
+        "q3": 1,
+        "q5": 1,
+        "q7": 2,
+        "q9": 2
+      },
+      "created_at": "2026-07-22T00:00:00+00:00"
+    }
+  ],
+  "certificate": null,
+  "feedback": [
+    {
+      "id": "14af28816517",
+      "module_id": "deck",
+      "rating": 4,
+      "comment": "",
+      "created_at": "2026-08-13T05:06:13.936938+00:00"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "minor",
+  "explanation": "No evidence provided addresses moderate CYP3A inhibitors/inducers or their effect size versus strong ones; the claim that 'moderate inhibitors/inducers generally have smaller effects and require case-by-case judgment' is not established by any cited or additional evidence.",
+  "suggested_rewrite": "Remove the statement about moderate CYP3A inhibitors/inducers, or cite specific label guidance addressing moderate CYP3A modulators if available."
+}

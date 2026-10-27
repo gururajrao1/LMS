@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "blocking",
+  "explanation": "Evidence only describes tablet/capsule formulation and food timing for combination partners (AI, fulvestrant, inavolisib+fulvestrant). It contains no support for HER2+ maintenance indication, PIK3CA-mutated specificity, off-label escalation SOPs, or regulatory-framework disclaimers stated in the slide.",
+  "suggested_rewrite": "Cite the specific label sections and company SOP/regulatory documents supporting escalation procedures, HER2+ indication, PIK3CA-mutated population, and off-label handling policy, rather than relying on formulation/food evidence."
+}

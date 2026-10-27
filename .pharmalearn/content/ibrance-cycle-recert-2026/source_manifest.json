@@ -1,0 +1,726 @@
+{
+  "scope": "Sources selected by section-specific web research",
+  "accessed_at": "2026-07-15T08:40:36.171104+00:00",
+  "sources": [
+    {
+      "title": "Cancer of the Breast (Female) - Cancer Stat Facts",
+      "url": "https://seer.cancer.gov/statfacts/html/breast.html",
+      "locator": "SEER Stat Facts, Breast (Female)",
+      "supporting_text": "For female breast cancer, 64.0% are diagnosed at the local stage. The 5-year relative survival for localized female breast cancer is 100.0%."
+    },
+    {
+      "title": "Common Cancer Sites \u2014 Cancer Stat Facts",
+      "url": "https://seer.cancer.gov/statfacts/html/common.html",
+      "locator": "SEER Stat Facts, Common Cancer Sites",
+      "supporting_text": "An estimated 321,910 women and 2,670 men will be diagnosed with breast cancer, which makes it the second most common cancer diagnosis."
+    },
+    {
+      "title": "Breast Cancer Statistics And Resources | BCRF",
+      "url": "https://www.bcrf.org/breast-cancer-statistics-and-resources/",
+      "locator": "BCRF Breast Cancer Statistics and Resources",
+      "supporting_text": "The overall five-year relative survival rate is 99 percent for localized disease, 86 percent for regional disease, and 30 percent for distant-stage disease."
+    },
+    {
+      "title": "Systemic therapy for hormone receptor\u2010positive/HER2\u2010negative early stage and metastatic breast cancer - Huppert et al., CA: A Cancer Journal for Clinicians",
+      "url": "https://acsjournals.onlinelibrary.wiley.com/doi/full/10.3322/caac.21777",
+      "locator": "Huppert 2023, CA Cancer J Clin",
+      "supporting_text": "Risk factors for HR-positive breast cancer include germline genetic mutations, family history, increased age, obesity, heavy alcohol intake, decreased physical activity, early menarche, late first full-term pregnancy, and late menopause."
+    },
+    {
+      "title": "Hormone Receptor Positive/HER2 Negative Breast Cancer With Isolated Bladder Metastasis: A Rare Case - PMC",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8188964/",
+      "locator": "PMC8188964",
+      "supporting_text": "They usually metastasize to lymph nodes, bones, liver, lungs, and brain."
+    },
+    {
+      "title": "HR+/HER2\u2212 de novo metastatic breast cancer: a true peculiar entity? - PMC",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10012832/",
+      "locator": "PMC10012832",
+      "supporting_text": "De novo metastatic breast cancer (dnMBC) accounts for ~6\u201310% of all breast cancers and for ~30% of MBC with increasing incidence over time. Hormone receptor-positive/human epidermal growth factor receptor 2-negative (HR+/HER2\u2212) tumours are the most frequent subtype."
+    },
+    {
+      "title": "Clinicopathological characteristics, evolution, treatment pattern and outcomes of hormone-receptor-positive/HER2-low metastatic breast cancer - PMC",
+      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10595148/",
+      "locator": "PMC10595148",
+      "supporting_text": "Breast cancers with immunohistochemistry (IHC) scores of 1+ or 2+ and negative in situ hybridization (ISH) are termed HER2-low according to the 2018 ASCO/CAP guidelines. The reported prevalence of HER2-low breast cancer spans from 31.0% to 61.6% across various studies and breast cancer types."
+    },
+    {
+      "title": "The dilemma of selecting a first line CDK4/6 inhibitor for hormone receptor-positive/HER2-negative metastatic breast cancer - PMC",
+      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10033931/",
+      "locator": "PMC10033931",
+      "supporting_text": "However, mature overall survival data now suggest potential differences among the various agents, suggesting an evolution in selection preferences. The three FDA approved agents in the metastatic setting are palbociclib, ribociclib and abemaciclib."
+    },
+    {
+      "title": "Clinical implications of the intrinsic molecular subtypes in hormone receptor-positive and HER2-negative metastatic breast cancer - ScienceDirect",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0305737222001724",
+      "locator": "ScienceDirect review, 2022",
+      "supporting_text": "During tumor progression, a shift toward a non-luminal estrogen-independent and more aggressive phenotype has been demonstrated... non-luminal biology has been detected in a substantial proportion (5\u201320%) of hormone receptor-positive (HoR+) tumors, has prognostic value, and identifies reduced and increased sensitivity to endocrine therapy and chemotherapy, respectively."
+    },
+    {
+      "title": "Systemic treatment of hormone receptor positive, human epidermal growth factor 2 negative metastatic breast cancer: retrospective analysis from Leeds Cancer Centre",
+      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6975018/",
+      "locator": "PMC6975018",
+      "supporting_text": "Median age was 67 years, 85.2% were post-menopausal and median time between primary diagnosis and metastasis was 5.4 years. Most (75.1%) patients received endocrine therapy as first line systemic treatment (1st LoT); use of 1st LoT chemotherapy halved between 2012 and 2017."
+    },
+    {
+      "title": "A Nurse's Overview of First-Line Treatment for HR+ Metastatic Breast Cancer",
+      "url": "https://www.oncnursingnews.com/view/a-nurse-s-overview-of-first-line-treatment-for-hr-metastatic-breast-cancer",
+      "locator": "paragraph 3",
+      "supporting_text": "the NCCN recommends treating patients with a combination of endocrine therapy\u2014either an aromatase inhibitor or fulvestrant (Faslodex)\u2014and a CDK4/6 inhibitor."
+    },
+    {
+      "title": "NCCN Guidelines for HR+/HER2- Metastatic Breast Cancer | OncLive",
+      "url": "https://www.onclive.com/view/nccn-guidelines-for-hr-her2-metastatic-breast-cancer",
+      "locator": "Guideline discussion",
+      "supporting_text": "the latest NCCN guidelines really call for first-line therapy being an aromatase inhibitor alone or with a CDK4/6 inhibitor"
+    },
+    {
+      "title": "Indirect Treatment Comparison of First-Line CDK4/6-Inhibitors in Post-Menopausal Patients with HR+/HER2\u2212 Metastatic Breast Cancer",
+      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10527344/",
+      "locator": "PMC10527344",
+      "supporting_text": "No significant OS and PFS differences were found between palbociclib, ribociclib, and abemaciclib, supporting all three drugs as feasible options in first-line treatment... However, recent updates of overall survival (OS) showed inconsistencies in the OS benefit for palbociclib compared with the other two CDK4/6-inhibitors."
+    },
+    {
+      "title": "First-Line CDK4/6 Inhibitors Plus Aromatase Inhibitors: Treatment Duration and Subsequent Therapies in HR-Positive/HER2-Negative Metastatic Breast Cancer",
+      "url": "https://www.conference-correspondent.com/highlights/esmo/esmo-2025-early-breast-cancer/first-line-cdk4-6-inhibitors-plus-aromatase-inhibitors",
+      "locator": "Conference Correspondent, ESMO 2025 summary",
+      "supporting_text": "PAL demonstrated longer treatment duration compared with RIB and ABE. Patients who started 1L RIB and ABE were more likely to switch CDK4/6 inhibitors, most often to PAL."
+    },
+    {
+      "title": "Prognostic implications of HER2NEU\u2010low in metastatic breast cancer",
+      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10839127/",
+      "locator": "PMC10839127",
+      "supporting_text": "Among metastatic ER\u2010positive cancers nationally, 5\u2010year overall survival (OS) for HER2\u2010negative tumors is 31.9% versus 46.0% for HER2\u2010positive disease."
+    },
+    {
+      "title": "Alternative Dosing Schedule of Palbociclib in Metastatic Hormone Receptor Positive Breast Cancer (ClinicalTrials.gov protocol)",
+      "url": "https://cdn.clinicaltrials.gov/large-docs/79/NCT03007979/Prot_SAP_000.pdf",
+      "locator": "Background section 1.2",
+      "supporting_text": "Palbociclib (Ibrance, Pfizer) is a highly selective small-molecule inhibitor of CDK4 and CDK6, which can be administered orally. It results in loss of RB1 phosphorylation in vitro and leads to cell cycle arrest at the G1-S phase in ER+ breast cancer. ... An open-label randomized phase 2 study involving postmenopausal patients with newly diagnosed metastatic ER+ and human epidermal growth factor receptor (Her-2/neu) negative breast cancer (PALOMA1), showed that palbociclib in combination with letrozole was associated with significantly prolonged PFS when compared with letrozole alone."
+    },
+    {
+      "title": "IBRANCE tablets (palbociclib) Clinical Pharmacology - Pfizer Medical",
+      "url": "https://www.pfizermedical.com/ibrance-tablets/clinical-pharmacology",
+      "locator": "Section 12.3",
+      "supporting_text": "The geometric mean apparent oral clearance (CL/F) of palbociclib was 63.1 L/hr (29% CV), and the mean (\u00b1 standard deviation) plasma elimination half-life was 29 (\u00b15) hours in patients with advanced breast cancer."
+    },
+    {
+      "title": "Label: IBRANCE- palbociclib tablet, film coated - DailyMed",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=fecbdd7d-b729-41b5-9872-231b8fe104ce",
+      "locator": "Adverse Reactions section",
+      "supporting_text": "Adverse reactions leading to permanent discontinuation for patients receiving IBRANCE plus letrozole included neutropenia (1.1%) and alanine aminotransferase in"
+    },
+    {
+      "title": "Label: IBRANCE- palbociclib capsule - DailyMed - NIH",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e0e6412f-50b4-4fd4-9364-62818d121a07",
+      "locator": "Dosage and Administration (2.1, 2.2, 3)",
+      "supporting_text": "Recommended starting dose: 125 mg once daily taken with food for 21 days followed by 7 days off treatment. (2.1) ... Capsules: 125 mg, 100 mg, and 75 mg. (3)"
+    },
+    {
+      "title": "Label: IBRANCE- palbociclib tablet, film coated - DailyMed",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=89a142d5-7e61-48bf-9e77-e2cd124c4792&audience=consumer",
+      "locator": "Dosage and Administration (2.1, 2.2)",
+      "supporting_text": "Recommended starting dose: 125 mg once daily taken with or without food for 21 days followed by 7 days off treatment."
+    },
+    {
+      "title": "IBRANCE (palbociclib) label",
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2019/207103s010lbl.pdf",
+      "locator": "Section 12.2/12.3",
+      "supporting_text": "Palbociclib had no large effect on QTc (i.e., >20 ms) at 125 mg once daily for 21 consecutive days followed by 7 days off treatment to comprise a ... pharmacokinetic data in 77 patients with breast cancer."
+    },
+    {
+      "title": "Full Prescribing Information for IBRANCE (Pfizer labeling portal)",
+      "url": "https://labeling.pfizer.com/showlabeling.aspx?id=2191",
+      "locator": "Clinical Pharmacology, Pharmacokinetics section",
+      "supporting_text": "The mean maximum observed concentration (Cmax) of palbociclib is generally observed between 6 to 12 hours (time to reach maximum concentration, Tmax) following oral administration. The mean absolute bioavailability of IBRANCE after an oral 125 mg dose is 46%... Steady state was achieved within 8 days following repeated once daily dosing."
+    },
+    {
+      "title": "IBRANCE tablets (palbociclib) Clinical Pharmacology - Pfizer Medical",
+      "url": "https://www.pfizermedical.com/patient/ibrance-tablets/clinical-pharmacology",
+      "locator": "Section 12.3, Specific Populations",
+      "supporting_text": "Based on a population pharmacokinetic analysis in 183 patients with cancer (50 male and 133 female patients, age range from 22 to 89 years, and body weight range from 37.9 to 123 kg), gender had no effect on the exposure of palbociclib, and age and body weight had no clinically important effect on the exposure of palbociclib."
+    },
+    {
+      "title": "DailyMed - IBRANCE- palbociclib capsule",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=e0e6412f-50b4-4fd4-9364-62818d121a07",
+      "locator": "Use in Specific Populations - Pediatric Use",
+      "supporting_text": "The safety and effectiveness of IBRANCE were assessed but not established in three trials... No new safety signals were observed in these trials. Palbociclib exposures in pediatric patients who received IBRANCE as a single agent or in combination were within range of those observed in adults given a similar dose based on body surface area."
+    },
+    {
+      "title": "IBRANCE (palbociclib) label",
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2016/207103s002lbl.pdf",
+      "locator": "Section 12.3, Gastric pH Elevating Medications",
+      "supporting_text": "Gastric pH Elevating Medications: In a drug interaction trial in healthy subjects, coadministration of a single 125 mg dose of IBRANCE with multiple doses of the proton pump inhibitor (PPI) rabeprazole under fed conditions decreased palbociclib Cmax by 41%, but had limited impact on AUCinf."
+    },
+    {
+      "title": "Ibrance DailyMed Label - FDA.report",
+      "url": "https://fda.report/DailyMed/86718885-da44-4d3d-b3ca-06cbcedcffd8",
+      "locator": "Highlights/Indications and Usage (1), Clinical Studies (14) cross-reference",
+      "supporting_text": "The indication in combination with letrozole is approved under accelerated approval based on progression-free survival (PFS)... Continued approval for this indication may be contingent upon verification and description of clinical benefit in a confirmatory trial."
+    },
+    {
+      "title": "Ibrance (Palbociclib Capsules for Oral Administration): Side Effects, Uses, Dosage, Interactions, Warnings",
+      "url": "https://www.rxlist.com/ibrance-drug.htm",
+      "locator": "Drug Interactions / Precautions",
+      "supporting_text": "Avoid grapefruit or grapefruit juice during IBRANCE treatment."
+    },
+    {
+      "title": "Palbociclib and Letrozole in Advanced Breast Cancer | NEJM",
+      "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1607303",
+      "locator": "Results",
+      "supporting_text": "PALOMA-2 met its primary end point by showing a median progression-free survival of 24.8 months (95% confidence interval [CI], 22.1 to not estimable) in the palbociclib\u2013letrozole group, as compared with 14.5 months (95% CI, 12.9 to 17.1) in the placebo-letrozole group (hazard ratio for disease progression or death, 0.58; 95% CI, 0.46 to 0.72; two-sided P<0.001)."
+    },
+    {
+      "title": "FDA Approval: Palbociclib for the Treatment of Postmenopausal Patients with ER-Positive, HER2-Negative Metastatic Breast Cancer",
+      "url": "https://aacrjournals.org/clincancerres/article/21/21/4760/175337/FDA-Approval-Palbociclib-for-the-Treatment-of",
+      "locator": "Abstract",
+      "supporting_text": "On February 3, 2015, the FDA granted accelerated approval to palbociclib (IBRANCE, Pfizer Inc.), an inhibitor of cyclin-dependent kinases 4 and 6 (CDK4 and CDK6), for use in combination with letrozole for the treatment of postmenopausal women with estrogen receptor (ER)\u2013positive, HER2-negative advanced breast cancer as initial endocrine-based therapy for their metastatic disease."
+    },
+    {
+      "title": "IBRANCE\u00ae (palbociclib) | PALOMA-2 Progression-free survival | PfizerPro Ireland",
+      "url": "https://www.pfizerpro.ie/medicine/ibrance/clinical-efficacy-safety/paloma2/progression-free-survival",
+      "locator": "PFS data section",
+      "supporting_text": "35.7 months of mPFS with IBRANCE + letrozole (95% CI: 27.7\u201338.9) vs 19.5 months with placebo + letrozole (95% CI: 16.6\u201326.6) in a blinded independent central review (HR=0.611; 95% CI: 0.485\u20130.769)"
+    },
+    {
+      "title": "Pfizer Announces Overall Survival Results from Phase 3 PALOMA-2 Trial of IBRANCE",
+      "url": "https://www.pfizer.com/news/press-release/press-release-detail/pfizer-announces-overall-survival-results-phase-3-paloma-2",
+      "locator": "Results summary",
+      "supporting_text": "With a median follow-up of 90 months, patients receiving IBRANCE in combination with letrozole had numerically longer OS compared to placebo plus letrozole (median (95% CI) 53.9 months (49.8\u201360.8) vs median 51.2 months (43.7\u201358.9)); the results were not statistically significant (Hazard Ratio (HR)=0.956 [95% CI, 0.777\u20131.177])."
+    },
+    {
+      "title": "Palbociclib Plus Letrozole as First-Line Therapy in Postmenopausal Asian Women... PALOMA-2 | PubMed",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31125276/",
+      "locator": "Abstract",
+      "supporting_text": "Median PFS was significantly longer in Asian patients who received palbociclib plus letrozole versus placebo plus letrozole (25.7 months [95% CI, 19.2 months to not estimable] v 13.9 months [95% CI, 7... Hematologic toxicities were more frequent in Asians versus non-Asians but manageable with early dose modifications while maintaining QOL."
+    },
+    {
+      "title": "Progression-free Survival Outcome Is Independent of Objective Response... Analysis From PALOMA-2 - ScienceDirect",
+      "url": "https://www.sciencedirect.com/science/article/pii/S1526820919306688",
+      "locator": "Results",
+      "supporting_text": "In the intent-to-treat population, OR was achieved by 194 (44%) of 444 and 77 (35%) of 222 patients in the palbociclib and placebo arms, respectively (odds ratio, 1.5; 95% confidence interval [CI], 1.0-2.1; P = .0156)... The median PFS was significantly prolonged with palbociclib + letrozole versus placebo + letrozole in patients with measurable disease in both OR (37.2 months... hazard ratio, 0.66... and non-OR groups (10.9 months... hazard ratio, 0.72..."
+    },
+    {
+      "title": "Treating metastatic breast cancer: Analysis of the Paloma-3 Trial",
+      "url": "https://www.facingourrisk.org/XRAY/palbociclib-overall-survival-metastatic-breast-cancer",
+      "locator": "Article body",
+      "supporting_text": "Palbociclib is a drug that blocks proteins known as CDK 4/6 proteins. These proteins can promote tumor growth."
+    },
+    {
+      "title": "Overall Survival with Palbociclib and Fulvestrant in Advanced Breast Cancer (NEJM)",
+      "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1810527",
+      "locator": "NEJM full text",
+      "supporting_text": "The differences in overall survival in the entire trial group were not significant."
+    },
+    {
+      "title": "FDA Approval of Palbociclib in Combination with Fulvestrant for HR+, HER2- Metastatic Breast Cancer",
+      "url": "https://aacrjournals.org/clincancerres/article/22/20/4968/124844/FDA-Approval-of-Palbociclib-in-Combination-with",
+      "locator": "Safety section",
+      "supporting_text": "The most common adverse events (AEs) were neutropenia (83%), leukopenia (53%), infections (47%), fatigue (41%), nausea (34%), anemia (30%), and stomatitis (28%). The most common (\u22655%) grade \u22653 AEs in the palbociclib plus fulvestrant arm were neutropenia (56% grade 3, 11% grade 4), and leukopenia (30% grade 3, 1% grade 4)... Although the incidence of febrile neutropenia was low and the rate of grade 3 or 4 infections were comparable between the two treatment arms in PALOMA-3, providers must remain diligent in monitoring patients for signs of infection and other complications related to myelosuppression while receiving palbociclib."
+    },
+    {
+      "title": "Pfizer Presents Overall Survival Data From PALOMA-3 Trial of IBRANCE (palbociclib)",
+      "url": "https://www.pfizer.com/news/press-release/press-release-detail/pfizer_presents_overall_survival_data_from_paloma_3_trial_of_ibrance_palbociclib_in_patients_with_hr_her2_metastatic_breast_cancer",
+      "locator": "Pfizer press release, Oct 20 2018",
+      "supporting_text": "there was a numerical improvement in OS of nearly seven months with IBRANCE plus fulvestrant compared to placebo plus fulvestrant, although this difference did not reach the prespecified threshold for statistical significance (median OS: 34.9 months [95% CI: 28.8, 40.0] versus 28.0 months [95% CI: 23.6, 34.6]; HR=0.81 [95% CI: 0.64, 1.03], 1-sided p=0.0429)"
+    },
+    {
+      "title": "Pfizer Announces Overall Survival Results from Phase 3 PALOMA-3 Trial of IBRANCE (Palbociclib)",
+      "url": "https://www.pfizer.com/news/press-release/press-release-detail/pfizer_announces_overall_survival_results_from_phase_3_paloma_3_trial_of_ibrance_palbociclib_in_hr_her2_metastatic_breast_cancer-0",
+      "locator": "Background section",
+      "supporting_text": "PALOMA-3 met its primary endpoint of progression-free survival (PFS) at interim analysis and results were published in The New England Journal of Medicine in June 2015... The trial demonstrated a statistically significant and clinically meaningful improvement in PFS for IBRANCE plus fulvestrant compared to placebo plus fulvestrant."
+    },
+    {
+      "title": "Efficacy and safety of palbociclib in combination with letrozole as first-line treatment... expanded analyses of subgroups from PALOMA-1/TRIO-18 - PMC",
+      "url": "https://ncbi.nlm.nih.gov/pmc/articles/PMC4924326",
+      "locator": "Discussion",
+      "supporting_text": "The current US Prescribing Information for Palbociclib (Ibrance\u00ae) recommends checking the absolute neutrophil count on day 1 and day 14 of the first two cycles of therapy. This monitoring schedule was chosen considering that the onset of neutropenia occurred early during treatment, with median time to any grade, Grade \u22653, and Grade 4 neutropenia being 20 days, 28 days, and 16 days, respectively. The study data demonstrate that there is no cumulative toxicity with regard to neutropenia; instead, its incidence decreases over time."
+    },
+    {
+      "title": "PALbociclib CoLlaborative Adjuvant Study protocol",
+      "url": "https://cdn.clinicaltrials.gov/large-docs/94/NCT02513394/Prot_SAP_000.pdf",
+      "locator": "Section 1.2, Palbociclib Mechanism of Action",
+      "supporting_text": "There is a strong link between the actions of estradiol and the G1-S phase transition, where the estradiol effector is the cyclin D1-CDK4/6-Rb complex. Cyclin D1 is a direct transcriptional target of ER... Genetic aberrations leading to hyperactivation of cyclin D1-CDK4/6 is particularly common in ER+ breast cancer, consistent with its critical role in the tumorigenesis of this cancer subtype, making CDK4/6 inhibitors particularly attractive agents for ER+ breast cancer."
+    },
+    {
+      "title": "FDA approves palbociclib with trastuzumab, with or without pertuzumab, and endocrine therapy for the maintenance treatment of HR-positive, HER2-positive metastatic breast cancer | FDA",
+      "url": "https://www.fda.gov/drugs/resources-information-approved-drugs/fda-approves-palbociclib-trastuzumab-or-without-pertuzumab-and-endocrine-therapy-maintenance",
+      "locator": "FDA drug approval notice",
+      "supporting_text": "the Food and Drug Administration approved palbociclib (Ibrance, Pfizer Inc.) in combination with trastuzumab, with or without pertuzumab, and endocrine therapy for the maintenance treatment of adults with HR-positive, HER2-positive locally advanced or metastatic breast cancer following induction treatment... Efficacy was evaluated in PATINA (NCT02947685), a randomized, open-label trial in 518 patients"
+    },
+    {
+      "title": "Ibrance (palbociclib) FDA Approval History - Drugs.com",
+      "url": "https://www.drugs.com/history/ibrance.html",
+      "locator": "Drugs.com history page",
+      "supporting_text": "Ibrance's FDA approvals are supported by four pivotal trials: PALOMA-1 and PALOMA-2 (first-line with an aromatase inhibitor), PALOMA-3 (fulvestrant), INAVO120 (inavolisib plus fulvestrant), and PATINA (HER2-positive maintenance)."
+    },
+    {
+      "title": "FDA approves inavolisib with palbociclib and fulvestrant for endocrine-resistant, PIK3CA-mutated, HR-positive, HER2-negative, advanced breast cancer | FDA",
+      "url": "https://www.fda.gov/drugs/resources-information-approved-drugs/fda-approves-inavolisib-palbociclib-and-fulvestrant-endocrine-resistant-pik3ca-mutated-hr-positive",
+      "locator": "Dosing regimen paragraph",
+      "supporting_text": "Patients were randomized 1:1 to either inavolisib 9 mg or placebo orally once daily, with palbociclib 125 mg orally once daily for 21 consecutive days followed by 7 days off treatment to comprise a cycle of 28 days, and fulvestrant 500 mg administered intramuscularly on Cycle 1, Days 1 and 15, and then on Day 1 of every 28-day cycle."
+    },
+    {
+      "title": "US Food and Drug Administration Approval Summary: Inavolisib With Palbociclib and Fulvestrant... (JCO)",
+      "url": "https://ascopubs.org/doi/abs/10.1200/JCO-25-00663",
+      "locator": "Results summary",
+      "supporting_text": "INAVO120 met its primary end point of progression-free survival (PFS) by investigator assessment, with a median PFS of 15.0 months for inavolisib + palbociclib + fulvestrant versus 7.3 months for placebo + palbociclib + fulvestra"
+    },
+    {
+      "title": "Hydroxychloroquine, Palbociclib, and Letrozole Before Surgery in ER+ HER2- Breast Cancer (protocol, citing label pharmacology)",
+      "url": "https://cdn.clinicaltrials.gov/large-docs/72/NCT03774472/Prot_SAP_000.pdf",
+      "locator": "Section 3.1, Mechanism of Action",
+      "supporting_text": "Treatment of breast cancer cell lines with the combination of palbociclib and antiestrogens leads to decreased retinoblastoma (Rb) protein phosphorylation resulting in reduced E2F expression and signaling, and increased growth arrest compared to treatment with each drug alone. In vitro treatment of ER-positive breast cancer cell lines with the combination of palbociclib and antiestrogens led to increased cell senescence compared to each drug alone, which was sustained for up to 6 days following palbociclib removal and was greater if antiestrogen treatment was continued."
+    },
+    {
+      "title": "IBRANCE (palbociclib) tablets, for oral use - Prescribing Information",
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/212436s008lbl.pdf",
+      "locator": "Indications and Usage section",
+      "supporting_text": "IBRANCE is indicated in combination with inavolisib and fulvestrant for the treatment of adult patients with endocrine-resistant, PIK3CA-mutated, HR-positive, HER2-negative, locally advanced or metastatic breast cancer, as detected by an FDA-approved test, following recurrence on or after completing"
+    },
+    {
+      "title": "Ibrance (palbociclib) dosing, indications, interactions, adverse effects, and more - Medscape",
+      "url": "https://reference.medscape.com/drug/ibrance-palbociclib-999995",
+      "locator": "Warnings section",
+      "supporting_text": "Severe, life-threatening, or fatal ILD and/or pneumonitis reported. Monitor for pulmonary symptoms (eg, hypoxia, cough, dyspnea) Hold therapy and evaluate for new or worsening respiratory symptoms or suspected pneumonitis. Permanently discontinue for severe ILD or pneumonitis."
+    },
+    {
+      "title": "Ibrance: Uses, Side Effects & Dosage | Healio",
+      "url": "https://www.healio.com/clinical-guidance/drugs/ibrance",
+      "locator": "Geriatric use paragraph",
+      "supporting_text": "In the PALOMA-2 study, 41% of palbociclib-treated patients were >=65 years of ageand 11% were >=75 years of age. In the PALOMA-3 study, 25% of palbociclib-treated patients were >=65 years of ageand 8% were >=75 years of age. No overall differences in safety and efficacy were observed between geriatric and younger patients."
+    },
+    {
+      "title": "IBRANCE capsules label (FDA)",
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/207103s020lbl.pdf",
+      "locator": "Adverse Reactions, INAVO120 safety population",
+      "supporting_text": "Serious adverse reactions occurred in 24% of patients who received IBRANCE plus inavolisib and fulvestrant. Serious adverse reactions occurring in \u22651% of patients receiving IBRANCE plus inavolisib and fulvestrant included anemia (1.9%), diarrhea (1.2%), and urinary tract infection (1.2%)."
+    },
+    {
+      "title": "Label: IBRANCE- palbociclib capsule - DailyMed",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=e0e6412f-50b4-4fd4-9364-62818d121a07&version=23",
+      "locator": "Section 5, ILD/Pneumonitis",
+      "supporting_text": "Interstitial Lung Disease (ILD)/Pneumonitis: Severe and fatal cases of ILD/pneumonitis have been reported. Monitor for pulmonary symptoms of ILD/pneumonitis. Interrupt IBRANCE immediately in patients with suspected ILD/pneumonitis. Permanently discontinue IBRANCE if severe ILD/pneumonitis occurs."
+    },
+    {
+      "title": "IBRANCE\u00ae tablets (palbociclib) Patient information | Pfizer Medical - US",
+      "url": "https://www.pfizermedical.com/patient/ibrance-tablets",
+      "locator": "Postmarketing adverse reactions section",
+      "supporting_text": "The following adverse reaction has been reported following administration of IBRANCE: venous thromboembolism. The following adverse reactions have been identified during post-approval use of IBRANCE. Because these reactions are reported voluntarily from a population of uncertain size, it is not always possible to reliably estimate their frequency or establish a causal relationship to drug exposure."
+    },
+    {
+      "title": "Dosing & Administration | IBRANCE\u00ae (palbociclib)",
+      "url": "https://ibrance.pfizerpro.com/dosing/administration",
+      "locator": "ILD/pneumonitis adverse reaction data",
+      "supporting_text": "Across clinical trials (PALOMA-1, PALOMA-2, PALOMA-3), 1% of IBRANCE-treated patients had ILD/pneumonitis of any grade, 0.1% had Grade 3 or 4, and no fatal cases were reported."
+    },
+    {
+      "title": "IBRANCE\u00ae capsules (palbociclib) Warnings and Precautions | Pfizer Medical Information - US",
+      "url": "https://www.pfizermedicalinformation.com/ibrance/warnings",
+      "locator": "Embryo-Fetal Toxicity section",
+      "supporting_text": "In animal reproduction studies, administration of palbociclib to pregnant rats and rabbits during organogenesis resulted in embryo-fetal toxicity at maternal exposures that were \u22654 times the human clinical exposure based on area under the curve (AUC)."
+    },
+    {
+      "title": "Dose Modifications for Adverse Reactions | IBRANCE (palbociclib)",
+      "url": "https://ibrance.pfizerpro.com/dosing/modifications",
+      "locator": "Pfizer HCP site, PALOMA-2 safety data",
+      "supporting_text": "The most frequently reported Grade \u22653 adverse reactions (\u22655%) in PALOMA-2 for IBRANCE plus letrozole vs placebo plus letrozole were neutropenia (66% vs 2%), leukopenia (25% vs 0%), infections (7% vs 3%), and anemia (5% vs 2%)"
+    },
+    {
+      "title": "IBRANCE\u00ae (palbociclib) capsules, for oral use",
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/207103s021,212436s009lbl.pdf",
+      "locator": "Patient Counseling Information",
+      "supporting_text": "Advise patients to immediately report any signs or symptoms of myelosuppression or infection, such as \u00b7 fever, chills, dizziness, shortness of breath, weakness, or any increased tendency to bleed and/or to"
+    },
+    {
+      "title": "Label: IBRANCE- palbociclib tablet, film coated - DailyMed",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=89a142d5-7e61-48bf-9e77-e2cd124c4792&version=10",
+      "locator": "Section 3 Dosage Forms and Strengths / Description",
+      "supporting_text": "125 mg tablets: Oval, light purple, film-coated tablets debossed with \"Pfizer\" on one side and \"PBC 125\" on the other side."
+    },
+    {
+      "title": "IBRANCE (palbociclib) capsules, for oral use - FDA label",
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2015/207103s000lbl.pdf",
+      "locator": "Clinical Pharmacology, 12.1 Mechanism of Action",
+      "supporting_text": "Palbociclib is an inhibitor of cyclin-dependent kinase (CDK) 4 and 6. Cyclin D1 and CDK4/6 are \u00b7 downstream of signaling pathways which lead to cellular proliferation. In vitro, palbociclib reduced \u00b7 cellular proliferation of estrogen receptor (ER)-positive breast cancer cell lines by blocking progression \u00b7 of the cell from G1 into S phase of the cell cycle."
+    },
+    {
+      "title": "Selecting Patients for Frontline CDK4/6 Inhibitors in Metastatic Breast Cancer",
+      "url": "https://dailynews.ascopubs.org/do/selecting-patients-frontline-cdk4-6-inhibitors-metastatic-breast-cancer",
+      "locator": "Table 1 discussion",
+      "supporting_text": "In the first-line setting, palbociclib, ribociclib, and abemaciclib have similar progression-free survival (PFS) data, hazard ratios (HR), and response rates (Table 1)."
+    },
+    {
+      "title": "PALOMA-2: No Overall Survival Benefit Reported With Palbociclib/Letrozole in Advanced Breast Cancer",
+      "url": "https://ascopost.com/issues/august-10-2022/no-overall-survival-benefit-reported-with-palbociclibletrozole-in-advanced-breast-cancer/",
+      "locator": "ASCO Post article, Aug 10 2022",
+      "supporting_text": "After a median follow-up of 90 months, median overall survival was 53.9 months with palbociclib/letrozole vs 51.2 months with letrozole alone (hazard ratio [HR] = 0.956; 95% confidence interval"
+    },
+    {
+      "title": "Overall Survival With Palbociclib and Aromatase Inhibitor Versus Aromatase Inhibitor Alone in Older Patients With HR+/HER2\u2212 Metastatic Breast Cancer",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11947744/",
+      "locator": "Introduction/background",
+      "supporting_text": "Lack of a statistically significant OS gain was also seen with abemaciclib, while ribociclib showed significantly improved OS in respective Phase 3 RCTs [16, 17]."
+    },
+    {
+      "title": "Comparative overall survival of CDK4/6 inhibitors in combination with endocrine therapy in advanced breast cancer | Scientific Reports",
+      "url": "https://www.nature.com/articles/s41598-024-53151-8",
+      "locator": "Results",
+      "supporting_text": "palbociclib had a non-significantly worse OS compared to ribociclib and abemaciclib (HR 1.26 [95% CI 0.88\u20131.80, p = 0.21] and 1.19 [95% CI 0.80\u20131.76, p = 0.39]) respectively."
+    },
+    {
+      "title": "Comparative overall survival of CDK4/6 inhibitors in combination with endocrine therapy in advanced breast cancer",
+      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10850180/",
+      "locator": "PMC10850180 abstract",
+      "supporting_text": "Compared to palbociclib, ribociclib and abemaciclib both showed significantly higher GI toxicity (grade 1\u20132 vomiting OR 1.87 [95% CI 1.37\u20132.56] and OR 2.27 [95% CI 1.59\u20133.23] respectively). Compared to palbociclib, abemaciclib was associated with more grade 3\u20134 diarrhea... In contrast, palbociclib was associated with significantly more neutropenia than ribociclib and abemaciclib but significantly lower risk of grade 3\u20134 infections... Treatment discontinuation and death due to AE were significantly higher with abemaciclib than palbociclib and ribociclib."
+    },
+    {
+      "title": "Real-world effectiveness comparison of first-line palbociclib, ribociclib or abemaciclib plus endocrine therapy in advanced HR-positive/HER2-negative BC patients: results from the multicenter PALMARES-2 study",
+      "url": "https://www.annalsofoncology.org/article/S0923-7534(25)00134-6/fulltext",
+      "locator": "Results",
+      "supporting_text": "In the whole study cohort, abemaciclib and ribociclib were associated with better rwPFS when compared with palbociclib [adjusted hazard ratio (aHR) 0.76, 95% confidence interval (CI) 0.63-0.92, P = 0.004 and aHR 0.83, 95% CI 0.73-0.95, P = 0.007"
+    },
+    {
+      "title": "Cyclin-Dependent 4/6 Kinase Inhibitors for Treatment of HER2-Positive Breast Cancer: 2026 Update",
+      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12897020/",
+      "locator": "Abstract",
+      "supporting_text": "Toxicities are well described, and include neutropenia, transaminitis, long QTc (ribociclib, dalpiciclib), or nausea and diarrhea (abemaciclib)."
+    },
+    {
+      "title": "Palbociclib does not improve overall survival for metastatic breast cancer | LBBC",
+      "url": "https://www.lbbc.org/news/palbociclib-does-not-improve-overall-survival-for-metastatic-breast-cancer",
+      "locator": "Discussion section",
+      "supporting_text": "An informal Twitter poll of more than 500 oncologists conducted by Erika P. Hamilton, MD, suggests doctors may be reluctant to start new patients on palbociclib, choosing one of the other CDK inhibitors instead."
+    },
+    {
+      "title": "PALOMA-2 Final Update: Is This the End of Palbociclib? \u2014 Oncology for the Inquisitive Mind",
+      "url": "https://www.inquisitiveonc.com/newsreel/paloma-2-update-is-this-the-end-of-palbociclib",
+      "locator": "Discussion section",
+      "supporting_text": "For newly diagnosed patients, it is becoming standard of care to use ribociclib or abemaciclib, given their established overall survival benefit. However, if there is a contraindication for either agent - such as cardiac disease or arrhythmias for ribociclib - palbociclib should be considered."
+    },
+    {
+      "title": "CDK4/6 Inhibitors for Treatment of HR+ HER2- High-risk Early Breast Cancer",
+      "url": "https://sponsored.harborsidestudio.com/cdk-4-6-inhibitors-for-the-treatment-of-hr-positive-her2-negative-high-risk-early-breast-cancer/",
+      "locator": "Guideline discussion",
+      "supporting_text": "NCCN Guidelines\u00ae (category 1, preferred) indicate that 2 years of adjuvant abemaciclib in combination with ET can be considered in patients with HR-positive, HER2-negative high-risk breast cancer."
+    },
+    {
+      "title": "IBRANCE\u00ae (palbociclib) Receives FDA Regular Approval and Expanded Indication for First-Line HR+, HER2- Metastatic Breast Cancer | Pfizer",
+      "url": "https://www.pfizer.com/news/press-release/press-release-detail/ibrance_palbociclib_receives_fda_regular_approval_and_expanded_indication_for_first_line_hr_her2_metastatic_breast_cancer",
+      "locator": "Pfizer press release safety information section",
+      "supporting_text": "Neutropenia was the most frequently reported adverse reaction in PALOMA-2 (80%) and PALOMA-3 (83%). In PALOMA-2, Grade 3 (56%) or 4 (10%) decreased neutrophil counts were reported in patients receiving IBRANCE plus letrozole. In PALOMA-3, Grade 3 (55%) or Grade 4 (11%) decreased neutrophil counts were reported in patients receiving IBRANCE plus fulvestrant. Febrile neutropenia has been reported in 1.8% of patients exposed to IBRANCE across PALOMA-2 and PALOMA-3. One death due to neutropenic sepsis was observed in PALOMA-3."
+    },
+    {
+      "title": "Overall Survival with Palbociclib and Fulvestrant in Women with HR+/HER2\u2212 ABC: Updated Exploratory Analyses of PALOMA-3",
+      "url": "https://aacrjournals.org/clincancerres/article/28/16/3433/707399/Overall-Survival-with-Palbociclib-and-Fulvestrant",
+      "locator": "Abstract",
+      "supporting_text": "In PALOMA-3, palbociclib plus fulvestrant improved median overall survival (OS) versus placebo plus fulvestrant after 44.8 months of follow-up... an updated exploratory analysis of overall survival (OS) with a longer median follow-up of 73.3 months... This OS analysis was performed when 75% of enrolled patients died (393 events in 521 randomized patients)."
+    },
+    {
+      "title": "PALOMA-2: No Overall Survival Benefit Reported With Palbociclib/Letrozole in Advanced Breast Cancer",
+      "url": "https://ascopost.com/issues/october-10-2022-supplement-breast-cancer-almanac/no-overall-survival-benefit-reported-with-palbociclibletrozole-in-advanced-breast-cancer/",
+      "locator": "ASCO Post, quoting Dr. Richard Finn",
+      "supporting_text": "\"The interpretation of overall survival is limited by the large and disproportionate percentage of patients with missing survival data [ie, lost to follow-up or censored] between the treatment arms.\""
+    },
+    {
+      "title": "Palbociclib (Ibrance) | HemOnc.org",
+      "url": "https://hemonc.org/wiki/Palbociclib_(Ibrance)",
+      "locator": "Regulatory indications / FDA indication history",
+      "supporting_text": "February 3, 2015: Accelerated approval to be used in combination with letrozole for the treatment of postmenopausal women with estrogen receptor (ER)-positive, human epidermal growth factor receptor 2 (HER2)-negative advanced breast cancer as initial endocrine-based therapy for their metastatic disease."
+    },
+    {
+      "title": "Palbociclib Plus Letrozole trial protocol (NCT02600923)",
+      "url": "https://cdn.clinicaltrials.gov/large-docs/23/NCT02600923/Prot_000.pdf",
+      "locator": "Section 1.2, Background and Rationale",
+      "supporting_text": "HR-positive/HER2-negative BC is the most common subset of breast cancer. Most patients are diagnosed at an early stage and remain relapse-free if treated with a prolonged course of endocrine therapy. However, about one third of patients with HR-positive/HER2-negative tumors, diagnosed initially with early stage disease, experience disease recurrence. The fundamental problem is that endocrine agents are only partially effective, typically causing cell cycle arrest and tumor dormancy rather than true cure."
+    },
+    {
+      "title": "Approval Package - accessdata.fda.gov",
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/nda/2019/207103Orig1s008.pdf",
+      "locator": "FDA approval package, 2019",
+      "supporting_text": "In animal reproduction studies, administration of palbociclib to pregnant rats and rabbits during organogenesis resulted in embryo-fetal toxicity at maternal exposures that were \u22654 times the human clinical exposure based on AUC"
+    },
+    {
+      "title": "Overall survival results from the randomized phase 2 study of palbociclib in combination with letrozole versus letrozole alone... (PALOMA-1, TRIO-18)",
+      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7383036/",
+      "locator": "PMC7383036 abstract",
+      "supporting_text": "The phase 3 PALOMA-2 study confirmed the PFS benefit observed in PALOMA-1; PFS was significantly longer in the palbociclib plus letrozole arm compared with the placebo plus letrozole arm as first-line treatment in postmenopausal women with ER+/HER2\u2212 ABC (hazard ratio, 0.563; 95% CI 0.461\u20130.687; P < 0.0001; median PFS, 27.6 vs 14"
+    },
+    {
+      "title": "PALOMA-2 overall survival JCO abstract (LBA1003)",
+      "url": "https://ascopubs.org/doi/10.1200/JCO.2022.40.17_suppl.LBA1003",
+      "locator": "Background",
+      "supporting_text": "PALOMA-2 is a randomized, double-blind, phase 3 trial in first-line ER+/HER2\u2013 ABC that confirmed a clinically and statistically significant improvement in progression-free survival (PFS) with PAL+LET versus PBO+LET (median PFS, 27.6 vs 14.5 months; hazard ratio, 0.56 [95% CI, 0.46\u20130.69]; P<0.0001)."
+    },
+    {
+      "title": "PALOMA-3 (NCT01942135) protocol, Palbociclib Dose Rationale",
+      "url": "https://cdn.clinicaltrials.gov/large-docs/35/NCT01942135/Prot_000.pdf",
+      "locator": "Section 1.2.1.5, Palbociclib Dose Rationale",
+      "supporting_text": "Palbociclib has been tested in a Phase 1 dose escalation Study (A5481001) in 74 patients with advanced cancer. Two dosing schedules were evaluated: Schedule 3/1 (3 weeks on treatment/1 week off treatment) and Schedule 2/1 (2 weeks on treatment/1 week off treatment). All dose limiting toxicities (DLTs) observed in this study were related to myelosuppression and mainly consisted of Grade 3 neutropenia lasting more than 7 days after the end of the treatment cycle. However, neutropenia was reversible and non-cumulative."
+    },
+    {
+      "title": "Overall survival (OS) with palbociclib + fulvestrant... Updated analyses from PALOMA-3 | JCO abstract",
+      "url": "https://ascopubs.org/doi/10.1200/JCO.2021.39.15_suppl.1000",
+      "locator": "Background/Methods",
+      "supporting_text": "The final protocol-specified OS analysis, which was conducted with a median follow-up of 44.8 months (mo), showed improved OS with PAL+FUL vs PBO+FUL (median OS, 34.9 vs 28.0 mo; hazard ratio, 0.814 [95% CI, 0.644\u20131.029]; 1-sided P=0.0429)."
+    },
+    {
+      "title": "Overall Survival with Palbociclib and Fulvestrant in Women with HR+/HER2\u2212 ABC | PMC (conclusion)",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9662922/",
+      "locator": "Conclusion",
+      "supporting_text": "The clinically meaningful improvement in OS associated with palbociclib plus fulvestrant was maintained with >6 years of follow-up in patients with HR+/HER2\u2212 ABC, supporting palbociclib plus fulvestrant as a standard of care in these patients."
+    },
+    {
+      "title": "Real-world study of overall survival with palbociclib plus aromatase inhibitor in HR+/HER2\u2212 metastatic breast cancer | npj Breast Cancer",
+      "url": "https://www.nature.com/articles/s41523-022-00479-x",
+      "locator": "Introduction",
+      "supporting_text": "As first-line treatment for pre- and postmenopausal women and for men with HR+/HER2\u2212 MBC, the NCCN Clinical Practice Guidelines in Oncology (NCCN Guidelines\u00ae) recommend a cyclin-dependent kinase 4/6 (CDK4/6) inhibitor in combination with endocrine therapy."
+    },
+    {
+      "title": "Palbociclib - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Palbociclib",
+      "locator": "Lead section",
+      "supporting_text": "Palbociclib was the first CDK4/6 inhibitor to be approved as a cancer therapy."
+    },
+    {
+      "title": "Overall Survival With Palbociclib Plus Letrozole in Advanced Breast Cancer | Journal of Clinical Oncology",
+      "url": "https://ascopubs.org/doi/10.1200/JCO.23.00137",
+      "locator": "JCO PALOMA-2 final OS publication",
+      "supporting_text": "The median OS was 53.9 months (95% CI, 49.8 to 60.8) with palbociclib plus letrozole versus 51.2 months (95% CI, 43.7 to 58.9) with placebo plus letrozole (hazard ratio [HR], 0.96 [95% CI, 0.78 to 1.18]; stratified one-sided P = .34)."
+    },
+    {
+      "title": "Financial Support | IBRANCE\u00ae (palbociclib) | Safety Info",
+      "url": "https://www.ibrance.com/financial-support-resources",
+      "locator": "ibrance.com/financial-support-resources",
+      "supporting_text": "Additional pricing information can be found at IBRANCEPricing.com. For information on financial planning for healthcare, visit myhealthcarefinances.com."
+    },
+    {
+      "title": "Access & Coverage Information | IBRANCE\u00ae (palbociclib)",
+      "url": "https://ibrance.pfizerpro.com/patient-support/access-coverage",
+      "locator": "ibrance.pfizerpro.com/patient-support/access-coverage",
+      "supporting_text": "This voucher expires 12/31/2026."
+    },
+    {
+      "title": "BROAD ACCESS. PERSONALIZED SUPPORT.",
+      "url": "https://mdanderson.cloud-cme.com/assets/mdanderson/pdf/AOCNP%20Exhibits/Pfizer/PP-IBR-USA-3746.pdf",
+      "locator": "PP-IBR-USA-3746.pdf",
+      "supporting_text": "Patients may receive up to $25,000 in savings annually. The offer will be accepted only at participating pharmacies."
+    },
+    {
+      "title": "Patient Support Services | IBRANCE\u00ae (palbociclib)",
+      "url": "https://ibrance.pfizerpro.com/patient-support/personalized-patient-support",
+      "locator": "ibrance.pfizerpro.com/patient-support/personalized-patient-support",
+      "supporting_text": "If patients need assistance with transportation or lodging for treatment-related appointments, we'll connect them to independent organizations that offer these services for free to qualifying patients."
+    },
+    {
+      "title": "ACCC | Pfizer, Inc. Patient Assistance and Reimbursement Guide",
+      "url": "https://www.accc-cancer.org/education-and-resources/patient-assistance-and-reimbursement-guide/companies/pfizer",
+      "locator": "accc-cancer.org Pfizer guide",
+      "supporting_text": "Appeals Assistance Pfizer Oncology Together can review the reasons for a denied claim and help with the appeals process by providing information on payer requirements."
+    },
+    {
+      "title": "Patient Support Resources | IBRANCE\u00ae (palbociclib)",
+      "url": "https://ibrance.pfizerpro.com/patient-support/resources",
+      "locator": "ibrance.pfizerpro.com/patient-support/resources",
+      "supporting_text": "Some services are provided through third-party organizations that operate independently and are not controlled by Pfizer. Availability of services and eligibility requirements are determined solely by these organizations."
+    },
+    {
+      "title": "Dose Monitoring During Treatment | IBRANCE\u00ae (palbociclib)",
+      "url": "https://ibrance.pfizerpro.com/dosing/monitoring",
+      "locator": "ibrance.pfizerpro.com/dosing/monitoring",
+      "supporting_text": "Monitor CBCs prior to the start of IBRANCE therapy, on Days 1 and 15 of the first 2 cycles, on Day 1 of subsequent cycles, and as clinically indicated."
+    },
+    {
+      "title": "Taking IBRANCE for mBC | Pfizer",
+      "url": "https://www.ibrance.com/taking-ibrance",
+      "locator": "Dosing schedule section",
+      "supporting_text": "Take 1 IBRANCE tablet or capsule once daily for 21 consecutive days, followed by 7 days off treatment. Remember to continue to take your combination treatment\u2014an aromatase inhibitor or fulvestrant\u2014as instructed by your healthcare provider."
+    },
+    {
+      "title": "How Much Is Ibrance Without Insurance? - GoodRx",
+      "url": "https://www.goodrx.com/ibrance/how-much-is-ibrance-without-insurance",
+      "locator": "goodrx.com Ibrance cost article",
+      "supporting_text": "The Patient Access Network (PAN) Foundation offers eligible applicants up to $2,400 per year in financial assistance for breast cancer treatment."
+    },
+    {
+      "title": "Will insurance pay for the cost of Ibrance?",
+      "url": "https://www.drugs.com/medical-answers/ibrance-cost-3539523/",
+      "locator": "drugs.com medical answer",
+      "supporting_text": "The Extra Help (Low\u2011Income Subsidy) program may lower your premiums and copays if you meet income and resource limits."
+    },
+    {
+      "title": "FDA Approves Palbociclib for HR+/HER2+ Metastatic Breast Cancer Maintenance",
+      "url": "https://www.oncnursingnews.com/view/fda-approves-palbociclib-for-hr-her2-metastatic-breast-cancer-maintenance",
+      "locator": "PFS results paragraph",
+      "supporting_text": "The reported hazard ratio was 0.76 (95% CI: 0.59, 0.97), with a 1-sided p-value of 0.0134."
+    },
+    {
+      "title": "Overall Survival with Palbociclib and Fulvestrant in Advanced Breast Cancer | New England Journal of Medicine",
+      "url": "https://www.nejm.org/doi/full/10.1056/nejmoa1810527",
+      "locator": "Introduction/results",
+      "supporting_text": "The primary aim of the trial was met, with the trial showing significantly longer progression-free survival with combination palbociclib\u2013fulvestrant therapy than with placebo\u2013fulvestrant (median, 11.2 months [95% CI, 9.5 to 12.9] vs. 4.6 months [95% CI, 3.5 to 5.6]; hazard ratio for disease progression or death, 0.50; 95% CI, 0.40 to 0.62; absolute difference, 6.6 months)."
+    },
+    {
+      "title": "Systematic literature review of real-world evidence for treatments in HR+/HER2- second-line LABC/mBC after first-line treatment with CDK4/6i",
+      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11112888/",
+      "locator": "abstract",
+      "supporting_text": "Cyclin-dependent kinase 4 and 6 inhibitors (CDK4/6i) combined with endocrine therapy (ET) are currently recommended by the National Comprehensive Cancer Network (NCCN) guidelines and the European Society for Medical Oncology (ESMO) guidelines as the first-line (1 L) treatment for patients with hormone receptor-positive, human epidermal growth factor receptor 2-negative, locally advanced/metastatic breast cancer (HR+/HER2- LABC/mBC). Although there are many treatment options, there is no clear standard of care for patients following 1 L CDK4/6i."
+    },
+    {
+      "title": "Management Strategies and Outcomes in HR+/HER2\u2212 Metastatic Breast Cancer Receiving CDK4/6 Inhibitors and Subsequent Therapies",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12744932/",
+      "locator": "paragraph on first-line regimen",
+      "supporting_text": "In current clinical practice, and consistent with international guidelines, AI combined with a CDK4/6 inhibitor constitutes the recommended standard first-line regimen for most patients with HR+/HER2- metastatic breast cancer.3,4,9 Fulvestrant, a selective estrogen receptor degrader (SERD), functions by promoting estrogen receptor degradation and inhibiting estrogen-mediated signaling pathways.10 For patients whose cancer progresses during or shortly after adjuvant AI therapy, those exhibiting resistance to AI, or those with identified ESR1 mutations, fulvestrant in combination with CDK4/6 inhibitors has shown therapeutic benefit."
+    },
+    {
+      "title": "Navigating Treatment Sequencing in Advanced HR+/HER2\u2212 Breast Cancer After CDK4/6 Inhibitors: Biomarker-Driven Strategies and Emerging Therapies",
+      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12609478/",
+      "locator": "introduction",
+      "supporting_text": "Hormone receptor-positive (HR+)/human epidermal growth factor receptor 2-negative (HER2\u2212) breast cancer accounts for approximately 70% of breast cancer diagnoses [[10366]]... Current guidelines recommend the combination of endocrine treatment (aromatase inhibitor or fulvestrant) and a cyclin-dependent kinase 4/6 inhibitor (CDK4/6i) as first-line treatment for advanced HR+/HER2\u2212 breast cancer [[10366]]. The introduction and widespread incorporation of CDK4/6 inhibitors in combination with endocrine therapy since 2015 have changed the treatment landscape and improved outcomes [[10366]]."
+    },
+    {
+      "title": "Assessing NCCN Guidelines for Endocrine-Refractory Breast Cancer",
+      "url": "https://www.targetedonc.com/view/assessing-nccn-guidelines-for-endocrine-refractory-breast-cancer",
+      "locator": "paragraph 1-2",
+      "supporting_text": "Systemic chemotherapy is preferred in the first-line setting.1 This is for endocrine-refractory disease. I think we know that we don't recommend chemotherapy anymore in first-line HR-positive metastatic breast cancer in general."
+    },
+    {
+      "title": "U.S. FDA Approves IBRANCE (palbociclib) for the Treatment of Men with HR+, HER2- Metastatic Breast Cancer | Pfizer",
+      "url": "https://www.pfizer.com/news/press-release/press-release-detail/u_s_fda_approves_ibrance_palbociclib_for_the_treatment_of_men_with_hr_her2_metastatic_breast_cancer",
+      "locator": "Pfizer press release, quote from Male Breast Cancer Coalition founder",
+      "supporting_text": "Men with breast cancer have limited treatment options, making access to medicines such as IBRANCE critically important"
+    },
+    {
+      "title": "FDA Approval of Palbociclib in Combination with Fulvestrant for the Treatment of Hormone Receptor-Positive, HER2-Negative Metastatic Breast Cancer",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27407089/",
+      "locator": "abstract",
+      "supporting_text": "On February 19, 2016, the FDA approved palbociclib (Ibrance, Pfizer) for use in combination with fulvestrant (Faslodex, AstraZeneca) for the treatment of women with hormone receptor (HR)-positive, HER2-negative advanced or metastatic breast cancer (MBC) with disease progression following endocrine therapy... A statistically significant and clinically meaningful improvement in PFS (9.5 months vs. 4.6 months) was observed in patients receiving palbociclib plus fulvestrant [HR 0.46; 95% confidence interval (CI), 0.36-0.59; P < 0.0001]. This approval was granted in the context of a prior accelerated approval for palbociclib in combination with letrozole in patients with HR-positive, HER2-negative advanced breast cancer as initial endocrine-based therapy."
+    },
+    {
+      "title": "FDA approves Ibrance maintenance combo for HR-positive, HER2-positive metastatic breast cancer",
+      "url": "https://www.epocrates.com/online/article/fda-approves-ibrance-maintenance-combo-for-hr-positive-her2-positive-metastatic-breast-cancer",
+      "locator": "paragraph on efficacy",
+      "supporting_text": "Palbociclib-based maintenance therapy significantly improved investigator-assessed progression-free survival compared with HER2-directed therapy and endocrine therapy alone. The hazard ratio for disease progression or death was 0.76, corresponding to a 24% relative reduction in risk. The analysis showed a progression-free survival benefit, but follow-up was not yet long enough to determine whether overall survival also improved."
+    },
+    {
+      "title": "Ibrance Wins FDA Approval for HR-Positive, HER2-Positive Metastatic Breast Cancer Maintenance Therapy | PharmExec",
+      "url": "https://www.pharmexec.com/view/palbociclib-fda-approval-hr-positive-her2-positive-metastatic-breast-cancer",
+      "locator": "PharmExec article",
+      "supporting_text": "Resistance to dual anti-HER2 and endocrine therapy remains a central clinical challenge for patients with HR-positive, HER2-positive [MBC]\u2014even after an excellent response to initial treatment"
+    },
+    {
+      "title": "Pembrolizumab + Paclitaxel in HR+/HER2- Non-luminal Advanced Breast Cancer After CDK4/6 Inhibitor Progression (Protocol)",
+      "url": "https://cdn.clinicaltrials.gov/large-docs/69/NCT04251169/Prot_000.pdf",
+      "locator": "Background section 4.1.2",
+      "supporting_text": "In addition, 3 CDK4/6 inhibitors are currently in late-stage commercialized for metastatic HR+/HER2- breast cancer: palbociclib, abemaciclib and ribociclib. All 3 of them are orally bioavailable and have similar mechanisms of action (Table 1)."
+    },
+    {
+      "title": "Second-Line Treatment Options in Metastatic Breast Cancer After AI Plus CDK4/6 Inhibitor",
+      "url": "https://oncodaily.com/oncolibrary/breast-oncology/metastatic-breast-cancers",
+      "locator": "paragraph 1-2",
+      "supporting_text": "These patients are usually best served by matched therapy: elacestrant or vepdegestrant for ESR1 mutation, capivasertib plus fulvestrant for PIK3CA/AKT1/PTEN alteration, alpelisib plus fulvestrant for PIK3CA mutation in metabolically appropriate patients, or a PARP inhibitor for germline BRCA-associated disease... These patients may still receive fulvestrant-based or everolimus-based therapy, but clinical trial enrollment is especially valuable... These patients should be considered for ADC-based therapy, especially trastuzumab deruxtecan if HER2-low/ultralow, or chemotherapy when immediate disease control is required."
+    },
+    {
+      "title": "Optimizing therapeutic approaches for HR+/HER2- advanced breast cancer: clinical perspectives on biomarkers and treatment strategies post-CDK4/6 inhibitor progression",
+      "url": "https://www.oaepublish.com/articles/cdr.2024.169",
+      "locator": "key points list",
+      "supporting_text": "Testing for gBRCA1/2 mutations is recommended for ABC patients who are potentially eligible for PARP inhibition after ET failure... PIK3CA mutations should be tested in patients progressing \u2265 6 months on first-line treatment for consideration of second-line alpelisib. Screening for AKT, PIK3CA, and PTEN mutations is advisable to evaluate eligibility for capivasertib... ESR1 mutations should be determined by liquid biopsy in patients on first-line AI-based ET progressing at \u2265 6 months (preferably \u2265 12 months) to guide treatment with elacestrant or other SERD."
+    },
+    {
+      "title": "Onapristone and Fulvestrant for ER+ HER2- Metastatic Breast Cancer After Endocrine Therapy and CDK4/6 Inhibitors (The SMILE Study)",
+      "url": "https://cdn.clinicaltrials.gov/large-docs/92/NCT04738292/Prot_SAP_000.pdf",
+      "locator": "Unmet Medical Need section",
+      "supporting_text": "The current standard of care treatment for stage IV, HR+/HER2- recurrent/metastatic breast cancer (MBC) includes treatment with one of the cyclin dependent kinase (CDK) 4/6 inhibitors (palbociclib, ribocilcib, abemaciclib) in combination with one of the anti-estrogens as first-line therapy... Upon disease progression, PI3 kinase /mTOR inhibitors are used in combination with endocrine therapy as the second-line regimen for disease progression. Recently, alpelisib, a PI3Kinase inhibitor, was approved in combination with fulvestrant for PI3Kinase-mutated tumors, based on the SOLAR-1 trial data."
+    },
+    {
+      "title": "Real-world comparative effectiveness of first-line abemaciclib versus palbociclib in HR+/HER2- metastatic breast cancer: A propensity-matched retrospective analysis",
+      "url": "https://www.thebreastonline.com/article/S0960-9776(25)00614-9/fulltext",
+      "locator": "The Breast, 2025",
+      "supporting_text": "In this large, real-world cohort study, first-line abemaciclib was associated with a significant overall survival benefit compared to palbociclib for patients with HR+/HER2-mBC. This finding was robust across multiple sensitivity analyses."
+    },
+    {
+      "title": "Comparative efficacy and safety of CDK4/6 inhibitors combined with endocrine therapies for HR+/HER2-breast cancer: Systematic review and network meta-analysis - ScienceDirect",
+      "url": "https://www.sciencedirect.com/science/article/pii/S240584402407614X",
+      "locator": "ScienceDirect NMA summary",
+      "supporting_text": "Ribociclib + ET significantly improved OS compared to Palbociclib + ET."
+    },
+    {
+      "title": "Comparative overall survival of CDK4/6 inhibitors plus an aromatase inhibitor in HR+/HER2\u2212 metastatic breast cancer in the US real-world setting",
+      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11758200/",
+      "locator": "PMC11758200 abstract",
+      "supporting_text": "After sIPTW, no significant OS differences were found between treatment groups [ribociclib versus palbociclib: adjusted hazard ratio (aHR) 0.98, 95% confidence interval (CI) 0.87-1.10, P = 0.7531; abemaciclib versus palbociclib: aHR 0.95, 95% CI 0.84-1.08, P = 0.4292; abemaciclib versus ribociclib: aHR 0.97, 95% CI 0.82-1.14, P = 0.6956]."
+    },
+    {
+      "title": "Real-world comparative effectiveness of first-line abemaciclib versus palbociclib in HR+/HER2- metastatic breast cancer: A propensity-matched retrospective analysis",
+      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12550314/",
+      "locator": "PMC12550314",
+      "supporting_text": "Beyond its continuous dosing and brain penetration, abemaciclib is the only CDK4/6 inhibitor with demonstrated single-agent activity in heavily pretreated breast cancer and proven overall survival benefit i"
+    },
+    {
+      "title": "Cdk4/6 inhibitors and overall survival: power of first-line trials in metastatic breast cancer",
+      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6018749/",
+      "locator": "PMC6018749 abstract",
+      "supporting_text": "Palbociclib, ribociclib, and abemaciclib have been investigated in combination with aromatase inhibitors as first-line therapy for metastatic hormone receptor-positive breast cancer (PALOMA-2, MONALEESA-2 and MONALEESA-7, MONARCH-3 trials, respectively); pivotal trials led to absolute median progression-free survival (PFS) gain of about 15 months."
+    },
+    {
+      "title": "Comparative cost-effectiveness of ribociclib and palbociclib as first-line treatment for HR+/HER2\u2013 advanced breast cancer... (Medicare perspective)",
+      "url": "https://www.tandfonline.com/doi/full/10.1080/13696998.2025.2594952",
+      "locator": "Journal article",
+      "supporting_text": "only ribociclib has demonstrated statistically significant improvements in overall survival (OS) in all phase 3 RCTs, whereas abemaciclib improved OS only in one trial RCT (MONARCH 2), and palbociclib has failed to demonstrate an OS benefit in any Phase 3 RCT (PALOMA-2, PALOMA-3)"
+    },
+    {
+      "title": "Efficacy of Limited Dose Modifications for Palbociclib-Related Grade 3 Neutropenia in HR-Positive Metastatic Breast Cancer",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10582537/",
+      "locator": "PMC article",
+      "supporting_text": "no invasive disease-free survival (iDFS) gain by adjuvant palbociclib (PALLAS), in contrast to early signals of iDFS improvement by abemaciclib (MonarchE)... the early discontinuation rate due to adverse events (AEs; 45.1%) and cumulative proportion of dose reduction (100 mg in 55.4% and 75 mg in 34.3%) of palbociclib within 2 years emphasize that finer palbociclib dose adjustment may be required"
+    },
+    {
+      "title": "Treatment Exposure and Discontinuation in the PALLAS Study of Palbociclib With Adjuvant Endocrine Therapy",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9851679/",
+      "locator": "PMC article",
+      "supporting_text": "the most common reasons for discontinuation were neutropenia (461, 59.7%) and fatigue (71, 9.2%)... rates of palbociclib early discontinuation on the basis of competing risk analysis are estimated to be 17.9%... at 6 months... 44.9%... at 24 months"
+    },
+    {
+      "title": "Longitudinal multi-omics study of palbociclib resistance in HR-positive/HER2-negative metastatic breast cancer",
+      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10360358/",
+      "locator": "PMC article, Background",
+      "supporting_text": "there is a pressing need to identify molecular markers that will help identify patients who will benefit most from treatment with CDK4/6i plus ET, and find therapeutic targets to overcome intrinsic and"
+    },
+    {
+      "title": "IBRANCE Palbociclib prescribing information (labeling.pfizer.com)",
+      "url": "https://labeling.pfizer.com/ShowLabeling.aspx?id=16410",
+      "locator": "Prescribing information, adverse reactions section",
+      "supporting_text": "Dose reductions or dose modifications due to any adverse reaction occurred in 38.4% of patients receiving IBRANCE in randomised clinical studies regardless of the combination... Permanent discontinuation due to an adverse reaction occurred in 5.2% of patients"
+    },
+    {
+      "title": "FDA Approves Palbociclib for HR+, HER2+ Breast Cancer Maintenance | AJMC",
+      "url": "https://www.ajmc.com/view/fda-approves-palbociclib-for-hr-her2-breast-cancer-maintenance",
+      "locator": "AJMC article",
+      "supporting_text": "HR+, HER2+ disease, sometimes called double- or triple-positive breast cancer, accounts for roughly 10% of all breast cancers. Despite that prevalence, the subtype has drawn limited dedicated research, and PATINA is described as the first registrational study to test CDK4/6 inhibition within it specifically"
+    },
+    {
+      "title": "A real-world study of the first use of palbociclib... UK National Health Service... Ibrance Patient Program",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10449843/",
+      "locator": "PMC article",
+      "supporting_text": "Median progression-free survival (95% CI) was 22.8 months (16.5\u2013not reached [NR]) in first-line; NR in patients with de novo MBC; 7.8 months (6.8\u2013NR) in \u2265 second-line (median follow-up: 24 months)"
+    },
+    {
+      "title": "Palbociclib Mechanism of Action | Elicit",
+      "url": "https://elicit.com/mechanism-of-action/palbociclib",
+      "locator": "Rb restriction-point blockade section",
+      "supporting_text": "Consistent with this Rb-dependent mechanism, palbociclib shows no activity is seen in RB-deficient cells, and Rb loss reduces palbociclib sensitivity by 4\u20136 fold in model systems."
+    },
+    {
+      "title": "Palbociclib with Letrozole in Postmenopausal Women with ER+/HER2\u2212 Advanced Breast Cancer: Hematologic Safety Analysis of the Randomized PALOMA-2 Trial",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6975938/",
+      "locator": "Abstract / Results",
+      "supporting_text": "The median time to onset of any\u2010grade neutropenia and grade \u2265 3 neutropenia was 15 days and 28 days, respectively, for patients receiving palbociclib plus letrozole. In this study, the median duration of grade \u2265 3 neutropenia (by episode) was 7 days."
+    },
+    {
+      "title": "Overall survival results from the randomized phase 2 study of palbociclib in combination with letrozole (PALOMA-1, TRIO-18)",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7383036/",
+      "locator": "Abstract",
+      "supporting_text": "In the phase 2, open-label, PALOMA-1 trial, palbociclib plus letrozole significantly prolonged progression-free survival (PFS) versus letrozole alone (hazard ratio, 0.488; 95% CI 0.319\u20120.748; P = 0.0004; median PFS, 20.2 vs 10.2 months, respectively) in postmenopausal women with estrogen receptor\u2013positive (ER+)/HER2\u2212 ABC."
+    }
+  ]
+}

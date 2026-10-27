@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "The evidence never mentions overall survival maturity for either trial. Also, 'recur on or after completing' broadens INAVO120's actual criterion of progression 'during or within 12 months of completing' adjuvant endocrine therapy.",
+  "suggested_rewrite": "Remove the OS-immaturity claim, or cite evidence for it. Restate eligibility as 'progressed during or within 12 months of completing adjuvant endocrine therapy' per INAVO120."
+}

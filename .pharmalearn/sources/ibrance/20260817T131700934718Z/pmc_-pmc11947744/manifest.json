@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "drug_id": "ibrance",
+  "source_id": "pmc_-pmc11947744",
+  "fetched_at": "2026-08-17T13:17:18.298051+00:00",
+  "status": "fetched",
+  "access_level": "full_text",
+  "coverage": {
+    "pmcid": "PMC11947744"
+  },
+  "warnings": [],
+  "error": null,
+  "registry": {
+    "id": "pmc_-pmc11947744",
+    "kind": "pmc_article",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11947744/",
+    "title": "Overall Survival With Palbociclib and Aromatase Inhibitor Versus Aromatase Inhibitor Alone in Older Patients With HR+/HER2\u2212 Metastatic Breast Cancer",
+    "identifiers": {
+      "pmcid": "PMC11947744"
+    }
+  },
+  "files": [
+    {
+      "path": "raw/fulltext.xml",
+      "role": "full_text",
+      "request_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC11947744&retmode=xml",
+      "final_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC11947744&retmode=xml",
+      "content_type": "text/xml; charset=UTF-8",
+      "bytes": 211907,
+      "sha256": "77206ba42ef298e0e308f70b092aa0c25b92ce528448edb8b8a21c326a95cf51",
+      "last_modified": null,
+      "etag": null
+    }
+  ]
+}

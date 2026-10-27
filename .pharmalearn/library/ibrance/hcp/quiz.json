@@ -1,0 +1,38 @@
+{
+  "title": "Ibrance HCP knowledge check",
+  "passing_score": 75,
+  "questions": [
+    {
+      "id": "hcp-q1",
+      "prompt": "Which schedule matches the recommended Ibrance starting dose?",
+      "options": ["125 mg daily for 21 days, then 7 days off", "125 mg continuously without a break", "100 mg for 14 days, then 14 days off", "75 mg once weekly"],
+      "correct_index": 0,
+      "rationale": "The recommended starting dose is 125 mg once daily on Days 1–21 of each 28-day cycle.",
+      "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Section 2.1"}]
+    },
+    {
+      "id": "hcp-q2",
+      "prompt": "During the first two cycles, when does the label add a CBC check beyond cycle start?",
+      "options": ["Day 15", "Day 7", "Day 21", "Only after symptoms"],
+      "correct_index": 0,
+      "rationale": "CBC monitoring is specified on Day 15 of the first two cycles in addition to baseline and cycle-start checks.",
+      "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Section 5.1"}]
+    },
+    {
+      "id": "hcp-q3",
+      "prompt": "What is the immediate label-based action when ILD or pneumonitis is suspected?",
+      "options": ["Interrupt Ibrance and evaluate the patient", "Continue the same dose until the next cycle", "Reduce the dose without evaluation", "Wait for the next scheduled CBC"],
+      "correct_index": 0,
+      "rationale": "The label directs immediate interruption and evaluation when ILD or pneumonitis is suspected.",
+      "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Section 5.2"}]
+    },
+    {
+      "id": "hcp-q4",
+      "prompt": "Which investigator-assessed median PFS values were reported for PALOMA-2?",
+      "options": ["24.8 vs 14.5 months", "53.8 vs 49.8 months", "9.5 vs 4.6 months", "15.0 vs 7.3 months"],
+      "correct_index": 0,
+      "rationale": "PALOMA-2 reported median PFS of 24.8 months for Ibrance plus letrozole and 14.5 months for placebo plus letrozole.",
+      "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Section 14, Table 10"}]
+    }
+  ]
+}

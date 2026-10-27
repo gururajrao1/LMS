@@ -1,0 +1,106 @@
+{
+  "title": "IBRANCE Dosing Decisions: Hold/Reduce vs Continue",
+  "instruction": "For each clinical finding, decide whether the current FDA prescribing information directs the clinician to withhold or reduce the IBRANCE dose, or to continue at the current dose unchanged.",
+  "buckets": {
+    "a": "Withhold or reduce IBRANCE dose",
+    "b": "Continue at the current dose"
+  },
+  "items": [
+    {
+      "id": "t1",
+      "prompt": "Grade 3 (or recurrent Grade 3) neutropenia detected on Day 1 of a treatment cycle",
+      "correct_index": 0,
+      "rationale": "The label directs withholding IBRANCE until recovery to Grade \u22642, then resuming at the next lower dose; dose interruption/reduction is recommended for Grade 3 or 4 neutropenia.",
+      "citations": [
+        {
+          "title": "Dose Modifications for Adverse Reactions | IBRANCE\u00ae (palbociclib)",
+          "url": "https://ibrance.pfizerpro.com/dosing/modifications",
+          "locator": "Neutropenia dose modification guidance"
+        },
+        {
+          "title": "IBRANCE\u00ae (palbociclib) capsules, for oral use",
+          "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/207103s021,212436s009lbl.pdf",
+          "locator": "Table 2 - Dose Modification for Hematologic Toxicities"
+        }
+      ]
+    },
+    {
+      "id": "t2",
+      "prompt": "Day 15 CBC in Cycle 1 shows Grade 2 (moderate) neutropenia, patient otherwise well",
+      "correct_index": 1,
+      "rationale": "Per label, dose interruption, reduction, or delay is recommended only for patients who develop Grade 3 or 4 neutropenia, not Grade 1 or 2.",
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib capsule - DailyMed - NIH",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e0e6412f-50b4-4fd4-9364-62818d121a07",
+          "locator": "Dosage and Administration / Warnings and Precautions Highlights"
+        }
+      ]
+    },
+    {
+      "id": "t3",
+      "prompt": "No more than Grade 1 or 2 neutropenia across the first 6 cycles, now due for next-cycle CBC",
+      "correct_index": 1,
+      "rationale": "For patients with a maximum of Grade 1 or 2 neutropenia in the first 6 cycles, the label states no dose adjustment is required, and CBC monitoring shifts to every 3 months.",
+      "citations": [
+        {
+          "title": "IBRANCE\u00ae (palbociclib) tablets, for oral use",
+          "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/212436s008lbl.pdf",
+          "locator": "FDA label, Table 2"
+        }
+      ]
+    },
+    {
+      "id": "t4",
+      "prompt": "New or worsening dyspnea and cough on treatment, suspected interstitial lung disease",
+      "correct_index": 0,
+      "rationale": "The label instructs interrupting IBRANCE immediately and evaluating the patient when new or worsening respiratory symptoms suggest pneumonitis, with permanent discontinuation for severe ILD/pneumonitis.",
+      "citations": [
+        {
+          "title": "1 HIGHLIGHTS OF PRESCRIBING INFORMATION - IBRANCE",
+          "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/212436s008lbl.pdf",
+          "locator": "Warnings and Precautions, ILD/Pneumonitis section"
+        }
+      ]
+    },
+    {
+      "id": "t5",
+      "prompt": "Severe hepatic impairment (Child-Pugh class C) present before starting IBRANCE",
+      "correct_index": 0,
+      "rationale": "The label specifies a reduced starting dose of 75 mg once daily (same 21 days on/7 days off schedule) for patients with Child-Pugh class C hepatic impairment.",
+      "citations": [
+        {
+          "title": "full prescribing information for IBRANCE - Pfizer labeling",
+          "url": "https://labeling.pfizer.com/showlabeling.aspx?id=2191",
+          "locator": "Section 2.2 / 8.6, Hepatic Impairment"
+        }
+      ]
+    },
+    {
+      "id": "t6",
+      "prompt": "Mild hepatic impairment (Child-Pugh class A) present before starting IBRANCE",
+      "correct_index": 1,
+      "rationale": "The label requires no dose adjustment for mild or moderate hepatic impairment (Child-Pugh A or B); only severe impairment (Child-Pugh C) requires a lower starting dose.",
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib tablet, film coated - DailyMed",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=89a142d5-7e61-48bf-9e77-e2cd124c4792&version=10",
+          "locator": "Hepatic impairment dosing section"
+        }
+      ]
+    },
+    {
+      "id": "t7",
+      "prompt": "Patient requires a strong CYP3A inhibitor (e.g., itraconazole) that cannot be switched or avoided",
+      "correct_index": 0,
+      "rationale": "Because coadministration with a strong CYP3A inhibitor substantially increases palbociclib exposure, the label directs reducing the IBRANCE dose if such a drug cannot be avoided.",
+      "citations": [
+        {
+          "title": "1 HIGHLIGHTS OF PRESCRIBING INFORMATION",
+          "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/212436s008lbl.pdf",
+          "locator": "Drug Interactions and Clinical Pharmacology sections"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,174 @@
+{
+  "schema_version": 2,
+  "drug_id": "ibrance",
+  "source_id": "ibrance-label-tablet",
+  "fetched_at": "2026-07-13T20:59:25.227050+00:00",
+  "status": "fetched",
+  "access_level": "full_text",
+  "coverage": {
+    "set_id": "fecbdd7d-b729-41b5-9872-231b8fe104ce"
+  },
+  "warnings": [],
+  "error": null,
+  "registry": {
+    "id": "ibrance-label-tablet",
+    "kind": "current_fda_label",
+    "authority": "DailyMed",
+    "title": "IBRANCE palbociclib tablet, film coated",
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=fecbdd7d-b729-41b5-9872-231b8fe104ce",
+    "identifiers": {
+      "set_id": "fecbdd7d-b729-41b5-9872-231b8fe104ce",
+      "spl_version": "13",
+      "nda": "212436"
+    },
+    "required": true,
+    "reason": "Current Pfizer tablet label; use for approved claims and formulation-specific instructions."
+  },
+  "files": [
+    {
+      "path": "raw/label.zip",
+      "role": "label_package",
+      "request_url": "https://dailymed.nlm.nih.gov/dailymed/downloadzipfile.cfm?setId=fecbdd7d-b729-41b5-9872-231b8fe104ce",
+      "final_url": "https://dailymed.nlm.nih.gov/dailymed/downloadzipfile.cfm?setId=fecbdd7d-b729-41b5-9872-231b8fe104ce",
+      "content_type": "application/zip",
+      "bytes": 735222,
+      "sha256": "38ebce9b72b3567367bdd55181d106f647dcf70246a123b763848915a8a9e1c2",
+      "last_modified": null,
+      "etag": null
+    },
+    {
+      "path": "raw/label.pdf",
+      "role": "label_pdf",
+      "request_url": "https://dailymed.nlm.nih.gov/dailymed/downloadpdffile.cfm?setId=fecbdd7d-b729-41b5-9872-231b8fe104ce",
+      "final_url": "https://dailymed.nlm.nih.gov/dailymed/downloadpdffile.cfm?setId=fecbdd7d-b729-41b5-9872-231b8fe104ce",
+      "content_type": "application/pdf",
+      "bytes": 1149361,
+      "sha256": "e480542a789a7a8cfb3beb296cd3ba08020734cef18003c8305730c261b99f1c",
+      "last_modified": null,
+      "etag": null
+    },
+    {
+      "path": "raw/history.json",
+      "role": "version_history",
+      "request_url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls/fecbdd7d-b729-41b5-9872-231b8fe104ce/history.json",
+      "final_url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls/fecbdd7d-b729-41b5-9872-231b8fe104ce/history.json",
+      "content_type": "application/json",
+      "bytes": 1252,
+      "sha256": "c6ae06fb810bfb8d50616785633f1497f4f6342146762a82807501a50cb321e8",
+      "last_modified": null,
+      "etag": null
+    },
+    {
+      "path": "raw/spl.xml",
+      "role": "label_xml",
+      "origin": "raw/label.zip",
+      "bytes": 510739,
+      "sha256": "b3d5873c16d97e80cb3bbe904030870bd733154070037e0cc2430219f053110c"
+    },
+    {
+      "path": "raw/images/ibrance-01.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 9267,
+      "sha256": "8793aa37bba6b046f0db892f0cd8e54bc7cd04c54af89406ea6af8ceeeb3b8b4"
+    },
+    {
+      "path": "raw/images/ibrance-02.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 34534,
+      "sha256": "22e15fa3e8d8ae1404ed4ea8d4e8046dbe9594e9f3ecae56b225a3ad9d3e40b7"
+    },
+    {
+      "path": "raw/images/ibrance-03.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 31363,
+      "sha256": "1d12f38279198a255e13f94393cdaed4acddcbd0cb192bdc438063c5be3262ba"
+    },
+    {
+      "path": "raw/images/ibrance-04.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 31964,
+      "sha256": "ae53853f035e4727b51e69ac85e711a2caa6e2ec7e4347fbb70d829fbc2a6c1c"
+    },
+    {
+      "path": "raw/images/ibrance-05.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 41836,
+      "sha256": "1b50cfc5efdd8726c1c29660ff997d7ff8285e5ac2dad3c5dabeccf7a31ab375"
+    },
+    {
+      "path": "raw/images/ibrance-05a.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 34022,
+      "sha256": "b2872a3edd58fa83d169c60007ab12811891f7c37f75a1c517ac13801007c10d"
+    },
+    {
+      "path": "raw/images/ibrance-05b.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 11170,
+      "sha256": "0588a1cac967a03fe8765381c3470e9e9a7ab39fac705469464e7ad001d298cf"
+    },
+    {
+      "path": "raw/images/ibrance-06.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 11170,
+      "sha256": "0588a1cac967a03fe8765381c3470e9e9a7ab39fac705469464e7ad001d298cf"
+    },
+    {
+      "path": "raw/images/ibrance-07.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 99748,
+      "sha256": "3c572bc752f3304d6fa72d4e53d30ccb1181b7dbbb87879e3ef6e707b4819e56"
+    },
+    {
+      "path": "raw/images/ibrance-08.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 94792,
+      "sha256": "5ebbaf14ab1c86972151e68d80b42f7ed47307adcba3bcd7bb0ede0f5e9cbe80"
+    },
+    {
+      "path": "raw/images/ibrance-09.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 104938,
+      "sha256": "4eb4d8108e71edbeedc426c87aa334f708474f8b8aed507b4d37742fbaf70843"
+    },
+    {
+      "path": "raw/images/ibrance-10.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 102740,
+      "sha256": "74b254b4c92c977542416d33cc2dfb84d2ceed17bb87a697857910475157b6da"
+    },
+    {
+      "path": "raw/images/ibrance-11.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 105734,
+      "sha256": "ec61fa62d2a1ed9ef0c8709860b645c41eb2be12f5f57217875a2b3eb322f247"
+    },
+    {
+      "path": "raw/images/ibrance-12.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 104673,
+      "sha256": "a8a924a24ae27538ef487cf8bdd15daa61e5f37fa2f7ee47668a920e1e5ee723"
+    },
+    {
+      "path": "raw/images/ibrance-13.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 104408,
+      "sha256": "b5849b0ffb5596d647d84f11599ec2e0df875da565956cd52bea8eaa6b0d4d8d"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "schema_version": 2,
+  "drug_id": "vyndaqel",
+  "source_id": "vyndaqel-attr-act-publication",
+  "fetched_at": "2026-07-13T21:18:28.537540+00:00",
+  "status": "fetched",
+  "access_level": "abstract_only",
+  "coverage": {
+    "pmid": "30145929",
+    "pmcid": null
+  },
+  "warnings": [],
+  "error": null,
+  "registry": {
+    "id": "vyndaqel-attr-act-publication",
+    "kind": "peer_reviewed_publication",
+    "authority": "PubMed",
+    "title": "Tafamidis Treatment for Patients with Transthyretin Amyloid Cardiomyopathy",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/30145929/",
+    "identifiers": {
+      "pmid": "30145929",
+      "doi": "10.1056/NEJMoa1805689",
+      "nct": "NCT01994889"
+    },
+    "required": true,
+    "reason": "Primary ATTR-ACT publication."
+  },
+  "files": [
+    {
+      "path": "raw/pubmed.xml",
+      "role": "pubmed_record",
+      "request_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=30145929&retmode=xml",
+      "final_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=30145929&retmode=xml",
+      "content_type": "text/xml; charset=UTF-8",
+      "bytes": 104131,
+      "sha256": "2d2086bd448d091c7dd203f6293e6406b3a39425f5b8717798db8641f0d52b54",
+      "last_modified": null,
+      "etag": null
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "verdict": "overreach",
+  "severity": "minor",
+  "explanation": "The claim that 'postmarketing reports are voluntary, so incidence and causality cannot be reliably estimated' and that low trial incidence 'should not be presented as a guarantee' are interpretive additions not stated in any cited evidence, though the underlying facts (rates, monitoring, FDA alert) are supported.",
+  "suggested_rewrite": "Remove the added methodological commentary on postmarketing reporting reliability, or note it as general pharmacovigilance context rather than a specific dossier-supported claim."
+}

@@ -1,0 +1,6 @@
+{
+  "verdict": "needs_context",
+  "severity": "minor",
+  "explanation": "PFS figures and 'no statistically significant OS benefit' are accurate per evidence. However, text omits that both trials showed numerical OS improvement (PALOMA-2: 53.9 vs 51.2 mo; PALOMA-3: 34.9 vs 28.0 mo, p=0.043) and were not powered for OS, which could mislead learners into thinking OS showed no trend at all.",
+  "suggested_rewrite": "Note that both trials showed a numerical trend toward longer OS with palbociclib (PALOMA-2: 53.9 vs 51.2 months; PALOMA-3: 34.9 vs 28.0 months), but neither reached statistical significance, partly because they were not powered to detect an OS difference."
+}

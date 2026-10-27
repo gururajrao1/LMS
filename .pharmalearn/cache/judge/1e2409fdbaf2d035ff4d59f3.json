@@ -1,0 +1,6 @@
+{
+  "verdict": "needs_context",
+  "severity": "minor",
+  "explanation": "The fulvestrant-combination indication is described as being for use 'following disease progression on endocrine therapy,' a qualifier not explicitly stated in the provided verbatim label excerpt, though implied by clinical context.",
+  "suggested_rewrite": "Specify that the fulvestrant combination indication applies after disease progression following endocrine therapy, per the FDA label wording, to ensure exact alignment with verbatim source language."
+}

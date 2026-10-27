@@ -1,0 +1,47 @@
+{
+  "title": "Ibrance scientific exchange essentials",
+  "subtitle": "Evidence interpretation for Medical Science Liaisons",
+  "audience": "MSL",
+  "slides": [
+    {
+      "number": 1,
+      "title": "Ibrance scientific exchange essentials",
+      "purpose": "Set the MSL learning objectives",
+      "content": ["Connect CDK4/6 biology to the labeled setting", "Interpret PALOMA-2 efficacy with its limitations", "Respond to dosing and safety questions from current evidence"]
+    },
+    {
+      "number": 2,
+      "title": "CDK4/6 inhibition interrupts the G1-to-S checkpoint",
+      "purpose": "Explain the mechanism at a scientific-exchange level",
+      "content": ["Palbociclib inhibits CDK4 and CDK6", "In ER-positive breast cancer cell lines, this blocks progression from G1 into S phase", "Keep preclinical mechanism distinct from clinical outcome claims"],
+      "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Section 12.1"}]
+    },
+    {
+      "number": 3,
+      "title": "PALOMA-2 supports the first-line combination evidence story",
+      "purpose": "Connect trial evidence to the approved disease setting",
+      "content": ["Randomized evidence evaluated Ibrance plus letrozole against placebo plus letrozole", "Investigator-assessed median PFS was 24.8 versus 14.5 months", "Discuss population, comparator, and endpoint before quoting the result"],
+      "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Section 14, Table 10"}, {"source_id": "CT-PALOMA2", "locator": "Study results"}]
+    },
+    {
+      "number": 4,
+      "title": "PFS improved, while final OS was not statistically significant",
+      "purpose": "Model balanced interpretation of multiple endpoints",
+      "content": ["Lead with the endpoint and analysis being discussed", "Do not translate the PFS result into an unsupported survival claim", "State the prespecified final OS result alongside the efficacy narrative"],
+      "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Section 14, Table 10"}]
+    },
+    {
+      "number": 5,
+      "title": "Label-based responses pair the 28-day schedule with monitoring",
+      "purpose": "Answer practical field questions precisely",
+      "content": ["Starting dose: 125 mg once daily for 21 days, then 7 days off", "CBC before treatment, at each cycle start, and Day 15 of Cycles 1 and 2", "Interrupt and evaluate immediately if ILD or pneumonitis is suspected"],
+      "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Sections 2.1, 5.1, and 5.2"}]
+    },
+    {
+      "number": 6,
+      "title": "Strong scientific exchange separates evidence from interpretation",
+      "purpose": "Apply an evidence-first response pattern",
+      "content": ["Clarify the HCP's question and clinical context", "Answer with the closest direct evidence and its limitations", "Distinguish label facts, study findings, and interpretation", "Escalate when the available evidence does not answer the question"]
+    }
+  ]
+}

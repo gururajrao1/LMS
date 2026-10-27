@@ -1,0 +1,6 @@
+{
+  "verdict": "overreach",
+  "severity": "minor",
+  "explanation": "The claim mentions 'cyclin E amplification' as a resistance mechanism under research, but no evidence provided mentions cyclin E amplification specifically\u2014only RB1/Rb pathway loss is documented. This specific mechanistic detail is unsupported by the cited or additional evidence.",
+  "suggested_rewrite": "Translational literature describes ongoing research into resistance mechanisms such as RB1 loss, but none of these are validated for routine clinical use, per the evidence on molecular marker needs."
+}

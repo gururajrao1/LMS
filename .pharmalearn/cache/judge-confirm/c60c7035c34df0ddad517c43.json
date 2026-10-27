@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "The claim comparing PALOMA-3's population/design to PALOMA-2 (more heavily pretreated, endocrine-resistant) is unsupported\u2014no evidence provided here mentions PALOMA-2 at all, so this specific comparative claim has no evidentiary basis in the shown material.",
+  "suggested_rewrite": "The phase 3 PALOMA-3 trial evaluated IBRANCE plus fulvestrant versus fulvestrant alone in women with HR+/HER2- advanced breast cancer whose disease had progressed after prior endocrine therapy, showing a PFS improvement of 9.5 vs 4.6 months, which supported approval in this setting."
+}

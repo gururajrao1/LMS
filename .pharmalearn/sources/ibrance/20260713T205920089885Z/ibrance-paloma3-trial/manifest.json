@@ -1,0 +1,62 @@
+{
+  "schema_version": 2,
+  "drug_id": "ibrance",
+  "source_id": "ibrance-paloma3-trial",
+  "fetched_at": "2026-07-13T21:00:31.472976+00:00",
+  "status": "fetched",
+  "access_level": "full_text",
+  "coverage": {
+    "nct": "NCT01942135",
+    "has_results": true,
+    "attachments_found": 2
+  },
+  "warnings": [],
+  "error": null,
+  "registry": {
+    "id": "ibrance-paloma3-trial",
+    "kind": "trial_registry",
+    "authority": "ClinicalTrials.gov",
+    "title": "PALOMA-3",
+    "url": "https://clinicaltrials.gov/study/NCT01942135",
+    "identifiers": {
+      "nct": "NCT01942135"
+    },
+    "required": true,
+    "reason": "Pivotal fulvestrant combination study after endocrine progression."
+  },
+  "files": [
+    {
+      "path": "raw/study.json",
+      "role": "study_record",
+      "request_url": "https://clinicaltrials.gov/api/v2/studies/NCT01942135",
+      "final_url": "https://clinicaltrials.gov/api/v2/studies/NCT01942135",
+      "content_type": "application/json",
+      "bytes": 228832,
+      "sha256": "40ca67bb9e84b3ba5b16500084eda741f2464788af7aaf53ac4a05f19654dec0",
+      "last_modified": null,
+      "etag": "\"0/0.34.1/mrizrqiw\""
+    },
+    {
+      "path": "raw/attachments/study-protocol-Prot_000.pdf",
+      "role": "Prot",
+      "request_url": "https://cdn.clinicaltrials.gov/large-docs/35/NCT01942135/Prot_000.pdf",
+      "final_url": "https://cdn.clinicaltrials.gov/large-docs/35/NCT01942135/Prot_000.pdf",
+      "content_type": "application/pdf",
+      "bytes": 3041302,
+      "sha256": "76f60ae6793fd7179b3091ef04ef5af26a5190bee3da4aac9e76f2d724e2bdc4",
+      "last_modified": "Thu, 04 Apr 2024 11:03:46 GMT",
+      "etag": "\"63e58e4052879b9337bb66cda1ff7f56\""
+    },
+    {
+      "path": "raw/attachments/statistical-analysis-plan-SAP_001.pdf",
+      "role": "SAP",
+      "request_url": "https://cdn.clinicaltrials.gov/large-docs/35/NCT01942135/SAP_001.pdf",
+      "final_url": "https://cdn.clinicaltrials.gov/large-docs/35/NCT01942135/SAP_001.pdf",
+      "content_type": "application/pdf",
+      "bytes": 538164,
+      "sha256": "f4cd0a144b6cf51a67afea5d8cb77ae52ebf7f5a9c17bb1d745b1ff4379ee53a",
+      "last_modified": "Thu, 04 Apr 2024 11:03:46 GMT",
+      "etag": "\"9ccdd68cc35c044edfc8f9de9b4ca0ff\""
+    }
+  ]
+}

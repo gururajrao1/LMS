@@ -1,0 +1,36 @@
+{
+  "schema_version": 2,
+  "drug_id": "vyndaqel",
+  "source_id": "vyndaqel-acc-guidance",
+  "fetched_at": "2026-07-13T21:18:31.186494+00:00",
+  "status": "fetched",
+  "access_level": "metadata_only",
+  "coverage": {},
+  "warnings": [],
+  "error": null,
+  "registry": {
+    "id": "vyndaqel-acc-guidance",
+    "kind": "us_guideline",
+    "authority": "ACC",
+    "title": "2025 Concise Clinical Guidance: Transthyretin Cardiac Amyloidosis",
+    "url": "https://www.acc.org/Guidelines/Guidelines/2025/10/31/12/53/Transthyretin-Cardiac-Amyloidosis-Concise-Clinical-Guidance",
+    "identifiers": {
+      "doi": "10.1016/j.jacc.2025.09.004"
+    },
+    "required": true,
+    "reason": "Current US professional guidance for ATTR-CM diagnosis and management context."
+  },
+  "files": [
+    {
+      "path": "raw/document.html",
+      "role": "official_webpage",
+      "request_url": "https://www.acc.org/Guidelines/Guidelines/2025/10/31/12/53/Transthyretin-Cardiac-Amyloidosis-Concise-Clinical-Guidance",
+      "final_url": "https://www.acc.org/Guidelines/Guidelines/2025/10/31/12/53/Transthyretin-Cardiac-Amyloidosis-Concise-Clinical-Guidance",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 165522,
+      "sha256": "825bafb2b2b5639c1f5f7f62b0e30476604243e56a8fdafc935bf57cbbe05bc4",
+      "last_modified": null,
+      "etag": null
+    }
+  ]
+}

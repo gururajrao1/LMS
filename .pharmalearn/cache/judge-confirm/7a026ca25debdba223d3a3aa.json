@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "The evidence describes PATINA's design and approval but never reports the investigator-assessed PFS HR of 0.76 (95% CI 0.59-0.97) or characterizes OS data as 'immature.' No evidence shown establishes these specific efficacy figures.",
+  "suggested_rewrite": "PATINA: palbociclib + trastuzumab \u00b1 pertuzumab + endocrine therapy maintenance for HR+/HER2+ disease approved based on the PATINA trial (518 patients); specific PFS hazard ratio and OS maturity status should be confirmed against current Prescribing Information before use."
+}

@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "Evidence covers only design and primary PFS results. Claims about confirming PALOMA-1's magnitude of benefit and details on OS immaturity/investigator uncertainty are not present in the cited evidence and are unsupported additions.",
+  "suggested_rewrite": "Remove the PALOMA-1 comparison and OS immaturity/uncertainty statements unless separately sourced evidence is provided confirming these specific points."
+}

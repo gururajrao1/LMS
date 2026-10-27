@@ -1,0 +1,47 @@
+{
+  "schema_version": 2,
+  "drug_id": "ibrance",
+  "source_id": "peer-31125276",
+  "fetched_at": "2026-08-17T13:17:14.852628+00:00",
+  "status": "fetched",
+  "access_level": "full_text",
+  "coverage": {
+    "pmid": "31125276",
+    "pmcid": "PMC6550032"
+  },
+  "warnings": [],
+  "error": null,
+  "registry": {
+    "id": "peer-31125276",
+    "kind": "peer_reviewed_publication",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/31125276/",
+    "title": "Palbociclib Plus Letrozole as First-Line Therapy in Postmenopausal Asian Women With Metastatic Breast Cancer: PALOMA-2 - PubMed",
+    "identifiers": {
+      "pmid": "31125276"
+    }
+  },
+  "files": [
+    {
+      "path": "raw/pubmed.xml",
+      "role": "pubmed_record",
+      "request_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=31125276&retmode=xml",
+      "final_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=31125276&retmode=xml",
+      "content_type": "text/xml; charset=UTF-8",
+      "bytes": 23253,
+      "sha256": "bc6d834c9861f3198edca77f1399b2464eb7c8ef2101473086e773afd247afd1",
+      "last_modified": null,
+      "etag": null
+    },
+    {
+      "path": "raw/fulltext.xml",
+      "role": "full_text",
+      "request_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC6550032&retmode=xml",
+      "final_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC6550032&retmode=xml",
+      "content_type": "text/xml; charset=UTF-8",
+      "bytes": 72631,
+      "sha256": "96cb0e96528e490275c7826ca2057a2f049e8d3ad770de239a965a3c0cd3e6ff",
+      "last_modified": null,
+      "etag": null
+    }
+  ]
+}

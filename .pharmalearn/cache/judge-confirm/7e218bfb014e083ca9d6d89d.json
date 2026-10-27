@@ -1,0 +1,6 @@
+{
+  "verdict": "overreach",
+  "severity": "minor",
+  "explanation": "The claim that neutropenia was 'manageable without compromising efficacy' is not supported by any evidence shown. Evidence describes reversibility, non-cumulative nature, and lack of growth factor need, but says nothing about efficacy preservation.",
+  "suggested_rewrite": "...the neutropenia pattern observed in trials was generally reversible, non-cumulative, and manageable without routine growth factor support; however, febrile neutropenia occurred in 1.8% of patients across PALOMA-2/3, and one neutropenic sepsis death was reported in PALOMA-3."
+}

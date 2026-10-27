@@ -1,0 +1,6 @@
+{
+  "verdict": "supported",
+  "severity": "minor",
+  "explanation": "All listed adverse reactions (infections, leukopenia, fatigue, nausea, alopecia, stomatitis, diarrhea, anemia, rash, asthenia, thrombocytopenia) appear at \u226510% in PALOMA-2/PALOMA-3 evidence, and the caveat about non-comparability across regimens matches differing trial data shown.",
+  "suggested_rewrite": "Text is adequately supported; no rewrite needed."
+}

@@ -1,0 +1,468 @@
+{
+  "schema_version": 2,
+  "drug_id": "eliquis",
+  "source_id": "eliquis-label",
+  "fetched_at": "2026-07-13T21:16:32.872229+00:00",
+  "status": "fetched",
+  "access_level": "full_text",
+  "coverage": {
+    "set_id": "e9481622-7cc6-418a-acb6-c5450daae9b0"
+  },
+  "warnings": [],
+  "error": null,
+  "registry": {
+    "id": "eliquis-label",
+    "kind": "current_fda_label",
+    "authority": "DailyMed",
+    "title": "ELIQUIS apixaban tablet, film coated",
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e9481622-7cc6-418a-acb6-c5450daae9b0",
+    "identifiers": {
+      "set_id": "e9481622-7cc6-418a-acb6-c5450daae9b0",
+      "spl_version": "30",
+      "nda": "202155"
+    },
+    "required": true,
+    "reason": "Current manufacturer label; repackager labels are excluded."
+  },
+  "files": [
+    {
+      "path": "raw/label.zip",
+      "role": "label_package",
+      "request_url": "https://dailymed.nlm.nih.gov/dailymed/downloadzipfile.cfm?setId=e9481622-7cc6-418a-acb6-c5450daae9b0",
+      "final_url": "https://dailymed.nlm.nih.gov/dailymed/downloadzipfile.cfm?setId=e9481622-7cc6-418a-acb6-c5450daae9b0",
+      "content_type": "application/zip",
+      "bytes": 1181388,
+      "sha256": "2385d82d81db09b47d8189ca3d404b478edf62eba0ba9d2872656f25763dbbf7",
+      "last_modified": null,
+      "etag": null
+    },
+    {
+      "path": "raw/label.pdf",
+      "role": "label_pdf",
+      "request_url": "https://dailymed.nlm.nih.gov/dailymed/downloadpdffile.cfm?setId=e9481622-7cc6-418a-acb6-c5450daae9b0",
+      "final_url": "https://dailymed.nlm.nih.gov/dailymed/downloadpdffile.cfm?setId=e9481622-7cc6-418a-acb6-c5450daae9b0",
+      "content_type": "application/pdf",
+      "bytes": 1179342,
+      "sha256": "273ed9f9130212f6114b2e2a8e216b9f1099a6c336631d9ad5c1c17179b3878d",
+      "last_modified": null,
+      "etag": null
+    },
+    {
+      "path": "raw/history.json",
+      "role": "version_history",
+      "request_url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls/e9481622-7cc6-418a-acb6-c5450daae9b0/history.json",
+      "final_url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls/e9481622-7cc6-418a-acb6-c5450daae9b0/history.json",
+      "content_type": "application/json",
+      "bytes": 2109,
+      "sha256": "5a72ac9b9b3d8527c795f2d459d44f0a85521a76ba0b3f88c15e2f58be2768e5",
+      "last_modified": null,
+      "etag": null
+    },
+    {
+      "path": "raw/images/5mL-cup.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 7885,
+      "sha256": "1d5e164366b711f1fc6d05142499d5ef22bb04b430813a5ac00d315c45713765"
+    },
+    {
+      "path": "raw/images/A-drawing-of-a-baby-eating-AI-generated-content-may-be-incorrect..jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 15784,
+      "sha256": "50b392d93326faae7dc45eccaad0d434398f3a0e0715b8f11d67402ea0c15f77"
+    },
+    {
+      "path": "raw/images/A-drawing-of-a-child-with-a-syringe-in-his-mouth-AI-generated-content-may-be-incorrect..jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 11718,
+      "sha256": "cce88262000ee646d0454f99f1112409d96735bba188f086e3554592b5811700"
+    },
+    {
+      "path": "raw/images/A-drawing-of-a-hand-holding-a-bag-AI-generated-content-may-be-incorrect..jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 11477,
+      "sha256": "2ef41fffdba8bf15dc30f89f0b7709680128925419a01e94d2861c3cd404afe3"
+    },
+    {
+      "path": "raw/images/A-drawing-of-a-measuring-cup-and-a-spoon-AI-generated-content-may-be-incorrect..jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 10664,
+      "sha256": "3e1b29b33d0fc998b0aa35daa92e9e9ab1705b657f1c1792cbcb2985dfcb9440"
+    },
+    {
+      "path": "raw/images/A-drawing-of-a-measuring-cup-with-a-spoon-AI-generated-content-may-be-incorrect..jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 9067,
+      "sha256": "da5310a3b36bc16bec36c4c2f16d76b8c3c0bebb7425da04cc747f2d0dd99e36"
+    },
+    {
+      "path": "raw/images/A-hand-pouring-liquid-into-a-measuring-cup-AI-generated-content-may-be-incorrect..jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 10122,
+      "sha256": "4980dcd12fdedb6ea897f696633d03c2665655ea8396955e3232a3ac1659b145"
+    },
+    {
+      "path": "raw/images/A-hand-pouring-liquid-into-a-small-glass-AI-generated-content-may-be-incorrect..jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 7885,
+      "sha256": "1d5e164366b711f1fc6d05142499d5ef22bb04b430813a5ac00d315c45713765"
+    },
+    {
+      "path": "raw/images/A-prescription-with-barcode-and-rx-AI-generated-content-may-be-incorrect..jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 13338,
+      "sha256": "c2d4beaa9317cd9a66f03cc95a5aec99241296663ef91835d1196fe22f85f31e"
+    },
+    {
+      "path": "raw/images/apixa-2.5mg-label.jpg.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 86928,
+      "sha256": "6c01abf3fecfd2167089cf606bd89842890b885beba7e609986c40a8c630def7"
+    },
+    {
+      "path": "raw/images/apixa-5.0mg-label.jpg.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 85813,
+      "sha256": "9ef68bc3fae3c76705c0d8d09258ea389ceb619035163d64f7762cb459db5957"
+    },
+    {
+      "path": "raw/images/apixa-5.0mg-startcrtn.jpg.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 47412,
+      "sha256": "fd89ad314e7bc240e859eeadf1ad61ae59c9a213cfd6fb39476c0864a6f2ec06"
+    },
+    {
+      "path": "raw/images/apixaban-struct.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 5973,
+      "sha256": "003a36ceb8f8f27b2280e0e1cccfda1cb59f9b9bf41f0282307076148635cad8"
+    },
+    {
+      "path": "raw/images/ARISTOTLE-Major-Bleeding-Forest-Plot.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 239777,
+      "sha256": "dbc4f8772815b0852e70c09f717d947a375d76e53ba0c91504eb8d82b74eabde"
+    },
+    {
+      "path": "raw/spl.xml",
+      "role": "label_xml",
+      "origin": "raw/label.zip",
+      "bytes": 521835,
+      "sha256": "d6549bce376b88394da0a802a479a7bea699a48f6da3ae0be087f927e101e1aa"
+    },
+    {
+      "path": "raw/images/capsule-child-upright.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 11718,
+      "sha256": "cce88262000ee646d0454f99f1112409d96735bba188f086e3554592b5811700"
+    },
+    {
+      "path": "raw/images/clean-syringe.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 2611,
+      "sha256": "1b456361f3349d31311ea7f1a2a1dd883de901f44dcf792ef24290e3ff03351b"
+    },
+    {
+      "path": "raw/images/eliquis-clin-forest-fig5.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 192955,
+      "sha256": "3eb531a0fad02a85d5c53d1c5f589eb2a561e80b59237b21329c0261428e1b08"
+    },
+    {
+      "path": "raw/images/eliquis-km-fig4.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 90790,
+      "sha256": "2a7710fb05b4a27624553ba88d1238c795ea29bb5355257c7b8f8868370c6d94"
+    },
+    {
+      "path": "raw/images/eliquis-pkplot-drugs-fig2.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 44893,
+      "sha256": "901e12fc97c20d111710189630e62e382e66989a1657bd43e4dfb5218ffa31bf"
+    },
+    {
+      "path": "raw/images/eliquis-pkplot-pop-fig3.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 127508,
+      "sha256": "4455124bff32f435aa376e1ea3c425f2b094efd9a64d958ef81141581aecfa6e"
+    },
+    {
+      "path": "raw/images/empty-packet.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 11194,
+      "sha256": "811825a1953b7789477d25a3f4243e60b43e9118fe98c2b35ce35b4f070162ae"
+    },
+    {
+      "path": "raw/images/empty-packet.png.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 11194,
+      "sha256": "811825a1953b7789477d25a3f4243e60b43e9118fe98c2b35ce35b4f070162ae"
+    },
+    {
+      "path": "raw/images/image-01.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 2922,
+      "sha256": "cdf970d78bd8b37e5ad13f291cbc258eb6935d3b0cccaf2b19dd6a7f4df9ff42"
+    },
+    {
+      "path": "raw/images/image-02.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 2804,
+      "sha256": "4814093440ac7072a29a65ce40f20ba9a32b6b298580ac8e83aa82bb8624d0d0"
+    },
+    {
+      "path": "raw/images/image-03.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 9955,
+      "sha256": "e94cd9de1d97fb52bfd4a6f4212ea886fa3d5e628348f79b1b4512153fe2ee82"
+    },
+    {
+      "path": "raw/images/image-04.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 3660,
+      "sha256": "f29a2d49c0c62c67909ea8791884b9b803d0bf6bb24f10d9e2d17e910831d104"
+    },
+    {
+      "path": "raw/images/image-05.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 10664,
+      "sha256": "3e1b29b33d0fc998b0aa35daa92e9e9ab1705b657f1c1792cbcb2985dfcb9440"
+    },
+    {
+      "path": "raw/images/image-06.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 3715,
+      "sha256": "3c60dace47c9ceeed65ffa6228a10cebf7109b80fe02c7f2d08f42e64cc043a9"
+    },
+    {
+      "path": "raw/images/image-07.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 4556,
+      "sha256": "8bc7415515722c76c62201fc2e049edd1e478274717588f7ec2fe43dc3602e0e"
+    },
+    {
+      "path": "raw/images/image-08.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 2013,
+      "sha256": "b7c6c8894eda8ec8b390f415568e5e829458de80e889fb518043b478c6fa1f83"
+    },
+    {
+      "path": "raw/images/image-09.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 4556,
+      "sha256": "8bc7415515722c76c62201fc2e049edd1e478274717588f7ec2fe43dc3602e0e"
+    },
+    {
+      "path": "raw/images/image-10.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 2013,
+      "sha256": "b7c6c8894eda8ec8b390f415568e5e829458de80e889fb518043b478c6fa1f83"
+    },
+    {
+      "path": "raw/images/image-11.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 2611,
+      "sha256": "1b456361f3349d31311ea7f1a2a1dd883de901f44dcf792ef24290e3ff03351b"
+    },
+    {
+      "path": "raw/images/image-12.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 1303,
+      "sha256": "38988774bb798927a03c127ecabd5af50b557f50fbb6559e9bc1597ab32fce38"
+    },
+    {
+      "path": "raw/images/image-13.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 2182,
+      "sha256": "671ea5d2e1335a97912af9e2f44af971129c10655b3c3d29157079cac8d85abd"
+    },
+    {
+      "path": "raw/images/image-14.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 4035,
+      "sha256": "3ef23cfc49e0705a3a489e9065d86af11c3c9628d3cb6edbc3f1a425430141a1"
+    },
+    {
+      "path": "raw/images/image-15.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 13905,
+      "sha256": "e5cc835a67c2e9dec48def5225b227a83f0c44c4904de85df7bf865f9c8343e1"
+    },
+    {
+      "path": "raw/images/image-16.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 7538,
+      "sha256": "cd474b2e12b07637534c8c7d6b280d27ed55bb4f4362c087b90b17542b0b662a"
+    },
+    {
+      "path": "raw/images/image-17.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 2682,
+      "sha256": "03b31e4e3a8f8c26afb559fed96b0498b78e06121bfb0ebc729bb7feb12a09bc"
+    },
+    {
+      "path": "raw/images/image-18.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 3729,
+      "sha256": "1590aec3e0733593f8bc0cd0acbfd9fe647219abd3914363982307f5f17d8a84"
+    },
+    {
+      "path": "raw/images/image-19.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 7291,
+      "sha256": "1075ab09466e5b3119364579379b7db846b5e3857d34b611e4bf8fa58480bef6"
+    },
+    {
+      "path": "raw/images/image-20.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 2922,
+      "sha256": "cdf970d78bd8b37e5ad13f291cbc258eb6935d3b0cccaf2b19dd6a7f4df9ff42"
+    },
+    {
+      "path": "raw/images/image-21.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 2834,
+      "sha256": "a8b6911966e111a5667f1da1b2d0085b14a4a35d43ace478d1f9a1ca4ff5d5b3"
+    },
+    {
+      "path": "raw/images/image-22.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 4366,
+      "sha256": "f301e3ba29103feaa2aa45207690c6bfca4d1146aa2a274d2d7753a65a0c47bb"
+    },
+    {
+      "path": "raw/images/image-23.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 8752,
+      "sha256": "649b680f74433489efff90dca69022cbda4aefd8c049785a4630f3df878f3817"
+    },
+    {
+      "path": "raw/images/image-24.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 10937,
+      "sha256": "981797d0d9483373940b46623bfea9858ccebf4e31f223723690c00f77d51be8"
+    },
+    {
+      "path": "raw/images/image-25.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 4556,
+      "sha256": "8bc7415515722c76c62201fc2e049edd1e478274717588f7ec2fe43dc3602e0e"
+    },
+    {
+      "path": "raw/images/image-30.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 9450,
+      "sha256": "c7aab068cae08e52cde92da8eba038a34c3077d6fd31a929cf832bc377ef861d"
+    },
+    {
+      "path": "raw/images/medicine-cup.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 3660,
+      "sha256": "f29a2d49c0c62c67909ea8791884b9b803d0bf6bb24f10d9e2d17e910831d104"
+    },
+    {
+      "path": "raw/images/prescription-label.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 13338,
+      "sha256": "c2d4beaa9317cd9a66f03cc95a5aec99241296663ef91835d1196fe22f85f31e"
+    },
+    {
+      "path": "raw/images/push-plunger.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 4556,
+      "sha256": "8bc7415515722c76c62201fc2e049edd1e478274717588f7ec2fe43dc3602e0e"
+    },
+    {
+      "path": "raw/images/sachet-packet.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 2804,
+      "sha256": "4814093440ac7072a29a65ce40f20ba9a32b6b298580ac8e83aa82bb8624d0d0"
+    },
+    {
+      "path": "raw/images/small-scissors.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 4349,
+      "sha256": "d1e05681d1de823fb7f696cb7d84b49ad7f51acc3af93e7be852360a25919fd9"
+    },
+    {
+      "path": "raw/images/small-scissors.png.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 4349,
+      "sha256": "d1e05681d1de823fb7f696cb7d84b49ad7f51acc3af93e7be852360a25919fd9"
+    },
+    {
+      "path": "raw/images/small-spoon.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 2922,
+      "sha256": "cdf970d78bd8b37e5ad13f291cbc258eb6935d3b0cccaf2b19dd6a7f4df9ff42"
+    },
+    {
+      "path": "raw/images/stir-liquid.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 9067,
+      "sha256": "da5310a3b36bc16bec36c4c2f16d76b8c3c0bebb7425da04cc747f2d0dd99e36"
+    },
+    {
+      "path": "raw/images/syringe-in-cup.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 2013,
+      "sha256": "b7c6c8894eda8ec8b390f415568e5e829458de80e889fb518043b478c6fa1f83"
+    }
+  ]
+}

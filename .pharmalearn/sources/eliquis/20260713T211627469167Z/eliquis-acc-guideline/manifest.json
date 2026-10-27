@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "drug_id": "eliquis",
+  "source_id": "eliquis-acc-guideline",
+  "fetched_at": "2026-07-13T21:17:29.512449+00:00",
+  "status": "fetched",
+  "access_level": "metadata_only",
+  "coverage": {},
+  "warnings": [],
+  "error": null,
+  "registry": {
+    "id": "eliquis-acc-guideline",
+    "kind": "us_guideline",
+    "authority": "ACC/AHA/ACCP/HRS",
+    "title": "2023 Guideline for the Diagnosis and Management of Atrial Fibrillation",
+    "url": "https://www.acc.org/Guidelines/Guidelines/2023/11/30/12/05/Atrial-Fibrillation-2023-Guideline",
+    "required": true,
+    "reason": "Current US professional guidance for NVAF place in therapy."
+  },
+  "files": [
+    {
+      "path": "raw/document.html",
+      "role": "official_webpage",
+      "request_url": "https://www.acc.org/Guidelines/Guidelines/2023/11/30/12/05/Atrial-Fibrillation-2023-Guideline",
+      "final_url": "https://www.acc.org/Guidelines/Guidelines/2023/11/30/12/05/Atrial-Fibrillation-2023-Guideline",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 165374,
+      "sha256": "4e2592901028d1e1e6c53c4f64016b47302823c57528fd6fcf82bed5aba6f8e4",
+      "last_modified": null,
+      "etag": null
+    }
+  ]
+}

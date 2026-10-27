@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "None of the evidence provided names 'PALOMA-2' as the first-line AI trial; only PALOMA-3 is explicitly cited for fulvestrant. The specific claim that PALOMA-2 is the AI-combination's supporting trial is not established by any evidence shown here.",
+  "suggested_rewrite": "The aromatase-inhibitor combination is indicated as initial endocrine-based therapy in treatment-na\u00efve advanced disease patients, per FDA labeling, without naming a specific supporting trial unless that trial's evidence is included."
+}

@@ -1,0 +1,41 @@
+{
+  "schema_version": 2,
+  "drug_id": "prevnar",
+  "source_id": "prevnar-prior-vaccination-publication",
+  "fetched_at": "2026-07-13T21:26:34.099526+00:00",
+  "status": "fetched",
+  "access_level": "abstract_only",
+  "coverage": {
+    "pmid": "34839993",
+    "pmcid": null
+  },
+  "warnings": [],
+  "error": null,
+  "registry": {
+    "id": "prevnar-prior-vaccination-publication",
+    "kind": "peer_reviewed_publication",
+    "authority": "PubMed",
+    "title": "Safety and Immunogenicity of Prevnar 20 in Previously Vaccinated Adults 65 Years and Older",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/34839993/",
+    "identifiers": {
+      "pmid": "34839993",
+      "doi": "10.1016/j.vaccine.2021.10.032",
+      "nct": "NCT03835975"
+    },
+    "required": true,
+    "reason": "Primary publication for the prior-vaccination study."
+  },
+  "files": [
+    {
+      "path": "raw/pubmed.xml",
+      "role": "pubmed_record",
+      "request_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=34839993&retmode=xml",
+      "final_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=34839993&retmode=xml",
+      "content_type": "text/xml; charset=UTF-8",
+      "bytes": 10504,
+      "sha256": "d8d04467073ce3e7b86a242509d35ba401e81f9ab69f9b479147f9a806cd3fdc",
+      "last_modified": null,
+      "etag": null
+    }
+  ]
+}

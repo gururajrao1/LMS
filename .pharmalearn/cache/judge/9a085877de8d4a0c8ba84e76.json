@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "No evidence is provided for renal impairment dosing (CrCl >15 mL/min) or the specific hepatic dose reduction being tied to that threshold; only severe hepatic impairment dosing is evidenced. The renal impairment claim is unsupported.",
+  "suggested_rewrite": "Cite renal impairment dosing guidance separately with its own verbatim label evidence; otherwise limit statement to the supported severe hepatic impairment dose adjustment."
+}

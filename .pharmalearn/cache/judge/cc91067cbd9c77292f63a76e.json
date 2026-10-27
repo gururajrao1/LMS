@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "blocking",
+  "explanation": "The evidence contains no data on combining palbociclib with antiestrogens or effects on growth arrest/senescence. Also 'selective' and 'reversible' descriptors are not supported by the cited label excerpts, which only state 'inhibitor of CDK4/6.'",
+  "suggested_rewrite": "Remove the antiestrogen-combination sentence and the terms 'selective' and 'reversible' unless supported by additional cited evidence, such as combination-study data."
+}

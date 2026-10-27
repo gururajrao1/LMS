@@ -1,0 +1,6 @@
+{
+  "verdict": "needs_context",
+  "severity": "minor",
+  "explanation": "PALOMA-1 and PALOMA-2 evidence explicitly confirm investigator-assessed PFS as primary endpoint, but the PALOMA-3 evidence excerpt does not specify 'investigator-assessed,' only stating PFS was the primary endpoint met at interim analysis.",
+  "suggested_rewrite": "All three trials used PFS as the primary endpoint (investigator-assessed in PALOMA-1 and PALOMA-2)\u2014a measure of time without disease growth, distinct from survival itself."
+}

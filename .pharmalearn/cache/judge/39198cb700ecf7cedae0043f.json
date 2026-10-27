@@ -1,0 +1,6 @@
+{
+  "verdict": "needs_context",
+  "severity": "major",
+  "explanation": "The 87%/34% figures are accurate, but the text omits that this was a single-dose study in 12 healthy subjects, not steady-state patients. It also adds 'should generally be avoided' as a labeling directive not present in the quoted PK evidence.",
+  "suggested_rewrite": "Note the data come from a single-dose, 12-subject healthy-volunteer study; specify that avoidance guidance appears elsewhere in labeling, not derived directly from this PK data alone."
+}

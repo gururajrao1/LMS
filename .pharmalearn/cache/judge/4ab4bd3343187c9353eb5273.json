@@ -1,0 +1,6 @@
+{
+  "verdict": "supported",
+  "severity": "minor",
+  "explanation": "All efficacy and safety figures (HR, CI, median PFS, neutropenia rates) match the verbatim evidence exactly, and the approval context aligns with the FDA source material.",
+  "suggested_rewrite": ""
+}

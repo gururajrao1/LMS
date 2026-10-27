@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "The claim '2019: label expanded to include male patients with advanced/metastatic breast cancer' has no corresponding evidence in the provided sources, which only cover PALOMA-1/2/3, INAVO120, and PATINA trials.",
+  "suggested_rewrite": "Remove the 2019 male-patient label expansion claim, or provide verbatim evidence (e.g., FDA label supplement) confirming this specific approval before including it."
+}

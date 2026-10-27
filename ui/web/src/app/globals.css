@@ -1,0 +1,296 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * The palette lives here and nowhere else. Every colour in the app is one of
+ * these tokens, so retuning the brand is an edit to this block rather than a
+ * sweep through twenty component files.
+ *
+ * Brand is emerald (hue ~163), not the teal it started as: teal sits in the
+ * weakest part of the sRGB gamut, where a step dark enough to read as text is
+ * forced down to chroma 0.08 and looks grey. Emerald holds chroma 0.13 at the
+ * same lightness. `signal` is indigo, far enough away (ΔE 31 normal vision,
+ * 26 deutan) that the two never blur into each other.
+ *
+ * Neutrals are warm. A blue-cast grey beside a green makes the green read as
+ * dirty, which is most of why the first palette felt off.
+ *
+ * Validated with the dataviz palette checker: brand-600 / signal-600 / warn-500
+ * pass the lightness band, chroma floor, CVD separation and normal-vision
+ * floor. warn-500 sits at 2.09:1 on white, so amber marks always carry a
+ * written label rather than standing on colour alone.
+ */
+@theme {
+  /* Brand — emerald. 600 fills, 700 for text on white (5.5:1). */
+  --color-brand-50: #ecfdf5;
+  --color-brand-100: #d1fae5;
+  --color-brand-200: #a7f3d0;
+  --color-brand-300: #6ee7b7;
+  --color-brand-400: #34d399;
+  --color-brand-500: #00a878;
+  --color-brand-600: #059669;
+  --color-brand-700: #047857;
+  --color-brand-800: #065f46;
+  --color-brand-900: #0c3d31;
+  --color-brand-950: #072a22;
+
+  /* Signal — indigo. Reserved for automated review and headline figures. */
+  --color-signal-50: #eef2ff;
+  --color-signal-100: #e0e7ff;
+  --color-signal-300: #a5b4fc;
+  --color-signal-400: #818cf8;
+  --color-signal-600: #4f46e5;
+  --color-signal-700: #4338ca;
+
+  /* Status — reserved, never reused as a series colour, always with a label. */
+  --color-warn-50: #fffbeb;
+  --color-warn-100: #fef3c7;
+  --color-warn-400: #fbbf24;
+  --color-warn-500: #f59e0b;
+  --color-warn-600: #d97706;
+  --color-warn-700: #b45309;
+  --color-warn-900: #78350f;
+
+  /* Rose rather than a pure red: more chroma (0.22 vs 0.16), less alarm-bell. */
+  --color-danger-50: #fff1f2;
+  --color-danger-500: #f43f5e;
+  --color-danger-600: #e11d48;
+  --color-danger-700: #be123c;
+  --color-danger-900: #881337;
+
+  /* Surfaces. `sunk` is the page behind the cards; `deep` is the brand slab. */
+  --color-surface: #ffffff;
+  --color-surface-sunk: #faf9f7;
+  --color-surface-deep: #0c3d31;
+  --color-surface-deeper: #072a22;
+
+  --color-ink: #1c1917;
+  --color-line: #e7e5e4;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-heading: var(--font-geist), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  --background: var(--color-surface-sunk);
+  --foreground: var(--color-ink);
+  --card: #ffffff;
+  --card-foreground: var(--color-ink);
+  --popover: #ffffff;
+  --popover-foreground: var(--color-ink);
+  --primary: var(--color-brand-600);
+  --primary-foreground: #ffffff;
+  --secondary: #f5f5f4;
+  --secondary-foreground: #292524;
+  --muted: #f5f5f4;
+  --muted-foreground: #57534e;
+  --accent: #f5f5f4;
+  --accent-foreground: #292524;
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: var(--color-line);
+  --input: var(--color-line);
+  --ring: var(--color-brand-600);
+  /* Sequential emerald, light to dark — monotonic in lightness. */
+  --chart-1: var(--color-brand-200);
+  --chart-2: var(--color-brand-400);
+  --chart-3: var(--color-brand-500);
+  --chart-4: var(--color-brand-700);
+  --chart-5: var(--color-brand-900);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    text-rendering: optimizeLegibility;
+  }
+  html {
+    @apply font-sans;
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-heading);
+  }
+  /* Scores, percentages and dates must not reflow as their values change. */
+  .tabular,
+  [data-slot="progress"] + *,
+  th,
+  td {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@layer components {
+  /*
+   * The assistant drawer sets `data-dock-open` on the document. Wide enough to
+   * inset, the shell gives back the drawer's width so nothing is covered;
+   * narrower than that there is no room, and the drawer overlays instead.
+   */
+  .app-shell {
+    transition: padding-right 200ms ease;
+  }
+
+  @media (min-width: 1024px) {
+    :root[data-dock-open] .app-shell {
+      padding-right: 23rem;
+    }
+  }
+
+}
+
+/*
+ * Only one right-hand panel at a time. The reference document and the assistant
+ * both dock there, and the floating Ask button otherwise lands on top of
+ * whatever is open. In CSS so neither panel has to know about the other, and
+ * deliberately unlayered: inside `@layer components` this loses to the `flex`
+ * utility on the button itself, and unlayered rules outrank every layer.
+ */
+:root[data-dock-open] .dock-launcher {
+  display: none;
+}
+
+/*
+ * Print, which is how this leaves the building.
+ *
+ * The consolidated report goes to people who were not in the room, so the browser's
+ * own print-to-PDF is the export: no rendering dependency to keep in sync, and the
+ * PDF is always exactly what the page says. Screen chrome is navigation rather than
+ * content, so it goes; the charts are CSS backgrounds and need telling to print.
+ */
+.print-only {
+  display: none;
+}
+
+@media print {
+  @page {
+    margin: 14mm;
+  }
+
+  header,
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block;
+  }
+
+  /* Bars and status tints carry the meaning here, so they must survive the
+     browser's default of dropping backgrounds to save ink. */
+  *,
+  *::before,
+  *::after {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  body,
+  .app-shell {
+    background: #fff;
+    padding: 0 !important;
+  }
+
+  main {
+    max-width: none !important;
+    padding: 0 !important;
+  }
+
+  /* A card split across a page break reads as two different findings. */
+  .print-keep {
+    break-inside: avoid;
+  }
+
+  a[href]::after {
+    content: "";
+  }
+}

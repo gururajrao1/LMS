@@ -1,0 +1,6 @@
+{
+  "verdict": "supported",
+  "severity": "minor",
+  "explanation": "PALOMA-2 Asian subgroup PFS/toxicity claims, hepatic dose reduction, and male indication based on real-world/postmarketing data are all directly supported by the evidence provided.",
+  "suggested_rewrite": "No rewrite needed; claims align with cited evidence."
+}

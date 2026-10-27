@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "The claim 'No validated, clinically actionable predictive biomarker exists' is not supported by any provided evidence; none of the sources address biomarker validation status, making this an unestablished assertion.",
+  "suggested_rewrite": "Remove or cite specific evidence stating no validated predictive biomarker exists for CDK4/6i response, since current sources only discuss resistance rates, not biomarker status."
+}

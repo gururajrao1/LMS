@@ -1,0 +1,30 @@
+{
+  "answer": "Documented unmet needs for palbociclib-based therapy include: (1) Efficacy\u2014PALOMA-2 final OS analysis showed no statistically significant survival benefit (53.9 vs 51.2 months, HR=0.956), and real-world data show markedly lower PFS in later-line use (7.8 months) versus first-line (22.8 months). (2) Safety/tolerability\u2014risk of severe ILD/pneumonitis requiring permanent discontinuation, plus cytopenia monitoring needs; pooled data show 38.4% require dose modification and 5.2% permanently discontinue due to adverse reactions. (3) Access/adherence\u2014overall survival and payer value data remain immature for newer maintenance indications, and added burdens like contraception/fertility counseling may affect adherence in underserved populations.",
+  "citations": [
+    {
+      "title": "IBRANCE Palbociclib prescribing information (labeling.pfizer.com)",
+      "url": "https://labeling.pfizer.com/ShowLabeling.aspx?id=16410",
+      "locator": "Prescribing information, adverse reactions section"
+    },
+    {
+      "title": "A real-world study of the first use of palbociclib... UK National Health Service... Ibrance Patient Program",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10449843/",
+      "locator": "PMC article"
+    },
+    {
+      "title": "PALOMA-2: No Overall Survival Benefit Reported With Palbociclib/Letrozole in Advanced Breast Cancer",
+      "url": "https://ascopost.com/issues/august-10-2022/no-overall-survival-benefit-reported-with-palbociclibletrozole-in-advanced-breast-cancer/",
+      "locator": "ASCO Post article, Aug 10 2022"
+    },
+    {
+      "title": "Full Prescribing Information for IBRANCE",
+      "url": "https://labeling.pfizer.com/showlabeling.aspx?id=2191",
+      "locator": "Full prescribing information, Warnings and Precautions"
+    },
+    {
+      "title": "FDA Approves Palbociclib for HR+, HER2+ Breast Cancer Maintenance",
+      "url": "https://www.ajmc.com/view/fda-approves-palbociclib-for-hr-her2-breast-cancer-maintenance",
+      "locator": "AJMC article"
+    }
+  ]
+}

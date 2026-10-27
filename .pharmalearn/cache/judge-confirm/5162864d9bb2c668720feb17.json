@@ -1,0 +1,6 @@
+{
+  "verdict": "overreach",
+  "severity": "major",
+  "explanation": "Evidence gives HR 0.81 (95% CI 0.65\u20130.99) for the exploratory analysis but no p-value or formal significance testing framework for it, since it's exploratory/post hoc after 75% events. Claiming it 'reached significance' overstates what a CI excluding 1 in an exploratory, non-prespecified analysis actually establishes.",
+  "suggested_rewrite": "Note that the exploratory analysis's CI excludes 1 (HR 0.81, 95% CI 0.65\u20130.99), but since it is exploratory and not part of a prespecified significance-testing hierarchy, avoid stating it 'reached significance'; contrast with the earlier final analysis (HR 0.81, 1-sided p=0.0429) that missed the prespecified threshold."
+}

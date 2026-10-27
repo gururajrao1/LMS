@@ -1,0 +1,41 @@
+{
+  "schema_version": 2,
+  "drug_id": "ibrance",
+  "source_id": "ibrance-inavo120-publication",
+  "fetched_at": "2026-07-13T21:00:37.339867+00:00",
+  "status": "fetched",
+  "access_level": "abstract_only",
+  "coverage": {
+    "pmid": "39476340",
+    "pmcid": null
+  },
+  "warnings": [],
+  "error": null,
+  "registry": {
+    "id": "ibrance-inavo120-publication",
+    "kind": "peer_reviewed_publication",
+    "authority": "PubMed",
+    "title": "Inavolisib-Based Therapy in PIK3CA-Mutated Advanced Breast Cancer",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/39476340/",
+    "identifiers": {
+      "pmid": "39476340",
+      "doi": "10.1056/NEJMoa2404625",
+      "nct": "NCT04191499"
+    },
+    "required": true,
+    "reason": "Primary INAVO120 publication linked to the current label."
+  },
+  "files": [
+    {
+      "path": "raw/pubmed.xml",
+      "role": "pubmed_record",
+      "request_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=39476340&retmode=xml",
+      "final_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=39476340&retmode=xml",
+      "content_type": "text/xml; charset=UTF-8",
+      "bytes": 60726,
+      "sha256": "ea10526db5853e8292c40d0227837e679d818e5ae89c94a23426a3e7cec576f9",
+      "last_modified": null,
+      "etag": null
+    }
+  ]
+}

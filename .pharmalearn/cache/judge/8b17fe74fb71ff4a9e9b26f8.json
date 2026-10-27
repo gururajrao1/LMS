@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "blocking",
+  "explanation": "Evidence only covers CBC monitoring schedule and PALOMA-2 time-to-onset/duration data. The 80%/83% incidence figures, 'non-cumulative' claim, dose-modification protocol for Grade 3, febrile neutropenia rate (1.8%), and the PALOMA-3 death from neutropenic sepsis are asserted with no supporting evidence provided.",
+  "suggested_rewrite": "Cite specific sources for incidence rates, dose-modification rules, febrile neutropenia percentage, and the reported death before including these figures in learner content."
+}

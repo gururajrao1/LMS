@@ -1,0 +1,451 @@
+<!DOCTYPE html><html class="h-full" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Drug Learning Page - PharmaLearn</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&amp;family=Geist:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-primary-fixed-variant": "#3f465c",
+                      "secondary-container": "#86f2e4",
+                      "on-primary": "#ffffff",
+                      "on-tertiary": "#ffffff",
+                      "inverse-primary": "#bec6e0",
+                      "on-error-container": "#93000a",
+                      "inverse-on-surface": "#eaf1ff",
+                      "on-tertiary-container": "#98805d",
+                      "on-primary-fixed": "#131b2e",
+                      "inverse-surface": "#213145",
+                      "on-surface": "#0b1c30",
+                      "on-primary-container": "#7c839b",
+                      "surface-container": "#e5eeff",
+                      "outline": "#76777d",
+                      "tertiary-fixed": "#fcdeb5",
+                      "surface-tint": "#565e74",
+                      "surface-dim": "#cbdbf5",
+                      "on-secondary": "#ffffff",
+                      "on-surface-variant": "#45464d",
+                      "surface": "#f8f9ff",
+                      "secondary": "#006a61",
+                      "primary-container": "#131b2e",
+                      "secondary-fixed": "#89f5e7",
+                      "surface-variant": "#d3e4fe",
+                      "on-secondary-fixed": "#00201d",
+                      "surface-container-highest": "#d3e4fe",
+                      "tertiary-container": "#271901",
+                      "error-container": "#ffdad6",
+                      "primary": "#000000",
+                      "surface-container-high": "#dce9ff",
+                      "surface-container-low": "#eff4ff",
+                      "primary-fixed-dim": "#bec6e0",
+                      "outline-variant": "#c6c6cd",
+                      "on-tertiary-fixed": "#271901",
+                      "tertiary": "#000000",
+                      "on-error": "#ffffff",
+                      "on-tertiary-fixed-variant": "#574425",
+                      "error": "#ba1a1a",
+                      "secondary-fixed-dim": "#6bd8cb",
+                      "background": "#f8f9ff",
+                      "on-secondary-fixed-variant": "#005049",
+                      "surface-container-lowest": "#ffffff",
+                      "tertiary-fixed-dim": "#dec29a",
+                      "surface-bright": "#f8f9ff",
+                      "on-secondary-container": "#006f66",
+                      "on-background": "#0b1c30",
+                      "primary-fixed": "#dae2fd"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "sm": "8px",
+                      "gutter": "24px",
+                      "base": "4px",
+                      "md": "16px",
+                      "lg": "24px",
+                      "xs": "4px",
+                      "xl": "48px",
+                      "container-max": "1280px"
+              },
+              "fontFamily": {
+                      "headline-md": [
+                              "Geist"
+                      ],
+                      "headline-lg-mobile": [
+                              "Geist"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-xl": [
+                              "Geist"
+                      ],
+                      "headline-lg": [
+                              "Geist"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Geist"
+                      ],
+                      "label-sm": [
+                              "Geist"
+                      ]
+              },
+              "fontSize": {
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-xl": [
+                              "40px",
+                              {
+                                      "lineHeight": "48px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex antialiased">
+<!-- SideNavBar (Desktop) -->
+<nav class="hidden md:flex flex-col h-screen fixed left-0 top-0 py-md bg-surface-container-low dark:bg-surface-container-low text-primary dark:text-primary-fixed border-r border-outline-variant dark:border-outline-variant docked left-0 h-full w-64 z-50">
+<div class="px-md mb-xl">
+<div class="flex items-center gap-sm mb-lg">
+<img alt="PharmaLearn Brand Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsriuoRpcW5780Ofec4hjWYeqzSc1JznttdC9FnTfVondoGMV5svNKsP4kcsMhAO3W3rk76rp3glKFkSS430kniIb1Ih4JihsfXa9x-PskeVK0-djbTFKeQ5EcyOEWwi8j2QgNJ9cxHAeYp09lwVIRL6pM7jK20X_IZWt-CP1RYNUSZDcHTIp2eWrlgPXyFxp4Yf3DZGNAnL1tDDfNrgasM0M_t7g3FhnE7Zl5-y5XD2khrAqDx1cbTW_05JI-m1xu_eJS3lNFzuWD">
+<span class="font-headline-md text-headline-md font-bold text-primary">PharmaLearn</span>
+</div>
+<div class="flex items-center gap-sm p-sm rounded-lg bg-surface-variant dark:bg-surface-variant">
+<img alt="Medical User" class="w-10 h-10 rounded-full object-cover border border-outline-variant" data-alt="A professional headshot of a medical science liaison or healthcare professional. They are wearing a clean white lab coat over professional business attire, standing in a brightly lit, modern clinical or laboratory setting. The lighting is soft and even, typical of a high-end medical environment. They have a confident, approachable expression, conveying expertise and trust. The overall aesthetic is clean, corporate, and medically focused." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrtCI5HYp2UrOlFJuN_NENFGlvpN15PO9ZXCSXue0dDNDt_h432WAiSoJo4mmJMbkWSGlAlPnk2nUtk8n5wqvTAHBZXb_h68IdnAuh4dCifOynDgEJ2T-6hILbCEgclKEo2g9_nIssDK0yu0vbAJJmX1TWdxWKSgZRW4DZHVdKcD3NuW5lA_qGPhUGmVL4girwevI0Y5q2bft3EhUx3ud9AhyWsGwNnlN_nx-EdHhBZRVyH2mCqhOD-I9aAvHREL5QrMf2pPBnuN5E">
+<div>
+<div class="font-label-md text-label-md text-on-surface">PharmaLearn Central</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">MSL Training Hub</div>
+</div>
+</div>
+</div>
+<div class="flex-1 px-sm overflow-y-auto space-y-1">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-primary dark:text-primary-fixed font-bold bg-secondary-container/20 translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: &quot;FILL&quot; 1;">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-variant dark:hover:bg-surface-variant transition-colors" href="#">
+<span class="material-symbols-outlined">science</span>
+<span class="font-label-md text-label-md">Drug Monographs</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-variant dark:hover:bg-surface-variant transition-colors" href="#">
+<span class="material-symbols-outlined">psychology</span>
+<span class="font-label-md text-label-md">Agent Insights</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-variant dark:hover:bg-surface-variant transition-colors" href="#">
+<span class="material-symbols-outlined">library_books</span>
+<span class="font-label-md text-label-md">Artifact Library</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-variant dark:hover:bg-surface-variant transition-colors" href="#">
+<span class="material-symbols-outlined">quiz</span>
+<span class="font-label-md text-label-md">Training Quizzes</span>
+</a>
+</div>
+<div class="px-sm mt-auto space-y-1 pt-md border-t border-outline-variant">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-variant dark:hover:bg-surface-variant transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-variant dark:hover:bg-surface-variant transition-colors" href="#">
+<span class="material-symbols-outlined">contact_support</span>
+<span class="font-label-md text-label-md">Support</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col md:ml-64 w-full min-h-screen">
+<!-- TopNavBar -->
+<header class="bg-surface-container-lowest dark:bg-surface-container-lowest border-b border-outline-variant dark:border-outline-variant docked full-width top-0 z-40 sticky">
+<div class="flex justify-between items-center w-full px-lg max-w-container-max mx-auto h-16">
+<!-- Mobile Menu Button & Title -->
+<div class="flex items-center gap-md md:hidden">
+<button class="p-sm text-on-surface-variant hover:bg-surface-variant rounded-full transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">PharmaLearn</span>
+</div>
+<!-- Search Bar (Desktop) -->
+<div class="hidden md:flex flex-1 max-w-md ml-lg">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full h-10 pl-10 pr-4 rounded-lg bg-surface border border-outline-variant text-body-md focus:outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all" placeholder="Search monographs, artifacts..." type="text">
+</div>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-sm ml-auto">
+<button class="p-sm text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors rounded-full hover:bg-surface-variant">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-sm text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors rounded-full hover:bg-surface-variant">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<div class="h-8 w-px bg-outline-variant mx-sm hidden sm:block"></div>
+<div class="hidden sm:flex items-center gap-sm bg-surface-variant px-sm py-1 rounded-full border border-outline-variant">
+<span class="font-label-sm text-label-sm text-on-surface px-2">MSL View</span>
+<span class="material-symbols-outlined text-[16px]">swap_horiz</span>
+</div>
+<img alt="User profile" class="w-8 h-8 rounded-full object-cover border border-outline-variant ml-sm cursor-pointer hover:opacity-80 transition-opacity" data-alt="A small circular avatar thumbnail of a medical professional, mirroring the main profile picture. Clean, well-lit, and professional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlcWwemBBXx0JM2U6cqzdjAI4_gaTfWEg8YfARyeep95MXauLBVzRa-S56UEK3rsI8Oj1JCWSSY2Mfb6FxHd28qEoZo7aIx3Nvz-a43c8rRvwY_Wi-GUfNnb1BHG7kYVJqH8zZ6M4m_4B_WAh1PQcwXehTD1_GORezdantCFfW8Jf7hwVPx8I-QgXfKsnnZBs5k5hyUdQ6om1E1MHr4mIKSDwdxnvLfu1UOK1TSYvcBUnKzvByS2v14fhpdSmrOLRAsFOAqcsqubrg">
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<main class="flex-1 p-md md:p-lg xl:p-xl max-w-container-max mx-auto w-full">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-lg mb-xl">
+<div>
+<div class="flex items-center gap-sm mb-2">
+<span class="px-2 py-1 bg-surface-container-high text-on-surface font-label-sm text-label-sm rounded border border-outline-variant">Targeted Therapy</span>
+<span class="px-2 py-1 bg-surface-container-high text-on-surface font-label-sm text-label-sm rounded border border-outline-variant">CDK4/6 Inhibitor</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-background">Ibrance (Palbociclib) - Learning Hub</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-sm max-w-2xl">Comprehensive MSL training module covering clinical presentation, mechanism of action, and prescribing guidelines.</p>
+</div>
+<div class="flex gap-sm">
+
+<button class="h-10 px-md rounded-lg bg-primary text-on-primary font-label-md text-label-md hover:opacity-90 transition-opacity flex items-center gap-xs shadow-sm">
+<span class="material-symbols-outlined text-[18px]">publish</span>
+                        Publish</button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg">
+<!-- Main Artifact Area (Col 1-8) -->
+<div class="lg:col-span-8 space-y-lg">
+<h2 class="font-headline-lg text-headline-lg border-b border-outline-variant pb-xs mb-md">Learning Artifacts</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<!-- Artifact 1: PPT -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden hover:-translate-y-1 transition-transform duration-300 flex flex-col h-full">
+<div class="relative h-40 bg-surface-variant">
+<img alt="Clinical Presentation Thumbnail" class="w-full h-full object-cover" data-alt="A stylized graphic representing a clinical presentation slide deck. It shows abstract charts, graphs, and medical data points in shades of clinical blue and teal against a clean white background. The aesthetic is highly professional, crisp, and data-driven, typical of pharmaceutical marketing or scientific communication materials." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8AkESXm4QtK1UNqJzwH23po8SD36-yLfA9j1QPYZw2-7q3IxSCD9QpZHGCj9kteCIRfiZRxrR-Rf4G1sQlTBXN82RPAKIHy3CEYl3QhUPb_e8WNVGrRvjQzKst4xoxFoR47ogy8tXmez9PgN0G-_G3YbxJOhSGWwf0jwDEadgsco0TKdedZtVWkmTr4-Zx5FBsfMfn-SBlqfHWa_NFZbJIBLw8EA3Gqq2_fR2jYuhKrUcs-v4CUDhMNlvDkeohW7N_ufpwFN2tlSd">
+<div class="absolute top-sm right-sm bg-surface-container-lowest/90 backdrop-blur-sm px-2 py-1 rounded text-xs font-bold text-on-surface border border-outline-variant/50 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">slideshow</span>
+                                    PPT
+                                </div>
+</div>
+<div class="p-md flex flex-col flex-1">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Clinical Presentation</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex-1 line-clamp-2">Key efficacy and safety data from the PALOMA-2 and PALOMA-3 clinical trials.</p>
+<div class="mt-md flex gap-sm">
+<button class="flex-1 h-10 rounded-lg bg-surface border border-outline-variant font-label-md text-label-md hover:bg-surface-variant transition-colors flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+                                        View
+                                    </button>
+<button class="flex-1 h-10 rounded-lg bg-primary text-on-primary font-label-md text-label-md hover:opacity-90 transition-opacity flex items-center justify-center gap-xs"><span class="material-symbols-outlined text-[18px]">edit</span>Edit</button>
+</div>
+</div>
+</div>
+<!-- Artifact 2: Video -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden hover:-translate-y-1 transition-transform duration-300 flex flex-col h-full">
+<div class="relative h-40 bg-surface-container-high group cursor-pointer">
+<img alt="Video Thumbnail" class="w-full h-full object-cover mix-blend-multiply opacity-80" data-alt="A still frame from a medical animation video showing a molecular mechanism of action. It depicts a simplified, glowing 3D protein structure interacting with a small molecule drug within a cellular environment. The colors are predominantly deep blues and vibrant teals, with a cinematic, scientific feel. The lighting is dramatic, highlighting the interaction." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKvVHdxpwMYRJOGeRCJd8ma4C2ePM_kO78RiNrtjI-v9U_3S7WBhFjlRDfGyanAKai7IJMbCd8E11pojUdB7hIZr4V-K8J0F0FfabBAyCZ4psXosIG-ZmjzEmwZZejaVBrbZCSJ7uBxNkVz3XNaPQ9lxnjRUetmhwpEtsc6naS3pT3nMe86NP3fPqEOv-vrzuY7tJmeeJuYaiSqX1z-oAqGke-2_vVOaKjcam3p2uq6C2PE9XbnvkVMaJfR9HkVkVHyYMt1y7zvuM_">
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-12 h-12 rounded-full bg-primary/80 text-on-primary flex items-center justify-center backdrop-blur-sm group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: &quot;FILL&quot; 1;">play_arrow</span>
+</div>
+</div>
+<div class="absolute bottom-sm right-sm bg-primary-container/80 text-on-primary-container px-2 py-1 rounded text-xs font-bold backdrop-blur-sm">
+                                    14:20
+                                </div>
+</div>
+<div class="p-md flex flex-col flex-1">
+<div class="flex items-start justify-between mb-xs">
+<h3 class="font-headline-md text-headline-md text-on-surface">Mechanism of Action</h3>
+<span class="material-symbols-outlined text-outline-variant">movie</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex-1 line-clamp-2">Detailed 3D animation detailing cell cycle arrest via CDK4/6 inhibition in ER+ breast cancer.</p>
+<button class="mt-md w-full h-10 rounded-lg border border-secondary text-secondary font-label-md text-label-md hover:bg-secondary/5 transition-colors flex items-center justify-center gap-xs"><span class="material-symbols-outlined text-[18px]">edit</span>Edit Video</button>
+</div>
+</div>
+<!-- Artifact 3: FAQ -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col h-full">
+<div class="flex items-start justify-between mb-md border-b border-outline-variant pb-xs">
+<h3 class="font-headline-md text-headline-md text-on-surface">FAQ</h3>
+<span class="material-symbols-outlined text-outline-variant">help</span>
+</div>
+<div class="space-y-sm flex-1">
+<details class="group bg-surface rounded-lg border border-outline-variant overflow-hidden">
+<summary class="font-label-md text-label-md p-sm cursor-pointer hover:bg-surface-variant transition-colors flex justify-between items-center list-none">
+                                        Dose Modifications
+                                        <span class="material-symbols-outlined group-open:rotate-180 transition-transform text-[20px]">expand_more</span>
+</summary>
+<div class="p-sm pt-0 font-body-sm text-body-sm text-on-surface-variant border-t border-outline-variant bg-surface-container-lowest">
+                                        Guidelines for dose interruption and/or reduction for hematologic and non-hematologic toxicities.
+                                    </div>
+</details>
+<details class="group bg-surface rounded-lg border border-outline-variant overflow-hidden">
+<summary class="font-label-md text-label-md p-sm cursor-pointer hover:bg-surface-variant transition-colors flex justify-between items-center list-none">
+                                        Drug Interactions
+                                        <span class="material-symbols-outlined group-open:rotate-180 transition-transform text-[20px]">expand_more</span>
+</summary>
+<div class="p-sm pt-0 font-body-sm text-body-sm text-on-surface-variant border-t border-outline-variant bg-surface-container-lowest">
+                                        Avoid concurrent use with strong CYP3A inhibitors or inducers.
+                                    </div>
+</details>
+<details class="group bg-surface rounded-lg border border-outline-variant overflow-hidden">
+<summary class="font-label-md text-label-md p-sm cursor-pointer hover:bg-surface-variant transition-colors flex justify-between items-center list-none">
+                                        Administration
+                                        <span class="material-symbols-outlined group-open:rotate-180 transition-transform text-[20px]">expand_more</span>
+</summary>
+<div class="p-sm pt-0 font-body-sm text-body-sm text-on-surface-variant border-t border-outline-variant bg-surface-container-lowest">
+                                        Taken orally once daily for 21 consecutive days followed by 7 days off treatment.
+                                    </div>
+</details>
+</div>
+<button class="mt-md w-full h-10 rounded-lg bg-primary text-on-primary font-label-md text-label-md hover:opacity-90 transition-opacity flex items-center justify-center gap-xs shadow-sm"><span class="material-symbols-outlined text-[18px]">edit</span>Edit FAQ</button>
+</div>
+<!-- Artifact 4: Quiz -->
+<div class="bg-gradient-to-br from-surface-container-low to-surface border border-outline-variant rounded-xl p-md flex flex-col h-full relative overflow-hidden">
+<!-- Decorative background element -->
+<div class="absolute -right-8 -top-8 w-32 h-32 bg-secondary/10 rounded-full blur-xl pointer-events-none"></div>
+<div class="flex items-start justify-between mb-sm relative z-10">
+<h3 class="font-headline-md text-headline-md text-on-surface">Interactive Knowledge Quiz</h3>
+<div class="bg-secondary-container text-on-secondary-container px-2 py-1 rounded-full flex items-center gap-1 text-xs font-bold border border-secondary/20">
+<span class="material-symbols-outlined text-[14px]">stars</span>
+                                    Earn 50 Pts
+                                </div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex-1 relative z-10 mb-md">
+                                Test your retention of the clinical data and prescribing guidelines. Required for module certification.
+                            </p>
+<div class="bg-surface-container-highest p-sm rounded-lg mb-md flex items-center gap-md border border-outline-variant/50 relative z-10">
+<div class="flex-1">
+<div class="text-xs text-on-surface-variant mb-1">Estimated Time</div>
+<div class="font-label-md text-on-surface flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">timer</span> 10 Mins</div>
+</div>
+<div class="w-px h-8 bg-outline-variant"></div>
+<div class="flex-1 pl-2">
+<div class="text-xs text-on-surface-variant mb-1">Questions</div>
+<div class="font-label-md text-on-surface flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">format_list_numbered</span> 15 Items</div>
+</div>
+</div>
+<button class="mt-auto w-full h-10 rounded-lg bg-primary text-on-primary font-label-md text-label-md hover:opacity-90 transition-opacity flex items-center justify-center gap-xs shadow-sm relative z-10"><span class="material-symbols-outlined text-[18px]">edit</span>Edit Quiz</button>
+</div>
+</div>
+</div>
+<!-- Right Sidebar (Col 9-12) -->
+<div class="lg:col-span-4 space-y-lg">
+<!-- Progress Card -->
+<!-- Source Information -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md">
+<h3 class="font-headline-md text-headline-md text-on-surface border-b border-outline-variant pb-xs mb-md">Source Information</h3>
+<ul class="space-y-sm">
+<li class="">
+<a class="flex items-center p-sm rounded-lg hover:bg-surface-variant transition-colors group border border-transparent hover:border-outline-variant/50" href="#">
+<div class="w-8 h-8 rounded bg-surface-container-highest flex items-center justify-center mr-md text-primary">
+<span class="material-symbols-outlined text-[18px]">article</span>
+</div>
+<div class="flex-1">
+<div class="font-label-md text-on-surface group-hover:text-primary transition-colors">PubMed Literature</div>
+<div class="font-body-sm text-xs text-on-surface-variant">PALOMA-3 Final Results</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors text-[18px]">open_in_new</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center p-sm rounded-lg hover:bg-surface-variant transition-colors group border border-transparent hover:border-outline-variant/50" href="#">
+<div class="w-8 h-8 rounded bg-surface-container-highest flex items-center justify-center mr-md text-primary">
+<span class="material-symbols-outlined text-[18px]">biotech</span>
+</div>
+<div class="flex-1">
+<div class="font-label-md text-on-surface group-hover:text-primary transition-colors">ClinicalTrials.gov</div>
+<div class="font-body-sm text-xs text-on-surface-variant">Study NCT01942135</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors text-[18px]">open_in_new</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center p-sm rounded-lg hover:bg-surface-variant transition-colors group border border-transparent hover:border-outline-variant/50" href="#">
+<div class="w-8 h-8 rounded bg-surface-container-highest flex items-center justify-center mr-md text-primary">
+<span class="material-symbols-outlined text-[18px]">description</span>
+</div>
+<div class="flex-1">
+<div class="font-label-md text-on-surface group-hover:text-primary transition-colors">Full Prescribing Info</div>
+<div class="font-body-sm text-xs text-on-surface-variant">Updated PDF (v4.2)</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors text-[18px]">download</span>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+
+</body></html>

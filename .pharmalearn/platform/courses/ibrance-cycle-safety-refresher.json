@@ -1,0 +1,490 @@
+{
+  "run_id": "ibrance-cycle-safety-refresher",
+  "version": 2,
+  "status": "published",
+  "comments": [
+    {
+      "id": "79263fa7d1bb",
+      "target": "deck",
+      "severity": "blocking",
+      "body": "Slide 13: Patient Counseling Essentials\nOnly 0% of the recorded supporting quote appears in the stored source document. Treat this citation as unverified until a reviewer confirms it.",
+      "status": "closed",
+      "resolution": "Citation repointed to a source claim whose quote verifies.",
+      "version": 1,
+      "author_id": "pharmalearn-checker",
+      "author_name": "PharmaLearn checker",
+      "author_title": "Automated pre-review",
+      "created_at": "2026-05-31T19:12:00+00:00",
+      "resolved_at": "2026-06-01T12:00:00+00:00",
+      "finding_id": "hcp:deck-13:quote_not_found:Slide 13: Patient Counseling Essentials#3acd2b37",
+      "origin": "automated_check",
+      "check": "quote_not_found",
+      "resolved_by_id": "priya-raman",
+      "resolved_by_name": "Priya Raman",
+      "resolved_by_title": "Medical education lead",
+      "closed_in_version": 2
+    },
+    {
+      "id": "b96bf99fe90e",
+      "target": "faq",
+      "severity": "blocking",
+      "body": "What is the recommended IBRANCE dosing and administration schedule, and does it differ bet\nOnly 12% of the recorded supporting quote appears in the stored source document. Treat this citation as unverified until a reviewer confirms it.",
+      "status": "dismissed",
+      "resolution": "Carried over from the approved parent course; content unchanged.",
+      "version": 1,
+      "author_id": "pharmalearn-checker",
+      "author_name": "PharmaLearn checker",
+      "author_title": "Automated pre-review",
+      "created_at": "2026-05-31T22:12:00+00:00",
+      "resolved_at": "2026-06-01T14:24:00+00:00",
+      "finding_id": "hcp:faq-3:quote_not_found:What is the recommended IBRANCE dosing a#9f9076e1",
+      "origin": "automated_check",
+      "check": "quote_not_found",
+      "override": {
+        "reason": "Adjudicated on the parent course; this cycle reuses it verbatim.",
+        "check": "quote_not_found",
+        "actor_id": "priya-raman",
+        "actor_name": "Priya Raman",
+        "actor_title": "Medical education lead",
+        "at": "2026-08-17T18:43:32.182839+00:00"
+      },
+      "resolved_by_id": "priya-raman",
+      "resolved_by_name": "Priya Raman",
+      "resolved_by_title": "Medical education lead"
+    },
+    {
+      "id": "4f4e02309ffb",
+      "target": "quiz",
+      "severity": "blocking",
+      "body": "Question t1\nCitation \u201cIBRANCE\\, for for oral use\u201d does not match any claim collected during research, so there is no recorded evidence behind it.",
+      "status": "closed",
+      "resolution": "Citation repointed to a source claim whose quote verifies.",
+      "version": 1,
+      "author_id": "pharmalearn-checker",
+      "author_name": "PharmaLearn checker",
+      "author_title": "Automated pre-review",
+      "created_at": "2026-06-01T01:12:00+00:00",
+      "resolved_at": "2026-06-01T16:48:00+00:00",
+      "finding_id": "hcp:quiz-t1:untraceable:Question t1#1d32c231",
+      "origin": "automated_check",
+      "check": "untraceable",
+      "resolved_by_id": "priya-raman",
+      "resolved_by_name": "Priya Raman",
+      "resolved_by_title": "Medical education lead",
+      "closed_in_version": 2
+    },
+    {
+      "id": "fbc742ae2352",
+      "target": "deck",
+      "severity": "blocking",
+      "body": "Slide 16: Unmet Needs, Resistance, and the Adjuvant Setting (Off-Label Context)\nOnly 0% of the recorded supporting quote appears in the stored source document. Treat this citation as unverified until a reviewer confirms it.",
+      "status": "closed",
+      "resolution": "Citation repointed to a source claim whose quote verifies.",
+      "version": 1,
+      "author_id": "pharmalearn-checker",
+      "author_name": "PharmaLearn checker",
+      "author_title": "Automated pre-review",
+      "created_at": "2026-06-01T04:12:00+00:00",
+      "resolved_at": "2026-06-01T19:12:00+00:00",
+      "finding_id": "msl:deck-16:quote_not_found:Slide 16: Unmet Needs, Resistance, and t#0baaf164",
+      "origin": "automated_check",
+      "check": "quote_not_found",
+      "resolved_by_id": "priya-raman",
+      "resolved_by_name": "Priya Raman",
+      "resolved_by_title": "Medical education lead",
+      "closed_in_version": 2
+    },
+    {
+      "id": "7a0bd7eeeadb",
+      "target": "deck",
+      "severity": "major",
+      "body": "Confirm the safety refresher: neutropenia management still matches the current Prescribing Information before this cycle opens.",
+      "status": "closed",
+      "resolution": "Checked against the current label; no wording changes needed.",
+      "version": 1,
+      "author_id": "anil-shekhar",
+      "author_name": "Dr. Anil Shekhar",
+      "author_title": "Therapeutic area expert, oncology",
+      "created_at": "2026-06-01T07:12:00+00:00",
+      "resolved_at": "2026-06-01T21:36:00+00:00",
+      "resolved_by_id": "priya-raman",
+      "resolved_by_name": "Priya Raman",
+      "resolved_by_title": "Medical education lead",
+      "closed_in_version": 2
+    }
+  ],
+  "versions": [
+    {
+      "version": 1,
+      "summary": "Agent-generated first draft",
+      "author_id": "agent",
+      "author_name": "PharmaLearn agent",
+      "addressed": [],
+      "created_at": null
+    },
+    {
+      "version": 2,
+      "summary": "Safety refresher: neutropenia management cycle",
+      "author_id": "priya-raman",
+      "author_name": "Priya Raman",
+      "addressed": [
+        "79263fa7d1bb",
+        "4f4e02309ffb",
+        "fbc742ae2352",
+        "7a0bd7eeeadb"
+      ],
+      "unverified": [],
+      "created_at": "2026-06-02T00:00:00+00:00"
+    }
+  ],
+  "signoffs": [
+    {
+      "id": "6382a59f1755",
+      "version": 2,
+      "decision": "approved",
+      "note": "Clinically current for this cycle.",
+      "author_id": "anil-shekhar",
+      "author_name": "Dr. Anil Shekhar",
+      "author_title": "Therapeutic area expert, oncology",
+      "created_at": "2026-06-02T09:36:00+00:00"
+    },
+    {
+      "id": "b2086610e078",
+      "version": 2,
+      "decision": "approved",
+      "note": "Citations and balance unchanged.",
+      "author_id": "maria-alvarez",
+      "author_name": "Dr. Maria Alvarez",
+      "author_title": "Regulatory and medical affairs",
+      "created_at": "2026-06-02T14:24:00+00:00"
+    }
+  ],
+  "publication": {
+    "version": 2,
+    "published_at": "2026-06-03T00:00:00+00:00",
+    "published_by": "Priya Raman",
+    "overrides": [
+      {
+        "comment_id": "b96bf99fe90e",
+        "severity": "blocking",
+        "target": "faq",
+        "reason": "Adjudicated on the parent course; this cycle reuses it verbatim.",
+        "check": "quote_not_found",
+        "actor_id": "priya-raman",
+        "actor_name": "Priya Raman",
+        "actor_title": "Medical education lead",
+        "at": "2026-08-17T18:43:32.182839+00:00"
+      }
+    ],
+    "starts_on": "2026-06-02",
+    "due_on": "2026-07-16",
+    "message": "Called after a safety signal review. Dose modification and monitoring.",
+    "assignees": [
+      "ken-osei",
+      "lucy-whitfield",
+      "jordan-feld",
+      "sara-nakamura",
+      "tom-becker"
+    ],
+    "notifications": [
+      {
+        "to": "ken.osei@pharmalearn.local",
+        "name": "Dr. Ken Osei",
+        "subject": "Training assigned: complete by 2026-07-16",
+        "sent_at": "2026-06-03T00:00:00+00:00"
+      },
+      {
+        "to": "lucy.whitfield@pharmalearn.local",
+        "name": "Dr. Lucy Whitfield",
+        "subject": "Training assigned: complete by 2026-07-16",
+        "sent_at": "2026-06-03T00:00:00+00:00"
+      },
+      {
+        "to": "jordan.feld@pharmalearn.local",
+        "name": "Jordan Feld",
+        "subject": "Training assigned: complete by 2026-07-16",
+        "sent_at": "2026-06-03T00:00:00+00:00"
+      },
+      {
+        "to": "sara.nakamura@pharmalearn.local",
+        "name": "Sara Nakamura",
+        "subject": "Training assigned: complete by 2026-07-16",
+        "sent_at": "2026-06-03T00:00:00+00:00"
+      },
+      {
+        "to": "tom.becker@pharmalearn.local",
+        "name": "Dr. Tom Becker",
+        "subject": "Training assigned: complete by 2026-07-16",
+        "sent_at": "2026-06-03T00:00:00+00:00"
+      }
+    ]
+  },
+  "audit": [
+    {
+      "id": "ece8f03ae68c",
+      "at": "2026-08-17T18:43:31.653791+00:00",
+      "action": "comment.raised",
+      "actor_id": "pharmalearn-checker",
+      "actor_name": "PharmaLearn checker",
+      "actor_title": "Automated pre-review",
+      "actor_role": "checker",
+      "summary": "PharmaLearn checker raised a blocking comment on deck",
+      "detail": {
+        "comment_id": "79263fa7d1bb",
+        "severity": "blocking",
+        "target": "deck"
+      }
+    },
+    {
+      "id": "6fef2039504d",
+      "at": "2026-08-17T18:43:31.655707+00:00",
+      "action": "comment.raised",
+      "actor_id": "pharmalearn-checker",
+      "actor_name": "PharmaLearn checker",
+      "actor_title": "Automated pre-review",
+      "actor_role": "checker",
+      "summary": "PharmaLearn checker raised a blocking comment on faq",
+      "detail": {
+        "comment_id": "b96bf99fe90e",
+        "severity": "blocking",
+        "target": "faq"
+      }
+    },
+    {
+      "id": "6d89602f93cd",
+      "at": "2026-08-17T18:43:31.656522+00:00",
+      "action": "comment.raised",
+      "actor_id": "pharmalearn-checker",
+      "actor_name": "PharmaLearn checker",
+      "actor_title": "Automated pre-review",
+      "actor_role": "checker",
+      "summary": "PharmaLearn checker raised a blocking comment on quiz",
+      "detail": {
+        "comment_id": "4f4e02309ffb",
+        "severity": "blocking",
+        "target": "quiz"
+      }
+    },
+    {
+      "id": "cfee47555ffc",
+      "at": "2026-08-17T18:43:31.657007+00:00",
+      "action": "comment.raised",
+      "actor_id": "pharmalearn-checker",
+      "actor_name": "PharmaLearn checker",
+      "actor_title": "Automated pre-review",
+      "actor_role": "checker",
+      "summary": "PharmaLearn checker raised a blocking comment on deck",
+      "detail": {
+        "comment_id": "fbc742ae2352",
+        "severity": "blocking",
+        "target": "deck"
+      }
+    },
+    {
+      "id": "6e34b1bef6fe",
+      "at": "2026-08-17T18:43:31.798876+00:00",
+      "action": "comment.resolved",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman marked addressed a blocking comment on deck",
+      "detail": {
+        "comment_id": "79263fa7d1bb",
+        "severity": "blocking",
+        "target": "deck",
+        "was": "open",
+        "now": "addressed",
+        "resolution": "Citation repointed to a source claim whose quote verifies.",
+        "origin": "automated_check",
+        "check": "quote_not_found"
+      }
+    },
+    {
+      "id": "63e43eadb66b",
+      "at": "2026-08-17T18:43:32.182905+00:00",
+      "action": "dismissal.overridden",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman overrode a still-failing quote_not_found check on faq",
+      "detail": {
+        "comment_id": "b96bf99fe90e",
+        "severity": "blocking",
+        "target": "faq",
+        "check": "quote_not_found",
+        "reason": "Adjudicated on the parent course; this cycle reuses it verbatim."
+      }
+    },
+    {
+      "id": "e30a2c79ffe4",
+      "at": "2026-08-17T18:43:32.182938+00:00",
+      "action": "comment.resolved",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman dismissed a blocking comment on faq",
+      "detail": {
+        "comment_id": "b96bf99fe90e",
+        "severity": "blocking",
+        "target": "faq",
+        "was": "open",
+        "now": "dismissed",
+        "resolution": "Carried over from the approved parent course; content unchanged.",
+        "origin": "automated_check",
+        "check": "quote_not_found"
+      }
+    },
+    {
+      "id": "15d3f280bf28",
+      "at": "2026-08-17T18:43:32.321222+00:00",
+      "action": "comment.resolved",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman marked addressed a blocking comment on quiz",
+      "detail": {
+        "comment_id": "4f4e02309ffb",
+        "severity": "blocking",
+        "target": "quiz",
+        "was": "open",
+        "now": "addressed",
+        "resolution": "Citation repointed to a source claim whose quote verifies.",
+        "origin": "automated_check",
+        "check": "untraceable"
+      }
+    },
+    {
+      "id": "9e11c4ca830b",
+      "at": "2026-08-17T18:43:32.459856+00:00",
+      "action": "comment.resolved",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman marked addressed a blocking comment on deck",
+      "detail": {
+        "comment_id": "fbc742ae2352",
+        "severity": "blocking",
+        "target": "deck",
+        "was": "open",
+        "now": "addressed",
+        "resolution": "Citation repointed to a source claim whose quote verifies.",
+        "origin": "automated_check",
+        "check": "quote_not_found"
+      }
+    },
+    {
+      "id": "73b87fbb419d",
+      "at": "2026-08-17T18:43:32.460274+00:00",
+      "action": "comment.raised",
+      "actor_id": "anil-shekhar",
+      "actor_name": "Dr. Anil Shekhar",
+      "actor_title": "Therapeutic area expert, oncology",
+      "actor_role": "reviewer",
+      "summary": "Dr. Anil Shekhar raised a major comment on deck",
+      "detail": {
+        "comment_id": "7a0bd7eeeadb",
+        "severity": "major",
+        "target": "deck"
+      }
+    },
+    {
+      "id": "b1ec569b2809",
+      "at": "2026-08-17T18:43:32.460618+00:00",
+      "action": "comment.resolved",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman marked addressed a major comment on deck",
+      "detail": {
+        "comment_id": "7a0bd7eeeadb",
+        "severity": "major",
+        "target": "deck",
+        "was": "open",
+        "now": "addressed",
+        "resolution": "Checked against the current label; no wording changes needed."
+      }
+    },
+    {
+      "id": "985475b0d8a8",
+      "at": "2026-08-17T18:43:32.721171+00:00",
+      "action": "version.cut",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman cut version 2, closing 4 comment(s)",
+      "detail": {
+        "version": 2,
+        "closed": [
+          "79263fa7d1bb",
+          "4f4e02309ffb",
+          "fbc742ae2352",
+          "7a0bd7eeeadb"
+        ]
+      }
+    },
+    {
+      "id": "20aec25d6158",
+      "at": "2026-08-17T18:43:32.722374+00:00",
+      "action": "signoff.recorded",
+      "actor_id": "anil-shekhar",
+      "actor_name": "Dr. Anil Shekhar",
+      "actor_title": "Therapeutic area expert, oncology",
+      "actor_role": "reviewer",
+      "summary": "Dr. Anil Shekhar recorded approval for v2",
+      "detail": {
+        "version": 2,
+        "decision": "approved",
+        "note": "Clinically current for this cycle."
+      }
+    },
+    {
+      "id": "71f1f3259844",
+      "at": "2026-08-17T18:43:32.723095+00:00",
+      "action": "signoff.recorded",
+      "actor_id": "maria-alvarez",
+      "actor_name": "Dr. Maria Alvarez",
+      "actor_title": "Regulatory and medical affairs",
+      "actor_role": "reviewer",
+      "summary": "Dr. Maria Alvarez recorded approval for v2",
+      "detail": {
+        "version": 2,
+        "decision": "approved",
+        "note": "Citations and balance unchanged."
+      }
+    },
+    {
+      "id": "a7a12e94caf8",
+      "at": "2026-08-17T18:43:32.723773+00:00",
+      "action": "course.published",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman published v2 to 5 trainee(s), due 2026-07-16",
+      "detail": {
+        "version": 2,
+        "starts_on": "2026-06-02",
+        "due_on": "2026-07-16",
+        "assignees": [
+          "ken-osei",
+          "lucy-whitfield",
+          "jordan-feld",
+          "sara-nakamura",
+          "tom-becker"
+        ],
+        "approved_by": [
+          "Dr. Anil Shekhar",
+          "Dr. Maria Alvarez"
+        ],
+        "overrides": 1
+      }
+    }
+  ]
+}

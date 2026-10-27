@@ -1,0 +1,6 @@
+{
+  "verdict": "needs_context",
+  "severity": "minor",
+  "explanation": "Evidence shows population PK data include male and female patients with no clinically important effect of gender, age, or weight, but no cited excerpt explicitly states FDA approval extends to 'adult men and women' as an indication statement.",
+  "suggested_rewrite": "Population pharmacokinetic data (from both male and female patients) show no clinically important effect of age, gender, or body weight on drug exposure; confirm current label indication for applicable patient populations."
+}

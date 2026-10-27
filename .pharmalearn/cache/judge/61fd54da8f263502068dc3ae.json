@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "The evidence attributes contraception guidance to embryo-fetal toxicity/fetal harm risk, not 'genotoxicity.' The term 'genotoxicity' is never mentioned in either verbatim source and is a fabricated mechanistic justification.",
+  "suggested_rewrite": "Replace 'due to potential genotoxicity' with 'due to potential embryo-fetal toxicity/fetal harm' to match the cited evidence."
+}

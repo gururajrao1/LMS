@@ -1,0 +1,6 @@
+{
+  "verdict": "supported",
+  "severity": "minor",
+  "explanation": "All specific instructions (125 mg, 21/7 schedule, food differences by formulation, swallow whole, vomited/missed dose handling, consistent timing) are directly supported by the cited label text and other evidence.",
+  "suggested_rewrite": "No change needed; optionally note IBRANCE is administered in combination with an aromatase inhibitor, fulvestrant, or inavolisib/fulvestrant per approved indications."
+}

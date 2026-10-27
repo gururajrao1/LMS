@@ -1,0 +1,40 @@
+{
+  "schema_version": 2,
+  "drug_id": "eliquis",
+  "source_id": "eliquis-averroes-trial",
+  "fetched_at": "2026-07-13T21:17:24.640633+00:00",
+  "status": "fetched",
+  "access_level": "full_text",
+  "coverage": {
+    "nct": "NCT00496769",
+    "has_results": true,
+    "attachments_found": 0
+  },
+  "warnings": [],
+  "error": null,
+  "registry": {
+    "id": "eliquis-averroes-trial",
+    "kind": "trial_registry",
+    "authority": "ClinicalTrials.gov",
+    "title": "AVERROES",
+    "url": "https://clinicaltrials.gov/study/NCT00496769",
+    "identifiers": {
+      "nct": "NCT00496769"
+    },
+    "required": true,
+    "reason": "Pivotal NVAF study in patients unsuitable for vitamin K antagonist therapy."
+  },
+  "files": [
+    {
+      "path": "raw/study.json",
+      "role": "study_record",
+      "request_url": "https://clinicaltrials.gov/api/v2/studies/NCT00496769",
+      "final_url": "https://clinicaltrials.gov/api/v2/studies/NCT00496769",
+      "content_type": "application/json",
+      "bytes": 435271,
+      "sha256": "1a58b88414c83e0f9f1f80b0eccaddd3a76632bbfd1530bd6968dc072f03cc04",
+      "last_modified": null,
+      "etag": "\"0/0.34.1/mrizrqiw\""
+    }
+  ]
+}

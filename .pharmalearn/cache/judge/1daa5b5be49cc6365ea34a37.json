@@ -1,0 +1,6 @@
+{
+  "verdict": "needs_context",
+  "severity": "minor",
+  "explanation": "The claim that IBRANCE is approved 'in combination with an aromatase inhibitor or fulvestrant' for men is not stated in the provided evidence, which only describes the real-world/postmarketing basis for approval and safety consistency, not the specific combination partners.",
+  "suggested_rewrite": "State the approved combination partners only if sourced from label evidence, or omit the specific combination detail and note approval scope more generally."
+}

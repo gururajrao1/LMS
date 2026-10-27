@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "blocking",
+  "explanation": "The evidence covers only indication and mechanism of action; it contains no data on dosing (125 mg, 21/7 schedule), food instructions, swallowing whole, or missed-dose handling. None of these administration claims are supported by the cited evidence.",
+  "suggested_rewrite": "Cite the Dosage and Administration section (2.1/2.2) of the IBRANCE label as evidence for dosing regimen, food instructions, and missed-dose handling before presenting these specifics."
+}

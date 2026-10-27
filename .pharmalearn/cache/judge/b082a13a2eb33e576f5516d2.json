@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "blocking",
+  "explanation": "Only the half-life (~29h) is evidenced. Bioavailability ~46%, steady-state timing (8 days), accumulation ratio 2.4, capsule/tablet food rules, CYP3A/SULT2A1 metabolism, CYP3A inhibition, and Child-Pugh C dose (75mg) have no supporting evidence provided.",
+  "suggested_rewrite": "Cite PK/dosing data (bioavailability, accumulation ratio, food effect, metabolism enzymes, hepatic impairment dosing) from label Section 12.3/2.3, or remove unsupported specifics."
+}

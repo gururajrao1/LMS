@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "Only the 25% non-response/eventual progression statement matches the evidence. Claims about the PIK3CA companion diagnostic, RB1 loss, cyclin E amplification, Rb-pathway preclinical data, and lack of approved assay are not established by the provided evidence at all.",
+  "suggested_rewrite": "State only that approximately 25% of patients do not respond to CDK4/6 inhibitor plus endocrine therapy and responders eventually progress, per the cited source; omit unevidenced biomarker mechanism claims."
+}

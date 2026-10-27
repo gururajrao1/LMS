@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "Evidence provided covers only PALOMA-2 PFS data; it does not mention PALOMA-1 results or that PALOMA-2 was the regulatory basis for approval. Both claims ('consistent with earlier PALOMA-1' and 'basis for approval') are unsupported by the cited evidence.",
+  "suggested_rewrite": "Remove references to PALOMA-1 reproducibility and regulatory approval basis unless separate evidence is provided; state only the PALOMA-2 PFS results as reported."
+}

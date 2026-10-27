@@ -1,0 +1,48 @@
+{
+  "title": "Ibrance in clinical practice",
+  "subtitle": "Patient selection, dosing, evidence, and monitoring",
+  "audience": "HCP",
+  "slides": [
+    {
+      "number": 1,
+      "title": "Ibrance in clinical practice",
+      "purpose": "Set practical learning objectives",
+      "content": ["Recognize the labeled treatment setting", "Apply the 28-day schedule", "Use label-based monitoring and safety actions"]
+    },
+    {
+      "number": 2,
+      "title": "Start with the labeled HR-positive, HER2-negative setting",
+      "purpose": "Anchor patient identification",
+      "content": ["Adults with HR-positive, HER2-negative advanced or metastatic breast cancer", "Combination regimen depends on treatment setting and prior endocrine therapy", "Confirm the current prescribing information before treatment decisions"],
+      "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Section 1"}]
+    },
+    {
+      "number": 3,
+      "title": "The starting schedule follows a 21-days-on, 7-days-off rhythm",
+      "purpose": "Apply dosing accurately",
+      "content": ["125 mg once daily", "Treat on Days 1–21", "Pause on Days 22–28", "Repeat as a 28-day cycle"],
+      "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Section 2.1"}]
+    },
+    {
+      "number": 4,
+      "title": "CBC monitoring is front-loaded in the first two cycles",
+      "purpose": "Plan routine monitoring",
+      "content": ["Check before starting treatment", "Check at the beginning of every cycle", "Add a Day 15 check during Cycles 1 and 2", "Monitor further as clinically indicated"],
+      "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Section 5.1"}]
+    },
+    {
+      "number": 5,
+      "title": "PALOMA-2 improved PFS; final OS was not statistically significant",
+      "purpose": "Discuss efficacy with balance",
+      "content": ["Median PFS: 24.8 versus 14.5 months", "Use the result in the population and regimen studied", "The prespecified final OS analysis was not statistically significant"],
+      "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Section 14, Table 10"}, {"source_id": "CT-PALOMA2", "locator": "Study results"}]
+    },
+    {
+      "number": 6,
+      "title": "Safe use depends on selection, schedule, monitoring, and response",
+      "purpose": "Close with a practical checklist",
+      "content": ["Confirm the labeled setting", "Explain the 28-day schedule", "Plan CBC monitoring", "Interrupt and evaluate suspected ILD or pneumonitis"],
+      "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Sections 1, 2.1, 5.1, and 5.2"}]
+    }
+  ]
+}

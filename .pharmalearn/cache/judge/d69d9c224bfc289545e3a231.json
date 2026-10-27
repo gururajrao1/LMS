@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "The evidence excerpts only address PFS as primary endpoint; no OS data, secondary-endpoint status, or statistical significance findings for overall survival are provided for either trial to support that claim.",
+  "suggested_rewrite": "Cite OS secondary-endpoint results and significance testing from the trials' overall survival data sections, or remove the OS claim if evidence is unavailable."
+}

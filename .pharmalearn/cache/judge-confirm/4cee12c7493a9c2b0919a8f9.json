@@ -1,0 +1,6 @@
+{
+  "verdict": "supported",
+  "severity": "minor",
+  "explanation": "The cited evidence (grapefruit interaction) does not support this claim, but other evidence in the dossier explicitly confirms the vomit/missed dose guidance verbatim.",
+  "suggested_rewrite": "Cite the correct evidence: 'if a patient vomits or misses a dose, an additional dose should not be taken and the next scheduled dose should be taken at the usual time,' rather than the grapefruit interaction note."
+}

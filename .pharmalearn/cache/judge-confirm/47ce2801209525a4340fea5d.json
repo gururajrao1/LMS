@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "The specific claim that Grade 3 neutropenia occurred in 'roughly 56% of PALOMA-2 patients' is not found in any evidence shown; only a 1.8% febrile neutropenia rate across PALOMA-2/3 is cited. 'Reversible and non-cumulative' also lack direct support.",
+  "suggested_rewrite": "Within two weeks of starting, her CBC shows Grade 3 neutropenia, an early-onset event consistent with IBRANCE's known hematologic toxicity pattern, which is why labeling mandates CBC monitoring at baseline, Day 15 of cycles 1\u20132, and each subsequent cycle start."
+}

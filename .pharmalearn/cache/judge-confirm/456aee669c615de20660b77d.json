@@ -1,0 +1,6 @@
+{
+  "verdict": "overreach",
+  "severity": "minor",
+  "explanation": "All PFS/OS figures match evidence, but the added causal claim that population differences from PALOMA-2 explain the OS differences between trials is not supported by any evidence shown here.",
+  "suggested_rewrite": "Remove or qualify the comparison to PALOMA-2, or note it as speculative: 'This later-line, endocrine-resistant population differs from PALOMA-2's first-line population, though the evidence here does not establish this as the reason for differing OS results.'"
+}

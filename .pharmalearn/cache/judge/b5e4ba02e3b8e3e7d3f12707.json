@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "blocking",
+  "explanation": "Evidence only supports PFS medians (24.8 vs 14.5 months). The HR~0.58, P<0.001, ORR (42.1% vs 34.7%), time-to-chemotherapy (38.1 vs 29.8 months, HR 0.73), and 'no new safety signals' are not established by the provided evidence.",
+  "suggested_rewrite": "Remove or separately source the HR/P-value, ORR, time-to-chemotherapy, and safety-signal claims; retain only the PFS medians (24.8 vs 14.5 months) as supported."
+}

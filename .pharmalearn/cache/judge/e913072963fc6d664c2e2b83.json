@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "blocking",
+  "explanation": "Evidence never provides IC50=11nM, Ki=2nM, 'first-in-class' status, antiestrogen-combination synergy/senescence data, or Rb-deficient/Rb-dependent activity claims. Only supported facts are: in vitro G1-to-S blockade in ER+ cells and Rb dephosphorylation as PD biomarker.",
+  "suggested_rewrite": "State only that palbociclib is a CDK4/6 inhibitor that blocks G1-to-S progression in ER+ cells in vitro, with Rb dephosphorylation as an on-target pharmacodynamic biomarker; omit unsupported potency values and combination/Rb-deficient claims."
+}

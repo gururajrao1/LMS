@@ -1,0 +1,14 @@
+{
+  "title": "Ibrance field medical essentials",
+  "audiences": {
+    "MSL": ["Explain the CDK4/6 mechanism in the context of ER-positive disease", "Describe PALOMA-2 design, endpoints, results, and limitations", "Answer dosing and safety questions using the current label"],
+    "HCP": ["Recognize the labeled treatment setting", "Apply the 21-days-on, 7-days-off schedule", "Recall CBC monitoring and important pulmonary safety actions"]
+  },
+  "asset_roles": {
+    "ppt": "Structured evidence narrative",
+    "video_storyboard": "Case-led visual explanation",
+    "faq": "Point-of-need field reference",
+    "quiz": "Decision and recall practice"
+  }
+}
+

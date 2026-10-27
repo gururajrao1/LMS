@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "blocking",
+  "explanation": "Evidence only states palbociclib reduces ER+ cell line proliferation via G1/S blockade. Detailed claims about CDK4/6 binding, Rb phosphorylation, E2F/DP release, cyclin D1 as ER target, combination synergy with antiestrogens, senescence, and Rb-loss biomarker status are not in the verbatim evidence.",
+  "suggested_rewrite": "State only that in vitro, palbociclib reduced proliferation of ER-positive breast cancer cell lines by blocking G1-to-S phase progression, per the label; omit unevidenced mechanistic and biomarker details."
+}

@@ -1,0 +1,33 @@
+{
+  "title": "Ibrance MSL scientific exchange FAQ",
+  "items": [
+    {
+      "question": "How should I explain the relationship between the mechanism and clinical outcomes?",
+      "answer": "Explain that palbociclib inhibits CDK4 and CDK6 and blocks G1-to-S progression in ER-positive breast cancer cell lines, then discuss clinical outcomes as separate evidence from the relevant trials.",
+      "nuance": "The mechanism supports biological rationale but should not be presented as proof of a particular efficacy outcome.",
+      "escalation": "Escalate requests that ask for a clinical conclusion not evaluated in the available evidence.",
+      "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Section 12.1"}]
+    },
+    {
+      "question": "What is the balanced way to summarize PALOMA-2?",
+      "answer": "Investigator-assessed median PFS was 24.8 months with Ibrance plus letrozole and 14.5 months with placebo plus letrozole. The prespecified final overall-survival analysis was not statistically significant.",
+      "nuance": "State the endpoint, population, regimen, comparator, and analysis before interpreting the result.",
+      "escalation": "Do not convert the PFS finding into an unsupported overall-survival claim.",
+      "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Section 14, Table 10"}, {"source_id": "CT-PALOMA2", "locator": "Study results"}]
+    },
+    {
+      "question": "How should an MSL answer a dosing or monitoring question?",
+      "answer": "Use the current label directly: 125 mg once daily for 21 days followed by 7 days off, with CBC monitoring before treatment, at each cycle start, on Day 15 of Cycles 1 and 2, and as clinically indicated.",
+      "nuance": "Keep the answer tied to the exact patient and regimen being discussed.",
+      "escalation": "Refer patient-specific treatment decisions back to the treating HCP and current prescribing information.",
+      "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Sections 2.1 and 5.1"}]
+    },
+    {
+      "question": "What if the HCP asks a comparative question not answered by a head-to-head trial?",
+      "answer": "State that the available sources do not establish a direct comparison and avoid drawing superiority conclusions across different studies.",
+      "nuance": "Cross-trial populations, endpoints, follow-up, and analysis methods may differ.",
+      "escalation": "Use the approved medical-information process for a documented unsolicited request.",
+      "citations": []
+    }
+  ]
+}

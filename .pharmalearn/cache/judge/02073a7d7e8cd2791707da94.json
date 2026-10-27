@@ -1,0 +1,6 @@
+{
+  "verdict": "needs_context",
+  "severity": "major",
+  "explanation": "Evidence specifies IBRANCE is taken 'in combination with an aromatase inhibitor, fulvestrant, or inavolisib and fulvestrant'\u2014not as monotherapy. The text omits this required combination-therapy context. Also, 'until disease progression or unacceptable toxicity' is not stated in the provided evidence.",
+  "suggested_rewrite": "Add: 'IBRANCE is administered in combination with an aromatase inhibitor, fulvestrant, or inavolisib and fulvestrant, per labeled indication.' Remove or source the progression/toxicity duration claim separately."
+}

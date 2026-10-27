@@ -1,0 +1,12 @@
+{
+  "title": "Ibrance: from cell cycle to clinical practice",
+  "estimated_duration_seconds": 270,
+  "scenes": [
+    {"id": 1, "duration_seconds": 35, "title": "The clinical setting", "narration": "Begin with an adult patient with HR-positive, HER2-negative advanced breast cancer and frame the labeled treatment setting.", "visual": "Clean patient-pathway illustration with receptor status highlighted; no identifiable patient.", "on_screen_text": "Start with biology and treatment setting", "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Section 1"}]},
+    {"id": 2, "duration_seconds": 55, "title": "CDK4/6 and the cell-cycle checkpoint", "narration": "Show how palbociclib inhibits CDK4 and CDK6 and blocks progression from G1 into S phase in ER-positive breast cancer cell lines.", "visual": "Simple G1-to-S cell-cycle animation with the checkpoint paused.", "on_screen_text": "CDK4/6 inhibition → G1 arrest", "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Section 12.1"}]},
+    {"id": 3, "duration_seconds": 55, "title": "What PALOMA-2 measured", "narration": "Explain the randomized comparison and report median PFS of 24.8 versus 14.5 months, while noting that final overall survival was not statistically significant.", "visual": "Two-arm trial layout followed by a restrained PFS comparison.", "on_screen_text": "PFS: 24.8 vs 14.5 months", "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Section 14, Table 10"}, {"source_id": "CT-PALOMA2", "locator": "Study results"}]},
+    {"id": 4, "duration_seconds": 55, "title": "The 28-day rhythm", "narration": "Walk through 21 treatment days followed by 7 days off and connect the schedule to cycle-based monitoring.", "visual": "Twenty-eight-day calendar with treatment and rest days clearly separated.", "on_screen_text": "125 mg: 21 days on, 7 days off", "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Section 2.1"}]},
+    {"id": 5, "duration_seconds": 70, "title": "Monitor and respond", "narration": "Reinforce CBC monitoring, neutropenia awareness, and immediate interruption and evaluation when ILD or pneumonitis is suspected.", "visual": "Monitoring checklist and pulmonary-symptom escalation pathway.", "on_screen_text": "Monitor counts. Act on pulmonary symptoms.", "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Sections 5.1–5.2"}]}
+  ]
+}
+

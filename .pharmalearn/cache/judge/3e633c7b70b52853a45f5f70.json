@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "The evidence only describes the newer inavolisib+fulvestrant indication for PIK3CA-mutated, endocrine-resistant patients. It does not establish the AI-combination or fulvestrant-alone indications, dosing context, or that Mrs. J (treatment-naive) fits any label criteria described.",
+  "suggested_rewrite": "Cite label evidence specifically covering the AI-combination and fulvestrant-alone indications before asserting Mrs. J's eligibility for first-line AI plus Ibrance."
+}

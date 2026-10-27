@@ -1,0 +1,9 @@
+[
+  {
+    "id": "pfizer",
+    "name": "Pfizer",
+    "region": "United States",
+    "jurisdiction": "US",
+    "curriculum": "us_oncology"
+  }
+]

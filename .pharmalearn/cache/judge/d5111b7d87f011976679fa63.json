@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "The evidence never specifies that neutropenia was the leading cause of discontinuation or gives a 59.7% figure; it only reports the 45.1% overall AE-related discontinuation rate without a per-cause breakdown.",
+  "suggested_rewrite": "Remove the claim that neutropenia caused 59.7% of discontinuations, or cite supporting evidence; state only the 45.1% overall AE-related discontinuation rate."
+}

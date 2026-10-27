@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "blocking",
+  "explanation": "Evidence only supports the dose-modification rule and the 1.8% febrile neutropenia/death figures. The 80%/83% incidence rates, two-thirds Grade 3/4 rate, ~15-day median onset, ~7-day median duration, 'non-cumulative,' and 'growth factor not routinely required'/reversibility-without-efficacy-loss claims have no supporting evidence provided.",
+  "suggested_rewrite": "State only that neutropenia is common, dose modification per label is recommended for Grade 3/4, and febrile neutropenia occurred in 1.8% with one PALOMA-3 death; cite separate evidence for other statistics."
+}

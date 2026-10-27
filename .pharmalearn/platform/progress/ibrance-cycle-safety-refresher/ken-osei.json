@@ -1,0 +1,61 @@
+{
+  "run_id": "ibrance-cycle-safety-refresher",
+  "user_id": "ken-osei",
+  "started_at": "2026-08-17T18:43:32.724317+00:00",
+  "modules": {
+    "deck": {
+      "completed_at": "2026-08-17T18:43:32.724753+00:00"
+    },
+    "videos": {
+      "completed_at": "2026-08-17T18:43:32.724925+00:00"
+    }
+  },
+  "attempts": [
+    {
+      "id": "2ff38196b730",
+      "kind": "baseline",
+      "score": 44,
+      "correct": 14,
+      "total": 32,
+      "passing_score": 8,
+      "passed": true,
+      "answers": {
+        "q1": 0,
+        "q2": 1,
+        "q3": 1,
+        "q4": 2,
+        "q5": 2,
+        "q6": 1,
+        "q7": 1,
+        "q8": 3,
+        "q9": 2,
+        "q10": 2,
+        "q11": 1,
+        "q12": 1,
+        "t1": 0,
+        "t2": 0,
+        "t3": 0,
+        "t4": 0,
+        "t5": 0,
+        "t6": 0,
+        "t7": 0,
+        "a1-b1": 1,
+        "a1-b2": 1,
+        "a1-b3": 2,
+        "a2-b1": 2,
+        "a2-b2": 3,
+        "a3-b1": 2,
+        "a3-b2": 2,
+        "a4-b1": 2,
+        "a4-b2": 2,
+        "f1-paloma2-pfs": 1,
+        "f2-paloma2-os": 1,
+        "f3-paloma3-pfs": 0,
+        "f4-neutropenia-grades": 0
+      },
+      "created_at": "2026-08-17T18:43:32.724556+00:00"
+    }
+  ],
+  "certificate": null,
+  "feedback": []
+}

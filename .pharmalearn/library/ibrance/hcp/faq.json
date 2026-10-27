@@ -1,0 +1,33 @@
+{
+  "title": "Ibrance HCP practical FAQ",
+  "items": [
+    {
+      "question": "Which treatment setting is described in the Ibrance label?",
+      "answer": "Ibrance is indicated in specified adults with HR-positive, HER2-negative advanced or metastatic breast cancer in the combination regimens described in the prescribing information.",
+      "nuance": "The regimen depends on the clinical setting and prior endocrine therapy.",
+      "escalation": "Consult the current prescribing information for the complete indication and regimen details.",
+      "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Section 1"}]
+    },
+    {
+      "question": "What is the recommended starting schedule?",
+      "answer": "The recommended starting dose is 125 mg once daily for 21 consecutive days followed by 7 days off treatment, forming a 28-day cycle.",
+      "nuance": "Dose modification and interaction details should be checked in the current label.",
+      "escalation": "Use clinical judgment and the full prescribing information for an individual patient.",
+      "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Section 2.1"}]
+    },
+    {
+      "question": "When should complete blood counts be monitored?",
+      "answer": "Monitor before starting therapy, at the beginning of each cycle, on Day 15 of the first two cycles, and as clinically indicated.",
+      "nuance": "The label contains the complete dose-modification guidance for hematologic toxicity.",
+      "escalation": "Evaluate abnormal results in the context of the patient and current prescribing information.",
+      "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Section 5.1"}]
+    },
+    {
+      "question": "What should happen if ILD or pneumonitis is suspected?",
+      "answer": "Interrupt Ibrance immediately and evaluate the patient. Permanently discontinue Ibrance for severe ILD or pneumonitis.",
+      "nuance": "Prompt evaluation is important when new or worsening pulmonary symptoms occur.",
+      "escalation": "Manage urgent symptoms according to appropriate clinical care pathways.",
+      "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Section 5.2"}]
+    }
+  ]
+}

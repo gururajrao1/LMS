@@ -1,0 +1,6 @@
+{
+  "verdict": "needs_context",
+  "severity": "minor",
+  "explanation": "All quantitative claims (NMA OS results, conflicting ribociclib-OS NMA, real-world PFS/OS, toxicity profile) are supported by evidence, but the specific attribution of the real-world PFS finding to 'PALMARES-2' is not confirmed by any evidence shown\u2014only an unnamed real-world cohort reporting rwPFS results is provided.",
+  "suggested_rewrite": "Replace 'PALMARES-2 favored abemaciclib/ribociclib on real-world PFS' with 'A real-world cohort found abemaciclib and ribociclib associated with better rwPFS vs. palbociclib,' unless the PALMARES-2 citation is independently verified."
+}

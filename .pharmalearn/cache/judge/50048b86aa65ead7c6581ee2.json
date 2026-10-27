@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "blocking",
+  "explanation": "No evidence supports embryo-fetal toxicity, contraception timing (3 weeks/3 months), monitoring for hypoxia/cough/dyspnea, interruption/discontinuation protocol, or postmarketing fatalities claims. Additionally, ILD evidence specifies 'when taken in combination with endocrine therapy,' a qualifier omitted from the text.",
+  "suggested_rewrite": "Cite label sections for embryo-fetal toxicity, contraception duration, monitoring/interruption steps, and postmarketing fatalities; add 'in combination with endocrine therapy' to the ILD/pneumonitis statement."
+}

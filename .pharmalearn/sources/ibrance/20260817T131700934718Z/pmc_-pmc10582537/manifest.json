@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "drug_id": "ibrance",
+  "source_id": "pmc_-pmc10582537",
+  "fetched_at": "2026-08-17T13:17:38.422613+00:00",
+  "status": "fetched",
+  "access_level": "full_text",
+  "coverage": {
+    "pmcid": "PMC10582537"
+  },
+  "warnings": [],
+  "error": null,
+  "registry": {
+    "id": "pmc_-pmc10582537",
+    "kind": "pmc_article",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10582537/",
+    "title": "Efficacy of Limited Dose Modifications for Palbociclib-Related Grade 3 Neutropenia in HR-Positive Metastatic Breast Cancer",
+    "identifiers": {
+      "pmcid": "PMC10582537"
+    }
+  },
+  "files": [
+    {
+      "path": "raw/fulltext.xml",
+      "role": "full_text",
+      "request_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC10582537&retmode=xml",
+      "final_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC10582537&retmode=xml",
+      "content_type": "text/xml; charset=UTF-8",
+      "bytes": 112052,
+      "sha256": "54abfc3942afb6178e4356a0857dcc1edaf0f28d1b6ba4e90cac0ce20049969a",
+      "last_modified": null,
+      "etag": null
+    }
+  ]
+}

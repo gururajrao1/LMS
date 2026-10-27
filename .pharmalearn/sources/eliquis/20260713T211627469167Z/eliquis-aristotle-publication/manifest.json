@@ -1,0 +1,41 @@
+{
+  "schema_version": 2,
+  "drug_id": "eliquis",
+  "source_id": "eliquis-aristotle-publication",
+  "fetched_at": "2026-07-13T21:17:23.750289+00:00",
+  "status": "fetched",
+  "access_level": "abstract_only",
+  "coverage": {
+    "pmid": "21870978",
+    "pmcid": null
+  },
+  "warnings": [],
+  "error": null,
+  "registry": {
+    "id": "eliquis-aristotle-publication",
+    "kind": "peer_reviewed_publication",
+    "authority": "PubMed",
+    "title": "Apixaban versus Warfarin in Patients with Atrial Fibrillation",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/21870978/",
+    "identifiers": {
+      "pmid": "21870978",
+      "doi": "10.1056/NEJMoa1107039",
+      "nct": "NCT00412984"
+    },
+    "required": true,
+    "reason": "Primary ARISTOTLE publication."
+  },
+  "files": [
+    {
+      "path": "raw/pubmed.xml",
+      "role": "pubmed_record",
+      "request_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=21870978&retmode=xml",
+      "final_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=21870978&retmode=xml",
+      "content_type": "text/xml; charset=UTF-8",
+      "bytes": 145705,
+      "sha256": "070808b131231dc9141645fc51ed733ed3f8db0ad34099cce02d8c66b19843ba",
+      "last_modified": null,
+      "etag": null
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+# Knowledge quiz
+
+Return `title`, `passing_score`, and 10–12 `questions`. `passing_score` is the percentage of questions a learner must answer correctly, expressed as an integer between 50 and 100 — never a count of questions. Each question needs `id`, `prompt`, `options`, `correct_index`, `rationale`, `option_rationales`, and `citations`. Both `options` and `option_rationales` must be objects with exactly four fields: `a`, `b`, `c`, and `d`. `correct_index` is 0 for `a`, 1 for `b`, 2 for `c`, or 3 for `d`. Use scenario-based questions where useful. Every correct value must exactly match its cited evidence, only one answer may be correct, and each question may have no more than two strongest citations.

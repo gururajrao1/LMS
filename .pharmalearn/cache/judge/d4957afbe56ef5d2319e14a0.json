@@ -1,0 +1,6 @@
+{
+  "verdict": "supported",
+  "severity": "minor",
+  "explanation": "All figures (n=521, PFS 9.5 vs 4.6 months, HR 0.46 CI 0.36-0.59, OS 34.8 vs 28.0 months, HR 0.81 CI 0.65-0.99, 73.3-month follow-up, OS labeled exploratory/secondary) match the evidence exactly.",
+  "suggested_rewrite": ""
+}

@@ -1,0 +1,10 @@
+{
+  "title": "Ibrance field FAQ",
+  "items": [
+    {"question": "What is the standard Ibrance starting schedule?", "answer": "The labeled starting dose is 125 mg once daily for 21 consecutive days followed by 7 days off, forming a 28-day cycle.", "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Section 2.1"}]},
+    {"question": "How does palbociclib work?", "answer": "Palbociclib inhibits CDK4 and CDK6. In ER-positive breast cancer cell lines, this blocks cell-cycle progression from G1 into S phase.", "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Section 12.1"}]},
+    {"question": "What blood-count monitoring is described in the label?", "answer": "Monitor complete blood counts before starting therapy, at the beginning of each cycle, on Day 15 of the first two cycles, and as clinically indicated.", "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Section 5.1"}]},
+    {"question": "What should happen if ILD or pneumonitis is suspected?", "answer": "The label instructs clinicians to interrupt Ibrance immediately and evaluate the patient; permanently discontinue it for severe ILD or pneumonitis.", "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Section 5.2"}]}
+  ]
+}
+

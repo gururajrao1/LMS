@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "blocking",
+  "explanation": "The evidence contains no data on itraconazole increasing palbociclib AUC by ~87%; only a rifampin-induced 85% decrease in exposure is documented. This specific inhibitor study result is fabricated.",
+  "suggested_rewrite": "Remove the itraconazole ~87% AUC claim; state only that strong CYP3A inhibitors substantially increase palbociclib exposure, per label guidance, without citing an unverified specific percentage."
+}

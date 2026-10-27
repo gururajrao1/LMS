@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "No evidence shown provides INAVO120 PFS data (15.0 vs 7.3 months); only dosing regimen is cited. The PATINA HR and immature OS claims are well supported, but the INAVO120 efficacy figures lack supporting evidence here.",
+  "suggested_rewrite": "For INAVO120, cite the specific PFS outcome data source; if unavailable in evidence set, remove or flag the 15.0 vs 7.3 month figures pending citation of primary trial results."
+}

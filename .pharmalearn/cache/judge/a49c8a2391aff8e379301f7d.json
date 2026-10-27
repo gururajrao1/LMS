@@ -1,0 +1,6 @@
+{
+  "verdict": "needs_context",
+  "severity": "minor",
+  "explanation": "The text characterizes PALLAS as strictly 'node-positive' early-stage disease, but the evidence describes eligibility as early-stage HR+/HER2- patients post-local treatment without specifying node-positive status as a defining criterion.",
+  "suggested_rewrite": "Describe PALLAS as an adjuvant trial in early-stage HR+/HER2- breast cancer patients (not limited to node-positive) rather than specifying 'node-positive' as a defining eligibility feature."
+}

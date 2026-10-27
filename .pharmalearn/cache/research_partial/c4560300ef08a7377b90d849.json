@@ -1,0 +1,308 @@
+{
+  "id": "ibrance-patient-support-tools",
+  "title": "IBRANCE (palbociclib): Patient Support Programs and Practical Tools",
+  "summary": "Pfizer offers a comprehensive patient support ecosystem for IBRANCE (palbociclib) branded \"Pfizer Oncology Together,\" encompassing co-pay savings cards for commercially insured patients, a free Patient Assistance Program for uninsured/underinsured patients, trial vouchers for new starts, benefits verification and prior authorization/appeals support for HCP offices, and non-financial \"Care Champion\" navigation services (transportation, lodging, counseling referrals, and educational materials). Administration and monitoring aids include structured dosing/CBC monitoring schedules embedded in the FDA label and reinforced through Pfizer HCP and patient-facing tools (e.g., a downloadable dosing tracker), reflecting the label's core requirement of complete blood count monitoring at baseline, Day 15 of cycles 1\u20132, and each subsequent cycle start. All financial program details (amounts, eligibility) are drawn from Pfizer/Pfizer Oncology Together promotional and program materials rather than the FDA label, and terms are stated to be subject to change; several sourced figures for the co-pay program's annual maximum are inconsistent across Pfizer's own pages (ranging from $4,000\u2013$10,000 up to $25,000/$10,600 depending on page and date), which should be flagged as a gap requiring verification against the current official terms and conditions at the time of clinical use.",
+  "claims": [
+    {
+      "text": "Pfizer offers Pfizer Oncology Together, a program providing personalized support and free services to patients and caregivers throughout treatment for HR+/HER2- metastatic breast cancer with IBRANCE, including help identifying financial assistance options and connecting patients/caregivers to day-to-day support resources.",
+      "evidence_type": "official Pfizer patient program page",
+      "citations": [
+        {
+          "title": "Financial Support | IBRANCE\u00ae (palbociclib) | Safety Info",
+          "url": "https://www.ibrance.com/financial-support-resources",
+          "locator": "ibrance.com/financial-support-resources",
+          "supporting_text": "Pfizer Oncology TogetherTM is a program that offers personalized support and a range of free services to you and your loved ones throughout treatment for HR+/HER2- metastatic breast cancer with IBRANCE (palbociclib)."
+        }
+      ]
+    },
+    {
+      "text": "Eligible, commercially insured patients may pay as little as $0 per month for their IBRANCE prescription through the Pfizer Oncology Together Co-Pay Savings Program; stated annual savings caps vary across official Pfizer pages, with figures cited as $4,000\u2013$10,000, $10,600 per product, and up to $25,000 depending on the specific program page and version accessed.",
+      "evidence_type": "official Pfizer program page (co-pay card terms)",
+      "citations": [
+        {
+          "title": "Financial Support | IBRANCE\u00ae (palbociclib) | Safety Info",
+          "url": "https://www.ibrance.com/financial-support-resources",
+          "locator": "ibrance.com/financial-support-resources",
+          "supporting_text": "Eligible, commercially insured patients may pay as little as $0 per month for their Pfizer Oncology treatment. Limits, terms, and conditions apply.* Patients may receive up to $4,000-$10,000 in savings annually."
+        },
+        {
+          "title": "Access & Coverage Information | IBRANCE\u00ae (palbociclib)",
+          "url": "https://ibrance.pfizerpro.com/patient-support/access-coverage",
+          "locator": "ibrance.pfizerpro.com/patient-support/access-coverage",
+          "supporting_text": "Eligible, commercially insured patients may pay as little as $0 per month for their Pfizer Oncology treatment. Limits, terms, and conditions apply.* Patients may receive up to $10,600 per product in savings annually."
+        },
+        {
+          "title": "BROAD ACCESS. PERSONALIZED SUPPORT.",
+          "url": "https://mdanderson.cloud-cme.com/assets/mdanderson/pdf/AOCNP%20Exhibits/Pfizer/PP-IBR-USA-3746.pdf",
+          "locator": "PP-IBR-USA-3746.pdf",
+          "supporting_text": "Patients may receive up to $25,000 in savings annually. The offer will be accepted only at participating pharmacies."
+        }
+      ]
+    },
+    {
+      "text": "Patients are not eligible to use the IBRANCE commercial co-pay savings card if they are enrolled in a state or federally funded insurance program, including but not limited to Medicare, Medicaid, TRICARE, Veterans Affairs health care, a state prescription drug assistance program, or the Government Health Insurance Plan available in Puerto Rico.",
+      "evidence_type": "official Pfizer program terms",
+      "citations": [
+        {
+          "title": "Patient Support Services | IBRANCE\u00ae (palbociclib)",
+          "url": "https://ibrance.pfizerpro.com/patient-support/personalized-patient-support",
+          "locator": "ibrance.pfizerpro.com/patient-support/personalized-patient-support",
+          "supporting_text": "Patients are not eligible to use this card if they are enrolled in a state or federally funded insurance program, including but not limited to Medicare, Medicaid, TRICARE, Veterans Affairs health care, a state prescription drug assistance program, or the Government Health Insurance Plan available in Puerto Rico."
+        }
+      ]
+    },
+    {
+      "text": "For patients whose insurance program eligibility bars use of the commercial co-pay card (e.g., Medicare/Medicaid enrollees) or who lack coverage, Pfizer Oncology Together can help identify alternate funding resources such as Medicare Part D Extra Help (Low-Income Subsidy), and if such support is unavailable, may provide IBRANCE for free through the Pfizer Patient Assistance Program, a joint program of Pfizer Inc. and the Pfizer Patient Assistance Foundation (a separate legal entity from Pfizer Inc. with distinct legal restrictions).",
+      "evidence_type": "official Pfizer program page",
+      "citations": [
+        {
+          "title": "Financial Support | IBRANCE\u00ae (palbociclib) | Safety Info",
+          "url": "https://www.ibrance.com/financial-support-resources",
+          "locator": "ibrance.com/financial-support-resources",
+          "supporting_text": "We can assist patients with searching for financial support from alternate funding resources, which may include financial assistance through Extra Help, a Medicare Part D Low-Income Subsidy (LIS) program... If support from alternate funding resources or Medicare Extra Help is not available, Pfizer Oncology Together will see if patients are eligible for the Pfizer Patient Assistance Program"
+        },
+        {
+          "title": "Financial Support | IBRANCE\u00ae (palbociclib) | Safety Info",
+          "url": "https://www.ibrance.com/financial-support-resources",
+          "locator": "ibrance.com/financial-support-resources",
+          "supporting_text": "The Pfizer Patient Assistance Program is a joint program of Pfizer Inc. and the Pfizer Patient Assistance Foundation\u2122. Free medicines from Pfizer are provided through the Pfizer Patient Assistance Foundation\u2122. The Pfizer Patient Assistance Foundation\u2122 is a separate legal entity from Pfizer Inc. with distinct legal restrictions."
+        }
+      ]
+    },
+    {
+      "text": "Pfizer offers a free one-month (21-day) IBRANCE trial voucher for new patients (or patients who need one dose adjustment within 90 days of initiating treatment), which is not itself a prescription and must be accompanied by a valid prescription presented at a participating pharmacy; the voucher explicitly cannot be used to submit claims to Medicare, Medicaid, or other federal/state healthcare programs, and expires 12/31/2026.",
+      "evidence_type": "official Pfizer program terms",
+      "citations": [
+        {
+          "title": "Access & Coverage Information | IBRANCE\u00ae (palbociclib)",
+          "url": "https://ibrance.pfizerpro.com/patient-support/access-coverage",
+          "locator": "ibrance.pfizerpro.com/patient-support/access-coverage",
+          "supporting_text": "Only new IBRANCE patients and patients receiving one dose adjustment within 90 days after initiation of treatment are eligible to use this voucher."
+        },
+        {
+          "title": "Access & Coverage Information | IBRANCE\u00ae (palbociclib)",
+          "url": "https://ibrance.pfizerpro.com/patient-support/access-coverage",
+          "locator": "ibrance.pfizerpro.com/patient-support/access-coverage",
+          "supporting_text": "This 1-month (21-day) voucher is not a prescription for IBRANCE. To continue a patient on therapy, a separate prescription must be written to be filled at a participating pharmacy."
+        },
+        {
+          "title": "Access & Coverage Information | IBRANCE\u00ae (palbociclib)",
+          "url": "https://ibrance.pfizerpro.com/patient-support/access-coverage",
+          "locator": "ibrance.pfizerpro.com/patient-support/access-coverage",
+          "supporting_text": "You must not submit any claim for reimbursement for product dispensed pursuant to this voucher to any third-party payer, including Medicare, Medicaid, or any other federal or state health care program."
+        },
+        {
+          "title": "Access & Coverage Information | IBRANCE\u00ae (palbociclib)",
+          "url": "https://ibrance.pfizerpro.com/patient-support/access-coverage",
+          "locator": "ibrance.pfizerpro.com/patient-support/access-coverage",
+          "supporting_text": "This voucher expires 12/31/2026."
+        }
+      ]
+    },
+    {
+      "text": "For provider offices, Pfizer Oncology Together offers benefits verification (determining insurance coverage and out-of-pocket costs), prior authorization coordination with insurers, and appeals assistance for denied claims by providing information on payer requirements.",
+      "evidence_type": "official Pfizer/third-party reimbursement guide",
+      "citations": [
+        {
+          "title": "ACCC | Pfizer, Inc. Patient Assistance and Reimbursement Guide",
+          "url": "https://www.accc-cancer.org/education-and-resources/patient-assistance-and-reimbursement-guide/companies/pfizer",
+          "locator": "accc-cancer.org Pfizer guide",
+          "supporting_text": "Benefits Verification Pfizer Oncology Together can conduct a benefits verification to determine patients' health insurance coverage and out-of-pocket costs... Prior Authorization Assistance Pfizer Oncology Together will coordinate with a patient's insurer to determine the prior authorization requirements, where and how to submit requests, and typical turnaround times."
+        },
+        {
+          "title": "ACCC | Pfizer, Inc. Patient Assistance and Reimbursement Guide",
+          "url": "https://www.accc-cancer.org/education-and-resources/patient-assistance-and-reimbursement-guide/companies/pfizer",
+          "locator": "accc-cancer.org Pfizer guide",
+          "supporting_text": "Appeals Assistance Pfizer Oncology Together can review the reasons for a denied claim and help with the appeals process by providing information on payer requirements."
+        }
+      ]
+    },
+    {
+      "text": "Pfizer Oncology Together's Care Champions, who have social work experience, connect patients prescribed IBRANCE to non-financial support resources for daily needs, including diagnosis-specific support groups, short-term counseling referral organizations, and independent organizations offering free transportation or lodging assistance for treatment-related appointments to qualifying patients; these services are provided through third-party organizations that operate independently and are not controlled by Pfizer, with eligibility determined solely by those organizations.",
+      "evidence_type": "official Pfizer patient program page",
+      "citations": [
+        {
+          "title": "Patient Support Services | IBRANCE\u00ae (palbociclib)",
+          "url": "https://ibrance.pfizerpro.com/patient-support/personalized-patient-support",
+          "locator": "ibrance.pfizerpro.com/patient-support/personalized-patient-support",
+          "supporting_text": "At Pfizer Oncology Together, our Care Champions, who have social work experience, can connect patients prescribed IBRANCE to resources that may help with some of their daily needs."
+        },
+        {
+          "title": "Patient Support Services | IBRANCE\u00ae (palbociclib)",
+          "url": "https://ibrance.pfizerpro.com/patient-support/personalized-patient-support",
+          "locator": "ibrance.pfizerpro.com/patient-support/personalized-patient-support",
+          "supporting_text": "If patients need assistance with transportation or lodging for treatment-related appointments, we'll connect them to independent organizations that offer these services for free to qualifying patients."
+        },
+        {
+          "title": "Patient Support Resources | IBRANCE\u00ae (palbociclib)",
+          "url": "https://ibrance.pfizerpro.com/patient-support/resources",
+          "locator": "ibrance.pfizerpro.com/patient-support/resources",
+          "supporting_text": "Some services are provided through third-party organizations that operate independently and are not controlled by Pfizer. Availability of services and eligibility requirements are determined solely by these organizations."
+        }
+      ]
+    },
+    {
+      "text": "Pfizer also connects patients to national advocacy organizations for emotional support/disease education and educational materials addressing workplace issues, financial literacy, and nutrition; additional pricing transparency is provided via IBRANCEPricing.com and general healthcare financial planning resources at myhealthcarefinances.com.",
+      "evidence_type": "official Pfizer patient program page",
+      "citations": [
+        {
+          "title": "Financial Support | IBRANCE\u00ae (palbociclib) | Safety Info",
+          "url": "https://www.ibrance.com/financial-support-resources",
+          "locator": "ibrance.com/financial-support-resources",
+          "supporting_text": "National advocacy organizations that may provide emotional support and education about your type of cancer. Educational materials to help with workplace issues, financial literacy, and nutrition."
+        },
+        {
+          "title": "Financial Support | IBRANCE\u00ae (palbociclib) | Safety Info",
+          "url": "https://www.ibrance.com/financial-support-resources",
+          "locator": "ibrance.com/financial-support-resources",
+          "supporting_text": "Additional pricing information can be found at IBRANCEPricing.com. For information on financial planning for healthcare, visit myhealthcarefinances.com."
+        }
+      ]
+    },
+    {
+      "text": "Complete blood count (CBC) monitoring is the only scheduled laboratory monitoring requirement in the current FDA-approved IBRANCE Prescribing Information; ECG, serum electrolyte, or liver enzyme testing are not required by label. Recommended CBC schedule: prior to starting therapy, on Days 1 and 15 of the first 2 cycles, on Day 1 of subsequent cycles, and as clinically indicated; monitoring frequency may decrease to every 3 months (prior to cycle start) for patients with no more than Grade 1-2 neutropenia during the first 6 cycles.",
+      "evidence_type": "FDA label / Pfizer HCP dosing page",
+      "citations": [
+        {
+          "title": "Dose Monitoring During Treatment | IBRANCE\u00ae (palbociclib)",
+          "url": "https://ibrance.pfizerpro.com/dosing/monitoring",
+          "locator": "ibrance.pfizerpro.com/dosing/monitoring",
+          "supporting_text": "Complete blood count (CBC) is the only scheduled monitoring requirement in the current Prescribing Information for IBRANCE."
+        },
+        {
+          "title": "Dose Monitoring During Treatment | IBRANCE\u00ae (palbociclib)",
+          "url": "https://ibrance.pfizerpro.com/dosing/monitoring",
+          "locator": "ibrance.pfizerpro.com/dosing/monitoring",
+          "supporting_text": "Monitor CBCs prior to the start of IBRANCE therapy, on Days 1 and 15 of the first 2 cycles, on Day 1 of subsequent cycles, and as clinically indicated."
+        },
+        {
+          "title": "IBRANCE\u00ae (palbociclib) tablets, for oral use",
+          "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/212436s008lbl.pdf",
+          "locator": "FDA label, Table 2",
+          "supporting_text": "For patients who experience a maximum of Grade 1 or 2 neutropenia in the first 6 cycles, monitor complete blood counts for subsequent cycles every 3 months, prior to the beginning of a... No dose adjustment is required."
+        }
+      ]
+    },
+    {
+      "text": "The label instructs clinicians to inform patients to promptly report any fever, given that dose interruption, reduction, or delay in starting cycles is recommended for patients who develop Grade 3 or 4 neutropenia, and that one death due to neutropenic sepsis was observed in the PALOMA-3 trial.",
+      "evidence_type": "FDA label / Pfizer HCP dosing page",
+      "citations": [
+        {
+          "title": "Dosing & Administration | IBRANCE\u00ae (palbociclib)",
+          "url": "https://ibrance.pfizerpro.com/dosing/administration",
+          "locator": "ibrance.pfizerpro.com/dosing/administration",
+          "supporting_text": "One death due to neutropenic sepsis was observed in PALOMA-3. Inform patients to promptly report any fever."
+        },
+        {
+          "title": "Dosing & Administration | IBRANCE\u00ae (palbociclib)",
+          "url": "https://ibrance.pfizerpro.com/dosing/administration",
+          "locator": "ibrance.pfizerpro.com/dosing/administration",
+          "supporting_text": "Dose interruption, dose reduction, or delay in starting treatment cycles is recommended for patients who develop Grade 3 or 4 neutropenia."
+        }
+      ]
+    },
+    {
+      "text": "IBRANCE patient education (label-derived) instructs patients to take their dose at approximately the same time each day, that capsules must always be taken with food while tablets may be taken with or without food, and that tablets/capsules should be swallowed whole and not chewed, crushed, opened, or split, nor ingested if broken or cracked; if a dose is vomited or missed, an additional dose should not be taken that day and the next scheduled dose should be taken as usual.",
+      "evidence_type": "FDA label / official patient information",
+      "citations": [
+        {
+          "title": "Dosing & Administration | IBRANCE\u00ae (palbociclib)",
+          "url": "https://ibrance.pfizerpro.com/dosing/administration",
+          "locator": "ibrance.pfizerpro.com/dosing/administration",
+          "supporting_text": "IBRANCE capsules should always be taken with food. Patients should be encouraged to take their dose at approximately the same time each day. If the patient vomits or misses a dose, an additional dose should not be taken that day."
+        },
+        {
+          "title": "Dosing & Administration | IBRANCE\u00ae (palbociclib)",
+          "url": "https://ibrance.pfizerpro.com/dosing/administration",
+          "locator": "ibrance.pfizerpro.com/dosing/administration",
+          "supporting_text": "IBRANCE tablets and capsules should be swallowed whole (patients should not chew, crush, open, or split them prior to swallowing). Tablets and capsules should not be ingested if they are broken, cracked, or otherwise not intact."
+        }
+      ]
+    },
+    {
+      "text": "Patient-facing education materials advise avoiding grapefruit, grapefruit juice, and grapefruit products during IBRANCE therapy because they may increase blood levels of the drug, and suggest practical adherence aids such as setting a phone/watch reminder and tracking treatment days on a calendar; a downloadable 'Dosing Tracker' is offered to help patients track IBRANCE and fulvestrant dosing schedules.",
+      "evidence_type": "official Pfizer patient education page",
+      "citations": [
+        {
+          "title": "Taking IBRANCE\u00ae for mBC | IBRANCE\u00ae (palbociclib)| Safety Info",
+          "url": "https://www.ibrance.com/taking-ibrance",
+          "locator": "ibrance.com/taking-ibrance",
+          "supporting_text": "Avoid grapefruit, grapefruit juice, and grapefruit products while on IBRANCE therapy. They may increase the amount of IBRANCE in your blood."
+        },
+        {
+          "title": "Taking IBRANCE\u00ae for mBC | IBRANCE\u00ae (palbociclib)| Safety Info",
+          "url": "https://www.ibrance.com/taking-ibrance",
+          "locator": "ibrance.com/taking-ibrance",
+          "supporting_text": "Try to take IBRANCE at approximately the same time each day. Setting a reminder on your watch or phone may help. Keep track of the days you need to take IBRANCE on a calendar."
+        },
+        {
+          "title": "Taking IBRANCE\u00ae for mBC | IBRANCE\u00ae (palbociclib)| Safety Info",
+          "url": "https://www.ibrance.com/taking-ibrance",
+          "locator": "ibrance.com/taking-ibrance",
+          "supporting_text": "Download this Dosing Tracker to keep track of when to take IBRANCE and fulvestrant."
+        }
+      ]
+    },
+    {
+      "text": "Patient education materials clarify that a complete blood cell count is the only scheduled monitoring requirement for IBRANCE and that patients do not require EKG heart monitoring; patients are advised to notify their healthcare team of the specific days their first and second treatment cycles start so that Day 15 CBC appointments can be scheduled correctly.",
+      "evidence_type": "official Pfizer patient education page",
+      "citations": [
+        {
+          "title": "Taking IBRANCE\u00ae for mBC | IBRANCE\u00ae (palbociclib)| Safety Info",
+          "url": "https://www.ibrance.com/taking-ibrance",
+          "locator": "ibrance.com/taking-ibrance",
+          "supporting_text": "A complete blood cell count is the only scheduled monitoring requirement for IBRANCE. Patients taking IBRANCE do not require EKG heart monitoring."
+        },
+        {
+          "title": "Taking IBRANCE\u00ae for mBC | IBRANCE\u00ae (palbociclib)| Safety Info",
+          "url": "https://www.ibrance.com/taking-ibrance",
+          "locator": "ibrance.com/taking-ibrance",
+          "supporting_text": "Make sure to tell your healthcare team which day you start your first and second cycles, so they can schedule your Day 15 appointment at the right time."
+        }
+      ]
+    },
+    {
+      "text": "IBRANCE is available through Specialty Pharmacy Providers (SPPs), which are pharmacies that handle medicines not typically stocked at regular neighborhood pharmacies; the patient's healthcare team can help identify an SPP that works with the patient's insurance, and SPPs offer additional patient services.",
+      "evidence_type": "official Pfizer patient education page",
+      "citations": [
+        {
+          "title": "Taking IBRANCE\u00ae for mBC | IBRANCE\u00ae (palbociclib)| Safety Info",
+          "url": "https://www.ibrance.com/taking-ibrance",
+          "locator": "ibrance.com/taking-ibrance",
+          "supporting_text": "IBRANCE is available through Specialty Pharmacy Providers (SPPs). SPPs are pharmacies that handle medicines that are often not stocked at regular neighborhood pharmacies. Your healthcare team can help find an SPP that works with your insurance."
+        }
+      ]
+    },
+    {
+      "text": "Independent (non-Pfizer) resources cited in secondary sources for financial assistance include the Patient Access Network (PAN) Foundation, which has been reported to offer eligible applicants funding for breast cancer treatment costs including Ibrance, and government Extra Help (Low-Income Subsidy) for Medicare Part D beneficiaries; these are independent charitable/government programs distinct from Pfizer's own offerings and subject to their own funding availability and eligibility rules.",
+      "evidence_type": "secondary/consumer health source (non-primary)",
+      "citations": [
+        {
+          "title": "How Much Is Ibrance Without Insurance? - GoodRx",
+          "url": "https://www.goodrx.com/ibrance/how-much-is-ibrance-without-insurance",
+          "locator": "goodrx.com Ibrance cost article",
+          "supporting_text": "The Patient Access Network (PAN) Foundation offers eligible applicants up to $2,400 per year in financial assistance for breast cancer treatment."
+        },
+        {
+          "title": "Will insurance pay for the cost of Ibrance?",
+          "url": "https://www.drugs.com/medical-answers/ibrance-cost-3539523/",
+          "locator": "drugs.com medical answer",
+          "supporting_text": "The Extra Help (Low\u2011Income Subsidy) program may lower your premiums and copays if you meet income and resource limits."
+        }
+      ]
+    }
+  ],
+  "gaps": [
+    "Pfizer's own program pages list materially different annual co-pay savings caps for the IBRANCE Co-Pay Savings Program (variously $4,000-$10,000, $10,600 per product, and up to $25,000) depending on the specific page/version and access date; the current, single authoritative cap should be confirmed directly at PfizerOncologyTogether.com/terms at time of use rather than relying on any one cached figure.",
+    "Exact income eligibility threshold (e.g., % of Federal Poverty Level) for the Pfizer Patient Assistance Program specific to IBRANCE was not located in the primary sources retrieved; general Pfizer RxPathways materials cite thresholds (300-400% FPL) for other/multiple products but a IBRANCE-specific FPL cutoff was not confirmed.",
+    "No FDA-approved digital therapeutic, official Pfizer mobile app, or dedicated adherence app specific to IBRANCE was identified in the search results beyond a downloadable PDF 'Dosing Tracker' on ibrance.com; presence/absence of an official Pfizer mobile app should be treated as unconfirmed.",
+    "Independent charitable foundation assistance (e.g., PAN Foundation) figures and availability are subject to frequent change and periodic fund closures; the $2,400/year figure for breast cancer from GoodRx (secondary source) should be independently verified against the foundation's own current disease-fund page, which was not directly queried in this research.",
+    "Precise, current phone numbers/URLs for Pfizer Oncology Together (e.g., 1-877-744-5675 vs. 1-844-9-IBRANCE) appear on different pages for different purposes (general support vs. co-pay card) and should be verified as still active/correct at time of clinical reference."
+  ],
+  "warnings": [
+    "Financial assistance amounts, eligibility rules, and voucher expiration dates are promotional program terms set by Pfizer and are explicitly subject to change or rescission without notice per Pfizer's own disclosures; these are not FDA-approved label content and should not be treated as fixed or guaranteed.",
+    "Several cited pages are Pfizer HCP-facing (pfizerpro.com) marketing/promotional pages that intermix clinical safety information with program details; while useful for identifying available support services, program terms should be confirmed against the official Terms and Conditions page before being communicated to patients.",
+    "Some search results are third-party aggregator/comparison sites (e.g., PrescriberPoint, NowPatient, Simplefill, GoodRx) that explicitly disclaim manufacturer verification of their content; figures from these sources are noted as lower-confidence and were only used where no conflicting primary source was available, and should be corroborated independently.",
+    "One secondary source (Simplefill) referenced an expired copay card program end-date (December 31, 2022) alongside a distinct $25,000 maximum figure, indicating that some cached/aggregator content may be outdated; only current, dated primary sources should be relied upon for patient-facing counseling."
+  ]
+}

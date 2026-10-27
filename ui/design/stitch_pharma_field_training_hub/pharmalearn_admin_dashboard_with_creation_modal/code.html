@@ -1,0 +1,392 @@
+<!DOCTYPE html><html lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>PharmaLearn - Course Library</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                            "surface-container-highest": "#d3e4fe",
+                            "primary-fixed": "#dae2fd",
+                            "surface-tint": "#565e74",
+                            "tertiary-fixed-dim": "#dec29a",
+                            "tertiary-fixed": "#fcdeb5",
+                            "on-secondary-fixed-variant": "#005049",
+                            "surface-container-lowest": "#ffffff",
+                            "inverse-surface": "#213145",
+                            "surface-bright": "#f8f9ff",
+                            "inverse-on-surface": "#eaf1ff",
+                            "surface-container": "#e5eeff",
+                            "surface-variant": "#d3e4fe",
+                            "on-tertiary": "#ffffff",
+                            "inverse-primary": "#bec6e0",
+                            "surface-container-low": "#eff4ff",
+                            "primary-container": "#131b2e",
+                            "on-primary": "#ffffff",
+                            "secondary-fixed-dim": "#6bd8cb",
+                            "error": "#ba1a1a",
+                            "primary": "#000000",
+                            "on-tertiary-fixed-variant": "#574425",
+                            "tertiary-container": "#271901",
+                            "on-primary-container": "#7c839b",
+                            "on-tertiary-container": "#98805d",
+                            "on-surface-variant": "#45464d",
+                            "on-background": "#0b1c30",
+                            "on-secondary-container": "#006f66",
+                            "on-error": "#ffffff",
+                            "surface-container-high": "#dce9ff",
+                            "on-secondary": "#ffffff",
+                            "surface": "#f8f9ff",
+                            "surface-dim": "#cbdbf5",
+                            "secondary-container": "#86f2e4",
+                            "on-secondary-fixed": "#00201d",
+                            "secondary-fixed": "#89f5e7",
+                            "tertiary": "#000000",
+                            "on-error-container": "#93000a",
+                            "outline": "#76777d",
+                            "on-surface": "#0b1c30",
+                            "primary-fixed-dim": "#bec6e0",
+                            "background": "#f8f9ff",
+                            "on-primary-fixed-variant": "#3f465c",
+                            "on-tertiary-fixed": "#271901",
+                            "on-primary-fixed": "#131b2e",
+                            "error-container": "#ffdad6",
+                            "secondary": "#006a61",
+                            "outline-variant": "#c6c6cd"
+                    },
+                    "borderRadius": {
+                            "DEFAULT": "0.125rem",
+                            "lg": "0.25rem",
+                            "xl": "0.5rem",
+                            "full": "0.75rem"
+                    },
+                    "spacing": {
+                            "sm": "8px",
+                            "lg": "24px",
+                            "base": "4px",
+                            "xl": "48px",
+                            "md": "16px",
+                            "xs": "4px",
+                            "gutter": "24px",
+                            "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                            "headline-md": [
+                                    "Geist"
+                            ],
+                            "body-sm": [
+                                    "Inter"
+                            ],
+                            "label-md": [
+                                    "Geist"
+                            ],
+                            "headline-xl": [
+                                    "Geist"
+                            ],
+                            "headline-lg": [
+                                    "Geist"
+                            ],
+                            "label-sm": [
+                                    "Geist"
+                            ],
+                            "body-md": [
+                                    "Inter"
+                            ],
+                            "body-lg": [
+                                    "Inter"
+                            ],
+                            "headline-lg-mobile": [
+                                    "Geist"
+                            ]
+                    },
+                    "fontSize": {
+                            "headline-md": [
+                                    "24px",
+                                    {
+                                            "lineHeight": "32px",
+                                            "fontWeight": "600"
+                                    }
+                            ],
+                            "body-sm": [
+                                    "14px",
+                                    {
+                                            "lineHeight": "20px",
+                                            "fontWeight": "400"
+                                    }
+                            ],
+                            "label-md": [
+                                    "14px",
+                                    {
+                                            "lineHeight": "20px",
+                                            "letterSpacing": "0.05em",
+                                            "fontWeight": "500"
+                                    }
+                            ],
+                            "headline-xl": [
+                                    "40px",
+                                    {
+                                            "lineHeight": "48px",
+                                            "letterSpacing": "-0.02em",
+                                            "fontWeight": "700"
+                                    }
+                            ],
+                            "headline-lg": [
+                                    "32px",
+                                    {
+                                            "lineHeight": "40px",
+                                            "letterSpacing": "-0.01em",
+                                            "fontWeight": "600"
+                                    }
+                            ],
+                            "label-sm": [
+                                    "12px",
+                                    {
+                                            "lineHeight": "16px",
+                                            "fontWeight": "600"
+                                    }
+                            ],
+                            "body-md": [
+                                    "16px",
+                                    {
+                                            "lineHeight": "24px",
+                                            "fontWeight": "400"
+                                    }
+                            ],
+                            "body-lg": [
+                                    "18px",
+                                    {
+                                            "lineHeight": "28px",
+                                            "fontWeight": "400"
+                                    }
+                            ],
+                            "headline-lg-mobile": [
+                                    "24px",
+                                    {
+                                            "lineHeight": "32px",
+                                            "fontWeight": "600"
+                                    }
+                            ]
+                    }
+            },
+                },
+            }
+    </script>
+<style>
+        body { background-color: #f8fafc; } /* Laboratory Gray */
+        .clinical-shadow { box-shadow: 0px 8px 30px rgba(15, 23, 42, 0.08); }
+        .hover-shift { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .hover-shift:hover { transform: translateY(-2px); }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex">
+<!-- SideNavBar (Predicted Component) -->
+<nav class="bg-surface-container-lowest dark:bg-surface-container-lowest text-primary dark:text-primary font-label-md text-label-md h-screen w-64 fixed left-0 top-0 border-r border-outline-variant dark:border-outline-variant z-50 flex flex-col py-lg px-md hidden md:flex">
+<!-- Header -->
+<div class="mb-xl flex items-center gap-sm">
+<img alt="PharmaLearn Logo" class="h-8 w-8 rounded object-cover" data-alt="A highly precise, minimalist logo for a pharmaceutical learning platform. The logo features a stylized helix or modern geometric interpretation of a pill in a sleek, minimalist style. It uses deep clinical blue and medical teal accents against a pure white background, conveying authority, science, and clarity. The overall aesthetic is clean and professional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDP727kv7Y_6UG_WVYKcYzF9qxnsy0O1_JkEKgFADNI5KvIqsjUsbmMhpy5_EIZ59QhNXb_5QfMyQD-EezZtXS7mQ5e57F29orkDtnoa1Q5nxS7-iELzYnhMPtgipeMrUH072NFv-TyQ9vUuB2wapY_fR01vbId6k1YXY36rHvLxSjJraF4T61hDRLB3OpfX8ATSoXKC5cxQdmFkQIbhXgovZw_Ir1fzbUd3n9GYkHwej2Xv6u3ZJrSiBglAAAH3D2YNh3ZcoBeTA5W">
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary">PharmaLearn</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Admin Portal</p>
+</div>
+</div>
+<!-- Navigation Tabs -->
+<ul class="flex-1 space-y-sm">
+<li class="">
+<a class="flex items-center gap-md py-sm px-md rounded-lg text-on-surface-variant hover:text-secondary hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="">Dashboard</span>
+</a>
+</li>
+<li class="">
+<!-- Active Tab: Course Library -->
+<a class="flex items-center gap-md py-sm px-md rounded-lg text-secondary font-bold border-r-4 border-secondary bg-secondary-container/10 opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined" data-icon="library_books" data-weight="fill" style="font-variation-settings: 'FILL' 1;">library_books</span>
+<span class="">Course Library</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-md py-sm px-md rounded-lg text-on-surface-variant hover:text-secondary hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="">User Management</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-md py-sm px-md rounded-lg text-on-surface-variant hover:text-secondary hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="monitoring">monitoring</span>
+<span class="">Analytics</span>
+</a>
+</li>
+</ul>
+<!-- Bottom Actions -->
+<div class="mt-auto space-y-sm">
+<a class="flex items-center gap-md py-sm px-md rounded-lg text-on-surface-variant hover:text-secondary hover:bg-surface-container-low transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="">Settings</span>
+</a>
+<button class="w-full bg-primary text-on-primary py-sm px-md rounded-lg font-label-md flex items-center justify-center gap-sm hover-shift mt-md" onclick="document.getElementById('create-course-modal').classList.remove('hidden')">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+                Create New Course
+            </button>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 md:ml-64 flex flex-col min-h-screen">
+<!-- TopNavBar (Predicted Component) -->
+<header class="bg-surface-bright dark:bg-surface-bright text-primary dark:text-primary font-body-md text-body-md full-width top-0 sticky z-40 border-b border-outline-variant dark:border-outline-variant flex justify-between items-center h-16 px-gutter hidden md:flex">
+<!-- Left: Brand (Mobile Only / Fallback) or Search -->
+<div class="flex items-center gap-lg flex-1">
+<div class="relative w-64 max-w-sm">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-lg font-body-sm text-body-sm focus:outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all" placeholder="Search courses, users..." type="text">
+</div>
+</div>
+<!-- Right: Actions -->
+<div class="flex items-center gap-md">
+<button class="p-sm rounded-full text-on-surface-variant hover:text-secondary hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-sm rounded-full text-on-surface-variant hover:text-secondary hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+<div class="h-6 w-px bg-outline-variant mx-sm"></div>
+<button class="flex items-center gap-sm hover:translate-y-0.5 transition-transform text-primary font-bold">
+<img alt="Administrator Avatar" class="h-8 w-8 rounded-full border border-outline-variant object-cover" data-alt="A professional headshot of a healthcare administrator in a bright, modern clinical office setting. The lighting is soft and natural, emphasizing competence and approachability. The administrator is wearing subtle business casual attire suitable for a modern pharmaceutical tech company. The image is cropped tightly in a circular format." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiZ_nuLnW_ggbCd4R2B-Usy-zCoKTOlkRgHcwFG0Pw9fpMDIluEl3zMtFe6hy_D86kt8WcdLGxQfA2zUbi8tAamBM43OPGpcUaY9n0kuHf5RAvLodb6xuueNwSOEtdrc5wZnLwZ0T6augOoy36LV10_eNxVJMpdzcxgxZQmoVr9LWc_Ok0Qx7S9oeYw5ljHlwl8JhNFrheenJb8G9a4mdF67VMkHS2bVjV6P0cT410Y9tAQq0iBQp3tSZW2atl8ZoGGGPGFZH5XITq">
+<span class="font-label-md text-label-md">Profile</span>
+</button>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-1 p-gutter max-w-container-max mx-auto w-full space-y-xl mt-md">
+<!-- Page Header & Primary Action -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-md border-b border-outline-variant pb-md">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary">Course Library</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-sm">Manage educational modules and track high-level engagement across MSL and HCP segments.</p>
+</div>
+<button class="bg-primary text-on-primary py-2 px-6 rounded-lg font-label-md flex items-center justify-center gap-sm hover-shift h-[48px]" onclick="document.getElementById('create-course-modal').classList.remove('hidden')">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+                    Create New Course
+                </button>
+</div>
+<!-- Summary Stats (Bento Grid Style) -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-md">
+<!-- Stat Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg hover-shift clinical-shadow flex flex-col justify-between">
+<div class="flex justify-between items-start mb-md">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Total Active Courses</h3>
+<span class="material-symbols-outlined text-secondary bg-secondary-container/20 p-xs rounded">dataset</span>
+</div>
+<div class="flex items-end gap-sm">
+<span class="font-headline-xl text-headline-xl text-primary">42</span>
+<span class="font-label-sm text-label-sm text-secondary bg-secondary-container/20 px-2 py-1 rounded mb-1 flex items-center"><span class="material-symbols-outlined text-[12px]">arrow_upward</span> +3 this month</span>
+</div>
+</div>
+<!-- Stat Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg hover-shift flex flex-col justify-between relative overflow-hidden">
+
+<div class="flex justify-between items-start mb-md relative z-10">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Total MSL Enrolled</h3>
+</div>
+<div class="flex flex-col relative z-10">
+<span class="font-headline-xl text-headline-xl text-primary">1,248</span>
+<div class="w-full bg-surface-container-low h-2 rounded mt-sm overflow-hidden">
+<div class="bg-primary-container h-full rounded w-[75%]"></div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-1">75% of target</span>
+</div>
+</div>
+<!-- Stat Card 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg hover-shift flex flex-col justify-between relative overflow-hidden">
+
+<div class="flex justify-between items-start mb-md relative z-10">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Total HCP Enrolled</h3>
+</div>
+<div class="flex flex-col relative z-10">
+<span class="font-headline-xl text-headline-xl text-primary">8,930</span>
+<div class="w-full bg-surface-container-low h-2 rounded mt-sm overflow-hidden">
+<div class="bg-secondary h-full rounded w-[60%]"></div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-1">60% of target</span>
+</div>
+</div>
+<!-- Stat Card 4 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg hover-shift clinical-shadow flex flex-col justify-between"><div class="flex justify-between items-start mb-md"><h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Avg. Completion Rate</h3><span class="material-symbols-outlined text-secondary bg-secondary-container/20 p-xs rounded">done_all</span></div><div class="flex items-end gap-sm"><span class="font-headline-xl text-headline-xl text-primary">87%</span><span class="font-label-sm text-label-sm text-secondary bg-secondary-container/20 px-2 py-1 rounded mb-1">Across all segments</span></div></div>
+</section><section class="space-y-md">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-md text-headline-md text-primary">Active Courses</h3>
+<button class="text-secondary font-label-md hover:underline">View All</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-md pb-sm">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md hover-shift clinical-shadow flex items-center gap-md">
+<div class="w-12 h-12 rounded-lg bg-primary-container flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined">pill</span>
+</div>
+<div>
+<h4 class="font-bold text-primary">Ibrance</h4>
+<p class="text-body-sm text-on-surface-variant">Updated 2d ago</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md hover-shift clinical-shadow flex items-center gap-md">
+<div class="w-12 h-12 rounded-lg bg-secondary flex items-center justify-center text-on-secondary">
+<span class="material-symbols-outlined">vaccines</span>
+</div>
+<div>
+<h4 class="font-bold text-primary">Eliquis</h4>
+<p class="text-body-sm text-on-surface-variant">Active • 450 Enrolled</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md hover-shift clinical-shadow flex items-center gap-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">biotech</span>
+</div>
+<div>
+<h4 class="font-bold text-primary">Vyndaqel</h4>
+<p class="text-body-sm text-on-surface-variant">Draft • Reviewing</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md hover-shift clinical-shadow flex items-center gap-md">
+<div class="w-12 h-12 rounded-lg bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined">medication</span>
+</div>
+<div>
+<h4 class="font-bold text-primary">Xeljanz</h4>
+<p class="text-body-sm text-on-surface-variant">Active • 890 Enrolled</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+<div class="fixed inset-0 z-[100] flex items-center justify-center bg-primary/40 backdrop-blur-sm hidden" id="create-course-modal" onclick="if(event.target === this) this.classList.add('hidden')">
+<div class="bg-surface-container-lowest w-full max-w-md rounded-xl clinical-shadow overflow-hidden">
+<div class="p-lg border-b border-outline-variant flex justify-between items-center">
+<div><h3 class="font-headline-md text-headline-md text-primary">Create New Training Course</h3><p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Search for a drug to begin automated clinical artifact generation.</p></div>
+<button class="p-xs rounded-full hover:bg-surface-container-low" onclick="document.getElementById('create-course-modal').classList.add('hidden')">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="p-lg space-y-lg">
+<div class="space-y-sm">
+<label class="font-label-md text-label-md text-on-surface-variant">Search &amp; Preparation</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-lg font-body-sm text-body-sm focus:outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all" placeholder="Search drug, e.g., Ibrance" type="text">
+</div>
+</div>
+<div class="space-y-sm"><p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Recent Searches</p><div class="flex flex-wrap gap-2"><button class="px-3 py-1 rounded-full bg-surface-container-low border border-outline-variant text-body-sm hover:bg-secondary-container/20 transition-colors">Ibrance</button><button class="px-3 py-1 rounded-full bg-surface-container-low border border-outline-variant text-body-sm hover:bg-secondary-container/20 transition-colors">Eliquis</button><button class="px-3 py-1 rounded-full bg-surface-container-low border border-outline-variant text-body-sm hover:bg-secondary-container/20 transition-colors">Keytruda</button></div></div><div class="flex flex-col gap-sm">
+<a href="#" class="w-full bg-primary text-on-primary py-3 rounded-lg font-label-md flex items-center justify-center gap-sm hover-shift" onclick="window.location.href='?screen_id=SCREEN_12'"><span class="material-symbols-outlined">auto_awesome</span>Prepare Content</a>
+<button class="w-full py-2 text-on-surface-variant font-label-md hover:text-primary" onclick="document.getElementById('create-course-modal').classList.add('hidden')">
+                    Cancel
+                </button>
+</div>
+</div>
+</div>
+</div>
+
+</body></html>

@@ -1,0 +1,6 @@
+{
+  "verdict": "overreach",
+  "severity": "major",
+  "explanation": "Evidence only addresses safety-profile data from real-world/postmarketing sources; it says nothing about efficacy being extrapolated or about 'biological rationale.' The specific year '2019' and efficacy-extrapolation claim are not established by the cited evidence.",
+  "suggested_rewrite": "State that only safety data (not efficacy) were extrapolated from real-world and postmarketing sources; omit the unverified '2019' date and 'biological rationale' unless separately sourced."
+}

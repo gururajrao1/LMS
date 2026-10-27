@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "The evidence provided supports 'no significant OS difference' via NMAs, but does NOT include or corroborate a second NMA finding ribociclib favored, nor PALMARES-2 PFS results, nor a US claims analysis on treatment duration. These specific named studies/findings are absent from all evidence shown.",
+  "suggested_rewrite": "Multiple network meta-analyses of RCTs (e.g., pooling PALOMA, MONALEESA, MONARCH trials) consistently found no statistically significant OS difference among palbociclib, ribociclib, and abemaciclib, despite differing significance within individual trials. All comparisons remain indirect, as no head-to-head RCT exists; real-world data are limited to what is verified in the dossier."
+}

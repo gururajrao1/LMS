@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "drug_id": "ibrance",
+  "source_id": "pmc_-pmc4924326",
+  "fetched_at": "2026-08-17T13:17:16.456635+00:00",
+  "status": "fetched",
+  "access_level": "full_text",
+  "coverage": {
+    "pmcid": "PMC4924326"
+  },
+  "warnings": [],
+  "error": null,
+  "registry": {
+    "id": "pmc_-pmc4924326",
+    "kind": "pmc_article",
+    "url": "https://ncbi.nlm.nih.gov/pmc/articles/PMC4924326",
+    "title": "Efficacy and safety of palbociclib in combination with letrozole as first-line treatment... expanded analyses of subgroups from PALOMA-1/TRIO-18 - PMC",
+    "identifiers": {
+      "pmcid": "PMC4924326"
+    }
+  },
+  "files": [
+    {
+      "path": "raw/fulltext.xml",
+      "role": "full_text",
+      "request_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC4924326&retmode=xml",
+      "final_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC4924326&retmode=xml",
+      "content_type": "text/xml; charset=UTF-8",
+      "bytes": 104713,
+      "sha256": "b96208eba957f6e3b9c020dc44353125406f75f4775aeb99679a5ae37ce79148",
+      "last_modified": null,
+      "etag": null
+    }
+  ]
+}

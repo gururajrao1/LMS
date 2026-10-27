@@ -1,0 +1,6 @@
+{
+  "verdict": "needs_context",
+  "severity": "minor",
+  "explanation": "Hepatic dosing, CYP3A inhibitor/inducer, and grapefruit guidance are well supported. However, the neutropenia claim generalizes 'Grade 3 or 4' and 'delay in starting a cycle' without evidence explicitly covering Grade 4 or cycle-start delay specifics beyond the Grade 3 withhold/resume rule shown.",
+  "suggested_rewrite": "Withhold IBRANCE for Grade 3 neutropenia until recovery to Grade \u22642, then resume at a lower dose; consult full labeling for Grade 4 and cycle-delay guidance."
+}

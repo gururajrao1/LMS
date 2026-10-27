@@ -1,0 +1,106 @@
+{
+  "title": "IBRANCE (palbociclib) Triage Board: Dose Action or No Change",
+  "instruction": "For each clinical finding, sort it according to whether the IBRANCE label or pivotal-trial evidence directs holding or reducing the dose, or continuing treatment at the current dose unchanged.",
+  "buckets": {
+    "a": "Hold or reduce the Ibrance dose",
+    "b": "Continue Ibrance at current dose"
+  },
+  "items": [
+    {
+      "id": "t1",
+      "prompt": "Grade 3 neutropenia recurring on Day 1 of a new 28-day treatment cycle.",
+      "correct_index": 0,
+      "rationale": "The label's hematologic dose-modification guidance requires withholding IBRANCE for Grade 3 (or recurrent Grade 3) neutropenia on Day 1 of a cycle until recovery to Grade \u22642, then resuming at the next lower dose.",
+      "citations": [
+        {
+          "title": "Dose Modifications for Adverse Reactions | IBRANCE\u00ae (palbociclib)",
+          "url": "https://ibrance.pfizerpro.com/dosing/modifications",
+          "locator": "Neutropenia dose modification guidance"
+        },
+        {
+          "title": "IBRANCE\u00ae (palbociclib) capsules, for oral use",
+          "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/207103s021,212436s009lbl.pdf",
+          "locator": "Table 2 - Dose Modification for Hematologic Toxicities"
+        }
+      ]
+    },
+    {
+      "id": "t2",
+      "prompt": "Grade 1 or 2 neutropenia persisting through the first six treatment cycles, patient asymptomatic.",
+      "correct_index": 1,
+      "rationale": "For patients with no more than Grade 1-2 neutropenia through the first 6 cycles, the label calls only for CBC monitoring every 3 months, with no dose adjustment required.",
+      "citations": [
+        {
+          "title": "IBRANCE\u00ae (palbociclib) tablets, for oral use",
+          "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/212436s008lbl.pdf",
+          "locator": "FDA label, Table 2"
+        }
+      ]
+    },
+    {
+      "id": "t3",
+      "prompt": "Child-Pugh class B (moderate) hepatic impairment identified before starting therapy.",
+      "correct_index": 1,
+      "rationale": "The label states no dose adjustment is required for mild or moderate hepatic impairment; only severe (Child-Pugh C) impairment triggers a dose change, a threshold stricter oncology intuition would miss.",
+      "citations": [
+        {
+          "title": "full prescribing information for IBRANCE",
+          "url": "https://labeling.pfizer.com/showlabeling.aspx?id=2191",
+          "locator": "Dosage and Administration / Specific Populations"
+        }
+      ]
+    },
+    {
+      "id": "t4",
+      "prompt": "Child-Pugh class C (severe) hepatic impairment identified before starting therapy.",
+      "correct_index": 0,
+      "rationale": "For Child-Pugh class C (severe) hepatic impairment, the label reduces the recommended starting dose from 125 mg to 75 mg once daily on the same 21/7 schedule.",
+      "citations": [
+        {
+          "title": "full prescribing information for IBRANCE - Pfizer labeling",
+          "url": "https://labeling.pfizer.com/showlabeling.aspx?id=2191",
+          "locator": "Section 2.2 / 8.6, Hepatic Impairment"
+        }
+      ]
+    },
+    {
+      "id": "t5",
+      "prompt": "New cough with normal oxygen saturation, suspected to reflect drug-related pneumonitis.",
+      "correct_index": 0,
+      "rationale": "The label directs that any new or worsening respiratory symptom suspected to be pneumonitis \u2014 even a mild, non-hypoxic cough \u2014 requires immediate interruption of IBRANCE for evaluation, regardless of severity.",
+      "citations": [
+        {
+          "title": "IBRANCE (palbociclib) capsules label, 2025",
+          "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/207103s021,212436s009lbl.pdf",
+          "locator": "Warnings and Precautions, ILD/Pneumonitis"
+        }
+      ]
+    },
+    {
+      "id": "t6",
+      "prompt": "No objective tumor response at first restaging scan, read by the oncologist as treatment failure.",
+      "correct_index": 1,
+      "rationale": "An exploratory PALOMA-2 analysis showed PFS was significantly prolonged with palbociclib plus letrozole regardless of whether patients achieved an objective response, so absence of response alone, without progression, does not itself change management.",
+      "citations": [
+        {
+          "title": "Progression-free Survival Outcome Is Independent of Objective Response... Analysis From PALOMA-2 - ScienceDirect",
+          "url": "https://www.sciencedirect.com/science/article/pii/S1526820919306688",
+          "locator": "Results"
+        }
+      ]
+    },
+    {
+      "id": "t7",
+      "prompt": "Creatinine clearance of 20 mL/min identified in a patient about to start therapy.",
+      "correct_index": 1,
+      "rationale": "The label requires no dose adjustment for any degree of renal impairment down to CrCl 15 mL/min, so CrCl 20 mL/min falls within the unmodified-dose range despite sounding like significant renal impairment.",
+      "citations": [
+        {
+          "title": "full prescribing information for IBRANCE",
+          "url": "https://labeling.pfizer.com/showlabeling.aspx?id=2191",
+          "locator": "Dosage and Administration / Specific Populations"
+        }
+      ]
+    }
+  ]
+}

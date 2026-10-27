@@ -1,0 +1,13 @@
+{
+  "course_id": "ibrance",
+  "status": "completed",
+  "drug": {"brand": "Ibrance", "generic": "Palbociclib", "manufacturer": "Pfizer", "area": "Oncology"},
+  "assets": [
+    {"type": "ppt", "title": "Clinical presentation", "file": "ibrance-training.pptx", "downloadable": true},
+    {"type": "video_storyboard", "title": "Mechanism and practice storyboard", "file": "video_storyboard.json"},
+    {"type": "faq", "title": "Field FAQ", "file": "faq.json"},
+    {"type": "quiz", "title": "Interactive knowledge quiz", "file": "quiz.json"}
+  ],
+  "citation_count": 16,
+  "warning_count": 0
+}

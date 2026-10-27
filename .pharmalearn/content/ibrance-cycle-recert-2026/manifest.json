@@ -1,0 +1,45 @@
+{
+  "course_id": "ibrance",
+  "status": "completed",
+  "drug": {
+    "brand": "Ibrance",
+    "generic": "palbociclib",
+    "manufacturer": "Pfizer",
+    "area": "Oncology \u2013 HR-positive/HER2-negative (and HER2-positive maintenance) breast cancer"
+  },
+  "learners": [
+    "msl",
+    "hcp"
+  ],
+  "assets": [
+    {
+      "type": "ppt",
+      "title": "Clinical presentation",
+      "file": "ibrance-training.pptx",
+      "downloadable": true
+    },
+    {
+      "type": "video_storyboard",
+      "title": "Storyboard",
+      "file": "video_storyboard.json"
+    },
+    {
+      "type": "faq",
+      "title": "FAQ",
+      "file": "faq.json"
+    },
+    {
+      "type": "quiz",
+      "title": "Knowledge quiz",
+      "file": "quiz.json"
+    }
+  ],
+  "citation_count": 341,
+  "warning_count": 7,
+  "run_id": "ibrance-cycle-recert-2026",
+  "generated_at": "2026-03-01T00:00:00+00:00",
+  "cost_usd": 0.0,
+  "program_title": "Annual recertification",
+  "program_summary": "Yearly sign-off that the field team is current on the label.",
+  "reuses": "ibrance-20260715T084025801360Z"
+}

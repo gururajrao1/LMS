@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "The evidence provided does not support the claims that neutropenia is 'non-cumulative' or the specific CBC monitoring schedule (before starting, Day 15 of cycles 1-2, each subsequent cycle) and dose interrupt/reduce guidance\u2014none of these appear in the cited sources.",
+  "suggested_rewrite": "Remove 'non-cumulative' and the specific monitoring schedule/dose-modification instructions unless sourced from the product label's dosing and administration section."
+}

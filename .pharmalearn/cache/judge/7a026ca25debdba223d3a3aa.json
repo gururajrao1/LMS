@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "The PATINA investigator-assessed PFS HR of 0.76 (95% CI 0.59-0.97) and the statement that OS data were 'immature at time of approval' are not present in the provided evidence, which only describes trial design and approval scope.",
+  "suggested_rewrite": "Cite the specific PATINA PFS HR and OS maturity status only if sourced from verified trial results; otherwise omit these figures until confirmed by Prescribing Information."
+}

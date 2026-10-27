@@ -1,0 +1,410 @@
+schema_version = 1
+jurisdiction = "US"
+reviewed_on = "2026-07-14"
+
+[policy]
+scope = "A fixed, course-specific evidence set for Pfizer portfolio training."
+source_priority = ["current_fda_label", "fda_review_or_safety", "trial_registry", "peer_reviewed_publication", "us_guideline"]
+conflict_rule = "The current FDA-approved label controls approved use, dosing, contraindications, warnings, and adverse reactions."
+label_rule = "Select the NDA holder or manufacturer label; exclude repackager labels."
+literature_rule = "Use named pivotal or required safety studies only; do not run an unbounded literature search."
+guideline_rule = "Use one current US professional-society guideline for the course indication."
+faers_rule = "FAERS may identify a signal to review, but must not support incidence, comparison, or causality claims."
+completion_rule = "Every generated factual claim must cite one registered source or be marked unsupported."
+
+[services.dailymed]
+documentation = "https://dailymed.nlm.nih.gov/dailymed/app-support-web-services.cfm"
+retrieval = "API v2 plus the selected Set ID's XML, PDF, and version history"
+
+[services.drugs_at_fda]
+documentation = "https://www.fda.gov/drugs/drug-approvals-and-databases/drugsfda-data-files"
+retrieval = "Official application record and linked FDA review documents"
+
+[services.openfda]
+documentation = "https://open.fda.gov/apis/drug/drugsfda/"
+retrieval = "Structured Drugs@FDA record by exact NDA application number"
+
+[services.clinical_trials]
+documentation = "https://clinicaltrials.gov/data-api/about-api"
+retrieval = "API v2 by exact NCT ID"
+
+[services.pubmed]
+documentation = "https://www.ncbi.nlm.nih.gov/books/NBK25500/"
+retrieval = "NCBI E-utilities by exact PMID"
+
+[[drugs]]
+id = "ibrance"
+brand = "Ibrance"
+generic = "palbociclib"
+manufacturer = "Pfizer"
+course_scope = "HR-positive, HER2-negative locally advanced or metastatic breast cancer"
+
+[[drugs.sources]]
+id = "ibrance-label-tablet"
+kind = "current_fda_label"
+authority = "DailyMed"
+title = "IBRANCE palbociclib tablet, film coated"
+url = "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=fecbdd7d-b729-41b5-9872-231b8fe104ce"
+identifiers = { set_id = "fecbdd7d-b729-41b5-9872-231b8fe104ce", spl_version = "13", nda = "212436" }
+required = true
+reason = "Current Pfizer tablet label; use for approved claims and formulation-specific instructions."
+
+[[drugs.sources]]
+id = "ibrance-label-capsule"
+kind = "current_fda_label"
+authority = "DailyMed"
+title = "IBRANCE palbociclib capsule"
+url = "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e0e6412f-50b4-4fd4-9364-62818d121a07"
+identifiers = { set_id = "e0e6412f-50b4-4fd4-9364-62818d121a07", spl_version = "24", nda = "207103" }
+required = true
+reason = "Current Pfizer capsule label; capsule and tablet instructions are not interchangeable."
+
+[[drugs.sources]]
+id = "ibrance-fda-capsule"
+kind = "fda_application"
+authority = "FDA"
+title = "IBRANCE capsule application record"
+url = "https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=207103"
+identifiers = { nda = "207103" }
+required = true
+reason = "Approval history and FDA review trail for the capsule formulation."
+
+[[drugs.sources]]
+id = "ibrance-fda-tablet"
+kind = "fda_application"
+authority = "FDA"
+title = "IBRANCE tablet application record"
+url = "https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=212436"
+identifiers = { nda = "212436" }
+required = true
+reason = "Approval history and FDA review trail for the tablet formulation."
+
+[[drugs.sources]]
+id = "ibrance-paloma2-trial"
+kind = "trial_registry"
+authority = "ClinicalTrials.gov"
+title = "PALOMA-2"
+url = "https://clinicaltrials.gov/study/NCT01740427"
+identifiers = { nct = "NCT01740427" }
+required = true
+reason = "Pivotal first-line aromatase-inhibitor combination study."
+
+[[drugs.sources]]
+id = "ibrance-paloma2-publication"
+kind = "peer_reviewed_publication"
+authority = "PubMed"
+title = "Palbociclib plus Letrozole as First-Line Therapy in Estrogen-Receptor-Positive, HER2-Negative Advanced Breast Cancer"
+url = "https://pubmed.ncbi.nlm.nih.gov/27959613/"
+identifiers = { pmid = "27959613", doi = "10.1056/NEJMoa1607303", nct = "NCT01740427" }
+required = true
+reason = "Primary PALOMA-2 efficacy publication."
+
+[[drugs.sources]]
+id = "ibrance-paloma3-trial"
+kind = "trial_registry"
+authority = "ClinicalTrials.gov"
+title = "PALOMA-3"
+url = "https://clinicaltrials.gov/study/NCT01942135"
+identifiers = { nct = "NCT01942135" }
+required = true
+reason = "Pivotal fulvestrant combination study after endocrine progression."
+
+[[drugs.sources]]
+id = "ibrance-paloma3-publication"
+kind = "peer_reviewed_publication"
+authority = "PubMed"
+title = "Palbociclib in Hormone-Receptor-Positive Advanced Breast Cancer"
+url = "https://pubmed.ncbi.nlm.nih.gov/26030518/"
+identifiers = { pmid = "26030518", doi = "10.1056/NEJMoa1505270", nct = "NCT01942135" }
+required = true
+reason = "Primary PALOMA-3 publication."
+
+[[drugs.sources]]
+id = "ibrance-inavo120-trial"
+kind = "trial_registry"
+authority = "ClinicalTrials.gov"
+title = "INAVO120"
+url = "https://clinicaltrials.gov/study/NCT04191499"
+identifiers = { nct = "NCT04191499" }
+required = true
+reason = "Supports the current inavolisib plus palbociclib plus fulvestrant indication."
+
+[[drugs.sources]]
+id = "ibrance-inavo120-publication"
+kind = "peer_reviewed_publication"
+authority = "PubMed"
+title = "Inavolisib-Based Therapy in PIK3CA-Mutated Advanced Breast Cancer"
+url = "https://pubmed.ncbi.nlm.nih.gov/39476340/"
+identifiers = { pmid = "39476340", doi = "10.1056/NEJMoa2404625", nct = "NCT04191499" }
+required = true
+reason = "Primary INAVO120 publication linked to the current label."
+
+[[drugs.sources]]
+id = "ibrance-asco-guideline"
+kind = "us_guideline"
+authority = "ASCO"
+title = "Endocrine Treatment and Targeted Therapy for HR-Positive, HER2-Negative Metastatic Breast Cancer"
+url = "https://ascopubs.org/doi/10.1200/JCO.21.01392"
+identifiers = { pmid = "34324367", doi = "10.1200/JCO.21.01392" }
+required = true
+reason = "US professional guidance for clinical context; the FDA label still controls approved-use claims."
+
+[[drugs]]
+id = "eliquis"
+brand = "Eliquis"
+generic = "apixaban"
+manufacturer = "Bristol Myers Squibb and Pfizer"
+course_scope = "Reduction of stroke and systemic embolism risk in nonvalvular atrial fibrillation"
+
+[[drugs.sources]]
+id = "eliquis-label"
+kind = "current_fda_label"
+authority = "DailyMed"
+title = "ELIQUIS apixaban tablet, film coated"
+url = "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e9481622-7cc6-418a-acb6-c5450daae9b0"
+identifiers = { set_id = "e9481622-7cc6-418a-acb6-c5450daae9b0", spl_version = "30", nda = "202155" }
+required = true
+reason = "Current manufacturer label; repackager labels are excluded."
+
+[[drugs.sources]]
+id = "eliquis-fda"
+kind = "fda_application"
+authority = "FDA"
+title = "ELIQUIS adult tablet application record"
+url = "https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=202155"
+identifiers = { nda = "202155" }
+required = true
+reason = "Adult approval history and FDA review documents for the scoped NVAF course."
+
+[[drugs.sources]]
+id = "eliquis-aristotle-trial"
+kind = "trial_registry"
+authority = "ClinicalTrials.gov"
+title = "ARISTOTLE"
+url = "https://clinicaltrials.gov/study/NCT00412984"
+identifiers = { nct = "NCT00412984" }
+required = true
+reason = "Pivotal apixaban-versus-warfarin NVAF study."
+
+[[drugs.sources]]
+id = "eliquis-aristotle-publication"
+kind = "peer_reviewed_publication"
+authority = "PubMed"
+title = "Apixaban versus Warfarin in Patients with Atrial Fibrillation"
+url = "https://pubmed.ncbi.nlm.nih.gov/21870978/"
+identifiers = { pmid = "21870978", doi = "10.1056/NEJMoa1107039", nct = "NCT00412984" }
+required = true
+reason = "Primary ARISTOTLE publication."
+
+[[drugs.sources]]
+id = "eliquis-averroes-trial"
+kind = "trial_registry"
+authority = "ClinicalTrials.gov"
+title = "AVERROES"
+url = "https://clinicaltrials.gov/study/NCT00496769"
+identifiers = { nct = "NCT00496769" }
+required = true
+reason = "Pivotal NVAF study in patients unsuitable for vitamin K antagonist therapy."
+
+[[drugs.sources]]
+id = "eliquis-averroes-publication"
+kind = "peer_reviewed_publication"
+authority = "PubMed"
+title = "Apixaban in Patients with Atrial Fibrillation"
+url = "https://pubmed.ncbi.nlm.nih.gov/21309657/"
+identifiers = { pmid = "21309657", doi = "10.1056/NEJMoa1007432", nct = "NCT00496769" }
+required = true
+reason = "Primary AVERROES publication."
+
+[[drugs.sources]]
+id = "eliquis-acc-guideline"
+kind = "us_guideline"
+authority = "ACC/AHA/ACCP/HRS"
+title = "2023 Guideline for the Diagnosis and Management of Atrial Fibrillation"
+url = "https://www.acc.org/Guidelines/Guidelines/2023/11/30/12/05/Atrial-Fibrillation-2023-Guideline"
+required = true
+reason = "Current US professional guidance for NVAF place in therapy."
+
+[[drugs]]
+id = "vyndaqel"
+brand = "Vyndaqel and Vyndamax"
+generic = "tafamidis meglumine and tafamidis"
+manufacturer = "Pfizer"
+course_scope = "Wild-type or hereditary transthyretin-mediated amyloid cardiomyopathy in adults"
+
+[[drugs.sources]]
+id = "vyndaqel-label"
+kind = "current_fda_label"
+authority = "DailyMed"
+title = "VYNDAQEL tafamidis meglumine capsule and VYNDAMAX tafamidis capsule"
+url = "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1b4121ee-a733-4456-a917-be2603477839"
+identifiers = { set_id = "1b4121ee-a733-4456-a917-be2603477839", spl_version = "15", ndas = "211996,212161" }
+required = true
+reason = "Current Pfizer label for both products and their non-substitutable dose forms."
+
+[[drugs.sources]]
+id = "vyndaqel-fda"
+kind = "fda_application"
+authority = "FDA"
+title = "VYNDAQEL application record"
+url = "https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=211996"
+identifiers = { nda = "211996" }
+required = true
+reason = "Approval history and FDA review trail for tafamidis meglumine."
+
+[[drugs.sources]]
+id = "vyndamax-fda"
+kind = "fda_application"
+authority = "FDA"
+title = "VYNDAMAX application record"
+url = "https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=212161"
+identifiers = { nda = "212161" }
+required = true
+reason = "Approval history and FDA review trail for tafamidis."
+
+[[drugs.sources]]
+id = "vyndaqel-attr-act-trial"
+kind = "trial_registry"
+authority = "ClinicalTrials.gov"
+title = "ATTR-ACT"
+url = "https://clinicaltrials.gov/study/NCT01994889"
+identifiers = { nct = "NCT01994889" }
+required = true
+reason = "Pivotal ATTR-CM study."
+
+[[drugs.sources]]
+id = "vyndaqel-attr-act-publication"
+kind = "peer_reviewed_publication"
+authority = "PubMed"
+title = "Tafamidis Treatment for Patients with Transthyretin Amyloid Cardiomyopathy"
+url = "https://pubmed.ncbi.nlm.nih.gov/30145929/"
+identifiers = { pmid = "30145929", doi = "10.1056/NEJMoa1805689", nct = "NCT01994889" }
+required = true
+reason = "Primary ATTR-ACT publication."
+
+[[drugs.sources]]
+id = "vyndaqel-acc-guidance"
+kind = "us_guideline"
+authority = "ACC"
+title = "2025 Concise Clinical Guidance: Transthyretin Cardiac Amyloidosis"
+url = "https://www.acc.org/Guidelines/Guidelines/2025/10/31/12/53/Transthyretin-Cardiac-Amyloidosis-Concise-Clinical-Guidance"
+identifiers = { doi = "10.1016/j.jacc.2025.09.004" }
+required = true
+reason = "Current US professional guidance for ATTR-CM diagnosis and management context."
+
+[[drugs]]
+id = "prevnar"
+brand = "Prevnar 20"
+generic = "pneumococcal 20-valent conjugate vaccine"
+manufacturer = "Wyeth Pharmaceuticals, a Pfizer company"
+course_scope = "Adult pneumococcal vaccination with Prevnar 20"
+
+[[drugs.sources]]
+id = "prevnar-label"
+kind = "current_fda_label"
+authority = "DailyMed"
+title = "PREVNAR 20 pneumococcal 20-valent conjugate vaccine"
+url = "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=d4e2cf51-e6a8-4103-bb1d-6120c6474ff8"
+identifiers = { set_id = "d4e2cf51-e6a8-4103-bb1d-6120c6474ff8", spl_version = "11", application = "BLA125731" }
+required = true
+reason = "Current manufacturer label for approved uses, administration, safety, and clinical studies."
+
+[[drugs.sources]]
+id = "prevnar-fda"
+kind = "fda_application"
+authority = "FDA"
+title = "PREVNAR 20 FDA product and supporting documents"
+url = "https://www.fda.gov/vaccines-blood-biologics/vaccines/prevnar-20"
+identifiers = { application = "BLA125731" }
+required = true
+reason = "FDA approval letters, reviews, and summary basis for regulatory action."
+
+[[drugs.sources.artifacts]]
+name = "package-insert.pdf"
+role = "package_insert"
+url = "https://www.fda.gov/media/149987/download?attachment="
+
+[[drugs.sources.artifacts]]
+name = "clinical-review-2021.pdf"
+role = "clinical_review"
+url = "https://www.fda.gov/media/150459/download?attachment="
+
+[[drugs.sources.artifacts]]
+name = "clinical-review-2023.pdf"
+role = "clinical_review"
+url = "https://www.fda.gov/media/169126/download?attachment="
+
+[[drugs.sources.artifacts]]
+name = "statistical-review-2023.pdf"
+role = "statistical_review"
+url = "https://www.fda.gov/media/169128/download?attachment="
+
+[[drugs.sources.artifacts]]
+name = "approval-letter-2023.pdf"
+role = "approval_letter"
+url = "https://www.fda.gov/media/167637/download?attachment="
+
+[[drugs.sources.artifacts]]
+name = "approval-letter-2022.pdf"
+role = "approval_letter"
+url = "https://www.fda.gov/media/162042/download?attachment="
+
+[[drugs.sources.artifacts]]
+name = "approval-letter-2021.pdf"
+role = "approval_letter"
+url = "https://www.fda.gov/media/150021/download?attachment="
+
+[[drugs.sources.artifacts]]
+name = "summary-basis-regulatory-action-2021.pdf"
+role = "regulatory_summary"
+url = "https://www.fda.gov/media/150388/download?attachment="
+
+[[drugs.sources]]
+id = "prevnar-pivotal-adult-trial"
+kind = "trial_registry"
+authority = "ClinicalTrials.gov"
+title = "Pivotal adult Prevnar 20 phase 3 study"
+url = "https://clinicaltrials.gov/study/NCT03760146"
+identifiers = { nct = "NCT03760146" }
+required = true
+reason = "Main adult safety and immune-response study supporting initial approval."
+
+[[drugs.sources]]
+id = "prevnar-pivotal-adult-publication"
+kind = "peer_reviewed_publication"
+authority = "PubMed"
+title = "Pivotal Phase 3 Randomized Clinical Trial of 20-Valent Pneumococcal Conjugate Vaccine in Adults"
+url = "https://pubmed.ncbi.nlm.nih.gov/34940806/"
+identifiers = { pmid = "34940806", pmcid = "PMC9427137", doi = "10.1093/cid/ciab990", nct = "NCT03760146" }
+required = true
+reason = "Primary publication for the pivotal adult study."
+
+[[drugs.sources]]
+id = "prevnar-prior-vaccination-trial"
+kind = "trial_registry"
+authority = "ClinicalTrials.gov"
+title = "Prevnar 20 study in previously vaccinated older adults"
+url = "https://clinicaltrials.gov/study/NCT03835975"
+identifiers = { nct = "NCT03835975" }
+required = true
+reason = "Supports use in older adults with different prior pneumococcal vaccination histories."
+
+[[drugs.sources]]
+id = "prevnar-prior-vaccination-publication"
+kind = "peer_reviewed_publication"
+authority = "PubMed"
+title = "Safety and Immunogenicity of Prevnar 20 in Previously Vaccinated Adults 65 Years and Older"
+url = "https://pubmed.ncbi.nlm.nih.gov/34839993/"
+identifiers = { pmid = "34839993", doi = "10.1016/j.vaccine.2021.10.032", nct = "NCT03835975" }
+required = true
+reason = "Primary publication for the prior-vaccination study."
+
+[[drugs.sources]]
+id = "prevnar-cdc-guidance"
+kind = "us_guideline"
+authority = "CDC"
+title = "Pneumococcal Vaccine Recommendations"
+url = "https://www.cdc.gov/pneumococcal/hcp/vaccine-recommendations/index.html"
+webpage_access_level = "full_text"
+required = true
+reason = "Current US age- and risk-based pneumococcal vaccination recommendations for healthcare professionals."

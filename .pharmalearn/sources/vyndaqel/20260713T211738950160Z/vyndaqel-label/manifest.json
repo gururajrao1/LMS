@@ -1,0 +1,160 @@
+{
+  "schema_version": 2,
+  "drug_id": "vyndaqel",
+  "source_id": "vyndaqel-label",
+  "fetched_at": "2026-07-13T21:17:47.883082+00:00",
+  "status": "fetched",
+  "access_level": "full_text",
+  "coverage": {
+    "set_id": "1b4121ee-a733-4456-a917-be2603477839"
+  },
+  "warnings": [],
+  "error": null,
+  "registry": {
+    "id": "vyndaqel-label",
+    "kind": "current_fda_label",
+    "authority": "DailyMed",
+    "title": "VYNDAQEL tafamidis meglumine capsule and VYNDAMAX tafamidis capsule",
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1b4121ee-a733-4456-a917-be2603477839",
+    "identifiers": {
+      "set_id": "1b4121ee-a733-4456-a917-be2603477839",
+      "spl_version": "15",
+      "ndas": "211996,212161"
+    },
+    "required": true,
+    "reason": "Current Pfizer label for both products and their non-substitutable dose forms."
+  },
+  "files": [
+    {
+      "path": "raw/label.zip",
+      "role": "label_package",
+      "request_url": "https://dailymed.nlm.nih.gov/dailymed/downloadzipfile.cfm?setId=1b4121ee-a733-4456-a917-be2603477839",
+      "final_url": "https://dailymed.nlm.nih.gov/dailymed/downloadzipfile.cfm?setId=1b4121ee-a733-4456-a917-be2603477839",
+      "content_type": "application/zip",
+      "bytes": 1014955,
+      "sha256": "0680cefa5a3481b03b6f8ab3457acca0f17fe41fd0f9adb0e94d97874dc9e1a9",
+      "last_modified": null,
+      "etag": null
+    },
+    {
+      "path": "raw/label.pdf",
+      "role": "label_pdf",
+      "request_url": "https://dailymed.nlm.nih.gov/dailymed/downloadpdffile.cfm?setId=1b4121ee-a733-4456-a917-be2603477839",
+      "final_url": "https://dailymed.nlm.nih.gov/dailymed/downloadpdffile.cfm?setId=1b4121ee-a733-4456-a917-be2603477839",
+      "content_type": "application/pdf",
+      "bytes": 1287306,
+      "sha256": "1eb2e36cec6b9da5caf5e27a9b26a7e21a8b4ffa8215b75b9d56915903997787",
+      "last_modified": null,
+      "etag": null
+    },
+    {
+      "path": "raw/history.json",
+      "role": "version_history",
+      "request_url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls/1b4121ee-a733-4456-a917-be2603477839/history.json",
+      "final_url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls/1b4121ee-a733-4456-a917-be2603477839/history.json",
+      "content_type": "application/json",
+      "bytes": 1418,
+      "sha256": "103e1a0b4f7ded477ed6e937d54f8777dd92cd7512d02098727f1e49a7369822",
+      "last_modified": null,
+      "etag": null
+    },
+    {
+      "path": "raw/spl.xml",
+      "role": "label_xml",
+      "origin": "raw/label.zip",
+      "bytes": 144172,
+      "sha256": "d02c10e675487616ff616d07a300dc474d2eb4a4a2424faf7813a4de38fda649"
+    },
+    {
+      "path": "raw/images/Fig-2.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 42248,
+      "sha256": "50fbcf9a5f502fa6e664e045e4a8e1376b4268d4be30fa34459611ecae92515a"
+    },
+    {
+      "path": "raw/images/Figure-3.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 61347,
+      "sha256": "7e8d40d5e6e64ddc75b871e62400591b3ec6860f7f91756e64c88ff01b995bbf"
+    },
+    {
+      "path": "raw/images/tafamidis-01.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 11202,
+      "sha256": "acca89934c797c31bea3b0f6a19f8c5f8b0ccf9a571e9e390d1931ea651f2ec4"
+    },
+    {
+      "path": "raw/images/tafamidis-02.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 6422,
+      "sha256": "bc6b7925c25b44bd7d9f11e25033bbe360d7fb4037cc00651776866c22a9e584"
+    },
+    {
+      "path": "raw/images/tafamidis-03.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 48765,
+      "sha256": "8a7e5ca0f65e2ec6ff00b7931db45161e706464e31df41fee573aa8dc642d311"
+    },
+    {
+      "path": "raw/images/tafamidis-06.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 58112,
+      "sha256": "b3025a4b3d81ffed9e7977024249fe77b0593cbb6b948eae160429e7a5711b8d"
+    },
+    {
+      "path": "raw/images/tafamidis-07.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 6693,
+      "sha256": "56af42988cadb6e2501aa0ab0f6031048a6c0d63fb3c47ad8e2d68ff10f0256e"
+    },
+    {
+      "path": "raw/images/tafamidis-08.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 6693,
+      "sha256": "56af42988cadb6e2501aa0ab0f6031048a6c0d63fb3c47ad8e2d68ff10f0256e"
+    },
+    {
+      "path": "raw/images/tafamidis-09.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 193029,
+      "sha256": "89c5403a0adb57560f8e9468ea09febb5252cba494812adc2ad05c7d3e51eacc"
+    },
+    {
+      "path": "raw/images/tafamidis-10.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 109687,
+      "sha256": "f401d9fe925dcd7c69921e2fc6db37338f62ad7aaaba8e4f114380d0d0fe6aa5"
+    },
+    {
+      "path": "raw/images/tafamidis-11.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 280176,
+      "sha256": "6b2d33b2c35962f3a8b5de4e49e9171154243338ff32bee348e4b35f1685a61f"
+    },
+    {
+      "path": "raw/images/tafamidis-12.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 190740,
+      "sha256": "25578098175ad5a31c26d110910f0ffd7cf67e75a9be47af2d600689ec03c880"
+    },
+    {
+      "path": "raw/images/tafamidis-13.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 126801,
+      "sha256": "20ffee30faf10a05321aa3e6f9e2b656e724fe5b095dfb405470f9d29213d731"
+    }
+  ]
+}

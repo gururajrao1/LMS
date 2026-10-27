@@ -1,0 +1,118 @@
+{
+  "schema_version": 2,
+  "drug_id": "prevnar",
+  "source_id": "prevnar-label",
+  "fetched_at": "2026-07-13T21:25:42.171031+00:00",
+  "status": "fetched",
+  "access_level": "full_text",
+  "coverage": {
+    "set_id": "d4e2cf51-e6a8-4103-bb1d-6120c6474ff8"
+  },
+  "warnings": [],
+  "error": null,
+  "registry": {
+    "id": "prevnar-label",
+    "kind": "current_fda_label",
+    "authority": "DailyMed",
+    "title": "PREVNAR 20 pneumococcal 20-valent conjugate vaccine",
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=d4e2cf51-e6a8-4103-bb1d-6120c6474ff8",
+    "identifiers": {
+      "set_id": "d4e2cf51-e6a8-4103-bb1d-6120c6474ff8",
+      "spl_version": "11",
+      "application": "BLA125731"
+    },
+    "required": true,
+    "reason": "Current manufacturer label for approved uses, administration, safety, and clinical studies."
+  },
+  "files": [
+    {
+      "path": "raw/label.zip",
+      "role": "label_package",
+      "request_url": "https://dailymed.nlm.nih.gov/dailymed/downloadzipfile.cfm?setId=d4e2cf51-e6a8-4103-bb1d-6120c6474ff8",
+      "final_url": "https://dailymed.nlm.nih.gov/dailymed/downloadzipfile.cfm?setId=d4e2cf51-e6a8-4103-bb1d-6120c6474ff8",
+      "content_type": "application/zip",
+      "bytes": 428974,
+      "sha256": "3739b63e686bb9ba7bba205bf70ffd3e02ea6e44f719ff262a553adde000e8bd",
+      "last_modified": null,
+      "etag": null
+    },
+    {
+      "path": "raw/label.pdf",
+      "role": "label_pdf",
+      "request_url": "https://dailymed.nlm.nih.gov/dailymed/downloadpdffile.cfm?setId=d4e2cf51-e6a8-4103-bb1d-6120c6474ff8",
+      "final_url": "https://dailymed.nlm.nih.gov/dailymed/downloadpdffile.cfm?setId=d4e2cf51-e6a8-4103-bb1d-6120c6474ff8",
+      "content_type": "application/pdf",
+      "bytes": 677150,
+      "sha256": "dbc2890461db55723d053a31763e68e5d821cd3151281efb3c5fbdc866306953",
+      "last_modified": null,
+      "etag": null
+    },
+    {
+      "path": "raw/history.json",
+      "role": "version_history",
+      "request_url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls/d4e2cf51-e6a8-4103-bb1d-6120c6474ff8/history.json",
+      "final_url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls/d4e2cf51-e6a8-4103-bb1d-6120c6474ff8/history.json",
+      "content_type": "application/json",
+      "bytes": 1084,
+      "sha256": "3a33585a6cacd3cee0bf9b1c271fca2e7873d05c2d942947f43a03a9f95425b3",
+      "last_modified": null,
+      "etag": null
+    },
+    {
+      "path": "raw/spl.xml",
+      "role": "label_xml",
+      "origin": "raw/label.zip",
+      "bytes": 590852,
+      "sha256": "0687f2b54eace38474b164d03f98d8e1aa5b08e593e9760912e518170f59fc7d"
+    },
+    {
+      "path": "raw/images/prevnar-01.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 11438,
+      "sha256": "e2b420186206d9623bdcd8aa19280c02ff1a40de332dc412a91746887a7d4656"
+    },
+    {
+      "path": "raw/images/prevnar-02.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 7584,
+      "sha256": "11e692636dd19479d3051924c3c1ded40371b2d4d06486b088fdaf2b7dae24d2"
+    },
+    {
+      "path": "raw/images/prevnar-03.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 5528,
+      "sha256": "21308b9d41b71a66594843aeea48babaecdb4ed03b304e65861ab29cbd047ae3"
+    },
+    {
+      "path": "raw/images/prevnar-04.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 12889,
+      "sha256": "d782002fee726ad86d0e6f0f906c22e9022c199403f08ca8d743a7916916a87a"
+    },
+    {
+      "path": "raw/images/prevnar-05.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 38039,
+      "sha256": "4e4361d2945987025275a29cdcac75ab710be464162c5641aff1821353a8ffbc"
+    },
+    {
+      "path": "raw/images/prevnar-06.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 159455,
+      "sha256": "899e953647114252a95c25bcd8ae32c2c7ee6a78182865545cb014a62d245fe2"
+    },
+    {
+      "path": "raw/images/prevnar-07.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 209895,
+      "sha256": "ef5c880406b8ae64f1408b626541b088b60cc76613c6d6117eedeaf32e253593"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "limit_usd": 8.0,
+  "spent_usd": 0.014842,
+  "unknown_cost_attempts": 0,
+  "billing_status": "recorded",
+  "calls": [
+    {
+      "attempt_id": "attempt-0001",
+      "label": "chat hcp",
+      "stage": "chat",
+      "status": "completed",
+      "cost_status": "recorded",
+      "preflight_input_tokens": 2291,
+      "max_output_tokens": 1500,
+      "started_at": "2026-08-20T10:11:08.332663+00:00",
+      "cost_usd": 0.014842,
+      "input_tokens": 2291,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 1026,
+      "web_searches": 0,
+      "finished_at": "2026-08-20T10:11:20.525839+00:00"
+    },
+    {
+      "label": "chat hcp",
+      "stage": "chat hcp",
+      "status": "cached",
+      "cost_status": "recorded",
+      "local_cache_hit": true,
+      "path": "/Users/adypd/code/fun/clairlabs/poc/training/.pharmalearn/cache/chat/c409e7e7168dae6eca77f04f.json",
+      "cost_usd": 0
+    }
+  ]
+}

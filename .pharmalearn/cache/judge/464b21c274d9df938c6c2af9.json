@@ -1,0 +1,6 @@
+{
+  "verdict": "overreach",
+  "severity": "major",
+  "explanation": "Evidence is limited to in vitro cell-line data, but the text asserts the mechanism as established fact in Mrs. J's actual tumor. It also adds unsupported specifics (RB protein phosphorylation, CDK4/6 dysregulation downstream of ER activation) not present in the cited evidence.",
+  "suggested_rewrite": "Note that this mechanism is based on in vitro studies in ER-positive cell lines; RB phosphorylation and ER-CDK4/6 pathway details should be sourced from label pharmacology sections, not implied as directly observed in Mrs. J."
+}

@@ -1,0 +1,6 @@
+{
+  "verdict": "supported",
+  "severity": "minor",
+  "explanation": "All specific figures (45.1% discontinuation, 59.7% neutropenia, 25% non-response, no adjuvant approval, no validated biomarker) are directly matched by cited and background evidence. The escalation instruction is a procedural note, not a factual claim requiring evidence.",
+  "suggested_rewrite": "No change needed; content is consistent with the evidence provided."
+}

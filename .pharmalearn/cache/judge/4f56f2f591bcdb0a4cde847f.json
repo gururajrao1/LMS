@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "blocking",
+  "explanation": "The claim of a 'separate network meta-analysis (including dalpiciclib)' showing ribociclib significantly improves OS vs. palbociclib has no supporting evidence provided. Similarly, all toxicity claims (neutropenia, GI toxicity, diarrhea, discontinuation/death) lack any evidentiary basis in the record.",
+  "suggested_rewrite": "Remove the dalpiciclib NMA claim and toxicity comparisons unless evidence is supplied, or cite specific sources establishing these differential OS and toxicity/discontinuation findings."
+}

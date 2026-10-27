@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "Evidence supports grapefruit avoidance and 'do not breastfeed' but gives no timeframe; the specific '3 weeks after last dose' figure is unsupported. Also no evidence provided for timing consistency, food instructions, contraception, or AE-reporting claims.",
+  "suggested_rewrite": "State 'do not breastfeed during treatment' without specifying a post-treatment duration unless label evidence for that timeframe is cited; verify other counseling points against label sections."
+}

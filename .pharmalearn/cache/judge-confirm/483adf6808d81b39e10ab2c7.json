@@ -1,0 +1,6 @@
+{
+  "verdict": "needs_context",
+  "severity": "minor",
+  "explanation": "PFS numbers match evidence exactly. However, calling PALOMA-2 'the basis for approval' omits that PALOMA-1 provided the original accelerated approval basis; PALOMA-2 was the confirmatory trial for full approval, a nuance not captured in evidence shown.",
+  "suggested_rewrite": "This PFS benefit, confirming earlier PALOMA-1 results, supported full regulatory approval of the combination as initial endocrine-based therapy (after PALOMA-1 initially supported accelerated approval)."
+}

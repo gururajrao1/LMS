@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "blocking",
+  "explanation": "Evidence only states the FDA indication wording. Nothing supports claims about PALOMA-2 Asian subgroup PFS/toxicity, the 75mg hepatic dose, or the assertion that male indication approval relied on real-world EHR/postmarketing data rather than RCT.",
+  "suggested_rewrite": "State only the approved indication for men per evidence; remove specific claims about Asian subgroup data, hepatic dosing, and the basis (RCT vs real-world) for male approval unless separately sourced."
+}

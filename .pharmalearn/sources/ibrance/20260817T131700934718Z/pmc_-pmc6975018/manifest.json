@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "drug_id": "ibrance",
+  "source_id": "pmc_-pmc6975018",
+  "fetched_at": "2026-08-17T13:17:03.707153+00:00",
+  "status": "fetched",
+  "access_level": "full_text",
+  "coverage": {
+    "pmcid": "PMC6975018"
+  },
+  "warnings": [],
+  "error": null,
+  "registry": {
+    "id": "pmc_-pmc6975018",
+    "kind": "pmc_article",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6975018/",
+    "title": "Systemic treatment of hormone receptor positive, human epidermal growth factor 2 negative metastatic breast cancer: retrospective analysis from Leeds Cancer Centre",
+    "identifiers": {
+      "pmcid": "PMC6975018"
+    }
+  },
+  "files": [
+    {
+      "path": "raw/fulltext.xml",
+      "role": "full_text",
+      "request_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC6975018&retmode=xml",
+      "final_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC6975018&retmode=xml",
+      "content_type": "text/xml; charset=UTF-8",
+      "bytes": 92774,
+      "sha256": "75613915576c3e91c35fe7b4680fcb8640c81455af8033a975bb791c9a7ac006",
+      "last_modified": null,
+      "etag": null
+    }
+  ]
+}

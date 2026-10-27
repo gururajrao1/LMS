@@ -1,0 +1,6 @@
+{
+  "verdict": "overreach",
+  "severity": "major",
+  "explanation": "Evidence only covers the itraconazole/rifampin PK numbers. Claims about CYP3A/SULT2A1 metabolism, palbociclib being a weak CYP3A inhibitor, specific drug lists (clarithromycin, phenytoin, etc.), grapefruit avoidance, and narrow-therapeutic-index substrate dosing are not established by the provided evidence.",
+  "suggested_rewrite": "Limit claims to the itraconazole and rifampin AUC/Cmax data shown; note that other mechanistic and interaction-list details require verification against the full Prescribing Information."
+}

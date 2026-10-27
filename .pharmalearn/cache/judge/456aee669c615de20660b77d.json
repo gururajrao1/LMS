@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "The specific exploratory-analysis figures (34.8 vs 28.0 months, HR 0.81, CI 0.65-0.99) and the claim that PALOMA-3's later-line population differs biologically from PALOMA-2's first-line population are not established by the provided evidence, which only states OS 'continued to show improvement' at 73.3 months.",
+  "suggested_rewrite": "State only that the 73.3-month exploratory analysis showed continued OS improvement (per source), without citing unsupported specific values or attributing OS differences to biological differences from PALOMA-2."
+}

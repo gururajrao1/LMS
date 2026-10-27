@@ -1,0 +1,181 @@
+{
+  "schema_version": 2,
+  "snapshot_id": "20260817T131700934718Z",
+  "drug_id": "ibrance",
+  "created_at": "2026-08-17T13:17:45.309403+00:00",
+  "status": "complete",
+  "origin": "resolved_from_citations",
+  "run_id": "ibrance-20260715T084025801360Z",
+  "sources": [
+    {
+      "source_id": "pmc_-pmc10033931",
+      "status": "fetched",
+      "access_level": "full_text",
+      "warnings": [],
+      "error": null
+    },
+    {
+      "source_id": "pmc_-pmc6975018",
+      "status": "fetched",
+      "access_level": "full_text",
+      "warnings": [],
+      "error": null
+    },
+    {
+      "source_id": "pmc_-pmc10527344",
+      "status": "fetched",
+      "access_level": "full_text",
+      "warnings": [],
+      "error": null
+    },
+    {
+      "source_id": "pmc_-pmc10839127",
+      "status": "fetched",
+      "access_level": "full_text",
+      "warnings": [],
+      "error": null
+    },
+    {
+      "source_id": "curr-89a142d57e6148bf9e77e2cd124c",
+      "status": "fetched",
+      "access_level": "full_text",
+      "warnings": [],
+      "error": null
+    },
+    {
+      "source_id": "peer-31125276",
+      "status": "fetched",
+      "access_level": "full_text",
+      "warnings": [],
+      "error": null
+    },
+    {
+      "source_id": "pmc_-pmc4924326",
+      "status": "fetched",
+      "access_level": "full_text",
+      "warnings": [],
+      "error": null
+    },
+    {
+      "source_id": "pmc_-pmc11947744",
+      "status": "fetched",
+      "access_level": "full_text",
+      "warnings": [],
+      "error": null
+    },
+    {
+      "source_id": "pmc_-pmc10850180",
+      "status": "fetched",
+      "access_level": "full_text",
+      "warnings": [],
+      "error": null
+    },
+    {
+      "source_id": "pmc_-pmc12897020",
+      "status": "fetched",
+      "access_level": "full_text",
+      "warnings": [],
+      "error": null
+    },
+    {
+      "source_id": "pmc_-pmc7383036",
+      "status": "fetched",
+      "access_level": "full_text",
+      "warnings": [],
+      "error": null
+    },
+    {
+      "source_id": "pmc_-pmc9662922",
+      "status": "fetched",
+      "access_level": "full_text",
+      "warnings": [],
+      "error": null
+    },
+    {
+      "source_id": "pmc_-pmc11112888",
+      "status": "fetched",
+      "access_level": "full_text",
+      "warnings": [],
+      "error": null
+    },
+    {
+      "source_id": "pmc_-pmc12744932",
+      "status": "fetched",
+      "access_level": "full_text",
+      "warnings": [],
+      "error": null
+    },
+    {
+      "source_id": "pmc_-pmc12609478",
+      "status": "fetched",
+      "access_level": "full_text",
+      "warnings": [],
+      "error": null
+    },
+    {
+      "source_id": "peer-27407089",
+      "status": "fetched",
+      "access_level": "abstract_only",
+      "warnings": [],
+      "error": null
+    },
+    {
+      "source_id": "pmc_-pmc11758200",
+      "status": "fetched",
+      "access_level": "full_text",
+      "warnings": [],
+      "error": null
+    },
+    {
+      "source_id": "pmc_-pmc12550314",
+      "status": "fetched",
+      "access_level": "full_text",
+      "warnings": [],
+      "error": null
+    },
+    {
+      "source_id": "pmc_-pmc6018749",
+      "status": "fetched",
+      "access_level": "full_text",
+      "warnings": [],
+      "error": null
+    },
+    {
+      "source_id": "pmc_-pmc10582537",
+      "status": "fetched",
+      "access_level": "full_text",
+      "warnings": [],
+      "error": null
+    },
+    {
+      "source_id": "pmc_-pmc9851679",
+      "status": "fetched",
+      "access_level": "metadata_only",
+      "warnings": [
+        "PMC9851679: no article body in the PMC response"
+      ],
+      "error": null
+    },
+    {
+      "source_id": "pmc_-pmc10360358",
+      "status": "fetched",
+      "access_level": "full_text",
+      "warnings": [],
+      "error": null
+    },
+    {
+      "source_id": "pmc_-pmc10449843",
+      "status": "fetched",
+      "access_level": "full_text",
+      "warnings": [],
+      "error": null
+    },
+    {
+      "source_id": "pmc_-pmc6975938",
+      "status": "fetched",
+      "access_level": "full_text",
+      "warnings": [],
+      "error": null
+    }
+  ]
+}

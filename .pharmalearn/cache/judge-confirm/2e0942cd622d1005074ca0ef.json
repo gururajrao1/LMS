@@ -1,0 +1,6 @@
+{
+  "verdict": "overreach",
+  "severity": "major",
+  "explanation": "The PALOMA-2 figures and 'not statistically significant' claim are well supported. However, the specific claim that PALOMA-3 fulvestrant OS 'reached significance only in a later exploratory analysis after 73 months' is not established\u2014cited evidence describes the 73.3-month analysis timing but never states whether OS reached statistical significance at either follow-up point.",
+  "suggested_rewrite": "PALOMA-3's fulvestrant combination showed a numerically longer OS at 44.8 months follow-up; an updated exploratory analysis extended follow-up to 73.3 months (75% of patients had died), though significance at either timepoint is not confirmed here."
+}

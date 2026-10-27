@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "Evidence never gives the specific OS medians (34.9 vs 28.0 months) or HRs/CIs (0.81, 0.64-1.03; 0.81, 0.65-0.99) for either follow-up analysis; only qualitative statements of 'improved OS' are provided.",
+  "suggested_rewrite": "State only that OS improved at 44.8-month follow-up (not statistically significant) and continued to improve at 73.3-month exploratory follow-up, without citing specific medians or HRs absent from source."
+}

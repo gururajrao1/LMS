@@ -1,0 +1,6 @@
+{
+  "verdict": "overreach",
+  "severity": "major",
+  "explanation": "Evidence only describes capsule handling ('do not chew, crush, or open'); it says nothing about tablets or 'splitting.' The text extends this guidance to tablets and asserts uniform applicability across both formulations, which the evidence does not establish.",
+  "suggested_rewrite": "State that capsules should not be chewed, crushed, opened, or taken if broken/cracked, per evidence; omit unsupported claims about tablet handling or splitting unless separately documented."
+}

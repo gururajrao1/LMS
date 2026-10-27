@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "Evidence only covers CBC monitoring schedule. Claims that neutropenia is 'most common adverse reaction,' 'typically emerging early and resolving between cycles,' and the Grade 3/4 interrupt/reduce-dose protocol are not established by the provided evidence.",
+  "suggested_rewrite": "Limit claims to monitoring schedule per evidence; cite separate label sections for neutropenia frequency/kinetics and dose-modification rules for Grade 3/4 events."
+}

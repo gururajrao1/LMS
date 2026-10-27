@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "The evidence does not state that ILD/pneumonitis is 'rare'; it only says severe, life-threatening, or fatal cases 'can occur.' No frequency data is provided to support the word 'rare.'",
+  "suggested_rewrite": "Beyond neutropenia, watch for interstitial lung disease and pneumonitis, which can be severe or fatal; frequency is not specified in the label excerpt provided."
+}

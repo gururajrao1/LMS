@@ -1,0 +1,42 @@
+{
+  "schema_version": 2,
+  "drug_id": "ibrance",
+  "source_id": "ibrance-asco-guideline",
+  "fetched_at": "2026-07-13T21:00:40.460986+00:00",
+  "status": "fetched",
+  "access_level": "abstract_only",
+  "coverage": {
+    "pmid": "34324367",
+    "pmcid": "PMC8659999"
+  },
+  "warnings": [
+    "PMC PMC8659999: PMC response did not contain an article body"
+  ],
+  "error": null,
+  "registry": {
+    "id": "ibrance-asco-guideline",
+    "kind": "us_guideline",
+    "authority": "ASCO",
+    "title": "Endocrine Treatment and Targeted Therapy for HR-Positive, HER2-Negative Metastatic Breast Cancer",
+    "url": "https://ascopubs.org/doi/10.1200/JCO.21.01392",
+    "identifiers": {
+      "pmid": "34324367",
+      "doi": "10.1200/JCO.21.01392"
+    },
+    "required": true,
+    "reason": "US professional guidance for clinical context; the FDA label still controls approved-use claims."
+  },
+  "files": [
+    {
+      "path": "raw/pubmed.xml",
+      "role": "pubmed_record",
+      "request_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=34324367&retmode=xml",
+      "final_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=34324367&retmode=xml",
+      "content_type": "text/xml; charset=UTF-8",
+      "bytes": 39279,
+      "sha256": "63186e143e75414f045ff325f555fe24e0016957b8025c0457ea7a0a09a88163",
+      "last_modified": null,
+      "etag": null
+    }
+  ]
+}

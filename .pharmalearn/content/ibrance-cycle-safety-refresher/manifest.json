@@ -1,0 +1,45 @@
+{
+  "course_id": "ibrance",
+  "status": "completed",
+  "drug": {
+    "brand": "Ibrance",
+    "generic": "palbociclib",
+    "manufacturer": "Pfizer",
+    "area": "Oncology \u2013 HR-positive/HER2-negative (and HER2-positive maintenance) breast cancer"
+  },
+  "learners": [
+    "msl",
+    "hcp"
+  ],
+  "assets": [
+    {
+      "type": "ppt",
+      "title": "Clinical presentation",
+      "file": "ibrance-training.pptx",
+      "downloadable": true
+    },
+    {
+      "type": "video_storyboard",
+      "title": "Storyboard",
+      "file": "video_storyboard.json"
+    },
+    {
+      "type": "faq",
+      "title": "FAQ",
+      "file": "faq.json"
+    },
+    {
+      "type": "quiz",
+      "title": "Knowledge quiz",
+      "file": "quiz.json"
+    }
+  ],
+  "citation_count": 341,
+  "warning_count": 7,
+  "run_id": "ibrance-cycle-safety-refresher",
+  "generated_at": "2026-05-31T00:00:00+00:00",
+  "cost_usd": 0.0,
+  "program_title": "Safety refresher: neutropenia management",
+  "program_summary": "Called after a safety signal review. Dose modification and monitoring.",
+  "reuses": "ibrance-20260715T084025801360Z"
+}

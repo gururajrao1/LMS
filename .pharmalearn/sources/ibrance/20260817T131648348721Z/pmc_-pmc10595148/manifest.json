@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "drug_id": "ibrance",
+  "source_id": "pmc_-pmc10595148",
+  "fetched_at": "2026-08-17T13:16:53.640156+00:00",
+  "status": "fetched",
+  "access_level": "full_text",
+  "coverage": {
+    "pmcid": "PMC10595148"
+  },
+  "warnings": [],
+  "error": null,
+  "registry": {
+    "id": "pmc_-pmc10595148",
+    "kind": "pmc_article",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10595148/",
+    "title": "Clinicopathological characteristics, evolution, treatment pattern and outcomes of hormone-receptor-positive/HER2-low metastatic breast cancer - PMC",
+    "identifiers": {
+      "pmcid": "PMC10595148"
+    }
+  },
+  "files": [
+    {
+      "path": "raw/fulltext.xml",
+      "role": "full_text",
+      "request_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC10595148&retmode=xml",
+      "final_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC10595148&retmode=xml",
+      "content_type": "text/xml; charset=UTF-8",
+      "bytes": 138701,
+      "sha256": "a97822b92b805a5e723276aac55bd8b628937d0ec91c5c6ad44526ee15a0410d",
+      "last_modified": null,
+      "etag": null
+    }
+  ]
+}

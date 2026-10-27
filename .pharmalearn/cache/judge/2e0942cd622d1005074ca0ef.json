@@ -1,0 +1,6 @@
+{
+  "verdict": "overreach",
+  "severity": "major",
+  "explanation": "The text states PALOMA-3 OS 'reached significance' in the 73-month exploratory analysis, but evidence only says OS was 'improved' or 'numerically longer'\u2014no statistical significance value or p-value is provided.",
+  "suggested_rewrite": "PALOMA-3's fulvestrant combination showed numerically longer OS that continued to improve in a later exploratory analysis after 73 months follow-up, though statistical significance was not established in the evidence."
+}

@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "blocking",
+  "explanation": "The text lists 'HER2+ maintenance combination' as a current FDA-approved indication. All evidence shown states IBRANCE (palbociclib) is approved only for HR+/HER2-NEGATIVE disease (AI, fulvestrant, or inavolisib+fulvestrant). No evidence supports a HER2+ indication; this appears to contradict the cited labeling.",
+  "suggested_rewrite": "Remove 'HER2+ maintenance combination.' On-label discussion should be limited to HR+/HER2-negative advanced/metastatic breast cancer: AI combination, fulvestrant combination, or inavolisib+fulvestrant for PIK3CA-mutated disease, per current Prescribing Information."
+}

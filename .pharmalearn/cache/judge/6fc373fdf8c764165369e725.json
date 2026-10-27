@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "blocking",
+  "explanation": "The evidence provided only describes IBRANCE's FDA-approved indications and combination therapies; it contains no information about CBC monitoring schedules, Day 15 checks, or neutropenia monitoring requirements.",
+  "suggested_rewrite": "Cite the actual label section (Dosage and Administration/Warnings) specifying CBC monitoring timing, rather than the indications section, to support this claim."
+}

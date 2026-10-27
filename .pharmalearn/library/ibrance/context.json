@@ -1,0 +1,12 @@
+{
+  "drug": {"brand": "Ibrance", "generic": "palbociclib", "manufacturer": "Pfizer", "class": "CDK4/6 inhibitor"},
+  "claims": [
+    {"id": "claim-indication", "topic": "approved_use", "text": "IBRANCE is indicated for specified adults with HR-positive, HER2-negative advanced or metastatic breast cancer in combination regimens described in the prescribing information.", "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Section 1, Indications and Usage"}]},
+    {"id": "claim-dose", "topic": "dosing", "text": "The recommended starting dose is 125 mg once daily for 21 consecutive days followed by 7 days off treatment in a 28-day cycle.", "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Section 2.1, Recommended Dose and Schedule"}]},
+    {"id": "claim-moa", "topic": "mechanism", "text": "Palbociclib inhibits CDK4 and CDK6 and blocks progression from G1 into S phase in ER-positive breast cancer cell lines.", "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Section 12.1, Mechanism of Action"}]},
+    {"id": "claim-monitoring", "topic": "monitoring", "text": "Complete blood counts are monitored before treatment, at the beginning of each cycle, on Day 15 of the first two cycles, and as clinically indicated.", "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Section 5.1, Neutropenia"}]},
+    {"id": "claim-pfs", "topic": "pivotal_evidence", "text": "In PALOMA-2, investigator-assessed median progression-free survival was 24.8 months with IBRANCE plus letrozole and 14.5 months with placebo plus letrozole; overall survival was not statistically significant in the prespecified final analysis.", "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Section 14, Table 10"}, {"source_id": "CT-PALOMA2", "locator": "Study results"}]}
+  ],
+  "disclaimer": "Educational demo only. Refer to the current prescribing information and institutional guidance before clinical use."
+}
+

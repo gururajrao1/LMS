@@ -1,0 +1,37 @@
+{
+  "schema_version": 2,
+  "drug_id": "ibrance",
+  "source_id": "pmc_-pmc9851679",
+  "fetched_at": "2026-08-17T13:17:39.933782+00:00",
+  "status": "fetched",
+  "access_level": "metadata_only",
+  "coverage": {
+    "pmcid": "PMC9851679"
+  },
+  "warnings": [
+    "PMC9851679: no article body in the PMC response"
+  ],
+  "error": null,
+  "registry": {
+    "id": "pmc_-pmc9851679",
+    "kind": "pmc_article",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9851679/",
+    "title": "Treatment Exposure and Discontinuation in the PALLAS Study of Palbociclib With Adjuvant Endocrine Therapy",
+    "identifiers": {
+      "pmcid": "PMC9851679"
+    }
+  },
+  "files": [
+    {
+      "path": "raw/fulltext.xml",
+      "role": "full_text",
+      "request_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC9851679&retmode=xml",
+      "final_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC9851679&retmode=xml",
+      "content_type": "text/xml; charset=UTF-8",
+      "bytes": 18469,
+      "sha256": "29c8c2f65bf2e13d1faf757db42a3e955b6cb284c084fd0a303f2d06f27d1a0a",
+      "last_modified": null,
+      "etag": null
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "blocking",
+  "explanation": "IBRANCE is FDA-approved only for HR+/HER2-negative disease in combination with an AI, fulvestrant, or inavolisib+fulvestrant. No evidence supports approval with 'trastuzumab-based therapy,' which targets HER2-positive disease and contradicts the drug's HER2-negative indication.",
+  "suggested_rewrite": "Ibrance (palbociclib) combined with an aromatase inhibitor, fulvestrant, or inavolisib plus fulvestrant is FDA-approved across defined HR-positive, HER2-negative breast cancer populations."
+}

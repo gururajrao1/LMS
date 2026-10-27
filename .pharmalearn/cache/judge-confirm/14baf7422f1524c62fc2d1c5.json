@@ -1,0 +1,6 @@
+{
+  "verdict": "needs_context",
+  "severity": "minor",
+  "explanation": "Breastfeeding advice omits the duration qualifier ('during treatment and for 3 weeks after last dose') given in evidence, reading as an indefinite prohibition. Also omits male-partner contraception duration (3 months), though not stated as false.",
+  "suggested_rewrite": "...and advise against breastfeeding during treatment and for at least 3 weeks after the last dose. Also counsel male patients with female partners of reproductive potential to use contraception during treatment and for 3 months after the last dose."
+}

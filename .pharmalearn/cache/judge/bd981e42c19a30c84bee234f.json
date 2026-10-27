@@ -1,0 +1,6 @@
+{
+  "verdict": "needs_context",
+  "severity": "minor",
+  "explanation": "Evidence states the cyclin D-CDK4/6-Rb pathway is a target providing pathophysiologic rationale, but does not explicitly describe it as 'dysregulated' or state it 'drives proliferation' in this subtype\u2014this is an inferred mechanistic claim, not directly evidenced.",
+  "suggested_rewrite": "The cyclin D-CDK4/6-Rb pathway is a key cell-cycle target underlying the pathophysiologic rationale for CDK4/6 inhibition in this subtype."
+}

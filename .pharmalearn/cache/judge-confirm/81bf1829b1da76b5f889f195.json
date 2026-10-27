@@ -1,0 +1,6 @@
+{
+  "verdict": "needs_context",
+  "severity": "minor",
+  "explanation": "Dosing, food, swallowing-whole, and missed-dose instructions match evidence, but the text omits that IBRANCE is always given in combination with an aromatase inhibitor, fulvestrant, or inavolisib/fulvestrant, and omits the 'do not take if broken/cracked' caveat.",
+  "suggested_rewrite": "Mrs. J is started on the standard regimen (125 mg once daily, 21 days on/7 days off, 28-day cycle) in combination with her prescribed endocrine therapy. Capsules require food; tablets may be taken with or without food. Swallow whole\u2014never chew, crush, split, or take if broken/cracked. Skip a missed or vomited dose that day."
+}

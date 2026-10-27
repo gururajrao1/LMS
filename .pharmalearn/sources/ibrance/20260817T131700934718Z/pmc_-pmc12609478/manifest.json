@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "drug_id": "ibrance",
+  "source_id": "pmc_-pmc12609478",
+  "fetched_at": "2026-08-17T13:17:30.251842+00:00",
+  "status": "fetched",
+  "access_level": "full_text",
+  "coverage": {
+    "pmcid": "PMC12609478"
+  },
+  "warnings": [],
+  "error": null,
+  "registry": {
+    "id": "pmc_-pmc12609478",
+    "kind": "pmc_article",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12609478/",
+    "title": "Navigating Treatment Sequencing in Advanced HR+/HER2\u2212 Breast Cancer After CDK4/6 Inhibitors: Biomarker-Driven Strategies and Emerging Therapies",
+    "identifiers": {
+      "pmcid": "PMC12609478"
+    }
+  },
+  "files": [
+    {
+      "path": "raw/fulltext.xml",
+      "role": "full_text",
+      "request_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC12609478&retmode=xml",
+      "final_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC12609478&retmode=xml",
+      "content_type": "text/xml; charset=UTF-8",
+      "bytes": 276195,
+      "sha256": "d2453e455a50e4842d25a71e35ae3fe172d70a96a95e765368b76f68a5591beb",
+      "last_modified": null,
+      "etag": null
+    }
+  ]
+}

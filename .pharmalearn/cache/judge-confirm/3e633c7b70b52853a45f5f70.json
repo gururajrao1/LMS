@@ -1,0 +1,6 @@
+{
+  "verdict": "needs_context",
+  "severity": "minor",
+  "explanation": "The AI combination is indicated for postmenopausal women or men, per evidence; the text states 'adult patients' without specifying Mrs. J's menopausal status, omitting a qualifier relevant to confirming appropriate candidacy.",
+  "suggested_rewrite": "Confirm Mrs. J is postmenopausal (or male) before initiating first-line Ibrance plus an aromatase inhibitor, consistent with the approved indication for HR+/HER2- advanced or metastatic breast cancer."
+}

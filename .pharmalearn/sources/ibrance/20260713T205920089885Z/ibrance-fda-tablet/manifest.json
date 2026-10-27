@@ -1,0 +1,318 @@
+{
+  "schema_version": 2,
+  "drug_id": "ibrance",
+  "source_id": "ibrance-fda-tablet",
+  "fetched_at": "2026-07-13T21:00:15.653332+00:00",
+  "status": "fetched",
+  "access_level": "full_text",
+  "coverage": {
+    "nda": "212436",
+    "approval_letters": 5,
+    "reviews": 10,
+    "archived_labels": 8
+  },
+  "warnings": [
+    "https://www.accessdata.fda.gov/drugsatfda_docs/nda/2019/212436Orig1s000OtherActionLtrs.pdf: Client error '404 Not Found' for url 'https://www.accessdata.fda.gov/drugsatfda_docs/nda/2019/212436Orig1s000OtherActionLtrs.pdf'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+  ],
+  "error": null,
+  "registry": {
+    "id": "ibrance-fda-tablet",
+    "kind": "fda_application",
+    "authority": "FDA",
+    "title": "IBRANCE tablet application record",
+    "url": "https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=212436",
+    "identifiers": {
+      "nda": "212436"
+    },
+    "required": true,
+    "reason": "Approval history and FDA review trail for the tablet formulation."
+  },
+  "files": [
+    {
+      "path": "raw/application.json",
+      "role": "application_record",
+      "request_url": "https://api.fda.gov/drug/drugsfda.json?search=application_number%3A%22NDA212436%22&limit=1",
+      "final_url": "https://api.fda.gov/drug/drugsfda.json?search=application_number%3A%22NDA212436%22&limit=1",
+      "content_type": "application/json; charset=utf-8",
+      "bytes": 11548,
+      "sha256": "6b5f15685e3f168d26bf3d09b2952d24419e6a5cc7c8c94d044f17a831fd7687",
+      "last_modified": null,
+      "etag": "W/\"2d1c-qfV6GYpDq/q/j6DdlD49inxZNU4\""
+    },
+    {
+      "path": "raw/application.html",
+      "role": "application_page",
+      "request_url": "https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=212436",
+      "final_url": "https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=212436",
+      "content_type": "text/html;charset=UTF-8",
+      "bytes": 49992,
+      "sha256": "0438eb5fd836d942650dc30338c0361245628445a1809f11e6d3a1de6b369fb4",
+      "last_modified": null,
+      "etag": null
+    },
+    {
+      "path": "raw/reviews/212436Orig1s000TOC.html",
+      "role": "review_index",
+      "request_url": "https://www.accessdata.fda.gov/drugsatfda_docs/nda/2019/212436Orig1s000TOC.html",
+      "final_url": "https://www.accessdata.fda.gov/drugsatfda_docs/nda/2019/212436Orig1s000TOC.html",
+      "content_type": "text/html",
+      "bytes": 14493,
+      "sha256": "1d0806d45352776969af70e8f66126759988deaf7c62484fa6856a276e72036f",
+      "last_modified": "Wed, 11 Feb 2026 19:08:14 GMT",
+      "etag": "\"0e376c5899bdc1:0\""
+    },
+    {
+      "path": "raw/approval-letters/212436Orig1s000ltr.pdf",
+      "role": "approval_letter",
+      "request_url": "https://www.accessdata.fda.gov/drugsatfda_docs/appletter/2019/212436Orig1s000ltr.pdf",
+      "final_url": "https://www.accessdata.fda.gov/drugsatfda_docs/appletter/2019/212436Orig1s000ltr.pdf",
+      "content_type": "application/pdf",
+      "bytes": 105267,
+      "sha256": "c2a041d1357505fc9195117eb6daebdb94005ec46a223eacc503c9b03b1fe888",
+      "last_modified": "Tue, 12 Nov 2019 17:59:52 GMT",
+      "etag": "\"01c68fb8299d51:0\""
+    },
+    {
+      "path": "raw/approval-letters/212436Orig1s005-s006ltr.pdf",
+      "role": "approval_letter",
+      "request_url": "https://www.accessdata.fda.gov/drugsatfda_docs/appletter/2023/212436Orig1s005,s006ltr.pdf",
+      "final_url": "https://www.accessdata.fda.gov/drugsatfda_docs/appletter/2023/212436Orig1s005,s006ltr.pdf",
+      "content_type": "application/pdf",
+      "bytes": 288904,
+      "sha256": "3197e272221e16b95608e0efbe3aaef850dd28c496e69dc2025765a81e106fe9",
+      "last_modified": "Thu, 07 Sep 2023 14:56:50 GMT",
+      "etag": "\"025e1879be1d91:0\""
+    },
+    {
+      "path": "raw/approval-letters/212436Orig1s010ltr.pdf",
+      "role": "approval_letter",
+      "request_url": "https://www.accessdata.fda.gov/drugsatfda_docs/appletter/2024/212436Orig1s010ltr.pdf",
+      "final_url": "https://www.accessdata.fda.gov/drugsatfda_docs/appletter/2024/212436Orig1s010ltr.pdf",
+      "content_type": "application/pdf",
+      "bytes": 219679,
+      "sha256": "0c47e37082500b4e3fb00f586b8142f057d5d3c6dcd40365bf11de10819bd679",
+      "last_modified": "Thu, 26 Dec 2024 11:56:51 GMT",
+      "etag": "\"8083cd3f8d57db1:0\""
+    },
+    {
+      "path": "raw/approval-letters/207103Orig1s021-212436Orig1s009ltr.pdf",
+      "role": "approval_letter",
+      "request_url": "https://www.accessdata.fda.gov/drugsatfda_docs/appletter/2025/207103Orig1s021,212436Orig1s009ltr.pdf",
+      "final_url": "https://www.accessdata.fda.gov/drugsatfda_docs/appletter/2025/207103Orig1s021,212436Orig1s009ltr.pdf",
+      "content_type": "application/pdf",
+      "bytes": 259979,
+      "sha256": "60c15395e35cfe124ca6128f91832a57ad5e958d10f904e7069fd3ced47b7436",
+      "last_modified": "Fri, 07 Mar 2025 14:14:53 GMT",
+      "etag": "\"80ac964b6b8fdb1:0\""
+    },
+    {
+      "path": "raw/approval-letters/212436Orig1s012ltr.pdf",
+      "role": "approval_letter",
+      "request_url": "https://www.accessdata.fda.gov/drugsatfda_docs/appletter/2026/212436Orig1s012ltr.pdf",
+      "final_url": "https://www.accessdata.fda.gov/drugsatfda_docs/appletter/2026/212436Orig1s012ltr.pdf",
+      "content_type": "application/pdf",
+      "bytes": 1409240,
+      "sha256": "77fa9637bbf878607b2779543c9af3bb9f837e1d5bec9c1b044f92038addc7c1",
+      "last_modified": "Thu, 25 Jun 2026 19:30:45 GMT",
+      "etag": "\"16b2271ed94dd1:0\""
+    },
+    {
+      "path": "raw/archived-labels/212436lbl.pdf",
+      "role": "archived_label",
+      "request_url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2019/212436lbl.pdf",
+      "final_url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2019/212436lbl.pdf",
+      "content_type": "application/pdf",
+      "bytes": 1282186,
+      "sha256": "b716ba40f7b22b4952568e8afcd74e46a30ac6e97a1e6d5c9d958b559d5aa1ed",
+      "last_modified": "Mon, 04 Nov 2019 18:58:34 GMT",
+      "etag": "\"0a960db4193d51:0\""
+    },
+    {
+      "path": "raw/archived-labels/212436s003lbl.pdf",
+      "role": "archived_label",
+      "request_url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2022/212436s003lbl.pdf",
+      "final_url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2022/212436s003lbl.pdf",
+      "content_type": "application/pdf",
+      "bytes": 1334628,
+      "sha256": "0a912c224b1ba63c0ab888fe05a0d558ec0d636ec76c475ab468dec04490a199",
+      "last_modified": "Wed, 14 Dec 2022 14:40:54 GMT",
+      "etag": "\"0dfc311cafd91:0\""
+    },
+    {
+      "path": "raw/archived-labels/212436s005s006lbl.pdf",
+      "role": "archived_label",
+      "request_url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2023/212436s005s006lbl.pdf",
+      "final_url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2023/212436s005s006lbl.pdf",
+      "content_type": "application/pdf",
+      "bytes": 1522542,
+      "sha256": "eca2826d23f22bc3f29469521fd6e57741e1a22ff7b1687b7719c7c39b172ca6",
+      "last_modified": "Thu, 07 Sep 2023 16:06:18 GMT",
+      "etag": "\"079333ca5e1d91:0\""
+    },
+    {
+      "path": "raw/archived-labels/212436s010lbl.pdf",
+      "role": "archived_label",
+      "request_url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2024/212436s010lbl.pdf",
+      "final_url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2024/212436s010lbl.pdf",
+      "content_type": "application/pdf",
+      "bytes": 912300,
+      "sha256": "df02a64ace5ed1fbd37b1151ad43f42cc2f862a40fd36aebfd087a0a222c14ca",
+      "last_modified": "Fri, 27 Dec 2024 13:46:40 GMT",
+      "etag": "\"0e090c16558db1:0\""
+    },
+    {
+      "path": "raw/archived-labels/207103s021-212436s009lbl.pdf",
+      "role": "archived_label",
+      "request_url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/207103s021,212436s009lbl.pdf",
+      "final_url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/207103s021,212436s009lbl.pdf",
+      "content_type": "application/pdf",
+      "bytes": 1497114,
+      "sha256": "cda0eaff45654780e79048392ccf19581f12fd677da29528b36c0320f703a848",
+      "last_modified": "Mon, 10 Mar 2025 14:20:02 GMT",
+      "etag": "\"095183c791db1:0\""
+    },
+    {
+      "path": "raw/archived-labels/212436s008lbl.pdf",
+      "role": "archived_label",
+      "request_url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/212436s008lbl.pdf",
+      "final_url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/212436s008lbl.pdf",
+      "content_type": "application/pdf",
+      "bytes": 667859,
+      "sha256": "d0a56714e8064aca0245ba0e277b0f534c2b8c81d406e22ca0a1b025a2155b22",
+      "last_modified": "Wed, 23 Apr 2025 18:41:45 GMT",
+      "etag": "\"803ae65c7fb4db1:0\""
+    },
+    {
+      "path": "raw/archived-labels/212436s011lbl.pdf",
+      "role": "archived_label",
+      "request_url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/212436s011lbl.pdf",
+      "final_url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/212436s011lbl.pdf",
+      "content_type": "application/pdf",
+      "bytes": 916050,
+      "sha256": "bdb62f2bad91d2ff71719fafb7250fe786b82baab57afa7bf895d7bb16c72671",
+      "last_modified": "Wed, 17 Sep 2025 01:29:54 GMT",
+      "etag": "\"095ca917227dc1:0\""
+    },
+    {
+      "path": "raw/archived-labels/212436s012lbl.pdf",
+      "role": "archived_label",
+      "request_url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2026/212436s012lbl.pdf",
+      "final_url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2026/212436s012lbl.pdf",
+      "content_type": "application/pdf",
+      "bytes": 783961,
+      "sha256": "f0c9533350db5369773f25f8f0a0a315500a7be3d32c1dca1ce40cf0140d1f21",
+      "last_modified": "Fri, 26 Jun 2026 17:31:49 GMT",
+      "etag": "\"e39876ab915dd1:0\""
+    },
+    {
+      "path": "raw/reviews/212436Orig1s000AdminCorres.pdf",
+      "role": "review",
+      "request_url": "https://www.accessdata.fda.gov/drugsatfda_docs/nda/2019/212436Orig1s000AdminCorres.pdf",
+      "final_url": "https://www.accessdata.fda.gov/drugsatfda_docs/nda/2019/212436Orig1s000AdminCorres.pdf",
+      "content_type": "application/pdf",
+      "bytes": 520349,
+      "sha256": "7c4a6eb726855e9a1cfb6753f8ad65ef01126f4c8cedaf83d0bcfbb629cb1cc5",
+      "last_modified": "Mon, 06 Apr 2020 14:32:59 GMT",
+      "etag": "\"801ffe4420cd61:0\""
+    },
+    {
+      "path": "raw/reviews/212436Orig1s000Approv.pdf",
+      "role": "review",
+      "request_url": "https://www.accessdata.fda.gov/drugsatfda_docs/nda/2019/212436Orig1s000Approv.pdf",
+      "final_url": "https://www.accessdata.fda.gov/drugsatfda_docs/nda/2019/212436Orig1s000Approv.pdf",
+      "content_type": "application/pdf",
+      "bytes": 729053,
+      "sha256": "48c459bdb686357aa7f8f4e4bd7ff811a66bd5421572192e470636934d826426",
+      "last_modified": "Mon, 06 Apr 2020 14:33:33 GMT",
+      "etag": "\"801c425920cd61:0\""
+    },
+    {
+      "path": "raw/reviews/212436Orig1s000ChemR.pdf",
+      "role": "review",
+      "request_url": "https://www.accessdata.fda.gov/drugsatfda_docs/nda/2019/212436Orig1s000ChemR.pdf",
+      "final_url": "https://www.accessdata.fda.gov/drugsatfda_docs/nda/2019/212436Orig1s000ChemR.pdf",
+      "content_type": "application/pdf",
+      "bytes": 4381641,
+      "sha256": "f17fd17e4c3c6db318efc45b56a382ccf53a00a99e38ad007209b4da2734dd87",
+      "last_modified": "Mon, 06 Apr 2020 14:34:44 GMT",
+      "etag": "\"0da938320cd61:0\""
+    },
+    {
+      "path": "raw/reviews/212436Orig1s000ClinPharmR.pdf",
+      "role": "review",
+      "request_url": "https://www.accessdata.fda.gov/drugsatfda_docs/nda/2019/212436Orig1s000ClinPharmR.pdf",
+      "final_url": "https://www.accessdata.fda.gov/drugsatfda_docs/nda/2019/212436Orig1s000ClinPharmR.pdf",
+      "content_type": "application/pdf",
+      "bytes": 889462,
+      "sha256": "4a153699bdaeaf685b1d5901d4fc7c56df76e0c89486330cbc24eb9c9f016003",
+      "last_modified": "Mon, 06 Apr 2020 14:35:19 GMT",
+      "etag": "\"806d709820cd61:0\""
+    },
+    {
+      "path": "raw/reviews/212436Orig1s000MedR.pdf",
+      "role": "review",
+      "request_url": "https://www.accessdata.fda.gov/drugsatfda_docs/nda/2019/212436Orig1s000MedR.pdf",
+      "final_url": "https://www.accessdata.fda.gov/drugsatfda_docs/nda/2019/212436Orig1s000MedR.pdf",
+      "content_type": "application/pdf",
+      "bytes": 307083,
+      "sha256": "bb866aa65288daa109a1483415b5c1a51bbc712b4688ba84c8d5e31d8342eb57",
+      "last_modified": "Mon, 06 Apr 2020 14:48:07 GMT",
+      "etag": "\"80ed336222cd61:0\""
+    },
+    {
+      "path": "raw/reviews/212436Orig1s000NameR.pdf",
+      "role": "review",
+      "request_url": "https://www.accessdata.fda.gov/drugsatfda_docs/nda/2019/212436Orig1s000NameR.pdf",
+      "final_url": "https://www.accessdata.fda.gov/drugsatfda_docs/nda/2019/212436Orig1s000NameR.pdf",
+      "content_type": "application/pdf",
+      "bytes": 293776,
+      "sha256": "55f4000ec76e4b37567b457c4bff111341bb3d880c816f0b453dbe127aeb54ff",
+      "last_modified": "Mon, 06 Apr 2020 14:48:44 GMT",
+      "etag": "\"0ae417822cd61:0\""
+    },
+    {
+      "path": "raw/reviews/212436Orig1s000OEList.pdf",
+      "role": "review",
+      "request_url": "https://www.accessdata.fda.gov/drugsatfda_docs/nda/2019/212436Orig1s000OEList.pdf",
+      "final_url": "https://www.accessdata.fda.gov/drugsatfda_docs/nda/2019/212436Orig1s000OEList.pdf",
+      "content_type": "application/pdf",
+      "bytes": 103114,
+      "sha256": "98e0705230e729cd957305f14270b41ab47ec8535f8c6a99f7dfe7b054eb40b9",
+      "last_modified": "Mon, 06 Apr 2020 14:49:10 GMT",
+      "etag": "\"0f7c08722cd61:0\""
+    },
+    {
+      "path": "raw/reviews/212436Orig1s000PharmR.pdf",
+      "role": "review",
+      "request_url": "https://www.accessdata.fda.gov/drugsatfda_docs/nda/2019/212436Orig1s000PharmR.pdf",
+      "final_url": "https://www.accessdata.fda.gov/drugsatfda_docs/nda/2019/212436Orig1s000PharmR.pdf",
+      "content_type": "application/pdf",
+      "bytes": 1327960,
+      "sha256": "34c2179beb3cbb79c681dc88c704c948a598b2dec42430bfd4888713dd8d0a22",
+      "last_modified": "Mon, 06 Apr 2020 14:55:33 GMT",
+      "etag": "\"8020a6c23cd61:0\""
+    },
+    {
+      "path": "raw/reviews/212436Orig1s000SumR.pdf",
+      "role": "review",
+      "request_url": "https://www.accessdata.fda.gov/drugsatfda_docs/nda/2019/212436Orig1s000SumR.pdf",
+      "final_url": "https://www.accessdata.fda.gov/drugsatfda_docs/nda/2019/212436Orig1s000SumR.pdf",
+      "content_type": "application/pdf",
+      "bytes": 1166916,
+      "sha256": "bb8fd06032de7598519cc4db107fa956e47b2f3910a33e007be1a4898c3a5030",
+      "last_modified": "Mon, 06 Apr 2020 14:56:22 GMT",
+      "etag": "\"0ef3e8923cd61:0\""
+    },
+    {
+      "path": "raw/reviews/212436Orig1s000lbl.pdf",
+      "role": "review",
+      "request_url": "https://www.accessdata.fda.gov/drugsatfda_docs/nda/2019/212436Orig1s000lbl.pdf",
+      "final_url": "https://www.accessdata.fda.gov/drugsatfda_docs/nda/2019/212436Orig1s000lbl.pdf",
+      "content_type": "application/pdf",
+      "bytes": 2224912,
+      "sha256": "978b36476775bb2c1b60bac26c89b6fce868a50d7438d268b5c45993e985b93e",
+      "last_modified": "Mon, 06 Apr 2020 14:47:27 GMT",
+      "etag": "\"80695c4a22cd61:0\""
+    }
+  ]
+}

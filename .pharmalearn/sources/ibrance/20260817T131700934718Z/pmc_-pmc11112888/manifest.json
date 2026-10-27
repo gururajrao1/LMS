@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "drug_id": "ibrance",
+  "source_id": "pmc_-pmc11112888",
+  "fetched_at": "2026-08-17T13:17:26.519321+00:00",
+  "status": "fetched",
+  "access_level": "full_text",
+  "coverage": {
+    "pmcid": "PMC11112888"
+  },
+  "warnings": [],
+  "error": null,
+  "registry": {
+    "id": "pmc_-pmc11112888",
+    "kind": "pmc_article",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11112888/",
+    "title": "Systematic literature review of real-world evidence for treatments in HR+/HER2- second-line LABC/mBC after first-line treatment with CDK4/6i",
+    "identifiers": {
+      "pmcid": "PMC11112888"
+    }
+  },
+  "files": [
+    {
+      "path": "raw/fulltext.xml",
+      "role": "full_text",
+      "request_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC11112888&retmode=xml",
+      "final_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC11112888&retmode=xml",
+      "content_type": "text/xml; charset=UTF-8",
+      "bytes": 119017,
+      "sha256": "52c565c2df344eaf9befc256f0316d5bade2d44d1702a6b431d656ee67b01945",
+      "last_modified": null,
+      "etag": null
+    }
+  ]
+}

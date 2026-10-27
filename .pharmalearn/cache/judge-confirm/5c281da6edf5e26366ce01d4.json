@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "No evidence provided describes a US real-world cohort using inverse-probability weighting comparing OS among palbociclib, ribociclib, and abemaciclib. This specific study and its finding of no significant OS differences appears nowhere in the cited or additional evidence.",
+  "suggested_rewrite": "Remove the claim about the US real-world IPW cohort, or replace with: 'Additional real-world data are needed to assess OS differences among these agents.'"
+}

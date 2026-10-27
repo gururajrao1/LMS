@@ -1,0 +1,41 @@
+{
+  "schema_version": 2,
+  "drug_id": "ibrance",
+  "source_id": "ibrance-paloma2-publication",
+  "fetched_at": "2026-07-13T21:00:29.155559+00:00",
+  "status": "fetched",
+  "access_level": "abstract_only",
+  "coverage": {
+    "pmid": "27959613",
+    "pmcid": null
+  },
+  "warnings": [],
+  "error": null,
+  "registry": {
+    "id": "ibrance-paloma2-publication",
+    "kind": "peer_reviewed_publication",
+    "authority": "PubMed",
+    "title": "Palbociclib plus Letrozole as First-Line Therapy in Estrogen-Receptor-Positive, HER2-Negative Advanced Breast Cancer",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/27959613/",
+    "identifiers": {
+      "pmid": "27959613",
+      "doi": "10.1056/NEJMoa1607303",
+      "nct": "NCT01740427"
+    },
+    "required": true,
+    "reason": "Primary PALOMA-2 efficacy publication."
+  },
+  "files": [
+    {
+      "path": "raw/pubmed.xml",
+      "role": "pubmed_record",
+      "request_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=27959613&retmode=xml",
+      "final_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=27959613&retmode=xml",
+      "content_type": "text/xml; charset=UTF-8",
+      "bytes": 27422,
+      "sha256": "cdb7aa10943e409aa7d5dba340ec3f960bf14ac96d8cc9f70f7cb0f6b554277d",
+      "last_modified": null,
+      "etag": null
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "Evidence only supports CDK4/6 inhibition and blocking G1-to-S transition. Terms 'selective,' 'oral,' 'reversible,' 'Rb phosphorylation,' and the claim that combining with antiestrogens increases growth arrest/senescence are not found in the provided evidence.",
+  "suggested_rewrite": "Remove or separately source 'selective, oral, reversible,' the Rb-phosphorylation mechanism detail, and the antiestrogen-combination senescence claim, as these are unsupported by the cited label evidence."
+}

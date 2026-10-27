@@ -1,0 +1,124 @@
+{
+  "run_id": "ibrance-20260715T084025801360Z",
+  "user_id": "lucy-whitfield",
+  "started_at": "2026-07-20T00:00:00+00:00",
+  "modules": {
+    "deck": {
+      "completed_at": "2026-07-20T00:00:00+00:00"
+    },
+    "videos": {
+      "completed_at": "2026-07-20T02:00:00+00:00"
+    },
+    "storyboard": {
+      "completed_at": "2026-07-20T04:00:00+00:00"
+    },
+    "faq": {
+      "completed_at": "2026-07-20T06:00:00+00:00"
+    }
+  },
+  "attempts": [
+    {
+      "id": "3f02549e0973",
+      "kind": "baseline",
+      "score": 40,
+      "correct": 2,
+      "total": 5,
+      "passing_score": 0,
+      "passed": true,
+      "answers": {
+        "q1": 0,
+        "q3": 0,
+        "q5": 2,
+        "q7": 2,
+        "q9": 2
+      },
+      "created_at": "2026-07-20T00:00:00+00:00"
+    },
+    {
+      "id": "6226faa4aecb",
+      "kind": "final",
+      "score": 58,
+      "correct": 7,
+      "total": 12,
+      "passing_score": 67,
+      "passed": false,
+      "answers": {
+        "q1": 0,
+        "q2": 1,
+        "q3": 0,
+        "q4": 1,
+        "q5": 1,
+        "q6": 1,
+        "q7": 1,
+        "q8": 3,
+        "q9": 2,
+        "q10": 2,
+        "q11": 2,
+        "q12": 2
+      },
+      "created_at": "2026-07-20T04:00:00+00:00"
+    },
+    {
+      "id": "d7fabc30d7bf",
+      "kind": "final",
+      "score": 83,
+      "correct": 10,
+      "total": 12,
+      "passing_score": 67,
+      "passed": true,
+      "answers": {
+        "q1": 0,
+        "q2": 1,
+        "q3": 0,
+        "q4": 1,
+        "q5": 1,
+        "q6": 1,
+        "q7": 1,
+        "q8": 2,
+        "q9": 1,
+        "q10": 1,
+        "q11": 2,
+        "q12": 2
+      },
+      "created_at": "2026-07-20T08:00:00+00:00"
+    }
+  ],
+  "certificate": {
+    "id": "b50d431b8e01",
+    "code": "PL-IBRANCE-2026-4BA18F",
+    "user_id": "lucy-whitfield",
+    "learner_name": "Dr. Lucy Whitfield",
+    "learner_title": "Breast oncology, community practice",
+    "run_id": "ibrance-20260715T084025801360Z",
+    "course_version": 2,
+    "score": 83,
+    "issued_at": "2026-07-20T10:00:00+00:00",
+    "expires_at": "2027-07-20T10:00:00+00:00",
+    "approved_by": [
+      {
+        "name": "Dr. Anil Shekhar",
+        "title": "Therapeutic area expert, oncology"
+      },
+      {
+        "name": "Dr. Maria Alvarez",
+        "title": "Regulatory and medical affairs"
+      }
+    ]
+  },
+  "feedback": [
+    {
+      "id": "38980638443e",
+      "module_id": "videos",
+      "rating": 3,
+      "comment": "Useful, but I wanted the trial data spelled out more slowly.",
+      "created_at": "2026-08-17T12:36:42.182469+00:00"
+    },
+    {
+      "id": "9a18fea27f59",
+      "module_id": "deck",
+      "rating": 4,
+      "comment": "Clear. The citation on every slide is what makes it usable.",
+      "created_at": "2026-08-17T12:36:42.182608+00:00"
+    }
+  ]
+}

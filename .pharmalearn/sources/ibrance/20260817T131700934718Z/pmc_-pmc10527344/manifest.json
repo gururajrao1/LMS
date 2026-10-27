@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "drug_id": "ibrance",
+  "source_id": "pmc_-pmc10527344",
+  "fetched_at": "2026-08-17T13:17:05.324443+00:00",
+  "status": "fetched",
+  "access_level": "full_text",
+  "coverage": {
+    "pmcid": "PMC10527344"
+  },
+  "warnings": [],
+  "error": null,
+  "registry": {
+    "id": "pmc_-pmc10527344",
+    "kind": "pmc_article",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10527344/",
+    "title": "Indirect Treatment Comparison of First-Line CDK4/6-Inhibitors in Post-Menopausal Patients with HR+/HER2\u2212 Metastatic Breast Cancer",
+    "identifiers": {
+      "pmcid": "PMC10527344"
+    }
+  },
+  "files": [
+    {
+      "path": "raw/fulltext.xml",
+      "role": "full_text",
+      "request_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC10527344&retmode=xml",
+      "final_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC10527344&retmode=xml",
+      "content_type": "text/xml; charset=UTF-8",
+      "bytes": 98934,
+      "sha256": "18d0b17d7b95deda8832634147354fb46acacaef1e2ac04ff1eb9b0ff2fce66e",
+      "last_modified": null,
+      "etag": null
+    }
+  ]
+}

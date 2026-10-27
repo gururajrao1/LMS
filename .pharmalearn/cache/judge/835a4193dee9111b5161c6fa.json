@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "The claim of 'large, disproportionate amount of missing/censored survival data between arms' has no support in the evidence; neither source mentions censoring patterns or data completeness discrepancies between treatment arms.",
+  "suggested_rewrite": "Remove the claim about disproportionate missing/censored data, or cite a source discussing censoring patterns in PALOMA-2's OS analysis specifically."
+}

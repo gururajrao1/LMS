@@ -1,0 +1,169 @@
+{
+  "schema_version": 2,
+  "drug_id": "ibrance",
+  "source_id": "curr-89a142d57e6148bf9e77e2cd124c",
+  "fetched_at": "2026-08-17T13:17:12.245093+00:00",
+  "status": "fetched",
+  "access_level": "full_text",
+  "coverage": {
+    "set_id": "89a142d5-7e61-48bf-9e77-e2cd124c4792"
+  },
+  "warnings": [],
+  "error": null,
+  "registry": {
+    "id": "curr-89a142d57e6148bf9e77e2cd124c",
+    "kind": "current_fda_label",
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=89a142d5-7e61-48bf-9e77-e2cd124c4792&audience=consumer",
+    "title": "Label: IBRANCE- palbociclib tablet, film coated - DailyMed",
+    "identifiers": {
+      "set_id": "89a142d5-7e61-48bf-9e77-e2cd124c4792"
+    }
+  },
+  "files": [
+    {
+      "path": "raw/label.zip",
+      "role": "label_package",
+      "request_url": "https://dailymed.nlm.nih.gov/dailymed/downloadzipfile.cfm?setId=89a142d5-7e61-48bf-9e77-e2cd124c4792",
+      "final_url": "https://dailymed.nlm.nih.gov/dailymed/downloadzipfile.cfm?setId=89a142d5-7e61-48bf-9e77-e2cd124c4792",
+      "content_type": "application/zip",
+      "bytes": 1483304,
+      "sha256": "92a7467735f42f7fc350c233f7e16afaeee6ae553a005ad0e0280f7264523e7c",
+      "last_modified": null,
+      "etag": null
+    },
+    {
+      "path": "raw/label.pdf",
+      "role": "label_pdf",
+      "request_url": "https://dailymed.nlm.nih.gov/dailymed/downloadpdffile.cfm?setId=89a142d5-7e61-48bf-9e77-e2cd124c4792",
+      "final_url": "https://dailymed.nlm.nih.gov/dailymed/downloadpdffile.cfm?setId=89a142d5-7e61-48bf-9e77-e2cd124c4792",
+      "content_type": "application/pdf",
+      "bytes": 1418431,
+      "sha256": "d180c4581b666ccee23364ed7580f35c1874a5e0b19aa1865b9d49d6805f3c98",
+      "last_modified": null,
+      "etag": null
+    },
+    {
+      "path": "raw/history.json",
+      "role": "version_history",
+      "request_url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls/89a142d5-7e61-48bf-9e77-e2cd124c4792/history.json",
+      "final_url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls/89a142d5-7e61-48bf-9e77-e2cd124c4792/history.json",
+      "content_type": "application/json",
+      "bytes": 1128,
+      "sha256": "f06902656d70dc190db1eb846c64c365034c77cd435743569eaa6f94fc9eeee3",
+      "last_modified": null,
+      "etag": null
+    },
+    {
+      "path": "raw/spl.xml",
+      "role": "label_xml",
+      "origin": "raw/label.zip",
+      "bytes": 513141,
+      "sha256": "1bfb66b2642dd7ef5697ef7d0a2b47fcc6fdd205d6db66ef6d8fc05b159342cb"
+    },
+    {
+      "path": "raw/images/ibrance-01.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 9267,
+      "sha256": "8793aa37bba6b046f0db892f0cd8e54bc7cd04c54af89406ea6af8ceeeb3b8b4"
+    },
+    {
+      "path": "raw/images/ibrance-02.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 34534,
+      "sha256": "22e15fa3e8d8ae1404ed4ea8d4e8046dbe9594e9f3ecae56b225a3ad9d3e40b7"
+    },
+    {
+      "path": "raw/images/ibrance-03.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 31363,
+      "sha256": "1d12f38279198a255e13f94393cdaed4acddcbd0cb192bdc438063c5be3262ba"
+    },
+    {
+      "path": "raw/images/ibrance-04.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 31964,
+      "sha256": "ae53853f035e4727b51e69ac85e711a2caa6e2ec7e4347fbb70d829fbc2a6c1c"
+    },
+    {
+      "path": "raw/images/ibrance-05.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 41836,
+      "sha256": "1b50cfc5efdd8726c1c29660ff997d7ff8285e5ac2dad3c5dabeccf7a31ab375"
+    },
+    {
+      "path": "raw/images/ibrance-05a.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 34022,
+      "sha256": "b2872a3edd58fa83d169c60007ab12811891f7c37f75a1c517ac13801007c10d"
+    },
+    {
+      "path": "raw/images/ibrance-05b.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 11170,
+      "sha256": "0588a1cac967a03fe8765381c3470e9e9a7ab39fac705469464e7ad001d298cf"
+    },
+    {
+      "path": "raw/images/ibrance-06.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 11170,
+      "sha256": "0588a1cac967a03fe8765381c3470e9e9a7ab39fac705469464e7ad001d298cf"
+    },
+    {
+      "path": "raw/images/ibrance-07.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 259922,
+      "sha256": "53813b6dc1df31ae42e6d3e2a68cb93c4d5eed0a2c68d14c70974bb2a77b4c44"
+    },
+    {
+      "path": "raw/images/ibrance-08.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 283067,
+      "sha256": "7c79072ef6023d3537c41fe91c10bef0541ebee4482612d0c60ee28f6b265a12"
+    },
+    {
+      "path": "raw/images/ibrance-09.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 284992,
+      "sha256": "d6c728dae062837a5d4e1acdba2a8e952e2186d49d8ef287ad8f74c70e302e08"
+    },
+    {
+      "path": "raw/images/ibrance-10.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 286129,
+      "sha256": "b64b380a39cf810ad9dcf70d7379233687775291498fd58c0de9dea533d3940a"
+    },
+    {
+      "path": "raw/images/ibrance-11.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 278411,
+      "sha256": "792a53626069f5b08185e0f675a4dfc215f10cba6f5b8c7b0d6d4e6cf243d8f2"
+    },
+    {
+      "path": "raw/images/ibrance-12.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 288792,
+      "sha256": "d9f5cde346380354ee54fb613af990d78e94cc15de5cae3aad322c4b10455204"
+    },
+    {
+      "path": "raw/images/ibrance-13.jpg",
+      "role": "label_image",
+      "origin": "raw/label.zip",
+      "bytes": 51624,
+      "sha256": "8ae8b1bf32e2c04809694c7477d05edce0d8fc5089219f46fcf5a51764a8c4dc"
+    }
+  ]
+}

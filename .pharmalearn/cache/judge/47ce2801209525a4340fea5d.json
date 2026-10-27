@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "Evidence only covers febrile neutropenia (1.8%) and ILD rates; it does not state Grade 3 neutropenia incidence of 56%, nor that neutropenia is 'early-onset, reversible, and non-cumulative,' nor specify the CBC monitoring schedule.",
+  "suggested_rewrite": "Cite the label's actual Grade 3/4 neutropenia incidence and monitoring schedule with supporting evidence, or remove the 56% figure and the early-onset/reversible/non-cumulative characterization."
+}

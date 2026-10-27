@@ -1,0 +1,62 @@
+{
+  "schema_version": 2,
+  "drug_id": "prevnar",
+  "source_id": "prevnar-pivotal-adult-trial",
+  "fetched_at": "2026-07-13T21:26:24.443321+00:00",
+  "status": "fetched",
+  "access_level": "full_text",
+  "coverage": {
+    "nct": "NCT03760146",
+    "has_results": true,
+    "attachments_found": 2
+  },
+  "warnings": [],
+  "error": null,
+  "registry": {
+    "id": "prevnar-pivotal-adult-trial",
+    "kind": "trial_registry",
+    "authority": "ClinicalTrials.gov",
+    "title": "Pivotal adult Prevnar 20 phase 3 study",
+    "url": "https://clinicaltrials.gov/study/NCT03760146",
+    "identifiers": {
+      "nct": "NCT03760146"
+    },
+    "required": true,
+    "reason": "Main adult safety and immune-response study supporting initial approval."
+  },
+  "files": [
+    {
+      "path": "raw/study.json",
+      "role": "study_record",
+      "request_url": "https://clinicaltrials.gov/api/v2/studies/NCT03760146",
+      "final_url": "https://clinicaltrials.gov/api/v2/studies/NCT03760146",
+      "content_type": "application/json",
+      "bytes": 233133,
+      "sha256": "ec2fb770c037f0ce3b3a724aee25ecf4d1538a40d87dae4c62073b92e4ad7351",
+      "last_modified": null,
+      "etag": "\"0/0.34.1/mrizrqiw\""
+    },
+    {
+      "path": "raw/attachments/study-protocol-Prot_000.pdf",
+      "role": "Prot",
+      "request_url": "https://cdn.clinicaltrials.gov/large-docs/46/NCT03760146/Prot_000.pdf",
+      "final_url": "https://cdn.clinicaltrials.gov/large-docs/46/NCT03760146/Prot_000.pdf",
+      "content_type": "application/pdf",
+      "bytes": 2823908,
+      "sha256": "424ae947b5386cc4c5fd5cc85082510b1a2c5da3c47cf8e77198bf91433fb2ba",
+      "last_modified": "Tue, 13 Feb 2024 15:46:12 GMT",
+      "etag": "\"dd38e71b3580525b3450f1eb11f9d355\""
+    },
+    {
+      "path": "raw/attachments/statistical-analysis-plan-SAP_001.pdf",
+      "role": "SAP",
+      "request_url": "https://cdn.clinicaltrials.gov/large-docs/46/NCT03760146/SAP_001.pdf",
+      "final_url": "https://cdn.clinicaltrials.gov/large-docs/46/NCT03760146/SAP_001.pdf",
+      "content_type": "application/pdf",
+      "bytes": 1819495,
+      "sha256": "619daeaea03601b6981e91d72ae9a557aabf9a61227e389e3713b85fbadfb734",
+      "last_modified": "Tue, 13 Feb 2024 15:46:12 GMT",
+      "etag": "\"52dd54cc5be8f5f0d5d6d6ca5c57f965\""
+    }
+  ]
+}

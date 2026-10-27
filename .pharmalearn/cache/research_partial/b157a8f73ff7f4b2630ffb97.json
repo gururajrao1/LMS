@@ -1,0 +1,200 @@
+{
+  "id": "mechanism-onset-duration",
+  "title": "Ibrance (palbociclib): Mechanism, Onset, and Duration of Effect",
+  "summary": "Ibrance (palbociclib) is a first-in-class, orally bioavailable, reversible small-molecule inhibitor of cyclin-dependent kinases 4 and 6 (CDK4/6), approved for HR+/HER2- advanced or metastatic breast cancer in combination with endocrine therapy. Its mechanism directly targets a pathway (cyclin D1\u2013CDK4/6\u2013Rb\u2013E2F) that is frequently dysregulated in estrogen receptor-positive breast cancer, producing G1-to-S cell-cycle arrest. Direct clinical pharmacodynamic evidence of \"onset\" is limited largely to a biomarker (Rb dephosphorylation within minutes in vitro) and to the earliest measurable on-treatment toxicity (neutropenia, median onset ~15 days), rather than to a validated measure of time to clinically meaningful antitumor effect; the label and pivotal trials report efficacy (progression-free survival, objective response) only as trial-endpoint medians over months, not as a discrete \"onset\" time. The FDA-approved 3-weeks-on/1-week-off, once-daily oral dosing schedule is explicitly derived from Phase 1 dose-escalation data showing that continuous or 2-week-on schedules produced dose-limiting, cumulative myelosuppression, whereas the 3/1 schedule allowed hematologic recovery between cycles.",
+  "claims": [
+    {
+      "text": "Palbociclib is an orally active pyridopyrimidine that acts as a potent, first-in-class, highly selective, reversible inhibitor of cyclin-dependent kinases 4 and 6 (CDK4/6), with enzymatic IC50 of approximately 11 nM against CDK4 and Ki of 2 nM.",
+      "evidence_type": "pharmacology / nonclinical",
+      "citations": [
+        {
+          "title": "PALbociclib CoLlaborative Adjuvant Study (PubMed/ClinicalTrials.gov protocol)",
+          "url": "https://cdn.clinicaltrials.gov/large-docs/94/NCT02513394/Prot_SAP_000.pdf",
+          "locator": "Section 1.2, Palbociclib Mechanism of Action",
+          "supporting_text": "Palbociclib (PD-0332991, Ibrance\u00ae), an orally active pyridopyrimidine, is a potent first-in-class, highly selective reversible inhibitor of CDK4 and CDK6 (IC50 = 11 nM; Ki = 2 nM) with a molecular weight of 447.53."
+        }
+      ]
+    },
+    {
+      "text": "On the FDA-approved label, palbociclib is described as an inhibitor of cyclin-dependent kinase (CDK) 4 and 6; Cyclin D1 and CDK4/6 are downstream of signaling pathways that lead to cellular proliferation, and in vitro palbociclib reduced cellular proliferation of estrogen receptor (ER)-positive breast cancer cell lines by blocking progression of the cell from G1 into S phase of the cell cycle.",
+      "evidence_type": "FDA label (Clinical Pharmacology / Mechanism of Action)",
+      "citations": [
+        {
+          "title": "IBRANCE (palbociclib) capsules, for oral use - FDA label",
+          "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2015/207103s000lbl.pdf",
+          "locator": "Clinical Pharmacology, 12.1 Mechanism of Action",
+          "supporting_text": "Palbociclib is an inhibitor of cyclin-dependent kinase (CDK) 4 and 6. Cyclin D1 and CDK4/6 are \u00b7 downstream of signaling pathways which lead to cellular proliferation. In vitro, palbociclib reduced \u00b7 cellular proliferation of estrogen receptor (ER)-positive breast cancer cell lines by blocking progression \u00b7 of the cell from G1 into S phase of the cell cycle."
+        }
+      ]
+    },
+    {
+      "text": "CDK4 and CDK6 control the G1-to-S phase transition by binding D-type cyclins; the CDK4/6\u2013cyclin D1 complex phosphorylates the retinoblastoma susceptibility gene product (Rb), releasing E2F and DP transcription factors that drive expression of genes required for S-phase entry.",
+      "evidence_type": "pharmacology / cell biology",
+      "citations": [
+        {
+          "title": "PALbociclib CoLlaborative Adjuvant Study protocol",
+          "url": "https://cdn.clinicaltrials.gov/large-docs/94/NCT02513394/Prot_SAP_000.pdf",
+          "locator": "Section 1.2, Palbociclib Mechanism of Action",
+          "supporting_text": "CDK4 and CDK6 control G1 to S phase transit by binding to D-type cyclins. The CDK4/6/Cyclin D1 complex phosphorylates the retinoblastoma susceptibility (RB1) gene product (Rb), releasing the E2F and DP transcription factors that drive expression of genes required for S-phase entry."
+        }
+      ]
+    },
+    {
+      "text": "There is a strong mechanistic link between estradiol/estrogen receptor signaling and the G1-S transition: cyclin D1 is a direct transcriptional target of ER, and genetic aberrations causing hyperactivation of cyclin D1-CDK4/6 are particularly common in ER-positive breast cancer, providing the disease-biology rationale for combining a CDK4/6 inhibitor with endocrine therapy in this subtype.",
+      "evidence_type": "pharmacology / disease biology rationale",
+      "citations": [
+        {
+          "title": "PALbociclib CoLlaborative Adjuvant Study protocol",
+          "url": "https://cdn.clinicaltrials.gov/large-docs/94/NCT02513394/Prot_SAP_000.pdf",
+          "locator": "Section 1.2, Palbociclib Mechanism of Action",
+          "supporting_text": "There is a strong link between the actions of estradiol and the G1-S phase transition, where the estradiol effector is the cyclin D1-CDK4/6-Rb complex. Cyclin D1 is a direct transcriptional target of ER... Genetic aberrations leading to hyperactivation of cyclin D1-CDK4/6 is particularly common in ER+ breast cancer, consistent with its critical role in the tumorigenesis of this cancer subtype, making CDK4/6 inhibitors particularly attractive agents for ER+ breast cancer."
+        }
+      ]
+    },
+    {
+      "text": "Combining palbociclib with antiestrogens in ER-positive breast cancer cell lines led to decreased Rb protein phosphorylation, reduced E2F expression/signaling, and increased growth arrest compared with either drug alone, and increased cell senescence that was sustained for up to 6 days after palbociclib removal (greater if antiestrogen treatment continued) \u2014 nonclinical evidence for the combination mechanism and for a durable pharmacodynamic effect after drug removal.",
+      "evidence_type": "nonclinical pharmacodynamics",
+      "citations": [
+        {
+          "title": "Hydroxychloroquine, Palbociclib, and Letrozole Before Surgery in ER+ HER2- Breast Cancer (protocol, citing label pharmacology)",
+          "url": "https://cdn.clinicaltrials.gov/large-docs/72/NCT03774472/Prot_SAP_000.pdf",
+          "locator": "Section 3.1, Mechanism of Action",
+          "supporting_text": "Treatment of breast cancer cell lines with the combination of palbociclib and antiestrogens leads to decreased retinoblastoma (Rb) protein phosphorylation resulting in reduced E2F expression and signaling, and increased growth arrest compared to treatment with each drug alone. In vitro treatment of ER-positive breast cancer cell lines with the combination of palbociclib and antiestrogens led to increased cell senescence compared to each drug alone, which was sustained for up to 6 days following palbociclib removal and was greater if antiestrogen treatment was continued."
+        }
+      ]
+    },
+    {
+      "text": "At the molecular level, palbociclib occupies the ATP-binding cleft of the CDK4/6 kinase domain in an ATP-mimetic manner; in mechanistic (non-clinical) experiments, palbociclib produced dephosphorylation of Rb within less than 15 minutes of drug exposure, and Rb phosphorylation status (Ser-807/Ser-811) serves as the principal on-target pharmacodynamic biomarker. This rapid biochemical/cellular effect is a pharmacodynamic biomarker, not a validated marker of clinically meaningful tumor response.",
+      "evidence_type": "nonclinical pharmacodynamics (mechanistic biomarker, not clinical onset)",
+      "citations": [
+        {
+          "title": "Palbociclib Mechanism of Action | Elicit",
+          "url": "https://elicit.com/mechanism-of-action/palbociclib",
+          "locator": "Rb restriction-point blockade section",
+          "supporting_text": "Palbociclib reverses this sequence: the drug produces dephosphorylation of Rb in less than 15 min of drug addition, an unusually rapid pharmacodynamic response. In vivo, phosphorylation at Ser-807 and Ser-811 residues of Rb serves as the most robust on-target biomarker for PD-0332991 activity."
+        }
+      ]
+    },
+    {
+      "text": "Palbociclib activity is Rb-dependent: in nonclinical models, palbociclib shows no activity in Rb-deficient cells, and loss of Rb reduces palbociclib sensitivity several-fold, underscoring that the drug's antiproliferative mechanism requires an intact Rb pathway.",
+      "evidence_type": "nonclinical pharmacology",
+      "citations": [
+        {
+          "title": "Palbociclib Mechanism of Action | Elicit",
+          "url": "https://elicit.com/mechanism-of-action/palbociclib",
+          "locator": "Rb restriction-point blockade section",
+          "supporting_text": "Consistent with this Rb-dependent mechanism, palbociclib shows no activity is seen in RB-deficient cells, and Rb loss reduces palbociclib sensitivity by 4\u20136 fold in model systems."
+        }
+      ]
+    },
+    {
+      "text": "The approved dosing regimen is 125 mg once daily for 21 consecutive days followed by 7 days off treatment, comprising a 28-day cycle, taken in combination with endocrine therapy (an aromatase inhibitor or fulvestrant).",
+      "evidence_type": "patient labeling / official Pfizer patient information",
+      "citations": [
+        {
+          "title": "Taking IBRANCE for mBC | Pfizer",
+          "url": "https://www.ibrance.com/taking-ibrance",
+          "locator": "Dosing schedule section",
+          "supporting_text": "Take 1 IBRANCE tablet or capsule once daily for 21 consecutive days, followed by 7 days off treatment. Remember to continue to take your combination treatment\u2014an aromatase inhibitor or fulvestrant\u2014as instructed by your healthcare provider."
+        }
+      ]
+    },
+    {
+      "text": "The 3-weeks-on/1-week-off dosing schedule rationale derives from a Phase 1 dose-escalation study (A5481001, 74 patients with advanced cancer) that compared a 3/1 schedule (3 weeks on/1 week off) against a 2/1 schedule (2 weeks on/1 week off); dose-limiting toxicities in that study were related to myelosuppression, mainly Grade 3 neutropenia lasting more than 7 days after the end of the treatment cycle, but this neutropenia was reversible and non-cumulative, supporting a schedule with a drug-free interval to allow hematologic recovery.",
+      "evidence_type": "Phase 1 dose-finding trial (dosing-interval rationale)",
+      "citations": [
+        {
+          "title": "PALOMA-3 (NCT01942135) protocol, Palbociclib Dose Rationale",
+          "url": "https://cdn.clinicaltrials.gov/large-docs/35/NCT01942135/Prot_000.pdf",
+          "locator": "Section 1.2.1.5, Palbociclib Dose Rationale",
+          "supporting_text": "Palbociclib has been tested in a Phase 1 dose escalation Study (A5481001) in 74 patients with advanced cancer. Two dosing schedules were evaluated: Schedule 3/1 (3 weeks on treatment/1 week off treatment) and Schedule 2/1 (2 weeks on treatment/1 week off treatment). All dose limiting toxicities (DLTs) observed in this study were related to myelosuppression and mainly consisted of Grade 3 neutropenia lasting more than 7 days after the end of the treatment cycle. However, neutropenia was reversible and non-cumulative."
+        }
+      ]
+    },
+    {
+      "text": "Pharmacokinetically, following oral administration, palbociclib reaches maximum concentration (Tmax) generally between 6 and 12 hours, has a mean absolute bioavailability of 46% after a 125 mg dose, and reaches steady state within 8 days of repeated once-daily dosing \u2014 supporting (but not equating to) the rationale for once-daily dosing; this PK information is explicitly distinguished from any measure of clinical onset of antitumor effect.",
+      "evidence_type": "FDA label (Clinical Pharmacology - Pharmacokinetics)",
+      "citations": [
+        {
+          "title": "Full Prescribing Information for IBRANCE (Pfizer labeling portal)",
+          "url": "https://labeling.pfizer.com/showlabeling.aspx?id=2191",
+          "locator": "Clinical Pharmacology, Pharmacokinetics section",
+          "supporting_text": "The mean maximum observed concentration (Cmax) of palbociclib is generally observed between 6 to 12 hours (time to reach maximum concentration, Tmax) following oral administration. The mean absolute bioavailability of IBRANCE after an oral 125 mg dose is 46%... Steady state was achieved within 8 days following repeated once daily dosing."
+        }
+      ]
+    },
+    {
+      "text": "In the PALOMA-2 hematologic safety analysis, the median time to onset of any-grade neutropenia with palbociclib plus letrozole was 15 days, and for Grade \u22653 neutropenia was 28 days; the median duration of a Grade \u22653 neutropenia episode was 7 days, and neutropenia was mostly transient and manageable by dose modification without appearing to compromise efficacy.",
+      "evidence_type": "Phase 3 trial safety analysis (PALOMA-2, NCT01740427)",
+      "citations": [
+        {
+          "title": "Palbociclib with Letrozole in Postmenopausal Women with ER+/HER2\u2212 Advanced Breast Cancer: Hematologic Safety Analysis of the Randomized PALOMA-2 Trial",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6975938/",
+          "locator": "Abstract / Results",
+          "supporting_text": "The median time to onset of any\u2010grade neutropenia and grade \u2265 3 neutropenia was 15 days and 28 days, respectively, for patients receiving palbociclib plus letrozole. In this study, the median duration of grade \u2265 3 neutropenia (by episode) was 7 days."
+        }
+      ]
+    },
+    {
+      "text": "Because of this neutropenia onset pattern, the FDA label directs monitoring of complete blood count before starting IBRANCE, at the beginning of each cycle, on Day 15 of the first 2 cycles, and as clinically indicated, with dose interruption, reduction, or delay recommended for patients who develop Grade 3 or 4 neutropenia \u2014 a monitoring schedule that is itself informed by the observed early-cycle timing of hematologic toxicity rather than by antitumor onset.",
+      "evidence_type": "FDA label (Dosage and Administration) / Pfizer press communication citing label",
+      "citations": [
+        {
+          "title": "Pfizer Announces Overall Survival Results from Phase 3 PALOMA-2 Trial of IBRANCE",
+          "url": "https://www.pfizer.com/news/press-release/press-release-detail/pfizer-announces-overall-survival-results-phase-3-paloma-2",
+          "locator": "Safety/monitoring paragraph",
+          "supporting_text": "Monitor complete blood count prior to starting IBRANCE, at the beginning of each cycle, on Day 15 of first 2 cycles and as clinically indicated. Dose interruption, dose reduction, or delay in starting treatment cycles is recommended for patients who develop Grade 3 or 4 neutropenia."
+        }
+      ]
+    },
+    {
+      "text": "As a measure of duration of antitumor effect (not onset), in the Phase 3 PALOMA-2 trial palbociclib plus letrozole produced a median progression-free survival of 24.8 months versus 14.5 months for placebo plus letrozole (hazard ratio for progression or death, 0.58; 95% CI, 0.46 to 0.72).",
+      "evidence_type": "Phase 3 randomized trial (PALOMA-2), primary efficacy endpoint",
+      "citations": [
+        {
+          "title": "Palbociclib and Letrozole in Advanced Breast Cancer | NEJM",
+          "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1607303",
+          "locator": "Results",
+          "supporting_text": "PALOMA-2 met its primary end point by showing a median progression-free survival of 24.8 months (95% confidence interval [CI], 22.1 to not estimable) in the palbociclib\u2013letrozole group, as compared with 14.5 months (95% CI, 12.9 to 17.1) in the placebo-letrozole group (hazard ratio for disease progression or death, 0.58; 95% CI, 0.46 to 0.72; two-sided P<0.001)."
+        }
+      ]
+    },
+    {
+      "text": "After extended follow-up (median 90 months), median overall survival in PALOMA-2 was 53.9 months with palbociclib plus letrozole versus 51.2 months with placebo plus letrozole, a numerically longer but not statistically significant difference (HR 0.956, 95% CI 0.777\u20131.177) \u2014 indicating that the substantial PFS benefit did not translate into a statistically significant overall survival benefit in this trial.",
+      "evidence_type": "Phase 3 randomized trial, secondary endpoint (overall survival), long-term follow-up",
+      "citations": [
+        {
+          "title": "Pfizer Announces Overall Survival Results from Phase 3 PALOMA-2 Trial of IBRANCE",
+          "url": "https://www.pfizer.com/news/press-release/press-release-detail/pfizer-announces-overall-survival-results-phase-3-paloma-2",
+          "locator": "Results summary",
+          "supporting_text": "With a median follow-up of 90 months, patients receiving IBRANCE in combination with letrozole had numerically longer OS compared to placebo plus letrozole (median (95% CI) 53.9 months (49.8\u201360.8) vs median 51.2 months (43.7\u201358.9)); the results were not statistically significant (Hazard Ratio (HR)=0.956 [95% CI, 0.777\u20131.177])."
+        }
+      ]
+    },
+    {
+      "text": "In the earlier Phase 2 PALOMA-1 trial, palbociclib plus letrozole significantly prolonged PFS versus letrozole alone (median PFS 20.2 vs 10.2 months; HR 0.488; 95% CI 0.319\u20130.748; P=0.0004), consistent in direction with the later Phase 3 PALOMA-2 result and supporting reproducibility of the PFS duration-of-effect signal across independent trials.",
+      "evidence_type": "Phase 2 randomized trial (PALOMA-1)",
+      "citations": [
+        {
+          "title": "Overall survival results from the randomized phase 2 study of palbociclib in combination with letrozole (PALOMA-1, TRIO-18)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7383036/",
+          "locator": "Abstract",
+          "supporting_text": "In the phase 2, open-label, PALOMA-1 trial, palbociclib plus letrozole significantly prolonged progression-free survival (PFS) versus letrozole alone (hazard ratio, 0.488; 95% CI 0.319\u20120.748; P = 0.0004; median PFS, 20.2 vs 10.2 months, respectively) in postmenopausal women with estrogen receptor\u2013positive (ER+)/HER2\u2212 ABC."
+        }
+      ]
+    }
+  ],
+  "gaps": [
+    "No identified primary source (FDA review, label, or peer-reviewed trial) reports a direct, validated clinical measure of 'time to onset of antitumor/clinically meaningful effect' for palbociclib (e.g., time to first detectable tumor shrinkage or time to radiographic response); available trial data report only aggregate median PFS/OS at defined analysis time points, not onset kinetics of benefit.",
+    "Median time to objective response (for the subset of patients who respond) was not found in the retrieved primary sources for PALOMA-1/2/3; only overall median PFS/OS and time-to-chemotherapy were located.",
+    "No dedicated pharmacodynamic (Rb-phosphorylation biomarker) clinical trial correlating on-treatment biomarker suppression kinetics with time-to-clinical-benefit was retrieved; the sub-15-minute Rb dephosphorylation figure is from nonclinical/mechanistic sources (Elicit synthesis site), not a peer-reviewed clinical pharmacodynamics paper, and should be treated as a mechanistic biomarker finding, not clinical onset evidence.",
+    "Direct FDA review documents (e.g., the original NDA 207103 medical/clinical pharmacology review) were not retrieved in full; label excerpts and third-party clinical trial protocol descriptions were used as the closest available primary/near-primary sources for mechanism and dose rationale.",
+    "No data were retrieved on duration of effect after treatment discontinuation in patients (e.g., whether antitumor effect persists after stopping drug) beyond a nonclinical in vitro senescence duration observation (up to 6 days post-removal in cell lines), which cannot be extrapolated to clinical duration of effect in patients."
+  ],
+  "warnings": [
+    "The Elicit.com source used for ATP-binding-cleft binding mode and sub-15-minute Rb dephosphorylation kinetics is a third-party AI-generated mechanism summary, not itself a primary peer-reviewed source; the specific 15-minute figure could not be cross-verified against a primary peer-reviewed pharmacology paper in this search and should be treated as lower-confidence pending verification against original nonclinical publications (e.g., Toogood et al. or Fry et al. primary palbociclib pharmacology papers).",
+    "Pharmacokinetic parameters (Tmax, bioavailability, steady-state timing) are reported here strictly as PK data and must not be interpreted as evidence of clinical onset of antitumor effect, per instructions; no such substitution was made in the claims above.",
+    "Efficacy figures (PFS, OS) are trial-endpoint medians assessed at specific data cutoffs/follow-up durations and are not equivalent to a discrete 'onset' or 'duration of effect' pharmacological parameter; they are included only as the best available proxy for duration of clinical benefit, clearly distinguished from mechanistic onset.",
+    "Some patient-facing dosing information was sourced from the official Pfizer patient website (ibrance.com) rather than the full FDA prescribing information PDF directly; this was cross-checked qualitatively against label-derived summaries in clinical trial protocols and Pfizer's own PALOMA-2 press release, which corroborate the same 3-week-on/1-week-off, Day 15 CBC monitoring schedule."
+  ]
+}

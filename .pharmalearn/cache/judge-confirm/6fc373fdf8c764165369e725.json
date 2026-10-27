@@ -1,0 +1,6 @@
+{
+  "verdict": "needs_context",
+  "severity": "minor",
+  "explanation": "The CBC schedule itself matches multiple evidence items, but the added claim that neutropenia is 'non-cumulative' isn't stated in any evidence; only 'early-onset' timing is supported.",
+  "suggested_rewrite": "CBC prior to starting IBRANCE, at the beginning of each cycle, on Day 15 of the first 2 cycles, and as clinically indicated, reflecting the early-onset pattern of neutropenia seen in pivotal trials."
+}

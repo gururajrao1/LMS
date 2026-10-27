@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "The evidence covers only the inavolisib/fulvestrant and trastuzumab-maintenance indications. Claims about the AI combination's accelerated approval based on PFS and its original study in postmenopausal women 'later extended to men' are not addressed by any provided evidence.",
+  "suggested_rewrite": "Remove or separately source the accelerated-approval/PFS basis claim and the postmenopausal-to-men extension claim, as neither is supported by the cited evidence."
+}

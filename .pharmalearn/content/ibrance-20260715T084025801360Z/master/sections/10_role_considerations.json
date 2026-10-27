@@ -1,0 +1,333 @@
+{
+  "id": "10_role_considerations",
+  "title": "Ibrance (palbociclib): Mechanism, Approved Use, Dosing/Administration, Monitoring, Safety, and Clinical Evidence for MSL/HCP Reference",
+  "summary": "Ibrance (palbociclib) is an oral cyclin-dependent kinase 4/6 (CDK4/6) inhibitor marketed by Pfizer, approved for HR-positive, HER2-negative advanced/metastatic breast cancer in combination with an aromatase inhibitor, fulvestrant, or (as of 2024) inavolisib plus fulvestrant, and most recently (June 2026) with trastuzumab \u00b1 pertuzumab and endocrine therapy for HR+/HER2+ maintenance therapy. Core prescribing information centers on a 125 mg once-daily oral dose for 21 days followed by 7 days off (28-day cycle), taken with food, with mandatory neutropenia monitoring (CBC at baseline, each cycle start, and Day 15 of cycles 1\u20132) and boxed/label warnings for neutropenia, ILD/pneumonitis, and embryo-fetal toxicity. Pivotal trials PALOMA-1/2/3 established consistent, large progression-free survival benefit when palbociclib was added to endocrine therapy, though none of the studies showed a statistically significant overall survival benefit versus endocrine therapy alone.",
+  "claims": [
+    {
+      "text": "Ibrance (palbociclib) capsules/tablets are indicated for the treatment of adult patients with hormone receptor-positive (HR+), HER2-negative advanced or metastatic breast cancer in combination with an aromatase inhibitor as initial endocrine-based therapy, or with fulvestrant in patients with disease progression following endocrine therapy.",
+      "evidence_type": "FDA-approved label",
+      "citations": [
+        {
+          "title": "Dosing & Administration | IBRANCE\u00ae (palbociclib)",
+          "url": "https://ibrance.pfizerpro.com/dosing/administration",
+          "locator": "Indication statement",
+          "supporting_text": "IBRANCE\u00ae (palbociclib) 125 mg capsules and tablets are indicated for the treatment of adult patients with hormone receptor-positive (HR+), human epidermal growth factor receptor 2-negative (HER2-) advanced or metastatic breast cancer (mBC) in combination with: an aromatase inhibitor as initial endocrine-based therapy, or \u00b7 fulvestrant in patients with disease progression following endocrine therapy."
+        }
+      ]
+    },
+    {
+      "text": "The current DailyMed label indicates IBRANCE capsules are taken orally with food in combination with an aromatase inhibitor, fulvestrant, or inavolisib and fulvestrant, reflecting the newer combination with the PI3K inhibitor inavolisib.",
+      "evidence_type": "FDA-approved label (DailyMed)",
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib capsule - DailyMed",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=e0e6412f-50b4-4fd4-9364-62818d121a07&version=23",
+          "locator": "Section 2, Indications/Dosage summary",
+          "supporting_text": "IBRANCE capsules are taken orally with food in combination with an aromatase inhibitor, fulvestrant, or inavolisib and fulvestrant."
+        }
+      ]
+    },
+    {
+      "text": "On June 24, 2026, the FDA approved palbociclib in combination with trastuzumab, with or without pertuzumab, and endocrine therapy for maintenance treatment of adults with HR-positive, HER2-positive locally advanced or metastatic breast cancer following induction treatment, based on the PATINA trial (NCT02947685) in 518 patients.",
+      "evidence_type": "FDA approval announcement",
+      "citations": [
+        {
+          "title": "FDA approves palbociclib with trastuzumab, with or without pertuzumab, and endocrine therapy for the maintenance treatment of HR-positive, HER2-positive metastatic breast cancer",
+          "url": "https://www.fda.gov/drugs/resources-information-approved-drugs/fda-approves-palbociclib-trastuzumab-or-without-pertuzumab-and-endocrine-therapy-maintenance",
+          "locator": "Approval summary paragraph",
+          "supporting_text": "On June 24, 2026, the Food and Drug Administration approved palbociclib (Ibrance, Pfizer Inc.) in combination with trastuzumab, with or without pertuzumab, and endocrine therapy for the maintenance treatment of adults with HR-positive, HER2-positive locally advanced or metastatic breast cancer following induction treatment."
+        }
+      ]
+    },
+    {
+      "text": "In the PATINA trial, patients were randomized 1:1 to receive palbociclib with trastuzumab (\u00b1pertuzumab) and endocrine therapy (fulvestrant or an aromatase inhibitor: anastrozole, letrozole, or exemestane), or trastuzumab (\u00b1pertuzumab) and endocrine therapy alone, after induction with a taxane and trastuzumab (\u00b1pertuzumab); the trial met its primary PFS endpoint with an investigator-assessed hazard ratio of 0.76 (95% CI 0.59\u20130.97).",
+      "evidence_type": "Clinical trial (Phase 3, PATINA)",
+      "citations": [
+        {
+          "title": "FDA approves palbociclib with trastuzumab...maintenance treatment",
+          "url": "https://www.fda.gov/drugs/resources-information-approved-drugs/fda-approves-palbociclib-trastuzumab-or-without-pertuzumab-and-endocrine-therapy-maintenance",
+          "locator": "Efficacy/PATINA description",
+          "supporting_text": "Efficacy was evaluated in PATINA (NCT02947685), a randomized, open-label trial in 518 patients with HR-positive, HER2-positive locally advanced or metastatic breast cancer who had no evidence of disease progression after induction treatment with a taxane and trastuzumab, with or without pertuzumab, for their advanced disease."
+        },
+        {
+          "title": "FDA Approves Palbociclib for HR+/HER2+ Metastatic Breast Cancer Maintenance",
+          "url": "https://www.oncnursingnews.com/view/fda-approves-palbociclib-for-hr-her2-metastatic-breast-cancer-maintenance",
+          "locator": "PFS results paragraph",
+          "supporting_text": "The reported hazard ratio was 0.76 (95% CI: 0.59, 0.97), with a 1-sided p-value of 0.0134."
+        }
+      ]
+    },
+    {
+      "text": "The recommended starting dose of palbociclib is 125 mg orally once daily, taken with food, for 21 consecutive days followed by 7 days off treatment, comprising a complete 28-day cycle; the same regimen applies for the HER2+ maintenance indication in combination with trastuzumab \u00b1 pertuzumab and endocrine therapy.",
+      "evidence_type": "FDA-approved label",
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib capsule - DailyMed",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=e0e6412f-50b4-4fd4-9364-62818d121a07&version=23",
+          "locator": "Section 2.1 Dosage",
+          "supporting_text": "Recommended starting dose: 125 mg once daily taken with food for 21 days followed by 7 days off treatment."
+        },
+        {
+          "title": "FDA approves palbociclib with trastuzumab...maintenance treatment",
+          "url": "https://www.fda.gov/drugs/resources-information-approved-drugs/fda-approves-palbociclib-trastuzumab-or-without-pertuzumab-and-endocrine-therapy-maintenance",
+          "locator": "Dosage recommendation",
+          "supporting_text": "The recommended palbociclib dosage is 125 mg orally once daily for 21 consecutive days, followed by seven days off treatment to comprise a complete cycle of 28 days."
+        }
+      ]
+    },
+    {
+      "text": "For patients with severe hepatic impairment (Child-Pugh class C), the recommended dose of IBRANCE is reduced to 75 mg once daily for the same 21 days on/7 days off schedule; no dose adjustment is required for mild or moderate hepatic impairment (Child-Pugh A/B).",
+      "evidence_type": "FDA-approved label (Clinical Pharmacology/Dosage)",
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib tablet, film coated - DailyMed",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=89a142d5-7e61-48bf-9e77-e2cd124c4792&version=10",
+          "locator": "Hepatic impairment dosing section",
+          "supporting_text": "No dose adjustment is required for patients with mild or moderate hepatic impairment (Child-Pugh classes A and B). For patients with severe hepatic impairment (Child-Pugh class C), the recommended dose of IBRANCE is 75 mg once daily for 21 consecutive days followed by 7 days off treatment to comprise a complete cycle of 28 days."
+        }
+      ]
+    },
+    {
+      "text": "IBRANCE capsules should be swallowed whole and not chewed, crushed, or opened prior to swallowing, and no capsule should be taken if broken or cracked; if a patient vomits or misses a dose, an additional dose should not be taken and the next scheduled dose should be taken at the usual time.",
+      "evidence_type": "FDA-approved label (Patient Counseling/Administration)",
+      "citations": [
+        {
+          "title": "IBRANCE\u00ae (palbociclib) capsules, for oral use",
+          "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/207103s021,212436s009lbl.pdf",
+          "locator": "Patient Counseling Information section",
+          "supporting_text": "If the patient vomits or misses a dose, an additional dose should not be taken. The next prescribed dose \u00b7 should be taken at the usual time. IBRANCE capsules should be swallowed whole (do not chew, crush, or open them prior to swallowing). No capsule should be ingested if it is broken, cracked, or otherwise ..."
+        }
+      ]
+    },
+    {
+      "text": "Patients should be encouraged to take their dose of IBRANCE at approximately the same time each day.",
+      "evidence_type": "FDA-approved label (Patient Counseling)",
+      "citations": [
+        {
+          "title": "IBRANCE\u00ae (palbociclib) capsules, for oral use",
+          "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/207103s021,212436s009lbl.pdf",
+          "locator": "Administration section",
+          "supporting_text": "Patients should be encouraged to take their dose of IBRANCE at approximately the same time each day."
+        }
+      ]
+    },
+    {
+      "text": "The label requires monitoring complete blood count prior to starting IBRANCE therapy, at the beginning of each cycle, on Day 15 of the first two cycles, and as clinically indicated; dose interruption, dose reduction, or delay in starting a treatment cycle is recommended for patients who develop Grade 3 or 4 neutropenia.",
+      "evidence_type": "FDA-approved label (Warnings and Precautions 5.1)",
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib capsule - DailyMed",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=e0e6412f-50b4-4fd4-9364-62818d121a07&version=23",
+          "locator": "Section 5.1 Neutropenia",
+          "supporting_text": "Monitor complete blood counts prior to starting IBRANCE therapy and at the beginning of each cycle, as well as on Day 15 of the first 2 cycles, and as clinically indicated. Dose interruption, dose reduction, or delay in starting treatment cycles is recommended for patients who develop Grade 3 or 4 neutropenia"
+        }
+      ]
+    },
+    {
+      "text": "In PALOMA-2 and PALOMA-3, the median time to first episode of any-grade neutropenia was 15 days and the median duration of Grade \u22653 neutropenia was 7 days; febrile neutropenia occurred in 1.8% of IBRANCE-exposed patients across these two trials, and one death due to neutropenic sepsis occurred in PALOMA-3.",
+      "evidence_type": "Clinical trial pooled safety data (label)",
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib capsule - DailyMed",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=e0e6412f-50b4-4fd4-9364-62818d121a07&version=23",
+          "locator": "Section 5.1 Neutropenia",
+          "supporting_text": "In PALOMA-2 and PALOMA-3, the median time to first episode of any grade neutropenia was 15 days and the median duration of Grade \u22653 neutropenia was 7 days... Febrile neutropenia has been reported in 1.8% of patients exposed to IBRANCE across PALOMA-2 and PALOMA-3. One death due to neutropenic sepsis was observed in PALOMA-3."
+        }
+      ]
+    },
+    {
+      "text": "Neutropenia was the most frequently reported adverse reaction in PALOMA-2 (80%) and PALOMA-3 (83%); Grade 3 or 4 decreased neutrophil counts occurred in 56%/10% of patients on IBRANCE plus letrozole in PALOMA-2, and in 55%/11% of patients on IBRANCE plus fulvestrant in PALOMA-3.",
+      "evidence_type": "Clinical trial adverse event data (product resource)",
+      "citations": [
+        {
+          "title": "Dosing & Administration | IBRANCE\u00ae (palbociclib)",
+          "url": "https://ibrance.pfizerpro.com/dosing/administration",
+          "locator": "Neutropenia adverse reaction data",
+          "supporting_text": "Neutropenia was the most frequently reported adverse reaction in PALOMA-2 (80%) and PALOMA-3 (83%). In PALOMA-2, Grade 3 (56%) or 4 (10%) decreased neutrophil counts were reported in patients receiving IBRANCE plus letrozole. In PALOMA-3, Grade 3 (55%) or Grade 4 (11%) decreased neutrophil counts were reported in patients receiving IBRANCE plus fulvestrant."
+        }
+      ]
+    },
+    {
+      "text": "Severe and fatal cases of interstitial lung disease (ILD)/pneumonitis have been reported with IBRANCE; the label instructs monitoring for pulmonary symptoms, immediate interruption of IBRANCE in patients with suspected ILD/pneumonitis, and permanent discontinuation if severe ILD/pneumonitis occurs.",
+      "evidence_type": "FDA-approved label (Warnings and Precautions)",
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib capsule - DailyMed",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=e0e6412f-50b4-4fd4-9364-62818d121a07&version=23",
+          "locator": "Section 5, ILD/Pneumonitis",
+          "supporting_text": "Interstitial Lung Disease (ILD)/Pneumonitis: Severe and fatal cases of ILD/pneumonitis have been reported. Monitor for pulmonary symptoms of ILD/pneumonitis. Interrupt IBRANCE immediately in patients with suspected ILD/pneumonitis. Permanently discontinue IBRANCE if severe ILD/pneumonitis occurs."
+        }
+      ]
+    },
+    {
+      "text": "Across PALOMA-1, PALOMA-2, and PALOMA-3, 1% of IBRANCE-treated patients had ILD/pneumonitis of any grade, 0.1% had Grade 3 or 4 events, and no fatal cases were reported in these trials.",
+      "evidence_type": "Clinical trial pooled safety data (product resource)",
+      "citations": [
+        {
+          "title": "Dosing & Administration | IBRANCE\u00ae (palbociclib)",
+          "url": "https://ibrance.pfizerpro.com/dosing/administration",
+          "locator": "ILD/pneumonitis adverse reaction data",
+          "supporting_text": "Across clinical trials (PALOMA-1, PALOMA-2, PALOMA-3), 1% of IBRANCE-treated patients had ILD/pneumonitis of any grade, 0.1% had Grade 3 or 4, and no fatal cases were reported."
+        }
+      ]
+    },
+    {
+      "text": "Based on findings from animal studies and its mechanism of action, IBRANCE can cause fetal harm when administered to a pregnant woman; animal reproduction studies showed embryo-fetal toxicity at maternal exposures \u22654 times human clinical exposure (AUC). Females of reproductive potential should be advised to use effective contraception during treatment and for at least 3 weeks after the last dose, and males with female partners of reproductive potential should use effective contraception during treatment and for 3 months after the last dose due to potential genotoxicity.",
+      "evidence_type": "FDA-approved label (Use in Specific Populations)",
+      "citations": [
+        {
+          "title": "full prescribing information for IBRANCE",
+          "url": "https://labeling.pfizer.com/showlabeling.aspx?id=2191",
+          "locator": "Section 8.1/8.3 Pregnancy and Females/Males of Reproductive Potential",
+          "supporting_text": "Based on findings from animal studies and its mechanism of action, IBRANCE can cause fetal harm when \u00b7 administered to a pregnant woman. In animal reproduction studies, administration of palbociclib to pregnant \u00b7 rats and rabbits during organogenesis resulted in embryo-fetal toxicity at maternal exposures that were \u22654 times \u00b7 the human clinical exposure based on area under the curve (AUC)... Because of the potential for genotoxicity, advise male patients with female partners of reproductive potential to \u00b7 use effective contraception during treatment with IBRANCE and for 3 months after the last dose"
+        }
+      ]
+    },
+    {
+      "text": "There is no information regarding the presence of palbociclib in human milk or its effects on milk production or the breastfed infant; because of potential for serious adverse reactions in breastfed infants, lactating women are advised not to breastfeed during treatment and for 3 weeks after the last dose.",
+      "evidence_type": "FDA-approved label (Lactation)",
+      "citations": [
+        {
+          "title": "full prescribing information for IBRANCE",
+          "url": "https://labeling.pfizer.com/showlabeling.aspx?id=2191",
+          "locator": "Section 8.2 Lactation",
+          "supporting_text": "There is no information regarding the presence of palbociclib in human milk, its effects on milk production, or \u00b7 the breastfed infant. Because of the potential for serious adverse reactions in breastfed infants from IBRANCE, advise a lactating woman not to breastfeed during treatment with IBRANCE and for 3 weeks after the last dose."
+        }
+      ]
+    },
+    {
+      "text": "Palbociclib is primarily metabolized by CYP3A and the sulfotransferase enzyme SULT2A1, and in vivo it acts as a time-dependent inhibitor of CYP3A; coadministration of a strong CYP3A inducer (rifampin) decreased palbociclib plasma exposure by 85% in healthy subjects. The label advises avoiding concomitant use of strong CYP3A inhibitors (e.g., clarithromycin, itraconazole, ketoconazole, ritonavir) and strong CYP3A inducers (e.g., phenytoin, rifampin, carbamazepine, enzalutamide, St. John's Wort), and to avoid grapefruit or grapefruit juice during treatment; if a strong CYP3A inhibitor cannot be avoided, the IBRANCE dose should be reduced.",
+      "evidence_type": "FDA-approved label (Drug Interactions / Clinical Pharmacology)",
+      "citations": [
+        {
+          "title": "1 HIGHLIGHTS OF PRESCRIBING INFORMATION",
+          "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/212436s008lbl.pdf",
+          "locator": "Drug Interactions and Clinical Pharmacology sections",
+          "supporting_text": "Palbociclib is primarily metabolized by CYP3A and sulfotransferase (SULT) enzyme SULT2A1. In vivo, palbociclib is a time-dependent inhibitor of CYP3A... Coadministration of a strong CYP3A inducer (rifampin) decreased the plasma exposure of palbociclib in healthy subjects by 85%. Avoid concomitant use of strong CYP3A inducers (e.g., phenytoin, rifampin, carbamazepine, enzalutamide, and St John's Wort)... Avoid grapefruit or grapefruit juice during IBRANCE treatment. If coadministration of IBRANCE with a strong CYP3A inhibitor cannot be avoided, reduce the dose of IBRANCE"
+        }
+      ]
+    },
+    {
+      "text": "When given with IBRANCE, the recommended dose of fulvestrant is 500 mg administered on Days 1, 15, 29, and once monthly thereafter; the aromatase inhibitor dose should follow its own full prescribing information.",
+      "evidence_type": "FDA-approved label (Dosage and Administration)",
+      "citations": [
+        {
+          "title": "IBRANCE\u00ae (palbociclib) capsules, for oral use",
+          "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/207103s021,212436s009lbl.pdf",
+          "locator": "Section 2 combination dosing",
+          "supporting_text": "When given with IBRANCE, the recommended dose of fulvestrant is 500 mg administered on Days 1, 15, 29, and once monthly thereafter."
+        }
+      ]
+    },
+    {
+      "text": "Advise patients to immediately report any signs or symptoms of myelosuppression or infection, such as fever, chills, dizziness, shortness of breath, weakness, or any increased tendency to bleed and/or bruise.",
+      "evidence_type": "FDA-approved label (Patient Counseling)",
+      "citations": [
+        {
+          "title": "IBRANCE\u00ae (palbociclib) capsules, for oral use",
+          "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/207103s021,212436s009lbl.pdf",
+          "locator": "Patient Counseling Information",
+          "supporting_text": "Advise patients to immediately report any signs or symptoms of myelosuppression or infection, such as \u00b7 fever, chills, dizziness, shortness of breath, weakness, or any increased tendency to bleed and/or to"
+        }
+      ]
+    },
+    {
+      "text": "PALOMA-2 (Phase 3), first-line setting: palbociclib plus letrozole significantly improved progression-free survival versus placebo plus letrozole in postmenopausal women with ER+/HER2- advanced breast cancer, with median PFS of 24.8 months versus 14.5 months (a 10-month improvement), consistent with earlier PALOMA-1 findings.",
+      "evidence_type": "Clinical trial (Phase 3, peer-reviewed, NEJM)",
+      "citations": [
+        {
+          "title": "Palbociclib and Letrozole in Advanced Breast Cancer | New England Journal of Medicine",
+          "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1607303",
+          "locator": "Discussion section",
+          "supporting_text": "The median progression-free survival of 14.5 months in the placebo\u2013letrozole group in PALOMA-2 is consistent with that observed in other recent studies of letrozole in similar populations... the longer (by 10 months) median progression-free survival with palbociclib\u2013letrozole in PALOMA-2 was consistent with that observed in PALOMA-1. The median progression-free survival of 24.8 months in PALOMA-2 is longer than that seen in other phase 3 studies involving women with advanced breast cancer."
+        }
+      ]
+    },
+    {
+      "text": "In the final overall survival analysis of PALOMA-2 (median follow-up 90 months), median OS was numerically longer with palbociclib plus letrozole (53.9 months) versus placebo plus letrozole (51.2 months), but this difference was not statistically significant (HR 0.956, 95% CI 0.777\u20131.177).",
+      "evidence_type": "Clinical trial (Phase 3 final OS analysis, press release corroborated by ASCO Post)",
+      "citations": [
+        {
+          "title": "Pfizer Announces Overall Survival Results from Phase 3 PALOMA-2 Trial of IBRANCE\u00ae (palbociclib)",
+          "url": "https://www.pfizer.com/news/press-release/press-release-detail/pfizer-announces-overall-survival-results-phase-3-paloma-2",
+          "locator": "OS results paragraph",
+          "supporting_text": "With a median follow-up of 90 months, patients receiving IBRANCE in combination with letrozole had numerically longer OS compared to placebo plus letrozole (median (95% CI) 53.9 months (49.8\u201360.8) vs median 51.2 months (43.7\u201358.9)); the results were not statistically significant (Hazard Ratio (HR)=0.956 [95% CI, 0.777\u20131.177])."
+        }
+      ]
+    },
+    {
+      "text": "PALOMA-3 (Phase 3), in patients with disease progression after prior endocrine therapy: palbociclib plus fulvestrant significantly improved progression-free survival versus placebo plus fulvestrant, with median PFS of 11.2 months versus 4.6 months (HR 0.50, 95% CI 0.40\u20130.62; absolute difference 6.6 months).",
+      "evidence_type": "Clinical trial (Phase 3, peer-reviewed, NEJM)",
+      "citations": [
+        {
+          "title": "Overall Survival with Palbociclib and Fulvestrant in Advanced Breast Cancer | New England Journal of Medicine",
+          "url": "https://www.nejm.org/doi/full/10.1056/nejmoa1810527",
+          "locator": "Introduction/results",
+          "supporting_text": "The primary aim of the trial was met, with the trial showing significantly longer progression-free survival with combination palbociclib\u2013fulvestrant therapy than with placebo\u2013fulvestrant (median, 11.2 months [95% CI, 9.5 to 12.9] vs. 4.6 months [95% CI, 3.5 to 5.6]; hazard ratio for disease progression or death, 0.50; 95% CI, 0.40 to 0.62; absolute difference, 6.6 months)."
+        }
+      ]
+    },
+    {
+      "text": "The final overall survival analysis of PALOMA-3 showed longer median OS with palbociclib plus fulvestrant (34.9 months) versus placebo plus fulvestrant (28.0 months), a numerical difference of 6.9 months that was not statistically significant (stratified HR 0.81, 95% CI 0.64\u20131.03, 2-sided p=0.09).",
+      "evidence_type": "Clinical trial (Phase 3 final OS analysis, peer-reviewed)",
+      "citations": [
+        {
+          "title": "Overall survival results from the randomized phase 2 study of palbociclib...(PALOMA-1, TRIO-18)",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7383036/",
+          "locator": "Introduction citing PALOMA-3 OS results",
+          "supporting_text": "The final OS analysis from PALOMA-3 showed longer median OS in the palbociclib plus fulvestrant arm compared with the placebo plus fulvestrant arm; however, this difference was not statistically significant (stratified hazard ratio, 0.81; 95% CI 0.64\u20131.03; 2-sided P = 0.09; median OS, 34.9 vs 28.0 months, respectively)"
+        }
+      ]
+    },
+    {
+      "text": "IBRANCE is available as 75 mg, 100 mg, and 125 mg capsules and as 75 mg, 100 mg, and 125 mg film-coated tablets; the 125 mg tablet is an oval, light purple, film-coated tablet debossed with 'Pfizer' on one side and 'PBC 125' on the other.",
+      "evidence_type": "FDA-approved label (Dosage Forms and Strengths / Description)",
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib tablet, film coated - DailyMed",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=89a142d5-7e61-48bf-9e77-e2cd124c4792&version=10",
+          "locator": "Section 3 Dosage Forms and Strengths / Description",
+          "supporting_text": "125 mg tablets: Oval, light purple, film-coated tablets debossed with \"Pfizer\" on one side and \"PBC 125\" on the other side."
+        }
+      ]
+    },
+    {
+      "text": "IBRANCE has an oral bioavailability of approximately 46% at the 125 mg dose; steady state is achieved within 8 days of once-daily dosing, and the drug accumulates with a median accumulation ratio of 2.4 (range 1.5\u20134.2) with repeated dosing.",
+      "evidence_type": "FDA-approved label (Clinical Pharmacology)",
+      "citations": [
+        {
+          "title": "1 HIGHLIGHTS OF PRESCRIBING INFORMATION",
+          "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/212436s008lbl.pdf",
+          "locator": "Section 12.3 Pharmacokinetics",
+          "supporting_text": "The \u00b7 mean absolute bioavailability of IBRANCE after an oral 125 mg dose is 46%... Steady state was \u00b7 achieved within 8 days following repeated once daily dosing. With repeated once daily administration, palbociclib accumulated with a median accumulation ratio of 2.4 (range 1.5 to 4.2)."
+        }
+      ]
+    },
+    {
+      "text": "Adverse reactions leading to permanent discontinuation for patients receiving IBRANCE plus letrozole included neutropenia (1.1%) and elevated alanine aminotransferase.",
+      "evidence_type": "Clinical trial adverse event data (label)",
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib tablet, film coated - DailyMed",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=fecbdd7d-b729-41b5-9872-231b8fe104ce",
+          "locator": "Adverse Reactions section",
+          "supporting_text": "Adverse reactions leading to permanent discontinuation for patients receiving IBRANCE plus letrozole included neutropenia (1.1%) and alanine aminotransferase in"
+        }
+      ]
+    }
+  ],
+  "gaps": [
+    "Comprehensive dose-reduction schedule tables (starting dose to first/second reduction levels, e.g., 125\u2192100\u219275 mg) were referenced in the label sections but full table detail was not retrieved verbatim in this search; MSLs should refer to the current full Prescribing Information Section 2.2/2.3 for exact stepwise dose modification tables.",
+    "Detailed common non-hematologic adverse events (e.g., fatigue, alopecia, stomatitis, diarrhea, nausea) with exact incidence percentages by trial arm were only partially captured (a partial list appeared in the 2015 label search snippet) and were not confirmed against the most current label; full updated AE tables should be verified directly on DailyMed/FDA before clinical use.",
+    "Direct label text for the newer combination indication with inavolisib (approved 2024) and its specific efficacy/safety data (INAVO120 trial results referenced via the Itovebi label) were only tangentially captured; a dedicated review of the current IBRANCE label sections reflecting the inavolisib combination indication is recommended.",
+    "No information was found in this search regarding IBRANCE use in men beyond a brief label statement that the safety profile in men is consistent with women; detailed male-specific dosing/monitoring nuances were not located.",
+    "Comparative efficacy/safety versus other CDK4/6 inhibitors (ribociclib, abemaciclib) was not directly assessed in this search and any such comparison should be treated as indirect/cross-trial and interpreted cautiously.",
+    "Renal impairment dosing guidance was not retrieved in this search; should be confirmed from the current full label (Section 8.6 or equivalent) before clinical counseling."
+  ],
+  "warnings": [
+    "Overall survival benefit was NOT statistically significant in either PALOMA-2 (first-line, with letrozole) or PALOMA-3 (post-progression, with fulvestrant) despite significant and clinically meaningful PFS benefits in both trials; this distinction is important for accurate MSL scientific exchange and should not be conflated with a proven survival benefit.",
+    "Adverse reaction and pharmacokinetic figures were drawn from multiple label versions/snippets (2015, 2019, 2024, 2025) retrieved via search; because IBRANCE labeling has been updated multiple times (including for new combinations with inavolisib and new HER2+ maintenance indication), the most current full Prescribing Information on DailyMed or FDA should be consulted directly to confirm any figure before clinical or promotional use.",
+    "The June 2026 HER2+ maintenance approval (PATINA trial) is a very recent regulatory action; some secondary source (Oncology Nursing News) content appeared to closely track the FDA announcement language, and full FDA-posted prescribing information for this specific indication should be checked on Drugs@FDA once available, as noted by FDA's own statement that full PI would be posted separately.",
+    "Search results included tertiary sources (news/nursing sites) alongside primary FDA/DailyMed sources; primary sources were prioritized for label claims, but efficacy commentary from secondary sources was cross-checked against primary trial publications where possible."
+  ]
+}

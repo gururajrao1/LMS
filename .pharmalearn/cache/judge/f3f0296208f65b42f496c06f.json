@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "Evidence does not mention OS being a secondary endpoint, trial power for OS, or an investigator's comment about missing/censored survival data. These specific claims are absent from both sources provided.",
+  "suggested_rewrite": "Remove or attribute claims about OS being a secondary endpoint, statistical power, and investigator comments on missing/censored data unless evidence explicitly supports them."
+}

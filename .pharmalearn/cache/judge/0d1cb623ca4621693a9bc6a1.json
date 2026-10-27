@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "blocking",
+  "explanation": "Evidence specifies IBRANCE is approved only for HR-positive, HER2-negative disease; the text incorrectly adds 'or HER2-positive status, as applicable,' which is not supported by any evidence provided.",
+  "suggested_rewrite": "Confirm HR-positive, HER2-negative status using validated biomarker testing before initiating therapy, per the approved indication."
+}

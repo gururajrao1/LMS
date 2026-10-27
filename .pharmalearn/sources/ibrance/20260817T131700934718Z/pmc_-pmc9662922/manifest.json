@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "drug_id": "ibrance",
+  "source_id": "pmc_-pmc9662922",
+  "fetched_at": "2026-08-17T13:17:24.733275+00:00",
+  "status": "fetched",
+  "access_level": "full_text",
+  "coverage": {
+    "pmcid": "PMC9662922"
+  },
+  "warnings": [],
+  "error": null,
+  "registry": {
+    "id": "pmc_-pmc9662922",
+    "kind": "pmc_article",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9662922/",
+    "title": "Overall Survival with Palbociclib and Fulvestrant in Women with HR+/HER2\u2212 ABC: Updated Exploratory Analyses of PALOMA-3 | PMC",
+    "identifiers": {
+      "pmcid": "PMC9662922"
+    }
+  },
+  "files": [
+    {
+      "path": "raw/fulltext.xml",
+      "role": "full_text",
+      "request_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC9662922&retmode=xml",
+      "final_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC9662922&retmode=xml",
+      "content_type": "text/xml; charset=UTF-8",
+      "bytes": 81056,
+      "sha256": "80867c3a1bba27d05b0e8cbb579d0a4e1ede0aa9528d6c6065fb2c3eb286895f",
+      "last_modified": null,
+      "etag": null
+    }
+  ]
+}

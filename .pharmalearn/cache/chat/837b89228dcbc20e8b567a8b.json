@@ -1,0 +1,25 @@
+{
+  "answer": "Documented unmet needs for palbociclib (Ibrance) include: (1) lack of clear overall survival benefit, as PALOMA-2 final analysis showed no significant OS difference vs letrozole alone (53.9 vs 51.2 months, HR 0.956); (2) safety/tolerability burden, with ILD/pneumonitis risk requiring discontinuation, and dose reductions/modifications in 38.4% and permanent discontinuation in 5.2% of patients due to adverse reactions; (3) diminished real-world efficacy in later-line settings, where median PFS dropped to 7.8 months versus 22.8 months first-line; and (4) immature OS/payer value data for newer maintenance indications. These gaps may warrant discussion with Medical Information for further nuance.",
+  "citations": [
+    {
+      "title": "Full Prescribing Information for IBRANCE",
+      "url": "https://labeling.pfizer.com/showlabeling.aspx?id=2191",
+      "locator": "Full prescribing information, Warnings and Precautions"
+    },
+    {
+      "title": "IBRANCE Palbociclib prescribing information (labeling.pfizer.com)",
+      "url": "https://labeling.pfizer.com/ShowLabeling.aspx?id=16410",
+      "locator": "Prescribing information, adverse reactions section"
+    },
+    {
+      "title": "A real-world study of the first use of palbociclib... UK National Health Service... Ibrance Patient Program",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10449843/",
+      "locator": "PMC article"
+    },
+    {
+      "title": "PALOMA-2: No Overall Survival Benefit Reported With Palbociclib/Letrozole in Advanced Breast Cancer",
+      "url": "https://ascopost.com/issues/august-10-2022/no-overall-survival-benefit-reported-with-palbociclibletrozole-in-advanced-breast-cancer/",
+      "locator": "ASCO Post article, Aug 10 2022"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "schema_version": 2,
+  "snapshot_id": "20260817T131648348721Z",
+  "drug_id": "ibrance",
+  "created_at": "2026-08-17T13:16:53.641622+00:00",
+  "status": "complete",
+  "origin": "resolved_from_citations",
+  "run_id": "ibrance-20260715T084025801360Z",
+  "sources": [
+    {
+      "source_id": "pmc_-pmc8188964",
+      "status": "fetched",
+      "access_level": "full_text",
+      "warnings": [],
+      "error": null
+    },
+    {
+      "source_id": "pmc_-pmc10012832",
+      "status": "fetched",
+      "access_level": "full_text",
+      "warnings": [],
+      "error": null
+    },
+    {
+      "source_id": "pmc_-pmc10595148",
+      "status": "fetched",
+      "access_level": "full_text",
+      "warnings": [],
+      "error": null
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "schema_version": 2,
+  "snapshot_id": "20260713T212531770259Z",
+  "drug_id": "prevnar",
+  "created_at": "2026-07-13T21:26:37.329517+00:00",
+  "status": "complete_with_limits",
+  "registry_path": "config/sources/pfizer_us.toml",
+  "registry_sha256": "e1f4c46910f86c59226d4a8ce5bf027c6d50a4f0c8fbb986bc2b5a8dd022cff7",
+  "sources": [
+    {
+      "source_id": "prevnar-label",
+      "status": "fetched",
+      "access_level": "full_text",
+      "warnings": [],
+      "error": null
+    },
+    {
+      "source_id": "prevnar-fda",
+      "status": "fetched",
+      "access_level": "unavailable",
+      "warnings": [
+        "openFDA BLA125731: Client error '404 Not Found' for url 'https://api.fda.gov/drug/drugsfda.json?search=application_number%3A%22BLA125731%22&limit=1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404",
+        "application page: Client error '404 Not Found' for url 'https://www.fda.gov/apology_objects/abuse-detection-apology.html'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404",
+        "https://www.fda.gov/media/149987/download?attachment=: Client error '404 Not Found' for url 'https://www.fda.gov/apology_objects/abuse-detection-apology.html'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404",
+        "https://www.fda.gov/media/150021/download?attachment=: Client error '404 Not Found' for url 'https://www.fda.gov/apology_objects/abuse-detection-apology.html'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404",
+        "https://www.fda.gov/media/150388/download?attachment=: Client error '404 Not Found' for url 'https://www.fda.gov/apology_objects/abuse-detection-apology.html'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404",
+        "https://www.fda.gov/media/150459/download?attachment=: Client error '404 Not Found' for url 'https://www.fda.gov/apology_objects/abuse-detection-apology.html'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404",
+        "https://www.fda.gov/media/162042/download?attachment=: Client error '404 Not Found' for url 'https://www.fda.gov/apology_objects/abuse-detection-apology.html'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404",
+        "https://www.fda.gov/media/167637/download?attachment=: Client error '404 Not Found' for url 'https://www.fda.gov/apology_objects/abuse-detection-apology.html'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404",
+        "https://www.fda.gov/media/169126/download?attachment=: Client error '404 Not Found' for url 'https://www.fda.gov/apology_objects/abuse-detection-apology.html'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404",
+        "https://www.fda.gov/media/169128/download?attachment=: Client error '404 Not Found' for url 'https://www.fda.gov/apology_objects/abuse-detection-apology.html'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+      ],
+      "error": null
+    },
+    {
+      "source_id": "prevnar-pivotal-adult-trial",
+      "status": "fetched",
+      "access_level": "full_text",
+      "warnings": [],
+      "error": null
+    },
+    {
+      "source_id": "prevnar-pivotal-adult-publication",
+      "status": "fetched",
+      "access_level": "full_text",
+      "warnings": [],
+      "error": null
+    },
+    {
+      "source_id": "prevnar-prior-vaccination-trial",
+      "status": "fetched",
+      "access_level": "full_text",
+      "warnings": [],
+      "error": null
+    },
+    {
+      "source_id": "prevnar-prior-vaccination-publication",
+      "status": "fetched",
+      "access_level": "abstract_only",
+      "warnings": [],
+      "error": null
+    },
+    {
+      "source_id": "prevnar-cdc-guidance",
+      "status": "fetched",
+      "access_level": "full_text",
+      "warnings": [],
+      "error": null
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "blocking",
+  "explanation": "Evidence states Ibrance is approved for HER2-negative disease with AI, fulvestrant, or inavolisib+fulvestrant. 'Trastuzumab-based therapy' is HER2-positive-targeted and contradicts the label; no evidence supports this combination.",
+  "suggested_rewrite": "Remove 'trastuzumab-based therapy'; state Ibrance is approved with an aromatase inhibitor, fulvestrant, or inavolisib plus fulvestrant for HR-positive, HER2-negative breast cancer."
+}

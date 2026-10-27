@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "Evidence provided contains no PALOMA-1/2/3 incidence data (1% any grade, 0.1% Grade 3/4, no fatal cases) nor postmarketing fatality claims; these specific figures are not sourced from the cited label or FDA communication.",
+  "suggested_rewrite": "Remove specific PALOMA-1/2/3 percentages and postmarketing fatality claims unless a trial-data source is cited; retain only the label warning and FDA class-effect communication as supported."
+}

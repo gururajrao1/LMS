@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "The claim that males require effective contraception for \u22653 months post-dose is not supported by any evidence shown; only female contraception (\u22653 weeks) is documented. No male-specific reproductive toxicity or contraception guidance appears in the cited or additional evidence.",
+  "suggested_rewrite": "Embryo-fetal toxicity: effective contraception required for females of reproductive potential for at least 3 weeks after the last dose; avoid breastfeeding. (Remove unsupported male contraception claim unless separately verified in the label.)"
+}

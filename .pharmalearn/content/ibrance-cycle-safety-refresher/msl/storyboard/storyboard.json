@@ -1,0 +1,154 @@
+{
+  "title": "Ibrance (palbociclib) MSL Foundations: Biology, Evidence, Safety, and Compliant Scientific Exchange",
+  "estimated_duration_seconds": 480,
+  "scenes": [
+    {
+      "id": 1,
+      "duration_seconds": 60,
+      "title": "Case Open: Why CDK4/6 Matters in HR+/HER2- mBC",
+      "learning_purpose": "Introduce disease biology and palbociclib mechanism of action anchored to a realistic case.",
+      "narration": "Meet a 58-year-old postmenopausal woman newly diagnosed with HR-positive, HER2-negative metastatic breast cancer. In this subtype, estrogen signaling drives cyclin D1-CDK4/6 activity, phosphorylating Rb and pushing cells from G1 into S phase unchecked. Palbociclib selectively inhibits CDK4/6, blocking this transition and arresting proliferation. Combined with antiestrogens, it deepens growth arrest and induces senescence in ER-positive cell lines. This mechanistic rationale underlies its use with endocrine therapy, not as a standalone cytotoxic agent.",
+      "visual": "Animated cell-cycle diagram: cyclin D1-CDK4/6-Rb-E2F pathway; highlight G1 arrest; overlay patient case card.",
+      "on_screen_text": "CDK4/6 drives G1\u2192S transition in ER+ cells",
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib tablet, film coated - DailyMed",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=fecbdd7d-b729-41b5-9872-231b8fe104ce",
+          "locator": "Section 12.1"
+        },
+        {
+          "title": "PALbociclib CoLlaborative Adjuvant Study (PALLAS) Protocol",
+          "url": "https://cdn.clinicaltrials.gov/large-docs/94/NCT02513394/Prot_SAP_000.pdf",
+          "locator": "Section 1.2, Palbociclib Mechanism of Action"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "duration_seconds": 55,
+      "title": "Building the Evidence: PALOMA Trial Designs",
+      "learning_purpose": "Explain pivotal trial architecture and primary endpoint selection across the PALOMA program.",
+      "narration": "Our patient's regimen traces back to three trials. PALOMA-1, a phase 1/2 proof-of-concept study, paired palbociclib with letrozole first-line. PALOMA-2, the phase 3 confirmatory trial, randomized 666 postmenopausal women 2:1 to palbociclib-letrozole or placebo-letrozole. PALOMA-3 tested palbociclib plus fulvestrant in 521 women after endocrine therapy progression. All three used investigator-assessed progression-free survival as the primary endpoint\u2014a measure of time without disease growth, distinct from survival itself.",
+      "visual": "Timeline graphic of PALOMA-1\u21922\u21923; show randomization ratios and patient counts per trial as simple boxes.",
+      "on_screen_text": "Primary endpoint: Progression-Free Survival (PFS)",
+      "citations": [
+        {
+          "title": "Palbociclib and Letrozole in Advanced Breast Cancer | NEJM",
+          "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1607303",
+          "locator": "Methods/design paragraph"
+        },
+        {
+          "title": "FDA Approval of Palbociclib in Combination with Fulvestrant for HR+, HER2- Metastatic Breast Cancer",
+          "url": "https://aacrjournals.org/clincancerres/article/22/20/4968/124844/FDA-Approval-of-Palbociclib-in-Combination-with",
+          "locator": "Results"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "duration_seconds": 60,
+      "title": "Interpreting Results: PFS Gains vs. the OS Question",
+      "learning_purpose": "Teach the critical distinction between statistically robust PFS benefit and non-significant/mixed OS findings.",
+      "narration": "For our patient, PALOMA-2 showed median PFS of 24.8 months versus 14.5 months with letrozole alone\u2014a substantial, statistically significant gain. But final overall survival, a secondary endpoint with large missing data, was not statistically significant: 53.9 versus 51.2 months. PALOMA-3's fulvestrant combination showed a numerically longer OS that reached significance only in a later exploratory analysis after 73 months follow-up. This distinction matters: PFS benefit does not automatically confirm a survival advantage.",
+      "visual": "Split-screen Kaplan-Meier curves: PFS separation clear; OS curves nearly overlapping with 'not significant' label.",
+      "on_screen_text": "PFS: significant. OS: secondary, mixed results.",
+      "citations": [
+        {
+          "title": "Pfizer Announces Overall Survival Results from Phase 3 PALOMA-2 Trial of IBRANCE",
+          "url": "https://www.pfizer.com/news/press-release/press-release-detail/pfizer-announces-overall-survival-results-phase-3-paloma-2",
+          "locator": "Results paragraph"
+        },
+        {
+          "title": "Overall Survival with Palbociclib and Fulvestrant in Women with HR+/HER2\u2212 ABC: Updated Exploratory Analyses of PALOMA-3",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9662922/",
+          "locator": "Abstract/Results"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "duration_seconds": 60,
+      "title": "Managing Safety: Neutropenia, ILD, and Monitoring",
+      "learning_purpose": "Cover the dominant hematologic toxicity, key warnings, and mandated monitoring schedule.",
+      "narration": "Back to our patient: within two weeks of starting, her CBC shows Grade 3 neutropenia\u2014occurring in roughly 56% of PALOMA-2 patients. This pattern is early-onset, reversible, and non-cumulative, which is why labeling mandates CBC monitoring at baseline, Day 15 of cycles 1 and 2, and each subsequent cycle start. Dose interruption or reduction follows Grade 3\u20134 events. Separately, interstitial lung disease and pneumonitis\u2014though rare\u2014require immediate interruption for new respiratory symptoms and permanent discontinuation if severe. Embryo-fetal toxicity also warrants contraception counseling.",
+      "visual": "Calendar graphic marking Day 1, Day 15, cycle starts with CBC icon; warning icons for ILD and pregnancy.",
+      "on_screen_text": "CBC: baseline, Day 15 (C1\u2013C2), each cycle",
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib capsule - DailyMed - NIH",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e0e6412f-50b4-4fd4-9364-62818d121a07",
+          "locator": "Warnings and Precautions - Neutropenia"
+        },
+        {
+          "title": "1 HIGHLIGHTS OF PRESCRIBING INFORMATION - IBRANCE",
+          "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/212436s008lbl.pdf",
+          "locator": "Warnings and Precautions, ILD/Pneumonitis section"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "duration_seconds": 55,
+      "title": "Subgroups and Special Populations",
+      "learning_purpose": "Highlight subgroup nuances (Asian patients, hepatic impairment, male patients) and evidence-quality caveats.",
+      "narration": "An HCP asks: 'Does this apply to all patients?' Largely yes, with nuances. In PALOMA-2's Asian subgroup, PFS benefit was consistent, though hematologic toxicity was more frequent\u2014manageable with early dose modification. Severe hepatic impairment requires a reduced 75 mg dose. Male patients gained approval not from a randomized trial, but from real-world EHR and postmarketing safety data\u2014an important evidence-quality distinction to flag transparently when discussing this population.",
+      "visual": "World map/icon set showing subgroup callouts: Asian subgroup, hepatic impairment dose box, male patient icon with 'real-world data' tag.",
+      "on_screen_text": "Male indication: based on real-world data, not RCT",
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib tablet, film coated - DailyMed",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=fecbdd7d-b729-41b5-9872-231b8fe104ce",
+          "locator": "Section 12.1"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "duration_seconds": 60,
+      "title": "Class Comparisons: Handle Indirect Data with Care",
+      "learning_purpose": "Teach appropriate caution when discussing cross-trial and real-world comparisons among CDK4/6 inhibitors.",
+      "narration": "A colleague asks how palbociclib compares to ribociclib or abemaciclib. No head-to-head randomized trial exists. One network meta-analysis found no significant OS difference among the three; another, including different trials, found ribociclib favored. Real-world cohorts similarly conflict\u2014PALMARES-2 favored the other agents on PFS, while a US claims analysis found palbociclib had longer treatment duration. Always label these as indirect or observational comparisons, never as proof of superiority or inferiority, and cite the specific analysis type.",
+      "visual": "Three drug icons with dashed connecting lines labeled 'indirect'; conflicting arrows showing inconsistent meta-analysis conclusions.",
+      "on_screen_text": "No head-to-head RCT \u2014 comparisons are indirect",
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib tablet, film coated - DailyMed",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=fecbdd7d-b729-41b5-9872-231b8fe104ce",
+          "locator": "Section 12.1"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "duration_seconds": 55,
+      "title": "Unsolicited Question: Adjuvant Use and Off-Label Requests",
+      "learning_purpose": "Model compliant MSL response to an off-label/unsolicited inquiry, with escalation cues.",
+      "narration": "An oncologist asks: 'Can I use Ibrance in the adjuvant, early-stage setting?' This is off-label\u2014Ibrance is not FDA-approved for adjuvant breast cancer. The PALLAS trial tested this, but detailed efficacy results weren't confirmed against a primary source in our materials, and adjuvant CDK4/6 inhibition data differ by agent. The compliant response: acknowledge the question, state clearly this is outside the approved label, avoid promotional framing, and route the unsolicited request through Medical Information for a scientifically balanced, documented response.",
+      "visual": "Split screen: HCP question bubble left; MSL response checklist right (acknowledge, flag off-label, route to Medical Information).",
+      "on_screen_text": "Off-label question \u2192 route to Medical Information",
+      "citations": [
+        {
+          "title": "PALbociclib CoLlaborative Adjuvant Study (PALLAS) Protocol",
+          "url": "https://cdn.clinicaltrials.gov/large-docs/94/NCT02513394/Prot_SAP_000.pdf",
+          "locator": "Eligibility/design section"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "duration_seconds": 55,
+      "title": "Closing: Unmet Needs and Your Role",
+      "learning_purpose": "Summarize open scientific questions and reinforce appropriate escalation and resource use.",
+      "narration": "Our patient's story reflects broader open questions: no validated biomarker yet predicts palbociclib resistance, and roughly a quarter of patients don't respond at all. As an MSL, your role is to translate this evidence honestly\u2014distinguishing confirmed PFS benefit from unresolved OS and resistance questions, flagging off-label or indirect-comparison content, and escalating safety signals or complex unsolicited requests through appropriate compliance channels rather than answering from memory alone.",
+      "visual": "Recap montage: pathway diagram, PFS/OS curves, safety icon, escalation arrow to Medical Information\u2014fading to title card.",
+      "on_screen_text": "Escalate uncertainty. Cite precisely. Stay compliant.",
+      "citations": [
+        {
+          "title": "Longitudinal multi-omics study of palbociclib resistance in HR-positive/HER2-negative metastatic breast cancer",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10360358/",
+          "locator": "PMC article, Background"
+        }
+      ]
+    }
+  ]
+}

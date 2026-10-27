@@ -1,0 +1,6 @@
+{
+  "verdict": "overreach",
+  "severity": "major",
+  "explanation": "Evidence never specifies the HR was investigator-assessed, never states PFS was the 'primary' endpoint explicitly, and nowhere mentions OS being immature or pending at approval. These specific claims are unsupported additions beyond the cited evidence.",
+  "suggested_rewrite": "PATINA met its PFS endpoint with a hazard ratio of 0.76 (95% CI 0.59-0.97). The trial was open-label, which may introduce assessment bias for PFS; OS data were not reported in available evidence."
+}

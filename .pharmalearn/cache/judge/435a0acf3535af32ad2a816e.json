@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "The evidence contains no information about overall survival status; the claim that 'OS was immature/still pending' is not established by the provided verbatim evidence and appears fabricated.",
+  "suggested_rewrite": "Remove the OS immaturity/pending statement unless supported by cited evidence, or cite the specific FDA/trial source stating OS data maturity status."
+}

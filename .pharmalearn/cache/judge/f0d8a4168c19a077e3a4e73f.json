@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "minor",
+  "explanation": "The evidence provides dosing and PK data but does not state that patients with severe hepatic impairment should be 'monitored closely for toxicity even at the reduced dose'; this monitoring recommendation is not established by the cited sources.",
+  "suggested_rewrite": "Remove the monitoring recommendation, or cite label/safety-monitoring guidance that explicitly requires close toxicity monitoring for Child-Pugh C patients on the reduced dose."
+}

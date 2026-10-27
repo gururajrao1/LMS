@@ -1,0 +1,6 @@
+{
+  "verdict": "overreach",
+  "severity": "major",
+  "explanation": "The claim that neutropenia 'typically emerges early and resolves between cycles' is not established by any evidence shown. Evidence only specifies monitoring timepoints and dose-modification steps, not onset/resolution kinetics.",
+  "suggested_rewrite": "Neutropenia is the most common adverse reaction with Ibrance. Order a CBC before starting treatment, on Day 15 of cycles 1 and 2, and at the start of every subsequent cycle (and as clinically indicated). If Grade 3/4 neutropenia occurs, interrupt therapy until recovery to Grade \u22642, then resume at a reduced dose. Instruct her to report fever promptly."
+}

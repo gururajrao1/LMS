@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "drug_id": "ibrance",
+  "source_id": "pmc_-pmc10033931",
+  "fetched_at": "2026-08-17T13:17:02.660512+00:00",
+  "status": "fetched",
+  "access_level": "full_text",
+  "coverage": {
+    "pmcid": "PMC10033931"
+  },
+  "warnings": [],
+  "error": null,
+  "registry": {
+    "id": "pmc_-pmc10033931",
+    "kind": "pmc_article",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10033931/",
+    "title": "The dilemma of selecting a first line CDK4/6 inhibitor for hormone receptor-positive/HER2-negative metastatic breast cancer - PMC",
+    "identifiers": {
+      "pmcid": "PMC10033931"
+    }
+  },
+  "files": [
+    {
+      "path": "raw/fulltext.xml",
+      "role": "full_text",
+      "request_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC10033931&retmode=xml",
+      "final_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC10033931&retmode=xml",
+      "content_type": "text/xml; charset=UTF-8",
+      "bytes": 59969,
+      "sha256": "0e5b1e28f3d5728e3b3510d9c356599d0e52fa704297d8132556fc1df898890b",
+      "last_modified": null,
+      "etag": null
+    }
+  ]
+}

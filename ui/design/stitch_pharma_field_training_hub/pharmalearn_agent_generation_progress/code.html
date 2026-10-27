@@ -1,0 +1,292 @@
+<!DOCTYPE html><html class="h-full" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>PharmaLearn - Agent Generation Log</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#3f465c",
+                        "secondary-container": "#86f2e4",
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "inverse-primary": "#bec6e0",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-tertiary-container": "#98805d",
+                        "on-primary-fixed": "#131b2e",
+                        "inverse-surface": "#213145",
+                        "on-surface": "#0b1c30",
+                        "on-primary-container": "#7c839b",
+                        "surface-container": "#e5eeff",
+                        "outline": "#76777d",
+                        "tertiary-fixed": "#fcdeb5",
+                        "surface-tint": "#565e74",
+                        "surface-dim": "#cbdbf5",
+                        "on-secondary": "#ffffff",
+                        "on-surface-variant": "#45464d",
+                        "surface": "#f8f9ff",
+                        "secondary": "#006a61",
+                        "primary-container": "#131b2e",
+                        "secondary-fixed": "#89f5e7",
+                        "surface-variant": "#d3e4fe",
+                        "on-secondary-fixed": "#00201d",
+                        "surface-container-highest": "#d3e4fe",
+                        "tertiary-container": "#271901",
+                        "error-container": "#ffdad6",
+                        "primary": "#000000",
+                        "surface-container-high": "#dce9ff",
+                        "surface-container-low": "#eff4ff",
+                        "primary-fixed-dim": "#bec6e0",
+                        "outline-variant": "#c6c6cd",
+                        "on-tertiary-fixed": "#271901",
+                        "tertiary": "#000000",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed-variant": "#574425",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#6bd8cb",
+                        "background": "#f8f9ff",
+                        "on-secondary-fixed-variant": "#005049",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed-dim": "#dec29a",
+                        "surface-bright": "#f8f9ff",
+                        "on-secondary-container": "#006f66",
+                        "on-background": "#0b1c30",
+                        "primary-fixed": "#dae2fd"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "sm": "8px",
+                        "gutter": "24px",
+                        "base": "4px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "xs": "4px",
+                        "xl": "48px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Geist"],
+                        "headline-lg-mobile": ["Geist"],
+                        "body-lg": ["Inter"],
+                        "headline-xl": ["Geist"],
+                        "headline-lg": ["Geist"],
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Geist"],
+                        "label-sm": ["Geist"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .progress-bar-stripes {
+            background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+            background-size: 1rem 1rem;
+            animation: progress-stripes 1s linear infinite;
+        }
+        @keyframes progress-stripes {
+            from { background-position: 1rem 0; }
+            to { background-position: 0 0; }
+        }
+        .fade-in-up {
+            animation: fadeInUp 0.5s ease-out forwards;
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .pulse-soft {
+            animation: pulseSoft 2s infinite;
+        }
+        @keyframes pulseSoft {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased h-full flex flex-col">
+<!-- Top Navigation (Shell suppressed as per mandate for transactional/linear flow) -->
+<!-- Content Canvas -->
+<main class="flex-grow flex items-center justify-center p-md md:p-xl w-full max-w-container-max mx-auto">
+<div class="w-full max-w-4xl bg-surface-container-lowest border border-outline-variant rounded-xl shadow-[0px_8px_30px_rgba(15,23,42,0.08)] overflow-hidden flex flex-col h-[870px]">
+<!-- Header -->
+<div class="p-lg border-b border-outline-variant bg-surface flex justify-between items-start flex-shrink-0">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsriuoRpcW5780Ofec4hjWYeqzSc1JznttdC9FnTfVondoGMV5svNKsP4kcsMhAO3W3rk76rp3glKFkSS430kniIb1Ih4JihsfXa9x-PskeVK0-djbTFKeQ5EcyOEWwi8j2QgNJ9cxHAeYp09lwVIRL6pM7jK20X_IZWt-CP1RYNUSZDcHTIp2eWrlgPXyFxp4Yf3DZGNAnL1tDDfNrgasM0M_t7g3FhnE7Zl5-y5XD2khrAqDx1cbTW_05JI-m1xu_eJS3lNFzuWD" alt="PharmaLearn Brand Logo" class="h-6 w-auto object-contain">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest">Agent Generation</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-background">Preparing Content for Ibrance (Pfizer)</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Synthesizing clinical data into learning artifacts...</p>
+</div>
+<div class="flex flex-col items-end gap-2">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-high text-on-surface font-label-md text-label-md border border-outline-variant">
+<span class="w-2 h-2 rounded-full bg-secondary pulse-soft"></span>
+                        Processing
+                    </span>
+<button class="text-secondary font-label-sm text-label-sm hover:underline flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+                        View Sources
+                    </button>
+</div>
+</div>
+<!-- Log Viewer Area -->
+<div class="flex-grow overflow-y-auto p-lg bg-background font-mono text-sm relative">
+<!-- Watermark -->
+
+<div class="space-y-4 relative z-10">
+<!-- Log Item 1: Success -->
+<div class="flex gap-4 items-start fade-in-up">
+<div class="flex flex-col items-center mt-1">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: &quot;FILL&quot; 1;">check_circle</span>
+<div class="w-px h-full bg-outline-variant my-1 min-h-[24px]"></div>
+</div>
+<div class="pb-4 w-full">
+<p class="text-on-surface-variant mb-1 font-semibold">Step 1: Information Retrieval</p>
+<p class="text-on-background bg-surface-container-lowest p-3 rounded-md border border-outline-variant">Pulling information from PubMed, ChemBL, and ClinicalTrials.gov...</p>
+<div class="mt-2 flex gap-2">
+<span class="text-xs bg-surface-variant text-on-surface px-2 py-1 rounded">PubMed: 142 sources</span>
+<span class="text-xs bg-surface-variant text-on-surface px-2 py-1 rounded">ClinicalTrials: 4 trials</span>
+</div>
+</div>
+</div>
+<!-- Log Item 2: Success -->
+<div class="flex gap-4 items-start fade-in-up delay-100">
+<div class="flex flex-col items-center mt-1">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: &quot;FILL&quot; 1;">check_circle</span>
+<div class="w-px h-full bg-outline-variant my-1 min-h-[24px]"></div>
+</div>
+<div class="pb-4 w-full">
+<p class="text-on-surface-variant mb-1 font-semibold">Step 2: Data Validation</p>
+<p class="text-on-background bg-surface-container-lowest p-3 rounded-md border border-outline-variant">Validating source documents and cross-referencing clinical data for accuracy...</p>
+</div>
+</div>
+<!-- Log Item 3: In Progress (Bento Grid for Artifacts) -->
+<div class="flex gap-4 items-start fade-in-up delay-200">
+<div class="flex flex-col items-center mt-1">
+<span class="material-symbols-outlined text-secondary pulse-soft">hourglass_bottom</span>
+<div class="w-px h-full bg-outline-variant my-1 min-h-[24px] border-dashed border-l border-outline-variant"></div>
+</div>
+<div class="pb-4 w-full">
+<p class="text-on-surface-variant mb-1 font-semibold">Step 3: Parallel Artifact Generation</p>
+<p class="text-on-background mb-3">Generating PPT, Video, FAQ, and Interactive Quiz...</p>
+<!-- Artifact Progress Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- PPT -->
+<div class="bg-surface-container-lowest border border-outline-variant p-3 rounded-lg shadow-sm">
+<div class="flex justify-between items-center mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">co_present</span>
+<span class="font-label-sm text-label-sm text-on-background">Presentation Deck</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary">85%</span>
+</div>
+<div class="w-full h-2 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary progress-bar-stripes w-[85%] rounded-full"></div>
+</div>
+</div>
+<!-- Video -->
+<div class="bg-surface-container-lowest border border-outline-variant p-3 rounded-lg shadow-sm">
+<div class="flex justify-between items-center mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">movie</span>
+<span class="font-label-sm text-label-sm text-on-background">Mechanism of Action Video</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary">40%</span>
+</div>
+<div class="w-full h-2 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary progress-bar-stripes w-[40%] rounded-full"></div>
+</div>
+</div>
+<!-- FAQ -->
+<div class="bg-surface-container-lowest border border-outline-variant p-3 rounded-lg shadow-sm">
+<div class="flex justify-between items-center mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">question_answer</span>
+<span class="font-label-sm text-label-sm text-on-background">HCP FAQ Document</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary">60%</span>
+</div>
+<div class="w-full h-2 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary progress-bar-stripes w-[60%] rounded-full"></div>
+</div>
+</div>
+<!-- Quiz -->
+<div class="bg-surface-container-lowest border border-outline-variant p-3 rounded-lg shadow-sm">
+<div class="flex justify-between items-center mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">quiz</span>
+<span class="font-label-sm text-label-sm text-on-background">Interactive Quiz</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">0%</span>
+</div>
+<div class="w-full h-2 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-outline-variant w-[0%] rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Log Item 4: Pending -->
+<div class="flex gap-4 items-start fade-in-up delay-300 opacity-50">
+<div class="flex flex-col items-center mt-1">
+<span class="material-symbols-outlined text-outline-variant">radio_button_unchecked</span>
+</div>
+<div class="pb-4 w-full">
+<p class="text-on-surface-variant mb-1 font-semibold">Step 4: Finalizing</p>
+<p class="text-outline">Finalizing learning artifacts and packaging for distribution...</p>
+</div>
+</div>
+<!-- Blinking cursor effect -->
+<div class="flex gap-4 items-start fade-in-up delay-300 ml-[36px]">
+<span class="inline-block w-2 h-4 bg-secondary animate-pulse"></span>
+</div>
+</div>
+</div>
+<!-- Footer / Actions -->
+<div class="p-md bg-surface border-t border-outline-variant flex justify-between items-center flex-shrink-0">
+<div class="text-sm text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">info</span>
+                    Estimated time remaining: ~2 minutes
+                </div>
+<a href="{{DATA:SCREEN:SCREEN_8}}" class="h-10 px-6 border border-secondary text-secondary font-label-md text-label-md rounded hover:-translate-y-0.5 transition-transform bg-surface-container-lowest inline-flex items-center justify-center">View Content</a>
+</div>
+</div>
+</main>
+
+
+
+
+
+
+
+
+</body></html>

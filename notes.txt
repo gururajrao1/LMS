@@ -1,0 +1,141 @@
+1. Therauptics area
+  - Unmet needs
+  - Current treatment alternatives
+  -   first line, second line
+    - how that first and second line is failing? 
+      - uncover new unmet needs
+
+- Current: Alternatives, gaps, cost effectivness
+- Launch time lines of previous + the new target 
+- What is proved, how is it efficient in terms quality, outcome and cost
+  - Authentic with citation
+  - Outcome: lifespan, co-morbidities
+  - Regulatory, safety,
+  - stats on prevelance of condition on the drug
+  - competing drugs launch timelines and other procedures
+  - geographical distribution of patients
+  - patient journey
+  - contraindications
+  - difficulty of diagnosis in this condition
+  - how it will impact quality of life
+  - treatment journey when drug launch. how treatment evolves with this new drug over time
+    - any genomic testing required for diagnosis, measuring improvement
+    - different alternative diagnosis test and metrics
+  - what is the risky population
+
+
+MSL, HCP: reinforce knowledge connect with what they know. 
+
+
+Data Store/Knowledge Hub: 
+  - Pull all information
+Learning Material
+A viewer for MSL, HCP
+  - Training schedule
+  - Validate training
+  - See material and content
+  - Take a quiz
+  - Certificate
+
+Learning module structure from other sources on the internet
+  - self driven learning program
+
+Training vs Reference
+
+
+On screen:
+Two views: Generation and Viewing/Serving
+- Enter drug name
+- Agent will run
+- Chatbot
+- Suggestion &  Fact Checking 
+
+
+- Domain expert needed for review. Repurposing their effort. 
+  - We're already using real world data 
+  - From 1 month down to days
+    - Easy
+    - Faster
+    - Cheaper
+    - Enhance quality of learning as we can get review from many experts
+      - Incorporating changes would be faster
+      - save 80% of time.
+
+    - Efficiency for all stakeholders:
+      - sponsors - get learning material prepared faster
+      - domain experts - incorporating review comments, save 80% time.
+      - MSL/HCP (self menu driven learning program, faster feedback mechanism)
+    - Updating Material based on current developments is easy. removes manual effort (~15 days). 
+      Versioning is faster.
+    - Survey on a hypothesis can be done via platforma to all stakeholders connected with the solution.
+
+
+Current Approach:
+manual, different areas, validation, create structure, fact check, review format
+Time/Effort/Cumbersome
+
+New Approach:
+faster, better (comprehensively), automatic/domain-expert review across these, SOPs to validate each material...
+Less Time/Effort/Easy
+
+
+
+--
+
+material, fact check, sending material to review, learning journey
+
+
+Admin: Upload, Pull information from Web
+
+- Drug Ontology
+- Dosage/Adverse Events/Clinical Trial Started - Approval - Marketed/
+- Guidelines for Usage
+- Theraputic Area
+  - Sympotoms, Quality of Life
+- Current Treatment Availablility
+  - Current Unmet Needs
+- Comparative Existing vs New Drug (Cost, Quality, Reducing, Symptoms, Mild to Moderate ..)
+- How Drug Works
+
+
+Slide: 
+
+Starting 
+Collect Data 
+Agents we'll use and what reason
+Uploading information
+Analysis - Which information, where to pull it from, 
+Structing Training Material
+
+Version 1
+Get reviewer comments
+Address Reviewer comments
+Pulish Next version
+Sign off from stakeholders
+Planning training
+Publish Schedule, Mail trainees
+Make learning material avialable on portal
+Baseline knowledge test and publish them
+Monitor Progress 
+Knowledge Checks, Has knowledge increased
+Final test, complete/required
+Generate certificate
+
+
+3 slides
+- Current
+- Process
+- Advantage
+
+Shekhar sir comments
+--
+
+1. Unique Part: Agentic Auto Content Generation
+  - Wow factor: Guide the AI, Structure template, Content Generated (LLM-as-judge)
+  - Quality Check, Review, Versioning, Gamified of User, Measuring Knowledge Levels
+
+
+- Text to Video, how do you make it good
+
+- Quality Conformance (Maker-Checker)
+- Continous Improvement based on direct/in-direct feedback like improving content

@@ -1,0 +1,6 @@
+{
+  "verdict": "needs_context",
+  "severity": "major",
+  "explanation": "The text omits the label's qualifier that inavolisib+fulvestrant is indicated only 'following recurrence on or after completing adjuvant endocrine therapy,' not simply for any PIK3CA-mutated, endocrine-resistant patient.",
+  "suggested_rewrite": "Specify: inavolisib plus fulvestrant is indicated for PIK3CA-mutated, endocrine-resistant HR+/HER2- disease following recurrence on or after completing adjuvant endocrine therapy."
+}

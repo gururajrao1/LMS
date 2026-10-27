@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "The claim that neutropenia is 'non-cumulative' is not supported by any evidence shown; none of the sources describe cumulative vs. non-cumulative pattern. Also, CBC monitoring omits Day 1 of each cycle per label evidence.",
+  "suggested_rewrite": "Remove 'non-cumulative' claim unless separate evidence confirms it; update monitoring to 'CBC before starting, Days 1 and 15 of cycles 1-2, Day 1 of subsequent cycles.'"
+}

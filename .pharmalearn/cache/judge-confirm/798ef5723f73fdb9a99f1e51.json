@@ -1,0 +1,6 @@
+{
+  "verdict": "overreach",
+  "severity": "major",
+  "explanation": "Counseling items (timing, grapefruit, no double-dosing, CBC, infection/respiratory symptoms) are supported. But the claim that Ibrance plus endocrine therapy 'can be confidently managed as first-line care' overstates evidence, which only covers counseling/monitoring practices, not efficacy or treatment-line positioning.",
+  "suggested_rewrite": "With appropriate monitoring and counseling, Ibrance plus endocrine therapy can be administered as prescribed for HR+/HER2- advanced breast cancer, following recommended safety monitoring."
+}

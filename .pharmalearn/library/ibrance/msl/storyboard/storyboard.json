@@ -1,0 +1,51 @@
+{
+  "title": "Ibrance: explaining the evidence with scientific balance",
+  "estimated_duration_seconds": 300,
+  "scenes": [
+    {
+      "id": 1,
+      "duration_seconds": 45,
+      "title": "Begin with the scientific question",
+      "narration": "An HCP asks how CDK4/6 inhibition connects to the HR-positive, HER2-negative treatment setting. First clarify whether the discussion concerns mechanism, label, or clinical outcomes.",
+      "visual": "Three clearly separated lanes labeled mechanism, approved use, and clinical evidence.",
+      "on_screen_text": "Define the evidence question first",
+      "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Sections 1 and 12.1"}]
+    },
+    {
+      "id": 2,
+      "duration_seconds": 60,
+      "title": "Explain the checkpoint without overextending it",
+      "narration": "Palbociclib inhibits CDK4 and CDK6 and blocks G1-to-S progression in ER-positive breast cancer cell lines. Present this as mechanism evidence, not as proof of a clinical outcome.",
+      "visual": "Cell-cycle checkpoint pauses between G1 and S, followed by a boundary separating laboratory mechanism from clinical evidence.",
+      "on_screen_text": "Mechanism evidence ≠ clinical outcome",
+      "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Section 12.1"}]
+    },
+    {
+      "id": 3,
+      "duration_seconds": 75,
+      "title": "Interpret PALOMA-2 endpoint by endpoint",
+      "narration": "Report investigator-assessed median PFS of 24.8 versus 14.5 months in PALOMA-2, then state that final overall survival was not statistically significant in the prespecified analysis.",
+      "visual": "A restrained trial comparison with separate PFS and OS rows and no cross-endpoint arrow.",
+      "on_screen_text": "PFS result and OS result remain distinct",
+      "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Section 14, Table 10"}, {"source_id": "CT-PALOMA2", "locator": "Study results"}]
+    },
+    {
+      "id": 4,
+      "duration_seconds": 65,
+      "title": "Answer practical questions from the label",
+      "narration": "Use exact label language for the 21-days-on, 7-days-off schedule, CBC monitoring, and immediate interruption and evaluation when ILD or pneumonitis is suspected.",
+      "visual": "A field-response card linking dose, CBC checks, and pulmonary escalation to label sections.",
+      "on_screen_text": "Use the closest direct source",
+      "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Sections 2.1, 5.1, and 5.2"}]
+    },
+    {
+      "id": 5,
+      "duration_seconds": 55,
+      "title": "Close with evidence boundaries",
+      "narration": "Separate what the label says, what the trial found, and what remains interpretation. If the evidence does not answer the HCP's question, acknowledge the gap and use the appropriate escalation path.",
+      "visual": "A three-step response pattern: source, limitation, escalation.",
+      "on_screen_text": "Source → limitation → escalation",
+      "citations": []
+    }
+  ]
+}

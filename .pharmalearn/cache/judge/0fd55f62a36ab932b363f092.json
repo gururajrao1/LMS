@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "minor",
+  "explanation": "The text attributes male contraception guidance to 'potential genotoxicity/fertility impairment,' but the evidence cites only 'potential for genotoxicity' as the rationale; fertility impairment is not mentioned.",
+  "suggested_rewrite": "...male patients with female partners of reproductive potential should use effective contraception during treatment and for 3 months after the last dose, due to potential genotoxicity."
+}

@@ -1,0 +1,6 @@
+{
+  "verdict": "supported",
+  "severity": "minor",
+  "explanation": "All figures (53.9 vs 51.2 months, HR 0.956, CI 0.777\u20131.177, 90-month follow-up, secondary endpoint, non-significance) match evidence verbatim; the 'not powered' framing is a standard, reasonable inference from secondary-endpoint status.",
+  "suggested_rewrite": ""
+}

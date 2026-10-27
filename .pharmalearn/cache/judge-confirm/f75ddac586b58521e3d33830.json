@@ -1,0 +1,6 @@
+{
+  "verdict": "needs_context",
+  "severity": "major",
+  "explanation": "Contraception guidance omits duration: evidence specifies male patients must use contraception during treatment AND for 3 months after the last dose, not just 'during treatment' as stated in the slide.",
+  "suggested_rewrite": "Use effective contraception during treatment (males: continue for 3 months after the last dose); do not breastfeed during treatment and for 3 weeks after the last dose."
+}

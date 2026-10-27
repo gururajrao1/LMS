@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "The specific claim that neutropenia was 'the leading cause of discontinuation (59.7%)' is not found in any cited or additional evidence. Evidence mentions neutropenia as a common AE requiring dose adjustment, but no figure or 'leading cause' framing is given.",
+  "suggested_rewrite": "Remove the unsupported 59.7% neutropenia-discontinuation figure, or replace with the evidence-based statement that neutropenia was a common adverse event prompting dose adjustments, without citing a specific discontinuation percentage."
+}

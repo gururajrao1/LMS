@@ -1,0 +1,6 @@
+{
+  "verdict": "overreach",
+  "severity": "major",
+  "explanation": "The evidence lists incidence rates only; it does not state that 'most are low-grade' or 'manageable with supportive care' for the non-neutropenia AEs (infections, fatigue, nausea, etc.). This severity characterization is an inference beyond the cited grade-3/4 data, which covers only neutropenia and leukopenia.",
+  "suggested_rewrite": "Remove or qualify 'most are low-grade and manageable with supportive care'; specify that grade 3/4 data are reported mainly for neutropenia and leukopenia in PALOMA-3."
+}

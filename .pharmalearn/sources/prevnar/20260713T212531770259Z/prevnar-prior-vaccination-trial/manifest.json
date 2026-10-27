@@ -1,0 +1,62 @@
+{
+  "schema_version": 2,
+  "drug_id": "prevnar",
+  "source_id": "prevnar-prior-vaccination-trial",
+  "fetched_at": "2026-07-13T21:26:32.538244+00:00",
+  "status": "fetched",
+  "access_level": "full_text",
+  "coverage": {
+    "nct": "NCT03835975",
+    "has_results": true,
+    "attachments_found": 2
+  },
+  "warnings": [],
+  "error": null,
+  "registry": {
+    "id": "prevnar-prior-vaccination-trial",
+    "kind": "trial_registry",
+    "authority": "ClinicalTrials.gov",
+    "title": "Prevnar 20 study in previously vaccinated older adults",
+    "url": "https://clinicaltrials.gov/study/NCT03835975",
+    "identifiers": {
+      "nct": "NCT03835975"
+    },
+    "required": true,
+    "reason": "Supports use in older adults with different prior pneumococcal vaccination histories."
+  },
+  "files": [
+    {
+      "path": "raw/study.json",
+      "role": "study_record",
+      "request_url": "https://clinicaltrials.gov/api/v2/studies/NCT03835975",
+      "final_url": "https://clinicaltrials.gov/api/v2/studies/NCT03835975",
+      "content_type": "application/json",
+      "bytes": 114078,
+      "sha256": "ce028ca8649efb0f6da491383b5aa4e08f40f35f3418e3aaba54c1743cddff49",
+      "last_modified": null,
+      "etag": "\"0/0.34.1/mrizrqiw\""
+    },
+    {
+      "path": "raw/attachments/statistical-analysis-plan-SAP_000.pdf",
+      "role": "SAP",
+      "request_url": "https://cdn.clinicaltrials.gov/large-docs/75/NCT03835975/SAP_000.pdf",
+      "final_url": "https://cdn.clinicaltrials.gov/large-docs/75/NCT03835975/SAP_000.pdf",
+      "content_type": "application/pdf",
+      "bytes": 1728639,
+      "sha256": "bd2c3c97124fb82c12cef17266d20918dedb4c792b85b7288e8f8685998c7332",
+      "last_modified": "Tue, 13 Feb 2024 15:48:13 GMT",
+      "etag": "\"ef2aa9db6bf08fcb56818249e28296b7\""
+    },
+    {
+      "path": "raw/attachments/study-protocol-Prot_001.pdf",
+      "role": "Prot",
+      "request_url": "https://cdn.clinicaltrials.gov/large-docs/75/NCT03835975/Prot_001.pdf",
+      "final_url": "https://cdn.clinicaltrials.gov/large-docs/75/NCT03835975/Prot_001.pdf",
+      "content_type": "application/pdf",
+      "bytes": 2609961,
+      "sha256": "d7869c79a4b5c434e5e74ced5d84a0186fd71dc68d8544d545174782d825732d",
+      "last_modified": "Tue, 13 Feb 2024 15:48:13 GMT",
+      "etag": "\"7577505e4d1eee58ad6ab4f5e2686f2b\""
+    }
+  ]
+}

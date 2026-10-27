@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "drug_id": "ibrance",
+  "source_id": "pmc_-pmc11758200",
+  "fetched_at": "2026-08-17T13:17:33.372185+00:00",
+  "status": "fetched",
+  "access_level": "full_text",
+  "coverage": {
+    "pmcid": "PMC11758200"
+  },
+  "warnings": [],
+  "error": null,
+  "registry": {
+    "id": "pmc_-pmc11758200",
+    "kind": "pmc_article",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11758200/",
+    "title": "Comparative overall survival of CDK4/6 inhibitors plus an aromatase inhibitor in HR+/HER2\u2212 metastatic breast cancer in the US real-world setting",
+    "identifiers": {
+      "pmcid": "PMC11758200"
+    }
+  },
+  "files": [
+    {
+      "path": "raw/fulltext.xml",
+      "role": "full_text",
+      "request_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC11758200&retmode=xml",
+      "final_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC11758200&retmode=xml",
+      "content_type": "text/xml; charset=UTF-8",
+      "bytes": 133727,
+      "sha256": "32dc058c9098eb29d6ef1dc30ef60549d2d6562afec101425dc5bfc1ce32f983",
+      "last_modified": null,
+      "etag": null
+    }
+  ]
+}

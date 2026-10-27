@@ -1,0 +1,6 @@
+{
+  "verdict": "overreach",
+  "severity": "minor",
+  "explanation": "The dosing and PK exposure figures are well supported by evidence. However, the added instruction that patients 'should be monitored closely for toxicity even at the reduced dose' is not stated in any cited or additional evidence provided.",
+  "suggested_rewrite": "Remove or attribute the monitoring recommendation: 'This adjustment reflects a pharmacokinetic study showing increased palbociclib exposure with worsening hepatic function (up to 77% higher unbound AUC in severe impairment).'"
+}

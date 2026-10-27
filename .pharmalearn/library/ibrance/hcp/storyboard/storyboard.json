@@ -1,0 +1,51 @@
+{
+  "title": "Ibrance: from patient selection to monitoring",
+  "estimated_duration_seconds": 270,
+  "scenes": [
+    {
+      "id": 1,
+      "duration_seconds": 45,
+      "title": "Confirm the treatment setting",
+      "narration": "Begin with an adult patient with HR-positive, HER2-negative advanced or metastatic breast cancer and confirm the labeled combination setting.",
+      "visual": "A simple patient-identification pathway highlighting receptor status and disease stage.",
+      "on_screen_text": "Confirm setting before prescribing",
+      "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Section 1"}]
+    },
+    {
+      "id": 2,
+      "duration_seconds": 50,
+      "title": "Explain the 28-day schedule",
+      "narration": "The recommended starting dose is 125 milligrams once daily for 21 consecutive days, followed by 7 days off treatment.",
+      "visual": "A 28-day calendar with treatment Days 1–21 and rest Days 22–28.",
+      "on_screen_text": "21 days on · 7 days off",
+      "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Section 2.1"}]
+    },
+    {
+      "id": 3,
+      "duration_seconds": 55,
+      "title": "Plan CBC monitoring",
+      "narration": "Monitor complete blood counts before treatment, at the beginning of each cycle, on Day 15 of the first two cycles, and as clinically indicated.",
+      "visual": "The calendar adds CBC markers at baseline, cycle start, and Day 15 of Cycles 1 and 2.",
+      "on_screen_text": "Baseline · cycle start · Day 15",
+      "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Section 5.1"}]
+    },
+    {
+      "id": 4,
+      "duration_seconds": 60,
+      "title": "Act on pulmonary symptoms",
+      "narration": "If interstitial lung disease or pneumonitis is suspected, interrupt Ibrance immediately and evaluate the patient. The label directs permanent discontinuation for severe cases.",
+      "visual": "A symptom-to-action pathway showing interruption, evaluation, and severe-case discontinuation.",
+      "on_screen_text": "Suspect → interrupt → evaluate",
+      "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Section 5.2"}]
+    },
+    {
+      "id": 5,
+      "duration_seconds": 60,
+      "title": "Bring the care plan together",
+      "narration": "Confirm the labeled patient, explain the schedule, plan blood-count monitoring, and make the pulmonary safety response clear before treatment begins.",
+      "visual": "A four-item clinical checklist completes around the patient pathway.",
+      "on_screen_text": "Select · schedule · monitor · respond",
+      "citations": [{"source_id": "DM-IBRANCE-2026", "locator": "Sections 1, 2.1, 5.1, and 5.2"}]
+    }
+  ]
+}

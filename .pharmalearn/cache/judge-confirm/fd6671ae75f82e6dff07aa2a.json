@@ -1,0 +1,6 @@
+{
+  "verdict": "unsupported",
+  "severity": "major",
+  "explanation": "No evidence shown specifies the 125 mg 21/7 dosing schedule for either combination, nor does any evidence address overall survival data maturity for the inavolisib or HER2+ maintenance indications; both claims are unsupported by the cited or additional evidence.",
+  "suggested_rewrite": "Remove the specific dosing schedule and OS-immaturity claims unless supported by additional evidence, or state 'dosing and survival data details were not specified in available sources.'"
+}

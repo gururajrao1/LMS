@@ -1,0 +1,6 @@
+{
+  "verdict": "supported",
+  "severity": "minor",
+  "explanation": "The learner text matches the verbatim label instruction for Child-Pugh C dosing and correctly notes no adjustment for mild/moderate impairment, consistent with the standard hepatic impairment dosing table.",
+  "suggested_rewrite": ""
+}

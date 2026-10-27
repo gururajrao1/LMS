@@ -1,0 +1,15 @@
+{
+  "answer": "The evidence covers several pivotal trials, so it depends which one you mean. For PALOMA-2, the primary analysis (palbociclib + letrozole) showed a progression-free survival benefit, but overall survival data were immature at that time, and it was uncertain whether the PFS benefit would translate into longer survival. For PALOMA-3 (palbociclib + fulvestrant), an updated exploratory analysis at 73.3 months' follow-up (after 75% of patients had died) showed continued improvement in median overall survival versus fulvestrant alone, compared with the earlier 44.8-month analysis. If you need details on PALOMA-1, INAVO120, or PATINA, please escalate to Medical Information for full trial data.",
+  "citations": [
+    {
+      "title": "Palbociclib and Letrozole in Advanced Breast Cancer",
+      "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1607303",
+      "locator": "NEJM PALOMA-2 primary publication"
+    },
+    {
+      "title": "Overall Survival with Palbociclib and Fulvestrant in Women with HR+/HER2\u2212 ABC: Updated Exploratory Analyses of PALOMA-3",
+      "url": "https://aacrjournals.org/clincancerres/article/28/16/3433/707399/Overall-Survival-with-Palbociclib-and-Fulvestrant",
+      "locator": "Abstract"
+    }
+  ]
+}

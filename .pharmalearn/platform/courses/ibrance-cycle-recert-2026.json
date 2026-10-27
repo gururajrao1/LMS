@@ -1,0 +1,223 @@
+{
+  "run_id": "ibrance-cycle-recert-2026",
+  "version": 2,
+  "status": "published",
+  "comments": [
+    {
+      "id": "e02aa8ebbadc",
+      "target": "deck",
+      "severity": "major",
+      "body": "Confirm the annual recertification still matches the current Prescribing Information before this cycle opens.",
+      "status": "closed",
+      "resolution": "Checked against the current label; no wording changes needed.",
+      "version": 1,
+      "author_id": "anil-shekhar",
+      "author_name": "Dr. Anil Shekhar",
+      "author_title": "Therapeutic area expert, oncology",
+      "created_at": "2026-03-01T19:12:00+00:00",
+      "resolved_at": "2026-03-02T12:00:00+00:00",
+      "resolved_by_id": "priya-raman",
+      "resolved_by_name": "Priya Raman",
+      "resolved_by_title": "Medical education lead",
+      "closed_in_version": 2
+    }
+  ],
+  "versions": [
+    {
+      "version": 1,
+      "summary": "Agent-generated first draft",
+      "author_id": "agent",
+      "author_name": "PharmaLearn agent",
+      "addressed": [],
+      "created_at": null
+    },
+    {
+      "version": 2,
+      "summary": "Annual recertification cycle",
+      "author_id": "priya-raman",
+      "author_name": "Priya Raman",
+      "addressed": [
+        "e02aa8ebbadc"
+      ],
+      "unverified": [],
+      "created_at": "2026-03-03T00:00:00+00:00"
+    }
+  ],
+  "signoffs": [
+    {
+      "id": "55ee4a507d08",
+      "version": 2,
+      "decision": "approved",
+      "note": "Clinically current for this cycle.",
+      "author_id": "anil-shekhar",
+      "author_name": "Dr. Anil Shekhar",
+      "author_title": "Therapeutic area expert, oncology",
+      "created_at": "2026-03-03T09:36:00+00:00"
+    },
+    {
+      "id": "119cc390fc0a",
+      "version": 2,
+      "decision": "approved",
+      "note": "Citations and balance unchanged.",
+      "author_id": "maria-alvarez",
+      "author_name": "Dr. Maria Alvarez",
+      "author_title": "Regulatory and medical affairs",
+      "created_at": "2026-03-03T14:24:00+00:00"
+    }
+  ],
+  "publication": {
+    "version": 2,
+    "published_at": "2026-03-04T00:00:00+00:00",
+    "published_by": "Priya Raman",
+    "overrides": [],
+    "starts_on": "2026-03-02",
+    "due_on": "2026-04-16",
+    "message": "Yearly sign-off that the field team is current on the label.",
+    "assignees": [
+      "ken-osei",
+      "lucy-whitfield",
+      "jordan-feld",
+      "sara-nakamura",
+      "tom-becker"
+    ],
+    "notifications": [
+      {
+        "to": "ken.osei@pharmalearn.local",
+        "name": "Dr. Ken Osei",
+        "subject": "Training assigned: complete by 2026-04-16",
+        "sent_at": "2026-03-04T00:00:00+00:00"
+      },
+      {
+        "to": "lucy.whitfield@pharmalearn.local",
+        "name": "Dr. Lucy Whitfield",
+        "subject": "Training assigned: complete by 2026-04-16",
+        "sent_at": "2026-03-04T00:00:00+00:00"
+      },
+      {
+        "to": "jordan.feld@pharmalearn.local",
+        "name": "Jordan Feld",
+        "subject": "Training assigned: complete by 2026-04-16",
+        "sent_at": "2026-03-04T00:00:00+00:00"
+      },
+      {
+        "to": "sara.nakamura@pharmalearn.local",
+        "name": "Sara Nakamura",
+        "subject": "Training assigned: complete by 2026-04-16",
+        "sent_at": "2026-03-04T00:00:00+00:00"
+      },
+      {
+        "to": "tom.becker@pharmalearn.local",
+        "name": "Dr. Tom Becker",
+        "subject": "Training assigned: complete by 2026-04-16",
+        "sent_at": "2026-03-04T00:00:00+00:00"
+      }
+    ]
+  },
+  "audit": [
+    {
+      "id": "e1f92a9ff349",
+      "at": "2026-08-17T14:08:38.064635+00:00",
+      "action": "comment.raised",
+      "actor_id": "anil-shekhar",
+      "actor_name": "Dr. Anil Shekhar",
+      "actor_title": "Therapeutic area expert, oncology",
+      "actor_role": "reviewer",
+      "summary": "Dr. Anil Shekhar raised a major comment on deck",
+      "detail": {
+        "comment_id": "e02aa8ebbadc",
+        "severity": "major",
+        "target": "deck"
+      }
+    },
+    {
+      "id": "0a294998b2f8",
+      "at": "2026-08-17T14:08:38.064899+00:00",
+      "action": "comment.resolved",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman marked addressed a major comment on deck",
+      "detail": {
+        "comment_id": "e02aa8ebbadc",
+        "severity": "major",
+        "target": "deck",
+        "was": "open",
+        "now": "addressed",
+        "resolution": "Checked against the current label; no wording changes needed."
+      }
+    },
+    {
+      "id": "5be10dee9ca4",
+      "at": "2026-08-17T14:08:38.262048+00:00",
+      "action": "version.cut",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman cut version 2, closing 1 comment(s)",
+      "detail": {
+        "version": 2,
+        "closed": [
+          "e02aa8ebbadc"
+        ]
+      }
+    },
+    {
+      "id": "b12044ce898d",
+      "at": "2026-08-17T14:08:38.262417+00:00",
+      "action": "signoff.recorded",
+      "actor_id": "anil-shekhar",
+      "actor_name": "Dr. Anil Shekhar",
+      "actor_title": "Therapeutic area expert, oncology",
+      "actor_role": "reviewer",
+      "summary": "Dr. Anil Shekhar recorded approval for v2",
+      "detail": {
+        "version": 2,
+        "decision": "approved",
+        "note": "Clinically current for this cycle."
+      }
+    },
+    {
+      "id": "3f4e613aa7f9",
+      "at": "2026-08-17T14:08:38.262649+00:00",
+      "action": "signoff.recorded",
+      "actor_id": "maria-alvarez",
+      "actor_name": "Dr. Maria Alvarez",
+      "actor_title": "Regulatory and medical affairs",
+      "actor_role": "reviewer",
+      "summary": "Dr. Maria Alvarez recorded approval for v2",
+      "detail": {
+        "version": 2,
+        "decision": "approved",
+        "note": "Citations and balance unchanged."
+      }
+    },
+    {
+      "id": "c6e2100535f9",
+      "at": "2026-08-17T14:08:38.262930+00:00",
+      "action": "course.published",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman published v2 to 5 trainee(s), due 2026-04-16",
+      "detail": {
+        "version": 2,
+        "starts_on": "2026-03-02",
+        "due_on": "2026-04-16",
+        "assignees": [
+          "ken-osei",
+          "lucy-whitfield",
+          "jordan-feld",
+          "sara-nakamura",
+          "tom-becker"
+        ],
+        "approved_by": [
+          "Dr. Anil Shekhar",
+          "Dr. Maria Alvarez"
+        ]
+      }
+    }
+  ]
+}

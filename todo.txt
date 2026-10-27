@@ -1,0 +1,47 @@
+From demo perspective: 
+
+When we show demo to a potential client they will ask or question: 
+
+1.  How are we ensuring accuracy and completeness? 
+  - if reviewers give wrong input, can our system identify it and prevent degradation?
+  - Here, the user flow might involve back and forth with reviewer to arrive at the truth. There might be some internal reference some external. So if we are zoomed in on one aspect of the learning material, the reviewer should have the appropriate internal + external content available to check and resolve (approve or provide suggestion) quickly. For example, we want to check the umet needs of a drug, can our bot give comprehensive data on it (internal/external). If its already in the learning
+    material its great else if can suggest.
+  - Note: we need to assume that the content is going to knowledgeable people who are working in similar
+  domains, treatement protocols, so the content cannot be shallow, thoroughly checked factually and accurate.
+
+For 1. we can even have an approach defined. And write a note on how we'll do it. The flow can be shown in demo to back it up.
+
+2. we have to look at the system from POV of project (where a project is 1 client, maybe a multi-tenant app). For example say client is Pfizer. within it we have N number of drugs for which training is to be done. Now, we also need a way to schedule and manage each training when its live (other state could be completed or archived). we have some starting point around 'publishing' via admin but it needs to be a bit more comprehensive. Also towards the end we need a way to report
+consolidated metrics around the training (and perhaps all training programs for that client). Here you can simply extend the 'cohort' and 'impact' which can be sent as a pdf or shown in a tab at client level dashboard. 
+
+
+3. In general, right now the process flow isn't super clean or obvious when demoing. It should be something like: 
+- we get a project
+- then we created content using our agents
+- content validation and finalisation with agents + human reviewers
+- then I define target trainees
+- then I schedule and publish training plan
+- provide access to trainees
+- capture baseline of trainees
+- within schedule, trainees complete the course and get certified
+- while schedule is live, client can see progress across training programs, average impact across programs
+- client gets to see impact on the training program with clear ROI
+
+4. For the trainees in their dashboard we can show the schedule. What is in progress, what is up coming, what is completed and so on with the timelines etc. This is missing right now. 
+
+5. For the quiz part we can gamify it.
+ - Eg word building
+ - Eg include images to select from instead of just plain text. like drug impact for a dieases and its progress the trainee may have to identify it visually eg (severe vs non-severe)
+ - you can check if there is good open source libraries that can help customise/gamify the quiz part
+
+6. In the ask bot we can have some questions that are contextual to the page the user is on: 
+- If in the training material they can ask: 'When will this drug launch?', 'What are the unmet needs?', 'What are clinical trial phase 3 findings?'
+- If in the dashboard they can ask: 'When will this training program launch?' 
+
+7. Along with sources we can also give the reference docs that are locally available so they can view it on the app itself on the side (sidecar). 
+
+8. Document all the places where 'agent' is being used
+Agent | What it is doing
+As a principle: 
+1. We are supporting clients end to end through our app and through integrations into their existing LMS.
+2. We are helping them build/review/deploy training faster, cheaper and better.
