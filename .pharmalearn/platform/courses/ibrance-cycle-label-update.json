@@ -20,6 +20,57 @@
       "resolved_by_name": "Priya Raman",
       "resolved_by_title": "Medical education lead",
       "closed_in_version": 2
+    },
+    {
+      "id": "55b6f5264060",
+      "target": "deck",
+      "severity": "blocking",
+      "body": "Slide 13: Patient Counseling Essentials\nOnly 0% of the recorded supporting quote appears in the stored source document. Treat this citation as unverified until a reviewer confirms it.",
+      "status": "open",
+      "resolution": null,
+      "version": 2,
+      "author_id": "pharmalearn-checker",
+      "author_name": "PharmaLearn checker",
+      "author_title": "Automated pre-review",
+      "created_at": "2026-10-28T10:11:22.652572+00:00",
+      "resolved_at": null,
+      "finding_id": "hcp:deck-13:quote_not_found:Slide 13: Patient Counseling Essentials#3acd2b37",
+      "origin": "automated_check",
+      "check": "quote_not_found"
+    },
+    {
+      "id": "f3e295d8f448",
+      "target": "faq",
+      "severity": "blocking",
+      "body": "What is the recommended IBRANCE dosing and administration schedule, and does it differ bet\nOnly 12% of the recorded supporting quote appears in the stored source document. Treat this citation as unverified until a reviewer confirms it.",
+      "status": "open",
+      "resolution": null,
+      "version": 2,
+      "author_id": "pharmalearn-checker",
+      "author_name": "PharmaLearn checker",
+      "author_title": "Automated pre-review",
+      "created_at": "2026-10-28T10:11:22.657075+00:00",
+      "resolved_at": null,
+      "finding_id": "hcp:faq-3:quote_not_found:What is the recommended IBRANCE dosing a#9f9076e1",
+      "origin": "automated_check",
+      "check": "quote_not_found"
+    },
+    {
+      "id": "782af19f70d2",
+      "target": "deck",
+      "severity": "blocking",
+      "body": "Slide 16: Unmet Needs, Resistance, and the Adjuvant Setting (Off-Label Context)\nOnly 0% of the recorded supporting quote appears in the stored source document. Treat this citation as unverified until a reviewer confirms it.",
+      "status": "open",
+      "resolution": null,
+      "version": 2,
+      "author_id": "pharmalearn-checker",
+      "author_name": "PharmaLearn checker",
+      "author_title": "Automated pre-review",
+      "created_at": "2026-10-28T10:11:22.657928+00:00",
+      "resolved_at": null,
+      "finding_id": "msl:deck-16:quote_not_found:Slide 16: Unmet Needs, Resistance, and t#0baaf164",
+      "origin": "automated_check",
+      "check": "quote_not_found"
     }
   ],
   "versions": [
@@ -217,6 +268,51 @@
           "Dr. Anil Shekhar",
           "Dr. Maria Alvarez"
         ]
+      }
+    },
+    {
+      "id": "2ca7a36ce260",
+      "at": "2026-10-28T10:11:22.652597+00:00",
+      "action": "comment.raised",
+      "actor_id": "pharmalearn-checker",
+      "actor_name": "PharmaLearn checker",
+      "actor_title": "Automated pre-review",
+      "actor_role": "checker",
+      "summary": "PharmaLearn checker raised a blocking comment on deck",
+      "detail": {
+        "comment_id": "55b6f5264060",
+        "severity": "blocking",
+        "target": "deck"
+      }
+    },
+    {
+      "id": "63524bd32c3e",
+      "at": "2026-10-28T10:11:22.657083+00:00",
+      "action": "comment.raised",
+      "actor_id": "pharmalearn-checker",
+      "actor_name": "PharmaLearn checker",
+      "actor_title": "Automated pre-review",
+      "actor_role": "checker",
+      "summary": "PharmaLearn checker raised a blocking comment on faq",
+      "detail": {
+        "comment_id": "f3e295d8f448",
+        "severity": "blocking",
+        "target": "faq"
+      }
+    },
+    {
+      "id": "d0a4fb465fa8",
+      "at": "2026-10-28T10:11:22.657935+00:00",
+      "action": "comment.raised",
+      "actor_id": "pharmalearn-checker",
+      "actor_name": "PharmaLearn checker",
+      "actor_title": "Automated pre-review",
+      "actor_role": "checker",
+      "summary": "PharmaLearn checker raised a blocking comment on deck",
+      "detail": {
+        "comment_id": "782af19f70d2",
+        "severity": "blocking",
+        "target": "deck"
       }
     }
   ]
