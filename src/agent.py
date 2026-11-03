@@ -1259,7 +1259,7 @@ def replay_source() -> Path | None:
 
 
 def _link_or_copy(source: Path, target: Path):
-    """Symlink a directory, copy a file.
+    """Symlink a directory where permitted, copy otherwise.
 
     The video folders are 100MB of the 104MB a course occupies and a replay does
     not change a frame of them, so three demo runs should not cost 300MB to say
@@ -1268,7 +1268,13 @@ def _link_or_copy(source: Path, target: Path):
     if target.is_symlink() or target.exists():
         return
     target.parent.mkdir(parents=True, exist_ok=True)
-    target.symlink_to(source.resolve())
+    try:
+        target.symlink_to(source.resolve(), target_is_directory=source.is_dir())
+    except OSError:
+        if source.is_dir():
+            shutil.copytree(source.resolve(), target)
+        else:
+            shutil.copy2(source.resolve(), target)
 
 
 async def _replay(run_id: str, drug: str, source: Path, target: Path):

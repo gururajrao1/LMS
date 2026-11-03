@@ -93,7 +93,13 @@ def _own_track(origin: Path, root: Path, track: str) -> None:
     (root / track).mkdir(parents=True)
     for entry in (origin / track).iterdir():
         if entry.name == "videos":
-            (root / track / entry.name).symlink_to(entry)
+            try:
+                (root / track / entry.name).symlink_to(entry, target_is_directory=entry.is_dir())
+            except OSError:
+                if entry.is_dir():
+                    shutil.copytree(entry, root / track / entry.name)
+                else:
+                    shutil.copy2(entry, root / track / entry.name)
         elif entry.is_dir():
             shutil.copytree(entry, root / track / entry.name)
         else:

@@ -46,7 +46,8 @@ def test_run_budget_records_usage_and_stops_before_overspend(tmp_path, monkeypat
 
     budget.record(response, "research")
 
-    assert budget.spent_usd == pytest.approx(0.027)
+    expected = 1000 * agent.INPUT_USD_PER_MTOK / 1_000_000 + 500 * agent.OUTPUT_USD_PER_MTOK / 1_000_000 + 2 * agent.WEB_SEARCH_USD
+    assert budget.spent_usd == pytest.approx(expected)
     assert agent._json(tmp_path / "logs" / run["id"] / "usage.json")["calls"][0]["web_searches"] == 2
     with pytest.raises(RuntimeError, match="Stopped before"):
         budget.check("large call", max_tokens=100_000)
