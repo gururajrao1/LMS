@@ -143,7 +143,15 @@ def _build_content(source: str, run_id: str, cycle: dict, generated: date) -> No
     tracks = ("hcp", "msl") if cycle.get("board") else ()
     for name in LINKED:
         if name not in tracks:
-            (root / name).symlink_to(origin / name)
+            try:
+                (root / name).symlink_to(origin / name, target_is_directory=(origin / name).is_dir())
+            except OSError:
+                # Windows checkouts without symlink privilege materialise git
+                # symlinks as text files, so link failures must copy instead.
+                if (origin / name).is_dir():
+                    shutil.copytree(origin / name, root / name)
+                else:
+                    shutil.copy2(origin / name, root / name)
     for name in COPIED:
         shutil.copy2(origin / name, root / name)
     drug = agent._slug(json.loads((origin / "manifest.json").read_text())["drug"]["brand"])
@@ -169,7 +177,7 @@ def _build_content(source: str, run_id: str, cycle: dict, generated: date) -> No
     log = content_path("logs", run_id, "run.json")
     log.parent.mkdir(parents=True, exist_ok=True)
     log.write_text(json.dumps({
-        "id": run_id, "mode": "local",
+        "id": run_id, "mode": "local", "status": "completed", "progress": 100,
         "created_at": datetime.combine(generated - timedelta(days=3), datetime.min.time(), tzinfo=UTC).isoformat(),
     }, indent=2) + "\n")
 

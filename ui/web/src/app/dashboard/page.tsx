@@ -70,7 +70,8 @@ function CourseCard({ course, mine }: { course: Course; mine?: boolean }) {
             {/* Reads before the status chip, because on a shared queue "is this mine"
                 is the question a reviewer opens the page with. */}
             {mine && <Badge className="bg-brand-600"><UserRoundCheck size={12} /> Assigned to you</Badge>}
-            <Badge variant={course.review_status === "published" ? "default" : "secondary"} className={course.review_status === "published" ? "bg-brand-600" : ""}>
+            <Badge variant={course.review_status === "published" ? "default" : "secondary"} className={`inline-flex items-center gap-1.5 ${course.review_status === "published" ? "bg-brand-600" : ""}`}>
+              <span aria-hidden className={`size-1.5 rounded-full ${!course.review_status || !course.run_id ? "bg-stone-400" : course.review_status === "published" ? "bg-white" : "bg-warn-500"}`} />
               {course.review_status ? REVIEW_LABEL[course.review_status] : course.status}
             </Badge>
           </div>
@@ -106,11 +107,13 @@ export default function Dashboard() {
   const [busy, setBusy] = useState(false);
   const [impact, setImpact] = useState<Analytics | null>(null);
   const [client, setClient] = useState<ClientProgrammes | null>(null);
+  const [results, setResults] = useState<{ courses: { run_id: string; name: string; version: number; assigned: number; started: number; certified: number; average_uplift: number | null; average_final: number | null }[]; assigned: number; certified: number } | null>(null);
 
   const loadClient = () => getJson<ClientProgrammes>("/api/clients/pfizer").then(setClient).catch(() => undefined);
 
   useEffect(() => {
     loadClient();
+    getJson<typeof results>("/api/dashboard/results").then(setResults).catch(() => undefined);
     getJson<Course[]>("/api/courses")
       .then((all) => {
         setCourses(all);
@@ -193,6 +196,23 @@ export default function Dashboard() {
         <Stat icon={Send} value={published.length} label="Published" tone="brand" />
         <Stat icon={Users} value={assigned} label="Trainees assigned" />
       </section>
+
+      {results && results.courses.length > 0 && (
+        <section className="mt-8 rounded-xl border bg-white p-5 shadow-sm">
+          <div className="flex flex-wrap items-baseline gap-x-6 gap-y-1">
+            <h2 className="text-lg font-semibold">Results</h2>
+            <p className="text-sm text-stone-600"><b className="text-ink">{results.certified}</b> of <b className="text-ink">{results.assigned}</b> assigned learners certified</p>
+          </div>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {results.courses.map((course) => (
+              <Link key={course.run_id} href={`/courses/${course.run_id}`} className="inline-flex items-center gap-2 rounded-lg bg-stone-50 px-3 py-1.5 text-sm hover:bg-stone-100">
+                <span className="font-medium">{course.name} v{course.version}</span>
+                <span className="text-stone-600">{course.certified}/{course.assigned} certified{course.average_uplift !== null ? ` · +${course.average_uplift}` : ""}</span>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section className="mt-9">
         <h2 className="text-lg font-semibold">Courses</h2>

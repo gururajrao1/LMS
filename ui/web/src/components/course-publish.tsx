@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { NativeSelect } from "@/components/ui/native-select";
 import { Textarea } from "@/components/ui/textarea";
 import { ROLE_LABEL } from "@/components/app-shell";
 import { CourseReview, getJson, Person, sendJson } from "@/lib/api";
@@ -23,6 +24,7 @@ export function CoursePublishPanel({ runId, user, review, onChange }: { runId: s
   const [startsOn, setStartsOn] = useState(published?.starts_on ?? isoDate(0));
   const [dueOn, setDueOn] = useState(published?.due_on ?? isoDate(30));
   const [message, setMessage] = useState(published?.message ?? "Complete this course before the next cycle meeting.");
+  const [frequency, setFrequency] = useState(published?.frequency ?? "once");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
 
@@ -38,7 +40,7 @@ export function CoursePublishPanel({ runId, user, review, onChange }: { runId: s
     event.preventDefault();
     setBusy(true); setError("");
     try {
-      await sendJson(`/api/runs/${runId}/publication`, { user_id: user.id, starts_on: startsOn, due_on: dueOn, assignees, message });
+      await sendJson(`/api/runs/${runId}/publication`, { user_id: user.id, starts_on: startsOn, due_on: dueOn, assignees, message, frequency });
       onChange(await getJson<CourseReview>(`/api/runs/${runId}/review`));
     } catch (reason) { setError(reason instanceof Error ? reason.message : "Could not publish"); }
     finally { setBusy(false); }
@@ -82,6 +84,23 @@ export function CoursePublishPanel({ runId, user, review, onChange }: { runId: s
             </div>
 
             <div>
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div>
+                  <label htmlFor="frequency" className="text-sm font-medium">Repeats</label>
+                  <NativeSelect id="frequency" value={frequency} onChange={(event) => setFrequency(event.target.value)} className="mt-2 h-9">
+                    {[["once", "Once"], ["quarterly", "Quarterly"], ["semiannual", "Semiannually"], ["annual", "Annually"]].map(([value, label]) => <option key={value} value={value}>{label}</option>)}
+                  </NativeSelect>
+                </div>
+                <div>
+                  <p className="text-sm font-medium">Assign by group</p>
+                  <div className="mt-2 flex flex-wrap gap-2">
+                    <button type="button" onClick={() => setAssignees(people.filter((person) => person.role === "msl").map((person) => person.id))} className="rounded-lg border px-3 py-1 text-xs font-medium hover:bg-stone-50">All MSLs</button>
+                    <button type="button" onClick={() => setAssignees(people.filter((person) => person.role === "hcp").map((person) => person.id))} className="rounded-lg border px-3 py-1 text-xs font-medium hover:bg-stone-50">All HCPs</button>
+                    <button type="button" onClick={() => setAssignees([])} className="rounded-lg border px-3 py-1 text-xs font-medium hover:bg-stone-50">Clear</button>
+                  </div>
+                </div>
+              </div>
+
               <p className="text-sm font-medium">Trainees ({assignees.length} selected)</p>
               <div className="mt-2 grid gap-2 sm:grid-cols-2">
                 {people.map((person) => (
@@ -116,7 +135,7 @@ export function CoursePublishPanel({ runId, user, review, onChange }: { runId: s
             {publication ? (
               <div className="space-y-3 text-sm">
                 <Badge className="bg-brand-600">Published v{publication.version}</Badge>
-                <p className="flex items-center gap-2 text-stone-600"><CalendarDays size={15} /> {publication.starts_on} → {publication.due_on}</p>
+                <p className="flex items-center gap-2 text-stone-600"><CalendarDays size={15} /> {publication.starts_on} → {publication.due_on}{publication.frequency && publication.frequency !== "once" ? ` · repeats ${publication.frequency}` : ""}{publication.next_due_on ? ` · next due ${publication.next_due_on}` : ""}</p>
                 <p className="flex items-center gap-2 text-stone-600"><Users size={15} /> {publication.assignees.length} trainee(s)</p>
                 <p className="text-xs text-stone-600">Published by {publication.published_by}</p>
               </div>

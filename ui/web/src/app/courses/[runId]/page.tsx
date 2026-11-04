@@ -74,14 +74,16 @@ export default function CourseWorkspace() {
   // stays derived from the role rather than being written into state by an
   // effect once the role loads.
   const [panel, setPanel] = useState<string | null>(() => (typeof window === "undefined" ? null : window.localStorage.getItem(`pharmalearn.panel.${runId}`)));
+  const [loadError, setLoadError] = useState("");
 
   useEffect(() => {
-    getJson<CourseContent>(`/api/runs/${runId}/content`).then((data) => { setContent(data); setLearner(data.default_learner); });
-    getJson<CourseReview>(`/api/runs/${runId}/review`).then(setReview);
+    getJson<CourseContent>(`/api/runs/${runId}/content`).then((data) => { setContent(data); setLearner(data.default_learner); }).catch(() => setLoadError("This run has no generated course content to show."));
+    getJson<CourseReview>(`/api/runs/${runId}/review`).then(setReview).catch(() => setLoadError("This run has no review record to show."));
   }, [runId]);
 
   if (!user) return <AppShell><Loading /></AppShell>;
   const track = content?.learners[learner];
+  if (loadError) return <AppShell user={user}><Card><CardContent className="p-8 text-center text-stone-600"><p className="font-semibold text-ink">Course unavailable</p><p className="mt-2 text-sm">{loadError} It may be a schedule entry rather than generated content — pick another course from the dashboard.</p><Link href="/dashboard" className="mt-4 inline-block text-sm font-medium text-brand-700 hover:underline">Back to dashboard</Link></CardContent></Card></AppShell>;
   if (!content || !track || !review) return <AppShell user={user}><Loading label="Loading the course workspace…" /></AppShell>;
   const admin = user.role === "admin";
   // A reviewer lands on the queue they came for; an admin on the spine.
@@ -169,7 +171,7 @@ export default function CourseWorkspace() {
 
         {active === "publish" && <CoursePublishPanel key={review.publication?.published_at ?? "unpublished"} runId={runId} user={user} review={review} onChange={setReview} />}
 
-        {active === "cohort" && <CourseCohortPanel runId={runId} />}
+        {active === "cohort" && <CourseCohortPanel runId={runId} user={user} />}
 
         {active === "impact" && <CourseImpactPanel runId={runId} />}
       </div>

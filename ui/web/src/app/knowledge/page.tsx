@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useEffect, useMemo, useState } from "react";
-import { CircleAlert, Database, ExternalLink, FileUp, Globe, Inbox, Layers3, Link2, Search, TriangleAlert, Upload } from "lucide-react";
+import { CircleAlert, Database, ExternalLink, FileUp, Globe, Inbox, Layers3, Link2, Presentation, Search, TriangleAlert, Upload } from "lucide-react";
 import { AppShell, Cites, Loading, Stat } from "@/components/app-shell";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
@@ -11,6 +11,8 @@ import { Input } from "@/components/ui/input";
 import { NativeSelect } from "@/components/ui/native-select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getJson, Knowledge, sendForm, sendJson, StagedSource } from "@/lib/api";
+import { MaterialQuizPanel } from "@/components/material-quiz";
+import { MaterialSlidesPanel } from "@/components/material-slides";
 import { useSession } from "@/lib/session";
 
 type Course = { id: string; run_id?: string; name: string; generic: string };
@@ -123,6 +125,8 @@ export default function KnowledgeHub() {
           <TabsTrigger value="dossier"><Database /> Dossier</TabsTrigger>
           <TabsTrigger value="sources"><Link2 /> Sources</TabsTrigger>
           <TabsTrigger value="ingest"><Upload /> Add sources</TabsTrigger>
+          <TabsTrigger value="material"><FileUp /> Q&A & quizzes</TabsTrigger>
+          <TabsTrigger value="slides"><Presentation /> Slides</TabsTrigger>
         </TabsList>
 
         <TabsContent value="dossier" className="mt-5">
@@ -241,6 +245,12 @@ export default function KnowledgeHub() {
               {!staged.length && <p className="py-6 text-center text-stone-600">Nothing staged yet.</p>}
             </CardContent>
           </Card>
+        </TabsContent>
+        <TabsContent value="material" className="mt-5">
+          <MaterialQuizPanel staged={staged} refresh={() => getJson<StagedSource[]>("/api/uploads").then(setStaged).catch(() => undefined)} />
+        </TabsContent>
+        <TabsContent value="slides" className="mt-5">
+          <MaterialSlidesPanel />
         </TabsContent>
       </Tabs>
     </AppShell>

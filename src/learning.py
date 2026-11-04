@@ -534,6 +534,40 @@ def assign_reviewers(run_id: str, user_id: str, reviewer_ids: list[str], note: s
     return record
 
 
+FREQUENCIES = ("once", "quarterly", "semiannual", "annual")
+FREQUENCY_MONTHS = {"once": 0, "quarterly": 3, "semiannual": 6, "annual": 12}
+
+
+def next_due_on(frequency: str, due_on: str) -> str | None:
+    """When the next run of a repeating schedule falls due, if it repeats."""
+    months = FREQUENCY_MONTHS.get(frequency, 0)
+    if not months:
+        return None
+    try:
+        year, month, day = (int(part) for part in due_on.split("-"))
+    except (ValueError, AttributeError):
+        return None
+    month += months
+    year += (month - 1) // 12
+    month = (month - 1) % 12 + 1
+    return date(year, month, min(day, 28)).isoformat()
+
+
+def reset_attempts(run_id: str, user_id: str, user_role: str = "") -> dict:
+    """An admin clears a learner's assessment answers so they start over.
+
+    Attempts and any certificate earned from them go; module progress stays,
+    so the learner retakes the checks rather than redoing the whole course.
+    """
+    if user_role and user_role not in {"admin", "reviewer"}:
+        raise ValueError("Only the training team can reset answers")
+    record = progress(run_id, user_id)
+    record["attempts"] = []
+    record["certificate"] = None
+    _save_progress(record)
+    return summarize(record)
+
+
 def publish_course(
     run_id: str,
     user_id: str,
@@ -541,6 +575,7 @@ def publish_course(
     due_on: str,
     assignees: list[str],
     message: str = "",
+    frequency: str = "once",
 ) -> dict:
     record = course(run_id)
     author = _author(user_id, role="admin")
@@ -548,6 +583,8 @@ def publish_course(
         raise ValueError("A course needs an approving sign-off and no open blocking comments")
     if not assignees:
         raise ValueError("Select at least one trainee")
+    if frequency not in FREQUENCIES:
+        raise ValueError(f"Schedule must be one of: {', '.join(FREQUENCIES)}")
     people = {entry["id"]: entry for entry in roster()}
     unknown = [user for user in assignees if user not in people]
     if unknown:
@@ -569,6 +606,8 @@ def publish_course(
         "overrides": overrides,
         "starts_on": starts_on,
         "due_on": due_on,
+        "frequency": frequency,
+        "next_due_on": next_due_on(frequency, due_on),
         "message": message.strip(),
         "assignees": assignees,
         "notifications": [{
@@ -604,6 +643,33 @@ def _on(value: str | None) -> date | None:
         return date.fromisoformat(value) if value else None
     except ValueError:
         return None
+
+
+def noncompliance(run_id: str) -> list[dict]:
+    """Tiered noncompliance flags: overdue, below-requirement, or unbaselined.
+
+    One shared source for the cohort alerts panel, the escalation ladder and
+    every export, so the UI and the spreadsheet can never disagree.
+    """
+    record = course(run_id)
+    publication = record.get("publication") or {}
+    data = cohort(run_id)
+    alerts = []
+    for learner in data["learners"]:
+        who = {"user_id": learner["user_id"], "name": learner["name"]}
+        days = days_until(publication.get("due_on"))
+        if assignment_state(publication, learner) == "overdue":
+            tier = 3 if (days is not None and days <= -14) else 2 if (days is not None and days <= -7) else 1
+            alerts.append({**who, "severity": "danger", "tier": tier,
+                           "message": f"Overdue with {learner['modules_complete']}/{learner['modules_total']} modules done"})
+        if learner.get("final_score") is not None and not learner["passed"]:
+            alerts.append({**who, "severity": "danger", "tier": 2,
+                           "message": f"Final {learner['final_score']}% is below the required score"})
+        if learner["stage"] != "not_started" and learner["baseline_score"] is None:
+            alerts.append({**who, "severity": "warning", "tier": 1,
+                           "message": "Started without a recorded baseline"})
+    order = {"danger": 0, "warning": 1}
+    return sorted(alerts, key=lambda alert: (order[alert["severity"]], alert["tier"]))
 
 
 def assignment_state(publication: dict, summary: dict, today: date | None = None) -> str:

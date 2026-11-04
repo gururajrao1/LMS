@@ -270,3 +270,30 @@ def test_a_quiz_without_a_board_is_unchanged():
     assert _questions(_content(QUIZ), "hcp", "final") == QUIZ["questions"]
     assert len(_questions(_content(QUIZ), "hcp", "baseline")) == 5
     assert _groups(QUIZ, QUIZ["questions"]) == []
+
+
+def test_cycle_content_is_servable_and_finished(tmp_path, monkeypatch):
+    """A cycle must open as a course: linked content present, run marked done.
+
+    Guards the Windows checkout failure where git symlinks arrive as text
+    files and the cycle then 500s on /content while the dashboard calls it
+    published.
+    """
+    from datetime import date
+
+    from scripts.seed_schedule import _build_content
+
+    monkeypatch.setattr(agent, "DATA", tmp_path)
+    origin = tmp_path / "content" / "ibrance-1"
+    for name in ("hcp", "msl", "assets", "master"):
+        (origin / name).mkdir(parents=True)
+    (origin / "hcp" / "quiz.json").write_text(json.dumps({"questions": []}))
+    (origin / "manifest.json").write_text(json.dumps({"drug": {"brand": "Ibrance"}}))
+    (origin / "learning_blueprint.json").write_text("{}")
+    (origin / "source_manifest.json").write_text("{}")
+    (origin / "context.json").write_text("{}")
+    _build_content("ibrance-1", "ibrance-cycle-x", {"id": "x", "title": "X", "summary": "Y"}, date(2026, 1, 2))
+    assert (tmp_path / "content" / "ibrance-cycle-x" / "hcp").is_dir()
+    assert (tmp_path / "content" / "ibrance-cycle-x" / "hcp" / "quiz.json").exists()
+    run = json.loads((tmp_path / "logs" / "ibrance-cycle-x" / "run.json").read_text())
+    assert run["status"] == "completed" and run["progress"] == 100

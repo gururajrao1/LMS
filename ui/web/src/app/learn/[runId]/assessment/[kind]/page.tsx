@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { ArrowLeft, Award, CheckCircle2, RotateCcw, TrendingUp, XCircle } from "lucide-react";
+import { ArrowLeft, Award, CheckCircle2, RotateCcw, TrendingUp, Volume2, XCircle } from "lucide-react";
 import { AppShell, Cites, Loading } from "@/components/app-shell";
 import { AssemblePanel } from "@/components/assemble-panel";
 import { QuizFigure } from "@/components/quiz-figure";
@@ -61,6 +61,19 @@ export default function AssessmentPage() {
   const [result, setResult] = useState<AssessmentResult | null>(null);
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
+  const [speaking, setSpeaking] = useState<string | null>(null);
+
+  // Training read-aloud runs entirely in the browser: no audio is generated
+  // server-side and nothing leaves the device.
+  function speak(id: string, text: string) {
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+    if (speaking === id) { window.speechSynthesis.cancel(); setSpeaking(null); return; }
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.onend = () => setSpeaking(null);
+    setSpeaking(id);
+    window.speechSynthesis.speak(utterance);
+  }
 
   useEffect(() => {
     if (!user) return;
@@ -115,7 +128,10 @@ export default function AssessmentPage() {
       <Link href={`/learn/${runId}`} className="mb-5 inline-flex items-center gap-2 text-sm font-medium text-stone-600 hover:text-brand-700"><ArrowLeft size={16} /> Back to the course</Link>
 
       <div className="mx-auto max-w-3xl">
-        <Badge className={baseline ? "bg-stone-100 text-stone-700" : "bg-brand-50 text-brand-700"}>{baseline ? "Baseline knowledge check" : "Final assessment"}</Badge>
+        <div className="flex flex-wrap items-center gap-3">
+          <Badge className={baseline ? "bg-stone-100 text-stone-700" : "bg-brand-50 text-brand-700"}>{baseline ? "Baseline knowledge check" : "Final assessment"}</Badge>
+          <button type="button" onClick={() => speak("all", assessment.questions.map((question, index) => `Question ${index + 1}. ${question.prompt}`).join(" "))} className="inline-flex items-center gap-1.5 rounded-lg border px-3 py-1 text-xs font-medium text-stone-600 hover:bg-stone-50"><Volume2 size={14} /> {speaking === "all" ? "Stop" : "Read test aloud"}</button>
+        </div>
         <h1 className="mt-4 text-3xl font-semibold tracking-tight">{assessment.title}</h1>
         <p className="mt-2 leading-7 text-stone-600">
           {baseline
@@ -173,7 +189,7 @@ export default function AssessmentPage() {
             const reviewed = reviewedById.get(question.id);
             return (
               <Card key={question.id}>
-                <CardHeader><CardTitle className="text-base leading-6">{number(blockIndex)}. {question.prompt}</CardTitle></CardHeader>
+                <CardHeader><CardTitle className="flex items-start gap-2 text-base leading-6"><span className="flex-1">{number(blockIndex)}. {question.prompt}</span><button type="button" aria-label={speaking === question.id ? "Stop reading" : "Read question aloud"} onClick={() => speak(question.id, `${question.prompt}. Options: ${question.options.join(", ")}`)} className="mt-0.5 shrink-0 rounded p-1 text-stone-400 hover:bg-stone-100 hover:text-brand-700"><Volume2 size={16} /></button></CardTitle></CardHeader>
                 <CardContent className="space-y-2">
                   {question.figure && <QuizFigure figure={question.figure} />}
                   {question.options.map((option, optionIndex) => (

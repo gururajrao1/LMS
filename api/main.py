@@ -1,9 +1,10 @@
 import asyncio
 import io
 import json
+import openpyxl
 import zipfile
 import re
-from datetime import UTC, datetime
+from datetime import UTC, date, datetime
 from pathlib import Path
 from urllib.parse import quote
 
@@ -13,7 +14,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, StreamingResponse
 from pydantic import BaseModel
 
-from src import analytics, assistant, completeness, journey, judge, learning, programmes
+from src import analytics, assistant, completeness, journey, judge, learning, material, present, programmes
 from src.agent import content_path, create_run, get_run, passing_percent, run_agent
 
 app = FastAPI(title="PharmaLearn API")
@@ -131,7 +132,11 @@ def course_content(run_id: str):
     base = content_path("content", run_id)
     if not base.exists():
         raise HTTPException(404, "Content not found")
-    read = lambda path: json.loads((base / path).read_text())
+    def read(path: str):
+        try:
+            return json.loads((base / path).read_text())
+        except FileNotFoundError:
+            raise HTTPException(404, "Content not found for this run")
     def learner(name: str):
         root = base / name
         if not root.exists():
@@ -259,6 +264,7 @@ class PublishRequest(BaseModel):
     due_on: str
     assignees: list[str]
     message: str = ""
+    frequency: str = "once"
 
 
 class ModuleRequest(BaseModel):
@@ -270,6 +276,10 @@ class AnswerRequest(BaseModel):
     answers: dict[str, int]
     # Demo affordance, refused unless PHARMALEARN_DEMO_FILL is set.
     fill_unanswered: bool = False
+
+
+class QuizBuildRequest(BaseModel):
+    title: str = ""
 
 
 class FeedbackRequest(BaseModel):
@@ -378,13 +388,63 @@ def review_signoff(run_id: str, request: SignoffRequest):
 @app.post("/api/runs/{run_id}/publication")
 def publish(run_id: str, request: PublishRequest):
     return _guard(lambda: learning.publish_course(
-        run_id, request.user_id, request.starts_on, request.due_on, request.assignees, request.message
+        run_id, request.user_id, request.starts_on, request.due_on, request.assignees, request.message,
+        frequency=request.frequency,
     ))
 
 
 @app.get("/api/runs/{run_id}/cohort")
 def cohort(run_id: str):
     return learning.cohort(run_id)
+
+
+@app.get("/api/runs/{run_id}/alerts")
+def noncompliance_alerts(run_id: str):
+    """Flag every learner falling short: overdue, below-requirement, unbaselined."""
+    return learning.noncompliance(run_id)
+
+
+@app.get("/api/dashboard/results")
+def dashboard_results():
+    """Results across every published course for the admin dashboard."""
+    rows = []
+    for record in learning.published_courses():
+        try:
+            data = learning.cohort(record["run_id"])
+            manifest = json.loads(content_path("content", Path(record["run_id"]).name, "manifest.json").read_text())
+            name = manifest["drug"]["brand"]
+        except (OSError, KeyError, json.JSONDecodeError):
+            continue
+        rows.append({"run_id": record["run_id"], "name": name, "version": record["version"],
+                     "assigned": data["assigned"], "started": data["started"],
+                     "certified": data["certified"], "average_uplift": data["average_uplift"],
+                     "average_final": data["average_final"]})
+    return {"courses": rows, "assigned": sum(row["assigned"] for row in rows),
+            "certified": sum(row["certified"] for row in rows)}
+
+
+@app.get("/api/learners/{user_id}/dashboard")
+def learner_dashboard(user_id: str):
+    """One learner's whole picture: every assignment, totals, and open flags."""
+    person = learning.person(Path(user_id).name)
+    if not person:
+        raise HTTPException(404, "Unknown learner")
+    courses = []
+    for record in learning.assignments(person["id"]):
+        state = learning.summarize(learning.progress(record["run_id"], person["id"]))
+        courses.append({"run_id": record["run_id"], "version": record["version"],
+                        "state": learning.assignment_state(record["publication"], state),
+                        "stage": state["stage"], "percent": state["percent"], "points": state["points"],
+                        "passed": state["passed"], "certificate": state["certificate"]})
+    alerts = []
+    for record in learning.published_courses():
+        alerts.extend(alert for alert in learning.noncompliance(record["run_id"])
+                      if alert["user_id"] == person["id"])
+    return {"user": person, "courses": courses,
+            "points": sum(row["points"] for row in courses),
+            "certified": sum(1 for row in courses if row["certificate"]),
+            "overdue": sum(1 for row in courses if row["state"] == "overdue"),
+            "alerts": alerts}
 
 
 @app.get("/api/runs/{run_id}/analytics")
@@ -434,6 +494,61 @@ def refresh_diff(run_id: str, against: str = ""):
         if qid not in current:
             removed.append(qid)
     return {"run_id": run_id, "against": against, "added": added, "removed": removed, "changed": changed, "changed_count": len(changed) + len(added) + len(removed), "recertification_required": bool(changed or added or removed), "note": "Certificates stamp the course version, so a changed course always re-certifies on pass"}
+
+
+def _sheet(workbook, title, header, rows):
+    sheet = workbook.create_sheet(title)
+    sheet.append(header)
+    for cell in sheet[1]:
+        cell.font = openpyxl.styles.Font(bold=True)
+    for row in rows:
+        sheet.append([row.get(key) if not isinstance(row.get(key), dict) else "" for key in header])
+    widths = [max(len(str(row[index] if index < len(row) else "")) for row in [header, *sheet.values]) for index in range(len(header))]
+    for index, width in enumerate(widths, start=1):
+        sheet.column_dimensions[openpyxl.utils.get_column_letter(index)].width = min(width + 2, 60)
+
+
+@app.get("/api/runs/{run_id}/export/xls")
+def export_xls(run_id: str):
+    """Excel workbook: cohort, question difficulty, noncompliance, feedback."""
+    data = learning.cohort(run_id)
+    workbook = openpyxl.Workbook()
+    workbook.remove(workbook.active)
+    _sheet(workbook, "Cohort", ["user_id", "name", "role", "stage", "modules_complete", "modules_total",
+                                "percent", "points", "baseline_score", "final_score", "uplift", "passed",
+                                "attempts", "certificate"], [{**learner, "certificate": bool(learner.get("certificate"))} for learner in data["learners"]])
+    _sheet(workbook, "Questions", ["track", "id", "prompt", "attempts", "correct", "percent"],
+           analytics.question_difficulty(run_id))
+    _sheet(workbook, "Noncompliance", ["severity", "tier", "name", "message"], learning.noncompliance(run_id))
+    _sheet(workbook, "Feedback", ["name", "module", "rating", "comment"],
+           [{**entry, "module": entry.get("module_id")} for entry in data["feedback"]])
+    buffer = io.BytesIO()
+    workbook.save(buffer)
+    buffer.seek(0)
+    return StreamingResponse(iter([buffer.getvalue()]),
+                             media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                             headers={"Content-Disposition": f'attachment; filename="{Path(run_id).name}-report.xlsx"'})
+
+class PresentationRequest(BaseModel):
+    title: str = "Training"
+    text: str = ""
+
+
+@app.post("/api/presentations", status_code=201)
+def create_presentation(body: PresentationRequest):
+    """Training slides (.pptx) from pasted present text, no new dependency.
+
+    Blank-line-separated blocks become slides: the first line is the heading,
+    the rest become bullets. Stateless — nothing is stored.
+    """
+    sections = present.parse_sections(body.text)
+    if not sections:
+        raise HTTPException(400, "No slide content found")
+    payload = present.build_pptx(body.title, sections)
+    name = "".join(char if char.isalnum() or char in {"-", "_"} else "-" for char in body.title.strip() or "training")
+    return StreamingResponse(iter([payload]), status_code=201,
+                             media_type="application/vnd.openxmlformats-officedocument.presentationml.presentation",
+                             headers={"Content-Disposition": f'attachment; filename="{name[:60]}.pptx"'})
 
 
 @app.get("/api/runs/{run_id}/export/scorm")
@@ -771,6 +886,37 @@ async def pull_web_source(request: WebSourceRequest):
     return record
 
 
+def _material_error(action):
+    try:
+        return action()
+    except FileNotFoundError as error:
+        raise HTTPException(404, str(error))
+    except ValueError as error:
+        raise HTTPException(400, str(error))
+
+
+@app.post("/api/uploads/{upload_id}/qa", status_code=201)
+def extract_qa(upload_id: str):
+    """Pull question/answer pairs out of shared material, nothing invented."""
+    return _material_error(lambda: material.save_qa(Path(upload_id).name))
+
+
+@app.get("/api/uploads/{upload_id}/qa")
+def read_qa(upload_id: str):
+    return _material_error(lambda: material.load_qa(Path(upload_id).name))
+
+
+@app.post("/api/uploads/{upload_id}/quiz", status_code=201)
+def build_upload_quiz(upload_id: str, request: QuizBuildRequest):
+    """Turn extracted Q&A pairs into a scored multiple-choice quiz."""
+    return _material_error(lambda: material.build_quiz(Path(upload_id).name, request.title))
+
+
+@app.get("/api/uploads/{upload_id}/quiz")
+def read_upload_quiz(upload_id: str):
+    return _material_error(lambda: material.load_quiz(Path(upload_id).name))
+
+
 def _learner_context(user_id: str, run_id: str):
     learner = learning.person(user_id)
     if not learner:
@@ -952,6 +1098,14 @@ def certificate(user_id: str, run_id: str):
     if not issued:
         raise HTTPException(404, "Finish every module and pass the final assessment to earn a certificate")
     return {**issued, "drug": content_value["manifest"]["drug"], "course_title": content_value["blueprint"]["title"]}
+
+
+@app.delete("/api/learn/{user_id}/{run_id}/attempts")
+def reset_learner_attempts(user_id: str, run_id: str, by: str = ""):
+    """An admin clears a learner's assessment answers so they start over."""
+    person = learning.person(by) if by else None
+    return _guard(lambda: learning.reset_attempts(
+        Path(run_id).name, Path(user_id).name, (person or {}).get("role", "")))
 
 
 @app.get("/api/learn/{user_id}/{run_id}/reinforce")

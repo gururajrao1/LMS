@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Assignment, AssignmentState, getJson, LearnerHome, LearnerSummary } from "@/lib/api";
+import { RAG_BADGE, RAG_DOT } from "@/lib/rag";
 import { useSession } from "@/lib/session";
 
 const NEXT_STEP: Record<LearnerSummary["stage"], string> = {
@@ -111,7 +112,10 @@ function AssignmentCard({ course }: { course: Assignment }) {
           <Progress value={course.summary.percent} />
           <Timeline course={course} />
           {due.label && (
+            <>
+            <p className="mt-3"><span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-medium ${RAG_BADGE[course.state === "overdue" ? "red" : course.state === "upcoming" ? "neutral" : course.summary.certificate ? "green" : "amber"]}`}><span aria-hidden className={`size-1.5 rounded-full ${RAG_DOT[course.state === "overdue" ? "red" : course.state === "upcoming" ? "neutral" : course.summary.certificate ? "green" : "amber"]}`} />{course.state === "overdue" ? "Overdue" : course.state === "upcoming" ? "Not open yet" : course.summary.certificate ? "Complete" : "In progress"}</span></p>
             <p className={`mt-2 text-sm font-medium ${due.urgent ? "text-warn-700" : "text-stone-600"}`}>{due.label}</p>
+            </>
           )}
           {course.summary.uplift !== null && (
             <p className="mt-3 text-sm text-stone-600">

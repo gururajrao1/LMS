@@ -73,7 +73,7 @@ def steps(run_id: str) -> dict:
             "title": "The machine checks it before a human does",
             "detail": "Every citable unit is read back against the stored source documents. "
                       "Blocking findings are raised into the review queue automatically.",
-            "done": bool(findings),
+            "done": bool(report),
             "evidence": [
                 _plural(len(findings), "finding"),
                 f"{sum(1 for item in findings if item['severity'] == 'blocking')} blocking",

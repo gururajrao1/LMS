@@ -1446,6 +1446,19 @@ async def run_agent(run_id: str, drug: str):
 
         await _verify_tracks(run_id, master["drug"]["brand"])
 
+        from src import judge as _judge
+
+        try:
+            await _stage(run_id, "machine_check", 95, "The machine checks every track before a human does")
+            await _judge.run(run_id, master["drug"]["brand"], model_tracks=())
+            raised = _judge.promote(run_id)
+            await _stage(run_id, "machine_check", 96,
+                         f"Checker raised {len(raised)} blocking finding(s) into review" if raised
+                         else "Checker ran clean: no blocking findings to raise")
+        except Exception as error:
+            # A check that cannot run is a thinner record, not a failed build.
+            await _stage(run_id, "machine_check", 96, f"Machine check could not run: {error}")
+
         await _stage(run_id, "attach_citations", 98, "Attaching citations and preparing the course")
         sources = _source_manifest(master, local_source)
         manifest = _compatibility_view(target, master, sources, hcp_ppt, local_source)

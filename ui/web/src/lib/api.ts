@@ -134,6 +134,8 @@ export type Publication = {
   starts_on: string;
   due_on: string;
   message: string;
+  frequency?: string | null;
+  next_due_on?: string | null;
   assignees: string[];
   notifications: { to: string; name: string; subject: string; sent_at: string }[];
   // Still-failing checks that were carried through deliberately. Absent on courses
@@ -621,7 +623,7 @@ export type Knowledge = {
   sections: { id: string; title: string; summary: string; gaps: string[]; warnings: string[]; claims: { text: string; evidence_type: string; citations: Citation[] }[] }[];
 };
 
-export type StagedSource = { id: string; kind: "upload" | "web"; name: string; note: string; bytes?: number; content_type?: string; added_at: string; status: string; title?: string; http_status?: number; error?: string };
+export type StagedSource = { id: string; kind: "upload" | "web"; name: string; note: string; bytes?: number; content_type?: string; qa_count?: number; added_at: string; status: string; title?: string; http_status?: number; error?: string };
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const response = await fetch(`${API}${path}`, { cache: "no-store", ...init });
