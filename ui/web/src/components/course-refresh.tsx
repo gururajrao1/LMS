@@ -31,7 +31,7 @@ function IdList({ title, ids }: { title: string; ids: string[] }) {
 
 /** Label-change refresh: compare this version against an earlier run. */
 export function CourseRefreshPanel({ runId }: { runId: string }) {
-  const [against, setAgainst] = useState("");
+  const [against, setAgainst] = useState(() => (typeof window === "undefined" ? "" : window.localStorage.getItem(`pharmalearn.refresh.${runId}`) ?? ""));
   const [diff, setDiff] = useState<RefreshDiff | null>(null);
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
@@ -43,6 +43,7 @@ export function CourseRefreshPanel({ runId }: { runId: string }) {
     setError("");
     try {
       setDiff(await getJson<RefreshDiff>(`/api/runs/${runId}/refresh/diff?against=${encodeURIComponent(against.trim())}`));
+      try { window.localStorage.setItem(`pharmalearn.refresh.${runId}`, against.trim()); } catch { /* private mode */ }
     } catch {
       setError("Could not compare — check the other run id.");
     } finally {

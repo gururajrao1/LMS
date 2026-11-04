@@ -396,7 +396,7 @@ def course_analytics(run_id: str):
 def export_completions(run_id: str):
     """CSV export of cohort completions for an external LMS or compliance pack."""
     data = learning.cohort(run_id)
-    header = ["user_id", "name", "role", "title", "stage", "modules_complete", "modules_total", "percent", "baseline_score", "final_score", "uplift", "passed", "attempts", "certificate_code", "certificate_issued_at"]
+    header = ["user_id", "name", "role", "title", "stage", "modules_complete", "modules_total", "percent", "points", "baseline_score", "final_score", "uplift", "passed", "attempts", "certificate_code", "certificate_issued_at"]
     def cell(value) -> str:
         text = "" if value is None else str(value)
         return '"' + text.replace('"', '""') + '"' if any(mark in text for mark in [",", '"', "\n"]) else text

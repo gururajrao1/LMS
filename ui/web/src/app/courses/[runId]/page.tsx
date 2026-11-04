@@ -73,7 +73,7 @@ export default function CourseWorkspace() {
   // than left to the nav. Null until the reader picks one, so the landing panel
   // stays derived from the role rather than being written into state by an
   // effect once the role loads.
-  const [panel, setPanel] = useState<string | null>(null);
+  const [panel, setPanel] = useState<string | null>(() => (typeof window === "undefined" ? null : window.localStorage.getItem(`pharmalearn.panel.${runId}`)));
 
   useEffect(() => {
     getJson<CourseContent>(`/api/runs/${runId}/content`).then((data) => { setContent(data); setLearner(data.default_learner); });
@@ -140,7 +140,7 @@ export default function CourseWorkspace() {
       </div>
 
       <div className="mt-6 rounded-xl border bg-white p-4 shadow-sm"><div className="flex flex-wrap items-center gap-2 text-sm"><span className="font-semibold">Content</span><span aria-hidden>→</span><span className={review.status === "draft" ? "font-semibold text-brand-700" : ""}>Review</span><span aria-hidden>→</span><span className={review.readiness.can_publish || review.status === "published" ? "font-semibold text-brand-700" : ""}>Publish</span><span aria-hidden>→</span><span>Measure</span><span className="ml-auto text-stone-600">v{review.version} · {STATUS_LABEL[review.status]}</span></div>{admin && (<div className="mt-3 border-t pt-3 text-sm"><p className="font-semibold">What blocks publishing</p><ul className="mt-2 space-y-1 text-stone-600"><li>{review.readiness.approvals > 0 ? "Done" : "To do"}: approval at v{review.version} ({review.readiness.approvals})</li><li>{review.readiness.open_blocking === 0 ? "Done" : "To do"}: no open blocking comments ({review.readiness.open_blocking} open)</li><li>{review.readiness.changes_requested === 0 ? "Done" : "To do"}: no outstanding change requests ({review.readiness.changes_requested})</li></ul></div>)}</div>
-      <SectionNav sections={sections} value={active} onValueChange={setPanel} className="mt-7" />
+      <SectionNav sections={sections} value={active} onValueChange={(value) => { setPanel(value); try { window.localStorage.setItem(`pharmalearn.panel.${runId}`, value); } catch { /* private mode */ } }} className="mt-7" />
 
       {/* Keyed on the open panel so switching sections re-runs the fade. */}
       <div key={active} className="mt-5 animate-in fade-in-0 duration-150">

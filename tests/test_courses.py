@@ -64,6 +64,7 @@ def test_export_completions_csv_for_external_lms(tmp_path, monkeypatch):
     assert "text/csv" in response.headers["content-type"]
     lines = response.text.strip().splitlines()
     assert lines[0].startswith("user_id,name,role")
+    assert "points" in lines[0].split(",")
     assert any("ken-osei" in line for line in lines[1:])
     assert f"{run_id}-completions.csv" in response.headers["content-disposition"]
 

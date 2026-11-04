@@ -2,7 +2,7 @@
 
 Scope: additive only. Nothing here removes an existing panel or flow.
 Statuses: HAVE (shipped), PARTIAL (exists, needs extension), NEW (to build).
-The five demo builds at the bottom are marked DEMO and are the ones being built now.
+The five demo builds at the bottom are marked SHIPPED — built, verified, and removed from the to-add list.
 
 ## Pharma compliance (Veeva Vault Training, 21 CFR Part 11)
 
@@ -41,7 +41,7 @@ Sources: [Veeva Training brief](https://www.veeva.com/resources/veeva-training-s
   Adds: expiring certificates auto re-assign the current version.
   Actual use case: a certificate lapses after a year and the learner is
   re-enrolled automatically; Priya never runs the expiry spreadsheet.
-- **Recommended-next rail** (NEW — DEMO build, frontend only).
+- **Recommended-next rail** (SHIPPED).
   Adds: the single most urgent course surfaced on the learner home page.
   Actual use case: Jordan opens Learn and sees "Ibrance final due in 3 days"
   instead of scanning four section lists.
@@ -72,7 +72,7 @@ Sources: [Veeva Training brief](https://www.veeva.com/resources/veeva-training-s
   Adds: isolated portals per client or division with own branding and roles.
   Actual use case: same as branded portals above; Moodle proves the model
   works for compliance training at scale.
-* **Points and levels** (NEW — DEMO build, server points + learner badge).
+* **Points and levels** (SHIPPED — points only; levels and unlock sequences stay out).
   Adds: 25 points per finished module plus the final score, shown on the
   learner page.
   Actual use case: Tom sees points grow as he works through modules, which
@@ -138,7 +138,7 @@ Sources: [Stratbeans guide](https://stratbeans.com/is-articulate-360-an-lms),
   Integrate and import first; a Rise-like block editor comes only after
   import works.
 
-## The 5 DEMO builds (easy, visible in demo)
+## Shipped (built and demo-visible — no longer to be added)
 
 1. Cohort export buttons — CSV plus SCORM download on the Cohort tab.
    Use: Priya hands compliance a file instead of screenshots.
