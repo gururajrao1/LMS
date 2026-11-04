@@ -190,6 +190,7 @@ export type LearnerSummary = {
   baseline_score: number | null;
   final_score: number | null;
   uplift: number | null;
+  points: number;
   passed: boolean;
   attempts: number;
   certificate: Certificate | null;

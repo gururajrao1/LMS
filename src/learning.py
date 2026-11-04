@@ -683,6 +683,7 @@ def summarize(record: dict) -> dict:
         "passed": passed,
         "attempts": len(record["attempts"]),
         "certificate": record["certificate"],
+        "points": len(done) * 25 + (final["score"] if final else 0),
     }
 
 

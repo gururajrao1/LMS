@@ -295,6 +295,7 @@ def test_learner_completes_the_course_and_earns_a_certificate(client):
     assert result["attempt"]["score"] == 100
     assert result["attempt"]["passed"] is True
     assert result["summary"]["uplift"] == 100
+    assert result["summary"]["points"] == 4 * 25 + 100
     assert result["review"][0]["rationale"]
 
     certificate = client.get(f"/api/learn/{LEARNER}/{RUN_ID}/certificate").json()
@@ -533,3 +534,18 @@ def test_assignment_does_not_gate_who_may_sign_off(tmp_path, monkeypatch):
     learning.assign_reviewers("ibrance-1", "priya-raman", ["anil-shekhar"])
     signoff = learning.add_signoff("ibrance-1", "maria-alvarez", "approved", "Picked this up.")
     assert signoff["decision"] == "approved"
+
+
+def test_reinforce_collects_only_missed_questions(client):
+    """Spaced reinforcement: practice what this learner actually missed, never the answer key."""
+    _publish(client)
+    quiz = json.loads((agent.DATA / "content" / RUN_ID / "assets" / "quiz.json").read_text())
+    for module in learning.MODULES:
+        client.post(f"/api/learn/{LEARNER}/{RUN_ID}/modules", json={"module_id": module["id"], "completed": True})
+    answers = {question["id"]: question["correct_index"] for question in quiz["questions"][:2]}
+    answers[quiz["questions"][2]["id"]] = (quiz["questions"][2]["correct_index"] + 1) % 4
+    client.post(f"/api/learn/{LEARNER}/{RUN_ID}/assessment/final", json={"answers": answers})
+    practice = client.get(f"/api/learn/{LEARNER}/{RUN_ID}/reinforce").json()
+    assert practice["missed_count"] >= 1
+    assert all("correct_index" not in question for question in practice["questions"])
+    assert all("rationale" not in question for question in practice["questions"])

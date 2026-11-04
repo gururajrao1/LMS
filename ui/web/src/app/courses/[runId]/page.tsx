@@ -13,6 +13,7 @@ import { CourseChecksPanel } from "@/components/course-checks";
 import { CourseCompletenessPanel } from "@/components/course-completeness";
 import { CourseImpactPanel } from "@/components/course-impact";
 import { CoursePublishPanel } from "@/components/course-publish";
+import { CourseRefreshPanel } from "@/components/course-refresh";
 import { CourseReviewPanel } from "@/components/course-review";
 import { NavSection, SectionNav } from "@/components/section-nav";
 import { SourceLibrary } from "@/components/source-library";
@@ -56,7 +57,7 @@ function VideoPlaylist({ videos, learner }: { videos: CourseContent["learners"][
  */
 const CONTEXT: Record<string, string> = {
   ppt: "material", videos: "material", story: "material", faq: "material", quiz: "material",
-  sources: "evidence", checks: "evidence", coverage: "evidence",
+  sources: "evidence", checks: "evidence", coverage: "evidence", refresh: "evidence",
   review: "review",
   journey: "programme", publish: "programme", cohort: "programme", impact: "programme",
 };
@@ -102,6 +103,7 @@ export default function CourseWorkspace() {
     { label: "Governance", icon: ShieldCheck, items: [
       { value: "checks", label: "Checks", icon: ScanLine },
       { value: "coverage", label: "Coverage", icon: ListChecks },
+      { value: "refresh", label: "Refresh", icon: GitBranch },
       { value: "review", label: "Review", icon: GitBranch, count: review.readiness.open_comments },
       ...(admin ? [{ value: "publish", label: "Publish", icon: Send }] : []),
     ] },
@@ -137,6 +139,7 @@ export default function CourseWorkspace() {
         <div className="inline-flex rounded-lg bg-stone-100 p-1">{(["hcp", "msl"] as const).map((value) => <button key={value} type="button" aria-pressed={learner === value} onClick={() => setLearner(value)} className={`rounded-md px-5 py-2 text-sm font-semibold transition-colors ${learner === value ? "bg-white text-brand-700 shadow-sm" : "text-stone-600 hover:text-stone-800"}`}>{value.toUpperCase()}</button>)}</div>
       </div>
 
+      <div className="mt-6 rounded-xl border bg-white p-4 shadow-sm"><div className="flex flex-wrap items-center gap-2 text-sm"><span className="font-semibold">Content</span><span aria-hidden>→</span><span className={review.status === "draft" ? "font-semibold text-brand-700" : ""}>Review</span><span aria-hidden>→</span><span className={review.readiness.can_publish || review.status === "published" ? "font-semibold text-brand-700" : ""}>Publish</span><span aria-hidden>→</span><span>Measure</span><span className="ml-auto text-stone-600">v{review.version} · {STATUS_LABEL[review.status]}</span></div>{admin && (<div className="mt-3 border-t pt-3 text-sm"><p className="font-semibold">What blocks publishing</p><ul className="mt-2 space-y-1 text-stone-600"><li>{review.readiness.approvals > 0 ? "Done" : "To do"}: approval at v{review.version} ({review.readiness.approvals})</li><li>{review.readiness.open_blocking === 0 ? "Done" : "To do"}: no open blocking comments ({review.readiness.open_blocking} open)</li><li>{review.readiness.changes_requested === 0 ? "Done" : "To do"}: no outstanding change requests ({review.readiness.changes_requested})</li></ul></div>)}</div>
       <SectionNav sections={sections} value={active} onValueChange={setPanel} className="mt-7" />
 
       {/* Keyed on the open panel so switching sections re-runs the fade. */}
@@ -159,6 +162,8 @@ export default function CourseWorkspace() {
         {active === "checks" && <CourseChecksPanel runId={runId} user={user} onChange={() => getJson<CourseReview>(`/api/runs/${runId}/review`).then(setReview)} />}
 
         {active === "coverage" && <CourseCompletenessPanel runId={runId} user={user} onChange={() => getJson<CourseReview>(`/api/runs/${runId}/review`).then(setReview)} />}
+
+        {active === "refresh" && <CourseRefreshPanel runId={runId} />}
 
         {active === "review" && <CourseReviewPanel runId={runId} user={user} onChange={setReview} />}
 

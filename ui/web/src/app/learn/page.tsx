@@ -120,7 +120,7 @@ function AssignmentCard({ course }: { course: Assignment }) {
             </p>
           )}
           <p className="mt-4 flex items-center gap-1.5 text-sm font-medium text-brand-700">
-            {course.state === "upcoming" ? "Opens soon" : NEXT_STEP[course.summary.stage]} <ArrowRight size={14} />
+            {course.state === "upcoming" ? "Opens soon" : NEXT_STEP[course.summary.stage]} <ArrowRight size={14} /> <span className="ml-auto font-semibold text-stone-600">{course.summary.points} pts{course.summary.certificate ? ` · valid until ${course.summary.certificate.expires_at?.slice(0, 10)}` : ""}</span>
           </p>
         </CardContent>
       </Card>
@@ -164,6 +164,22 @@ export default function LearnerHomePage() {
         <Stat icon={GraduationCap} value={active} label="Open now" tone={active ? "warn" : "brand"} />
         <Stat icon={Award} value={certified} label="Certificates earned" />
       </section>
+
+      {next && (
+        <Link href={`/learn/${next.run_id}`}>
+          <Card className="mt-8 border-brand-200 bg-brand-50 transition-shadow hover:shadow-md">
+            <CardContent className="flex items-center gap-4 p-5">
+              <span className="grid size-11 shrink-0 place-items-center rounded-full bg-brand-600 text-white"><GraduationCap size={20} /></span>
+              <div className="min-w-0">
+                <p className="text-xs font-semibold uppercase tracking-wide text-brand-700">Up next for you</p>
+                <p className="mt-0.5 truncate text-lg font-semibold">{next.title ?? next.drug.brand} · {timing(next).label}</p>
+                <p className="text-sm text-stone-600">{NEXT_STEP[next.summary.stage]}</p>
+              </div>
+              <ArrowRight size={18} className="ml-auto shrink-0 text-brand-700" />
+            </CardContent>
+          </Card>
+        </Link>
+      )}
 
       {!home.courses.length ? (
         <Card className="mt-9"><CardContent className="flex flex-col items-center gap-3 p-12 text-center text-stone-600">

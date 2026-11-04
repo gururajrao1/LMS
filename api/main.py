@@ -1,5 +1,7 @@
 import asyncio
+import io
 import json
+import zipfile
 import re
 from datetime import UTC, datetime
 from pathlib import Path
@@ -388,6 +390,69 @@ def cohort(run_id: str):
 @app.get("/api/runs/{run_id}/analytics")
 def course_analytics(run_id: str):
     return analytics.analytics(run_id)
+
+
+@app.get("/api/runs/{run_id}/export/completions")
+def export_completions(run_id: str):
+    """CSV export of cohort completions for an external LMS or compliance pack."""
+    data = learning.cohort(run_id)
+    header = ["user_id", "name", "role", "title", "stage", "modules_complete", "modules_total", "percent", "baseline_score", "final_score", "uplift", "passed", "attempts", "certificate_code", "certificate_issued_at"]
+    def cell(value) -> str:
+        text = "" if value is None else str(value)
+        return '"' + text.replace('"', '""') + '"' if any(mark in text for mark in [",", '"', "\n"]) else text
+    lines = [",".join(header)]
+    for learner in data["learners"]:
+        cert = learner.get("certificate") or {}
+        lines.append(",".join(cell(learner.get(key)) if key not in {"certificate_code", "certificate_issued_at"} else cell(cert.get("code" if key == "certificate_code" else "issued_at")) for key in header))
+    body = "\r\n".join(lines) + "\r\n"
+    return StreamingResponse(iter([body]), media_type="text/csv", headers={"Content-Disposition": f'attachment; filename="{Path(run_id).name}-completions.csv"'})
+
+
+def _quiz_questions(run_id: str, track: str) -> list[dict]:
+    base = content_path("content", Path(run_id).name)
+    for candidate in [base / track / "quiz.json", base / "assets" / "quiz.json"]:
+        if candidate.exists():
+            return json.loads(candidate.read_text()).get("questions", [])
+    return []
+
+
+@app.get("/api/runs/{run_id}/refresh/diff")
+def refresh_diff(run_id: str, against: str = ""):
+    """Label-change refresh: what changed between two course versions, and re-certification signal."""
+    if not against:
+        raise HTTPException(400, "Pass ?against=<previous-run-id> to compare two label versions")
+    current = {question["id"]: question for question in _quiz_questions(run_id, "hcp") + _quiz_questions(run_id, "msl")}
+    previous = {question["id"]: question for question in _quiz_questions(against, "hcp") + _quiz_questions(against, "msl")}
+    changed, added, removed = [], [], []
+    for qid, question in current.items():
+        old = previous.get(qid)
+        if old is None:
+            added.append(qid)
+        elif old.get("prompt") != question.get("prompt") or old.get("correct_index") != question.get("correct_index") or old.get("rationale") != question.get("rationale"):
+            changed.append(qid)
+    for qid in previous:
+        if qid not in current:
+            removed.append(qid)
+    return {"run_id": run_id, "against": against, "added": added, "removed": removed, "changed": changed, "changed_count": len(changed) + len(added) + len(removed), "recertification_required": bool(changed or added or removed), "note": "Certificates stamp the course version, so a changed course always re-certifies on pass"}
+
+
+@app.get("/api/runs/{run_id}/export/scorm")
+def export_scorm(run_id: str):
+    """Minimal SCORM 1.2 package: manifest plus the course quiz payloads and completions CSV."""
+    manifest = content_path("content", Path(run_id).name, "manifest.json")
+    if not manifest.exists():
+        raise HTTPException(404, "Content not found")
+    drug = json.loads(manifest.read_text())["drug"]["brand"]
+    buffer = io.BytesIO()
+    with zipfile.ZipFile(buffer, "w", zipfile.ZIP_DEFLATED) as package:
+        package.writestr("imsmanifest.xml", f"""<?xml version="1.0" encoding="UTF-8"?><manifest identifier="PHARMALEARN-{run_id}" version="1.2"><organizations><organization identifier="ORG-1"><title>{drug} training</title><item identifier="ITEM-1" identifierref="RES-1"/></organization></organizations><resources><resource identifier="RES-1" type="webcontent" adlcp:scormtype="sco" href="quiz.json"><file href="quiz.json"/></resource></resources></manifest>""")
+        for track in ("hcp", "msl"):
+            for question in _quiz_questions(run_id, track):
+                package.writestr(f"{track}/quiz.json", json.dumps({"track": track, "questions": _quiz_questions(run_id, track)}, indent=2))
+                break
+        package.writestr("completions.csv", "user_id,stage\n")
+    buffer.seek(0)
+    return StreamingResponse(iter([buffer.getvalue()]), media_type="application/zip", headers={"Content-Disposition": f'attachment; filename="{Path(run_id).name}-scorm12.zip"'})
 
 
 def _checks_payload(run_id: str, report: dict | None):
@@ -887,3 +952,26 @@ def certificate(user_id: str, run_id: str):
     if not issued:
         raise HTTPException(404, "Finish every module and pass the final assessment to earn a certificate")
     return {**issued, "drug": content_value["manifest"]["drug"], "course_title": content_value["blueprint"]["title"]}
+
+
+@app.get("/api/learn/{user_id}/{run_id}/reinforce")
+def reinforce(user_id: str, run_id: str):
+    """Spaced reinforcement: practice set built from this learner's missed questions."""
+    try:
+        _learner, _record, content_value, track = _learner_context(user_id, run_id)
+    except FileNotFoundError:
+        return {"run_id": run_id, "user_id": user_id, "missed_count": 0, "questions": []}
+    quiz = (content_value.get("learners", {}).get(track) or {}).get("quiz") or {}
+    questions = quiz.get("questions", [])
+    if not questions:
+        return {"run_id": run_id, "user_id": user_id, "missed_count": 0, "questions": []}
+    by_id = {question["id"]: question for question in questions}
+    ever_correct: set[str] = set()
+    ever_seen: set[str] = set()
+    for attempt in learning.progress(run_id, user_id)["attempts"]:
+        for qid, chosen in (attempt.get("answers") or {}).items():
+            ever_seen.add(qid)
+            if qid in by_id and chosen == by_id[qid]["correct_index"]:
+                ever_correct.add(qid)
+    missed = [by_id[qid] for qid in ever_seen if qid in by_id and qid not in ever_correct]
+    return {"run_id": run_id, "user_id": user_id, "missed_count": len(missed), "questions": [{k: question[k] for k in ("id", "prompt", "options", "citations") if k in question} for question in missed]}

@@ -97,7 +97,7 @@ export function CoursePublishPanel({ runId, user, review, onChange }: { runId: s
             </div>
 
             <div>
-              <label htmlFor="publish-message" className="text-sm font-medium">Message to trainees</label>
+              <div className="flex items-center justify-between"><label htmlFor="publish-message" className="text-sm font-medium">Message to trainees</label><button type="button" onClick={() => setMessage(`Training v${review.version} is ready: work the 4 modules, then pass the final to earn your certificate. Due ${dueOn} — your baseline and uplift are recorded either way.`)} className="text-xs font-medium text-brand-700 hover:underline">Use suggested message</button></div>
               <Textarea id="publish-message" value={message} onChange={(event) => setMessage(event.target.value)} rows={3} className="mt-2" />
             </div>
 

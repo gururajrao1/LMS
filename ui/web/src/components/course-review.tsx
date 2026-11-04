@@ -68,7 +68,7 @@ function EvidencePanel({ runId, commentId }: { runId: string; commentId: string 
   useEffect(() => {
     getJson<CommentEvidence>(`/api/runs/${runId}/review/comments/${commentId}/evidence`)
       .then(setEvidence)
-      .catch(() => setError("No stored evidence for this comment."));
+      .catch(() => setError("No stored evidence for this comment."));
   }, [runId, commentId]);
 
   if (error) return <p className="mt-3 text-sm text-stone-600">{error}</p>;
@@ -138,6 +138,7 @@ function EvidencePanel({ runId, commentId }: { runId: string; commentId: string 
         </ul>
       </div>
 
+      <ScopedAsk runId={runId} evidence={evidence} />
       {evidence.suggested_rewrite && (
         <div>
           <p className="text-xs font-medium uppercase tracking-wide text-stone-500">Suggested wording</p>
@@ -154,6 +155,37 @@ function EvidencePanel({ runId, commentId }: { runId: string; commentId: string 
  * only do that because it is not offering an opinion — the quote is either in the
  * stored document or it is not.
  */
+function ScopedAsk({ runId, evidence }: { runId: string; evidence: { check?: string; severity?: string; claim?: string; quote?: string } }) {
+  const [scopedQuestion, setScopedQuestion] = useState("");
+  const [scopedAnswer, setScopedAnswer] = useState("");
+  const [scopedBusy, setScopedBusy] = useState(false);
+  async function submit(event: FormEvent) {
+    event.preventDefault();
+    const text = scopedQuestion.trim();
+    if (!text || scopedBusy) return;
+    setScopedBusy(true);
+    setScopedAnswer("");
+    try {
+      const reply = await sendJson<{ answer: string }>(`/api/runs/${runId}/chat`, { question: `About finding ${evidence.check ?? "this finding"} (${evidence.severity ?? ""}): ${evidence.claim ?? ""} Recorded quote: ${evidence.quote ?? ""} Question: ${text}`, learner: "hcp", user_id: "" });
+      setScopedAnswer(reply.answer);
+    } catch {
+      setScopedAnswer("The assistant is unavailable.");
+    } finally {
+      setScopedBusy(false);
+    }
+  }
+  return (
+    <div>
+      <p className="text-xs font-medium uppercase tracking-wide text-stone-500">Ask about this finding</p>
+      <form className="mt-2 flex gap-2" onSubmit={submit}>
+        <input value={scopedQuestion} onChange={(event) => setScopedQuestion(event.target.value)} placeholder="e.g. Does the dossier support this wording?" className="min-w-0 flex-1 rounded-lg border px-3 py-2 text-sm" />
+        <button type="submit" disabled={scopedBusy} className="rounded-lg bg-brand-600 px-3 py-2 text-sm font-semibold text-white hover:bg-brand-800 disabled:opacity-50">Ask</button>
+      </form>
+      {scopedAnswer && <p className="mt-2 text-sm leading-6 text-stone-700">{scopedAnswer}</p>}
+    </div>
+  );
+}
+
 function ChallengeBanner({ challenge }: { challenge: Challenge }) {
   return (
     <div className="mt-3 rounded-xl border border-warn-200 bg-warn-50 p-4">

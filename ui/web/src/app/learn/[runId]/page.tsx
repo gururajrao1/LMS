@@ -99,6 +99,25 @@ function ModuleFooter({ module, runId, userId, onChange }: { module: LearnerModu
   );
 }
 
+function PracticeMissed({ runId, userId }: { runId: string; userId: string }) {
+  const [practice, setPractice] = useState<{ missed_count: number; questions: { id: string; prompt: string; options: string[] }[] } | null>(null);
+  useEffect(() => { getJson<{ missed_count: number; questions: { id: string; prompt: string; options: string[] }[] }>(`/api/learn/${userId}/${runId}/reinforce`).then(setPractice).catch(() => {}); }, [runId, userId]);
+  if (!practice || !practice.missed_count) return null;
+  return (
+    <Card className="mt-6">
+      <CardHeader><CardTitle>Practice what you missed ({practice.missed_count})</CardTitle><p className="mt-2 text-sm text-stone-600">No answer key here — try each one, then check the material before retaking the final.</p></CardHeader>
+      <CardContent className="space-y-3">
+        {practice.questions.map((question, index) => (
+          <div key={question.id} className="rounded-xl border p-4">
+            <p className="text-sm font-medium">{index + 1}. {question.prompt}</p>
+            <ul className="mt-2 space-y-1">{question.options.map((option, optionIndex) => <li key={optionIndex} className="rounded-lg bg-stone-50 px-3 py-2 text-sm text-stone-700">{option}</li>)}</ul>
+          </div>
+        ))}
+      </CardContent>
+    </Card>
+  );
+}
+
 export default function CoursePlayer() {
   const { runId } = useParams<{ runId: string }>();
   const user = useSession(["msl", "hcp"]);
@@ -137,7 +156,7 @@ export default function CoursePlayer() {
             {course.publication.message && <p className="mt-4 max-w-xl rounded-xl border border-white/15 bg-white/5 p-3 text-sm text-stone-200">{course.publication.message}</p>}
           </div>
           <div className="w-full max-w-xs">
-            <div className="flex items-center justify-between text-sm"><span className="text-stone-300">Course progress</span><span className="font-semibold">{course.summary.percent}%</span></div>
+            <div className="flex items-center justify-between text-sm"><span className="text-stone-300">Course progress</span><span className="font-semibold">{course.summary.percent}% · {course.summary.points} pts</span></div>
             <Progress value={course.summary.percent} className="mt-2 bg-white/20" />
             {course.summary.certificate && (
               <Button nativeButton={false} render={<Link href={`/learn/${runId}/certificate`} />} className="mt-4 w-full bg-white text-surface-deep hover:bg-stone-100"><Award /> View certificate</Button>
@@ -147,6 +166,8 @@ export default function CoursePlayer() {
       </div>
 
       <Journey course={course} runId={runId} />
+      <Card className="mt-6"><CardContent className="flex flex-col gap-3 p-5 text-sm sm:flex-row sm:items-center"><div><p className="font-semibold">Next best action</p><p className="mt-1 text-stone-600">{course.summary.baseline_score === null ? "Start the baseline check to record your starting point." : course.summary.modules_complete !== course.summary.modules_total ? `Continue learning: ${course.summary.modules_complete} of ${course.summary.modules_total} modules done.` : !course.summary.passed ? "Take the final assessment; every module is done." : course.summary.certificate ? `Certified: ${course.summary.certificate.code}.` : "Review the material, then take the final."}</p></div><Button nativeButton={false} render={<Link href={course.summary.baseline_score === null ? `/learn/${runId}/assessment/baseline` : course.summary.modules_complete !== course.summary.modules_total ? "#deck" : !course.summary.passed ? `/learn/${runId}/assessment/final` : `/learn/${runId}/certificate`} />} className="bg-brand-600 hover:bg-brand-800 sm:ml-auto"><ArrowRight /> Continue</Button></CardContent></Card>
+      <PracticeMissed runId={runId} userId={user.id} />
 
       <Tabs defaultValue="deck" className="mt-7">
         <TabsList className="h-auto flex-wrap bg-white p-1 shadow-sm">

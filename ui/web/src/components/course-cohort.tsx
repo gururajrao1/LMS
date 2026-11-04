@@ -5,7 +5,7 @@ import { Award, CheckCircle2, MessageSquare, Star, TrendingUp, UserCheck, Users 
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ROLE_LABEL, Stat } from "@/components/app-shell";
-import { Cohort, CohortLearner, getJson } from "@/lib/api";
+import { API, Cohort, CohortLearner, getJson } from "@/lib/api";
 
 const STAGE: Record<CohortLearner["stage"], { label: string; className: string }> = {
   not_started: { label: "Not started", className: "bg-stone-100 text-stone-600" },
@@ -37,6 +37,7 @@ function ScoreTrack({ baseline, final }: { baseline: number | null; final: numbe
 export function CourseCohortPanel({ runId }: { runId: string }) {
   const [cohort, setCohort] = useState<Cohort | null>(null);
   const [error, setError] = useState("");
+  const [copied, setCopied] = useState<string | null>(null);
 
   useEffect(() => { getJson<Cohort>(`/api/runs/${runId}/cohort`).then(setCohort).catch(() => setError("Could not load cohort progress.")); }, [runId]);
 
@@ -57,6 +58,10 @@ export function CourseCohortPanel({ runId }: { runId: string }) {
           <div>
             <CardTitle>Learner progress</CardTitle>
             <p className="mt-2 text-sm text-stone-600">Bar shows the final score; the marker is where the learner started.</p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              <a href={`${API}/api/runs/${runId}/export/completions`} className="rounded-lg border px-3 py-1.5 text-sm font-medium hover:bg-stone-50">Download CSV</a>
+              <a href={`${API}/api/runs/${runId}/export/scorm`} className="rounded-lg border px-3 py-1.5 text-sm font-medium hover:bg-stone-50">Download SCORM</a>
+            </div>
           </div>
           {cohort.average_baseline !== null && (
             <p className="text-sm text-stone-600">Cohort average {cohort.average_baseline} → <b className="text-ink">{cohort.average_final ?? "–"}</b></p>
@@ -78,6 +83,9 @@ export function CourseCohortPanel({ runId }: { runId: string }) {
                 <tr key={learner.user_id} className="border-b last:border-0">
                   <td className="py-4 pr-4">
                     <p className="font-medium">{learner.name}</p>
+                    {learner.stage !== "complete" && (
+                      <button type="button" onClick={() => { navigator.clipboard.writeText(`Hi ${learner.name} — a nudge on your training: stage "${STAGE[learner.stage].label}", ${learner.modules_complete}/${learner.modules_total} modules, ${learner.percent}% complete.`); setCopied(learner.user_id); setTimeout(() => setCopied((current) => current === learner.user_id ? null : current), 2000); }} className="mt-1 text-xs font-medium text-brand-700 hover:underline">{copied === learner.user_id ? "Copied" : "Copy reminder"}</button>
+                    )}
                     <p className="text-xs text-stone-600">{ROLE_LABEL[learner.role]} · {learner.title}</p>
                   </td>
                   <td className="py-4 pr-4"><Badge className={STAGE[learner.stage].className}>{STAGE[learner.stage].label}</Badge></td>
