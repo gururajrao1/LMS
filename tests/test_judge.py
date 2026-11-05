@@ -909,3 +909,29 @@ def test_reconcile_closes_only_stale_automated_comments(run):
     quote = next(entry for entry in record["comments"]
                  if entry.get("check") == "quote_not_found" and entry["status"] == "open")
     assert quote not in judge.reconcile(run)
+
+
+def test_failing_index_is_reused_until_the_dossier_changes(run, monkeypatch):
+    """Dismissals in a row must not each pay for a full re-check."""
+    calls = {"n": 0}
+    original = judge.deterministic_findings
+
+    def counted(*args, **kwargs):
+        calls["n"] += 1
+        return original(*args, **kwargs)
+
+    monkeypatch.setattr(judge, "deterministic_findings", counted)
+    judge.failing_now(run)
+    first = calls["n"]
+    assert first == 2  # one pass per track
+    judge.failing_now(run)
+    assert calls["n"] == first  # served from cache
+
+    base = agent.DATA / "content" / run
+    dossier_path = base / "master" / "dossier.json"
+    dossier = json.loads(dossier_path.read_text())
+    dossier["sections"].append({"id": "99_new", "title": "New", "summary": "",
+                                "claims": []})
+    dossier_path.write_text(json.dumps(dossier))
+    judge.failing_now(run)
+    assert calls["n"] > first  # dossier edit invalidates the cache

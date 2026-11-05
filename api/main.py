@@ -294,6 +294,9 @@ class FeedbackRequest(BaseModel):
 class ChatRequest(BaseModel):
     question: str
     learner: str = "hcp"
+    # Set when the question is about one review finding: answered from the
+    # finding's own state (check, quote, match) instead of dossier search.
+    finding_id: str | None = None
     # Set when a trainee is asking, so "when is this due" answers about their own
     # progress rather than the cohort's — otherwise the bot tells someone their
     # overdue course is "completed", because for the cohort it is.
@@ -793,6 +796,8 @@ async def chat(run_id: str, request: ChatRequest):
         raise HTTPException(400, "Ask a question")
     if not content_path("content", Path(run_id).name).exists():
         raise HTTPException(404, "Content not found")
+    if request.finding_id:
+        return await assistant.about_finding(run_id, request.finding_id, request.question, request.learner)
     return await assistant.answer(run_id, request.question, request.learner, request.user_id)
 
 

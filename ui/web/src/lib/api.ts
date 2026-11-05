@@ -524,6 +524,7 @@ export type Analytics = {
 /** Everything needed to settle one machine finding without leaving the comment. */
 export type CommentEvidence = {
   comment_id: string;
+  finding_id: string;
   check: string;
   severity: Severity;
   reference: string;

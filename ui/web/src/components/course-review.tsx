@@ -138,7 +138,7 @@ function EvidencePanel({ runId, commentId }: { runId: string; commentId: string 
         </ul>
       </div>
 
-      <ScopedAsk runId={runId} evidence={evidence} />
+      <ScopedAsk runId={runId} evidence={evidence} findingId={evidence.finding_id ?? null} />
       {evidence.suggested_rewrite && (
         <div>
           <p className="text-xs font-medium uppercase tracking-wide text-stone-500">Suggested wording</p>
@@ -155,7 +155,7 @@ function EvidencePanel({ runId, commentId }: { runId: string; commentId: string 
  * only do that because it is not offering an opinion — the quote is either in the
  * stored document or it is not.
  */
-function ScopedAsk({ runId, evidence }: { runId: string; evidence: { check?: string; severity?: string; claim?: string; quote?: string } }) {
+function ScopedAsk({ runId, evidence, findingId }: { runId: string; evidence: { check?: string; severity?: string; claim?: string; quote?: string }; findingId: string | null }) {
   const [scopedQuestion, setScopedQuestion] = useState("");
   const [scopedAnswer, setScopedAnswer] = useState("");
   const [scopedBusy, setScopedBusy] = useState(false);
@@ -166,7 +166,9 @@ function ScopedAsk({ runId, evidence }: { runId: string; evidence: { check?: str
     setScopedBusy(true);
     setScopedAnswer("");
     try {
-      const reply = await sendJson<{ answer: string }>(`/api/runs/${runId}/chat`, { question: `About finding ${evidence.check ?? "this finding"} (${evidence.severity ?? ""}): ${evidence.claim ?? ""} Recorded quote: ${evidence.quote ?? ""} Question: ${text}`, learner: "hcp", user_id: "" });
+      const reply = findingId
+        ? await sendJson<{ answer: string }>(`/api/runs/${runId}/chat`, { question: text, finding_id: findingId, learner: "hcp", user_id: "" })
+        : await sendJson<{ answer: string }>(`/api/runs/${runId}/chat`, { question: `About finding ${evidence.check ?? "this finding"} (${evidence.severity ?? ""}): ${evidence.claim ?? ""} Recorded quote: ${evidence.quote ?? ""} Question: ${text}`, learner: "hcp", user_id: "" });
       setScopedAnswer(reply.answer);
     } catch {
       setScopedAnswer("The assistant is unavailable.");
@@ -459,15 +461,18 @@ export function CourseReviewPanel({ runId, user, onChange }: { runId: string; us
   }
 
   /** One place every written reason is sent from, so the dialog stays generic. */
-  async function submitAsk(reason: string) {
+  function submitAsk(reason: string) {
     if (!ask) return;
     const { kind, comment } = ask;
     const url = `/api/runs/${runId}/review/comments/${comment.id}`;
-    await act(() => sendJson(url, kind === "override"
+    // The dialog closes on the click, not on the round trip: the server still
+    // re-checks before accepting a dismissal, which takes seconds, and holding
+    // a "Saving..." box over that reads as a hang. Errors surface on the page.
+    setAsk(null);
+    void act(() => sendJson(url, kind === "override"
       ? { user_id: user.id, status: "dismissed", resolution: comment.challenge!.attempted_reason, override_reason: reason }
       : { user_id: user.id, status: kind === "addressed" ? "addressed" : "dismissed", resolution: reason },
       "PATCH"));
-    setAsk(null);
   }
 
   async function addComment(event: FormEvent) {

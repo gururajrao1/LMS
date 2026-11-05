@@ -159,3 +159,67 @@ def test_a_thin_dossier_drops_the_starters_it_cannot_support(run):
 
 def test_an_unknown_context_falls_back_rather_than_returning_nothing(run):
     assert assistant.starters(run, "nonsense") == assistant.starters(run, assistant.DEFAULT_CONTEXT)
+
+
+def _untraceable_evidence():
+    return {
+        "comment_id": "c1", "finding_id": "hcp:q1:untraceable", "check": "untraceable",
+        "severity": "blocking", "reference": "Question q1",
+        "message": "does not match any claim collected during research",
+        "claim": "PFS was 24.8 months.", "quote": "", "spans": [], "match_percent": None,
+        "passage": "", "source": None,
+        "citations": [{"title": "Trial paper", "url": "https://example.com/paper",
+                       "locator": "Results", "traceable": False, "held": False, "claim": ""}],
+        "unheld": ["https://example.com/paper"], "coverage": {"held": 0, "total": 1},
+    }
+
+
+def test_about_finding_answers_from_the_finding_not_the_dossier(monkeypatch):
+    """"Does it support the wording?" must be answered from the check state.
+
+    The old box forwarded free text into dossier keyword search, which cannot
+    speak about a finding — especially an untraceable one with no recorded
+    evidence at all. The finding id routes to the evidence the panel shows.
+    """
+    import asyncio
+    from src import judge
+    monkeypatch.setattr(judge, "evidence_for",
+                        lambda run_id, comment: _untraceable_evidence())
+    reply = asyncio.run(assistant.about_finding(
+        "run", "hcp:q1:untraceable", "does it support the wording?"))
+    assert reply["mode"] == "finding"
+    assert "No recorded evidence" in reply["answer"]
+    assert "Trial paper" in reply["answer"]
+
+
+def test_about_finding_unknown_id_falls_back_to_the_dossier(run, monkeypatch):
+    import asyncio
+    from src import judge
+    monkeypatch.setattr(judge, "evidence_for", lambda run_id, comment: None)
+    reply = asyncio.run(assistant.about_finding(
+        "run", "nope", "What did the phase 3 trials show?"))
+    assert reply["mode"] in ("retrieval", "model")
+    assert "24.8" in reply["answer"]
+
+
+def test_about_finding_says_how_to_approve_despite_a_block(monkeypatch):
+    import asyncio
+    from src import judge
+    monkeypatch.setattr(judge, "evidence_for",
+                        lambda run_id, comment: _untraceable_evidence())
+    reply = asyncio.run(assistant.about_finding(
+        "run", "hcp:q1:untraceable", "how do I approve this if it is blocked?"))
+    assert "override" in reply["answer"]
+    assert "sign-off" in reply["answer"]
+
+
+def test_partial_match_names_what_is_missing():
+    verdict, close = assistant._finding_state({
+        "check": "quote_not_verbatim", "match_percent": 60,
+        "spans": [{"text": "withhold IBRANCE", "present": True},
+                  {"text": "until recovery", "present": False}],
+        "citations": [], "unheld": [],
+    })
+    assert "60%" in verdict
+    assert "until recovery" in verdict
+    assert "override" in close

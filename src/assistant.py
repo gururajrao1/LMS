@@ -382,3 +382,118 @@ async def answer(run_id: str, question: str, learner: str = "hcp", user_id: str 
     except Exception:
         return local
     return {**value, "evidence": matches, "mode": "model"}
+
+
+def _finding_state(evidence: dict) -> tuple[str, str]:
+    """One verdict line plus the close-out line for a machine finding."""
+    check = evidence.get("check", "")
+    cites = evidence.get("citations") or []
+    untraced = [c for c in cites if not c.get("traceable")]
+    unheld = evidence.get("unheld") or []
+    if check == "untraceable":
+        names = "; ".join(_cite_name(c) for c in untraced) or "the citation"
+        return (
+            f"No recorded evidence sits behind {names}, so it can neither support "
+            "nor contradict the wording — the citation matches nothing collected "
+            "during research.",
+            "To close it: record a verbatim excerpt from the cited document, repoint "
+            "the cite at a held source, or dismiss with a reason (and an override "
+            "reason if the check still fails, which stands as your sign-off).",
+        )
+    if check == "quote_not_found":
+        doc = (evidence.get("source") or {}).get("title", "the held document")
+        return (
+            f"No — the recorded quote is absent from {doc}, so it does not support "
+            "the wording as it stands.",
+            "To close it: fix the recorded quote to the document's actual passage, "
+            "or dismiss with a reason (and an override reason if the check still fails).",
+        )
+    if check == "quote_not_verbatim":
+        percent = evidence.get("match_percent")
+        missing = [s["text"] for s in evidence.get("spans", []) if not s.get("present")]
+        detail = (" The struck-through spans are the words missing from the document: "
+                  + "; ".join(missing[:3])) if missing else ""
+        return (
+            f"Partly — {percent}% of the recorded quote is verbatim in the held document."
+            f"{detail}",
+            "To close it: correct the quote to the document's exact wording, or dismiss "
+            "with a reason (and an override reason if the check still fails).",
+        )
+    return (
+        "Yes — the recorded passage verifies against the held document.",
+        "Nothing to close here unless the wording itself needs a human edit.",
+    )
+
+
+def _cite_name(citation: dict) -> str:
+    title = (citation.get("title") or "").strip() or "an untitled citation"
+    locator = (citation.get("locator") or "").strip()
+    return f"{title} ({locator})" if locator else title
+
+
+async def about_finding(run_id: str, finding_id: str, question: str, learner: str = "hcp") -> dict:
+    """Answer a question about one machine finding from the finding itself.
+
+    The review surface already computed everything the question could be about —
+    which check fired, what was recorded, what matches and what is missing — so
+    this never searches the dossier for keywords. Without a model key it answers
+    from that state directly; with one, the same state is the model's only context.
+    """
+    from src import judge
+
+    evidence = judge.evidence_for(run_id, {"finding_id": finding_id, "id": ""})
+    if not evidence:
+        return await answer(run_id, question, learner)
+
+    verdict, close = _finding_state(evidence)
+    asked = (question or "").strip().lower()
+    if any(word in asked for word in ("approve", "override", "dismiss", "publish", "sign")):
+        head = ("To approve despite the block: dismiss the comment with your reason; "
+                "if the checker challenges it, record an override reason — that stands "
+                "as your sign-off, the comment leaves the open queue, and sign-off plus "
+                "zero open blocking unblocks publication.")
+    elif any(word in asked for word in ("support", "wording", "evidence behind", "justify")):
+        head = verdict
+    else:
+        head = f"{verdict} {close}"
+        return {"answer": head, "citations": [], "evidence": evidence, "mode": "finding"}
+
+    if any(word in asked for word in ("approve", "override", "dismiss", "publish", "sign")):
+        body = f"{head} Current state: {verdict}"
+    else:
+        body = f"{head} {close}"
+    local = {"answer": body, "citations": [], "evidence": evidence, "mode": "finding"}
+    if not os.getenv("ANTHROPIC_API_KEY"):
+        return local
+
+    state = "\n".join([
+        f"CHECK: {evidence.get('check')} ({evidence.get('severity')})",
+        f"REFERENCE: {evidence.get('reference')}",
+        f"CLAIM (as written): {evidence.get('claim')}",
+        f"RECORDED QUOTE: {evidence.get('quote') or '(none)'}",
+        f"MATCH: {evidence.get('match_percent')}",
+        "CITATIONS:",
+        *[f"- {c.get('title')} | {c.get('locator')} | {c.get('url')} "
+          f"(traceable={c.get('traceable')}, held={c.get('held')})"
+          for c in evidence.get("citations", [])],
+        f"UNHELD: {', '.join(evidence.get('unheld', [])) or '(none)'}",
+    ])
+    system = "\n\n".join([
+        "Answer a reviewer's question about one automated check finding. Use only the "
+        "finding state below — never dossier search results. Say plainly whether the "
+        "recorded evidence supports the wording, name the gap, and say what closes it "
+        "(record a verbatim excerpt, repoint the cite, or dismiss with an override "
+        "reason). Keep the answer under 120 words.",
+        f"FINDING STATE:\n{state}",
+        f"REVIEWER QUESTION: {question}",
+    ])
+    try:
+        value = await _message_json(
+            system, question, f"chat finding {learner}", RunBudget(Path(run_id).name),
+            ChatAnswer, max_tokens=CHAT_MAX_TOKENS,
+            cache_path=_cache_path("chat-finding", learner, finding_id, question.strip().lower()),
+            stage="chat", stage_limit_usd=CHAT_STAGE_BUDGET_USD,
+        )
+    except Exception:
+        return local
+    return {**value, "evidence": evidence, "mode": "model-finding"}

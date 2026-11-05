@@ -823,6 +823,38 @@ def drug_for(run_id: str) -> str:
     return _json(path).get("drug", {}).get("brand", "") if path.exists() else ""
 
 
+_FAILING_CACHE: dict[tuple, dict] = {}
+
+
+def _failing_cache_key(run_id: str, tracks) -> tuple:
+    """What the failing set depends on: the dossier, the registry, the units.
+
+    Anything a reviewer or a re-fetch could change since the last dismissal is
+    in the key, so a cached index is never served past the edit that changed
+    it. Paths are part of the key because tests point DATA at fresh temp dirs
+    under the same run id.
+    """
+    parts: list = [str(content_path("content", Path(run_id).name)), tracks]
+    base = content_path("content", Path(run_id).name)
+    candidates = [base / "manifest.json", base / "master" / "dossier.json"]
+    try:
+        from src.evidence_fetch import REGISTRY_NAME
+        from src.agent import _slug
+        candidates.append(content_path("sources", _slug(drug_for(run_id)), REGISTRY_NAME))
+    except Exception:
+        pass
+    for leaf in ["hcp", "msl"]:
+        folder = base / leaf
+        if folder.exists():
+            candidates.extend(sorted(path for path in folder.rglob("*.json")))
+    for candidate in candidates:
+        try:
+            parts.append((str(candidate), candidate.stat().st_mtime_ns))
+        except OSError:
+            parts.append((str(candidate), -1))
+    return tuple(parts)
+
+
 def failing_now(run_id: str, tracks=("hcp", "msl")) -> dict[str, dict]:
     """Every deterministic finding that currently reproduces, indexed by identifier.
 
@@ -831,8 +863,14 @@ def failing_now(run_id: str, tracks=("hcp", "msl")) -> dict[str, dict]:
     be argued with, only changed by adding the source document or fixing the text.
 
     Built once and reused when several comments are being re-checked together; a
-    version cut asks about every addressed comment at once.
+    version cut asks about every addressed comment at once. Dismissals in a row
+    reuse the cached index until the dossier, the registry, or a unit changes.
     """
+    if not LIVE_VERIFY:
+        key = _failing_cache_key(run_id, tracks)
+        cached = _FAILING_CACHE.get(key)
+        if cached is not None:
+            return dict(cached)
     drug = drug_for(run_id)
     index: dict[str, dict] = {}
     for track in tracks:
@@ -845,6 +883,8 @@ def failing_now(run_id: str, tracks=("hcp", "msl")) -> dict[str, dict]:
             for candidate in ({**bare, "unit_id": f"{track}:{item.unit_id}"}, bare):
                 index.setdefault(finding_id(candidate), candidate)
                 index.setdefault(_legacy_finding_id(candidate), candidate)
+    if not LIVE_VERIFY:
+        _FAILING_CACHE[_failing_cache_key(run_id, tracks)] = index
     return index
 
 
@@ -948,6 +988,7 @@ def evidence_for(run_id: str, comment: dict) -> dict | None:
 
     return {
         "comment_id": comment["id"],
+        "finding_id": identifier,
         "check": finding["check"],
         "severity": finding["severity"],
         "reference": finding["reference"],
