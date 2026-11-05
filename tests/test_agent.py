@@ -287,3 +287,33 @@ def test_a_pass_mark_already_in_percent_is_left_alone():
             "questions": [{"id": f"q{n}", "prompt": "", "options": [], "correct_index": 0,
                            "rationale": "", "citations": []} for n in range(1, 13)]}
     assert agent.fold_groups(quiz, [])["passing_score"] == 80
+
+
+def test_citations_carry_optional_evidence_pointers():
+    """Pointer fields ride on citations without breaking older research output."""
+    from pydantic import ValidationError
+    base = {"title": "Label", "url": "https://example.com/label",
+            "locator": "5.1", "supporting_text": "Monitor counts."}
+    plain = agent.Citation(**base)
+    assert plain.access_level == "" and plain.source_id == ""
+    assert plain.version_pin == "" and plain.sha256 == ""
+
+    pointed = agent.Citation(**{**base, "source_id": "DM-X",
+                                "retrieved_at": "2026-01-01T00:00:00+00:00",
+                                "sha256": "ab" * 32, "version_pin": "version:10",
+                                "access_level": "fetched_live"})
+    assert pointed.model_dump()["version_pin"] == "version:10"
+
+    with pytest.raises(ValidationError):
+        agent.Citation(**{**base, "unknown_field": "nope"})
+
+
+def test_source_manifest_passes_pointer_fields_through():
+    """The manifest copies citation dicts, so pointers survive it untouched."""
+    master = {"sections": [{"claims": [{"citations": [{
+        "title": "Label", "url": "https://example.com/label", "locator": "5.1",
+        "source_id": "DM-X", "version_pin": "version:10",
+        "access_level": "fetched_live"}]}]}]}
+    manifest = agent._source_manifest(master, None)
+    assert manifest["sources"][0]["version_pin"] == "version:10"
+    assert manifest["sources"][0]["access_level"] == "fetched_live"

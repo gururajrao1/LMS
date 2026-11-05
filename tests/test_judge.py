@@ -763,3 +763,116 @@ def test_section_lists_trace_only_when_every_section_is_collected(tmp_path, monk
     assert judge._trace({"source_id": "DM-X", "locator": "Sections 5.1 and 5.1"}, dossier) is not None
     assert judge._trace({"source_id": "DM-X", "locator": "Sections 5.1 and 5.2"}, dossier) is None
     assert judge._trace({"source_id": "DM-X", "locator": "Section 5, Table 10"}, dossier) is None
+
+
+# --- Remote-first evidence: registry over blobs --------------------------------
+
+UNHELD = {"title": "Unheld paper", "url": "https://registry.test/unheld-doc", "locator": "Results"}
+
+
+def _add_an_unheld_claim_and_slide(run):
+    """A collected claim (supporting quote recorded) whose document has no blob."""
+    base = agent.DATA / "content" / run
+    dossier = json.loads((base / "master" / "dossier.json").read_text())
+    dossier["sections"].append({
+        "id": "20_unheld", "title": "Unheld", "summary": "",
+        "claims": [{"text": "Counts are watched.", "evidence_type": "label",
+                    "citations": [{**UNHELD, "supporting_text": QUOTE}]}],
+    })
+    (base / "master" / "dossier.json").write_text(json.dumps(dossier))
+    deck = base / "hcp" / "ppt" / "deck_spec.json"
+    spec = json.loads(deck.read_text())
+    spec["slides"].append({"number": 7, "title": "Watch counts", "purpose": "Safety",
+                           "content": ["Watch counts."], "citations": [UNHELD]})
+    deck.write_text(json.dumps(spec))
+
+
+def test_a_registry_record_checks_a_quote_with_no_blob_on_disk(run):
+    """Pointers replace snapshots: the registry text verifies the quote."""
+    from src.evidence_fetch import EvidenceRecord
+    agent.record_source_evidence("Ibrance", EvidenceRecord(
+        url=UNHELD["url"], source_key="https://registry.test/unheld-doc",
+        retrieved_at="2026-01-01T00:00:00+00:00", text=f"Background. {QUOTE} Conclusion.",
+        sha256="ab" * 32, access_level="fetched_live", fetch_tier="direct"))
+
+    corpus = judge.source_corpus("ibrance")
+    assert judge.quote_match(QUOTE, corpus["https://registry.test/unheld-doc"]) >= judge.VERBATIM
+
+
+def test_registry_supersedes_an_older_blob(run):
+    """A re-fetch wins; the stale snapshot text stops verifying."""
+    from src.evidence_fetch import EvidenceRecord
+    agent.record_source_evidence("Ibrance", EvidenceRecord(
+        url=LABEL["url"], source_key=judge.source_key(LABEL["url"]),
+        retrieved_at="2026-06-01T00:00:00+00:00",
+        text="Superseding label text without the recorded sentence.",
+        sha256="cd" * 32, access_level="fetched_live", fetch_tier="canonical_label"))
+    key = judge.source_key(LABEL["url"])
+    assert "recorded sentence" in judge.source_corpus("ibrance")[key]
+    assert QUOTE not in judge.source_corpus("ibrance")[key]
+
+
+def test_an_unheld_source_is_unverifiable_without_network(run, monkeypatch):
+    """Fetch-on-verify is opt-in: by default nothing leaves the machine."""
+    _add_an_unheld_claim_and_slide(run)
+    monkeypatch.setattr(judge, "LIVE_VERIFY", False)
+    _, stats = judge.deterministic_findings(run, "hcp", "Ibrance")
+    assert stats["unverifiable"] == 1
+    assert stats["fetched_live"] == 0
+
+
+def test_live_verify_checks_the_unheld_source(run, monkeypatch):
+    """Opted in, the checker fetches the bytes and verifies the same way."""
+    _add_an_unheld_claim_and_slide(run)
+    monkeypatch.setattr(judge, "LIVE_VERIFY", True)
+
+    class Fetched:
+        text = f"Fetched live. {QUOTE} End."
+
+    monkeypatch.setattr("src.judge.fetch_evidence",
+                        lambda url, brand="", handler=None: Fetched())
+    _, stats = judge.deterministic_findings(run, "hcp", "Ibrance")
+    assert stats["fetched_live"] == 1
+    assert stats["unverifiable"] == 0
+    assert stats["verified"] >= 1
+
+
+def test_held_documents_names_registry_pointers(run):
+    """The reading pane lists what we hold OR what a pointer record covers."""
+    from src.evidence_fetch import EvidenceRecord
+    agent.record_source_evidence("Ibrance", EvidenceRecord(
+        url=UNHELD["url"], source_key="https://registry.test/unheld-doc",
+        retrieved_at="2026-01-01T00:00:00+00:00", text=QUOTE,
+        sha256="ab" * 32, access_level="fetched_live", fetch_tier="direct"))
+    held = judge.held_documents("ibrance")
+    assert held["https://registry.test/unheld-doc"]["registry"] is True
+    assert held["https://registry.test/unheld-doc"]["readable"] is True
+
+
+def test_a_newer_recorded_quote_supersedes_junk(run):
+    """Append-only research means the latest quote wins the citation key.
+
+    An error page recorded as supporting text once blocked the quote check
+    forever; a genuine excerpt recorded later has to replace it, the way a
+    re-fetch supersedes a stale snapshot.
+    """
+    from src.evidence_fetch import EvidenceRecord
+    agent.record_source_evidence("Ibrance", EvidenceRecord(
+        url="https://registry.test/page", source_key="https://registry.test/page",
+        retrieved_at="2026-01-01T00:00:00+00:00", text="genuine passage about counts",
+        sha256="ab" * 32, access_level="fetched_live", fetch_tier="direct"))
+    base = agent.DATA / "content" / run
+    dossier = json.loads((base / "master" / "dossier.json").read_text())
+    junk = {"title": "Junk page", "url": "https://registry.test/page",
+            "locator": "Notes", "supporting_text": "%PDF-1.4 binary garbage"}
+    genuine = {"title": "Junk page", "url": "https://registry.test/page",
+               "locator": "Notes", "supporting_text": "genuine passage about counts"}
+    dossier["sections"].append({
+        "id": "30_junk", "title": "Junk", "summary": "",
+        "claims": [{"text": "Junk.", "evidence_type": "page", "citations": [junk]},
+                   {"text": "Fixed.", "evidence_type": "page", "citations": [genuine]}],
+    })
+    (base / "master" / "dossier.json").write_text(json.dumps(dossier))
+    traced = judge._dossier_citations(run)
+    assert traced[judge._norm("Junk page"), judge._norm("Notes")]["supporting_text"] == (
+        "genuine passage about counts")

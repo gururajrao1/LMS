@@ -47,6 +47,13 @@ class Citation(StrictModel):
     url: str
     locator: str
     supporting_text: str
+    # Remote-first pointer fields. Optional so older research prompts still
+    # validate; the fetch layer fills them when it serves the citation.
+    source_id: str = ''
+    retrieved_at: str = ''
+    sha256: str = ''
+    version_pin: str = ''
+    access_level: str = ''
 
 
 class AssetCitation(StrictModel):
@@ -1131,6 +1138,18 @@ def _source_manifest(master: dict, local_source: Path | None):
         "accessed_at": datetime.now(UTC).isoformat(),
         "sources": list(sources.values()),
     }
+
+
+def read_source_registry(drug: str) -> dict[str, dict]:
+    """Pointer registry for a drug: one record per document, no blobs."""
+    from src.evidence_fetch import read_registry
+    return read_registry(drug)
+
+
+def record_source_evidence(drug: str, record) -> Path:
+    """Upsert one evidence record into the drug registry (later wins)."""
+    from src.evidence_fetch import record_evidence
+    return record_evidence(drug, record)
 
 
 async def _build_tracks(

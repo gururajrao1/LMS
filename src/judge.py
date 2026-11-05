@@ -31,6 +31,12 @@ from src.agent import (
     _slug,
     content_path,
 )
+from src.evidence_fetch import fetch_evidence, read_registry
+
+# Fetch-on-verify is opt-in: when set, a citation whose source is not held is
+# fetched live and checked the same way. Default off keeps deterministic
+# findings cheap (no model, no API key, no network).
+LIVE_VERIFY = os.getenv("PHARMALEARN_LIVE_VERIFY", "") == "1"
 
 JUDGE_MAX_TOKENS = 1200
 JUDGE_STAGE_BUDGET_USD = float(os.getenv("PHARMALEARN_JUDGE_BUDGET_USD", "2.00"))
@@ -178,6 +184,19 @@ def source_key(url: str) -> str:
     return url or ""
 
 
+def _registry_corpus(drug: str) -> dict[str, str]:
+    """Pointer-registry overlay: normalized text recorded without blobs.
+
+    Registry wins over snapshot blobs — a re-fetch supersedes the stored copy
+    rather than duplicating it.
+    """
+    corpus: dict[str, str] = {}
+    for key, record in read_registry(drug).items():
+        if record.get("text"):
+            corpus[key] = _norm(record["text"])
+    return corpus
+
+
 def source_corpus(drug: str) -> dict[str, str]:
     """Normalized full text of every stored source snapshot we can read.
 
@@ -217,6 +236,8 @@ def source_corpus(drug: str) -> dict[str, str]:
             text.append(re.sub(r"<[^>]+>", " ", raw))
         if text:
             corpus[source_key(url)] = _norm(" ".join(text))
+    for key, text in _registry_corpus(drug).items():
+        corpus[key] = text
     return corpus
 
 
@@ -243,6 +264,9 @@ def readable_source(drug: str, url: str) -> str:
             except OSError:
                 continue
         return re.sub(r"\s+", " ", " ".join(text)).strip()
+    for key, record in read_registry(drug).items():
+        if key == wanted and record.get("text"):
+            return re.sub(r"\s+", " ", record["text"]).strip()
     return ""
 
 
@@ -300,6 +324,18 @@ def held_documents(drug: str) -> dict[str, dict]:
             # PDF-only sources are held but not readable as text, and saying so is
             # the point — "we have it" and "you can read it here" differ.
             "readable": bool(readable),
+        }
+    for key, record in read_registry(drug).items():
+        held[key] = {
+            "key": key,
+            "source_id": record.get("source_id", "") or key,
+            "title": record.get("title", "") or key,
+            "url": record.get("url", ""),
+            "kind": record.get("kind", ""),
+            "fetched_at": record.get("retrieved_at", ""),
+            "access_level": record.get("access_level", ""),
+            "readable": bool(record.get("text", "")),
+            "registry": True,
         }
     return held
 
@@ -395,19 +431,33 @@ def _dossier_citations(run_id):
         for claim in section.get("claims", []):
             for citation in claim.get("citations", []):
                 entry = {**citation, "claim": claim["text"], "section": section["title"]}
-                key = (_norm(citation.get("title", "")), _norm(citation.get("locator", "")))
-                index.setdefault(key, entry)
-                # A title-less citation must never match the whole dossier: the loose
-                # key is only indexed when a title exists to anchor it.
-                loose = (_norm(citation.get("title", "")), "")
-                if loose[0]:
-                    index.setdefault(loose, entry)
-                numbered = _section_numbers(citation.get("locator", ""))
-                source_id = _norm(citation.get("source_id", ""))
-                if numbered and source_id:
-                    for number in numbered:
-                        index.setdefault(("§src:" + source_id, number), entry)
+                # The dossier is append-only research: a later claim recording
+                # fresh supporting text for the same citation supersedes the
+                # earlier one, the way a re-fetch supersedes a stale snapshot.
+                # A bare pointer never shadows a recorded quote, and a new
+                # quote replaces an old one (including one that no longer
+                # verifies against the document it names).
+                for slot in _citation_slots(citation):
+                    current = index.get(slot)
+                    if current is None or citation.get("supporting_text"):
+                        index[slot] = entry
     return index
+
+
+def _citation_slots(citation):
+    """Every dossier key one citation answers: exact, loose, and numbered."""
+    key = (_norm(citation.get("title", "")), _norm(citation.get("locator", "")))
+    slots = [key]
+    # A title-less citation must never match the whole dossier: the loose
+    # key is only indexed when a title exists to anchor it.
+    loose = (_norm(citation.get("title", "")), "")
+    if loose[0]:
+        slots.append(loose)
+    numbered = _section_numbers(citation.get("locator", ""))
+    source_id = _norm(citation.get("source_id", ""))
+    if numbered and source_id:
+        slots.extend(("§src:" + source_id, number) for number in numbered)
+    return slots
 
 
 def _trace(citation, dossier):
@@ -452,7 +502,8 @@ def deterministic_findings(run_id: str, track: str, drug: str) -> tuple[list[Fin
     corpus = source_corpus(drug)
     dossier = _dossier_citations(run_id)
     findings: list[Finding] = []
-    stats = {"units": 0, "citations": 0, "traceable": 0, "checkable": 0, "verified": 0, "partial": 0}
+    stats = {"units": 0, "citations": 0, "traceable": 0, "checkable": 0, "verified": 0, "partial": 0,
+             "unverifiable": 0, "fetched_live": 0, "abstract_only": 0, "human_record": 0}
 
     for unit in units(run_id, track):
         stats["units"] += 1
@@ -502,8 +553,20 @@ def deterministic_findings(run_id: str, track: str, drug: str) -> tuple[list[Fin
 
             supporting = match.get("supporting_text", "")
             corpus_text = corpus.get(source_key(match.get("url", "")))
+            level = (match.get("access_level") or "").strip()
+            if level == "abstract_only":
+                stats["abstract_only"] += 1
+            elif level == "human_record":
+                stats["human_record"] += 1
             if not supporting or not corpus_text:
-                continue
+                if LIVE_VERIFY and supporting and not corpus_text:
+                    fetched = fetch_evidence(match.get("url", ""), drug)
+                    if fetched.text:
+                        corpus_text = _norm(fetched.text)
+                        stats["fetched_live"] += 1
+                if not supporting or not corpus_text:
+                    stats["unverifiable"] += 1
+                    continue
             stats["checkable"] += 1
             ratio = quote_match(supporting, corpus_text)
             if ratio >= VERBATIM:

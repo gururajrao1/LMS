@@ -1,5 +1,6 @@
 import argparse
 import hashlib
+import io
 import json
 import os
 import re
@@ -15,6 +16,17 @@ from urllib.parse import quote, unquote, urljoin, urlparse
 import httpx
 
 ROOT = Path(__file__).resolve().parents[1]
+sys_path_root = str(ROOT)
+import sys
+if sys_path_root not in sys.path:
+    sys.path.insert(0, sys_path_root)
+from src.evidence_fetch import EvidenceRecord, record_evidence, version_pin
+from src.judge import source_key as _judge_source_key
+
+# Pointer-first snapshots: skip the label ZIP/PDF/images nobody can verify and
+# keep only the checkable SPL XML + version history. Off by default so a
+# replayed or audited run keeps byte-identical snapshots.
+NO_BLOBS = os.getenv("PHARMALEARN_NO_BLOBS", "") == "1"
 REGISTRY = ROOT / "config" / "sources" / "pfizer_us.toml"
 DATA = Path(os.getenv("PHARMALEARN_DATA_DIR", ".pharmalearn"))
 DATA = DATA if DATA.is_absolute() else ROOT / DATA
@@ -122,6 +134,29 @@ def fetch_label(client, root, source):
     raw = root / "raw"
     set_id = source["identifiers"]["set_id"]
     base = "https://dailymed.nlm.nih.gov/dailymed"
+    if NO_BLOBS:
+        raw.mkdir(parents=True, exist_ok=True)
+        response = client.get(f"{base}/downloadzipfile.cfm?setId={set_id}")
+        response.raise_for_status()
+        files = []
+        with zipfile.ZipFile(io.BytesIO(response.content)) as archive:
+            for name in archive.namelist():
+                if Path(name).suffix.lower() == ".xml":
+                    target = raw / "spl.xml"
+                    target.write_bytes(archive.read(name))
+                    validate(target)
+                    files.append({
+                        "path": target.relative_to(root).as_posix(),
+                        "role": "label_xml",
+                        "origin": "memory:label.zip",
+                        "bytes": target.stat().st_size,
+                        "sha256": hashlib.sha256(target.read_bytes()).hexdigest(),
+                    })
+        files.append(download(client, root, raw / "history.json",
+                              f"{base}/services/v2/spls/{set_id}/history.json",
+                              "version_history"))
+        warnings = ["blob-light snapshot: label.zip/label.pdf/images omitted (PHARMALEARN_NO_BLOBS=1)"]
+        return "full_text", files, warnings, {"set_id": set_id}
     files = [
         download(client, root, raw / "label.zip", f"{base}/downloadzipfile.cfm?setId={set_id}", "label_package"),
         download(client, root, raw / "label.pdf", f"{base}/downloadpdffile.cfm?setId={set_id}", "label_pdf"),
@@ -334,6 +369,27 @@ def fetch_source(client, target, drug, source):
         "files": files,
     }
     (target / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
+    record = EvidenceRecord(
+        url=source.get("url", ""),
+        source_key=_judge_source_key(source.get("url", "") or source["id"]),
+        source_id=source["id"],
+        title=source.get("title", "") or source["id"],
+        kind=source.get("kind", ""),
+        retrieved_at=manifest["fetched_at"],
+        sha256=(hashlib.sha256("".join(item.get("sha256", "") for item in files).encode()).hexdigest()
+                if files else ""),
+        text="",
+        version_pin=version_pin(source.get("url", ""), {**source.get("identifiers", {}), **coverage}),
+        access_level=access,
+        fetch_tier="snapshot",
+        final_url=source.get("url", ""),
+        note=error or "",
+    )
+    try:
+        record_evidence(drug["id"], record)
+    except OSError as registry_error:
+        manifest["warnings"] = [*warnings, f"registry write failed: {registry_error}"]
+        (target / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
     return manifest
 
 
