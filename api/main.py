@@ -464,6 +464,34 @@ def noncompliance_alerts(run_id: str):
     return learning.noncompliance(run_id)
 
 
+class EscalationCheckRequest(BaseModel):
+    user_id: str
+
+
+@app.get("/api/runs/{run_id}/escalations")
+def escalations(run_id: str):
+    """The live escalation ladder: every flag with its level, owner and first-seen date."""
+    return learning.escalation_state(Path(run_id).name)
+
+
+@app.post("/api/runs/{run_id}/escalations/check")
+def run_escalation_check(run_id: str, request: EscalationCheckRequest):
+    """Run the ladder: stamp first-seen dates, record level changes, prune resolved."""
+    return _guard(lambda: learning.check_escalations(Path(run_id).name, request.user_id))
+
+
+@app.get("/api/runs/{run_id}/retention")
+def retention_report(run_id: str):
+    """What data this course holds and how long each class stays. Report-only."""
+    return learning.retention(Path(run_id).name)
+
+
+@app.get("/api/runs/{run_id}/timeline")
+def version_timeline(run_id: str):
+    """Every version and what happened to it, oldest first."""
+    return learning.version_timeline(Path(run_id).name)
+
+
 @app.get("/api/dashboard/results")
 def dashboard_results():
     """Results across every published course for the admin dashboard."""

@@ -877,6 +877,79 @@ def noncompliance(run_id: str) -> list[dict]:
     return sorted(alerts, key=lambda alert: (order[alert["severity"]], alert["tier"]))
 
 
+ESCALATION_LEVELS = {
+    1: {"level": 1, "name": "Nudge", "owner": "learner",
+        "action": "In-app nudge to the learner to get back on plan."},
+    2: {"level": 2, "name": "Follow-up", "owner": "reviewer",
+        "action": "Flagged for training-team follow-up with the learner."},
+    3: {"level": 3, "name": "Escalated", "owner": "admin",
+        "action": "Escalated to the training lead for a decision."},
+}
+
+
+def _escalation_store_path(run_id: str) -> Path:
+    return _platform("escalations", f"{Path(run_id).name}.json")
+
+
+def _load_escalations(run_id: str) -> dict:
+    path = _escalation_store_path(run_id)
+    if path.exists():
+        return _json(path)
+    return {"run_id": run_id, "checked_at": None, "checked_by": None, "items": {}}
+
+
+def escalation_state(run_id: str) -> dict:
+    """The live ladder: every current flag with its level, owner and first-seen date."""
+    stored = _load_escalations(run_id)
+    known = stored.get("items", {})
+    items = []
+    for alert in noncompliance(run_id):
+        key = f"{alert['user_id']}:{alert['message']}"
+        previous = known.get(key, {})
+        level = ESCALATION_LEVELS.get(alert.get("tier", 1), ESCALATION_LEVELS[1])
+        items.append({
+            **alert,
+            "key": key,
+            "level": level["level"],
+            "level_name": level["name"],
+            "owner": level["owner"],
+            "action": level["action"],
+            "since": previous.get("since", date.today().isoformat()),
+            "history": previous.get("history", []),
+        })
+    return {"run_id": run_id, "checked_at": stored.get("checked_at"),
+            "checked_by": stored.get("checked_by"), "items": items}
+
+
+def check_escalations(run_id: str, user_id: str) -> dict:
+    """Run the ladder: stamp first-seen dates, record level changes, prune resolved."""
+    require_capability(user_id, "course.publish")
+    state = escalation_state(run_id)
+    today = date.today().isoformat()
+    known = _load_escalations(run_id).get("items", {})
+    kept = {}
+    for item in state["items"]:
+        previous = known.get(item["key"], {})
+        history = list(previous.get("history", []))
+        if not previous:
+            history.append({"at": _now(), "level": item["level"], "note": "Flag raised"})
+        elif previous.get("level") != item["level"]:
+            history.append({"at": _now(), "from": previous.get("level"),
+                            "level": item["level"], "note": f"Moved to {item['level_name']}"})
+        item["since"] = previous.get("since", today)
+        item["history"] = history
+        kept[item["key"]] = {"level": item["level"], "since": item["since"], "history": history}
+    resolved = [key for key in known if key not in kept]
+    actor = person(user_id)
+    _write(_escalation_store_path(run_id), {
+        "run_id": run_id, "checked_at": _now(),
+        "checked_by": actor["name"] if actor else user_id, "items": kept,
+    })
+    state = escalation_state(run_id)
+    state["resolved"] = len(resolved)
+    return state
+
+
 def assignment_state(publication: dict, summary: dict, today: date | None = None) -> str:
     """Their own progress first: nothing is overdue for someone who already finished."""
     if summary.get("certificate"):
@@ -893,6 +966,167 @@ def assignment_state(publication: dict, summary: dict, today: date | None = None
 def days_until(value: str | None, today: date | None = None) -> int | None:
     moment = _on(value)
     return (moment - (today or date.today())).days if moment else None
+
+
+RETENTION_POLICIES = (
+    ("assessments", "Assessment attempts",
+     "Raw answers and per-attempt scores.", 2,
+     "Anonymize raw answers after two years; attempt scores stay for uplift analysis."),
+    ("certificates", "Certificates",
+     "Issued certificates with verification codes.", 7,
+     "Keep for audit; verification codes stay valid for the whole period."),
+    ("feedback", "Learner feedback",
+     "Module ratings and comments.", 3,
+     "Aggregate into content reviews, then retire the raw comments."),
+    ("review", "Review trail",
+     "Comments, sign-offs, overrides and the audit trail.", 7,
+     "Keep for inspection readiness alongside the published versions."),
+    ("notices", "Notifications",
+     "Assignment and escalation notices.", 1,
+     "Operational mail; the course record keeps what was sent and when."),
+    ("uploads", "Staged material",
+     "Source documents staged for a run.", 5,
+     "Keep while the course they informed is live, then archive."),
+)
+
+
+def _iso_years_after(value: str | None, years: int) -> str | None:
+    try:
+        moment = datetime.fromisoformat(value) if value else None
+    except ValueError:
+        return None
+    if not moment:
+        return None
+    try:
+        return moment.replace(year=moment.year + years).date().isoformat()
+    except ValueError:
+        return moment.replace(year=moment.year + years, day=28).date().isoformat()
+
+
+def retention(run_id: str) -> dict:
+    """What personal and operational data this course holds, and how long each class stays.
+
+    Report-only: nothing is deleted here. Each class carries its policy in
+    years, the oldest and newest item seen, and how many items are past their
+    keep-until date, so the training team can see what is due for review.
+    """
+    name = Path(run_id).name
+    today = date.today().isoformat()
+    collected: dict[str, list[str]] = {policy[0]: [] for policy in RETENTION_POLICIES}
+
+    for record in _platform("progress", name).glob("*.json"):
+        try:
+            state = _json(record)
+        except (OSError, ValueError):
+            continue
+        for attempt in state.get("attempts", []):
+            if attempt.get("created_at"):
+                collected["assessments"].append(attempt["created_at"])
+        certificate = state.get("certificate") or {}
+        if certificate.get("issued_at"):
+            collected["certificates"].append(certificate["issued_at"])
+    try:
+        for entry in cohort(run_id)["feedback"]:
+            if entry.get("created_at"):
+                collected["feedback"].append(entry["created_at"])
+    except (OSError, ValueError, KeyError):
+        pass
+
+    record = course(run_id)
+    for comment in record.get("comments", []):
+        if comment.get("created_at"):
+            collected["review"].append(comment["created_at"])
+    for signoff in record.get("signoffs", []):
+        if signoff.get("created_at"):
+            collected["review"].append(signoff["created_at"])
+    for version in record.get("versions", []):
+        if version.get("created_at"):
+            collected["review"].append(version["created_at"])
+    for entry in record.get("audit", []):
+        if entry.get("at"):
+            collected["review"].append(entry["at"])
+    publication = record.get("publication") or {}
+    for notice in publication.get("notifications", []):
+        if notice.get("sent_at"):
+            collected["notices"].append(notice["sent_at"])
+
+    store = _load_escalations(run_id)
+    if store.get("checked_at"):
+        collected["notices"].append(store["checked_at"])
+    for item in store.get("items", {}).values():
+        for event in item.get("history", []):
+            if event.get("at"):
+                collected["notices"].append(event["at"])
+
+    uploads = content_path("uploads")
+    if uploads.exists():
+        for entry in uploads.iterdir():
+            if entry.is_file() and entry.name != "record.json":
+                collected["uploads"].append(
+                    datetime.fromtimestamp(entry.stat().st_mtime, UTC).isoformat())
+            elif entry.is_dir():
+                for document in entry.iterdir():
+                    if document.is_file() and document.name != "record.json":
+                        collected["uploads"].append(
+                            datetime.fromtimestamp(document.stat().st_mtime, UTC).isoformat())
+
+    classes = []
+    for key, label, blurb, years, action in RETENTION_POLICIES:
+        moments = sorted(collected[key])
+        due = sum(1 for moment in moments
+                  if (until := _iso_years_after(moment, years)) and until < today)
+        classes.append({
+            "id": key, "label": label, "description": blurb, "keep_years": years,
+            "action": action, "items": len(moments),
+            "oldest": moments[0] if moments else None,
+            "newest": moments[-1] if moments else None,
+            "first_due": _iso_years_after(moments[0], years) if moments else None,
+            "due_for_review": due,
+            "status": "due" if due else ("empty" if not moments else "within policy"),
+        })
+    return {"run_id": run_id, "today": today, "classes": classes}
+
+
+def version_timeline(run_id: str) -> dict:
+    """Every version of the course and what happened to it, oldest first.
+
+    Versions, sign-offs and publications in one ladder, so a reviewer can see
+    how v1 became the published v3 without opening three panels.
+    """
+    record = course(run_id)
+    events = []
+    for version in record.get("versions", []):
+        events.append({
+            "at": version.get("created_at"), "kind": "version",
+            "title": f"Version {version.get('version')}",
+            "detail": version.get("summary", ""),
+            "actor": version.get("author_name", ""),
+        })
+    for signoff in record.get("signoffs", []):
+        events.append({
+            "at": signoff.get("created_at"), "kind": "signoff",
+            "title": f"v{signoff.get('version')} {signoff.get('decision')}",
+            "detail": signoff.get("note", ""),
+            "actor": signoff.get("author_name", ""),
+        })
+    publication = record.get("publication") or {}
+    if publication.get("published_at"):
+        events.append({
+            "at": publication.get("published_at"), "kind": "publication",
+            "title": f"Published v{publication.get('version')}",
+            "detail": f"{len(publication.get('assignees', []))} trainee(s), due {publication.get('due_on')}",
+            "actor": publication.get("published_by", ""),
+        })
+    assignment = record.get("review_assignment")
+    if assignment and assignment.get("assigned_at"):
+        events.append({
+            "at": assignment.get("assigned_at"), "kind": "assignment",
+            "title": f"v{assignment.get('version')} assigned for review",
+            "detail": (assignment.get("note", "") or "").strip(),
+            "actor": assignment.get("assigned_by", ""),
+        })
+    events.sort(key=lambda event: (event["at"] is None, event["at"] or ""))
+    return {"run_id": run_id, "version": record["version"], "status": record["status"], "events": events}
 
 
 def assignments(user_id: str) -> list[dict]:

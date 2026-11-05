@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { ArrowLeft, ChartColumn, CheckCircle2, Download, ExternalLink, FileQuestion, Film, GitBranch, Layers, ListChecks, PlayCircle, Presentation, Route, Send, ScanLine, ShieldCheck, TrendingUp, Users } from "lucide-react";
+import { ArrowLeft, ChartColumn, CheckCircle2, Download, ExternalLink, FileQuestion, Film, GitBranch, History, Layers, ListChecks, PlayCircle, Presentation, Route, Send, ScanLine, ShieldCheck, TrendingUp, Users } from "lucide-react";
 import { AppShell, Cites, Loading } from "@/components/app-shell";
 import { CourseChatDock } from "@/components/course-chat-dock";
 import { CourseJourney } from "@/components/course-journey";
@@ -11,6 +11,7 @@ import { DeckGrid } from "@/components/deck";
 import { CourseCohortPanel } from "@/components/course-cohort";
 import { CourseChecksPanel } from "@/components/course-checks";
 import { CourseCompletenessPanel } from "@/components/course-completeness";
+import { CourseHistoryPanel } from "@/components/course-history";
 import { CourseImpactPanel } from "@/components/course-impact";
 import { CoursePublishPanel } from "@/components/course-publish";
 import { CourseRefreshPanel } from "@/components/course-refresh";
@@ -60,6 +61,7 @@ const CONTEXT: Record<string, string> = {
   sources: "evidence", checks: "evidence", coverage: "evidence", refresh: "evidence",
   review: "review",
   journey: "programme", publish: "programme", cohort: "programme", impact: "programme",
+  history: "review",
 };
 
 export default function CourseWorkspace() {
@@ -107,6 +109,7 @@ export default function CourseWorkspace() {
       { value: "coverage", label: "Coverage", icon: ListChecks },
       { value: "refresh", label: "Refresh", icon: GitBranch },
       { value: "review", label: "Review", icon: GitBranch, count: review.readiness.open_comments },
+      { value: "history", label: "History", icon: History },
       ...(admin ? [{ value: "publish", label: "Publish", icon: Send }] : []),
     ] },
     { label: "Analytics", icon: ChartColumn, items: admin ? [
@@ -168,6 +171,8 @@ export default function CourseWorkspace() {
         {active === "refresh" && <CourseRefreshPanel runId={runId} />}
 
         {active === "review" && <CourseReviewPanel runId={runId} user={user} onChange={setReview} />}
+
+        {active === "history" && <CourseHistoryPanel runId={runId} />}
 
         {active === "publish" && <CoursePublishPanel key={review.publication?.published_at ?? "unpublished"} runId={runId} user={user} review={review} onChange={setReview} />}
 

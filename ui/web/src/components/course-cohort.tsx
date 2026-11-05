@@ -3,10 +3,12 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Award, CheckCircle2, MessageSquare, RotateCcw, Star, TrendingUp, UserCheck, Users } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ROLE_LABEL, Stat } from "@/components/app-shell";
 import { API, Cohort, CohortLearner, getJson, Person } from "@/lib/api";
+import { roleLabel } from "@/components/app-shell";
 import { RAG_BADGE } from "@/lib/rag";
 
 const STAGE: Record<CohortLearner["stage"], { label: string; className: string }> = {
@@ -42,11 +44,31 @@ export function CourseCohortPanel({ runId, user }: { runId: string; user?: Perso
   const [error, setError] = useState("");
   const [copied, setCopied] = useState<string | null>(null);
   const [alerts, setAlerts] = useState<Alert[]>([]);
+  type Escalation = { key: string; user_id: string; name: string; severity: "danger" | "warning"; tier: number; message: string; level: number; level_name: string; owner: string; action: string; since: string; history: { at: string; note: string }[] };
+  const [ladder, setLadder] = useState<{ items: Escalation[]; checked_at: string | null; checked_by: string | null } | null>(null);
+  const [checking, setChecking] = useState(false);
+  type RetentionClass = { id: string; label: string; description: string; keep_years: number; action: string; items: number; oldest: string | null; newest: string | null; first_due: string | null; due_for_review: number; status: string };
+  const [retention, setRetention] = useState<RetentionClass[] | null>(null);
 
   useEffect(() => {
     getJson<Cohort>(`/api/runs/${runId}/cohort`).then(setCohort).catch(() => setError("Could not load cohort progress."));
     getJson<Alert[]>(`/api/runs/${runId}/alerts`).then(setAlerts).catch(() => undefined);
+    getJson<{ items: Escalation[]; checked_at: string | null; checked_by: string | null }>(`/api/runs/${runId}/escalations`).then(setLadder).catch(() => undefined);
+    getJson<{ classes: RetentionClass[] }>(`/api/runs/${runId}/retention`).then((report) => setRetention(report.classes)).catch(() => undefined);
   }, [runId]);
+
+  async function runEscalationCheck() {
+    if (!user) return;
+    setChecking(true); setError("");
+    try {
+      const response = await fetch(`${API}/api/runs/${runId}/escalations/check`, {
+        method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ user_id: user.id }),
+      });
+      if (!response.ok) throw new Error("Could not run the escalation check");
+      setLadder(await response.json());
+    } catch (reason) { setError(reason instanceof Error ? reason.message : "Could not run the escalation check"); }
+    finally { setChecking(false); }
+  }
 
   async function resetAnswers(learnerId: string, name: string) {
     if (!user || !window.confirm(`Clear ${name}'s answers so they start over? Any certificate is revoked.`)) return;
@@ -137,6 +159,52 @@ export function CourseCohortPanel({ runId, user }: { runId: string; user?: Perso
           </CardContent>
         </Card>
       )}
+
+      <Card>
+        <CardHeader>
+          <div className="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <CardTitle className="text-base">Escalation ladder ({ladder?.items.length ?? 0})</CardTitle>
+              <p className="mt-2 text-sm text-stone-600">
+                {ladder?.checked_at
+                  ? `Last checked ${new Date(ladder.checked_at).toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" })}${ladder.checked_by ? ` by ${ladder.checked_by}` : ""}.`
+                  : "Not checked yet — run the check to stamp first-seen dates and record level changes."}
+              </p>
+            </div>
+            <Button variant="outline" disabled={checking || !user} onClick={runEscalationCheck}>{checking ? "Checking…" : "Run escalation check"}</Button>
+          </div>
+        </CardHeader>
+        <CardContent className="space-y-2">
+          {(ladder?.items ?? []).map((item) => (
+            <div key={item.key} className="rounded-xl border p-4">
+              <p className="flex flex-wrap items-center gap-2 text-sm">
+                <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${item.level === 3 ? "bg-stone-900 text-white" : item.level === 2 ? "bg-danger-50 text-danger-700" : "bg-warn-50 text-warn-700"}`}>L{item.level} · {item.level_name}</span>
+                <span><b>{item.name}</b> — {item.message}</span>
+              </p>
+              <p className="mt-2 text-xs leading-5 text-stone-600">{item.action} Owner: {roleLabel(item.owner)}. Since {item.since}.{item.history.length ? ` ${item.history.length} record${item.history.length === 1 ? "" : "s"}: ${item.history[item.history.length - 1].note}.` : ""}</p>
+            </div>
+          ))}
+          {!ladder?.items.length && <p className="text-sm text-stone-600">Nothing on the ladder — every flag is clear.</p>}
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader><CardTitle className="text-base">Data retention</CardTitle><p className="mt-2 text-sm text-stone-600">What this course holds and how long each class stays. Report-only — nothing is deleted here.</p></CardHeader>
+        <CardContent className="space-y-2">
+          {(retention ?? []).map((entry) => (
+            <div key={entry.id} className="flex flex-wrap items-start justify-between gap-3 rounded-xl border p-4">
+              <div className="min-w-0">
+                <p className="text-sm font-medium">{entry.label} <span className="font-normal text-stone-500">· keep {entry.keep_years} year{entry.keep_years === 1 ? "" : "s"}</span></p>
+                <p className="mt-1 text-xs leading-5 text-stone-600">{entry.description} {entry.items ? `Oldest ${entry.oldest!.slice(0, 10)}${entry.newest && entry.newest !== entry.oldest ? ` → newest ${entry.newest.slice(0, 10)}` : ""}.` : "Nothing stored."} {entry.action}</p>
+              </div>
+              <span className={`shrink-0 rounded-full px-2 py-0.5 text-xs font-medium ${entry.status === "due" ? "bg-danger-50 text-danger-700" : entry.status === "within policy" ? "bg-brand-50 text-brand-700" : "bg-stone-100 text-stone-600"}`}>
+                {entry.status === "due" ? `${entry.due_for_review} due for review` : entry.status === "empty" ? "Empty" : `Until ${entry.first_due}`}
+              </span>
+            </div>
+          ))}
+          {!retention && <p className="text-sm text-stone-600">Loading the inventory…</p>}
+        </CardContent>
+      </Card>
 
       <Card>
         <CardHeader><CardTitle className="text-base">Content feedback</CardTitle></CardHeader>

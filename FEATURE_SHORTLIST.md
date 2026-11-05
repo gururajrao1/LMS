@@ -2,7 +2,8 @@
 
 Scope: additive only. Nothing here removes an existing panel or flow.
 Statuses: HAVE (shipped), PARTIAL (exists, needs extension), NEW (to build).
-The five demo builds at the bottom are marked SHIPPED — built, verified, and removed from the to-add list.
+Everything built across the demo batches is listed under Shipped at the
+bottom — built, verified, and removed from the to-add list.
 
 ## Pharma compliance (Veeva Vault Training, 21 CFR Part 11)
 
@@ -14,7 +15,7 @@ Sources: [Veeva Training brief](https://www.veeva.com/resources/veeva-training-s
   Adds: a new assignment the moment a controlled document or label changes.
   Actual use case: the Ibrance label gains a warning; Priya cuts v3 and every
   certified HCP is automatically re-enrolled instead of her chasing spreadsheets.
-- **Role-based qualifications** (PARTIAL — cohort tracks stage per learner).
+- **Role-based qualifications** (PARTIAL — custom roles with capabilities, per-trainee assignment, stage tracking and dashboards shipped; required-training mapping per role still open).
   Adds: required training mapped per role, readiness shown per person.
   Actual use case: Priya opens Cohort and sees Dr. Osei is qualified on v2 while
   Dr. Becker still owes the final, with no manual cross-checking.
@@ -152,3 +153,45 @@ Sources: [Stratbeans guide](https://stratbeans.com/is-articulate-360-an-lms),
    Use: visible momentum for the learner, honest numbers for the admin.
 5. Recommended-next rail — most urgent course surfaced on the learner home.
    Use: nobody wonders what to do today.
+6. Voice read-aloud — every assessment question plus a full read-through,
+   via speech synthesis on the test page.
+   Use: field trainers who absorb better by listening, and accessibility.
+7. Q&A extraction plus quiz builder — deterministic pairs pulled from staged
+   material, turned into scored multiple-choice practice.
+   Use: a congress deck becomes a real knowledge check in one click, with
+   nothing invented.
+8. Scheduled training frequencies — once, quarterly, semiannual, annual —
+   with next-due dates stamped at publish.
+   Use: annual requalification runs itself instead of living in a spreadsheet.
+9. Noncompliance alerts with RAG tiers — overdue, below-requirement and
+   unbaselined flags, red/amber with labels, shared by the panel and exports.
+   Use: Priya sees who needs action before the auditor asks.
+10. Group and individual assignment — publish to trainees by MSL/HCP group
+    or person, with start and due dates.
+    Use: the right people get the course on the right date, no side lists.
+11. Admin answer reset — clear attempts and certificates while keeping
+    module progress.
+    Use: a failed final restarts cleanly without redoing the whole course.
+12. Excel export — Cohort, Questions, Noncompliance and Feedback sheets.
+    Use: the compliance pack is a spreadsheet, not screenshots.
+13. Individual learner dashboards — per-person page with courses, points,
+    RAG state and alerts.
+    Use: a manager checks one learner without reading the whole cohort.
+14. Training slides export — pasted present text becomes a real .pptx deck.
+    Use: the same material trains a room without rebuilding slides.
+15. Certificate designs — Classic, Modern and Formal templates picked at
+    publish time and stamped on every certificate.
+    Use: the wall piece fits the audience, from field team to audit file.
+16. Custom roles and permissions — capability catalog, role builder, per
+    person assignment, enforced on every gated action.
+    Use: an Instructor reviews and publishes without touching the roster;
+    maker-checker (admin never signs off) still holds.
+17. Escalation ladder — noncompliance tiers become owned L1/L2/L3 levels
+    with first-seen dates, level-change history and an attributed check run.
+    Use: a two-week overdue flag reaches the training lead on its own.
+18. Retention report — per-course inventory of attempts, certificates,
+    feedback, review trail, notices and uploads against keep-until policy.
+    Use: the team sees what is due for review; nothing is deleted by the app.
+19. Version timeline — versions, sign-offs, assignments and publications on
+    one ladder, oldest first.
+    Use: a reviewer sees how v1 became the published v3 in one glance.
