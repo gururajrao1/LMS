@@ -235,3 +235,112 @@ def test_backfill_dry_run_writes_nothing(monkeypatch, tmp_path):
     stats = backfill_drug("Ibrance", dry_run=True)
     assert stats["records"] == 1
     assert read_registry("Ibrance") == {}
+
+
+def test_openalex_identifiers_parses_doi_and_pmid():
+    payload = json.dumps({"results": [{
+        "doi": "https://doi.org/10.1056/NEJMoa1607304",
+        "title": "Palbociclib and Letrozole in Advanced Breast Cancer",
+        "ids": {"pmid": "https://pubmed.ncbi.nlm.nih.gov/27959613"},
+        "open_access": {"is_oa": True,
+                        "pdf_url": "https://example.com/paper.pdf"},
+    }]}).encode()
+    handler = handler_for({
+        "https://api.openalex.org/works": make_response(
+            "https://api.openalex.org/works", content=payload,
+            ctype="application/json")})
+    out = evidence_fetch._openalex_identifiers("Palbociclib and Letrozole", handler)
+    assert out["doi"] == "10.1056/nejmoa1607304"
+    assert out["pmid"] == "27959613"
+    assert out["oa_pdf"] == "https://example.com/paper.pdf"
+
+
+def test_pmid_for_title_prefers_openalex_over_s2():
+    payload = json.dumps({"results": [{
+        "doi": "https://doi.org/10.1056/NEJMoa1607304",
+        "title": "Palbociclib and Letrozole in Advanced Breast Cancer",
+        "ids": {"pmid": "https://pubmed.ncbi.nlm.nih.gov/27959613"},
+        "open_access": {"is_oa": False},
+    }]}).encode()
+    empty = json.dumps({"resultList": {"result": []}}).encode()
+    # No api.semanticscholar.org entry: reaching S2 fails the test.
+    handler = handler_for({
+        "https://www.ebi.ac.uk/europepmc": make_response(
+            "https://www.ebi.ac.uk/europepmc", content=empty,
+            ctype="application/json"),
+        "https://api.openalex.org/works": make_response(
+            "https://api.openalex.org/works", content=payload,
+            ctype="application/json")})
+    assert evidence_fetch._pmid_for_title(
+        "Palbociclib and Letrozole in Advanced Breast Cancer", handler) == "27959613"
+
+
+def test_pmid_for_title_falls_back_to_and_words():
+    paper = {"pmid": "31836434",
+             "title": ("Progression-free survival outcome is independent of "
+                       "objective response in PALOMA-2")}
+    empty = json.dumps({"resultList": {"result": []}}).encode()
+    calls = []
+
+    def handler(url, headers, timeout):
+        calls.append(url)
+        if "%22" in url or '"' in url:
+            return make_response(url, content=empty, ctype="application/json")
+        return make_response(
+            url, content=json.dumps({"resultList": {"result": [paper]}}).encode(),
+            ctype="application/json")
+
+    assert evidence_fetch._pmid_for_title(
+        "Progression-free Survival Outcome Is Independent of Objective "
+        "Response... Analysis From PALOMA-2 - ScienceDirect", handler) == "31836434"
+    assert not any("openalex" in url for url in calls)
+    assert not any("semanticscholar" in url for url in calls)
+    and_query = next(url for url in calls if url.count("TITLE") > 1)
+    assert "sciencedirect" not in and_query.lower()
+
+
+def test_pmid_for_title_survives_europepmc_transport_failure():
+    payload = json.dumps({"results": [{
+        "doi": "https://doi.org/10.1056/NEJMoa1607303",
+        "title": "Palbociclib and Letrozole in Advanced Breast Cancer",
+        "ids": {"pmid": "https://pubmed.ncbi.nlm.nih.gov/27959613"},
+        "open_access": {"is_oa": False},
+    }]}).encode()
+    handler = handler_for({
+        "https://www.ebi.ac.uk/europepmc": make_response(
+            "https://www.ebi.ac.uk/europepmc", status=500, content=b"flaky"),
+        "https://api.openalex.org/works": make_response(
+            "https://api.openalex.org/works", content=payload,
+            ctype="application/json")})
+    assert evidence_fetch._pmid_for_title(
+        "Palbociclib and Letrozole in Advanced Breast Cancer", handler) == "27959613"
+
+
+def test_abstract_falls_back_to_europepmc_when_eutils_flakes():
+    abstract = " ".join(["Palbociclib improves progression-free survival."] * 20)
+    payload = json.dumps({"resultList": {"result": [
+        {"title": "FDA Approval of Palbociclib",
+         "abstractText": abstract}]}}).encode()
+    handler = handler_for({
+        "https://eutils.ncbi.nlm.nih.gov": make_response(
+            "https://eutils.ncbi.nlm.nih.gov", status=500, content=b"error"),
+        "https://www.ebi.ac.uk/europepmc": make_response(
+            "https://www.ebi.ac.uk/europepmc", content=payload,
+            ctype="application/json")})
+    record = evidence_fetch._abstract_via_pubmed("27407089", handler)
+    assert record is not None
+    assert record.fetch_tier == "abstract_only"
+    assert "Palbociclib improves" in record.text
+
+
+def test_fetch_url_retries_server_errors_then_returns():
+    calls = []
+
+    def flaky(url, headers, timeout):
+        calls.append(url)
+        status = 503 if len(calls) == 1 else 200
+        return make_response(url, status=status, content=b"<p>" + b"ok text. " * 20 + b"</p>")
+
+    response = evidence_fetch.fetch_url("https://example.com/x", flaky)
+    assert response.status_code == 200
+    assert len(calls) == 2

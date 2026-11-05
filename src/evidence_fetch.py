@@ -57,7 +57,7 @@ CROSSREF_WORKS = "https://api.crossref.org/works"
 UNPAYWALL = "https://api.unpaywall.org/v2/{doi}"
 
 _LABEL_HOSTS = ("accessdata.fda.gov", "labeling.pfizer.com", "dailymed.nlm.nih.gov")
-_PUBLISHER_HOSTS = ("nejm.org", "aacrjournals.org", "sciencedirect.com", "pfizer.com")
+_PUBLISHER_HOSTS = ("nejm.org", "aacrjournals.org", "sciencedirect.com", "pfizer.com", "thelancet.com", "ascopubs.org", "link.springer.com", "tandfonline.com")
 
 _last_hit: dict[str, float] = {}
 _sleep = time.sleep
@@ -72,12 +72,28 @@ def _polite_wait(url: str) -> None:
     _last_hit[host] = time.monotonic()
 
 
+_API_HOSTS = (
+    # Documented public APIs: their terms of use (contact email, rate limits,
+    # API keys) are the politeness contract, not robots.txt — NCBI even serves
+    # robots that disallow the very E-utilities endpoints its documentation
+    # asks programmatic users to call. Publisher HTML pages always go through
+    # the gate below.
+    "api.fda.gov", "dailymed.nlm.nih.gov", "eutils.ncbi.nlm.nih.gov",
+    "www.ebi.ac.uk", "api.openalex.org", "api.crossref.org", "api.unpaywall.org",
+)
+
+
 def _allowed(url: str, handler=None) -> bool:
     """robots.txt gate. An injected handler means offline use: it simulates the
     network, so it also decides the gate via its robots attribute (False
-    simulates a disallow). Only a live fetch reads the real robots.txt."""
+    simulates a disallow). Documented public API hosts are exempt — their
+    published terms are the contract — and only a live publisher fetch reads
+    the real robots.txt."""
     if handler is not None:
         return getattr(handler, "robots", True) is not False
+    host = (httpx.URL(url).host or "").lower()
+    if host.endswith(_API_HOSTS):
+        return True
     parsed = httpx.URL(url)
     robots_url = f"{parsed.scheme}://{parsed.host}/robots.txt"
     parser = robotparser.RobotFileParser()
@@ -104,13 +120,14 @@ def fetch_url(url: str, handler=None) -> httpx.Response:
             with httpx.Client(headers=headers, timeout=REQUEST_TIMEOUT,
                               follow_redirects=True) as client:
                 response = client.get(url)
-        if response.status_code == 429:
+        if response.status_code == 429 or response.status_code >= 500:
             retry_after = response.headers.get("Retry-After", "")
             try:
                 _sleep(min(float(retry_after), 60.0))
             except ValueError:
                 _sleep(2.0 ** attempt)
-            last_error = RuntimeError(f"429 for {url}")
+            last_error = RuntimeError(
+                f"{response.status_code} for {url}")
             continue
         return response
     raise last_error or RuntimeError(f"fetch failed for {url}")
@@ -118,6 +135,17 @@ def fetch_url(url: str, handler=None) -> httpx.Response:
 
 def content_sha256(payload: bytes) -> str:
     return hashlib.sha256(payload).hexdigest()
+
+
+def doi_of(url: str) -> str:
+    """The DOI named by a URL, lowercased, or "".
+
+    A DOI names one document across publishers, mirrors, and title wordings, so
+    it is the identity the matcher trusts when titles disagree about venue
+    suffixes ("... | NEJM" vs the bare article title).
+    """
+    match = re.search(r"10\.\d{4,}/[^\s?#)\]]+", url or "")
+    return match.group(0).rstrip(".,;").lower() if match else ""
 
 
 def version_pin(url: str, meta: dict | None = None) -> str:
@@ -240,9 +268,13 @@ def _label_text_via_dailymed(brand: str, handler=None) -> EvidenceRecord | None:
                    title=items[0].get("title", ""), kind="label", source_id=setid)
 
 
-def _abstract_via_pubmed(pmid: str, handler=None) -> EvidenceRecord | None:
-    xml = fetch_url(f"{EUTILS}/efetch.fcgi?" + httpx.QueryParams(
-        {"db": "pubmed", "id": pmid, "retmode": "xml"}).__str__(), handler)
+def _abstract_via_eutils(pmid: str, handler=None) -> EvidenceRecord | None:
+    try:
+        xml = fetch_url(f"{EUTILS}/efetch.fcgi?" + httpx.QueryParams(
+            _ncbi_params({"db": "pubmed", "id": pmid,
+                          "retmode": "xml"})).__str__(), handler)
+    except Exception:
+        return None
     if xml.status_code != 200:
         return None
     body = xml.content.decode("utf-8", errors="ignore")
@@ -258,7 +290,39 @@ def _abstract_via_pubmed(pmid: str, handler=None) -> EvidenceRecord | None:
                    kind="publication")
 
 
-def fetch_evidence(url: str, brand: str = "", handler=None) -> EvidenceRecord:
+def _abstract_via_europepmc(pmid: str, handler=None) -> EvidenceRecord | None:
+    """Same abstract via Europe PMC: the fallback when E-utils flakes."""
+    try:
+        response = fetch_url(EUROPEPMC_SEARCH + "?" + httpx.QueryParams(
+            {"query": f"EXT_ID:{pmid}", "format": "json",
+             "resulttype": "core"}).__str__(), handler)
+        if response.status_code != 200:
+            return None
+        hits = (response.json().get("resultList") or {}).get("result", [])
+    except Exception:
+        return None
+    if not hits:
+        return None
+    abstract = _strip_html(
+        str(hits[0].get("abstractText") or "").encode("utf-8", errors="ignore"))
+    if len(abstract) < 50:
+        return None
+    title = _strip_html(
+        str(hits[0].get("title") or "").encode("utf-8", errors="ignore"))
+    return _record(url=f"https://pubmed.ncbi.nlm.nih.gov/{pmid}/",
+                   source_key=f"pubmed:{pmid}", text=abstract[:20_000],
+                   payload=abstract.encode("utf-8"), tier="abstract_only",
+                   level="abstract_only", title=title or f"PMID {pmid}",
+                   kind="publication")
+
+
+def _abstract_via_pubmed(pmid: str, handler=None) -> EvidenceRecord | None:
+    """PubMed abstract: E-utils first, Europe PMC when E-utils flakes."""
+    return (_abstract_via_eutils(pmid, handler)
+            or _abstract_via_europepmc(pmid, handler))
+
+
+def fetch_evidence(url: str, brand: str = "", handler=None, title: str = "") -> EvidenceRecord:
     """Best-effort compliant fetch for one citation URL. Never raises for HTTP
     outcomes — the tier and access_level record what happened instead."""
     from src.judge import source_key
@@ -281,10 +345,8 @@ def fetch_evidence(url: str, brand: str = "", handler=None) -> EvidenceRecord:
         return _record(url, key, "", b"", "canonical_label", "unavailable",
                        note=note or "label APIs returned no usable text")
     if host.endswith(_PUBLISHER_HOSTS) or "/doi/" in (url or ""):
-        doi = ""
-        match = re.search(r"10\.\d{4,}/[^\s?#]+", url or "")
-        if match:
-            doi = match.group(0).rstrip(").,")
+        doi = doi_of(url)
+        pmid = ""
         if doi:
             oa = _open_access_fulltext(doi, handler)
             if oa is not None:
@@ -292,15 +354,17 @@ def fetch_evidence(url: str, brand: str = "", handler=None) -> EvidenceRecord:
                 oa.url = url
                 return oa
             pmid = _pmid_for_doi(doi, handler)
-            if pmid:
-                try:
-                    record = _abstract_via_pubmed(pmid, handler)
-                except Exception:
-                    record = None
-                if record is not None:
-                    record.source_key = key
-                    record.url = url
-                    return record
+        if not pmid and title:
+            pmid = _pmid_for_title(title, handler)
+        if pmid:
+            try:
+                record = _abstract_via_pubmed(pmid, handler)
+            except Exception:
+                record = None
+            if record is not None:
+                record.source_key = key
+                record.url = url
+                return record
         return _record(url, key, "", b"", "abstract_only", "unavailable",
                        note="no DOI or no reachable abstract; stays human-record")
     try:
@@ -355,18 +419,218 @@ def _open_access_fulltext(doi: str, handler=None) -> EvidenceRecord | None:
                    title=best.get("title", "") or doi, kind="publication")
 
 
+def _ncbi_params(extra: dict) -> dict:
+    """NCBI's documented etiquette: identify the tool, give contact email."""
+    params = {"tool": "PharmaLearn", "email": CONTACT_EMAIL, **extra}
+    if os.getenv("NCBI_API_KEY"):
+        params["api_key"] = os.environ["NCBI_API_KEY"]
+    return params
+
+
 def _pmid_for_doi(doi: str, handler=None) -> str:
-    """PMID for a DOI via E-utilities esearch on the DOI field."""
+    """PMID for a DOI, preferably via Europe PMC (the E-utilities DOI-field
+    query is flaky and 500s; Europe PMC's DOI index is the reliable route)."""
+    try:
+        response = fetch_url(EUROPEPMC_SEARCH + "?" + httpx.QueryParams(
+            {"query": f"DOI:{doi}", "format": "json",
+             "resulttype": "core"}).__str__(), handler)
+        if response.status_code == 200:
+            hits = (response.json().get("resultList") or {}).get("result", [])
+            if hits and hits[0].get("pmid"):
+                return hits[0]["pmid"]
+    except Exception:
+        pass
     try:
         response = fetch_url(f"{EUTILS}/esearch.fcgi?" + httpx.QueryParams(
-            {"db": "pubmed", "term": f"{doi}[DOI]",
-             "retmode": "json"}).__str__(), handler)
+            _ncbi_params({"db": "pubmed", "term": doi,
+                           "retmode": "json"})).__str__(), handler)
         if response.status_code != 200:
             return ""
         ids = response.json().get("esearchresult", {}).get("idlist", [])
     except Exception:
         return ""
     return ids[0] if ids else ""
+
+
+def _clean_title(title: str) -> str:
+    """Strip venue suffixes ("... | NEJM", "... - ScienceDirect") and
+    quiz-truncated tails ("..."). A hyphen only counts as a separator when
+    spaced on both sides, so "HER2- Metastatic" survives."""
+    cleaned = re.sub(r"\s+[|｜]\s*[^|｜]*$", "", title or "").strip()
+    cleaned = re.sub(r"\s+[–—-]\s+[^–—-]*$", "", cleaned).strip()
+    cleaned = re.sub(r"\s*\.\.\..*$", "", cleaned).strip()
+    return cleaned
+
+
+def _doi_for_title(title: str, handler=None) -> str:
+    """DOI for an article title via Crossref (for cites with DOI-less URLs)."""
+    cleaned = _clean_title(title)
+    if len(cleaned) < 20:
+        return ""
+    try:
+        response = fetch_url(CROSSREF_WORKS + "?" + httpx.QueryParams(
+            {"query.bibliographic": cleaned, "rows": "3",
+             "select": "DOI,title,score"}).__str__(), handler)
+        if response.status_code != 200:
+            return ""
+        items = (response.json().get("message") or {}).get("items", [])
+    except Exception:
+        return ""
+    want = set(_norm_title(cleaned).split())
+    want -= {"the", "a", "an", "of", "in", "for", "and", "with", "from", "is", "to", "on"}
+    for item in items:
+        got = _norm_title(((item.get("title") or [""])[0]))
+        got_words = set(got.split())
+        overlap = len(want & got_words) / len(want) if want else 0
+        if (got == _norm_title(cleaned) or overlap >= 0.8) and item.get("DOI"):
+            return item["DOI"].lower()
+    return ""
+
+
+S2_SEARCH = "https://api.semanticscholar.org/graph/v1/paper/search"
+S2_PAPER = "https://api.semanticscholar.org/graph/v1/paper"
+
+
+def _s2_identifiers(title: str, handler=None) -> dict:
+    """DOI/PMID/OA locations for a title via Semantic Scholar search.
+
+    Ranked results are gated the same way as Crossref: the top hit must share
+    the title's significant words, otherwise a nearby paper is worse than none.
+    """
+    cleaned = _clean_title(title)
+    if len(cleaned) < 20:
+        return {}
+    try:
+        response = fetch_url(S2_SEARCH + "?" + httpx.QueryParams(
+            {"query": cleaned, "limit": "3",
+             "fields": "title,externalIds,abstract,openAccessPdf"}).__str__(), handler)
+        if response.status_code != 200:
+            return {}
+        papers = response.json().get("data") or []
+    except Exception:
+        return {}
+    want = set(_norm_title(cleaned).split())
+    want -= {"the", "a", "an", "of", "in", "for", "and", "with", "from", "is", "to", "on"}
+    for paper in papers:
+        got = _norm_title(paper.get("title", ""))
+        overlap = len(want & set(got.split())) / len(want) if want else 0
+        if got == _norm_title(cleaned) or overlap >= 0.8:
+            ids = paper.get("externalIds") or {}
+            oa = paper.get("openAccessPdf") or {}
+            return {"doi": (ids.get("DOI") or "").lower(),
+                    "pmid": str(ids.get("PubMed") or ""),
+                    "pmcid": str(ids.get("PubMedCentral") or ""),
+                    "oa_pdf": oa.get("url") or "",
+                    "abstract": paper.get("abstract") or "",
+                    "title": paper.get("title") or ""}
+    return {}
+
+
+def _openalex_identifiers(title: str, handler=None) -> dict:
+    """DOI/PMID/OA for a title via OpenAlex (generous no-key limits).
+
+    Same overlap gate as the other resolvers: a nearby paper is worse than none.
+    """
+    cleaned = _clean_title(title)
+    if len(cleaned) < 20:
+        return {}
+    try:
+        response = fetch_url(OPENALEX_WORKS + "?" + httpx.QueryParams(
+            {"search": cleaned, "per-page": "3",
+             "select": "id,doi,title,ids,primary_location,open_access"}).__str__(), handler)
+        if response.status_code != 200:
+            return {}
+        works = (response.json().get("results") or [])
+    except Exception:
+        return {}
+    want = set(_norm_title(cleaned).split())
+    want -= {"the", "a", "an", "of", "in", "for", "and", "with", "from", "is", "to", "on"}
+    for work in works:
+        got = _norm_title(work.get("title", ""))
+        overlap = len(want & set(got.split())) / len(want) if want else 0
+        if got == _norm_title(cleaned) or overlap >= 0.8:
+            ids = work.get("ids") or {}
+            pmid = (ids.get("pmid") or "").rsplit("/", 1)[-1]
+            doi = (work.get("doi") or "").lower()
+            doi = doi.removeprefix("https://doi.org/").removeprefix("http://doi.org/")
+            oa = (work.get("best_oa_location") or (work.get("open_access") or {})) or {}
+            return {"doi": doi,
+                    "pmid": pmid if pmid.isdigit() else "",
+                    "oa_pdf": oa.get("pdf_url") or oa.get("landing_page_url") or "",
+                    "title": work.get("title") or ""}
+    return {}
+
+
+def _europepmc_search(query: str, handler=None) -> list:
+    """One Europe PMC search, returning result hits (never raising)."""
+    try:
+        response = fetch_url(EUROPEPMC_SEARCH + "?" + httpx.QueryParams(
+            {"query": query, "format": "json",
+             "resulttype": "core"}).__str__(), handler)
+        if response.status_code != 200:
+            return []
+        return (response.json().get("resultList") or {}).get("result", [])
+    except Exception:
+        return []
+
+
+def _europepmc_pmid_for_title(raw_title: str, handler=None) -> str:
+    """PMID via Europe PMC: exact title phrase, then significant-words AND.
+
+    The AND fallback covers cite titles the quiz truncated ("...") or
+    reworded ("EBCTCG overview"), which the exact phrase never matches. Only
+    the trailing venue tag (" - ScienceDirect", "| NEJM") is stripped for it:
+    one venue word ANDed in yields zero hits upstream, while the "..." tail
+    holds distinctive words ("Analysis From PALOMA-2") the real paper title
+    also carries. The 0.8 overlap gate keeps nearby papers out.
+    """
+    cleaned = _clean_title(raw_title)
+    hits = _europepmc_search(f'TITLE:"{cleaned}"', handler)
+    for hit in hits:
+        if hit.get("pmid") and _norm_title(hit.get("title", "")) == _norm_title(cleaned):
+            return hit["pmid"]
+    core = re.split(r"\s+[|\-–—｜]\s*[^|\-–—｜]*$", raw_title)[0].strip()
+    words = [w for w in set(_norm_title(core).split())
+             if w not in _TITLE_STOPWORDS and len(w) > 2]
+    if len(words) < 3:
+        return ""
+    hits = _europepmc_search(
+        " AND ".join(f"TITLE:{word}" for word in sorted(words)), handler)
+    want = set(_norm_title(core).split()) - _TITLE_STOPWORDS
+    for hit in hits:
+        got = _norm_title(hit.get("title", ""))
+        overlap = len(want & set(got.split())) / len(want) if want else 0
+        if hit.get("pmid") and overlap >= 0.8:
+            return hit["pmid"]
+    return ""
+
+
+_TITLE_STOPWORDS = {"the", "a", "an", "of", "in", "for", "and", "with",
+                    "from", "is", "to", "on", "hr"}
+
+
+def _pmid_for_title(title: str, handler=None) -> str:
+    """PMID for an article title (for cites whose URL carries no DOI)."""
+    cleaned = _clean_title(title)
+    if len(cleaned) < 20:
+        return ""
+    pmid = _europepmc_pmid_for_title(cleaned, handler)
+    if pmid:
+        return pmid
+    ox = _openalex_identifiers(title, handler)
+    if ox.get("pmid"):
+        return ox["pmid"]
+    s2 = _s2_identifiers(title, handler)
+    if s2.get("pmid"):
+        return s2["pmid"]
+    doi = ox.get("doi") or s2.get("doi") or _doi_for_title(title, handler)
+    if doi:
+        return _pmid_for_doi(doi, handler)
+    return ""
+
+
+def _norm_title(value: str) -> str:
+    return re.sub(r"\s+", " ", re.sub(r"[^a-z0-9\s]", " ", (value or "").lower())).strip()
 
 
 def read_registry(drug: str) -> dict[str, dict]:
