@@ -876,3 +876,36 @@ def test_a_newer_recorded_quote_supersedes_junk(run):
     traced = judge._dossier_citations(run)
     assert traced[judge._norm("Junk page"), judge._norm("Notes")]["supporting_text"] == (
         "genuine passage about counts")
+
+
+def test_reconcile_closes_only_stale_automated_comments(run):
+    """A re-check must not turn the queue into an attic of fixed findings."""
+    _report(run)
+    judge.promote(run)
+    record = learning.course(run)
+    machine = [entry for entry in record["comments"] if entry.get("origin") == "automated_check"]
+    assert len(machine) == 1 and machine[0]["check"] == "untraceable"
+
+    # A human comment on the same deck: never touched, whatever the checks say.
+    human = learning.add_comment(run, REVIEWER, "deck", "major", "Reads awkwardly.")
+
+    # Resolve the finding the way a reviewer would: point at held evidence.
+    _clear_the_untraceable_slide()
+    closed = judge.reconcile(run)
+    assert len(closed) == 1
+    assert closed[0]["finding_id"] == machine[0]["finding_id"]
+
+    record = learning.course(run)
+    by_id = {entry["id"]: entry for entry in record["comments"]}
+    assert by_id[machine[0]["id"]]["status"] == "closed"
+    assert "no longer reproduces" in (by_id[machine[0]["id"]].get("resolution") or "")
+    assert by_id[human["id"]]["status"] == "open"
+
+    # A finding that still reproduces is never closed.
+    _add_a_fabricated_quote(run)
+    _report(run)
+    judge.promote(run)
+    record = learning.course(run)
+    quote = next(entry for entry in record["comments"]
+                 if entry.get("check") == "quote_not_found" and entry["status"] == "open")
+    assert quote not in judge.reconcile(run)

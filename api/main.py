@@ -712,6 +712,7 @@ async def run_checks(run_id: str, request: SessionRequest):
     drug = json.loads(manifest.read_text())["drug"]["brand"]
     report = await judge.run(run_id, drug)
     judge.promote(run_id)
+    judge.reconcile(run_id)
     return _checks_payload(run_id, report)
 
 

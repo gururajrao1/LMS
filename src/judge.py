@@ -1009,6 +1009,76 @@ def promote(run_id: str, severities=("blocking",), finding_ids: list[str] | None
     return raised
 
 
+def reconcile(run_id: str, tracks=("hcp", "msl")) -> list[dict]:
+    """Close automated comments whose checks no longer reproduce.
+
+    A re-check that only ever adds turns the queue into an attic: fixed findings
+    stay open forever and the count stops meaning anything. Closure here is
+    narrow and auditable — only open comments raised by the checker itself,
+    only when the same check run no longer reproduces them, stamped with when
+    and why. A human reviewer's words are never touched, and anything still
+    failing stays open.
+    """
+    from src import learning
+
+    index = failing_now(run_id, tracks)
+    record = learning.course(run_id)
+    closed = []
+    for comment in record["comments"]:
+        if comment.get("status") != "open" or comment.get("origin") != "automated_check":
+            continue
+        if comment.get("check") not in DETERMINISTIC_CHECKS:
+            continue
+        identifier = comment.get("finding_id") or ""
+        if not identifier or identifier in index:
+            continue
+        comment["status"] = "closed"
+        comment["resolution"] = (
+            f"Check no longer reproduces as of {datetime.now(UTC).date().isoformat()}: "
+            f"the {comment['check']} finding behind this comment is gone, so there is "
+            "nothing left for a reviewer to address or dismiss.")
+        comment["resolved_at"] = datetime.now(UTC).isoformat()
+        closed.append(comment)
+    if closed:
+        learning._save_course(record)
+    return closed
+
+
+def reconcile(run_id: str, tracks=("hcp", "msl")) -> list[dict]:
+    """Close automated comments whose checks no longer reproduce.
+
+    A re-check that only ever adds turns the queue into an attic: fixed findings
+    stay open forever and the count stops meaning anything. Closure here is
+    narrow and auditable — only open comments raised by the checker itself,
+    only when the same check run no longer reproduces them, stamped with when
+    and why. A human reviewer's words are never touched, and anything still
+    failing stays open.
+    """
+    from src import learning
+
+    index = failing_now(run_id, tracks)
+    record = learning.course(run_id)
+    closed = []
+    for comment in record["comments"]:
+        if comment.get("status") != "open" or comment.get("origin") != "automated_check":
+            continue
+        if comment.get("check") not in DETERMINISTIC_CHECKS:
+            continue
+        identifier = comment.get("finding_id") or ""
+        if not identifier or identifier in index:
+            continue
+        comment["status"] = "closed"
+        comment["resolution"] = (
+            f"Check no longer reproduces as of {datetime.now(UTC).date().isoformat()}: "
+            f"the {comment['check']} finding behind this comment is gone, so there is "
+            "nothing left for a reviewer to address or dismiss.")
+        comment["resolved_at"] = datetime.now(UTC).isoformat()
+        closed.append(comment)
+    if closed:
+        learning._save_course(record)
+    return closed
+
+
 # Below this, a percentage says more about the sample than the reviewer. Counts are
 # always shown; a rate only appears once there is enough behind it to mean anything.
 MIN_FOR_RATE = 3
