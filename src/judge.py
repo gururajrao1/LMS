@@ -1091,7 +1091,7 @@ def repoint_comment(run_id: str, comment_id: str, user_id: str) -> dict:
     from src import learning
 
     record = learning.course(run_id)
-    author = learning._author(user_id, role="admin")
+    author = learning.require_capability(user_id, "course.publish")
     comment = next((entry for entry in record["comments"] if entry["id"] == comment_id), None)
     if not comment:
         raise ValueError("Comment not found")

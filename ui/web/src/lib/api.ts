@@ -37,9 +37,21 @@ export type CourseContent = {
 };
 
 // "checker" is the automated pre-review identity: it authors comments but never signs in.
-export type Role = "admin" | "reviewer" | "checker" | "msl" | "hcp";
+/** Built-ins plus anything the training team builds in Roles. */
+export type Role = string;
 export type Learner = "msl" | "hcp";
-export type Person = { id: string; name: string; email: string; role: Role; title: string };
+export type Person = {
+  id: string; name: string; email: string; role: Role; title: string;
+  /** Permissions resolved by the API; absent on records read before roles shipped. */
+  capabilities?: string[];
+  /** Whether this person trains as a learner. */
+  learner?: boolean;
+};
+export type Capability = { id: string; label: string; description: string };
+export type RoleEntry = {
+  id: string; label: string; description: string; builtin: boolean;
+  learner: boolean; track: string; capabilities: string[];
+};
 
 export type Severity = "blocking" | "major" | "minor";
 export type CommentStatus = "open" | "addressed" | "dismissed" | "closed";
@@ -136,6 +148,7 @@ export type Publication = {
   message: string;
   frequency?: string | null;
   next_due_on?: string | null;
+  certificate_template?: string | null;
   assignees: string[];
   notifications: { to: string; name: string; subject: string; sent_at: string }[];
   // Still-failing checks that were carried through deliberately. Absent on courses
@@ -169,6 +182,8 @@ export type CourseReview = {
   review_assignment?: ReviewAssignment | null;
 };
 
+export type CertificateTemplate = { id: string; label: string; description: string };
+
 export type Certificate = {
   id: string;
   code: string;
@@ -179,6 +194,8 @@ export type Certificate = {
   score: number;
   issued_at: string;
   expires_at?: string;
+  /** Design picked at publish time; certificates issued before templates read as classic. */
+  template?: string;
   approved_by?: { name: string; title: string }[];
   drug?: Drug;
   course_title?: string;

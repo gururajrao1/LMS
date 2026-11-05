@@ -24,7 +24,7 @@ const MODE_LABEL: Record<NonNullable<Run["mode"]>, string> = {
 
 export default function RunProgress() {
   const { runId } = useParams<{ runId: string }>();
-  const user = useSession(["admin", "reviewer"]);
+  const user = useSession(["admin", "reviewer"], { anyStaff: true });
   const [run, setRun] = useState<Run | null>(null);
   const [events, setEvents] = useState<Event[]>([]);
 

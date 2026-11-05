@@ -2,15 +2,23 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { BookOpen, Database, GraduationCap, LayoutDashboard, LogOut, ShieldCheck, TrendingUp } from "lucide-react";
-import { Person, Role } from "@/lib/api";
+import { BookOpen, Database, GraduationCap, KeyRound, LayoutDashboard, LogOut, ShieldCheck, TrendingUp } from "lucide-react";
+import { Person } from "@/lib/api";
 import { writeSession } from "@/lib/session";
 
-const NAV: Record<Role, { href: string; label: string; icon: typeof LayoutDashboard }[]> = {
+type NavLink = { href: string; label: string; icon: typeof LayoutDashboard };
+
+const STAFF_NAV: NavLink[] = [
+  { href: "/dashboard", label: "Review queue", icon: ShieldCheck },
+  { href: "/knowledge", label: "Knowledge hub", icon: Database },
+];
+
+const NAV: Record<string, NavLink[]> = {
   admin: [
     { href: "/dashboard", label: "Courses", icon: LayoutDashboard },
     { href: "/portfolio", label: "Portfolio", icon: TrendingUp },
     { href: "/knowledge", label: "Knowledge hub", icon: Database },
+    { href: "/roles", label: "Roles", icon: KeyRound },
   ],
   reviewer: [
     { href: "/dashboard", label: "Review queue", icon: ShieldCheck },
@@ -21,7 +29,25 @@ const NAV: Record<Role, { href: string; label: string; icon: typeof LayoutDashbo
   hcp: [{ href: "/learn", label: "My training", icon: GraduationCap }],
 };
 
-export const ROLE_LABEL: Record<Role, string> = { admin: "Admin", reviewer: "Reviewer", checker: "Automated check", msl: "MSL", hcp: "HCP" };
+export const ROLE_LABEL: Record<string, string> = { admin: "Admin", reviewer: "Reviewer", checker: "Automated check", msl: "MSL", hcp: "HCP" };
+
+/** Navigation for anyone: built-in mapping first, then learnerhood, then staff fallback. */
+export function navFor(user: Person): NavLink[] {
+  if (NAV[user.role]) return NAV[user.role];
+  if (user.learner ?? (user.role === "msl" || user.role === "hcp")) {
+    return [{ href: "/learn", label: "My training", icon: GraduationCap }];
+  }
+  const links = [...STAFF_NAV];
+  if ((user.capabilities ?? []).includes("roster.manage")) {
+    links.push({ href: "/roles", label: "Roles", icon: KeyRound });
+  }
+  return (user.capabilities ?? []).length ? links : [];
+}
+
+/** Display name for any role: built-in label first, then the custom id. */
+export function roleLabel(role: string): string {
+  return ROLE_LABEL[role] ?? role;
+}
 
 export function Brand({ dark = false, href = "/" }: { dark?: boolean; href?: string }) {
   return (
@@ -35,7 +61,7 @@ export function Brand({ dark = false, href = "/" }: { dark?: boolean; href?: str
 export function AppShell({ children, user }: { children: React.ReactNode; user?: Person | null }) {
   const pathname = usePathname();
   const router = useRouter();
-  const links = user ? NAV[user.role] : [];
+  const links = user ? navFor(user) : [];
 
   function signOut() {
     writeSession(null);
@@ -61,7 +87,7 @@ export function AppShell({ children, user }: { children: React.ReactNode; user?:
             {user && (
               <div className="hidden text-right sm:block">
                 <p className="font-medium leading-5">{user.name}</p>
-                <p className="text-xs text-stone-600">{ROLE_LABEL[user.role]} · {user.title}</p>
+                <p className="text-xs text-stone-600">{roleLabel(user.role)} · {user.title}</p>
               </div>
             )}
             {user && <span className="grid size-9 shrink-0 place-items-center rounded-full bg-brand-50 text-sm font-semibold text-brand-700">{initials(user.name)}</span>}

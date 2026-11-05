@@ -92,7 +92,7 @@ def test_only_a_reviewer_can_sign_off(client):
     """Maker-checker: the admin who addresses comments must not clear the course."""
     self_approval = client.post(f"/api/runs/{RUN_ID}/review/signoff", json={"user_id": ADMIN, "decision": "approved"})
     assert self_approval.status_code == 400
-    assert "reviewer" in self_approval.json()["detail"]
+    assert "Sign off reviews" in self_approval.json()["detail"]
     assert client.get(f"/api/runs/{RUN_ID}/review").json()["readiness"]["approvals"] == 0
 
     response = client.post(f"/api/runs/{RUN_ID}/publication", json={
@@ -145,7 +145,7 @@ def test_the_checker_cannot_settle_its_own_findings(client):
 
     refused = client.patch(path, json={"user_id": learning.CHECKER["id"], "status": "dismissed"})
     assert refused.status_code == 400
-    assert "admin or a reviewer" in refused.json()["detail"]
+    assert "Settle review comments" in refused.json()["detail"]
     assert client.patch(path, json={"user_id": LEARNER, "status": "dismissed"}).status_code == 400
     assert client.patch(path, json={
         "user_id": REVIEWER, "status": "dismissed", "resolution": "Slide 14 was already corrected.",
@@ -513,7 +513,7 @@ def test_assigning_reviewers_records_who_and_notifies_them(tmp_path, monkeypatch
 
 def test_only_an_admin_assigns_and_only_a_reviewer_can_be_assigned(tmp_path, monkeypatch):
     monkeypatch.setattr(agent, "DATA", tmp_path)
-    with pytest.raises(ValueError, match="Only an admin"):
+    with pytest.raises(ValueError, match="Assign reviewers"):
         learning.assign_reviewers("ibrance-1", "anil-shekhar", ["maria-alvarez"])
     with pytest.raises(ValueError, match="Not a reviewer"):
         learning.assign_reviewers("ibrance-1", "priya-raman", ["ken-osei"])
@@ -549,3 +549,58 @@ def test_reinforce_collects_only_missed_questions(client):
     assert practice["missed_count"] >= 1
     assert all("correct_index" not in question for question in practice["questions"])
     assert all("rationale" not in question for question in practice["questions"])
+
+
+def test_certificate_templates_are_listed(client):
+    templates = client.get("/api/certificate-templates").json()
+    assert [template["id"] for template in templates] == ["classic", "modern", "formal"]
+    assert all(template["label"] and template["description"] for template in templates)
+
+
+def _publish_with_template(client, template):
+    comment = client.post(f"/api/runs/{RUN_ID}/review/comments", json={
+        "user_id": REVIEWER, "target": "deck", "severity": "blocking", "body": "Add the dose-reduction table.",
+    }).json()
+    client.patch(f"/api/runs/{RUN_ID}/review/comments/{comment['id']}", json={
+        "user_id": ADMIN, "status": "addressed", "resolution": "Table added to slide 7.",
+    })
+    client.post(f"/api/runs/{RUN_ID}/review/versions", json={"user_id": ADMIN, "summary": "Dose table added"})
+    client.post(f"/api/runs/{RUN_ID}/review/signoff", json={"user_id": REVIEWER, "decision": "approved"})
+    return client.post(f"/api/runs/{RUN_ID}/publication", json={
+        "user_id": ADMIN,
+        "starts_on": "2026-09-01",
+        "due_on": "2026-09-30",
+        "assignees": [LEARNER],
+        "message": "Please complete before the cycle meeting.",
+        "certificate_template": template,
+    })
+
+
+def test_publish_rejects_an_unknown_certificate_design(client):
+    response = _publish_with_template(client, "fancy")
+    assert response.status_code == 400
+    assert "Certificate design" in response.json()["detail"]
+
+
+def test_certificate_carries_the_template_chosen_at_publish(client):
+    publication = _publish_with_template(client, "formal")
+    assert publication.status_code == 200
+    assert publication.json()["publication"]["certificate_template"] == "formal"
+
+    quiz = json.loads((agent.DATA / "content" / RUN_ID / "assets" / "quiz.json").read_text())
+    right = {question["id"]: question["correct_index"] for question in quiz["questions"]}
+    for module in learning.MODULES:
+        client.post(f"/api/learn/{LEARNER}/{RUN_ID}/modules", json={"module_id": module["id"], "completed": True})
+    client.post(f"/api/learn/{LEARNER}/{RUN_ID}/assessment/final", json={"answers": right})
+    certificate = client.get(f"/api/learn/{LEARNER}/{RUN_ID}/certificate").json()
+    assert certificate["template"] == "formal"
+
+
+def test_certificate_defaults_to_classic_without_a_template_choice(client):
+    _publish(client)
+    quiz = json.loads((agent.DATA / "content" / RUN_ID / "assets" / "quiz.json").read_text())
+    right = {question["id"]: question["correct_index"] for question in quiz["questions"]}
+    for module in learning.MODULES:
+        client.post(f"/api/learn/{LEARNER}/{RUN_ID}/modules", json={"module_id": module["id"], "completed": True})
+    client.post(f"/api/learn/{LEARNER}/{RUN_ID}/assessment/final", json={"answers": right})
+    assert client.get(f"/api/learn/{LEARNER}/{RUN_ID}/certificate").json()["template"] == "classic"

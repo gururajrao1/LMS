@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { NativeSelect } from "@/components/ui/native-select";
 import { Textarea } from "@/components/ui/textarea";
 import { ROLE_LABEL } from "@/components/app-shell";
-import { CourseReview, getJson, Person, sendJson } from "@/lib/api";
+import { CertificateTemplate, CourseReview, getJson, Person, sendJson } from "@/lib/api";
 
 function isoDate(offsetDays: number) {
   const date = new Date();
@@ -25,12 +25,15 @@ export function CoursePublishPanel({ runId, user, review, onChange }: { runId: s
   const [dueOn, setDueOn] = useState(published?.due_on ?? isoDate(30));
   const [message, setMessage] = useState(published?.message ?? "Complete this course before the next cycle meeting.");
   const [frequency, setFrequency] = useState(published?.frequency ?? "once");
+  const [templates, setTemplates] = useState<CertificateTemplate[]>([]);
+  const [template, setTemplate] = useState(published?.certificate_template ?? "classic");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
 
   useEffect(() => {
+    getJson<CertificateTemplate[]>("/api/certificate-templates").then(setTemplates).catch(() => undefined);
     getJson<Person[]>("/api/people").then((roster) => {
-      const learners = roster.filter((person) => person.role === "msl" || person.role === "hcp");
+      const learners = roster.filter((person) => person.learner ?? (person.role === "msl" || person.role === "hcp"));
       setPeople(learners);
       setAssignees((current) => (current.length ? current : learners.map((person) => person.id)));
     }).catch(() => setError("Could not load the trainee roster."));
@@ -40,7 +43,7 @@ export function CoursePublishPanel({ runId, user, review, onChange }: { runId: s
     event.preventDefault();
     setBusy(true); setError("");
     try {
-      await sendJson(`/api/runs/${runId}/publication`, { user_id: user.id, starts_on: startsOn, due_on: dueOn, assignees, message, frequency });
+      await sendJson(`/api/runs/${runId}/publication`, { user_id: user.id, starts_on: startsOn, due_on: dueOn, assignees, message, frequency, certificate_template: template });
       onChange(await getJson<CourseReview>(`/api/runs/${runId}/review`));
     } catch (reason) { setError(reason instanceof Error ? reason.message : "Could not publish"); }
     finally { setBusy(false); }
@@ -101,7 +104,18 @@ export function CoursePublishPanel({ runId, user, review, onChange }: { runId: s
                 </div>
               </div>
 
-              <p className="text-sm font-medium">Trainees ({assignees.length} selected)</p>
+              <p className="text-sm font-medium">Certificate design</p>
+<div className="mt-2 grid gap-2 sm:grid-cols-3">
+  {(templates.length ? templates : [{ id: "classic", label: "Classic", description: "Centered certificate with the brand band." }]).map((option) => (
+    <label key={option.id} className={`cursor-pointer rounded-xl border p-3 transition-colors ${template === option.id ? "border-brand-600 bg-brand-50" : "hover:bg-stone-50"}`}>
+      <input type="radio" name="certificate-template" value={option.id} checked={template === option.id} onChange={() => setTemplate(option.id)} className="size-4 accent-brand-600" />
+      <span className="mt-1 block text-sm font-medium">{option.label}</span>
+      <span className="mt-1 block text-xs leading-5 text-stone-600">{option.description}</span>
+    </label>
+  ))}
+</div>
+
+            <p className="text-sm font-medium">Trainees ({assignees.length} selected)</p>
               <div className="mt-2 grid gap-2 sm:grid-cols-2">
                 {people.map((person) => (
                   <label key={person.id} className={`flex cursor-pointer items-start gap-3 rounded-xl border p-3 transition-colors ${assignees.includes(person.id) ? "border-brand-600 bg-brand-50" : "hover:bg-stone-50"}`}>
@@ -137,6 +151,7 @@ export function CoursePublishPanel({ runId, user, review, onChange }: { runId: s
                 <Badge className="bg-brand-600">Published v{publication.version}</Badge>
                 <p className="flex items-center gap-2 text-stone-600"><CalendarDays size={15} /> {publication.starts_on} → {publication.due_on}{publication.frequency && publication.frequency !== "once" ? ` · repeats ${publication.frequency}` : ""}{publication.next_due_on ? ` · next due ${publication.next_due_on}` : ""}</p>
                 <p className="flex items-center gap-2 text-stone-600"><Users size={15} /> {publication.assignees.length} trainee(s)</p>
+                <p className="text-stone-600">Certificate: {(templates.find((option) => option.id === publication.certificate_template)?.label ?? publication.certificate_template ?? "Classic")} design</p>
                 <p className="text-xs text-stone-600">Published by {publication.published_by}</p>
               </div>
             ) : <p className="text-sm text-stone-600">This course has not been published yet.</p>}

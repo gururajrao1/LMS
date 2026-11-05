@@ -23,7 +23,7 @@ function bytes(value?: number) {
 }
 
 export default function KnowledgeHub() {
-  const user = useSession(["admin", "reviewer"]);
+  const user = useSession(["admin", "reviewer"], { anyStaff: true });
   const [courses, setCourses] = useState<Course[]>([]);
   const [runId, setRunId] = useState("");
   const [loaded, setLoaded] = useState<{ runId: string; data: Knowledge } | null>(null);

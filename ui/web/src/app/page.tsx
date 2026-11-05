@@ -5,26 +5,31 @@ import { useRouter } from "next/navigation";
 import { ArrowRight, CheckCircle2, FileText, Presentation, Video } from "lucide-react";
 import { Brand, ROLE_LABEL } from "@/components/app-shell";
 import { Button } from "@/components/ui/button";
-import { getJson, Person, Role, sendJson } from "@/lib/api";
-import { HOME, writeSession } from "@/lib/session";
+import { getJson, Person, RoleEntry, sendJson } from "@/lib/api";
+import { homeFor, writeSession } from "@/lib/session";
 
-const ROLES: { role: Role; blurb: string }[] = [
-  { role: "admin", blurb: "Create courses, publish and schedule training" },
-  { role: "reviewer", blurb: "Review content and sign it off" },
-  { role: "msl", blurb: "Field medical training track" },
-  { role: "hcp", blurb: "Clinical training track" },
-];
+const BUILTIN_BLURBS: Record<string, string> = {
+  admin: "Create courses, publish and schedule training",
+  reviewer: "Review content and sign it off",
+  msl: "Field medical training track",
+  hcp: "Clinical training track",
+};
 
 export default function Login() {
   const router = useRouter();
   const [people, setPeople] = useState<Person[]>([]);
-  const [role, setRole] = useState<Role>("admin");
+  const [entries, setEntries] = useState<RoleEntry[]>([]);
+  const [role, setRole] = useState("admin");
   const [userId, setUserId] = useState("");
   const [error, setError] = useState("");
 
-  useEffect(() => { getJson<Person[]>("/api/people").then(setPeople).catch(() => setError("Start the API on port 8000 to sign in.")); }, []);
+  useEffect(() => {
+    getJson<Person[]>("/api/people").then(setPeople).catch(() => setError("Start the API on port 8000 to sign in."));
+    getJson<RoleEntry[]>("/api/roles").then(setEntries).catch(() => undefined);
+  }, []);
 
   const matching = people.filter((person) => person.role === role);
+  const tabs = entries.length ? entries : ["admin", "reviewer", "msl", "hcp"].map((id) => ({ id, label: ROLE_LABEL[id] ?? id, description: BUILTIN_BLURBS[id] ?? "" }));
   const selected = matching.find((person) => person.id === userId) ?? matching[0];
 
   async function submit(event: FormEvent) {
@@ -33,7 +38,7 @@ export default function Login() {
     try {
       const person = await sendJson<Person>("/api/session", { user_id: selected.id });
       writeSession(person);
-      router.push(HOME[person.role]);
+      router.push(homeFor(person));
     } catch (reason) { setError(reason instanceof Error ? reason.message : "Could not sign in"); }
   }
 
@@ -65,11 +70,11 @@ export default function Login() {
           <p className="mt-2 text-sm leading-6 text-stone-600">Choose a role, then the person you want to sign in as.</p>
 
           <div className="mt-7 grid grid-cols-2 gap-2">
-            {ROLES.map((entry) => (
-              <button key={entry.role} type="button" aria-pressed={role === entry.role} onClick={() => { setRole(entry.role); setUserId(""); }}
-                className={`rounded-xl border p-3 text-left transition-colors ${role === entry.role ? "border-brand-600 bg-brand-50" : "hover:bg-stone-50"}`}>
-                <p className="text-sm font-semibold">{ROLE_LABEL[entry.role]}</p>
-                <p className="mt-1 text-xs leading-5 text-stone-600">{entry.blurb}</p>
+            {tabs.map((entry) => (
+              <button key={entry.id} type="button" aria-pressed={role === entry.id} onClick={() => { setRole(entry.id); setUserId(""); }}
+                className={`rounded-xl border p-3 text-left transition-colors ${role === entry.id ? "border-brand-600 bg-brand-50" : "hover:bg-stone-50"}`}>
+                <p className="text-sm font-semibold">{entry.label}</p>
+                <p className="mt-1 text-xs leading-5 text-stone-600">{entry.description}</p>
               </button>
             ))}
           </div>

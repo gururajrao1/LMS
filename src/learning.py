@@ -24,7 +24,54 @@ SEVERITIES = ("blocking", "major", "minor")
 # Who may settle a review comment. The checker raises findings and never settles
 # them — the same asymmetry that stops it signing off — and a learner is not part
 # of the review at all. Without this, any caller could clear a blocking finding.
-RESOLVER_ROLES = ("admin", "reviewer")
+CAPABILITIES = (
+    ("course.publish", "Publish courses",
+     "Release reviewed courses to trainees and republish their schedules."),
+    ("course.version", "Cut new versions",
+     "Open a new draft version from review feedback."),
+    ("review.signoff", "Sign off reviews",
+     "Approve a course version so it can be published."),
+    ("review.resolve", "Settle review comments",
+     "Clear blocking and non-blocking review findings."),
+    ("review.assign", "Assign reviewers",
+     "Put named reviewers on a course version."),
+    ("learn.reset", "Reset learner answers",
+     "Clear attempts and certificates so a learner starts over."),
+    ("roster.manage", "Manage people and roles",
+     "Create custom roles and assign anyone a role."),
+)
+CAPABILITY_IDS = tuple(entry[0] for entry in CAPABILITIES)
+CAPABILITY_LABELS = {entry[0]: entry[1] for entry in CAPABILITIES}
+
+# What each built-in role could already do, restated as capabilities so custom
+# roles speak the same language. Reviewers keep sign-off, resolution and
+# resets; learners and the machine identity act through assignments, never
+# through these gates, exactly as before. The one deliberate exception to
+# "admin can do everything" is sign-off: maker-checker means the training
+# lead who addresses comments must not clear the course, so sign-off stays
+# reviewer-exclusive unless an admin deliberately grants it elsewhere.
+DEFAULT_ROLE_CAPABILITIES = {
+    "admin": set(CAPABILITY_IDS) - {"review.signoff"},
+    "reviewer": {"review.signoff", "review.resolve", "learn.reset"},
+    "checker": set(),
+    "msl": set(),
+    "hcp": set(),
+}
+
+BUILTIN_ROLE_LABELS = {
+    "admin": "Admin",
+    "reviewer": "Reviewer",
+    "checker": "Automated check",
+    "msl": "MSL",
+    "hcp": "HCP",
+}
+BUILTIN_ROLE_DESCRIPTIONS = {
+    "admin": "Full control: courses, reviews, people and roles.",
+    "reviewer": "Reviews and signs off content, settles findings, resets answers.",
+    "checker": "Machine identity that raises findings and never approves.",
+    "msl": "Field medical training track.",
+    "hcp": "Clinical training track.",
+}
 
 # Lets a submitted attempt have its unanswered questions filled with the correct
 # answer. Purely a stage affordance: a thirty-question assessment answered live is
@@ -93,6 +140,139 @@ def _platform(*parts: str) -> Path:
     return content_path("platform", *parts)
 
 
+def custom_roles() -> list[dict]:
+    """Roles the training team built on top of the five built-ins."""
+    path = _platform("roles.json")
+    return _json(path) if path.exists() else []
+
+
+def _save_custom_roles(entries: list[dict]) -> list[dict]:
+    _write(_platform("roles.json"), entries)
+    return entries
+
+
+def roles() -> list[dict]:
+    """Every assignable role: built-ins first, then custom builds."""
+    builtin = [
+        {
+            "id": role_id,
+            "label": BUILTIN_ROLE_LABELS[role_id],
+            "description": BUILTIN_ROLE_DESCRIPTIONS[role_id],
+            "builtin": True,
+            "learner": role_id in LEARNER_ROLES,
+            "track": role_id if role_id in LEARNER_ROLES else "hcp",
+            "capabilities": sorted(DEFAULT_ROLE_CAPABILITIES.get(role_id, ())),
+        }
+        for role_id in ("admin", "reviewer", "msl", "hcp", "checker")
+    ]
+    return builtin + [{**entry, "builtin": False} for entry in custom_roles()]
+
+
+def known_roles() -> list[str]:
+    return [entry["id"] for entry in roles()]
+
+
+def capabilities_for(role_id: str) -> set[str]:
+    """What a role may do: defaults for built-ins, the grant for custom roles."""
+    if role_id in DEFAULT_ROLE_CAPABILITIES:
+        return set(DEFAULT_ROLE_CAPABILITIES[role_id])
+    custom = next((entry for entry in custom_roles() if entry["id"] == role_id), None)
+    return set(custom.get("capabilities", ())) if custom else set()
+
+
+def is_learner_role(role_id: str) -> bool:
+    if role_id in LEARNER_ROLES:
+        return True
+    return any(entry["id"] == role_id and entry.get("learner") for entry in custom_roles())
+
+
+def public_person(entry: dict) -> dict:
+    """A roster entry plus what the UI needs to admit it: capabilities and learnerhood."""
+    return {
+        **entry,
+        "capabilities": sorted(capabilities_for(entry.get("role", ""))),
+        "learner": is_learner_role(entry.get("role", "")),
+    }
+
+
+def require_capability(user_id: str, capability: str) -> dict:
+    """The single gate behind every training-team action.
+
+    Unknown users and roles without the grant are refused the same way the
+    old role checks refused them: a ValueError the API turns into a 400.
+    """
+    found = person(user_id)
+    if not found:
+        raise ValueError(f"Unknown user {user_id}")
+    if capability not in capabilities_for(found["role"]):
+        label = CAPABILITY_LABELS.get(capability, capability)
+        raise ValueError(f"{found['name']} lacks the '{label}' permission")
+    return found
+
+
+def create_role(by_user_id: str, label: str, description: str = "",
+                capabilities: list[str] | tuple[str, ...] = (),
+                learner: bool = False, track: str = "hcp") -> dict:
+    """Build a custom role from the capability catalog."""
+    require_capability(by_user_id, "roster.manage")
+    label = label.strip()
+    if not label:
+        raise ValueError("Name the role")
+    unknown = [cap for cap in capabilities if cap not in CAPABILITY_IDS]
+    if unknown:
+        raise ValueError(f"Unknown capabilities: {', '.join(unknown)}")
+    if learner and track not in LEARNER_ROLES:
+        raise ValueError("A learner role follows the msl or hcp track")
+    role_id = _slug(label)
+    if not role_id:
+        raise ValueError("Name the role with letters or numbers")
+    if role_id in known_roles():
+        raise ValueError(f"There is already a '{role_id}' role")
+    entries = custom_roles()
+    entry = {
+        "id": role_id,
+        "label": label,
+        "description": description.strip(),
+        "capabilities": sorted(set(capabilities)),
+        "learner": bool(learner),
+        "track": track if learner else "hcp",
+        "created_by": by_user_id,
+        "created_at": _now(),
+    }
+    entries.append(entry)
+    _save_custom_roles(entries)
+    return {**entry, "builtin": False}
+
+
+def assign_role(by_user_id: str, user_id: str, role_id: str) -> dict:
+    """Move anyone onto any assignable role; the machine identity stays unassignable."""
+    require_capability(by_user_id, "roster.manage")
+    if role_id == "checker":
+        raise ValueError("The automated check identity is not assignable")
+    if role_id not in known_roles():
+        raise ValueError(f"Unknown role {role_id}")
+    people = roster()
+    found = next((entry for entry in people if entry["id"] == user_id), None)
+    if not found:
+        raise ValueError(f"Unknown user {user_id}")
+    found["role"] = role_id
+    _write(_platform("roster.json"), people)
+    return public_person(found)
+
+
+def delete_role(by_user_id: str, role_id: str) -> dict:
+    """Remove a custom role that nobody holds; built-ins are permanent."""
+    require_capability(by_user_id, "roster.manage")
+    entries = custom_roles()
+    if not any(entry["id"] == role_id for entry in entries):
+        raise ValueError("Built-in roles cannot be deleted")
+    holders = [entry["name"] for entry in roster() if entry["role"] == role_id]
+    if holders:
+        raise ValueError(f"Role is still held by: {', '.join(holders)}")
+    _save_custom_roles([entry for entry in entries if entry["id"] != role_id])
+    return {"deleted": role_id}
+
+
 def roster() -> list[dict]:
     path = _platform("roster.json")
     if not path.exists():
@@ -129,7 +309,7 @@ def sign_in(user_id: str | None = None, email: str | None = None, role: str | No
         "id": _slug(local) or _id(),
         "name": local.replace(".", " ").replace("_", " ").title(),
         "email": email,
-        "role": role if role in ROLES else "hcp",
+        "role": role if role in known_roles() else "hcp",
         "title": "Demo participant",
     }
     _write(_platform("roster.json"), people + [guest])
@@ -137,7 +317,12 @@ def sign_in(user_id: str | None = None, email: str | None = None, role: str | No
 
 
 def track_for(role: str) -> str:
-    return role if role in LEARNER_ROLES else "hcp"
+    if role in LEARNER_ROLES:
+        return role
+    custom = next((entry for entry in custom_roles() if entry["id"] == role and entry.get("learner")), None)
+    if custom and custom.get("track") in LEARNER_ROLES:
+        return custom["track"]
+    return "hcp"
 
 
 def course(run_id: str) -> dict:
@@ -329,9 +514,7 @@ def resolve_comment(run_id: str, comment_id: str, status: str, resolution: str |
         raise ValueError(f"Status must be {', '.join(RESOLUTIONS[:-1])} or {RESOLUTIONS[-1]}")
     if not user_id:
         raise ValueError("A review comment can only be settled by a named user")
-    actor = _author(user_id)
-    if actor["role"] not in RESOLVER_ROLES:
-        raise ValueError("Only an admin or a reviewer can settle a review comment")
+    actor = require_capability(user_id, "review.resolve")
     comment = next((entry for entry in record["comments"] if entry["id"] == comment_id), None)
     if not comment:
         raise ValueError("Comment not found")
@@ -412,7 +595,7 @@ def _verify_fixes(run_id: str, addressed: list[dict]) -> tuple[list[dict], list[
 
 def publish_version(run_id: str, user_id: str, summary: str) -> dict:
     record = course(run_id)
-    author = _author(user_id, role="admin")
+    author = require_capability(user_id, "course.version")
     addressed = [comment for comment in record["comments"] if comment["status"] == "addressed"]
     if not addressed:
         raise ValueError("Address at least one review comment before cutting a version")
@@ -465,7 +648,7 @@ def publish_version(run_id: str, user_id: str, summary: str) -> dict:
 def add_signoff(run_id: str, user_id: str, decision: str, note: str = "") -> dict:
     record = course(run_id)
     # Maker-checker: whoever authors and addresses the content cannot clear it.
-    author = _author(user_id, role="reviewer")
+    author = require_capability(user_id, "review.signoff")
     if decision not in {"approved", "changes_requested"}:
         raise ValueError("Decision must be approved or changes_requested")
     record["signoffs"] = [
@@ -502,12 +685,13 @@ def assign_reviewers(run_id: str, user_id: str, reviewer_ids: list[str], note: s
     whose named expert is on leave. What it changes is whose dashboard says so.
     """
     record = course(run_id)
-    author = _author(user_id, role="admin")
+    author = require_capability(user_id, "review.assign")
     people = {entry["id"]: entry for entry in roster()}
     unknown = [user for user in reviewer_ids if user not in people]
     if unknown:
         raise ValueError(f"Unknown reviewer(s): {', '.join(unknown)}")
-    not_reviewers = [people[user]["name"] for user in reviewer_ids if people[user]["role"] != "reviewer"]
+    not_reviewers = [people[user]["name"] for user in reviewer_ids
+                     if "review.signoff" not in capabilities_for(people[user]["role"])]
     if not_reviewers:
         raise ValueError(f"Not a reviewer: {', '.join(not_reviewers)}")
     if not reviewer_ids:
@@ -537,6 +721,21 @@ def assign_reviewers(run_id: str, user_id: str, reviewer_ids: list[str], note: s
 FREQUENCIES = ("once", "quarterly", "semiannual", "annual")
 FREQUENCY_MONTHS = {"once": 0, "quarterly": 3, "semiannual": 6, "annual": 12}
 
+CERTIFICATE_TEMPLATES = {
+    "classic": {
+        "label": "Classic",
+        "description": "Centered certificate with the brand band — the default wall piece.",
+    },
+    "modern": {
+        "label": "Modern",
+        "description": "Dark header band with left-aligned details — reads well on screen.",
+    },
+    "formal": {
+        "label": "Formal",
+        "description": "Framed serif layout with signatory emphasis — for compliance files.",
+    },
+}
+
 
 def next_due_on(frequency: str, due_on: str) -> str | None:
     """When the next run of a repeating schedule falls due, if it repeats."""
@@ -553,13 +752,15 @@ def next_due_on(frequency: str, due_on: str) -> str | None:
     return date(year, month, min(day, 28)).isoformat()
 
 
-def reset_attempts(run_id: str, user_id: str, user_role: str = "") -> dict:
-    """An admin clears a learner's assessment answers so they start over.
+def reset_attempts(run_id: str, user_id: str, user_role: str = "", actor_id: str = "") -> dict:
+    """The training team clears a learner's assessment answers so they start over.
 
     Attempts and any certificate earned from them go; module progress stays,
     so the learner retakes the checks rather than redoing the whole course.
     """
-    if user_role and user_role not in {"admin", "reviewer"}:
+    if actor_id:
+        require_capability(actor_id, "learn.reset")
+    elif user_role and user_role not in {"admin", "reviewer"}:
         raise ValueError("Only the training team can reset answers")
     record = progress(run_id, user_id)
     record["attempts"] = []
@@ -576,15 +777,18 @@ def publish_course(
     assignees: list[str],
     message: str = "",
     frequency: str = "once",
+    certificate_template: str = "classic",
 ) -> dict:
     record = course(run_id)
-    author = _author(user_id, role="admin")
+    author = require_capability(user_id, "course.publish")
     if not readiness(record)["can_publish"]:
         raise ValueError("A course needs an approving sign-off and no open blocking comments")
     if not assignees:
         raise ValueError("Select at least one trainee")
     if frequency not in FREQUENCIES:
         raise ValueError(f"Schedule must be one of: {', '.join(FREQUENCIES)}")
+    if certificate_template not in CERTIFICATE_TEMPLATES:
+        raise ValueError(f"Certificate design must be one of: {', '.join(CERTIFICATE_TEMPLATES)}")
     people = {entry["id"]: entry for entry in roster()}
     unknown = [user for user in assignees if user not in people]
     if unknown:
@@ -608,6 +812,7 @@ def publish_course(
         "due_on": due_on,
         "frequency": frequency,
         "next_due_on": next_due_on(frequency, due_on),
+        "certificate_template": certificate_template,
         "message": message.strip(),
         "assignees": assignees,
         "notifications": [{
@@ -839,6 +1044,9 @@ def issue_certificate(run_id: str, user_id: str) -> dict | None:
         "learner_title": learner.get("title", "") if learner else "",
         "run_id": run_id,
         "course_version": published_version,
+        "template": (course_record.get("publication") or {}).get("certificate_template", "classic")
+        if (course_record.get("publication") or {}).get("certificate_template") in CERTIFICATE_TEMPLATES
+        else "classic",
         "score": state["final_score"],
         "issued_at": issued.isoformat(),
         # Field training is requalified annually; the certificate has to say so.

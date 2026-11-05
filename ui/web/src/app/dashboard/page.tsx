@@ -99,7 +99,7 @@ function CourseCard({ course, mine }: { course: Course; mine?: boolean }) {
 }
 
 export default function Dashboard() {
-  const user = useSession(["admin", "reviewer"]);
+  const user = useSession(["admin", "reviewer"], { anyStaff: true });
   const router = useRouter();
   const [courses, setCourses] = useState<Course[]>([]);
   const [drug, setDrug] = useState("Ibrance");

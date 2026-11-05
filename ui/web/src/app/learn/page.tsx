@@ -133,7 +133,7 @@ function AssignmentCard({ course }: { course: Assignment }) {
 }
 
 export default function LearnerHomePage() {
-  const user = useSession(["msl", "hcp"]);
+  const user = useSession(["msl", "hcp"], { anyLearner: true });
   const [home, setHome] = useState<LearnerHome | null>(null);
   const [error, setError] = useState("");
 

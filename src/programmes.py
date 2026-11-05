@@ -276,7 +276,7 @@ def archive(run_id: str, user_id: str, note: str = "") -> dict:
     nothing about the course, its cohort or its trail is touched.
     """
     record = learning.course(run_id)
-    author = learning._author(user_id, role="admin")
+    author = learning.require_capability(user_id, "course.publish")
     if record.get("status") != "published":
         raise ValueError("Only a published programme can be archived")
     if record.get("archived"):
@@ -295,7 +295,7 @@ def archive(run_id: str, user_id: str, note: str = "") -> dict:
 
 def restore(run_id: str, user_id: str) -> dict:
     record = learning.course(run_id)
-    author = learning._author(user_id, role="admin")
+    author = learning.require_capability(user_id, "course.publish")
     if not record.get("archived"):
         raise ValueError("This programme is not archived")
     record.pop("archived")

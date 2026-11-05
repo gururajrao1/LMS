@@ -2,11 +2,31 @@
 
 import { useEffect, useSyncExternalStore } from "react";
 import { useRouter } from "next/navigation";
-import { Person, Role } from "@/lib/api";
+import { Person } from "@/lib/api";
 
 const KEY = "pharmalearn.session";
 
-export const HOME: Record<Role, string> = { admin: "/dashboard", reviewer: "/dashboard", checker: "/", msl: "/learn", hcp: "/learn" };
+export const HOME: Record<string, string> = { admin: "/dashboard", reviewer: "/dashboard", checker: "/", msl: "/learn", hcp: "/learn" };
+
+/** Where a person lands: built-in mapping first, then learnerhood, then staff. */
+export function homeFor(person: Person): string {
+  if (HOME[person.role]) return HOME[person.role];
+  if (person.learner ?? (person.role === "msl" || person.role === "hcp")) return "/learn";
+  return "/dashboard";
+}
+
+export type SessionGate = { anyLearner?: boolean; anyStaff?: boolean; capability?: string };
+
+/** Whether the gate admits this person: named roles, any learner, any staffer, or a capability. */
+export function admits(person: Person, allowed: string[] | undefined, gate: SessionGate = {}): boolean {
+  if (!allowed) return true;
+  if (allowed.includes(person.role)) return true;
+  const learner = person.learner ?? (person.role === "msl" || person.role === "hcp");
+  if (gate.anyLearner && learner) return true;
+  if (gate.anyStaff && (person.capabilities ?? []).length > 0) return true;
+  if (gate.capability && (person.capabilities ?? []).includes(gate.capability)) return true;
+  return false;
+}
 
 const listeners = new Set<() => void>();
 let cache: { raw: string | null; person: Person | null } = { raw: null, person: null };
@@ -44,20 +64,21 @@ export function writeSession(person: Person | null) {
   listeners.forEach((listener) => listener());
 }
 
-/** The signed-in person, sending anyone without a session (or with the wrong role) somewhere useful. */
-export function useSession(allowed?: Role[]) {
+/** The signed-in person, sending anyone without a session (or without access) somewhere useful. */
+export function useSession(allowed?: string[], gate: SessionGate = {}) {
   const router = useRouter();
   const person = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+  const { anyLearner, anyStaff, capability } = gate;
   const roles = allowed?.join(",");
-  const permitted = person !== null && (!roles || roles.split(",").includes(person.role));
+  const permitted = person !== null && admits(person, allowed, { anyLearner, anyStaff, capability });
 
   useEffect(() => {
     // Read the store here rather than trusting `person`: on the hydration pass it is
     // still the server snapshot (null), which would bounce a signed-in visitor to login.
     const current = getSnapshot();
     if (!current) router.replace("/");
-    else if (roles && !roles.split(",").includes(current.role)) router.replace(HOME[current.role]);
-  }, [person, roles, router]);
+    else if (roles && !admits(current, roles.split(","), { anyLearner, anyStaff, capability })) router.replace(homeFor(current));
+  }, [person, roles, router, anyLearner, anyStaff, capability]);
 
   return permitted ? person : null;
 }

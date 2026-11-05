@@ -64,7 +64,7 @@ const CONTEXT: Record<string, string> = {
 
 export default function CourseWorkspace() {
   const { runId } = useParams<{ runId: string }>();
-  const user = useSession(["admin", "reviewer"]);
+  const user = useSession(["admin", "reviewer"], { anyStaff: true });
   const [content, setContent] = useState<CourseContent | null>(null);
   const [review, setReview] = useState<CourseReview | null>(null);
   const [learner, setLearner] = useState<Learner>("hcp");

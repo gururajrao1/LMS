@@ -23,7 +23,7 @@ type LearnerDashboard = {
 /** One learner's whole picture, for the training team. */
 export default function LearnerDashboardPage() {
   const { userId } = useParams<{ userId: string }>();
-  const user = useSession(["admin", "reviewer"]);
+  const user = useSession(["admin", "reviewer"], { anyStaff: true });
   const [dashboard, setDashboard] = useState<LearnerDashboard | null>(null);
   const [error, setError] = useState("");
 

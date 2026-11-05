@@ -55,7 +55,7 @@ function blocks(questions: AskedQuestion[], groups: QuestionGroup[]): Block[] {
 
 export default function AssessmentPage() {
   const { runId, kind } = useParams<{ runId: string; kind: "baseline" | "final" }>();
-  const user = useSession(["msl", "hcp"]);
+  const user = useSession(["msl", "hcp"], { anyLearner: true });
   const [assessment, setAssessment] = useState<Assessment | null>(null);
   const [answers, setAnswers] = useState<Record<string, number>>({});
   const [result, setResult] = useState<AssessmentResult | null>(null);

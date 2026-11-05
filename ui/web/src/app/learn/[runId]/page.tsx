@@ -120,7 +120,7 @@ function PracticeMissed({ runId, userId }: { runId: string; userId: string }) {
 
 export default function CoursePlayer() {
   const { runId } = useParams<{ runId: string }>();
-  const user = useSession(["msl", "hcp"]);
+  const user = useSession(["msl", "hcp"], { anyLearner: true });
   const [course, setCourse] = useState<LearnerCourse | null>(null);
   const [error, setError] = useState("");
   const [video, setVideo] = useState(0);

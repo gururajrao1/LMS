@@ -265,6 +265,7 @@ class PublishRequest(BaseModel):
     assignees: list[str]
     message: str = ""
     frequency: str = "once"
+    certificate_template: str = "classic"
 
 
 class ModuleRequest(BaseModel):
@@ -312,12 +313,61 @@ def _guard(action):
 
 @app.get("/api/people")
 def people():
-    return learning.roster()
+    return [learning.public_person(entry) for entry in learning.roster()]
+
+
+class RoleRequest(BaseModel):
+    by_user_id: str
+    label: str
+    description: str = ""
+    capabilities: list[str] = []
+    learner: bool = False
+    track: str = "hcp"
+
+
+class AssignRoleRequest(BaseModel):
+    by_user_id: str
+    role_id: str
+
+
+@app.get("/api/capabilities")
+def capabilities():
+    """The permission catalog custom roles are built from."""
+    return [
+        {"id": capability_id, "label": label, "description": description}
+        for capability_id, label, description in learning.CAPABILITIES
+    ]
+
+
+@app.get("/api/roles")
+def roles():
+    """Every assignable role: built-ins plus what the training team built."""
+    return learning.roles()
+
+
+@app.post("/api/roles", status_code=201)
+def create_role(request: RoleRequest):
+    return _guard(lambda: learning.create_role(
+        request.by_user_id, request.label, request.description,
+        request.capabilities, request.learner, request.track,
+    ))
+
+
+@app.post("/api/people/{user_id}/role")
+def assign_person_role(user_id: str, request: AssignRoleRequest):
+    return _guard(lambda: learning.assign_role(
+        request.by_user_id, Path(user_id).name, request.role_id))
+
+
+@app.delete("/api/roles/{role_id}")
+def delete_role(role_id: str, by_user_id: str = ""):
+    return _guard(lambda: learning.delete_role(by_user_id, Path(role_id).name))
 
 
 @app.post("/api/session")
 def session(request: SessionRequest):
-    return _guard(lambda: learning.sign_in(request.user_id, request.email, request.role))
+    return _guard(lambda: learning.public_person(
+        learning.sign_in(request.user_id, request.email, request.role)))
 
 
 @app.get("/api/runs/{run_id}/review")
@@ -390,7 +440,17 @@ def publish(run_id: str, request: PublishRequest):
     return _guard(lambda: learning.publish_course(
         run_id, request.user_id, request.starts_on, request.due_on, request.assignees, request.message,
         frequency=request.frequency,
+        certificate_template=request.certificate_template,
     ))
+
+
+@app.get("/api/certificate-templates")
+def certificate_templates():
+    """The three certificate designs the training team can pick at publish."""
+    return [
+        {"id": template_id, **spec}
+        for template_id, spec in learning.CERTIFICATE_TEMPLATES.items()
+    ]
 
 
 @app.get("/api/runs/{run_id}/cohort")
@@ -615,7 +675,7 @@ def checks(run_id: str):
 @app.post("/api/runs/{run_id}/checks")
 async def run_checks(run_id: str, request: SessionRequest):
     """Run the checks, then raise the blocking findings into the review queue."""
-    _guard(lambda: learning._author(request.user_id or "", role="admin"))
+    _guard(lambda: learning.require_capability(request.user_id or "", "course.publish"))
     manifest = content_path("content", Path(run_id).name, "manifest.json")
     if not manifest.exists():
         raise HTTPException(404, "Content not found")
@@ -632,7 +692,7 @@ class PromoteRequest(BaseModel):
 
 @app.post("/api/runs/{run_id}/checks/promote", status_code=201)
 def promote_findings(run_id: str, request: PromoteRequest):
-    _guard(lambda: learning._author(request.user_id, role="admin"))
+    _guard(lambda: learning.require_capability(request.user_id, "course.publish"))
     raised = _guard(lambda: judge.promote(run_id, finding_ids=request.finding_ids))
     return {"raised": len(raised), **_checks_payload(run_id, judge.stored_report(run_id))}
 
@@ -691,7 +751,7 @@ def course_completeness(run_id: str):
 
 @app.post("/api/runs/{run_id}/completeness/promote", status_code=201)
 def promote_gaps(run_id: str, request: PromoteRequest):
-    _guard(lambda: learning._author(request.user_id, role="admin"))
+    _guard(lambda: learning.require_capability(request.user_id, "course.publish"))
     raised = _guard(lambda: completeness.promote(run_id, finding_ids=request.finding_ids))
     return {"raised": len(raised), **_completeness_payload(run_id)}
 
@@ -1105,7 +1165,8 @@ def reset_learner_attempts(user_id: str, run_id: str, by: str = ""):
     """An admin clears a learner's assessment answers so they start over."""
     person = learning.person(by) if by else None
     return _guard(lambda: learning.reset_attempts(
-        Path(run_id).name, Path(user_id).name, (person or {}).get("role", "")))
+        Path(run_id).name, Path(user_id).name, (person or {}).get("role", ""),
+        actor_id=Path(by).name if by else ""))
 
 
 @app.get("/api/learn/{user_id}/{run_id}/reinforce")

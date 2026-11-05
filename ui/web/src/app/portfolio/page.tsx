@@ -14,7 +14,7 @@ const money = (value: number | null | undefined) =>
   value === null || value === undefined ? "–" : `$${value.toLocaleString("en-US")}`;
 
 export default function PortfolioPage() {
-  const user = useSession(["admin", "reviewer"]);
+  const user = useSession(["admin", "reviewer"], { anyStaff: true });
   const [data, setData] = useState<Portfolio | null>(null);
   const [error, setError] = useState("");
 

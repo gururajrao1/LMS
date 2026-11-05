@@ -157,7 +157,7 @@ def test_a_comment_raised_under_the_old_identifier_is_not_raised_again(run):
 def test_the_checker_can_raise_comments_but_never_sign_off(run):
     _report(run)
     judge.promote(run)
-    with pytest.raises(ValueError, match="reviewer"):
+    with pytest.raises(ValueError, match="Sign off reviews"):
         learning.add_signoff(run, learning.CHECKER["id"], "approved")
 
 
@@ -668,7 +668,7 @@ def test_only_an_admin_repoints(run):
     judge.promote(run)
     comment = next(entry for entry in learning.course(run)["comments"]
                    if entry["origin"] == "automated_check")
-    with pytest.raises(ValueError, match="Only an admin"):
+    with pytest.raises(ValueError, match="Publish courses"):
         judge.repoint_comment(run, comment["id"], "anil-shekhar")
 
 
