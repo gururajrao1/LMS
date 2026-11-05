@@ -49,6 +49,14 @@ def test_levels_derive_from_shared_tiers(tmp_path, monkeypatch):
         assert item["history"] == []
 
 
+def test_alerts_carry_run_id_for_learner_deep_links(tmp_path, monkeypatch):
+    """Every noncompliance flag names its course so the trainee UI can link it."""
+    run_id = _published(tmp_path, monkeypatch)
+    alerts = learning.noncompliance(run_id)
+    assert len(alerts) == 2
+    assert all(alert["run_id"] == run_id for alert in alerts)
+
+
 def test_check_stamps_since_and_records_level_changes(tmp_path, monkeypatch):
     run_id = _published(tmp_path, monkeypatch)
     first = learning.check_escalations(run_id, "priya-raman")

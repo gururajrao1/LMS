@@ -2,12 +2,45 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Award, BookOpenCheck, CalendarDays, GraduationCap, Inbox } from "lucide-react";
+import { ArrowRight, Award, Bell, BookOpenCheck, CalendarDays, CircleAlert, GraduationCap, Inbox, TriangleAlert } from "lucide-react";
 import { AppShell, Loading, Stat } from "@/components/app-shell";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Assignment, AssignmentState, getJson, LearnerHome, LearnerSummary } from "@/lib/api";
+
+type DashboardAlert = { user_id: string; name: string; run_id: string; severity: "danger" | "warning"; tier: number; message: string };
+
+type Nudge = { key: string; title: string; message: string; href: string; urgent: boolean };
+
+/** Server flags plus due-soon courses, each with a deep link to the fix. */
+function buildNudges(courses: Assignment[], alerts: DashboardAlert[]): Nudge[] {
+  const byRun: Record<string, Assignment> = Object.fromEntries(courses.map((course) => [course.run_id, course]));
+  const titleOf = (run_id: string) => byRun[run_id]?.title ?? byRun[run_id]?.drug.brand ?? "Training";
+  const nudges: Nudge[] = alerts.map((alert) => ({
+    key: `${alert.run_id}-${alert.message}`,
+    title: titleOf(alert.run_id),
+    message: alert.message,
+    href: alert.message.startsWith("Overdue")
+      ? `/learn/${alert.run_id}`
+      : alert.message.includes("below the required score")
+        ? `/learn/${alert.run_id}/assessment/final`
+        : `/learn/${alert.run_id}/assessment/baseline`,
+    urgent: alert.severity === "danger",
+  }));
+  for (const course of courses) {
+    const left = course.days_remaining;
+    if (course.state === "due" && left !== null && left >= 0 && left <= 7 && !nudges.some((nudge) => nudge.href === `/learn/${course.run_id}`))
+      nudges.push({
+        key: `due-${course.run_id}`,
+        title: course.title ?? course.drug.brand,
+        message: left === 0 ? "Due today — finish it now." : `Due in ${left} ${left === 1 ? "day" : "days"} — still time to stay on plan.`,
+        href: `/learn/${course.run_id}`,
+        urgent: left <= 2,
+      });
+  }
+  return nudges;
+}
 import { RAG_BADGE, RAG_DOT } from "@/lib/rag";
 import { useSession } from "@/lib/session";
 
@@ -135,11 +168,13 @@ function AssignmentCard({ course }: { course: Assignment }) {
 export default function LearnerHomePage() {
   const user = useSession(["msl", "hcp"], { anyLearner: true });
   const [home, setHome] = useState<LearnerHome | null>(null);
+  const [alerts, setAlerts] = useState<DashboardAlert[]>([]);
   const [error, setError] = useState("");
 
   useEffect(() => {
     if (!user) return;
     getJson<LearnerHome>(`/api/learn/${user.id}`).then(setHome).catch(() => setError("Could not load your training."));
+    getJson<{ alerts: DashboardAlert[] }>(`/api/learners/${user.id}/dashboard`).then((dashboard) => setAlerts(dashboard.alerts)).catch(() => {});
   }, [user]);
 
   if (!user) return <AppShell><Loading /></AppShell>;
@@ -150,6 +185,7 @@ export default function LearnerHomePage() {
   const next = home.courses
     .filter((course) => course.state === "due" || course.state === "overdue")
     .sort((a, b) => (a.days_remaining ?? 0) - (b.days_remaining ?? 0))[0];
+  const nudges = buildNudges(home.courses, alerts);
 
   return (
     <AppShell user={user}>
@@ -162,6 +198,27 @@ export default function LearnerHomePage() {
             : "Nothing is outstanding. Everything assigned to you is complete or not yet open."}
         </p>
       </div>
+
+      {nudges.length > 0 && (
+        <Card className="mt-8 border-warn-200 bg-warn-50">
+          <CardContent className="p-5">
+            <p className="flex items-center gap-2 font-semibold"><Bell size={16} className="text-warn-700" /> Needs your attention ({nudges.length})</p>
+            <ul className="mt-3 space-y-2">
+              {nudges.map((nudge) => (
+                <li key={nudge.key}>
+                  <Link href={nudge.href} className="flex items-center gap-2.5 rounded-lg bg-white p-3 shadow-sm transition-shadow hover:shadow-md">
+                    {nudge.urgent
+                      ? <TriangleAlert size={16} className="shrink-0 text-warn-700" />
+                      : <CircleAlert size={16} className="shrink-0 text-brand-700" />}
+                    <span className="min-w-0 text-sm"><b>{nudge.title}</b> <span className="text-stone-600">— {nudge.message}</span></span>
+                    <ArrowRight size={15} className="ml-auto shrink-0 text-brand-700" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </CardContent>
+        </Card>
+      )}
 
       <section className="mt-8 grid gap-4 sm:grid-cols-3">
         <Stat icon={BookOpenCheck} value={home.courses.length} label="Assigned to you" tone="brand" />

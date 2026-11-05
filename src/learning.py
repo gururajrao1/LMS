@@ -868,13 +868,13 @@ def noncompliance(run_id: str) -> list[dict]:
         days = days_until(publication.get("due_on"))
         if assignment_state(publication, learner) == "overdue":
             tier = 3 if (days is not None and days <= -14) else 2 if (days is not None and days <= -7) else 1
-            alerts.append({**who, "severity": "danger", "tier": tier,
+            alerts.append({**who, "run_id": run_id, "severity": "danger", "tier": tier,
                            "message": f"Overdue with {learner['modules_complete']}/{learner['modules_total']} modules done"})
         if learner.get("final_score") is not None and not learner["passed"]:
-            alerts.append({**who, "severity": "danger", "tier": 2,
+            alerts.append({**who, "run_id": run_id, "severity": "danger", "tier": 2,
                            "message": f"Final {learner['final_score']}% is below the required score"})
         if learner["stage"] != "not_started" and learner["baseline_score"] is None:
-            alerts.append({**who, "severity": "warning", "tier": 1,
+            alerts.append({**who, "run_id": run_id, "severity": "warning", "tier": 1,
                            "message": "Started without a recorded baseline"})
     order = {"danger": 0, "warning": 1}
     return sorted(alerts, key=lambda alert: (order[alert["severity"]], alert["tier"]))

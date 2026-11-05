@@ -662,6 +662,69 @@ export function sendJson<T>(path: string, body: unknown, method: "POST" | "PATCH
   return request<T>(path, { method, headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
 }
 
+/**
+ * Offline-lite outbox for progress writes (module completion, feedback).
+ *
+ * Graded assessment submits never queue: grading happens server-side, so an
+ * answer held on the device is an ungraded promise, not a score. Progress and
+ * feedback are safe to hold and replay — the server treats them as
+ * last-write-wins state, and every entry carries its own timestamp.
+ *
+ * On a network failure the write is stashed in localStorage and a
+ * { queued: true } error is thrown so the caller can say "saved offline".
+ * flushQueue() replays the outbox in order; the learn pages call it on load
+ * and whenever the browser reports it is back online.
+ */
+export type QueuedWrite = { path: string; body: unknown; method: "POST" | "PATCH"; at: string };
+
+const OUTBOX_KEY = "pl-outbox";
+
+function readOutbox(): QueuedWrite[] {
+  if (typeof window === "undefined") return [];
+  try {
+    const raw = window.localStorage.getItem(OUTBOX_KEY);
+    const parsed: unknown = raw ? JSON.parse(raw) : [];
+    return Array.isArray(parsed) ? (parsed as QueuedWrite[]) : [];
+  } catch { return []; }
+}
+
+export function outboxDepth(): number {
+  return readOutbox().length;
+}
+
+export async function flushQueue(): Promise<{ sent: number; failed: number }> {
+  const pending = readOutbox();
+  if (typeof window === "undefined" || !pending.length) return { sent: 0, failed: 0 };
+  let sent = 0;
+  const remaining: QueuedWrite[] = [];
+  for (const write of pending) {
+    try {
+      await sendJson(write.path, write.body, write.method);
+      sent += 1;
+    } catch { remaining.push(write); }
+  }
+  try { window.localStorage.setItem(OUTBOX_KEY, JSON.stringify(remaining)); } catch { /* storage full: keep going */ }
+  return { sent, failed: remaining.length };
+}
+
+if (typeof window !== "undefined") {
+  window.addEventListener("online", () => { void flushQueue(); });
+}
+
+export function sendJsonQueued<T>(path: string, body: unknown, method: "POST" | "PATCH" = "POST"): Promise<T> {
+  return sendJson<T>(path, body, method).catch((reason: unknown) => {
+    if (typeof window !== "undefined" && reason instanceof TypeError) {
+      const pending = readOutbox();
+      pending.push({ path, body, method, at: new Date().toISOString() });
+      try { window.localStorage.setItem(OUTBOX_KEY, JSON.stringify(pending)); } catch { /* storage full: fall through */ }
+      const queued = new Error("Saved offline — will sync when you are back online.");
+      (queued as Error & { queued: boolean }).queued = true;
+      throw queued;
+    }
+    throw reason;
+  });
+}
+
 export function sendForm<T>(path: string, body: FormData): Promise<T> {
   return request<T>(path, { method: "POST", body });
 }
