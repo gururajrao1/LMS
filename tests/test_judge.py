@@ -749,6 +749,31 @@ def test_section_number_links_a_short_cite_to_the_matching_source(tmp_path, monk
     assert judge._trace({"source_id": "DM-X", "locator": "Study results"}, dossier) is None
 
 
+def test_doi_slot_traces_venue_variants_of_the_same_article(tmp_path, monkeypatch):
+    """A DOI names one document across title wordings: the same paper cited as
+    "... | NEJM" or by its bare title still traces; a different DOI does not."""
+    monkeypatch.setattr(agent, "DATA", tmp_path)
+    base = tmp_path / "content" / "doi-run" / "master"
+    base.mkdir(parents=True)
+    (base / "dossier.json").write_text(json.dumps({"sections": [{
+        "id": "s", "title": "Efficacy", "summary": "",
+        "claims": [{"text": "PFS improved.", "evidence_type": "publication",
+                    "supporting_text": "PFS improved.",
+                    "citations": [{"title": "Palbociclib and Letrozole in Advanced Breast Cancer",
+                                   "locator": "Results",
+                                   "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1607303"}]}],
+    }]}))
+    dossier = judge._dossier_citations("doi-run")
+    assert judge._trace(
+        {"title": "Palbociclib and Letrozole in Advanced Breast Cancer | NEJM",
+         "locator": "Abstract",
+         "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1607303"}, dossier) is not None
+    assert judge._trace(
+        {"title": "Palbociclib and Letrozole in Advanced Breast Cancer | NEJM",
+         "locator": "Abstract",
+         "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1607304"}, dossier) is None
+
+
 def test_section_lists_trace_only_when_every_section_is_collected(tmp_path, monkeypatch):
     """"Sections 2.1 and 5.1" traces when both are collected; any gap blocks it."""
     monkeypatch.setattr(agent, "DATA", tmp_path)

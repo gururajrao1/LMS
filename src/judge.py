@@ -31,7 +31,7 @@ from src.agent import (
     _slug,
     content_path,
 )
-from src.evidence_fetch import fetch_evidence, read_registry
+from src.evidence_fetch import doi_of, fetch_evidence, read_registry
 
 # Fetch-on-verify is opt-in: when set, a citation whose source is not held is
 # fetched live and checked the same way. Default off keeps deterministic
@@ -457,6 +457,11 @@ def _citation_slots(citation):
     source_id = _norm(citation.get("source_id", ""))
     if numbered and source_id:
         slots.extend(("§src:" + source_id, number) for number in numbered)
+    # A DOI names one document across publishers, mirrors, and title wordings:
+    # the same article cited as "... | NEJM" or by its bare title still traces.
+    doi = doi_of(citation.get("url", ""))
+    if doi:
+        slots.append(("§doi:" + doi, ""))
     return slots
 
 
@@ -472,6 +477,11 @@ def _trace(citation, dossier):
         entries = [dossier.get(("§src:" + source_id, number)) for number in numbered]
         if all(entries):
             return entries[0]
+    doi = doi_of(citation.get("url", ""))
+    if doi:
+        match = dossier.get(("§doi:" + doi, ""))
+        if match:
+            return match
     return None
 
 
