@@ -884,7 +884,7 @@ def _seed_sections(context: dict):
             "title": title,
             "summary": "Prepared from the bundled Ibrance evidence for the no-key demo run.",
             "claims": claims,
-            "gaps": [] if claims else ["Not covered by the bundled no-key evidence."],
+            "gaps": [] if claims else [f"Not covered by the bundled no-key evidence ({path.stem}: {title})."],
             "warnings": [],
         })
     return sections

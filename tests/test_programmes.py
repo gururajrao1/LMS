@@ -92,6 +92,21 @@ def test_archiving_is_attributed_reversible_and_changes_nothing_else(client):
     assert "archived" not in learning.course(RUN_ID)
 
 
+def test_archived_programmes_leave_the_running_lists(client):
+    """Archiving files a programme away: one Ibrance in review means one Ibrance listed."""
+    _publish("2026-09-01", "2026-09-30")
+    assert RUN_ID in {entry.get("run_id") for entry in client.get("/api/courses").json()}
+    assert RUN_ID in {record["run_id"] for record in learning.published_courses()}
+
+    client.post(f"/api/runs/{RUN_ID}/archive", json={"user_id": ADMIN, "note": "Cycle closed."})
+    assert RUN_ID not in {entry.get("run_id") for entry in client.get("/api/courses").json()}
+    assert RUN_ID not in {record["run_id"] for record in learning.published_courses()}
+
+    client.post(f"/api/runs/{RUN_ID}/restore", json={"user_id": ADMIN})
+    assert RUN_ID in {entry.get("run_id") for entry in client.get("/api/courses").json()}
+    assert RUN_ID in {record["run_id"] for record in learning.published_courses()}
+
+
 def test_only_an_admin_can_archive(client):
     _publish("2026-09-01", "2026-09-30")
 

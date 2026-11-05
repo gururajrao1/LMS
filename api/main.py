@@ -61,6 +61,8 @@ def courses():
                 "generated_at": manifest.get("generated_at", run_id),
             }
             record = learning.course(run_id)
+            if record.get("archived"):
+                continue
             candidate.update({
                 "review_status": record["status"],
                 "version": record["version"],

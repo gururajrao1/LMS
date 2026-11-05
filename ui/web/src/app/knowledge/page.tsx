@@ -141,11 +141,11 @@ export default function KnowledgeHub() {
                 <div className="grid gap-4 md:grid-cols-2">
                   {knowledge.gaps.length > 0 && (
                     <Card><CardHeader><CardTitle className="flex items-center gap-2 text-base"><CircleAlert size={16} className="text-warn-600" /> Recorded gaps</CardTitle></CardHeader>
-                      <CardContent><ul className="space-y-2 text-sm leading-6 text-stone-600">{knowledge.gaps.map((gap) => <li key={gap}>• {gap}</li>)}</ul></CardContent></Card>
+                      <CardContent><ul className="space-y-2 text-sm leading-6 text-stone-600">{knowledge.gaps.map((gap, index) => <li key={`${index}-${gap}`}>• {gap}</li>)}</ul></CardContent></Card>
                   )}
                   {knowledge.warnings.length > 0 && (
                     <Card><CardHeader><CardTitle className="flex items-center gap-2 text-base"><TriangleAlert size={16} className="text-warn-600" /> Warnings</CardTitle></CardHeader>
-                      <CardContent><ul className="space-y-2 text-sm leading-6 text-stone-600">{knowledge.warnings.map((warning) => <li key={warning}>• {warning}</li>)}</ul></CardContent></Card>
+                      <CardContent><ul className="space-y-2 text-sm leading-6 text-stone-600">{knowledge.warnings.map((warning, index) => <li key={`${index}-${warning}`}>• {warning}</li>)}</ul></CardContent></Card>
                   )}
                 </div>
               )}

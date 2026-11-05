@@ -354,20 +354,75 @@ def _passage(raw: str, spans: list[dict], window: int = 420) -> str:
     return ""
 
 
-def _dossier_citations(run_id: str) -> dict[tuple[str, str], dict]:
-    """Every dossier citation, keyed by title and by locator, for traceability."""
+_SECTION_NUMBER = re.compile(r"sections?\s+(\d+(?:\.\d+)*)", re.I)
+
+
+_SECTION_ANCHOR = re.compile(r"sections?\s+", re.I)
+_SECTION_CHUNKS = re.compile(r",|\band\b", re.I)
+_LEADING_NUMBER = re.compile(r"^(\d+(?:\.\d+)*)")
+
+
+def _section_numbers(locator):
+    """Every numbered section a locator names, in order.
+
+    A citation naming several sections ("Sections 2.1 and 5.1") only traces
+    when each one is collected: a question leaning on four sections is not
+    evidenced by one of them. Table numbers are not sections and are skipped.
+    """
+    anchor = _SECTION_ANCHOR.search(locator or "")
+    if not anchor:
+        return []
+    numbers = []
+    for chunk in _SECTION_CHUNKS.split(anchor.string[anchor.end():]):
+        leading = _LEADING_NUMBER.match(chunk.strip())
+        if leading:
+            numbers.append(leading.group(1))
+    return numbers
+
+
+def _dossier_citations(run_id):
+    """Every dossier citation, keyed by title and by locator, for traceability.
+
+    Also indexed by source and section number: a quiz citing "Section 5.1" of
+    a collected source traces to the dossier entry for "Section 5.1,
+    Neutropenia" of that same source. The source must match exactly.
+    """
     path = content_path("content", Path(run_id).name, "master", "dossier.json")
     if not path.exists():
         return {}
-    index: dict[tuple[str, str], dict] = {}
+    index = {}
     for section in _json(path).get("sections", []):
         for claim in section.get("claims", []):
             for citation in claim.get("citations", []):
+                entry = {**citation, "claim": claim["text"], "section": section["title"]}
                 key = (_norm(citation.get("title", "")), _norm(citation.get("locator", "")))
-                index.setdefault(key, {**citation, "claim": claim["text"], "section": section["title"]})
+                index.setdefault(key, entry)
+                # A title-less citation must never match the whole dossier: the loose
+                # key is only indexed when a title exists to anchor it.
                 loose = (_norm(citation.get("title", "")), "")
-                index.setdefault(loose, {**citation, "claim": claim["text"], "section": section["title"]})
+                if loose[0]:
+                    index.setdefault(loose, entry)
+                numbered = _section_numbers(citation.get("locator", ""))
+                source_id = _norm(citation.get("source_id", ""))
+                if numbered and source_id:
+                    for number in numbered:
+                        index.setdefault(("§src:" + source_id, number), entry)
     return index
+
+
+def _trace(citation, dossier):
+    """The collected claim behind a citation, if the dossier holds it."""
+    key = (_norm(citation.get("title", "")), _norm(citation.get("locator", "")))
+    match = dossier.get(key) or dossier.get((key[0], ""))
+    if match:
+        return match
+    numbered = _section_numbers(citation.get("locator", ""))
+    source_id = _norm(citation.get("source_id", ""))
+    if numbered and source_id:
+        entries = [dossier.get(("§src:" + source_id, number)) for number in numbered]
+        if all(entries):
+            return entries[0]
+    return None
 
 
 def quote_match(supporting: str, corpus_text: str) -> float:
@@ -435,8 +490,7 @@ def deterministic_findings(run_id: str, track: str, drug: str) -> tuple[list[Fin
 
         for citation in citations:
             stats["citations"] += 1
-            key = (_norm(citation.get("title", "")), _norm(citation.get("locator", "")))
-            match = dossier.get(key) or dossier.get((key[0], ""))
+            match = _trace(citation, dossier)
             if not match:
                 findings.append(Finding(
                     unit["id"], unit["asset"], unit["reference"], "untraceable", "blocking",
@@ -473,8 +527,7 @@ def deterministic_findings(run_id: str, track: str, drug: str) -> tuple[list[Fin
 def _unit_evidence(unit: dict, dossier: dict) -> list[dict]:
     evidence = []
     for citation in unit["citations"]:
-        key = (_norm(citation.get("title", "")), _norm(citation.get("locator", "")))
-        match = dossier.get(key) or dossier.get((key[0], ""))
+        match = _trace(citation, dossier)
         if match and match.get("supporting_text"):
             evidence.append(match)
     return evidence

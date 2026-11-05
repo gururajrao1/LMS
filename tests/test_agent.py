@@ -8,6 +8,16 @@ from api.main import content
 from src import agent
 
 
+def test_seed_sections_name_each_gap_uniquely():
+    """Empty sections must not share one gap string: duplicates collapse React
+    keys on the Knowledge page and read as one repeated warning."""
+    sections = agent._seed_sections({"claims": []})
+    gaps = [gap for section in sections for gap in section["gaps"]]
+    assert len(gaps) > 1
+    assert len(set(gaps)) == len(gaps)
+    assert all("bundled no-key evidence" in gap for gap in gaps)
+
+
 def test_local_data_uses_the_standard_run_path(tmp_path, monkeypatch):
     monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
     dataset = agent.content_path("library", "ibrance")

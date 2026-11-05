@@ -832,9 +832,12 @@ def publish_course(
 
 
 def published_courses() -> list[dict]:
+    """Live programmes only: archiving files a programme out of the running list."""
     root = _platform("courses")
     records = [_json(path) for path in sorted(root.glob("*.json"))] if root.exists() else []
-    return [record for record in records if record["status"] == "published" and record.get("publication")]
+    return [record for record in records
+            if record["status"] == "published" and record.get("publication")
+            and not record.get("archived")]
 
 
 # Where one learner stands with one assignment. Derived like the programme

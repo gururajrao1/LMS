@@ -730,3 +730,36 @@ def test_a_repoint_clears_the_check_that_reopened_the_comment(run):
     assert closed["closed_in_version"] == record["version"]
     assert "unverified" not in closed
     assert record["versions"][-1]["unverified"] == []
+
+
+def test_section_number_links_a_short_cite_to_the_matching_source(tmp_path, monkeypatch):
+    """A short section cite traces to the spelled-out dossier entry — same source only."""
+    monkeypatch.setattr(agent, "DATA", tmp_path)
+    base = tmp_path / "content" / "sec-run" / "master"
+    base.mkdir(parents=True)
+    (base / "dossier.json").write_text(json.dumps({"sections": [{
+        "id": "s", "title": "Safety", "summary": "",
+        "claims": [{"text": "Monitor counts.", "evidence_type": "label",
+                    "citations": [{"source_id": "DM-X", "locator": "Section 5.1, Neutropenia"}]}],
+    }]}))
+    dossier = judge._dossier_citations("sec-run")
+    assert judge._trace({"source_id": "DM-X", "locator": "Section 5.1"}, dossier) is not None
+    assert judge._trace({"source_id": "DM-OTHER", "locator": "Section 5.1"}, dossier) is None
+    assert judge._trace({"locator": "Section 5.1"}, dossier) is None
+    assert judge._trace({"source_id": "DM-X", "locator": "Study results"}, dossier) is None
+
+
+def test_section_lists_trace_only_when_every_section_is_collected(tmp_path, monkeypatch):
+    """"Sections 2.1 and 5.1" traces when both are collected; any gap blocks it."""
+    monkeypatch.setattr(agent, "DATA", tmp_path)
+    base = tmp_path / "content" / "sec-run" / "master"
+    base.mkdir(parents=True)
+    (base / "dossier.json").write_text(json.dumps({"sections": [{
+        "id": "s", "title": "Safety", "summary": "",
+        "claims": [{"text": "Watch counts.", "evidence_type": "label",
+                    "citations": [{"source_id": "DM-X", "locator": "Section 5.1, Neutropenia"}]}],
+    }]}))
+    dossier = judge._dossier_citations("sec-run")
+    assert judge._trace({"source_id": "DM-X", "locator": "Sections 5.1 and 5.1"}, dossier) is not None
+    assert judge._trace({"source_id": "DM-X", "locator": "Sections 5.1 and 5.2"}, dossier) is None
+    assert judge._trace({"source_id": "DM-X", "locator": "Section 5, Table 10"}, dossier) is None
