@@ -1,0 +1,390 @@
+{
+  "run_id": "ibrance-20261104T152711588329Z",
+  "model_status": {
+    "": "skipped: deterministic checks only"
+  },
+  "stats": {
+    "units": 76,
+    "citations": 85,
+    "traceable": 85,
+    "checkable": 49,
+    "verified": 47,
+    "partial": 2,
+    "flagged_units": 22,
+    "coverage_percent": 58,
+    "verified_percent": 96
+  },
+  "findings": [
+    {
+      "unit_id": "hcp:deck-1",
+      "asset": "deck",
+      "reference": "Slide 1: Ibrance in clinical practice",
+      "check": "uncited",
+      "severity": "major",
+      "message": "This unit makes a factual statement with no citation attached.",
+      "asset_text": "Ibrance in clinical practice Recognize the labeled treatment setting Apply the 28-day schedule Use label-based monitoring and safety actions",
+      "source_text": "",
+      "suggested_rewrite": "",
+      "citations": []
+    },
+    {
+      "unit_id": "hcp:deck-5",
+      "asset": "deck",
+      "reference": "Slide 5: PALOMA-2 improved PFS; final OS was not statistically significant",
+      "check": "imprecise_effect",
+      "severity": "major",
+      "message": "An efficacy effect (\u201cMedian PFS\u201d) is stated without a confidence interval, p-value or range. This audience reads the estimate and the uncertainty together; the figure alone reads as more certain than the evidence is.",
+      "asset_text": "PALOMA-2 improved PFS; final OS was not statistically significant Median PFS: 24.8 versus 14.5 months Use the result in the population and regimen studied The prespecified final OS analysis was not statistically significant",
+      "source_text": "",
+      "suggested_rewrite": "",
+      "citations": [
+        {
+          "source_id": "DM-IBRANCE-2026",
+          "locator": "Section 14, Table 10"
+        },
+        {
+          "source_id": "CT-PALOMA2",
+          "locator": "Study results"
+        }
+      ]
+    },
+    {
+      "unit_id": "hcp:quiz-a2-b1",
+      "asset": "quiz",
+      "reference": "Question a2-b1",
+      "check": "promotional_only",
+      "severity": "major",
+      "message": "Every citation here is manufacturer-hosted or an aggregator (labeling.pfizer.com). A primary regulatory or peer-reviewed source should carry this claim.",
+      "asset_text": "Selecting an IBRANCE dose for a patient with hepatic impairment \u2014 No dose adjustment is required for patients with Child-Pugh class A or B The label requires no dose adjustment for mild (Child-Pugh A) or moderate (Child-Pugh B) hepatic impairment, but reduces the dose to 75 mg once daily (same 21/7 schedule) for severe (Child-Pugh C) hepatic impairment.",
+      "source_text": "",
+      "suggested_rewrite": "",
+      "citations": [
+        {
+          "title": "full prescribing information for IBRANCE - Pfizer labeling",
+          "url": "https://labeling.pfizer.com/showlabeling.aspx?id=2191",
+          "locator": "Section 2.2 / 8.6, Hepatic Impairment"
+        }
+      ]
+    },
+    {
+      "unit_id": "hcp:quiz-a2-b2",
+      "asset": "quiz",
+      "reference": "Question a2-b2",
+      "check": "promotional_only",
+      "severity": "major",
+      "message": "Every citation here is manufacturer-hosted or an aggregator (labeling.pfizer.com). A primary regulatory or peer-reviewed source should carry this claim.",
+      "asset_text": "Selecting an IBRANCE dose for a patient with hepatic impairment \u2014 hepatic impairment; for patients with Child-Pugh class C hepatic impairment, reduce the dose to 75 mg The label requires no dose adjustment for mild (Child-Pugh A) or moderate (Child-Pugh B) hepatic impairment, but reduces the dose to 75 mg once daily (same 21/7 schedule) for severe (Child-Pugh C) hepatic impairment.",
+      "source_text": "",
+      "suggested_rewrite": "",
+      "citations": [
+        {
+          "title": "full prescribing information for IBRANCE - Pfizer labeling",
+          "url": "https://labeling.pfizer.com/showlabeling.aspx?id=2191",
+          "locator": "Section 2.2 / 8.6, Hepatic Impairment"
+        }
+      ]
+    },
+    {
+      "unit_id": "hcp:quiz-f1-paloma2-pfs",
+      "asset": "quiz",
+      "reference": "Question f1-paloma2-pfs",
+      "check": "imprecise_effect",
+      "severity": "major",
+      "message": "An efficacy effect (\u201cmedian PFS\u201d) is stated without a confidence interval, p-value or range. This audience reads the estimate and the uncertainty together; the figure alone reads as more certain than the evidence is.",
+      "asset_text": "Based on the PALOMA-2 primary PFS analysis shown, what is the absolute difference in median PFS between the two arms? 10.3 months The chart shows median PFS of 24.8 months with palbociclib+letrozole versus 14.5 months with placebo+letrozole in the PALOMA-2 primary analysis, an absolute difference of 10.3 months (24.8 - 14.5).",
+      "source_text": "",
+      "suggested_rewrite": "",
+      "citations": [
+        {
+          "title": "Palbociclib and Letrozole in Advanced Breast Cancer | NEJM",
+          "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1607303",
+          "locator": "Results"
+        }
+      ]
+    },
+    {
+      "unit_id": "hcp:quiz-f3-paloma3-pfs",
+      "asset": "quiz",
+      "reference": "Question f3-paloma3-pfs",
+      "check": "imprecise_effect",
+      "severity": "major",
+      "message": "An efficacy effect (\u201cmedian PFS\u201d) is stated without a confidence interval, p-value or range. This audience reads the estimate and the uncertainty together; the figure alone reads as more certain than the evidence is.",
+      "asset_text": "According to the pivotal PALOMA-3 PFS data that supported FDA approval, how much longer was median PFS with palbociclib+fulvestrant compared with placebo+fulvestrant? 4.9 months The chart shows median PFS of 9.5 months with palbociclib+fulvestrant versus 4.6 months with placebo+fulvestrant, an absolute difference of 4.9 months; 9.5 months is the palbociclib arm's own value (not the difference), 6.",
+      "source_text": "",
+      "suggested_rewrite": "",
+      "citations": [
+        {
+          "title": "FDA Approval of Palbociclib in Combination with Fulvestrant for HR+, HER2- Metastatic Breast Cancer",
+          "url": "https://aacrjournals.org/clincancerres/article/22/20/4968/124844/FDA-Approval-of-Palbociclib-in-Combination-with",
+          "locator": "Results"
+        }
+      ]
+    },
+    {
+      "unit_id": "hcp:quiz-hcp-q4",
+      "asset": "quiz",
+      "reference": "Question hcp-q4",
+      "check": "imprecise_effect",
+      "severity": "major",
+      "message": "An efficacy effect (\u201cmedian PFS\u201d) is stated without a confidence interval, p-value or range. This audience reads the estimate and the uncertainty together; the figure alone reads as more certain than the evidence is.",
+      "asset_text": "Which investigator-assessed median PFS values were reported for PALOMA-2? 24.8 vs 14.5 months PALOMA-2 reported median PFS of 24.8 months for Ibrance plus letrozole and 14.5 months for placebo plus letrozole.",
+      "source_text": "",
+      "suggested_rewrite": "",
+      "citations": [
+        {
+          "source_id": "DM-IBRANCE-2026",
+          "locator": "Section 14, Table 10"
+        }
+      ]
+    },
+    {
+      "unit_id": "hcp:quiz-t4",
+      "asset": "quiz",
+      "reference": "Question t4",
+      "check": "promotional_only",
+      "severity": "major",
+      "message": "Every citation here is manufacturer-hosted or an aggregator (labeling.pfizer.com). A primary regulatory or peer-reviewed source should carry this claim.",
+      "asset_text": "Severe renal impairment with creatinine clearance of 20 mL/min identified before starting therapy Continue at the current dose The label states no dose adjustment is required for renal impairment of any severity, including severe impairment, as long as creatinine clearance exceeds 15 mL/min, so the standard 125 mg starting dose applies.",
+      "source_text": "",
+      "suggested_rewrite": "",
+      "citations": [
+        {
+          "title": "full prescribing information for IBRANCE",
+          "url": "https://labeling.pfizer.com/showlabeling.aspx?id=2191",
+          "locator": "Dosage and Administration / Specific Populations"
+        }
+      ]
+    },
+    {
+      "unit_id": "hcp:quiz-t5",
+      "asset": "quiz",
+      "reference": "Question t5",
+      "check": "quote_not_verbatim",
+      "severity": "major",
+      "message": "The recorded supporting quote is only 68% verbatim \u2014 part of it does not appear in the source document, so it reads as a stitched or paraphrased quotation.",
+      "asset_text": "Ascites and elevated bilirubin meeting Child-Pugh class B (moderate) hepatic impairment before starting therapy Continue at the current dose The label specifies no dose adjustment is needed for mild or moderate (Child-Pugh A or B) hepatic impairment; a reduced 75 mg starting dose is reserved for severe (Child-Pugh C) impairment only.",
+      "source_text": "17 PATIENT COUNSELING INFORMATION Advise the patient to read the FDA-approved patient labeling (Patient Information). Myelosuppression/Infection \u2022 Advise patients to immediately report any signs or symptoms of myelosuppression or infection, such as fever, chills, dizziness, shortness of breath, weakness, or any increased tendency to bleed and/or to bruise [see Warnings and Precautions (5.1)]. Inte",
+      "suggested_rewrite": "",
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib tablet, film coated - DailyMed",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=89a142d5-7e61-48bf-9e77-e2cd124c4792&version=10",
+          "locator": "Hepatic impairment dosing section"
+        }
+      ]
+    },
+    {
+      "unit_id": "msl:deck-1",
+      "asset": "deck",
+      "reference": "Slide 1: Ibrance scientific exchange essentials",
+      "check": "uncited",
+      "severity": "major",
+      "message": "This unit makes a factual statement with no citation attached.",
+      "asset_text": "Ibrance scientific exchange essentials Connect CDK4/6 biology to the labeled setting Interpret PALOMA-2 efficacy with its limitations Respond to dosing and safety questions from current evidence",
+      "source_text": "",
+      "suggested_rewrite": "",
+      "citations": []
+    },
+    {
+      "unit_id": "msl:deck-3",
+      "asset": "deck",
+      "reference": "Slide 3: PALOMA-2 supports the first-line combination evidence story",
+      "check": "imprecise_effect",
+      "severity": "major",
+      "message": "An efficacy effect (\u201cmedian PFS\u201d) is stated without a confidence interval, p-value or range. This audience reads the estimate and the uncertainty together; the figure alone reads as more certain than the evidence is.",
+      "asset_text": "PALOMA-2 supports the first-line combination evidence story Randomized evidence evaluated Ibrance plus letrozole against placebo plus letrozole Investigator-assessed median PFS was 24.8 versus 14.5 months Discuss population, comparator, and endpoint before quoting the result",
+      "source_text": "",
+      "suggested_rewrite": "",
+      "citations": [
+        {
+          "source_id": "DM-IBRANCE-2026",
+          "locator": "Section 14, Table 10"
+        },
+        {
+          "source_id": "CT-PALOMA2",
+          "locator": "Study results"
+        }
+      ]
+    },
+    {
+      "unit_id": "msl:deck-6",
+      "asset": "deck",
+      "reference": "Slide 6: Strong scientific exchange separates evidence from interpretation",
+      "check": "uncited",
+      "severity": "major",
+      "message": "This unit makes a factual statement with no citation attached.",
+      "asset_text": "Strong scientific exchange separates evidence from interpretation Clarify the HCP's question and clinical context Answer with the closest direct evidence and its limitations Distinguish label facts, study findings, and interpretation Escalate when the available evidence does not answer the question",
+      "source_text": "",
+      "suggested_rewrite": "",
+      "citations": []
+    },
+    {
+      "unit_id": "msl:faq-2",
+      "asset": "faq",
+      "reference": "What is the balanced way to summarize PALOMA-2?",
+      "check": "imprecise_effect",
+      "severity": "major",
+      "message": "An efficacy effect (\u201cmedian PFS\u201d) is stated without a confidence interval, p-value or range. This audience reads the estimate and the uncertainty together; the figure alone reads as more certain than the evidence is.",
+      "asset_text": "Investigator-assessed median PFS was 24.8 months with Ibrance plus letrozole and 14.5 months with placebo plus letrozole. The prespecified final overall-survival analysis was not statistically significant. State the endpoint, population, regimen, comparator, and analysis before interpreting the result.",
+      "source_text": "",
+      "suggested_rewrite": "",
+      "citations": [
+        {
+          "source_id": "DM-IBRANCE-2026",
+          "locator": "Section 14, Table 10"
+        },
+        {
+          "source_id": "CT-PALOMA2",
+          "locator": "Study results"
+        }
+      ]
+    },
+    {
+      "unit_id": "msl:faq-4",
+      "asset": "faq",
+      "reference": "What if the HCP asks a comparative question not answered by a head-to-head trial?",
+      "check": "uncited",
+      "severity": "major",
+      "message": "This unit makes a factual statement with no citation attached.",
+      "asset_text": "State that the available sources do not establish a direct comparison and avoid drawing superiority conclusions across different studies. Cross-trial populations, endpoints, follow-up, and analysis methods may differ.",
+      "source_text": "",
+      "suggested_rewrite": "",
+      "citations": []
+    },
+    {
+      "unit_id": "msl:quiz-f1-paloma2-pfs",
+      "asset": "quiz",
+      "reference": "Question f1-paloma2-pfs",
+      "check": "imprecise_effect",
+      "severity": "major",
+      "message": "An efficacy effect (\u201cmedian PFS\u201d) is stated without a confidence interval, p-value or range. This audience reads the estimate and the uncertainty together; the figure alone reads as more certain than the evidence is.",
+      "asset_text": "According to the chart, what is the absolute difference in median PFS between the palbociclib plus letrozole arm and the letrozole-alone arm in PALOMA-2? 10.3 months The chart shows median PFS of 24.8 months with palbociclib plus letrozole versus 14.5 months with placebo plus letrozole; the absolute difference is 24.8 \\=. Answer (b) is simply the control-arm value, (c) is the treatment-arm value, ",
+      "source_text": "",
+      "suggested_rewrite": "",
+      "citations": [
+        {
+          "title": "Palbociclib and Letrozole in Advanced Breast Cancer | NEJM",
+          "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1607303",
+          "locator": "Results"
+        }
+      ]
+    },
+    {
+      "unit_id": "msl:quiz-f2-paloma3-pfs",
+      "asset": "quiz",
+      "reference": "Question f2-paloma3-pfs",
+      "check": "imprecise_effect",
+      "severity": "major",
+      "message": "An efficacy effect (\u201cmedian PFS\u201d) is stated without a confidence interval, p-value or range. This audience reads the estimate and the uncertainty together; the figure alone reads as more certain than the evidence is.",
+      "asset_text": "What was the median PFS improvement (in months) with palbociclib plus fulvestrant compared with placebo plus fulvestrant in the PALOMA-3 primary analysis shown here? 4.9 months The chart shows 9.5 months with palbociclib plus fulvestrant versus 4.6 months with placebo plus fulvestrant; the difference is 4.9 months (HR 0.46). Options (b) and (c) restate single arm values rather than the difference,",
+      "source_text": "",
+      "suggested_rewrite": "",
+      "citations": [
+        {
+          "title": "FDA Approval of Palbociclib in Combination with Fulvestrant for HR+, HER2- Metastatic Breast Cancer",
+          "url": "https://aacrjournals.org/clincancerres/article/22/20/4968/124844/FDA-Approval-of-Palbociclib-in-Combination-with",
+          "locator": "Results"
+        }
+      ]
+    },
+    {
+      "unit_id": "msl:quiz-msl-q2",
+      "asset": "quiz",
+      "reference": "Question msl-q2",
+      "check": "imprecise_effect",
+      "severity": "major",
+      "message": "An efficacy effect (\u201cMedian PFS\u201d) is stated without a confidence interval, p-value or range. This audience reads the estimate and the uncertainty together; the figure alone reads as more certain than the evidence is.",
+      "asset_text": "Which is the most balanced summary of PALOMA-2 in the reviewed evidence? Median PFS was 24.8 vs 14.5 months, while final OS was not statistically significant The reviewed label reports the PFS values and notes that the prespecified final OS analysis was not statistically significant.",
+      "source_text": "",
+      "suggested_rewrite": "",
+      "citations": [
+        {
+          "source_id": "DM-IBRANCE-2026",
+          "locator": "Section 14, Table 10"
+        }
+      ]
+    },
+    {
+      "unit_id": "msl:quiz-msl-q3",
+      "asset": "quiz",
+      "reference": "Question msl-q3",
+      "check": "uncited",
+      "severity": "major",
+      "message": "This unit makes a factual statement with no citation attached.",
+      "asset_text": "An HCP requests an unsupported cross-trial superiority conclusion. What is the best response? Explain that the sources do not establish a direct comparison and use the appropriate medical-information path Scientific exchange should distinguish direct evidence from cross-trial interpretation and avoid unsupported superiority claims.",
+      "source_text": "",
+      "suggested_rewrite": "",
+      "citations": []
+    },
+    {
+      "unit_id": "msl:quiz-t3-child-pugh-b",
+      "asset": "quiz",
+      "reference": "Question t3-child-pugh-b",
+      "check": "quote_not_verbatim",
+      "severity": "major",
+      "message": "The recorded supporting quote is only 68% verbatim \u2014 part of it does not appear in the source document, so it reads as a stitched or paraphrased quotation.",
+      "asset_text": "Child-Pugh class B (moderate) hepatic impairment identified before starting therapy Continue current dose unchanged The label states no dose adjustment is required for mild or moderate hepatic impairment (Child-Pugh classes A and B); the 75 mg reduced starting dose applies only to severe (Child-Pugh C) impairment.",
+      "source_text": "17 PATIENT COUNSELING INFORMATION Advise the patient to read the FDA-approved patient labeling (Patient Information). Myelosuppression/Infection \u2022 Advise patients to immediately report any signs or symptoms of myelosuppression or infection, such as fever, chills, dizziness, shortness of breath, weakness, or any increased tendency to bleed and/or to bruise [see Warnings and Precautions (5.1)]. Inte",
+      "suggested_rewrite": "",
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib tablet, film coated - DailyMed",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=89a142d5-7e61-48bf-9e77-e2cd124c4792&version=10",
+          "locator": "Hepatic impairment dosing section"
+        }
+      ]
+    },
+    {
+      "unit_id": "msl:quiz-t4-child-pugh-c",
+      "asset": "quiz",
+      "reference": "Question t4-child-pugh-c",
+      "check": "promotional_only",
+      "severity": "major",
+      "message": "Every citation here is manufacturer-hosted or an aggregator (labeling.pfizer.com). A primary regulatory or peer-reviewed source should carry this claim.",
+      "asset_text": "Child-Pugh class C (severe) hepatic impairment identified before starting therapy Modify or interrupt dosing For severe hepatic impairment (Child-Pugh class C), the label recommends starting IBRANCE at a reduced dose of 75 mg once daily on the same 21-days-on/7-days-off schedule.",
+      "source_text": "",
+      "suggested_rewrite": "",
+      "citations": [
+        {
+          "title": "full prescribing information for IBRANCE",
+          "url": "https://labeling.pfizer.com/showlabeling.aspx?id=2191",
+          "locator": "Dosage and Administration / Specific Populations"
+        }
+      ]
+    },
+    {
+      "unit_id": "msl:scene-3",
+      "asset": "storyboard",
+      "reference": "Scene 3: Interpret PALOMA-2 endpoint by endpoint",
+      "check": "imprecise_effect",
+      "severity": "major",
+      "message": "An efficacy effect (\u201cmedian PFS\u201d) is stated without a confidence interval, p-value or range. This audience reads the estimate and the uncertainty together; the figure alone reads as more certain than the evidence is.",
+      "asset_text": "Report investigator-assessed median PFS of 24.8 versus 14.5 months in PALOMA-2, then state that final overall survival was not statistically significant in the prespecified analysis. PFS result and OS result remain distinct",
+      "source_text": "",
+      "suggested_rewrite": "",
+      "citations": [
+        {
+          "source_id": "DM-IBRANCE-2026",
+          "locator": "Section 14, Table 10"
+        },
+        {
+          "source_id": "CT-PALOMA2",
+          "locator": "Study results"
+        }
+      ]
+    },
+    {
+      "unit_id": "msl:scene-5",
+      "asset": "storyboard",
+      "reference": "Scene 5: Close with evidence boundaries",
+      "check": "uncited",
+      "severity": "major",
+      "message": "This unit makes a factual statement with no citation attached.",
+      "asset_text": "Separate what the label says, what the trial found, and what remains interpretation. If the evidence does not answer the HCP's question, acknowledge the gap and use the appropriate escalation path. Source \u00e2\u2020\u2019 limitation \u00e2\u2020\u2019 escalation",
+      "source_text": "",
+      "suggested_rewrite": "",
+      "citations": []
+    }
+  ],
+  "checked_at": "2026-11-05T14:49:54.157354+00:00"
+}

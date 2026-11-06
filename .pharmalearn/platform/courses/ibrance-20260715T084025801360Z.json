@@ -391,7 +391,7 @@
   ],
   "publication": {
     "version": 2,
-    "published_at": "2026-07-18T08:40:36.203707+00:00",
+    "published_at": "2026-11-06T05:58:06.085524+00:00",
     "published_by": "Priya Raman",
     "overrides": [
       {
@@ -406,9 +406,12 @@
         "at": "2026-08-17T12:36:42.049007+00:00"
       }
     ],
-    "starts_on": "2026-07-18",
-    "due_on": "2026-08-17",
-    "message": "Complete before the advisory board. The final assessment is required for field use.",
+    "starts_on": "2026-11-06",
+    "due_on": "2026-12-06",
+    "frequency": "once",
+    "next_due_on": null,
+    "certificate_template": "classic",
+    "message": "Republished for the current cohort window. The final assessment is required for field use.",
     "assignees": [
       "ken-osei",
       "lucy-whitfield",
@@ -420,32 +423,32 @@
       {
         "to": "ken.osei@pharmalearn.local",
         "name": "Dr. Ken Osei",
-        "subject": "Training assigned: complete by 2026-08-17",
-        "sent_at": "2026-07-18T08:40:36.203707+00:00"
+        "subject": "Training assigned: complete by 2026-12-06",
+        "sent_at": "2026-11-06T05:58:06.085551+00:00"
       },
       {
         "to": "lucy.whitfield@pharmalearn.local",
         "name": "Dr. Lucy Whitfield",
-        "subject": "Training assigned: complete by 2026-08-17",
-        "sent_at": "2026-07-18T08:40:36.203707+00:00"
+        "subject": "Training assigned: complete by 2026-12-06",
+        "sent_at": "2026-11-06T05:58:06.085560+00:00"
       },
       {
         "to": "jordan.feld@pharmalearn.local",
         "name": "Jordan Feld",
-        "subject": "Training assigned: complete by 2026-08-17",
-        "sent_at": "2026-07-18T08:40:36.203707+00:00"
+        "subject": "Training assigned: complete by 2026-12-06",
+        "sent_at": "2026-11-06T05:58:06.085566+00:00"
       },
       {
         "to": "sara.nakamura@pharmalearn.local",
         "name": "Sara Nakamura",
-        "subject": "Training assigned: complete by 2026-08-17",
-        "sent_at": "2026-07-18T08:40:36.203707+00:00"
+        "subject": "Training assigned: complete by 2026-12-06",
+        "sent_at": "2026-11-06T05:58:06.085571+00:00"
       },
       {
         "to": "tom.becker@pharmalearn.local",
         "name": "Dr. Tom Becker",
-        "subject": "Training assigned: complete by 2026-08-17",
-        "sent_at": "2026-07-18T08:40:36.203707+00:00"
+        "subject": "Training assigned: complete by 2026-12-06",
+        "sent_at": "2026-11-06T05:58:06.085575+00:00"
       }
     ]
   },
@@ -1120,6 +1123,57 @@
         ],
         "overrides": 1
       }
+    },
+    {
+      "id": "ce9ac317502c",
+      "at": "2026-11-05T05:48:05.960601+00:00",
+      "action": "programme.archived",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman archived the programme",
+      "detail": {
+        "note": "Keeping a single Ibrance in review"
+      }
+    },
+    {
+      "id": "4d6c35295301",
+      "at": "2026-11-06T05:58:06.085679+00:00",
+      "action": "course.published",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman published v2 to 5 trainee(s), due 2026-12-06",
+      "detail": {
+        "version": 2,
+        "starts_on": "2026-11-06",
+        "due_on": "2026-12-06",
+        "assignees": [
+          "ken-osei",
+          "lucy-whitfield",
+          "jordan-feld",
+          "sara-nakamura",
+          "tom-becker"
+        ],
+        "approved_by": [
+          "Dr. Anil Shekhar",
+          "Dr. Maria Alvarez"
+        ],
+        "overrides": 1
+      }
+    },
+    {
+      "id": "0099224ba2ea",
+      "at": "2026-11-06T05:58:48.186210+00:00",
+      "action": "programme.restored",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman restored the programme",
+      "detail": {}
     }
   ]
 }

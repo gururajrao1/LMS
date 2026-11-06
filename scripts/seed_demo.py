@@ -309,7 +309,7 @@ def status() -> None:
         for user_id in publication["assignees"] if publication else []:
             summary = learning.summarize(learning.progress(record["run_id"], user_id))
             print(f"    {user_id:<18} {summary['stage']:<14} {summary['percent']:>3}% modules"
-                  f"  baseline {summary['baseline_score']} → final {summary['final_score']}")
+                  f"  baseline {summary['baseline_score']} -> final {summary['final_score']}")
 
 
 def reseed(run_id: str) -> None:

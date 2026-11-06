@@ -1,0 +1,338 @@
+{
+  "id": "02_product_science",
+  "title": "Ibrance (palbociclib): Product Science \u2014 Mechanism, Pharmacokinetics, Pharmacodynamics, Formulation, Metabolism, and Drug Interactions",
+  "summary": "Ibrance (palbociclib) is an orally administered, selective small-molecule inhibitor of cyclin-dependent kinases 4 and 6 (CDK4/6), approved by FDA in 2015 and indicated for HR-positive, HER2-negative advanced or metastatic breast cancer in combination with an aromatase inhibitor, fulvestrant, or (as of a more recent label update) inavolisib plus fulvestrant. Per FDA-approved labeling (DailyMed/FDA prescribing information), palbociclib blocks CDK4/6-mediated phosphorylation of the retinoblastoma (Rb) protein, arresting susceptible tumor cells in G1 phase and reducing proliferation, with enhanced antiproliferative/senescence effects when combined with antiestrogens in vitro. Oral bioavailability is moderate (46%) and food intake reduces inter-subject exposure variability; the drug reaches steady state within 8 days, exhibits dose-proportional kinetics across the tested range, and has a mean elimination half-life of ~29 hours in patients with advanced breast cancer. Palbociclib is primarily metabolized by CYP3A and the sulfotransferase enzyme SULT2A1, with elimination predominantly fecal, and it is a weak time-dependent CYP3A inhibitor, giving rise to clinically important interactions with strong/moderate CYP3A inhibitors and inducers as well as sensitive CYP3A substrates. Available capsule and tablet formulations differ in food requirements (capsules require food; tablets can be taken with or without food). Hepatic and renal impairment affect exposure, with specific dose adjustments defined in labeling for severe hepatic impairment.",
+  "claims": [
+    {
+      "text": "Palbociclib is a highly selective small-molecule inhibitor of cyclin-dependent kinases 4 and 6 (CDK4/6) that is administered orally.",
+      "evidence_type": "clinical pharmacology description (secondary source citing label)",
+      "citations": [
+        {
+          "title": "Alternative Dosing Schedule of Palbociclib in Metastatic Hormone Receptor Positive Breast Cancer (Protocol)",
+          "url": "https://cdn.clinicaltrials.gov/large-docs/79/NCT03007979/Prot_SAP_000.pdf",
+          "locator": "Section 1.2",
+          "supporting_text": "Palbociclib (Ibrance, Pfizer) is a highly selective small-molecule inhibitor of CDK4 and CDK6, which can be administered orally."
+        }
+      ]
+    },
+    {
+      "text": "Per FDA-approved labeling, IBRANCE is an inhibitor of cyclin-dependent kinases (CDK) 4 and 6; cyclin D1 and CDK4/6 lie downstream of signaling pathways that drive cellular proliferation.",
+      "evidence_type": "FDA label (Clinical Pharmacology, Mechanism of Action)",
+      "citations": [
+        {
+          "title": "IBRANCE tablets (palbociclib) Clinical Pharmacology - Pfizer Medical",
+          "url": "https://www.pfizermedical.com/ibrance-tablets/clinical-pharmacology",
+          "locator": "Section 12.1 Mechanism of Action",
+          "supporting_text": "Palbociclib is an inhibitor of cyclin-dependent kinases (CDK) 4 and 6. Cyclin D1 and CDK4/6 are downstream of signaling pathways which lead to cellular proliferation."
+        }
+      ]
+    },
+    {
+      "text": "In vitro, palbociclib reduced cellular proliferation of estrogen receptor (ER)-positive breast cancer cell lines by blocking progression of the cell from G1 into S phase of the cell cycle.",
+      "evidence_type": "FDA label (Clinical Pharmacology, nonclinical/in vitro pharmacodynamics)",
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib tablet, film coated - DailyMed",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=fecbdd7d-b729-41b5-9872-231b8fe104ce",
+          "locator": "Section 12.1",
+          "supporting_text": "In vitro, palbociclib reduced cellular proliferation of estrogen receptor (ER)-positive breast cancer cell lines by blocking progression of the cell from G1 into S phase of the cell cycle."
+        }
+      ]
+    },
+    {
+      "text": "Treatment of breast cancer cell lines with the combination of palbociclib and antiestrogens leads to decreased retinoblastoma (Rb) protein phosphorylation, resulting in reduced E2F expression/signaling and increased growth arrest compared to either drug alone; combination treatment also increased cell senescence versus either agent alone, an effect sustained for up to 6 days after palbociclib removal and enhanced if antiestrogen treatment continued.",
+      "evidence_type": "FDA label (Clinical Pharmacology, in vitro pharmacodynamics)",
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib tablet, film coated - DailyMed",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=fecbdd7d-b729-41b5-9872-231b8fe104ce",
+          "locator": "Section 12.1",
+          "supporting_text": "Treatment of breast cancer cell lines with the combination of palbociclib and antiestrogens leads to decreased retinoblastoma (Rb) protein phosphorylation resulting in reduced E2F expression and signaling, and increased growth arrest compared to treatment with each drug alone. In vitro treatment of ER-positive breast cancer cell lines with the combination of palbociclib and antiestrogens led to increased cell senescence compared to each drug alone, which was sustained for up to 6 days following palbociclib removal and was greater if antiestrogen treatment was continued."
+        }
+      ]
+    },
+    {
+      "text": "IBRANCE is FDA-approved for adult patients with hormone receptor (HR)-positive, HER2-negative advanced or metastatic breast cancer, in combination with an aromatase inhibitor, with fulvestrant, or (per updated labeling) in combination with inavolisib and fulvestrant for endocrine-resistant, PIK3CA-mutated HR-positive, HER2-negative, locally advanced or metastatic breast cancer following recurrence on/after completing adjuvant endocrine therapy.",
+      "evidence_type": "FDA label (Indications and Usage)",
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib capsule - DailyMed - NIH",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e0e6412f-50b4-4fd4-9364-62818d121a07",
+          "locator": "Highlights of Prescribing Information, Indications and Usage",
+          "supporting_text": "IBRANCE\u00ae (palbociclib) capsules, for oral use Initial U.S. Approval: 2015 ... for the treatment of adult patients with hormone receptor (HR)-positive, human epidermal growth factor receptor 2 (HER2)-negative advanced or metastatic breast cancer in combination with: ... in combination with inavolisib and fulvestrant for the treatment of adult patients with endocrine-resistant, PIK3CA-mutated, HR-positive, HER2-negative, locally advanced or metastatic breast cancer, as detected by an FDA-approved test, following recurrence on or after completing adjuvant endocrine therapy."
+        }
+      ]
+    },
+    {
+      "text": "The recommended starting dose is 125 mg once daily for 21 consecutive days followed by 7 days off treatment (28-day cycle); capsules must be taken with food, while tablets may be taken with or without food.",
+      "evidence_type": "FDA label (Dosage and Administration)",
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib capsule - DailyMed - NIH",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e0e6412f-50b4-4fd4-9364-62818d121a07",
+          "locator": "Highlights, Dosage and Administration",
+          "supporting_text": "IBRANCE capsules are taken orally with food in combination with an aromatase inhibitor, fulvestrant, or inavolisib and fulvestrant. Recommended starting dose: 125 mg once daily taken with food for 21 days followed by 7 days off treatment."
+        },
+        {
+          "title": "Label: IBRANCE- palbociclib tablet, film coated - DailyMed",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=89a142d5-7e61-48bf-9e77-e2cd124c4792&audience=consumer",
+          "locator": "Highlights, Dosage and Administration",
+          "supporting_text": "IBRANCE tablets are taken orally with or without food in combination with an aromatase inhibitor, fulvestrant, or inavolisib and fulvestrant."
+        }
+      ]
+    },
+    {
+      "text": "The mean absolute bioavailability of IBRANCE after an oral 125 mg dose is 46%; in the dosing range of 25 mg to 225 mg, AUC and Cmax increased proportionally with dose in general.",
+      "evidence_type": "FDA label (Clinical Pharmacology, Pharmacokinetics)",
+      "citations": [
+        {
+          "title": "IBRANCE (palbociclib) label",
+          "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2019/207103s010lbl.pdf",
+          "locator": "Section 12.3 Pharmacokinetics",
+          "supporting_text": "absolute bioavailability of IBRANCE after an oral 125 mg dose is 46%. In the dosing range of 25 mg to 225 mg, the AUC and Cmax increased proportionally with dose in general."
+        }
+      ]
+    },
+    {
+      "text": "The maximum observed plasma concentration (Cmax) of palbociclib is generally reached between 4\u201312 hours (tablet label) or 6\u201312 hours (some label versions) after oral administration; steady state is achieved within 8 days of once-daily dosing, and with repeated once-daily administration palbociclib accumulates with a median accumulation ratio of 2.4 (range 1.5\u20134.2).",
+      "evidence_type": "FDA label (Clinical Pharmacology, Pharmacokinetics)",
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib tablet, film coated - DailyMed",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=fecbdd7d-b729-41b5-9872-231b8fe104ce",
+          "locator": "Section 12.3",
+          "supporting_text": "The maximum observed concentration (Cmax) of palbociclib is generally observed between 4 to 12 hours (time to reach maximum concentration, Tmax) following oral administration of IBRANCE tablets."
+        },
+        {
+          "title": "IBRANCE (palbociclib) label",
+          "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2019/207103s010lbl.pdf",
+          "locator": "Section 12.3",
+          "supporting_text": "Steady state was achieved within 8 days following repeated once daily dosing. With repeated once daily administration, palbociclib accumulated with a median accumulation ratio of 2.4 (range 1.5 to 4.2)."
+        }
+      ]
+    },
+    {
+      "text": "Palbociclib absorption and exposure were very low in approximately 13% of the population under fasted conditions; food intake increased exposure in this subset and reduced inter-subject variability of palbociclib exposure overall, supporting administration of IBRANCE with food (for the capsule formulation).",
+      "evidence_type": "FDA label (Clinical Pharmacology, food effect)",
+      "citations": [
+        {
+          "title": "full prescribing information for IBRANCE - Pfizer labeling",
+          "url": "https://labeling.pfizer.com/showlabeling.aspx?id=2191",
+          "locator": "Section 12.3, Food Effect",
+          "supporting_text": "Food effect: Palbociclib absorption and exposure were very low in approximately 13% of the population under the fasted condition. Food intake increased the palbociclib exposure in this small subset of the population"
+        },
+        {
+          "title": "Label: IBRANCE- palbociclib capsule - DailyMed - NIH",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e0e6412f-50b4-4fd4-9364-62818d121a07",
+          "locator": "Section 12.3",
+          "supporting_text": "Therefore, food intake reduced the intersubject variability of palbociclib exposure, which supports administration of IBRANCE with food."
+        }
+      ]
+    },
+    {
+      "text": "The geometric mean apparent oral clearance (CL/F) of palbociclib was 63.1 L/hr (29% CV), and the mean (\u00b1 standard deviation) plasma elimination half-life was 29 (\u00b15) hours in patients with advanced breast cancer.",
+      "evidence_type": "FDA label (Clinical Pharmacology, Pharmacokinetics)",
+      "citations": [
+        {
+          "title": "IBRANCE tablets (palbociclib) Clinical Pharmacology - Pfizer Medical",
+          "url": "https://www.pfizermedical.com/ibrance-tablets/clinical-pharmacology",
+          "locator": "Section 12.3",
+          "supporting_text": "The geometric mean apparent oral clearance (CL/F) of palbociclib was 63.1 L/hr (29% CV), and the mean (\u00b1 standard deviation) plasma elimination half-life was 29 (\u00b15) hours in patients with advanced breast cancer."
+        }
+      ]
+    },
+    {
+      "text": "In 6 healthy male subjects given a single oral dose of [14C]-palbociclib, a median of 91.6% of the total administered radioactive dose was recovered within 15 days; feces (74.1% of dose) was the major route of excretion, with 17.5% of the dose recovered in urine, and the majority of the material was excreted as metabolites.",
+      "evidence_type": "FDA label (Clinical Pharmacology, Excretion \u2014 mass balance study)",
+      "citations": [
+        {
+          "title": "IBRANCE tablets (palbociclib) Clinical Pharmacology - Pfizer Medical",
+          "url": "https://www.pfizermedical.com/patient/ibrance-tablets/clinical-pharmacology",
+          "locator": "Section 12.3, Excretion",
+          "supporting_text": "In 6 healthy male subjects given a single oral dose of [14C] palbociclib, a median of 91.6% of the total administered radioactive dose was recovered in 15 days; feces (74.1% of dose) was the major route of excretion, with 17.5% of the dose recovered in urine. The majority of the material was excreted as metabolites."
+        }
+      ]
+    },
+    {
+      "text": "Palbociclib was the major circulating drug-derived entity in plasma (23%); the major circulating metabolite was a glucuronide conjugate of palbociclib but represented only 1.5% of the administered dose in excreta. Unchanged drug accounted for 2.3% and 6.9% of radioactivity in feces and urine, respectively, and in feces the sulfamic acid conjugate of palbociclib was the major drug-related component, accounting for 26% of the administered dose.",
+      "evidence_type": "FDA label (Clinical Pharmacology, Metabolism \u2014 human ADME study)",
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib tablet, film coated - DailyMed",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=fecbdd7d-b729-41b5-9872-231b8fe104ce",
+          "locator": "Section 12.3, Metabolism",
+          "supporting_text": "Palbociclib was the major circulating drug-derived entity in plasma (23%). The major circulating metabolite was a glucuronide conjugate of palbociclib, although it only represented 1.5% of the administered dose in the excreta. Palbociclib was extensively metabolized with unchanged drug accounting for 2.3% and 6.9% of radioactivity in feces and urine, respectively. In feces, the sulfamic acid conjugate of palbociclib was the major drug-related component, accounting for 26% of the administered dose."
+        }
+      ]
+    },
+    {
+      "text": "In vitro studies using human hepatocytes, liver cytosolic and S9 fractions, and recombinant SULT enzymes indicate that CYP3A and the sulfotransferase enzyme SULT2A1 are the enzymes mainly involved in the metabolism of palbociclib.",
+      "evidence_type": "FDA label (Clinical Pharmacology, Metabolism \u2014 in vitro enzymology)",
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib capsule - DailyMed - NIH",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e0e6412f-50b4-4fd4-9364-62818d121a07",
+          "locator": "Section 12.3, Metabolism",
+          "supporting_text": "In vitro data indicate that CYP3A and SULT enzyme SULT2A1 are mainly involved in the metabolism of palbociclib."
+        }
+      ]
+    },
+    {
+      "text": "Palbociclib is a weak time-dependent inhibitor of CYP3A following daily 125 mg dosing to steady state in humans; in vitro, palbociclib is not an inhibitor of CYP1A2, 2A6, 2B6, 2C8, 2C9, 2C19, or 2D6, and is not an inducer of CYP1A2, 2B6, 2C8, or 3A4 at clinically relevant concentrations.",
+      "evidence_type": "FDA label (Clinical Pharmacology, Drug Interactions \u2014 in vitro/in vivo enzyme inhibition data)",
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib capsule - DailyMed",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=e0e6412f-50b4-4fd4-9364-62818d121a07",
+          "locator": "Section 12.3",
+          "supporting_text": "Palbociclib is a weak time-dependent inhibitor of CYP3A following daily 125 mg dosing to steady state in humans. In vitro, palbociclib is not an inhibitor of CYP1A2, 2A6, 2B6, 2C8, 2C9, 2C19, and 2D6, and is not an inducer of CYP1A2, 2B6, 2C8, and 3A4 at clinically relevant concentrations."
+        }
+      ]
+    },
+    {
+      "text": "Coadministration of the strong CYP3A inhibitor itraconazole (200 mg daily, multiple doses) with a single 125 mg IBRANCE dose increased palbociclib AUCinf and Cmax by approximately 87% and 34%, respectively, relative to IBRANCE given alone in a healthy-subject drug interaction trial (N=12).",
+      "evidence_type": "FDA label (Clinical Pharmacology, formal drug-drug interaction study)",
+      "citations": [
+        {
+          "title": "full prescribing information for IBRANCE - Pfizer labeling",
+          "url": "https://labeling.pfizer.com/showlabeling.aspx?id=2191",
+          "locator": "Section 12.3, CYP3A Inhibitors",
+          "supporting_text": "Data from a drug interaction trial in healthy subjects (N=12) indicate that coadministration of multiple 200 mg daily doses of itraconazole with a single 125 mg IBRANCE dose increased palbociclib AUCINF and the Cmax by approximately 87% and 34%, respectively, relative to a single 125 mg IBRANCE dose given alone."
+        }
+      ]
+    },
+    {
+      "text": "Coadministration of the strong CYP3A inducer rifampin (600 mg daily) with a single 125 mg IBRANCE dose decreased palbociclib AUCinf and Cmax by 85% and 70%, respectively (N=15); coadministration of the moderate CYP3A inducer modafinil (400 mg daily) decreased palbociclib AUCinf and Cmax by 32% and 11%, respectively, relative to IBRANCE given alone.",
+      "evidence_type": "FDA label (Clinical Pharmacology, formal drug-drug interaction studies)",
+      "citations": [
+        {
+          "title": "full prescribing information for IBRANCE - Pfizer labeling",
+          "url": "https://labeling.pfizer.com/showlabeling.aspx?id=2191",
+          "locator": "Section 12.3, CYP3A Inducers",
+          "supporting_text": "coadministration of multiple 600 mg daily doses of rifampin, a strong CYP3A inducer, with a single 125 mg IBRANCE dose decreased palbociclib AUCINF and Cmax by 85% and 70%, respectively... multiple 400 mg daily doses of modafinil, a moderate CYP3A inducer, with a single 125 mg IBRANCE dose decreased palbociclib AUCINF and Cmax by 32% and 11%, respectively"
+        }
+      ]
+    },
+    {
+      "text": "In a drug interaction trial in healthy subjects (N=26), coadministration of midazolam (a sensitive CYP3A substrate) with multiple doses of IBRANCE increased midazolam AUCinf and Cmax by 61% and 37%, respectively, compared to midazolam given alone, consistent with palbociclib's weak time-dependent CYP3A inhibition.",
+      "evidence_type": "FDA label (Clinical Pharmacology, formal drug-drug interaction study)",
+      "citations": [
+        {
+          "title": "full prescribing information for IBRANCE - Pfizer labeling",
+          "url": "https://labeling.pfizer.com/showlabeling.aspx?id=2191",
+          "locator": "Section 12.3, CYP3A Substrates",
+          "supporting_text": "In a drug interaction trial in healthy subjects (N=26), coadministration of midazolam with multiple doses of IBRANCE increased the midazolam AUCINF and the Cmax values by 61% and 37%, respectively, as compared to administration of midazolam alone."
+        }
+      ]
+    },
+    {
+      "text": "Coadministration of a single 125 mg dose of IBRANCE with multiple doses of the proton pump inhibitor rabeprazole under fed conditions decreased palbociclib Cmax by 41% but had limited impact on AUCinf, indicating gastric pH-elevating medications have a modest effect on peak exposure without major effect on overall exposure when taken with food.",
+      "evidence_type": "FDA label (Clinical Pharmacology, formal drug-drug interaction study)",
+      "citations": [
+        {
+          "title": "IBRANCE (palbociclib) label",
+          "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2016/207103s002lbl.pdf",
+          "locator": "Section 12.3, Gastric pH Elevating Medications",
+          "supporting_text": "Gastric pH Elevating Medications: In a drug interaction trial in healthy subjects, coadministration of a single 125 mg dose of IBRANCE with multiple doses of the proton pump inhibitor (PPI) rabeprazole under fed conditions decreased palbociclib Cmax by 41%, but had limited impact on AUCinf."
+        }
+      ]
+    },
+    {
+      "text": "Labeling advises avoiding concomitant use of strong CYP3A inhibitors (examples include clarithromycin, indinavir, itraconazole, and ketoconazole) and avoiding grapefruit or grapefruit juice during IBRANCE treatment.",
+      "evidence_type": "FDA label (Drug Interactions / Dosage and Administration precautions)",
+      "citations": [
+        {
+          "title": "Ibrance DailyMed Label - FDA.report",
+          "url": "https://fda.report/DailyMed/86718885-da44-4d3d-b3ca-06cbcedcffd8",
+          "locator": "Drug Interactions section",
+          "supporting_text": "Avoid concomitant use of strong CYP3A inhibitors (e.g., clarithromycin, indinavir, itraconazole, ketoconazole"
+        },
+        {
+          "title": "Ibrance (Palbociclib Capsules for Oral Administration): Side Effects, Uses, Dosage, Interactions, Warnings",
+          "url": "https://www.rxlist.com/ibrance-drug.htm",
+          "locator": "Drug Interactions / Precautions",
+          "supporting_text": "Avoid grapefruit or grapefruit juice during IBRANCE treatment."
+        }
+      ]
+    },
+    {
+      "text": "Based on a pharmacokinetic trial in subjects with varying degrees of hepatic function, unbound AUCinf decreased by 17% in mild hepatic impairment (Child-Pugh A) and increased by 34% and 77% in moderate (Child-Pugh B) and severe (Child-Pugh C) hepatic impairment, respectively, relative to normal hepatic function; unbound Cmax increased by 7%, 38%, and 72% for mild, moderate, and severe hepatic impairment, respectively.",
+      "evidence_type": "FDA label (Use in Specific Populations / Clinical Pharmacology, hepatic impairment PK study)",
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib tablet, film coated - DailyMed",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=89a142d5-7e61-48bf-9e77-e2cd124c4792&audience=consumer",
+          "locator": "Section 8.6 / 12.3, Hepatic Impairment",
+          "supporting_text": "Based on a pharmacokinetic trial in subjects with varying degrees of hepatic function, the palbociclib unbound exposure (unbound AUCINF) decreased by 17% in subjects with mild hepatic impairment (Child-Pugh class A), and increased by 34% and 77% in subjects with moderate (Child-Pugh class B) and severe (Child-Pugh class C) hepatic impairment, respectively, relative to subjects with normal hepatic function."
+        }
+      ]
+    },
+    {
+      "text": "For patients with severe hepatic impairment (Child-Pugh class C), the recommended dose of IBRANCE is reduced to 75 mg once daily for 21 consecutive days followed by 7 days off treatment, comprising a complete 28-day cycle.",
+      "evidence_type": "FDA label (Dosage and Administration, hepatic impairment)",
+      "citations": [
+        {
+          "title": "full prescribing information for IBRANCE - Pfizer labeling",
+          "url": "https://labeling.pfizer.com/showlabeling.aspx?id=2191",
+          "locator": "Section 2.2 / 8.6, Hepatic Impairment",
+          "supporting_text": "For patients with severe hepatic impairment (Child-Pugh class C), the recommended dose of IBRANCE is 75 mg once daily for 21 consecutive days followed by 7 days off treatment to comprise a complete cycle of 28 days."
+        }
+      ]
+    },
+    {
+      "text": "Based on a population pharmacokinetic analysis in 183 patients with cancer (50 male and 133 female, ages 22\u201389 years, body weight 37.9\u2013123 kg), gender had no effect on palbociclib exposure, and age and body weight had no clinically important effect on exposure.",
+      "evidence_type": "FDA label (Clinical Pharmacology, population PK analysis - special populations)",
+      "citations": [
+        {
+          "title": "IBRANCE tablets (palbociclib) Clinical Pharmacology - Pfizer Medical",
+          "url": "https://www.pfizermedical.com/patient/ibrance-tablets/clinical-pharmacology",
+          "locator": "Section 12.3, Specific Populations",
+          "supporting_text": "Based on a population pharmacokinetic analysis in 183 patients with cancer (50 male and 133 female patients, age range from 22 to 89 years, and body weight range from 37.9 to 123 kg), gender had no effect on the exposure of palbociclib, and age and body weight had no clinically important effect on the exposure of palbociclib."
+        }
+      ]
+    },
+    {
+      "text": "The pharmacokinetics of palbociclib have not been evaluated in patients under 18 years of age, and PK in patients requiring dialysis/severe renal impairment has not been fully characterized in labeling excerpts reviewed.",
+      "evidence_type": "FDA label (Use in Specific Populations, pediatric and renal impairment)",
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib capsule - DailyMed - NIH",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e0e6412f-50b4-4fd4-9364-62818d121a07",
+          "locator": "Section 8.4 / 8.7",
+          "supporting_text": "Pharmacokinetics of IBRANCE have not been evaluated in patients <18 years of age."
+        },
+        {
+          "title": "Label: IBRANCE- palbociclib capsule - DailyMed - NIH",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e0e6412f-50b4-4fd4-9364-62818d121a07",
+          "locator": "Section 12.3, Renal Impairment",
+          "supporting_text": "The pharmacokinetics of palbociclib have not been studied in patients requ"
+        }
+      ]
+    },
+    {
+      "text": "Palbociclib had no large effect on QTc (i.e., >20 ms) at 125 mg once daily for 21 consecutive days followed by 7 days off treatment, based on pharmacokinetic/ECG data in 77 patients with breast cancer.",
+      "evidence_type": "FDA label (Clinical Pharmacology, cardiac electrophysiology/QTc study)",
+      "citations": [
+        {
+          "title": "IBRANCE (palbociclib) label",
+          "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2019/207103s010lbl.pdf",
+          "locator": "Section 12.2/12.3",
+          "supporting_text": "Palbociclib had no large effect on QTc (i.e., >20 ms) at 125 mg once daily for 21 consecutive days followed by 7 days off treatment to comprise a ... pharmacokinetic data in 77 patients with breast cancer."
+        }
+      ]
+    }
+  ],
+  "gaps": [
+    "Exact plasma protein binding percentage for palbociclib and volume of distribution (Vd or Vd/F) were not directly captured from the label excerpts retrieved in this search; would need direct confirmation from full Section 12.3 PK text.",
+    "Full renal impairment pharmacokinetic data (mild/moderate/severe, dialysis) were not retrieved in complete form; only a truncated statement indicating dialysis-requiring patients have not been studied was found.",
+    "Specific inactive ingredients/excipients for capsule vs. tablet formulations (e.g., fillers, coating agents) were not retrieved from DailyMed in this research pass.",
+    "Peer-reviewed pharmacology papers characterizing the biochemical selectivity/potency (IC50) of palbociclib against CDK4/6 versus other kinases were not independently verified via PubMed in this search round; current claims rely on FDA label and label-derived tertiary sources (Pfizer Medical, Elicit, RxList) rather than original peer-reviewed enzymology papers.",
+    "The label's precise molecular mechanism section (12.1) was captured largely via Pfizer Medical patient-facing clinical pharmacology pages and DailyMed tablet label rather than the single canonical current FDA PDF; version differences between capsule/tablet labels and across approval supplements were noted but not fully reconciled (e.g., current fully updated label with inavolisib indication vs. earlier archived PDFs)."
+  ],
+  "warnings": [
+    "Some retrieved FDA label PDFs are explicitly marked as not reflecting the most current approved labeling (e.g., 2016 and 2019 archived PDFs), and label content has evolved with new indications (e.g., addition of inavolisib combination) and dosing information (e.g., tablet vs. capsule food requirements); claims here are cross-checked against multiple label versions/DailyMed setids but exact current live label should be reconfirmed at time of use.",
+    "Several source URLs (Pfizer Medical patient/HCP clinical pharmacology pages, RxList, fda.report, Elicit) are secondary/tertiary aggregator sites that reproduce label language; when possible these were cross-validated against DailyMed/FDA PDF text, but original canonical FDA label sourcing was not obtainable for every claim within the search budget.",
+    "No independent peer-reviewed pharmacology (e.g., PubMed primary kinase-selectivity or human ADME study) papers were directly retrieved and cited in this section; metabolism/ADME claims rely on FDA label text describing underlying human radiolabeled ADME study results rather than the primary published study report.",
+    "Clinical onset of pharmacodynamic effect (e.g., time to neutropenia nadir) was not addressed in this section per the instruction not to infer clinical onset from half-life; this would require separate clinical/safety data not covered by the current search scope."
+  ]
+}

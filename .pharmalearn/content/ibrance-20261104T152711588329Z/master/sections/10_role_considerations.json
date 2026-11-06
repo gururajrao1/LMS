@@ -1,0 +1,31 @@
+{
+  "id": "10_role_considerations",
+  "title": "Role-specific considerations",
+  "summary": "Prepared from the bundled Ibrance evidence for the no-key demo run.",
+  "claims": [
+    {
+      "id": "claim-dose",
+      "topic": "dosing",
+      "text": "The recommended starting dose is 125 mg once daily for 21 consecutive days followed by 7 days off treatment in a 28-day cycle.",
+      "citations": [
+        {
+          "source_id": "DM-IBRANCE-2026",
+          "locator": "Section 2.1, Recommended Dose and Schedule"
+        }
+      ]
+    },
+    {
+      "id": "claim-monitoring",
+      "topic": "monitoring",
+      "text": "Complete blood counts are monitored before treatment, at the beginning of each cycle, on Day 15 of the first two cycles, and as clinically indicated.",
+      "citations": [
+        {
+          "source_id": "DM-IBRANCE-2026",
+          "locator": "Section 5.1, Neutropenia"
+        }
+      ]
+    }
+  ],
+  "gaps": [],
+  "warnings": []
+}

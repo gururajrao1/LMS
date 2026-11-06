@@ -1,0 +1,165 @@
+{
+  "title": "Ibrance (palbociclib): Dosing, Monitoring, and Dose-Modification Instructions",
+  "instruction": "For each clinical scenario, build the exact labelled instruction by selecting the correct phrase for every blank.",
+  "items": [
+    {
+      "id": "a1",
+      "prompt": "Initiating IBRANCE with an aromatase inhibitor or fulvestrant",
+      "blanks": [
+        {
+          "id": "a1-b1",
+          "before": "Administer IBRANCE ",
+          "options": {
+            "a": "125 mg",
+            "b": "100 mg",
+            "c": "75 mg",
+            "d": "200 mg"
+          },
+          "correct_index": 0
+        },
+        {
+          "id": "a1-b2",
+          "before": " orally once daily for ",
+          "options": {
+            "a": "14 consecutive days",
+            "b": "21 consecutive days",
+            "c": "28 consecutive days",
+            "d": "10 consecutive days"
+          },
+          "correct_index": 1
+        },
+        {
+          "id": "a1-b3",
+          "before": " followed by ",
+          "options": {
+            "a": "14 days off treatment",
+            "b": "5 days off treatment",
+            "c": "7 days off treatment",
+            "d": "3 days off treatment"
+          },
+          "correct_index": 2
+        }
+      ],
+      "tail": " to comprise a complete 28-day cycle.",
+      "rationale": "The FDA-approved starting dose is 125 mg once daily for 21 consecutive days followed by 7 days off treatment, comprising a complete 28-day cycle; this schedule is unchanged regardless of which endocrine partner is used.",
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib capsule - DailyMed - NIH",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e0e6412f-50b4-4fd4-9364-62818d121a07",
+          "locator": "Highlights, Dosage and Administration"
+        }
+      ]
+    },
+    {
+      "id": "a2",
+      "prompt": "Selecting an IBRANCE dose for a patient with hepatic impairment",
+      "blanks": [
+        {
+          "id": "a2-b1",
+          "before": "No dose adjustment is required for patients with Child-Pugh class ",
+          "options": {
+            "a": "A only",
+            "b": "A or B",
+            "c": "B or C",
+            "d": "C only"
+          },
+          "correct_index": 1
+        },
+        {
+          "id": "a2-b2",
+          "before": " hepatic impairment; for patients with Child-Pugh class C hepatic impairment, reduce the dose to ",
+          "options": {
+            "a": "100 mg",
+            "b": "125 mg",
+            "c": "75 mg",
+            "d": "50 mg"
+          },
+          "correct_index": 2
+        }
+      ],
+      "tail": " once daily on the same 21-days-on/7-days-off schedule.",
+      "rationale": "The label requires no dose adjustment for mild (Child-Pugh A) or moderate (Child-Pugh B) hepatic impairment, but reduces the dose to 75 mg once daily (same 21/7 schedule) for severe (Child-Pugh C) hepatic impairment.",
+      "citations": [
+        {
+          "title": "full prescribing information for IBRANCE - Pfizer labeling",
+          "url": "https://labeling.pfizer.com/showlabeling.aspx?id=2191",
+          "locator": "Section 2.2 / 8.6, Hepatic Impairment"
+        }
+      ]
+    },
+    {
+      "id": "a3",
+      "prompt": "Scheduling complete blood count monitoring during early IBRANCE cycles",
+      "blanks": [
+        {
+          "id": "a3-b1",
+          "before": "Monitor complete blood count prior to starting IBRANCE therapy, at the beginning of each cycle, and on Day ",
+          "options": {
+            "a": "8",
+            "b": "15",
+            "c": "21",
+            "d": "28"
+          },
+          "correct_index": 1
+        },
+        {
+          "id": "a3-b2",
+          "before": " of the first ",
+          "options": {
+            "a": "1 cycle",
+            "b": "3 cycles",
+            "c": "2 cycles",
+            "d": "4 cycles"
+          },
+          "correct_index": 2
+        }
+      ],
+      "tail": ", and as clinically indicated.",
+      "rationale": "The label specifies CBC monitoring prior to starting therapy, at the start of every cycle, and additionally on Day 15 of the first 2 cycles, reflecting the early on-treatment timing of neutropenia onset.",
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib capsule - DailyMed - NIH",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e0e6412f-50b4-4fd4-9364-62818d121a07",
+          "locator": "Dosage and Administration / Warnings and Precautions Highlights"
+        }
+      ]
+    },
+    {
+      "id": "a4",
+      "prompt": "Grade 3 (or recurrent Grade 3) neutropenia found on Day 1 of a cycle",
+      "blanks": [
+        {
+          "id": "a4-b1",
+          "before": "Withhold IBRANCE until recovery to Grade ",
+          "options": {
+            "a": "0",
+            "b": "\u22641",
+            "c": "\u22642",
+            "d": "\u22643"
+          },
+          "correct_index": 2
+        },
+        {
+          "id": "a4-b2",
+          "before": ", then ",
+          "options": {
+            "a": "resume at the same dose",
+            "b": "resume at the next lower dose",
+            "c": "resume at the next higher dose",
+            "d": "permanently discontinue IBRANCE"
+          },
+          "correct_index": 1
+        }
+      ],
+      "tail": ".",
+      "rationale": "Per the label's hematologic toxicity dose-modification table, Grade 3 (or recurrent Grade 3) neutropenia on Day 1 of a cycle requires withholding IBRANCE until recovery to Grade \u2032\u22642 and then resuming at the next lower dose, not discontinuing therapy outright.",
+      "citations": [
+        {
+          "title": "IBRANCE\u00ae (palbociclib) capsules, for oral use",
+          "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/207103s021,212436s009lbl.pdf",
+          "locator": "Table 2 - Dose Modification for Hematologic Toxicities"
+        }
+      ]
+    }
+  ]
+}

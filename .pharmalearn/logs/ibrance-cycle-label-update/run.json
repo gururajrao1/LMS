@@ -3,5 +3,7 @@
   "mode": "local",
   "created_at": "2026-08-13T00:00:00+00:00",
   "budget_usd": 8.0,
-  "cost_usd": 0.014842
+  "cost_usd": 0.014842,
+  "status": "completed",
+  "progress": 100
 }

@@ -1,0 +1,24 @@
+{
+  "id": "12_comparisons",
+  "title": "Comparisons with existing drugs",
+  "summary": "Prepared from the bundled Ibrance evidence for the no-key demo run.",
+  "claims": [
+    {
+      "id": "claim-pfs",
+      "topic": "pivotal_evidence",
+      "text": "In PALOMA-2, investigator-assessed median progression-free survival was 24.8 months with IBRANCE plus letrozole and 14.5 months with placebo plus letrozole; overall survival was not statistically significant in the prespecified final analysis.",
+      "citations": [
+        {
+          "source_id": "DM-IBRANCE-2026",
+          "locator": "Section 14, Table 10"
+        },
+        {
+          "source_id": "CT-PALOMA2",
+          "locator": "Study results"
+        }
+      ]
+    }
+  ],
+  "gaps": [],
+  "warnings": []
+}

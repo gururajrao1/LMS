@@ -1,0 +1,311 @@
+{
+  "title": "Ibrance (palbociclib) HCP Knowledge Check: Approved Use, Prescribing, Monitoring, and Safety",
+  "passing_score": 8,
+  "questions": [
+    {
+      "id": "q1",
+      "prompt": "A postmenopausal woman with newly diagnosed HR-positive, HER2-negative metastatic breast cancer is being started on systemic therapy. Per current FDA labeling, IBRANCE (palbociclib) is approved for use in combination with which of the following?",
+      "options": [
+        "An aromatase inhibitor or fulvestrant (or inavolisib plus fulvestrant in the PIK3CA-mutated, endocrine-resistant setting)",
+        "Tamoxifen as monotherapy partner only",
+        "Trastuzumab alone, without any endocrine therapy backbone",
+        "Cytotoxic chemotherapy as the sole combination partner in the first-line setting"
+      ],
+      "correct_index": 0,
+      "rationale": "Current labeling indicates IBRANCE for HR-positive, HER2-negative advanced or metastatic breast cancer in combination with an aromatase inhibitor, with fulvestrant, or with inavolisib and fulvestrant in a PIK3CA-mutated, endocrine-resistant subset. Tamoxifen, trastuzumab-only regimens, and chemotherapy-only combinations are not label-supported partners for this HR+/HER2- indication.",
+      "option_rationales": [
+        "Correct. This matches the FDA-approved Indications and Usage language for IBRANCE.",
+        "Incorrect. Tamoxifen is not a labeled combination partner for IBRANCE.",
+        "Incorrect. Trastuzumab-based combinations for IBRANCE require endocrine therapy as part of the regimen (HR+/HER2+ maintenance), not trastuzumab alone.",
+        "Incorrect. IBRANCE is not indicated as a chemotherapy-combination product; it is combined with endocrine therapy (or inavolisib plus endocrine therapy)."
+      ],
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib tablet, film coated - DailyMed - NIH",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=fecbdd7d-b729-41b5-9872-231b8fe104ce",
+          "locator": "Indications and Usage (1)"
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "prompt": "What is the FDA-approved recommended starting dose and administration schedule for IBRANCE?",
+      "options": [
+        "125 mg once daily continuously, with no scheduled treatment-free days",
+        "125 mg once daily for 21 consecutive days followed by 7 days off treatment, comprising a 28-day cycle",
+        "200 mg once daily for 14 days followed by 14 days off treatment",
+        "75 mg twice daily for 21 consecutive days followed by 7 days off treatment"
+      ],
+      "correct_index": 1,
+      "rationale": "The FDA-approved recommended starting dose is 125 mg once daily for 21 consecutive days followed by 7 days off treatment, comprising a complete 28-day cycle, continued until disease progression or unacceptable toxicity.",
+      "option_rationales": [
+        "Incorrect. There is a mandatory 7-day off-treatment period each cycle; continuous dosing without interruption is not the approved schedule.",
+        "Correct. This is the labeled starting dose and 21/7 schedule.",
+        "Incorrect. Neither the 200 mg dose nor the 14-day on/14-day off schedule reflects the approved regimen.",
+        "Incorrect. The approved regimen is once-daily (not twice daily), and the standard starting dose is 125 mg, not 75 mg twice daily."
+      ],
+      "citations": [
+        {
+          "title": "Ibrance DailyMed Label - FDA.report",
+          "url": "https://fda.report/DailyMed/86718885-da44-4d3d-b3ca-06cbcedcffd8",
+          "locator": "Dosage and Administration section"
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "prompt": "A patient is being counseled on how to take IBRANCE. Which statement about food and formulation is accurate per current labeling?",
+      "options": [
+        "IBRANCE capsules must be taken with food, while IBRANCE tablets may be taken with or without food",
+        "Both capsules and tablets must always be taken on an empty stomach",
+        "IBRANCE tablets must always be taken with food, while capsules may be taken without food",
+        "Food intake has no bearing on administration instructions for either formulation"
+      ],
+      "correct_index": 0,
+      "rationale": "Per labeling, IBRANCE capsules are taken orally with food, whereas IBRANCE tablets are taken orally with or without food. This distinction is important for patient counseling depending on which formulation is dispensed.",
+      "option_rationales": [
+        "Correct. This matches the dosage and administration instructions for each formulation.",
+        "Incorrect. Capsules specifically require food; tablets do not require fasting.",
+        "Incorrect. This reverses the actual label requirement \u2014 capsules (not tablets) require food.",
+        "Incorrect. Food effect and administration instructions differ meaningfully between the two formulations and must be communicated to patients."
+      ],
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib tablet, film coated - DailyMed",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=fecbdd7d-b729-41b5-9872-231b8fe104ce",
+          "locator": "Section 12.1"
+        }
+      ]
+    },
+    {
+      "id": "q4",
+      "prompt": "Per current IBRANCE labeling, when should complete blood counts (CBC) be monitored during treatment?",
+      "options": [
+        "Only once, immediately prior to initiating IBRANCE",
+        "Prior to starting IBRANCE therapy, at the beginning of each cycle, on Day 15 of the first 2 cycles, and as clinically indicated",
+        "Every 6 months regardless of cycle number or clinical status",
+        "Only if the patient develops a fever or reports symptoms"
+      ],
+      "correct_index": 1,
+      "rationale": "Labeling requires CBC monitoring prior to starting IBRANCE, at the beginning of each treatment cycle, on Day 15 of the first 2 cycles specifically, and as clinically indicated thereafter, reflecting the observed early-cycle timing of neutropenia.",
+      "option_rationales": [
+        "Incorrect. A single baseline CBC is insufficient; ongoing monitoring throughout treatment is required.",
+        "Correct. This is the labeled monitoring schedule for neutropenia surveillance.",
+        "Incorrect. Six-month intervals are far less frequent than the required schedule, especially during early cycles.",
+        "Incorrect. Monitoring is scheduled proactively regardless of symptoms, not only in response to fever."
+      ],
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib capsule - DailyMed - NIH",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e0e6412f-50b4-4fd4-9364-62818d121a07",
+          "locator": "Dosage and Administration / Warnings and Precautions Highlights"
+        }
+      ]
+    },
+    {
+      "id": "q5",
+      "prompt": "A patient on IBRANCE plus letrozole presents on Day 1 of a new cycle with Grade 3 neutropenia. According to the FDA label's dose modification guidance, what is the recommended action?",
+      "options": [
+        "Continue IBRANCE at the current dose without any interruption",
+        "Withhold IBRANCE until recovery to Grade \u22642, then resume at the next lower dose",
+        "Permanently discontinue IBRANCE for any Grade 3 neutropenia",
+        "Increase the IBRANCE dose to overcome the cytopenia"
+      ],
+      "correct_index": 1,
+      "rationale": "For Grade 3 (or recurrent Grade 3) neutropenia occurring on Day 1 of a cycle, the label recommends withholding IBRANCE until the patient recovers to Grade \u22642, then resuming treatment at the next lower dose.",
+      "option_rationales": [
+        "Incorrect. Continuing at the same dose without interruption is not the labeled approach for Grade 3 neutropenia at cycle start.",
+        "Correct. This reflects the label's dose modification table for hematologic toxicity.",
+        "Incorrect. Grade 3 neutropenia at cycle start calls for interruption and dose reduction upon recovery, not automatic permanent discontinuation.",
+        "Incorrect. Increasing the dose would worsen myelosuppression and is never the recommended response to neutropenia."
+      ],
+      "citations": [
+        {
+          "title": "IBRANCE\u00ae (palbociclib) capsules, for oral use",
+          "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/207103s021,212436s009lbl.pdf",
+          "locator": "Table 2 - Dose Modification for Hematologic Toxicities"
+        }
+      ]
+    },
+    {
+      "id": "q6",
+      "prompt": "A patient taking IBRANCE develops new-onset cough and dyspnea. What does current labeling direct the clinician to do?",
+      "options": [
+        "Continue IBRANCE unchanged and reassess at the next scheduled visit",
+        "Interrupt IBRANCE immediately, evaluate for interstitial lung disease (ILD)/pneumonitis, and permanently discontinue if severe ILD/pneumonitis is confirmed",
+        "Increase the IBRANCE dose to determine if symptoms are dose-related",
+        "Switch the endocrine combination partner while continuing IBRANCE at the same dose without evaluation"
+      ],
+      "correct_index": 1,
+      "rationale": "Labeling instructs clinicians to monitor for pulmonary symptoms indicative of ILD/pneumonitis (e.g., hypoxia, cough, dyspnea), to interrupt IBRANCE immediately in patients with suspected ILD/pneumonitis, and to permanently discontinue IBRANCE if severe ILD/pneumonitis occurs.",
+      "option_rationales": [
+        "Incorrect. New respiratory symptoms warrant immediate action, not deferral to a future visit.",
+        "Correct. This matches the Warnings and Precautions guidance for ILD/pneumonitis.",
+        "Incorrect. Increasing the dose is never appropriate when a serious adverse reaction is suspected.",
+        "Incorrect. The concern is with IBRANCE itself (a class effect of CDK4/6 inhibitors); therapy should be interrupted and evaluated, not merely adjusted around."
+      ],
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib capsule - DailyMed - NIH",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e0e6412f-50b4-4fd4-9364-62818d121a07",
+          "locator": "Warnings and Precautions - ILD/Pneumonitis"
+        }
+      ]
+    },
+    {
+      "id": "q7",
+      "prompt": "A patient stable on IBRANCE requires a short course of itraconazole for a fungal infection. What is the key labeled concern with this combination?",
+      "options": [
+        "Itraconazole has no meaningful pharmacokinetic interaction with palbociclib",
+        "Itraconazole, a strong CYP3A inhibitor, increases palbociclib exposure, and concomitant use of strong CYP3A inhibitors should generally be avoided",
+        "Itraconazole substantially decreases palbociclib exposure, risking loss of efficacy",
+        "The IBRANCE dose should be doubled whenever itraconazole is co-administered"
+      ],
+      "correct_index": 1,
+      "rationale": "In a formal drug interaction study, coadministration of the strong CYP3A inhibitor itraconazole increased palbociclib AUCinf and Cmax by approximately 87% and 34%, respectively; labeling advises avoiding concomitant use of strong CYP3A inhibitors such as itraconazole.",
+      "option_rationales": [
+        "Incorrect. A formal interaction study demonstrated a clinically relevant increase in palbociclib exposure with itraconazole.",
+        "Correct. This reflects the documented interaction and the label's guidance to avoid strong CYP3A inhibitors.",
+        "Incorrect. Itraconazole increases, not decreases, palbociclib exposure.",
+        "Incorrect. Doubling the dose would compound the exposure increase and is not a labeled recommendation; if a strong inhibitor cannot be avoided, dose reduction (not escalation) is the labeled approach."
+      ],
+      "citations": [
+        {
+          "title": "full prescribing information for IBRANCE - Pfizer labeling",
+          "url": "https://labeling.pfizer.com/showlabeling.aspx?id=2191",
+          "locator": "Section 12.3, CYP3A Inhibitors"
+        }
+      ]
+    },
+    {
+      "id": "q8",
+      "prompt": "A patient with severe hepatic impairment (Child-Pugh class C) is being considered for IBRANCE. What dose adjustment does the label recommend?",
+      "options": [
+        "No dose adjustment is required regardless of hepatic function",
+        "Reduce the dose to 100 mg once daily on the standard 21/7 schedule",
+        "Reduce the dose to 75 mg once daily for 21 consecutive days followed by 7 days off treatment",
+        "IBRANCE is contraindicated in any degree of hepatic impairment"
+      ],
+      "correct_index": 2,
+      "rationale": "For patients with severe hepatic impairment (Child-Pugh class C), the recommended dose of IBRANCE is reduced to 75 mg once daily for 21 consecutive days followed by 7 days off treatment, comprising a complete 28-day cycle. No dose adjustment is needed for mild or moderate hepatic impairment.",
+      "option_rationales": [
+        "Incorrect. While no adjustment is needed for mild/moderate impairment, severe impairment requires a dose reduction.",
+        "Incorrect. 100 mg is not the labeled dose for severe hepatic impairment; the labeled reduced dose is 75 mg.",
+        "Correct. This matches the labeled dose reduction for severe hepatic impairment.",
+        "Incorrect. IBRANCE is not contraindicated in hepatic impairment; a specific dose reduction is provided for severe impairment instead."
+      ],
+      "citations": [
+        {
+          "title": "full prescribing information for IBRANCE - Pfizer labeling",
+          "url": "https://labeling.pfizer.com/showlabeling.aspx?id=2191",
+          "locator": "Section 2.2 / 8.6, Hepatic Impairment"
+        }
+      ]
+    },
+    {
+      "id": "q9",
+      "prompt": "What contraception counseling does current labeling recommend for patients prescribed IBRANCE?",
+      "options": [
+        "No contraception counseling is necessary because IBRANCE does not affect fertility or the fetus",
+        "Females of reproductive potential should use effective contraception during treatment and for at least 3 weeks after the last dose; males with female partners of reproductive potential should use effective contraception during treatment and for 3 months after the last dose",
+        "Contraception is recommended only for 1 week after the final dose, for both sexes",
+        "Only male patients require contraception counseling; female patients need none"
+      ],
+      "correct_index": 1,
+      "rationale": "Based on animal data and mechanism of action, IBRANCE can cause fetal harm. Labeling advises females of reproductive potential to use effective contraception during treatment and for at least 3 weeks after the last dose, and advises male patients with female partners of reproductive potential to use effective contraception during treatment and for 3 months after the last dose due to potential genotoxicity.",
+      "option_rationales": [
+        "Incorrect. Embryo-fetal toxicity was demonstrated in animal reproduction studies, and specific contraception counseling is required for both sexes.",
+        "Correct. This reflects the labeled durations for females and males, respectively.",
+        "Incorrect. The labeled durations are longer and differ by sex (3 weeks for females, 3 months for males), not a uniform 1 week for both.",
+        "Incorrect. Both female patients (3 weeks post-dose) and male patients with partners of reproductive potential (3 months post-dose) require contraception counseling."
+      ],
+      "citations": [
+        {
+          "title": "full prescribing information for IBRANCE",
+          "url": "https://labeling.pfizer.com/showlabeling.aspx?id=2191",
+          "locator": "Use in Specific Populations (8.1, 8.2, 8.3)"
+        }
+      ]
+    },
+    {
+      "id": "q10",
+      "prompt": "In the pivotal PALOMA-2 trial of IBRANCE plus letrozole versus placebo plus letrozole as first-line therapy for HR+/HER2- advanced breast cancer, which statement best reflects the efficacy findings across primary and secondary endpoints?",
+      "options": [
+        "IBRANCE plus letrozole significantly improved PFS (24.8 vs 14.5 months) and the final overall survival analysis also reached statistical significance",
+        "IBRANCE plus letrozole significantly improved the primary endpoint of PFS (24.8 vs 14.5 months), but the final overall survival analysis, a secondary endpoint, was not statistically significant (HR 0.956)",
+        "IBRANCE plus letrozole showed no improvement in progression-free survival compared with letrozole alone",
+        "PALOMA-2 did not include an overall survival endpoint of any kind"
+      ],
+      "correct_index": 1,
+      "rationale": "PALOMA-2 met its primary endpoint, showing median PFS of 24.8 months with palbociclib plus letrozole versus 14.5 months with placebo plus letrozole. However, in the final overall survival analysis (a secondary endpoint, at a median follow-up of 90 months), the difference was not statistically significant (HR 0.956; 95% CI 0.777-1.177). This distinction between the significant PFS benefit and the non-significant OS finding is clinically important.",
+      "option_rationales": [
+        "Incorrect. The final OS analysis did not reach statistical significance despite the numerically longer OS with palbociclib.",
+        "Correct. This accurately reflects both the significant primary PFS result and the non-significant secondary OS result.",
+        "Incorrect. PALOMA-2 demonstrated a large, statistically significant PFS benefit, not a lack of benefit.",
+        "Incorrect. OS was assessed as a secondary endpoint, with results reported after long-term follow-up."
+      ],
+      "citations": [
+        {
+          "title": "Palbociclib and Letrozole in Advanced Breast Cancer | NEJM",
+          "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1607303",
+          "locator": "Results"
+        },
+        {
+          "title": "Pfizer Announces Overall Survival Results from Phase 3 PALOMA-2 Trial of IBRANCE",
+          "url": "https://www.pfizer.com/news/press-release/press-release-detail/pfizer-announces-overall-survival-results-phase-3-paloma-2",
+          "locator": "Results paragraph"
+        }
+      ]
+    },
+    {
+      "id": "q11",
+      "prompt": "Which patient population and endpoint result characterizes the PALOMA-3 trial, which supported the IBRANCE plus fulvestrant indication?",
+      "options": [
+        "Treatment-naive postmenopausal women; primary endpoint was overall survival, which was met with statistical significance",
+        "Women with HR+/HER2- metastatic breast cancer whose disease had progressed after prior endocrine therapy; the primary endpoint of PFS was significantly improved (9.5 vs 4.6 months; HR 0.46)",
+        "Men only, evaluating objective response rate as the primary endpoint",
+        "Patients with HER2-positive disease, evaluating pathologic complete response as the primary endpoint"
+      ],
+      "correct_index": 1,
+      "rationale": "PALOMA-3 enrolled women with HR-positive, HER2-negative metastatic breast cancer with disease progression following prior endocrine therapy. The trial's primary PFS endpoint showed a statistically significant and clinically meaningful improvement with palbociclib plus fulvestrant versus placebo plus fulvestrant (9.5 vs 4.6 months; HR 0.46, 95% CI 0.36-0.59), forming the basis for FDA approval in this pretreated population.",
+      "option_rationales": [
+        "Incorrect. PALOMA-3 enrolled patients with prior endocrine therapy progression, not treatment-naive patients, and its primary endpoint was PFS, not OS.",
+        "Correct. This matches the FDA approval basis and pivotal trial population/endpoint for the fulvestrant combination.",
+        "Incorrect. PALOMA-3 was not restricted to men, and its primary endpoint was PFS, not objective response rate.",
+        "Incorrect. PALOMA-3 studied HR-positive, HER2-negative disease, not HER2-positive disease, and did not use pathologic complete response as an endpoint (this is a metastatic, not neoadjuvant, trial)."
+      ],
+      "citations": [
+        {
+          "title": "FDA Approval of Palbociclib in Combination with Fulvestrant for HR+, HER2- Metastatic Breast Cancer",
+          "url": "https://aacrjournals.org/clincancerres/article/22/20/4968/124844/FDA-Approval-of-Palbociclib-in-Combination-with",
+          "locator": "Results"
+        }
+      ]
+    },
+    {
+      "id": "q12",
+      "prompt": "A patient calls the office to report she vomited shortly after taking her IBRANCE dose for the day. What guidance does current labeling support?",
+      "options": [
+        "Take an additional dose right away to replace the vomited one",
+        "Do not take an additional dose that day; take the next scheduled dose at the usual time",
+        "Double the following day's dose to make up for the loss",
+        "Skip IBRANCE entirely for the next 2 days as a precaution"
+      ],
+      "correct_index": 1,
+      "rationale": "Per labeling and patient counseling information, if a patient vomits or misses a dose, an additional dose should not be taken; the next prescribed dose should be taken at the usual scheduled time.",
+      "option_rationales": [
+        "Incorrect. Labeling specifically advises against taking an additional dose to compensate for a vomited or missed dose.",
+        "Correct. This is the labeled guidance for a vomited or missed dose.",
+        "Incorrect. Doubling a subsequent dose is not supported by labeling and could increase toxicity risk.",
+        "Incorrect. Skipping multiple additional days beyond the missed dose is not part of the labeled instruction; the patient should simply resume the normal schedule at the next scheduled dose."
+      ],
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib tablet, film coated - DailyMed",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=89a142d5-7e61-48bf-9e77-e2cd124c4792&version=10",
+          "locator": "Patient Counseling Information"
+        }
+      ]
+    }
+  ]
+}

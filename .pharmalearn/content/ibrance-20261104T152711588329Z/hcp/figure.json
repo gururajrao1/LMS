@@ -1,0 +1,174 @@
+{
+  "title": "Ibrance (palbociclib) Pivotal Trial Efficacy and Neutropenia Data: Reading the Charts",
+  "questions": [
+    {
+      "id": "f1-paloma2-pfs",
+      "caption": "Median investigator-assessed PFS in PALOMA-2, a phase 3 trial of palbociclib+letrozole vs placebo+letrozole in postmenopausal women with previously untreated HR+/HER2- advanced breast cancer (NEJM primary analysis).",
+      "chart_kind": "bar",
+      "x_title": "Treatment arm",
+      "y_title": "Median progression-free survival",
+      "y_suffix": " mo",
+      "series": [
+        {
+          "name": "Median PFS",
+          "points": [
+            {
+              "label": "Palbociclib + letrozole",
+              "value": 24.8
+            },
+            {
+              "label": "Placebo + letrozole",
+              "value": 14.5
+            }
+          ]
+        }
+      ],
+      "prompt": "Based on the PALOMA-2 primary PFS analysis shown, what is the absolute difference in median PFS between the two arms?",
+      "options": {
+        "a": "10.3 months",
+        "b": "6.6 months",
+        "c": "20.2 months",
+        "d": "14.5 months"
+      },
+      "correct_index": 0,
+      "rationale": "The chart shows median PFS of 24.8 months with palbociclib+letrozole versus 14.5 months with placebo+letrozole in the PALOMA-2 primary analysis, an absolute difference of 10.3 months (24.8 - 14.5).",
+      "citations": [
+        {
+          "title": "Palbociclib and Letrozole in Advanced Breast Cancer | NEJM",
+          "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1607303",
+          "locator": "Results"
+        }
+      ]
+    },
+    {
+      "id": "f2-paloma2-os",
+      "caption": "Final overall survival (secondary endpoint) in PALOMA-2 at 90-month median follow-up, palbociclib+letrozole vs placebo+letrozole in first-line HR+/HER2- advanced breast cancer.",
+      "chart_kind": "bar",
+      "x_title": "Treatment arm",
+      "y_title": "Median overall survival",
+      "y_suffix": " mo",
+      "series": [
+        {
+          "name": "Median OS",
+          "points": [
+            {
+              "label": "Palbociclib + letrozole",
+              "value": 53.9
+            },
+            {
+              "label": "Placebo + letrozole",
+              "value": 51.2
+            }
+          ]
+        }
+      ],
+      "prompt": "Reading the PALOMA-2 final overall survival medians shown, which statement correctly characterizes the result?",
+      "options": {
+        "a": "Median OS was numerically longer with palbociclib+letrozole (53.9 vs 51.2 months), a difference that was not statistically significant (HR 0.956)",
+        "b": "Median OS was significantly longer with palbociclib+letrozole, confirming a survival benefit",
+        "c": "Median OS was shorter with palbociclib+letrozole than with letrozole alone",
+        "d": "The chart shows a 10.3-month OS advantage for palbociclib+letrozole, matching the PFS benefit"
+      },
+      "correct_index": 0,
+      "rationale": "The chart shows 53.9 vs 51.2 months (a 2.7-month numerical difference), and the reported hazard ratio was 0.956 (95% CI 0.777-1.177), which was not statistically significant per the final PALOMA-2 OS analysis; option d incorrectly imports the PFS difference from a different endpoint.",
+      "citations": [
+        {
+          "title": "Pfizer Announces Overall Survival Results from Phase 3 PALOMA-2 Trial of IBRANCE",
+          "url": "https://www.pfizer.com/news/press-release/press-release-detail/pfizer-announces-overall-survival-results-phase-3-paloma-2",
+          "locator": "Results paragraph"
+        }
+      ]
+    },
+    {
+      "id": "f3-paloma3-pfs",
+      "caption": "Median PFS in PALOMA-3, a phase 3 trial of palbociclib+fulvestrant vs placebo+fulvestrant in HR+/HER2- advanced breast cancer with prior progression on endocrine therapy (FDA approval review basis).",
+      "chart_kind": "bar",
+      "x_title": "Treatment arm",
+      "y_title": "Median progression-free survival",
+      "y_suffix": " mo",
+      "series": [
+        {
+          "name": "Median PFS",
+          "points": [
+            {
+              "label": "Palbociclib + fulvestrant",
+              "value": 9.5
+            },
+            {
+              "label": "Placebo + fulvestrant",
+              "value": 4.6
+            }
+          ]
+        }
+      ],
+      "prompt": "According to the pivotal PALOMA-3 PFS data that supported FDA approval, how much longer was median PFS with palbociclib+fulvestrant compared with placebo+fulvestrant?",
+      "options": {
+        "a": "4.9 months",
+        "b": "9.5 months",
+        "c": "6.6 months",
+        "d": "0.46 months"
+      },
+      "correct_index": 0,
+      "rationale": "The chart shows median PFS of 9.5 months with palbociclib+fulvestrant versus 4.6 months with placebo+fulvestrant, an absolute difference of 4.9 months; 9.5 months is the palbociclib arm's own value (not the difference), 6.6 months comes from a later non-prespecified updated analysis not shown here, and 0.46 is the hazard ratio, not a time difference.",
+      "citations": [
+        {
+          "title": "FDA Approval of Palbociclib in Combination with Fulvestrant for HR+, HER2- Metastatic Breast Cancer",
+          "url": "https://aacrjournals.org/clincancerres/article/22/20/4968/124844/FDA-Approval-of-Palbociclib-in-Combination-with",
+          "locator": "Results"
+        }
+      ]
+    },
+    {
+      "id": "f4-neutropenia-grades",
+      "caption": "Grade 3 and Grade 4 neutropenia incidence in the palbociclib arms of PALOMA-2 (with letrozole) and PALOMA-3 (with fulvestrant).",
+      "chart_kind": "bar",
+      "x_title": "Trial (combination partner)",
+      "y_title": "Incidence of neutropenia",
+      "y_suffix": "%",
+      "series": [
+        {
+          "name": "Grade 3 neutropenia",
+          "points": [
+            {
+              "label": "PALOMA-2",
+              "value": 56.0
+            },
+            {
+              "label": "PALOMA-3",
+              "value": 55.0
+            }
+          ]
+        },
+        {
+          "name": "Grade 4 neutropenia",
+          "points": [
+            {
+              "label": "PALOMA-2",
+              "value": 10.0
+            },
+            {
+              "label": "PALOMA-3",
+              "value": 11.0
+            }
+          ]
+        }
+      ],
+      "prompt": "Comparing Grade 3 and Grade 4 neutropenia incidence between PALOMA-2 (palbociclib+letrozole) and PALOMA-3 (palbociclib+fulvestrant) as shown, which statement is best supported by the chart?",
+      "options": {
+        "a": "Grade 3 neutropenia incidence was similar between trials (~55-56%), while Grade 4 incidence was slightly higher in PALOMA-3 (11%) than PALOMA-2 (10%)",
+        "b": "Grade 4 neutropenia was more than twice as common in PALOMA-3 as in PALOMA-2",
+        "c": "Grade 3 neutropenia was substantially higher in PALOMA-3 than in PALOMA-2",
+        "d": "Neither trial reported Grade 4 neutropenia above 5%"
+      },
+      "correct_index": 0,
+      "rationale": "The chart shows Grade 3 neutropenia at 56% (PALOMA-2) and 55% (PALOMA-3), essentially similar, while Grade 4 neutropenia was 10% (PALOMA-2) versus 11% (PALOMA-3), a small increase rather than a doubling; both trials reported Grade 4 rates well above 5%.",
+      "citations": [
+        {
+          "title": "Pfizer Announces Overall Survival Results from Phase 3 PALOMA-3 Trial of IBRANCE",
+          "url": "https://www.pfizer.com/news/press-release/press-release-detail/pfizer_announces_overall_survival_results_from_phase_3_paloma_3_trial_of_ibrance_palbociclib_in_hr_her2_metastatic_breast_cancer-0",
+          "locator": "Safety information section"
+        }
+      ]
+    }
+  ]
+}

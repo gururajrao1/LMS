@@ -1,0 +1,735 @@
+{
+ "drug": {
+  "brand": "Ibrance",
+  "generic": "Palbociclib",
+  "manufacturer": "Pfizer",
+  "area": "Oncology"
+ },
+ "title": "Ibrance master learning dossier",
+ "sections": [
+  {
+   "id": "01_disease_foundation",
+   "title": "Disease and therapeutic-area foundation",
+   "summary": "Prepared from the bundled Ibrance evidence for the no-key demo run.",
+   "claims": [
+    {
+     "id": "claim-indication",
+     "topic": "approved_use",
+     "text": "IBRANCE is indicated for specified adults with HR-positive, HER2-negative advanced or metastatic breast cancer in combination regimens described in the prescribing information.",
+     "citations": [
+      {
+       "source_id": "DM-IBRANCE-2026",
+       "locator": "Section 1, Indications and Usage"
+      }
+     ]
+    }
+   ],
+   "gaps": [],
+   "warnings": []
+  },
+  {
+   "id": "02_product_science",
+   "title": "Product science",
+   "summary": "Prepared from the bundled Ibrance evidence for the no-key demo run.",
+   "claims": [
+    {
+     "id": "claim-dose",
+     "topic": "dosing",
+     "text": "The recommended starting dose is 125 mg once daily for 21 consecutive days followed by 7 days off treatment in a 28-day cycle.",
+     "citations": [
+      {
+       "source_id": "DM-IBRANCE-2026",
+       "locator": "Section 2.1, Recommended Dose and Schedule"
+      }
+     ]
+    },
+    {
+     "id": "claim-moa",
+     "topic": "mechanism",
+     "text": "Palbociclib inhibits CDK4 and CDK6 and blocks progression from G1 into S phase in ER-positive breast cancer cell lines.",
+     "citations": [
+      {
+       "source_id": "DM-IBRANCE-2026",
+       "locator": "Section 12.1, Mechanism of Action"
+      }
+     ]
+    }
+   ],
+   "gaps": [],
+   "warnings": []
+  },
+  {
+   "id": "03_clinical_evidence",
+   "title": "Clinical evidence",
+   "summary": "Prepared from the bundled Ibrance evidence for the no-key demo run.",
+   "claims": [
+    {
+     "id": "claim-pfs",
+     "topic": "pivotal_evidence",
+     "text": "In PALOMA-2, investigator-assessed median progression-free survival was 24.8 months with IBRANCE plus letrozole and 14.5 months with placebo plus letrozole; overall survival was not statistically significant in the prespecified final analysis.",
+     "citations": [
+      {
+       "source_id": "DM-IBRANCE-2026",
+       "locator": "Section 14, Table 10"
+      },
+      {
+       "source_id": "CT-PALOMA2",
+       "locator": "Study results"
+      }
+     ]
+    }
+   ],
+   "gaps": [],
+   "warnings": []
+  },
+  {
+   "id": "04_regulatory_label",
+   "title": "Regulatory and label information",
+   "summary": "Prepared from the bundled Ibrance evidence for the no-key demo run.",
+   "claims": [
+    {
+     "id": "claim-indication",
+     "topic": "approved_use",
+     "text": "IBRANCE is indicated for specified adults with HR-positive, HER2-negative advanced or metastatic breast cancer in combination regimens described in the prescribing information.",
+     "citations": [
+      {
+       "source_id": "DM-IBRANCE-2026",
+       "locator": "Section 1, Indications and Usage"
+      }
+     ]
+    },
+    {
+     "id": "claim-dose",
+     "topic": "dosing",
+     "text": "The recommended starting dose is 125 mg once daily for 21 consecutive days followed by 7 days off treatment in a 28-day cycle.",
+     "citations": [
+      {
+       "source_id": "DM-IBRANCE-2026",
+       "locator": "Section 2.1, Recommended Dose and Schedule"
+      }
+     ]
+    },
+    {
+     "id": "claim-monitoring",
+     "topic": "monitoring",
+     "text": "Complete blood counts are monitored before treatment, at the beginning of each cycle, on Day 15 of the first two cycles, and as clinically indicated.",
+     "citations": [
+      {
+       "source_id": "DM-IBRANCE-2026",
+       "locator": "Section 5.1, Neutropenia"
+      }
+     ]
+    }
+   ],
+   "gaps": [],
+   "warnings": []
+  },
+  {
+   "id": "05_safety",
+   "title": "Safety and risk management",
+   "summary": "Prepared from the bundled Ibrance evidence for the no-key demo run.",
+   "claims": [
+    {
+     "id": "claim-monitoring",
+     "topic": "monitoring",
+     "text": "Complete blood counts are monitored before treatment, at the beginning of each cycle, on Day 15 of the first two cycles, and as clinically indicated.",
+     "citations": [
+      {
+       "source_id": "DM-IBRANCE-2026",
+       "locator": "Section 5.1, Neutropenia"
+      }
+     ]
+    }
+   ],
+   "gaps": [],
+   "warnings": []
+  },
+  {
+   "id": "06_market_context",
+   "title": "Competitive and market context",
+   "summary": "Prepared from the bundled Ibrance evidence for the no-key demo run.",
+   "claims": [
+    {
+     "id": "claim-indication",
+     "topic": "approved_use",
+     "text": "IBRANCE is indicated for specified adults with HR-positive, HER2-negative advanced or metastatic breast cancer in combination regimens described in the prescribing information.",
+     "citations": [
+      {
+       "source_id": "DM-IBRANCE-2026",
+       "locator": "Section 1, Indications and Usage"
+      }
+     ]
+    }
+   ],
+   "gaps": [],
+   "warnings": []
+  },
+  {
+   "id": "07_compliance",
+   "title": "Compliance and communication guardrails",
+   "summary": "Prepared from the bundled Ibrance evidence for the no-key demo run.",
+   "claims": [],
+   "gaps": [
+    "Not covered by the bundled no-key evidence."
+   ],
+   "warnings": []
+  },
+  {
+   "id": "08_scientific_narrative",
+   "title": "Scientific narrative and public expert context",
+   "summary": "Prepared from the bundled Ibrance evidence for the no-key demo run.",
+   "claims": [
+    {
+     "id": "claim-moa",
+     "topic": "mechanism",
+     "text": "Palbociclib inhibits CDK4 and CDK6 and blocks progression from G1 into S phase in ER-positive breast cancer cell lines.",
+     "citations": [
+      {
+       "source_id": "DM-IBRANCE-2026",
+       "locator": "Section 12.1, Mechanism of Action"
+      }
+     ]
+    },
+    {
+     "id": "claim-pfs",
+     "topic": "pivotal_evidence",
+     "text": "In PALOMA-2, investigator-assessed median progression-free survival was 24.8 months with IBRANCE plus letrozole and 14.5 months with placebo plus letrozole; overall survival was not statistically significant in the prespecified final analysis.",
+     "citations": [
+      {
+       "source_id": "DM-IBRANCE-2026",
+       "locator": "Section 14, Table 10"
+      },
+      {
+       "source_id": "CT-PALOMA2",
+       "locator": "Study results"
+      }
+     ]
+    }
+   ],
+   "gaps": [],
+   "warnings": []
+  },
+  {
+   "id": "09_patient_support",
+   "title": "Patient support and practical tools",
+   "summary": "Prepared from the bundled Ibrance evidence for the no-key demo run.",
+   "claims": [],
+   "gaps": [
+    "Not covered by the bundled no-key evidence."
+   ],
+   "warnings": []
+  },
+  {
+   "id": "10_role_considerations",
+   "title": "Role-specific considerations",
+   "summary": "Prepared from the bundled Ibrance evidence for the no-key demo run.",
+   "claims": [
+    {
+     "id": "claim-dose",
+     "topic": "dosing",
+     "text": "The recommended starting dose is 125 mg once daily for 21 consecutive days followed by 7 days off treatment in a 28-day cycle.",
+     "citations": [
+      {
+       "source_id": "DM-IBRANCE-2026",
+       "locator": "Section 2.1, Recommended Dose and Schedule"
+      }
+     ]
+    },
+    {
+     "id": "claim-monitoring",
+     "topic": "monitoring",
+     "text": "Complete blood counts are monitored before treatment, at the beginning of each cycle, on Day 15 of the first two cycles, and as clinically indicated.",
+     "citations": [
+      {
+       "source_id": "DM-IBRANCE-2026",
+       "locator": "Section 5.1, Neutropenia"
+      }
+     ]
+    }
+   ],
+   "gaps": [],
+   "warnings": []
+  },
+  {
+   "id": "11_current_treatments",
+   "title": "Currently available treatments",
+   "summary": "Prepared from the bundled Ibrance evidence for the no-key demo run.",
+   "claims": [
+    {
+     "id": "claim-indication",
+     "topic": "approved_use",
+     "text": "IBRANCE is indicated for specified adults with HR-positive, HER2-negative advanced or metastatic breast cancer in combination regimens described in the prescribing information.",
+     "citations": [
+      {
+       "source_id": "DM-IBRANCE-2026",
+       "locator": "Section 1, Indications and Usage"
+      }
+     ]
+    }
+   ],
+   "gaps": [],
+   "warnings": []
+  },
+  {
+   "id": "12_comparisons",
+   "title": "Comparisons with existing drugs",
+   "summary": "Prepared from the bundled Ibrance evidence for the no-key demo run.",
+   "claims": [
+    {
+     "id": "claim-pfs",
+     "topic": "pivotal_evidence",
+     "text": "In PALOMA-2, investigator-assessed median progression-free survival was 24.8 months with IBRANCE plus letrozole and 14.5 months with placebo plus letrozole; overall survival was not statistically significant in the prespecified final analysis.",
+     "citations": [
+      {
+       "source_id": "DM-IBRANCE-2026",
+       "locator": "Section 14, Table 10"
+      },
+      {
+       "source_id": "CT-PALOMA2",
+       "locator": "Study results"
+      }
+     ]
+    }
+   ],
+   "gaps": [],
+   "warnings": []
+  },
+  {
+   "id": "13_unmet_needs",
+   "title": "Unmet needs",
+   "summary": "Prepared from the bundled Ibrance evidence for the no-key demo run.",
+   "claims": [],
+   "gaps": [
+    "Not covered by the bundled no-key evidence."
+   ],
+   "warnings": []
+  },
+  {
+   "id": "14_moa_onset_duration",
+   "title": "Mechanism, onset, and duration",
+   "summary": "Prepared from the bundled Ibrance evidence for the no-key demo run.",
+   "claims": [
+    {
+     "id": "claim-moa",
+     "topic": "mechanism",
+     "text": "Palbociclib inhibits CDK4 and CDK6 and blocks progression from G1 into S phase in ER-positive breast cancer cell lines.",
+     "citations": [
+      {
+       "source_id": "DM-IBRANCE-2026",
+       "locator": "Section 12.1, Mechanism of Action"
+      }
+     ]
+    }
+   ],
+   "gaps": [],
+   "warnings": []
+  },
+  {
+   "id": "cited-source-verification",
+   "title": "Cited-source verification",
+   "summary": "Verbatim sections from the documents the quiz cites, recorded so the checker can trace each citation to held text. Relevance is the quiz author's citation; fidelity is verified mechanically.",
+   "claims": [
+    {
+     "id": "cit-1",
+     "text": "<text> <paragraph>Advise the patient to read the FDA-approved patient labeling (Patient Information).</paragraph> </text> <effectiveTime value=\"20250916\"/> <component> <section ID=\"ID_1a099017-6dc8-44e0-af70-fc88f31ead62\"> <id root=\"5ff5f17f-2b9c-4482-9ab7-aa03d4689546\"/> <code code=\"42229-5\" codeSystem=\"2.16.840.1.113883.6.1\" displayName=\"SPL UNCLASSIFIED SECTION\"/> <text> <paragraph> <content styleCode=\"underline\">Myelosuppression/Infection</content> </paragraph> <list listType=\"unordered\"> <item> <caption>\u2022</caption>Advise patients to immediately report any signs or symptoms of myelosuppression or infection, such as fever, chills, dizziness, shortness of breath, weakness, or any increased tendency to bleed and/or to bruise <content styleCode=\"italics\">[see <linkHtml href=\"#S5.1\">Warnings and Precautions (5.1)</linkHtml>]</content>.</item> </list> </text> <effectiveTime value=\"20221216\"/> </section> </component> <component> <section ID=\"ID_a7b6293a-387c-44c8-8ead-0e0ac64be7fa\"> <id root=\"895558de-9304-4fe6-8a5e-50",
+     "topic": "cited_source",
+     "supporting_text": "Advise the patient to read the FDA-approved patient labeling (Patient Information). Myelosuppression/Infection \u2022 Advise patients to immediately report any signs or symptoms of myelosuppression or infection, such as fever, chills, dizziness, shortness of breath, weakness, or any increased tendency to bleed and/or to bruise [see Warnings and Precautions (5.1) ] . <id root=\"895558de-9304-4fe6-8a5e-50",
+     "citations": [
+      {
+       "title": "Label: IBRANCE- palbociclib capsule - DailyMed - NIH",
+       "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e0e6412f-50b4-4fd4-9364-62818d121a07",
+       "locator": "Dosage and Administration / Warnings and Precautions Highlights",
+       "source_id": "CIT-1",
+       "supporting_text": "Advise the patient to read the FDA-approved patient labeling (Patient Information). Myelosuppression/Infection \u2022 Advise patients to immediately report any signs or symptoms of myelosuppression or infection, such as fever, chills, dizziness, shortness of breath, weakness, or any increased tendency to bleed and/or to bruise [see Warnings and Precautions (5.1) ] . <id root=\"895558de-9304-4fe6-8a5e-50"
+      }
+     ]
+    },
+    {
+     "id": "cit-2",
+     "text": "<text> <paragraph>The pharmacokinetics (PK) of palbociclib were characterized in patients with solid tumors including advanced breast cancer and in healthy subjects.</paragraph> </text> <effectiveTime value=\"20250916\"/> <component> <section ID=\"ID_209dc345-a3ca-4466-9650-5c11a9a562d5\"> <id root=\"9b4bb5b8-7a0f-4aef-9a34-1f8277d227f2\"/> <code code=\"42229-5\" codeSystem=\"2.16.840.1.113883.6.1\" displayName=\"SPL UNCLASSIFIED SECTION\"/> <text> <paragraph> <content styleCode=\"underline\">Absorption</content> </paragraph> <paragraph>The mean maximum observed concentration (C<sub>max</sub>) of palbociclib is generally observed between 6 to 12 hours (time to reach maximum concentration, T<sub>max</sub>) following oral administration. The mean absolute bioavailability of IBRANCE after an oral 125 mg dose is 46%. In the dosing range of 25 mg to 225 mg, the AUC and C<sub>max</sub> increased proportionally with dose in general. Steady state was achieved within 8 days following repeated once daily dosing. With repeated once daily administration, palbociclib accumulated with a median accumulation ratio of 2.4 (range 1.5 to 4.2).</paragraph>",
+     "topic": "cited_source",
+     "supporting_text": "The pharmacokinetics (PK) of palbociclib were characterized in patients with solid tumors including advanced breast cancer and in healthy subjects. Absorption The mean maximum observed concentration (C max ) of palbociclib is generally observed between 6 to 12 hours (time to reach maximum concentration, T max ) following oral administration. The mean absolute bioavailability of IBRANCE after an oral 125 mg dose is 46%. In the dosing range of 25 mg to 225 mg, the AUC and C max increased proportionally with dose in general. Steady state was achieved within 8 days following repeated once daily dosing. With repeated once daily administration, palbociclib accumulated with a median accumulation ratio of 2.4 (range 1.5 to 4.2).",
+     "citations": [
+      {
+       "title": "Label: IBRANCE- palbociclib capsule - DailyMed - NIH",
+       "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e0e6412f-50b4-4fd4-9364-62818d121a07",
+       "locator": "Highlights, Dosage and Administration",
+       "source_id": "CIT-2",
+       "supporting_text": "The pharmacokinetics (PK) of palbociclib were characterized in patients with solid tumors including advanced breast cancer and in healthy subjects. Absorption The mean maximum observed concentration (C max ) of palbociclib is generally observed between 6 to 12 hours (time to reach maximum concentration, T max ) following oral administration. The mean absolute bioavailability of IBRANCE after an oral 125 mg dose is 46%. In the dosing range of 25 mg to 225 mg, the AUC and C max increased proportionally with dose in general. Steady state was achieved within 8 days following repeated once daily dosing. With repeated once daily administration, palbociclib accumulated with a median accumulation ratio of 2.4 (range 1.5 to 4.2)."
+      }
+     ]
+    },
+    {
+     "id": "cit-3",
+     "text": "6.1 Clinical Studies Experience Because clinical trials are conducted under widely varying conditions, adverse reaction rates observed in the clinical trials of a drug cannot be directly compared to rates in the clinical trials of another drug and may not reflect the rates observed in practice. PALOMA-2: IBRANCE plus Letrozole Patients with estrogen receptor (ER)-positive, HER2-negative advanced or metastatic breast cancer for initial endocrine-based therapy The safety of IBRANCE (125 mg/day) plus letrozole (2.5 mg/day) versus placebo plus letrozole was evaluated in PALOMA-2. The data described below reflect exposure to IBRANCE in 444 out of 666 patients with ER-positive, HER2-negative advanced breast cancer who received at least 1 dose of IBRANCE plus letrozole in PALOMA-2. The median duration of treatment for IBRANCE plus letrozole was 19.8 months while the median duration of treatment for placebo plus letrozole arm was 13.8 months. Dose reductions due to an adverse reaction of any grade occurred in 36% of patients receiving IBRANCE plus letrozole. No dose reduction was allowed for letrozole in PALOMA-2. Permanent discontinuation associated with an adverse reaction occurred in 43 of 444 (10%) patients receiving IBRANCE plus letrozole and in 13 of 222 (6%) patients receiving placebo plus letrozole. Adverse reactions leading to permanent discontinuation for patients receiving IBRANCE plus letrozole included neutropenia (1.1%) and alanine aminotransferase increase (0.7%). The",
+     "topic": "cited_source",
+     "supporting_text": "6.1 Clinical Studies Experience Because clinical trials are conducted under widely varying conditions, adverse reaction rates observed in the clinical trials of a drug cannot be directly compared to rates in the clinical trials of another drug and may not reflect the rates observed in practice. PALOMA-2: IBRANCE plus Letrozole Patients with estrogen receptor (ER)-positive, HER2-negative advanced or metastatic breast cancer for initial endocrine-based therapy The safety of IBRANCE (125 mg/day) plus letrozole (2.5 mg/day) versus placebo plus letrozole was evaluated in PALOMA-2. The data described below reflect exposure to IBRANCE in 444 out of 666 patients with ER-positive, HER2-negative advanced breast cancer who received at least 1 dose of IBRANCE plus letrozole in PALOMA-2. The median duration of treatment for IBRANCE plus letrozole was 19.8 months while the median duration of treatment for placebo plus letrozole arm was 13.8 months. Dose reductions due to an adverse reaction of any grade occurred in 36% of patients receiving IBRANCE plus letrozole. No dose reduction was allowed for letrozole in PALOMA-2. Permanent discontinuation associated with an adverse reaction occurred in 43 of 444 (10%) patients receiving IBRANCE plus letrozole and in 13 of 222 (6%) patients receiving placebo plus letrozole. Adverse reactions leading to permanent discontinuation for patients receiving IBRANCE plus letrozole included neutropenia (1.1%) and alanine aminotransferase increase (0.7%). The",
+     "citations": [
+      {
+       "title": "Label: IBRANCE- palbociclib tablet, film coated - DailyMed",
+       "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=89a142d5-7e61-48bf-9e77-e2cd124c4792&version=10",
+       "locator": "Drug Interactions / Clinical Pharmacology",
+       "source_id": "CIT-3",
+       "supporting_text": "6.1 Clinical Studies Experience Because clinical trials are conducted under widely varying conditions, adverse reaction rates observed in the clinical trials of a drug cannot be directly compared to rates in the clinical trials of another drug and may not reflect the rates observed in practice. PALOMA-2: IBRANCE plus Letrozole Patients with estrogen receptor (ER)-positive, HER2-negative advanced or metastatic breast cancer for initial endocrine-based therapy The safety of IBRANCE (125 mg/day) plus letrozole (2.5 mg/day) versus placebo plus letrozole was evaluated in PALOMA-2. The data described below reflect exposure to IBRANCE in 444 out of 666 patients with ER-positive, HER2-negative advanced breast cancer who received at least 1 dose of IBRANCE plus letrozole in PALOMA-2. The median duration of treatment for IBRANCE plus letrozole was 19.8 months while the median duration of treatment for placebo plus letrozole arm was 13.8 months. Dose reductions due to an adverse reaction of any grade occurred in 36% of patients receiving IBRANCE plus letrozole. No dose reduction was allowed for letrozole in PALOMA-2. Permanent discontinuation associated with an adverse reaction occurred in 43 of 444 (10%) patients receiving IBRANCE plus letrozole and in 13 of 222 (6%) patients receiving placebo plus letrozole. Adverse reactions leading to permanent discontinuation for patients receiving IBRANCE plus letrozole included neutropenia (1.1%) and alanine aminotransferase increase (0.7%). The"
+      }
+     ]
+    },
+    {
+     "id": "cit-4",
+     "text": "17 PATIENT COUNSELING INFORMATION Advise the patient to read the FDA-approved patient labeling (Patient Information). Myelosuppression/Infection \u2022 Advise patients to immediately report any signs or symptoms of myelosuppression or infection, such as fever, chills, dizziness, shortness of breath, weakness, or any increased tendency to bleed and/or to bruise [see Warnings and Precautions (5.1)]. Interstitial Lung Disease/Pneumonitis \u2022 Advise patients to immediately report new or worsening respiratory symptoms [see Warnings and Precautions (5.2)]. Drug Interactions \u2022 Grapefruit may interact with IBRANCE. Patients should not consume grapefruit products while on treatment with IBRANCE. \u2022 Inform patients to avoid strong CYP3A inhibitors and strong CYP3A inducers. \u2022 Advise patients to inform their healthcare providers of all concomitant medications, including prescription medicines, over-the-counter drugs, vitamins, and herbal products [see Drug Interactions (7)]. Dosing and Administration \u2022 Inform patients that IBRANCE tablets may be taken with or without food. \u2022 If the patient vomits or misses a dose, an additional dose should not be taken. The next prescribed dose should be taken at the usual time. IBRANCE tablets should be swallowed whole (do not chew, crush, or split them prior to swallowing). No tablet should be ingested if it is broken, cracked, or otherwise not intact. \u2022 Pre/perimenopausal women treated with IBRANCE should also be treated with LHRH agonists [see Dosage and Ad",
+     "topic": "cited_source",
+     "supporting_text": "17 PATIENT COUNSELING INFORMATION Advise the patient to read the FDA-approved patient labeling (Patient Information). Myelosuppression/Infection \u2022 Advise patients to immediately report any signs or symptoms of myelosuppression or infection, such as fever, chills, dizziness, shortness of breath, weakness, or any increased tendency to bleed and/or to bruise [see Warnings and Precautions (5.1)]. Interstitial Lung Disease/Pneumonitis \u2022 Advise patients to immediately report new or worsening respiratory symptoms [see Warnings and Precautions (5.2)]. Drug Interactions \u2022 Grapefruit may interact with IBRANCE. Patients should not consume grapefruit products while on treatment with IBRANCE. \u2022 Inform patients to avoid strong CYP3A inhibitors and strong CYP3A inducers. \u2022 Advise patients to inform their healthcare providers of all concomitant medications, including prescription medicines, over-the-counter drugs, vitamins, and herbal products [see Drug Interactions (7)]. Dosing and Administration \u2022 Inform patients that IBRANCE tablets may be taken with or without food. \u2022 If the patient vomits or misses a dose, an additional dose should not be taken. The next prescribed dose should be taken at the usual time. IBRANCE tablets should be swallowed whole (do not chew, crush, or split them prior to swallowing). No tablet should be ingested if it is broken, cracked, or otherwise not intact. \u2022 Pre/perimenopausal women treated with IBRANCE should also be treated with LHRH agonists [see Dosage and Ad",
+     "citations": [
+      {
+       "title": "Label: IBRANCE- palbociclib tablet, film coated - DailyMed",
+       "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=89a142d5-7e61-48bf-9e77-e2cd124c4792&version=10",
+       "locator": "Hepatic impairment dosing section",
+       "source_id": "CIT-4",
+       "supporting_text": "17 PATIENT COUNSELING INFORMATION Advise the patient to read the FDA-approved patient labeling (Patient Information). Myelosuppression/Infection \u2022 Advise patients to immediately report any signs or symptoms of myelosuppression or infection, such as fever, chills, dizziness, shortness of breath, weakness, or any increased tendency to bleed and/or to bruise [see Warnings and Precautions (5.1)]. Interstitial Lung Disease/Pneumonitis \u2022 Advise patients to immediately report new or worsening respiratory symptoms [see Warnings and Precautions (5.2)]. Drug Interactions \u2022 Grapefruit may interact with IBRANCE. Patients should not consume grapefruit products while on treatment with IBRANCE. \u2022 Inform patients to avoid strong CYP3A inhibitors and strong CYP3A inducers. \u2022 Advise patients to inform their healthcare providers of all concomitant medications, including prescription medicines, over-the-counter drugs, vitamins, and herbal products [see Drug Interactions (7)]. Dosing and Administration \u2022 Inform patients that IBRANCE tablets may be taken with or without food. \u2022 If the patient vomits or misses a dose, an additional dose should not be taken. The next prescribed dose should be taken at the usual time. IBRANCE tablets should be swallowed whole (do not chew, crush, or split them prior to swallowing). No tablet should be ingested if it is broken, cracked, or otherwise not intact. \u2022 Pre/perimenopausal women treated with IBRANCE should also be treated with LHRH agonists [see Dosage and Ad"
+      }
+     ]
+    },
+    {
+     "id": "cit-5",
+     "text": "(preamble) Dose Modifications | IBRANCE\u00ae (palbociclib) Something went wrong We encountered an unexpected error, we encourage you to try again later. We're here to help Should you have additional questions please contact PfizerPro customer service. Representatives are available:Monday-Friday 8:00am to 9:00pm Eastern time Call 1 (800) 505-4426PP-UNP-USA-5796 Order samples Unable to confirm your eligibility Unfortunately, your registration is incomplete and we are unable to confirm your eligibility for sample ordering. To gain access please enter your professional information within your account. Open your account We're here to help Should you need further support updating your account information, please contact PfizerPro customer service. Representatives are available:Monday-Friday 8:00am to 9:00pm Eastern time Call 1 (800) 505-4426\u200b\u200b\u200b\u200b\u200b\u200b\u200bPP-UNP-USA-5796 Order samples Thank you for expressing interest in Pfizer samples. Currently there are no samples available to order. Samples renew periodically, we encourage you to check back soon. We're here to help Should you have additional questions please contact PfizerPro customer service. Representatives are available:Monday-Friday 8:00am to 9:00pm Eastern time Call 1 (800) 505-4426\u200b\u200b\u200b\u200b\u200b\u200b\u200bPP-UNP-USA-5796 Order samples All samples available online to you are included below. Availability is updated periodically. PP-UNP-USA-5796 Select a stateAlabamaAlaskaArizonaArkansasCaliforniaColoradoConnecticutDelawareDistrict Of ColumbiaFloridaGeor",
+     "topic": "cited_source",
+     "supporting_text": "(preamble) Dose Modifications | IBRANCE\u00ae (palbociclib) Something went wrong We encountered an unexpected error, we encourage you to try again later. We're here to help Should you have additional questions please contact PfizerPro customer service. Representatives are available:Monday-Friday 8:00am to 9:00pm Eastern time Call 1 (800) 505-4426PP-UNP-USA-5796 Order samples Unable to confirm your eligibility Unfortunately, your registration is incomplete and we are unable to confirm your eligibility for sample ordering. To gain access please enter your professional information within your account. Open your account We're here to help Should you need further support updating your account information, please contact PfizerPro customer service. Representatives are available:Monday-Friday 8:00am to 9:00pm Eastern time Call 1 (800) 505-4426\u200b\u200b\u200b\u200b\u200b\u200b\u200bPP-UNP-USA-5796 Order samples Thank you for expressing interest in Pfizer samples. Currently there are no samples available to order. Samples renew periodically, we encourage you to check back soon. We're here to help Should you have additional questions please contact PfizerPro customer service. Representatives are available:Monday-Friday 8:00am to 9:00pm Eastern time Call 1 (800) 505-4426\u200b\u200b\u200b\u200b\u200b\u200b\u200bPP-UNP-USA-5796 Order samples All samples available online to you are included below. Availability is updated periodically. PP-UNP-USA-5796 Select a stateAlabamaAlaskaArizonaArkansasCaliforniaColoradoConnecticutDelawareDistrict Of ColumbiaFloridaGeor",
+     "citations": [
+      {
+       "title": "Dose Modifications for Adverse Reactions | IBRANCE\u00ae (palbociclib)",
+       "url": "https://ibrance.pfizerpro.com/dosing/modifications",
+       "locator": "Neutropenia dose modification guidance",
+       "source_id": "CIT-5",
+       "supporting_text": "(preamble) Dose Modifications | IBRANCE\u00ae (palbociclib) Something went wrong We encountered an unexpected error, we encourage you to try again later. We're here to help Should you have additional questions please contact PfizerPro customer service. Representatives are available:Monday-Friday 8:00am to 9:00pm Eastern time Call 1 (800) 505-4426PP-UNP-USA-5796 Order samples Unable to confirm your eligibility Unfortunately, your registration is incomplete and we are unable to confirm your eligibility for sample ordering. To gain access please enter your professional information within your account. Open your account We're here to help Should you need further support updating your account information, please contact PfizerPro customer service. Representatives are available:Monday-Friday 8:00am to 9:00pm Eastern time Call 1 (800) 505-4426\u200b\u200b\u200b\u200b\u200b\u200b\u200bPP-UNP-USA-5796 Order samples Thank you for expressing interest in Pfizer samples. Currently there are no samples available to order. Samples renew periodically, we encourage you to check back soon. We're here to help Should you have additional questions please contact PfizerPro customer service. Representatives are available:Monday-Friday 8:00am to 9:00pm Eastern time Call 1 (800) 505-4426\u200b\u200b\u200b\u200b\u200b\u200b\u200bPP-UNP-USA-5796 Order samples All samples available online to you are included below. Availability is updated periodically. PP-UNP-USA-5796 Select a stateAlabamaAlaskaArizonaArkansasCaliforniaColoradoConnecticutDelawareDistrict Of ColumbiaFloridaGeor"
+      }
+     ]
+    },
+    {
+     "id": "cit-6",
+     "text": "<link rel=\"icon\" type=\"image/png\" href=\"https://ibrance.pfizerpro.com/favicon_20187873.png\" /> <script type=\"text/javascript\"> var pageAnalytics = { \"pageType\": null, \"referringUrl\": \"\", \"language\": \"en\", \"currencyCode\": \"USD\", \"primaryMessageCategory\": null, \"pageSource\": null, \"contentOrigin\": null, \"contentID\": \"page/db21f62b-7d56-4678-8347-657035f0c745\", \"country\": \"United States\", \"GCMA-ID\": \"PP-IBR-USA-7532\", \"GCMA-page-ID\": \"\", \"trackingCode\": \"\", \"platform\": \"Canvas\", \"sessionID\": \"\", \"siteName\": \"pfizerprocomibrance\", \"pageName\": \"\", \"pageURL\": \"\", \"onetag\": false, \"brand\": \"IBRANCE\", \"indication\": \"Breast Cancer with Aromatase Inhibitor, HR+/HER2- Metastatic Breast Cancer (mBC), Breast Cancer with Fulvestrant, ER+ HER2- Metastatic Breast Cancer 2L\", \"audienceType\": \"Health Care Professional\", \"audienceSpecialty\": \"Specialists, General Practitioners\", \"businessUnit\": \"ONCOLOGY\", \"contentType\": \"Website\", \"therapeuticArea\": \"Oncology\", \"region\": \"Americas\", \"pfizerRegion\": \"NA\" }; var cookieUuid = document.cookie.split(';').filter(function(item) { return item.trim().indexOf('pf_uuid=') == 0; }); if (!cookieUuid.length) { window.pfAnalyticsData = { 'pfPage': pageAnalytics",
+     "topic": "cited_source",
+     "supporting_text": "var pageAnalytics = { \"pageType\": null, \"referringUrl\": \"\", \"language\": \"en\", \"currencyCode\": \"USD\", \"primaryMessageCategory\": null, \"pageSource\": null, \"contentOrigin\": null, \"contentID\": \"page/db21f62b-7d56-4678-8347-657035f0c745\", \"country\": \"United States\", \"GCMA-ID\": \"PP-IBR-USA-7532\", \"GCMA-page-ID\": \"\", \"trackingCode\": \"\", \"platform\": \"Canvas\", \"sessionID\": \"\", \"siteName\": \"pfizerprocomibrance\", \"pageName\": \"\", \"pageURL\": \"\", \"onetag\": false, \"brand\": \"IBRANCE\", \"indication\": \"Breast Cancer with Aromatase Inhibitor, HR+/HER2- Metastatic Breast Cancer (mBC), Breast Cancer with Fulvestrant, ER+ HER2- Metastatic Breast Cancer 2L\", \"audienceType\": \"Health Care Professional\", \"audienceSpecialty\": \"Specialists, General Practitioners\", \"businessUnit\": \"ONCOLOGY\", \"contentType\": \"Website\", \"therapeuticArea\": \"Oncology\", \"region\": \"Americas\", \"pfizerRegion\": \"NA\" }; var cookieUuid = document.cookie.split(';').filter(function(item) { return item.trim().indexOf('pf_uuid=') == 0; }); if (!cookieUuid.length) { window.pfAnalyticsData = { 'pfPage': pageAnalytics",
+     "citations": [
+      {
+       "title": "Dose Monitoring During Treatment | IBRANCE\u00ae (palbociclib)",
+       "url": "https://ibrance.pfizerpro.com/dosing/monitoring",
+       "locator": "ibrance.pfizerpro.com/dosing/monitoring",
+       "source_id": "CIT-6",
+       "supporting_text": "var pageAnalytics = { \"pageType\": null, \"referringUrl\": \"\", \"language\": \"en\", \"currencyCode\": \"USD\", \"primaryMessageCategory\": null, \"pageSource\": null, \"contentOrigin\": null, \"contentID\": \"page/db21f62b-7d56-4678-8347-657035f0c745\", \"country\": \"United States\", \"GCMA-ID\": \"PP-IBR-USA-7532\", \"GCMA-page-ID\": \"\", \"trackingCode\": \"\", \"platform\": \"Canvas\", \"sessionID\": \"\", \"siteName\": \"pfizerprocomibrance\", \"pageName\": \"\", \"pageURL\": \"\", \"onetag\": false, \"brand\": \"IBRANCE\", \"indication\": \"Breast Cancer with Aromatase Inhibitor, HR+/HER2- Metastatic Breast Cancer (mBC), Breast Cancer with Fulvestrant, ER+ HER2- Metastatic Breast Cancer 2L\", \"audienceType\": \"Health Care Professional\", \"audienceSpecialty\": \"Specialists, General Practitioners\", \"businessUnit\": \"ONCOLOGY\", \"contentType\": \"Website\", \"therapeuticArea\": \"Oncology\", \"region\": \"Americas\", \"pfizerRegion\": \"NA\" }; var cookieUuid = document.cookie.split(';').filter(function(item) { return item.trim().indexOf('pf_uuid=') == 0; }); if (!cookieUuid.length) { window.pfAnalyticsData = { 'pfPage': pageAnalytics"
+      }
+     ]
+    },
+    {
+     "id": "cit-7",
+     "text": "17 PATIENT COUNSELING INFORMATION Advise the patient to read the FDA-approved patient labeling (Patient Information).Myelosuppression/Infection\u2022Advise patients to immediately report any signs or symptoms of myelosuppression or infection, such as fever, chills, dizziness, shortness of breath, weakness, or any increased tendency to bleed and/or to bruise [see Warnings and Precautions (5.1)].Interstitial Lung Disease/Pneumonitis\u2022Advise patients to immediately report new or worsening respiratory symptoms [see Warnings and Precautions (5.2)].Drug Interactions\u2022Grapefruit may interact with IBRANCE. Patients should not consume grapefruit products while on treatment with IBRANCE.\u2022Inform patients to avoid strong CYP3A inhibitors and strong CYP3A inducers.\u2022Advise patients to inform their healthcare providers of all concomitant medications, including prescription medicines, over-the-counter drugs, vitamins, and herbal products [see Drug Interactions (7)].Dosing and Administration\u2022Advise patients to take IBRANCE with food.\u2022If the patient vomits or misses a dose, an additional dose should not be taken. The next prescribed dose should be taken at the usual time. IBRANCE capsules should be swallowed whole (do not chew, crush, or open them prior to swallowing). No capsule should be ingested if it is broken, cracked, or otherwise not intact.\u2022Pre/perimenopausal women treated with IBRANCE should also be treated with LHRH agonists [see Dosage and Administration (2.1)].\u2022When IBRANCE is used in com",
+     "topic": "cited_source",
+     "supporting_text": "17 PATIENT COUNSELING INFORMATION Advise the patient to read the FDA-approved patient labeling (Patient Information).Myelosuppression/Infection\u2022Advise patients to immediately report any signs or symptoms of myelosuppression or infection, such as fever, chills, dizziness, shortness of breath, weakness, or any increased tendency to bleed and/or to bruise [see Warnings and Precautions (5.1)].Interstitial Lung Disease/Pneumonitis\u2022Advise patients to immediately report new or worsening respiratory symptoms [see Warnings and Precautions (5.2)].Drug Interactions\u2022Grapefruit may interact with IBRANCE. Patients should not consume grapefruit products while on treatment with IBRANCE.\u2022Inform patients to avoid strong CYP3A inhibitors and strong CYP3A inducers.\u2022Advise patients to inform their healthcare providers of all concomitant medications, including prescription medicines, over-the-counter drugs, vitamins, and herbal products [see Drug Interactions (7)].Dosing and Administration\u2022Advise patients to take IBRANCE with food.\u2022If the patient vomits or misses a dose, an additional dose should not be taken. The next prescribed dose should be taken at the usual time. IBRANCE capsules should be swallowed whole (do not chew, crush, or open them prior to swallowing). No capsule should be ingested if it is broken, cracked, or otherwise not intact.\u2022Pre/perimenopausal women treated with IBRANCE should also be treated with LHRH agonists [see Dosage and Administration (2.1)].\u2022When IBRANCE is used in com",
+     "citations": [
+      {
+       "title": "full prescribing information for IBRANCE",
+       "url": "https://labeling.pfizer.com/showlabeling.aspx?id=2191",
+       "locator": "Dosage and Administration / Specific Populations",
+       "source_id": "CIT-7",
+       "supporting_text": "17 PATIENT COUNSELING INFORMATION Advise the patient to read the FDA-approved patient labeling (Patient Information).Myelosuppression/Infection\u2022Advise patients to immediately report any signs or symptoms of myelosuppression or infection, such as fever, chills, dizziness, shortness of breath, weakness, or any increased tendency to bleed and/or to bruise [see Warnings and Precautions (5.1)].Interstitial Lung Disease/Pneumonitis\u2022Advise patients to immediately report new or worsening respiratory symptoms [see Warnings and Precautions (5.2)].Drug Interactions\u2022Grapefruit may interact with IBRANCE. Patients should not consume grapefruit products while on treatment with IBRANCE.\u2022Inform patients to avoid strong CYP3A inhibitors and strong CYP3A inducers.\u2022Advise patients to inform their healthcare providers of all concomitant medications, including prescription medicines, over-the-counter drugs, vitamins, and herbal products [see Drug Interactions (7)].Dosing and Administration\u2022Advise patients to take IBRANCE with food.\u2022If the patient vomits or misses a dose, an additional dose should not be taken. The next prescribed dose should be taken at the usual time. IBRANCE capsules should be swallowed whole (do not chew, crush, or open them prior to swallowing). No capsule should be ingested if it is broken, cracked, or otherwise not intact.\u2022Pre/perimenopausal women treated with IBRANCE should also be treated with LHRH agonists [see Dosage and Administration (2.1)].\u2022When IBRANCE is used in com"
+      }
+     ]
+    },
+    {
+     "id": "cit-8",
+     "text": "palbociclib (Rx) Brand and Other Names:IbranceClasses: Antineoplastics, CDK InhibitorsSharePrintFeedbackCloseFacebookTwitterLinkedInWhatsAppEmail SectionsSections palbociclibDosing & UsesInteractionsAdverse EffectsWarningsPregnancyPharmacologyAdministrationFormulary",
+     "topic": "cited_source",
+     "supporting_text": "palbociclib (Rx) Brand and Other Names:IbranceClasses: Antineoplastics, CDK InhibitorsSharePrintFeedbackCloseFacebookTwitterLinkedInWhatsAppEmail SectionsSections palbociclibDosing & UsesInteractionsAdverse EffectsWarningsPregnancyPharmacologyAdministrationFormulary",
+     "citations": [
+      {
+       "title": "Ibrance (palbociclib) dosing, indications, interactions, adverse effects, and more - Medscape",
+       "url": "https://reference.medscape.com/drug/ibrance-palbociclib-999995",
+       "locator": "Warnings section",
+       "source_id": "CIT-8",
+       "supporting_text": "palbociclib (Rx) Brand and Other Names:IbranceClasses: Antineoplastics, CDK InhibitorsSharePrintFeedbackCloseFacebookTwitterLinkedInWhatsAppEmail SectionsSections palbociclibDosing & UsesInteractionsAdverse EffectsWarningsPregnancyPharmacologyAdministrationFormulary"
+      }
+     ]
+    },
+    {
+     "id": "cit-9",
+     "text": "%PDF-1.6 %\ufffd\ufffd\ufffd\ufffd 313 0 obj <</Linearized 1/L 661724/O 315/E 289723/N 32/T 661071/H [ 546 730]>> endobj 343 0 obj <</DecodeParms<</Columns 5/Predictor 12>>/Filter/FlateDecode/ID[<3E98586AEA39B34C90A54D529A406254><A1461A7859E75642AFA8E57CA86412C6>]/Index[313 58]/Info 312 0 R/Length 138/Prev 661072/Root 314 0 R/Size 371/Type/XRef/W[1 3 1]>>stream h\ufffdbbd`\u0010``b``y\u0003\"\u0019\ufffd\ufffd\ufffdw\u0010\ufffd\ufffd \ufffd6\u0002\ufffd\ufffd \ufffd) D2'\ufffd\ufffd\ufffd@$g \ufffdm\u000efO\u0003\ufffd b`\ufffd@\ufffd\ufffde\ufffd\ufffdb\ufffd8;\ufffd\ufffd\u0004\ufffd\ufffd \"\ufffd^\u0001I\ufffd < \ufffd6\u0017\ufffd\ufffd$\u0010i~\u0001$\u079d\u0002b \ufffdH\ufffd0\u0010\u0019\ufffd\u0000$~\u007f\u0013\ufffd\ufffdk\ufffd\ufffd\ufffd\ufffd\ufffd\ufffdx\u0002,\ufffd\ufffd8\ufffd\ufffd\ufffd \ufffd\u03de\u0003\u0004\u0018\u0000\ufffdQ\u0017\ufffd endstream endobj startxref 0 %%EOF 370 0 obj <</Filter/FlateDecode/I 861/Length 647/S 743>>stream h\ufffdb```e``J\u0001\ufffdl\ufffd\u0019\ufffd\u0019\u0010@\u0018(\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u0003.\ufffd\u0001&\ufffd\ufffd\ufffd\ufffd\ufffd\u0001\ufffd)\ufffdm \ufffd \ufffd\ufffd\ufffd\ufffd\u0018\ufffd D\u03f0\ufffd4$zp\ufffdd<|A\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u0004\ufffd?\ufffd\ufffd \ufffd$\ufffdR\u0018\ufffd\u0012\ufffdDX,\u000f\ufffd\ufffdat\ufffd\ufffdJ!|\ufffd\ufffd2\ufffd\ufffd\u0005 ,\ufffd\u000e,\ufffd\ufffd<5;\ufffd\ufffd`_\ufffd;\ufffd\ufffd\u00b6n2\ufffd\ufffd\ufffdv=\u0003 `fItY\ufffd&\ufffd\ufffde\u001aKb\ufffdN\ufffdp\ufffd\ufffdF\ufffd\ufffd\ufffd<N\"\ufffd\ufffd\ufffdrU\ufffd\ufffd\ufffd\ufffd.\ufffdr\u0013\u000eJ\u0004r\ufffd\ufffd& h6\ufffd3\ufffdMl{7\ufffdQx}5K\ufffd\ufffd\ufffd\ufffd\u0010\ufffde\u05ea6\ufffd\ufffdl\ufffd\u0005 \ufffd\u0018MwJ\ufffdZ\ufffd\u000eJmo 4\ufffd\ufffd\u073eZG\ufffd\ufffd\ufffdp\ufffd\u00067\ufffd\ufffd\u0781f\ufffdr \u07146 M,\u0015\ufffdL;(\u0011\ufffd\ufffd V,\u0011u\u0002\ufffd=B\ufffdcM\u0634\ufffd\u000fnb\ufffd\ufffd\ufffd.; 4\u007f-D\ufffd1\u001b\ufffdQ\ufffdu\ufffd&\u0011\ufffdu@W\ufffd>\u0015.\ufffd6[B\ufffd\ufffd\u000e\ufffd\ufffde\u000f\u0002-&E\ufffd\ufffd\u0016\u0678P\ufffd\u0014$\u07a8\ufffd\u001a(\ufffd\u04a8\ufffd\ufffde\ufffd\ufffd\ufffd\u0002 \ufffd\ufffd\ufffd\u000fC|\ufffdGEn\u0000\ufffd,\ufffd\ufffd \ufffd\ufffd\ufffd\u0406\u0019\ufffd\u02eey\u0006\ufffd\ufffd [\u0192\ufffdX\ufffd\ufffdPb\ufffd\"\ufffd(f\u0010[M<Ke*\ufffd\ufffd\ufffd \ufffd\ufffd@A\ufffd,\u0007P\ufffdyt\u0000A\u0003\u0003\u0003#\ufffdb`0\u0006\ufffd\u0019\u00055 b\u0012 !\u0006\ufffd\u000e\ufffd\u0014+\ufffdd\ufffd\ufffd\ufffd\b\ufffdI\u00060)\u0004\ufffd( \ufffd\ufffd\u0001\u0012a\u0002\u001b bI\ufffd\ufffd8\ufffdj\ufffdb\u001a \ufffd2D3\ufffd\u0004D \ufffd\u0012\ufffd=`\ufffd@\ufffd5\ufffdT\u0006X \ufffdX\u0006v\ufffd\ufffd)D\u00153Dw:\ufffdG\ufffd$\u00064s \u0003\ufffd\ufffd| -\u0003\ufffd:\ufffdT\u0015\ufffd \ufffd\ufffd\ufffdm&\ufffd \ufffd\ufffdL\ufffdL\ufffdL\u0001 z\ufffd\u000f9 \ufffd\u000f0\ufffd\ufffde\ufffde\ufffd\ufffd\ufffd\ufffd\ufffd\ufffdu\ufffd\ufffdm[\ufffd1\ufffdUu\ufffd\ufffd30\u0004u\u074fYR\ufffd\ufffdU\ufffd\ufffdq6\ufffdVe\u0005\u0198\ufffdX\ufffdKL\ufffd4-\u0019\u001612\ufffdDKoc\ufffd\ufffd\u0016 O\ufffd\u001b\u0018\ufffd\ufffd\ufffd@\ufffd\u0001D\"\u0000\u0001\u0006\u0000\ufffdM\u0011\ufffd endstream endobj 314 0 obj <</Metadata 174 0 R/Pages 305 0 R/Type/Catalog>> endobj 315 0 obj <</Annots[344 0 R]/Contents[322 0 R 324 0 R 325 0 R 327 0 R 329 0 R 330 0 R 331 0 R 332 0 R]/CropBox[0.0 0.0 612.0 792.0]/MediaBox[0.0 0.0 612.0 792.0]/Parent 306 0 R/Resour",
+     "topic": "cited_source",
+     "supporting_text": "%PDF-1.6 %\ufffd\ufffd\ufffd\ufffd 313 0 obj > endobj 343 0 obj >/Filter/FlateDecode/ID[ ]/Index[313 58]/Info 312 0 R/Length 138/Prev 661072/Root 314 0 R/Size 371/Type/XRef/W[1 3 1]>>stream h\ufffdbbd`\u0010``b``y\u0003\"\u0019\ufffd\ufffd\ufffdw\u0010\ufffd\ufffd \ufffd6\u0002\ufffd\ufffd \ufffd) D2'\ufffd\ufffd\ufffd@$g \ufffdm\u000efO\u0003\ufffd b`\ufffd@\ufffd\ufffde\ufffd\ufffdb\ufffd8;\ufffd\ufffd\u0004\ufffd\ufffd \"\ufffd^\u0001I\ufffd >stream h\ufffdb```e``J\u0001\ufffdl\ufffd\u0019\ufffd\u0019\u0010@\u0018(\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u0003.\ufffd\u0001&\ufffd\ufffd\ufffd\ufffd\ufffd\u0001\ufffd)\ufffdm \ufffd \ufffd\ufffd\ufffd\ufffd\u0018\ufffd D\u03f0\ufffd4$zp\ufffdd \u0015.\ufffd6[B\ufffd\ufffd\u000e\ufffd\ufffde\u000f\u0002-&E\ufffd\ufffd\u0016\u0678P\ufffd\u0014$\u07a8\ufffd\u001a(\ufffd\u04a8\ufffd\ufffde\ufffd\ufffd\ufffd\u0002 \ufffd\ufffd\ufffd\u000fC|\ufffdGEn\u0000\ufffd,\ufffd\ufffd \ufffd\ufffd\ufffd\u0406\u0019\ufffd\u02eey\u0006\ufffd\ufffd [\u0192\ufffdX\ufffd\ufffdPb\ufffd\"\ufffd(f\u0010[M > endobj 315 0 obj <</Annots[344 0 R]/Contents[322 0 R 324 0 R 325 0 R 327 0 R 329 0 R 330 0 R 331 0 R 332 0 R]/CropBox[0.0 0.0 612.0 792.0]/MediaBox[0.0 0.0 612.0 792.0]/Parent 306 0 R/Resour",
+     "citations": [
+      {
+       "title": "1 HIGHLIGHTS OF PRESCRIBING INFORMATION - IBRANCE",
+       "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/212436s008lbl.pdf",
+       "locator": "FDA label, Table 2",
+       "source_id": "CIT-9",
+       "supporting_text": "%PDF-1.6 %\ufffd\ufffd\ufffd\ufffd 313 0 obj > endobj 343 0 obj >/Filter/FlateDecode/ID[ ]/Index[313 58]/Info 312 0 R/Length 138/Prev 661072/Root 314 0 R/Size 371/Type/XRef/W[1 3 1]>>stream h\ufffdbbd`\u0010``b``y\u0003\"\u0019\ufffd\ufffd\ufffdw\u0010\ufffd\ufffd \ufffd6\u0002\ufffd\ufffd \ufffd) D2'\ufffd\ufffd\ufffd@$g \ufffdm\u000efO\u0003\ufffd b`\ufffd@\ufffd\ufffde\ufffd\ufffdb\ufffd8;\ufffd\ufffd\u0004\ufffd\ufffd \"\ufffd^\u0001I\ufffd >stream h\ufffdb```e``J\u0001\ufffdl\ufffd\u0019\ufffd\u0019\u0010@\u0018(\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u0003.\ufffd\u0001&\ufffd\ufffd\ufffd\ufffd\ufffd\u0001\ufffd)\ufffdm \ufffd \ufffd\ufffd\ufffd\ufffd\u0018\ufffd D\u03f0\ufffd4$zp\ufffdd \u0015.\ufffd6[B\ufffd\ufffd\u000e\ufffd\ufffde\u000f\u0002-&E\ufffd\ufffd\u0016\u0678P\ufffd\u0014$\u07a8\ufffd\u001a(\ufffd\u04a8\ufffd\ufffde\ufffd\ufffd\ufffd\u0002 \ufffd\ufffd\ufffd\u000fC|\ufffdGEn\u0000\ufffd,\ufffd\ufffd \ufffd\ufffd\ufffd\u0406\u0019\ufffd\u02eey\u0006\ufffd\ufffd [\u0192\ufffdX\ufffd\ufffdPb\ufffd\"\ufffd(f\u0010[M > endobj 315 0 obj <</Annots[344 0 R]/Contents[322 0 R 324 0 R 325 0 R 327 0 R 329 0 R 330 0 R 331 0 R 332 0 R]/CropBox[0.0 0.0 612.0 792.0]/MediaBox[0.0 0.0 612.0 792.0]/Parent 306 0 R/Resour"
+      }
+     ]
+    },
+    {
+     "id": "cit-10",
+     "text": "5.2 Interstitial Lung Disease (ILD)/Pneumonitis Severe, life-threatening, or fatal interstitial lung disease (ILD) and/or pneumonitis can occur in patients treated with cyclin-dependent kinase 4/6 (CDK4/6) inhibitors, including IBRANCE when taken in combination with endocrine therapy. Across clinical trials (PALOMA-1, PALOMA-2, PALOMA-3), 1% of IBRANCE-treated patients had ILD/pneumonitis of any grade, 0.1% had Grade 3 or 4 and no fatal cases were reported. In PATINA, 1% of IBRANCE-treated patients had ILD/pneumonitis of any grade. No Grade 3, 4, or fatal cases were reported. Additional cases of ILD/pneumonitis have been observed in the postmarketing setting, with fatalities reported [see Adverse Reactions (6.2) ] . Monitor patients for pulmonary symptoms indicative of ILD/pneumonitis (e.g. hypoxia, cough, dyspnea). In patients who have new or worsening respiratory symptoms and are suspected to have developed pneumonitis, interrupt IBRANCE immediately and evaluate the patient. Permanently discontinue IBRANCE in patients with severe ILD or pneumonitis [see Dosage and Administration (2.2) ] . 5.3 Embryo-Fetal Toxicity Based on findings from animal studies and its mechanism of action, IBRANCE can cause fetal harm when administered to a pregnant woman. In animal reproduction studies, administration of palbociclib to pregnant rats and rabbits during organogenesis resulted in embryo-fetal toxicity at maternal exposures that were \u22654 times the human clinical exposure based on area un",
+     "topic": "cited_source",
+     "supporting_text": "5.2 Interstitial Lung Disease (ILD)/Pneumonitis Severe, life-threatening, or fatal interstitial lung disease (ILD) and/or pneumonitis can occur in patients treated with cyclin-dependent kinase 4/6 (CDK4/6) inhibitors, including IBRANCE when taken in combination with endocrine therapy. Across clinical trials (PALOMA-1, PALOMA-2, PALOMA-3), 1% of IBRANCE-treated patients had ILD/pneumonitis of any grade, 0.1% had Grade 3 or 4 and no fatal cases were reported. In PATINA, 1% of IBRANCE-treated patients had ILD/pneumonitis of any grade. No Grade 3, 4, or fatal cases were reported. Additional cases of ILD/pneumonitis have been observed in the postmarketing setting, with fatalities reported [see Adverse Reactions (6.2) ] . Monitor patients for pulmonary symptoms indicative of ILD/pneumonitis (e.g. hypoxia, cough, dyspnea). In patients who have new or worsening respiratory symptoms and are suspected to have developed pneumonitis, interrupt IBRANCE immediately and evaluate the patient. Permanently discontinue IBRANCE in patients with severe ILD or pneumonitis [see Dosage and Administration (2.2) ] . 5.3 Embryo-Fetal Toxicity Based on findings from animal studies and its mechanism of action, IBRANCE can cause fetal harm when administered to a pregnant woman. In animal reproduction studies, administration of palbociclib to pregnant rats and rabbits during organogenesis resulted in embryo-fetal toxicity at maternal exposures that were \u22654 times the human clinical exposure based on area un",
+     "citations": [
+      {
+       "source_id": "DM-IBRANCE-2026",
+       "locator": "Section 5.2, Interstitial Lung Disease and Pneumonitis",
+       "supporting_text": "5.2 Interstitial Lung Disease (ILD)/Pneumonitis Severe, life-threatening, or fatal interstitial lung disease (ILD) and/or pneumonitis can occur in patients treated with cyclin-dependent kinase 4/6 (CDK4/6) inhibitors, including IBRANCE when taken in combination with endocrine therapy. Across clinical trials (PALOMA-1, PALOMA-2, PALOMA-3), 1% of IBRANCE-treated patients had ILD/pneumonitis of any grade, 0.1% had Grade 3 or 4 and no fatal cases were reported. In PATINA, 1% of IBRANCE-treated patients had ILD/pneumonitis of any grade. No Grade 3, 4, or fatal cases were reported. Additional cases of ILD/pneumonitis have been observed in the postmarketing setting, with fatalities reported [see Adverse Reactions (6.2) ] . Monitor patients for pulmonary symptoms indicative of ILD/pneumonitis (e.g. hypoxia, cough, dyspnea). In patients who have new or worsening respiratory symptoms and are suspected to have developed pneumonitis, interrupt IBRANCE immediately and evaluate the patient. Permanently discontinue IBRANCE in patients with severe ILD or pneumonitis [see Dosage and Administration (2.2) ] . 5.3 Embryo-Fetal Toxicity Based on findings from animal studies and its mechanism of action, IBRANCE can cause fetal harm when administered to a pregnant woman. In animal reproduction studies, administration of palbociclib to pregnant rats and rabbits during organogenesis resulted in embryo-fetal toxicity at maternal exposures that were \u22654 times the human clinical exposure based on area un"
+      }
+     ]
+    },
+    {
+     "id": "cit-label-1",
+     "text": "CYP3A Inhibitors: Avoid concurrent use of IBRANCE with strong CYP3A inhibitors. If the strong inhibitor cannot be avoided, reduce the IBRANCE dose. (2.2, 7.1)",
+     "topic": "cited_source",
+     "supporting_text": "CYP3A Inhibitors: Avoid concurrent use of IBRANCE with strong CYP3A inhibitors. If the strong inhibitor cannot be avoided, reduce the IBRANCE dose. (2.2, 7.1)",
+     "citations": [
+      {
+       "title": "1 HIGHLIGHTS OF PRESCRIBING INFORMATION",
+       "locator": "Drug Interactions and Clinical Pharmacology sections",
+       "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/212436s008lbl.pdf",
+       "supporting_text": "CYP3A Inhibitors: Avoid concurrent use of IBRANCE with strong CYP3A inhibitors. If the strong inhibitor cannot be avoided, reduce the IBRANCE dose. (2.2, 7.1)"
+      }
+     ]
+    },
+    {
+     "id": "cit-label-2",
+     "text": "CYP3A Inhibitors: Avoid concurrent use of IBRANCE with strong CYP3A inhibitors. If the strong inhibitor cannot be avoided, reduce the IBRANCE dose. (2.2, 7.1)",
+     "topic": "cited_source",
+     "supporting_text": "CYP3A Inhibitors: Avoid concurrent use of IBRANCE with strong CYP3A inhibitors. If the strong inhibitor cannot be avoided, reduce the IBRANCE dose. (2.2, 7.1)",
+     "citations": [
+      {
+       "title": "IBRANCE tablets label (FDA)",
+       "locator": "Drug Interactions and Clinical Pharmacology sections",
+       "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/212436s008lbl.pdf",
+       "supporting_text": "CYP3A Inhibitors: Avoid concurrent use of IBRANCE with strong CYP3A inhibitors. If the strong inhibitor cannot be avoided, reduce the IBRANCE dose. (2.2, 7.1)"
+      }
+     ]
+    },
+    {
+     "id": "cit-label-3",
+     "text": "Table 2. Dose Modification and Management \u2013 Hematologic Toxicitiesa Monitor complete blood counts prior to the start of IBRANCE therapy and at the beginning of each cycle, as well as on Day 15 of the first 2 cycles, and as clinically indicated. For patients who experience a maximum of Grade 1 or 2 neutropenia in the first 6 cycles, monitor complete blood counts for subsequent cycles every 3 months, prior to the beginning of a cycle and as clinically indicated. CTCAE Grade Dose Modifications Grade 1 or 2 No dose adjustment is required. Grade 3 Day 1 of cycle: Withhold IBRANCE, repeat complete blood count monitoring within 1 week. When recovered to Grade \u22642, start the next cycle at the same dose. Day 15 of first 2 cycles: If Grade 3 on Day 15, continue IBRANCE at current dose to complete cycle and repeat complete blood count on Day 22. If Grade 4 on Day 22, see Grade 4 dose modification guidelines below. Consider dose reduction in cases of prolonged (>1 week) recovery from Grade 3 neutropenia or recurrent Grade 3 neutropenia on Day 1 of subsequent cycles.",
+     "topic": "cited_source",
+     "supporting_text": "Table 2. Dose Modification and Management \u2013 Hematologic Toxicitiesa Monitor complete blood counts prior to the start of IBRANCE therapy and at the beginning of each cycle, as well as on Day 15 of the first 2 cycles, and as clinically indicated. For patients who experience a maximum of Grade 1 or 2 neutropenia in the first 6 cycles, monitor complete blood counts for subsequent cycles every 3 months, prior to the beginning of a cycle and as clinically indicated. CTCAE Grade Dose Modifications Grade 1 or 2 No dose adjustment is required. Grade 3 Day 1 of cycle: Withhold IBRANCE, repeat complete blood count monitoring within 1 week. When recovered to Grade \u22642, start the next cycle at the same dose. Day 15 of first 2 cycles: If Grade 3 on Day 15, continue IBRANCE at current dose to complete cycle and repeat complete blood count on Day 22. If Grade 4 on Day 22, see Grade 4 dose modification guidelines below. Consider dose reduction in cases of prolonged (>1 week) recovery from Grade 3 neutropenia or recurrent Grade 3 neutropenia on Day 1 of subsequent cycles.",
+     "citations": [
+      {
+       "title": "IBRANCE\\, for for oral use",
+       "locator": "Table 2 - Dose Modification for Hematologic Toxicities",
+       "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/207103s021,212436s009lbl.pdf",
+       "supporting_text": "Table 2. Dose Modification and Management \u2013 Hematologic Toxicitiesa Monitor complete blood counts prior to the start of IBRANCE therapy and at the beginning of each cycle, as well as on Day 15 of the first 2 cycles, and as clinically indicated. For patients who experience a maximum of Grade 1 or 2 neutropenia in the first 6 cycles, monitor complete blood counts for subsequent cycles every 3 months, prior to the beginning of a cycle and as clinically indicated. CTCAE Grade Dose Modifications Grade 1 or 2 No dose adjustment is required. Grade 3 Day 1 of cycle: Withhold IBRANCE, repeat complete blood count monitoring within 1 week. When recovered to Grade \u22642, start the next cycle at the same dose. Day 15 of first 2 cycles: If Grade 3 on Day 15, continue IBRANCE at current dose to complete cycle and repeat complete blood count on Day 22. If Grade 4 on Day 22, see Grade 4 dose modification guidelines below. Consider dose reduction in cases of prolonged (>1 week) recovery from Grade 3 neutropenia or recurrent Grade 3 neutropenia on Day 1 of subsequent cycles."
+      }
+     ]
+    },
+    {
+     "id": "cit-label-4",
+     "text": "Table 2. Dose Modification and Management \u2013 Hematologic Toxicitiesa Monitor complete blood counts prior to the start of IBRANCE therapy and at the beginning of each cycle, as well as on Day 15 of the first 2 cycles, and as clinically indicated. For patients who experience a maximum of Grade 1 or 2 neutropenia in the first 6 cycles, monitor complete blood counts for subsequent cycles every 3 months, prior to the beginning of a cycle and as clinically indicated. CTCAE Grade Dose Modifications Grade 1 or 2 No dose adjustment is required. Grade 3 Day 1 of cycle: Withhold IBRANCE, repeat complete blood count monitoring within 1 week. When recovered to Grade \u22642, start the next cycle at the same dose. Day 15 of first 2 cycles: If Grade 3 on Day 15, continue IBRANCE at current dose to complete cycle and repeat complete blood count on Day 22. If Grade 4 on Day 22, see Grade 4 dose modification guidelines below. Consider dose reduction in cases of prolonged (>1 week) recovery from Grade 3 neutropenia or recurrent Grade 3 neutropenia on Day 1 of subsequent cycles.",
+     "topic": "cited_source",
+     "supporting_text": "Table 2. Dose Modification and Management \u2013 Hematologic Toxicitiesa Monitor complete blood counts prior to the start of IBRANCE therapy and at the beginning of each cycle, as well as on Day 15 of the first 2 cycles, and as clinically indicated. For patients who experience a maximum of Grade 1 or 2 neutropenia in the first 6 cycles, monitor complete blood counts for subsequent cycles every 3 months, prior to the beginning of a cycle and as clinically indicated. CTCAE Grade Dose Modifications Grade 1 or 2 No dose adjustment is required. Grade 3 Day 1 of cycle: Withhold IBRANCE, repeat complete blood count monitoring within 1 week. When recovered to Grade \u22642, start the next cycle at the same dose. Day 15 of first 2 cycles: If Grade 3 on Day 15, continue IBRANCE at current dose to complete cycle and repeat complete blood count on Day 22. If Grade 4 on Day 22, see Grade 4 dose modification guidelines below. Consider dose reduction in cases of prolonged (>1 week) recovery from Grade 3 neutropenia or recurrent Grade 3 neutropenia on Day 1 of subsequent cycles.",
+     "citations": [
+      {
+       "title": "IBRANCE\u00ae (palbociclib) capsules, for oral use",
+       "locator": "Table 2 - Dose Modification for Hematologic Toxicities",
+       "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/207103s021,212436s009lbl.pdf",
+       "supporting_text": "Table 2. Dose Modification and Management \u2013 Hematologic Toxicitiesa Monitor complete blood counts prior to the start of IBRANCE therapy and at the beginning of each cycle, as well as on Day 15 of the first 2 cycles, and as clinically indicated. For patients who experience a maximum of Grade 1 or 2 neutropenia in the first 6 cycles, monitor complete blood counts for subsequent cycles every 3 months, prior to the beginning of a cycle and as clinically indicated. CTCAE Grade Dose Modifications Grade 1 or 2 No dose adjustment is required. Grade 3 Day 1 of cycle: Withhold IBRANCE, repeat complete blood count monitoring within 1 week. When recovered to Grade \u22642, start the next cycle at the same dose. Day 15 of first 2 cycles: If Grade 3 on Day 15, continue IBRANCE at current dose to complete cycle and repeat complete blood count on Day 22. If Grade 4 on Day 22, see Grade 4 dose modification guidelines below. Consider dose reduction in cases of prolonged (>1 week) recovery from Grade 3 neutropenia or recurrent Grade 3 neutropenia on Day 1 of subsequent cycles."
+      }
+     ]
+    },
+    {
+     "id": "cit-label-5",
+     "text": "Interstitial Lung Disease (ILD)/Pneumonitis: Severe and fatal cases of ILD/pneumonitis have been reported. Monitor for pulmonary symptoms of ILD/pneumonitis. Interrupt IBRANCE immediately in patients with suspected ILD/pneumonitis. Permanently discontinue IBRANCE if severe ILD/pneumonitis occurs. (5.2)",
+     "topic": "cited_source",
+     "supporting_text": "Interstitial Lung Disease (ILD)/Pneumonitis: Severe and fatal cases of ILD/pneumonitis have been reported. Monitor for pulmonary symptoms of ILD/pneumonitis. Interrupt IBRANCE immediately in patients with suspected ILD/pneumonitis. Permanently discontinue IBRANCE if severe ILD/pneumonitis occurs. (5.2)",
+     "citations": [
+      {
+       "title": "IBRANCE\u00ae (palbociclib) capsules, for oral use",
+       "locator": "Warnings and Precautions, ILD/Pneumonitis",
+       "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/207103s021,212436s009lbl.pdf",
+       "supporting_text": "Interstitial Lung Disease (ILD)/Pneumonitis: Severe and fatal cases of ILD/pneumonitis have been reported. Monitor for pulmonary symptoms of ILD/pneumonitis. Interrupt IBRANCE immediately in patients with suspected ILD/pneumonitis. Permanently discontinue IBRANCE if severe ILD/pneumonitis occurs. (5.2)"
+      }
+     ]
+    },
+    {
+     "id": "cit-label-6",
+     "text": "Monitor complete blood counts prior to the start of IBRANCE therapy and at the beginning of each cycle, as well as on Day 15 of the first 2 cycles, and as clinically indicated. For patients who experience a maximum of Grade 1 or 2 neutropenia in the first 6 cycles, monitor complete blood counts for subsequent cycles every 3 months, prior to the beginning of a cycle and as clinically indicated.",
+     "topic": "cited_source",
+     "supporting_text": "Monitor complete blood counts prior to the start of IBRANCE therapy and at the beginning of each cycle, as well as on Day 15 of the first 2 cycles, and as clinically indicated. For patients who experience a maximum of Grade 1 or 2 neutropenia in the first 6 cycles, monitor complete blood counts for subsequent cycles every 3 months, prior to the beginning of a cycle and as clinically indicated.",
+     "citations": [
+      {
+       "title": "IBRANCE\u00ae (palbociclib) tablets, for oral use",
+       "locator": "FDA label, Table 2",
+       "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/212436s008lbl.pdf",
+       "supporting_text": "Monitor complete blood counts prior to the start of IBRANCE therapy and at the beginning of each cycle, as well as on Day 15 of the first 2 cycles, and as clinically indicated. For patients who experience a maximum of Grade 1 or 2 neutropenia in the first 6 cycles, monitor complete blood counts for subsequent cycles every 3 months, prior to the beginning of a cycle and as clinically indicated."
+      }
+     ]
+    },
+    {
+     "id": "cit-label-7",
+     "text": "Dose Modifications for Hepatic Impairment No dose adjustment is required for patients with mild or moderate hepatic impairment (Child-Pugh classes A and B). For patients with severe hepatic impairment (Child-Pugh class C), the recommended dose of IBRANCE is 75 mg once daily for 21 consecutive days followed by 7 days off treatment to comprise a complete cycle of 28 days",
+     "topic": "cited_source",
+     "supporting_text": "Dose Modifications for Hepatic Impairment No dose adjustment is required for patients with mild or moderate hepatic impairment (Child-Pugh classes A and B). For patients with severe hepatic impairment (Child-Pugh class C), the recommended dose of IBRANCE is 75 mg once daily for 21 consecutive days followed by 7 days off treatment to comprise a complete cycle of 28 days",
+     "citations": [
+      {
+       "title": "full prescribing information for IBRANCE - Pfizer labeling",
+       "locator": "Section 2.2 / 8.6, Hepatic Impairment",
+       "url": "https://labeling.pfizer.com/showlabeling.aspx?id=2191",
+       "supporting_text": "Dose Modifications for Hepatic Impairment No dose adjustment is required for patients with mild or moderate hepatic impairment (Child-Pugh classes A and B). For patients with severe hepatic impairment (Child-Pugh class C), the recommended dose of IBRANCE is 75 mg once daily for 21 consecutive days followed by 7 days off treatment to comprise a complete cycle of 28 days"
+      }
+     ]
+    },
+    {
+     "id": "cit-fix-1",
+     "text": "5.2 Interstitial Lung Disease (ILD)/Pneumonitis Severe, life-threatening, or fatal interstitial lung disease (ILD) and/or pneumonitis can occur in patients treated with cyclin-dependent kinase 4/6 (CDK4/6) inhibitors, including IBRANCE when taken in combination with endocrine therapy. Across clinical trials (PALOMA-1, PALOMA-2, PALOMA-3), 1% of IBRANCE-treated patients had ILD/pneumonitis of any g",
+     "topic": "cited_source",
+     "supporting_text": "5.2 Interstitial Lung Disease (ILD)/Pneumonitis Severe, life-threatening, or fatal interstitial lung disease (ILD) and/or pneumonitis can occur in patients treated with cyclin-dependent kinase 4/6 (CDK4/6) inhibitors, including IBRANCE when taken in combination with endocrine therapy. Across clinical trials (PALOMA-1, PALOMA-2, PALOMA-3), 1% of IBRANCE-treated patients had ILD/pneumonitis of any grade, 0.1% had Grade 3 or 4 and no fatal cases were reported. Additional cases of ILD/pneumonitis have been observed in the postmarketing setting, with fatalities reported [see Adverse Reactions (6.2)]. Monitor patients for pulmonary symptoms indicative of ILD/pneumonitis (e.g. hypoxia, cough, dyspnea). In patients who have new or worsening respiratory symptoms and are suspected to have developed pneumonitis, interrupt IBRANCE immediately and evaluate the patient. Permanently discontinue IBRANCE in patients with severe ILD or pneumonitis [see Dosage and Administration (2.2)]. 5.3 Embryo-Fetal Toxicity Based on findings from animal studies and its mechanism of action, IBRANCE can cause fetal harm when administered to a pregnant woman. In animal reproduction studies, administration of palboc",
+     "citations": [
+      {
+       "title": "1 HIGHLIGHTS OF PRESCRIBING INFORMATION - IBRANCE",
+       "locator": "Warnings and Precautions, ILD/Pneumonitis section",
+       "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/212436s008lbl.pdf",
+       "supporting_text": "5.2 Interstitial Lung Disease (ILD)/Pneumonitis Severe, life-threatening, or fatal interstitial lung disease (ILD) and/or pneumonitis can occur in patients treated with cyclin-dependent kinase 4/6 (CDK4/6) inhibitors, including IBRANCE when taken in combination with endocrine therapy. Across clinical trials (PALOMA-1, PALOMA-2, PALOMA-3), 1% of IBRANCE-treated patients had ILD/pneumonitis of any grade, 0.1% had Grade 3 or 4 and no fatal cases were reported. Additional cases of ILD/pneumonitis have been observed in the postmarketing setting, with fatalities reported [see Adverse Reactions (6.2)]. Monitor patients for pulmonary symptoms indicative of ILD/pneumonitis (e.g. hypoxia, cough, dyspnea). In patients who have new or worsening respiratory symptoms and are suspected to have developed pneumonitis, interrupt IBRANCE immediately and evaluate the patient. Permanently discontinue IBRANCE in patients with severe ILD or pneumonitis [see Dosage and Administration (2.2)]. 5.3 Embryo-Fetal Toxicity Based on findings from animal studies and its mechanism of action, IBRANCE can cause fetal harm when administered to a pregnant woman. In animal reproduction studies, administration of palboc"
+      }
+     ]
+    },
+    {
+     "id": "cit-fix-2",
+     "text": "Dose Modifications for Hepatic Impairment No dose adjustment is required for patients with mild or moderate hepatic impairment (Child-Pugh classes A and B). For patients with severe hepatic impairment (Child-Pugh class C), the recommended dose of IBRANCE is 75 mg once daily for 21 consecutive days followed by 7 days off treatment to comprise a complete cycle of 28 days",
+     "topic": "cited_source",
+     "supporting_text": "Dose Modifications for Hepatic Impairment No dose adjustment is required for patients with mild or moderate hepatic impairment (Child-Pugh classes A and B). For patients with severe hepatic impairment (Child-Pugh class C), the recommended dose of IBRANCE is 75 mg once daily for 21 consecutive days followed by 7 days off treatment to comprise a complete cycle of 28 days",
+     "citations": [
+      {
+       "title": "full prescribing information for IBRANCE",
+       "locator": "Dosage and Administration / Specific Populations",
+       "url": "https://labeling.pfizer.com/showlabeling.aspx?id=2191",
+       "supporting_text": "Dose Modifications for Hepatic Impairment No dose adjustment is required for patients with mild or moderate hepatic impairment (Child-Pugh classes A and B). For patients with severe hepatic impairment (Child-Pugh class C), the recommended dose of IBRANCE is 75 mg once daily for 21 consecutive days followed by 7 days off treatment to comprise a complete cycle of 28 days"
+      }
+     ]
+    },
+    {
+     "id": "cit-fix3-1",
+     "text": "cyp3a inhibitors avoid concurrent use of ibrance with strong cyp3a inhibitors. if the strong inhibitor cannot be avoided reduce the ibrance dose.",
+     "topic": "cited_source",
+     "supporting_text": "cyp3a inhibitors avoid concurrent use of ibrance with strong cyp3a inhibitors. if the strong inhibitor cannot be avoided reduce the ibrance dose.",
+     "citations": [
+      {
+       "title": "Label: IBRANCE- palbociclib tablet, film coated - DailyMed",
+       "locator": "Drug Interactions / Clinical Pharmacology",
+       "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=89a142d5-7e61-48bf-9e77-e2cd124c4792&version=10",
+       "supporting_text": "cyp3a inhibitors avoid concurrent use of ibrance with strong cyp3a inhibitors. if the strong inhibitor cannot be avoided reduce the ibrance dose."
+      }
+     ]
+    },
+    {
+     "id": "cit-fix3-3",
+     "text": "no dose adjustment is required for patients with mild or moderate hepatic impairment child-pugh classes a and b . for patients with severe hepatic impairment child-pugh class c the recommended dose of ibrance is 75 mg once daily for 21 consecutive days followed by 7 days off treatment to comprise a complete cycle of 28 days",
+     "topic": "cited_source",
+     "supporting_text": "no dose adjustment is required for patients with mild or moderate hepatic impairment child-pugh classes a and b . for patients with severe hepatic impairment child-pugh class c the recommended dose of ibrance is 75 mg once daily for 21 consecutive days followed by 7 days off treatment to comprise a complete cycle of 28 days",
+     "citations": [
+      {
+       "title": "Label: IBRANCE- palbociclib tablet, film coated - DailyMed",
+       "locator": "Section 8.6 / 12.3, Hepatic Impairment",
+       "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=89a142d5-7e61-48bf-9e77-e2cd124c4792&audience=consumer",
+       "supporting_text": "no dose adjustment is required for patients with mild or moderate hepatic impairment child-pugh classes a and b . for patients with severe hepatic impairment child-pugh class c the recommended dose of ibrance is 75 mg once daily for 21 consecutive days followed by 7 days off treatment to comprise a complete cycle of 28 days"
+      }
+     ]
+    },
+    {
+     "id": "cit-collect-1",
+     "text": "A phase 2 study showed that progression-free survival was longer with palbociclib plus letrozole than with letrozole alone in the initial treatment of postmenopausal women with estrogen-receptor (ER)-positive, human epidermal growth factor receptor 2 (HER2)-negative advanced breast cancer. We performed a phase 3 study that was designed to confirm and expand the efficacy and safety data for palboci",
+     "topic": "cited_source",
+     "supporting_text": "A phase 2 study showed that progression-free survival was longer with palbociclib plus letrozole than with letrozole alone in the initial treatment of postmenopausal women with estrogen-receptor (ER)-positive, human epidermal growth factor receptor 2 (HER2)-negative advanced breast cancer. We performed a phase 3 study that was designed to confirm and expand the efficacy and safety data for palbociclib plus letrozole for this indication. In this double-blind study, we randomly assigned, in a 2:1 ratio, 666 postmenopausal women with ER-positive, HER2-negative breast cancer, who had not had prior treatment for advanced disease, to receive palbociclib plus letrozole or placebo plus letrozole. The primary end point was progression-free survival, as assessed by the investigators; secondary end points were overall survival, objective response, clinical benefit response, patient-reported outcomes, pharmacokinetic effects, and safety. The median progression-free survival was 24.8 months (95% confidence interval [CI], 22.1 to not estimable) in the palbociclib-letrozole group, as compared with 14.5 months (95% CI, 12.9 to 17.1) in the placebo-letrozole group (hazard ratio for disease progression or death, 0.58; 95% CI, 0.46 to 0.72; P&lt;0.001). The most common grade 3 or 4 adverse events were neutropenia (occurring in 66.4% of the patients in the palbociclib-letrozole group vs. 1.4% in the placebo-letrozole group), leukopenia (24.8% vs. 0%), anemia (5.4% vs. 1.8%), and fatigue (1.8% vs",
+     "citations": [
+      {
+       "title": "Palbociclib and Letrozole in Advanced Breast Cancer | NEJM",
+       "locator": "Results",
+       "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1607303",
+       "supporting_text": "A phase 2 study showed that progression-free survival was longer with palbociclib plus letrozole than with letrozole alone in the initial treatment of postmenopausal women with estrogen-receptor (ER)-positive, human epidermal growth factor receptor 2 (HER2)-negative advanced breast cancer. We performed a phase 3 study that was designed to confirm and expand the efficacy and safety data for palbociclib plus letrozole for this indication. In this double-blind study, we randomly assigned, in a 2:1 ratio, 666 postmenopausal women with ER-positive, HER2-negative breast cancer, who had not had prior treatment for advanced disease, to receive palbociclib plus letrozole or placebo plus letrozole. The primary end point was progression-free survival, as assessed by the investigators; secondary end points were overall survival, objective response, clinical benefit response, patient-reported outcomes, pharmacokinetic effects, and safety. The median progression-free survival was 24.8 months (95% confidence interval [CI], 22.1 to not estimable) in the palbociclib-letrozole group, as compared with 14.5 months (95% CI, 12.9 to 17.1) in the placebo-letrozole group (hazard ratio for disease progression or death, 0.58; 95% CI, 0.46 to 0.72; P&lt;0.001). The most common grade 3 or 4 adverse events were neutropenia (occurring in 66.4% of the patients in the palbociclib-letrozole group vs. 1.4% in the placebo-letrozole group), leukopenia (24.8% vs. 0%), anemia (5.4% vs. 1.8%), and fatigue (1.8% vs",
+       "access_level": "abstract_only",
+       "retrieved_at": "2026-11-05T13:40:00.768304+00:00",
+       "sha256": "7e16d2cfda5e4f36b7d2142d6aeee6e35aa29ce8002915b1c28631303c8b4acd",
+       "version_pin": ""
+      }
+     ]
+    },
+    {
+     "id": "cit-collect-1",
+     "text": "On February 19, 2016, the FDA approved palbociclib (Ibrance, Pfizer) for use in combination with fulvestrant (Faslodex, AstraZeneca) for the treatment of women with hormone receptor (HR)-positive, HER2-negative advanced or metastatic breast cancer (MBC) with disease progression following endocrine therapy. The approval was based on the results of a randomized, double-blind, placebo-controlled tria",
+     "topic": "cited_source",
+     "supporting_text": "On February 19, 2016, the FDA approved palbociclib (Ibrance, Pfizer) for use in combination with fulvestrant (Faslodex, AstraZeneca) for the treatment of women with hormone receptor (HR)-positive, HER2-negative advanced or metastatic breast cancer (MBC) with disease progression following endocrine therapy. The approval was based on the results of a randomized, double-blind, placebo-controlled trial conducted in 521 pre- and postmenopausal women with HR-positive, HER2-negative advanced or MBC. Patients were randomized (2:1) to receive palbociclib plus fulvestrant (n = 347) or placebo plus fulvestrant (n = 174). The primary endpoint was investigator-assessed progression-free survival (PFS). A statistically significant and clinically meaningful improvement in PFS (9.5 months vs. 4.6 months) was observed in patients receiving palbociclib plus fulvestrant [HR 0.46; 95% confidence interval (CI), 0.36-0.59; P &lt; 0.0001]. Safety data confirmed the known adverse reaction profile of palbociclib. The most common adverse reactions (&gt;20%) in patients treated with palbociclib were neutropenia, leukopenia, infections, fatigue, nausea, anemia, stomatitis, headache, diarrhea, and thrombocytopenia. This approval was granted in the context of a prior accelerated approval for palbociclib in combination with letrozole in patients with HR-positive, HER2-negative advanced breast cancer as initial endocrine-based therapy. Clin Cancer Res; 22(20); 4968-72. &#xa9;2016 AACR.",
+     "citations": [
+      {
+       "title": "FDA Approval of Palbociclib in Combination with Fulvestrant for HR+, HER2- Metastatic Breast Cancer",
+       "locator": "Results",
+       "url": "https://aacrjournals.org/clincancerres/article/22/20/4968/124844/FDA-Approval-of-Palbociclib-in-Combination-with",
+       "supporting_text": "On February 19, 2016, the FDA approved palbociclib (Ibrance, Pfizer) for use in combination with fulvestrant (Faslodex, AstraZeneca) for the treatment of women with hormone receptor (HR)-positive, HER2-negative advanced or metastatic breast cancer (MBC) with disease progression following endocrine therapy. The approval was based on the results of a randomized, double-blind, placebo-controlled trial conducted in 521 pre- and postmenopausal women with HR-positive, HER2-negative advanced or MBC. Patients were randomized (2:1) to receive palbociclib plus fulvestrant (n = 347) or placebo plus fulvestrant (n = 174). The primary endpoint was investigator-assessed progression-free survival (PFS). A statistically significant and clinically meaningful improvement in PFS (9.5 months vs. 4.6 months) was observed in patients receiving palbociclib plus fulvestrant [HR 0.46; 95% confidence interval (CI), 0.36-0.59; P &lt; 0.0001]. Safety data confirmed the known adverse reaction profile of palbociclib. The most common adverse reactions (&gt;20%) in patients treated with palbociclib were neutropenia, leukopenia, infections, fatigue, nausea, anemia, stomatitis, headache, diarrhea, and thrombocytopenia. This approval was granted in the context of a prior accelerated approval for palbociclib in combination with letrozole in patients with HR-positive, HER2-negative advanced breast cancer as initial endocrine-based therapy. Clin Cancer Res; 22(20); 4968-72. &#xa9;2016 AACR.",
+       "access_level": "abstract_only",
+       "retrieved_at": "2026-11-05T14:04:02.483354+00:00",
+       "sha256": "44fb63b1bc0c7f67fe3754206015da79a342c5f351a842db5906832c8b07df96",
+       "version_pin": ""
+      }
+     ]
+    },
+    {
+     "id": "cit-collect-1",
+     "text": "In PALOMA-2, palbociclib&#xa0;+ letrozole significantly prolonged progression-free survival (PFS) versus placebo&#xa0;+ letrozole in patients with estrogen receptor-positive/human epidermal growth factor receptor 2-negative (ER + /HER2 - ) advanced breast cancer (ABC). We investigated clinical outcomes of patients who achieved or did not achieve a confirmed objective response (OR) according to Res",
+     "topic": "cited_source",
+     "supporting_text": "In PALOMA-2, palbociclib&#xa0;+ letrozole significantly prolonged progression-free survival (PFS) versus placebo&#xa0;+ letrozole in patients with estrogen receptor-positive/human epidermal growth factor receptor 2-negative (ER + /HER2 - ) advanced breast cancer (ABC). We investigated clinical outcomes of patients who achieved or did not achieve a confirmed objective response (OR) according to Response Evaluation Criteria in Solid Tumors (RECIST) version 1.1 (data cutoff: May 31, 2017). Postmenopausal patients untreated for ER + /HER2 - ABC were randomized 2:1 to palbociclib&#xa0;+ letrozole or placebo&#xa0;+ letrozole. Median PFS, median duration of OR, baseline characteristics, and palbociclib exposure were compared in patients with or without OR by treatment arm. In the intent-to-treat population, OR was achieved by 194 (44%) of 444 and 77 (35%) of 222 patients in the palbociclib and placebo arms, respectively (odds ratio, 1.5; 95% confidence interval [CI], 1.0-2.1; P&#xa0;= .0156). Regardless of treatment, more OR than non-OR patients had de novo metastatic disease (47%-50% and 28%-31%, respectively) and no prior endocrine therapy (55% and 35%-37%, respectively). Rates of palbociclib dose reduction owing to adverse events were similar regardless of OR (41% and 38%, respectively). Among the patients with OR during the study, approximately 50% achieved OR within the first 3 months regardless of treatment. The median PFS was significantly prolonged with palbociclib&#xa0;+ le",
+     "citations": [
+      {
+       "title": "Progression-free Survival Outcome Is Independent of Objective Response... Analysis From PALOMA-2 - ScienceDirect",
+       "locator": "Results",
+       "url": "https://www.sciencedirect.com/science/article/pii/S1526820919306688",
+       "supporting_text": "In PALOMA-2, palbociclib&#xa0;+ letrozole significantly prolonged progression-free survival (PFS) versus placebo&#xa0;+ letrozole in patients with estrogen receptor-positive/human epidermal growth factor receptor 2-negative (ER + /HER2 - ) advanced breast cancer (ABC). We investigated clinical outcomes of patients who achieved or did not achieve a confirmed objective response (OR) according to Response Evaluation Criteria in Solid Tumors (RECIST) version 1.1 (data cutoff: May 31, 2017). Postmenopausal patients untreated for ER + /HER2 - ABC were randomized 2:1 to palbociclib&#xa0;+ letrozole or placebo&#xa0;+ letrozole. Median PFS, median duration of OR, baseline characteristics, and palbociclib exposure were compared in patients with or without OR by treatment arm. In the intent-to-treat population, OR was achieved by 194 (44%) of 444 and 77 (35%) of 222 patients in the palbociclib and placebo arms, respectively (odds ratio, 1.5; 95% confidence interval [CI], 1.0-2.1; P&#xa0;= .0156). Regardless of treatment, more OR than non-OR patients had de novo metastatic disease (47%-50% and 28%-31%, respectively) and no prior endocrine therapy (55% and 35%-37%, respectively). Rates of palbociclib dose reduction owing to adverse events were similar regardless of OR (41% and 38%, respectively). Among the patients with OR during the study, approximately 50% achieved OR within the first 3 months regardless of treatment. The median PFS was significantly prolonged with palbociclib&#xa0;+ le",
+       "access_level": "abstract_only",
+       "retrieved_at": "2026-11-05T14:26:30.659298+00:00",
+       "sha256": "f1125fbab3e2ed4e7b38c75cb1caba7be3567093cdb3d67ae4f618a26029d6ff",
+       "version_pin": ""
+      }
+     ]
+    },
+    {
+     "id": "cit-collect-26",
+     "text": "The median OS was 53.9 months (95% CI, 49.8 to 60.8) with palbociclib plus letrozole versus 51.2 months (95% CI, 43.7 to 58.9) with placebo plus letrozole (hazard ratio [HR], 0.96 [95% CI, 0.78 to 1.18]; stratified one-sided P = .34). An imbalance in the number of patients with unknown survival outcome between the treatment arms (13.3% v 21.2%, respectively) limited interpretation of OS results. W",
+     "topic": "cited_source",
+     "supporting_text": "The median OS was 53.9 months (95% CI, 49.8 to 60.8) with palbociclib plus letrozole versus 51.2 months (95% CI, 43.7 to 58.9) with placebo plus letrozole (hazard ratio [HR], 0.96 [95% CI, 0.78 to 1.18]; stratified one-sided P = .34). An imbalance in the number of patients with unknown survival outcome between the treatment arms (13.3% v 21.2%, respectively) limited interpretation of OS results. With recovered surviv",
+     "citations": [
+      {
+       "title": "Overall Survival With Palbociclib Plus Letrozole in Advanced Breast Cancer.",
+       "locator": "Abstract - Results",
+       "url": "https://ascopubs.org/doi/10.1200/JCO.23.00137",
+       "supporting_text": "The median OS was 53.9 months (95% CI, 49.8 to 60.8) with palbociclib plus letrozole versus 51.2 months (95% CI, 43.7 to 58.9) with placebo plus letrozole (hazard ratio [HR], 0.96 [95% CI, 0.78 to 1.18]; stratified one-sided P = .34). An imbalance in the number of patients with unknown survival outcome between the treatment arms (13.3% v 21.2%, respectively) limited interpretation of OS results. With recovered surviv",
+       "access_level": "abstract_only",
+       "retrieved_at": "2026-11-05T14:49:05.646808+00:00",
+       "sha256": "599388c907106669b766aa3773297a3993ecbf3e2cb24a11a54875c57a2afe2b",
+       "version_pin": ""
+      }
+     ]
+    },
+    {
+     "id": "cit-collect-27",
+     "text": "table 4. adverse reactions 10% in paloma-2 ibrance plus letrozole n 444 placebo plus letrozole n 222 adverse reaction al ... form and toxic skin eruption. infections and infestations infections 60 6 1 42 3 0 blood and lymphatic system disorders neutropenia 80 56 10 6 1 1 leukopenia 39 24 1 2 0 0 anemia 2 ... table 6. adverse reactions 10% in paloma-3 adverse reaction ibrance plus fulvestrant n 345",
+     "topic": "cited_source",
+     "supporting_text": "table 4. adverse reactions 10% in paloma-2 ibrance plus letrozole n 444 placebo plus letrozole n 222 adverse reaction al ... form and toxic skin eruption. infections and infestations infections 60 6 1 42 3 0 blood and lymphatic system disorders neutropenia 80 56 10 6 1 1 leukopenia 39 24 1 2 0 0 anemia 2 ... table 6. adverse reactions 10% in paloma-3 adverse reaction ibrance plus fulvestrant n 345 placebo plus fulvestrant n 17 ... cneiform toxic skin eruption. infections and infestations infections 47 3 1 31 3 0 blood and lymphatic system disorders neutropenia 83 55 11 4 1 0 leukopenia 53 30 1 5 1 1 anemia 3",
+     "citations": [
+      {
+       "title": "Label: IBRANCE- palbociclib capsule - DailyMed - NIH",
+       "locator": "Adverse Reactions, Table 4 (PALOMA-2) and Table 6 (PALOMA-3)",
+       "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e0e6412f-50b4-4fd4-9364-62818d121a07",
+       "supporting_text": "table 4. adverse reactions 10% in paloma-2 ibrance plus letrozole n 444 placebo plus letrozole n 222 adverse reaction al ... form and toxic skin eruption. infections and infestations infections 60 6 1 42 3 0 blood and lymphatic system disorders neutropenia 80 56 10 6 1 1 leukopenia 39 24 1 2 0 0 anemia 2 ... table 6. adverse reactions 10% in paloma-3 adverse reaction ibrance plus fulvestrant n 345 placebo plus fulvestrant n 17 ... cneiform toxic skin eruption. infections and infestations infections 47 3 1 31 3 0 blood and lymphatic system disorders neutropenia 83 55 11 4 1 0 leukopenia 53 30 1 5 1 1 anemia 3",
+       "access_level": "fetched_live",
+       "retrieved_at": "2026-11-05T14:49:05.646808+00:00",
+       "sha256": "599388c907106669b766aa3773297a3993ecbf3e2cb24a11a54875c57a2afe2b",
+       "version_pin": ""
+      }
+     ]
+    }
+   ],
+   "gaps": [],
+   "warnings": []
+  }
+ ],
+ "gaps": [
+  "Not covered by the bundled no-key evidence.",
+  "Not covered by the bundled no-key evidence.",
+  "Not covered by the bundled no-key evidence."
+ ],
+ "warnings": []
+}

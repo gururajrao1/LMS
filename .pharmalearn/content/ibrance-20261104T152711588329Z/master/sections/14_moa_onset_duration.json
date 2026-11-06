@@ -1,0 +1,20 @@
+{
+  "id": "14_moa_onset_duration",
+  "title": "Mechanism, onset, and duration",
+  "summary": "Prepared from the bundled Ibrance evidence for the no-key demo run.",
+  "claims": [
+    {
+      "id": "claim-moa",
+      "topic": "mechanism",
+      "text": "Palbociclib inhibits CDK4 and CDK6 and blocks progression from G1 into S phase in ER-positive breast cancer cell lines.",
+      "citations": [
+        {
+          "source_id": "DM-IBRANCE-2026",
+          "locator": "Section 12.1, Mechanism of Action"
+        }
+      ]
+    }
+  ],
+  "gaps": [],
+  "warnings": []
+}

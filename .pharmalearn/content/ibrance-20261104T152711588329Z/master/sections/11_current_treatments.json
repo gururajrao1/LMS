@@ -1,0 +1,20 @@
+{
+  "id": "11_current_treatments",
+  "title": "Currently available treatments",
+  "summary": "Prepared from the bundled Ibrance evidence for the no-key demo run.",
+  "claims": [
+    {
+      "id": "claim-indication",
+      "topic": "approved_use",
+      "text": "IBRANCE is indicated for specified adults with HR-positive, HER2-negative advanced or metastatic breast cancer in combination regimens described in the prescribing information.",
+      "citations": [
+        {
+          "source_id": "DM-IBRANCE-2026",
+          "locator": "Section 1, Indications and Usage"
+        }
+      ]
+    }
+  ],
+  "gaps": [],
+  "warnings": []
+}

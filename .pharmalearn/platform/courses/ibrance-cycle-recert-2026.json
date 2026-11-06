@@ -218,6 +218,25 @@
           "Dr. Maria Alvarez"
         ]
       }
+    },
+    {
+      "id": "78fa79922d90",
+      "at": "2026-11-05T05:57:29.295547+00:00",
+      "action": "programme.archived",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman archived the programme",
+      "detail": {
+        "note": "Keeping a single Ibrance in review"
+      }
     }
-  ]
+  ],
+  "archived": {
+    "at": "2026-11-05T05:57:29.295436+00:00",
+    "by_id": "priya-raman",
+    "by_name": "Priya Raman",
+    "note": "Keeping a single Ibrance in review"
+  }
 }

@@ -1,0 +1,111 @@
+{
+  "title": "IBRANCE (palbociclib) Dose-Action Triage",
+  "instruction": "For each clinical finding, sort it into the action that the current IBRANCE prescribing information actually requires: continue the existing dose, or hold and adjust it.",
+  "buckets": {
+    "a": "Continue at the current dose",
+    "b": "Hold the dose and adjust"
+  },
+  "items": [
+    {
+      "id": "t1",
+      "prompt": "Absolute neutrophil count of 900 cells/mm3 on Day 1 of a new cycle, patient afebrile",
+      "correct_index": 1,
+      "rationale": "An ANC of 900 cells/mm3 falls in the label's Grade 3 band. The dose-modification table specifies that Grade 3 (or recurrent Grade 3) neutropenia found on Day 1 of a cycle must be withheld until recovery to Grade \u22642 and then resumed at the next lower dose; fever is not required to trigger this.",
+      "citations": [
+        {
+          "title": "IBRANCE\\, for for oral use",
+          "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/207103s021,212436s009lbl.pdf",
+          "locator": "Table 2 - Dose Modification for Hematologic Toxicities"
+        }
+      ]
+    },
+    {
+      "id": "t2",
+      "prompt": "Absolute neutrophil count of 300 cells/mm3 on routine labs; patient reports feeling entirely well",
+      "correct_index": 1,
+      "rationale": "An ANC of 300 cells/mm3 is Grade 4 neutropenia. The label recommends dose interruption, reduction, or delay for patients who develop Grade 3 or 4 neutropenia regardless of whether the patient is symptomatic.",
+      "citations": [
+        {
+          "title": "Dose Modifications for Adverse Reactions | IBRANCE\u00ae (palbociclib)",
+          "url": "https://ibrance.pfizerpro.com/dosing/modifications",
+          "locator": "Neutropenia dose modification guidance"
+        }
+      ]
+    },
+    {
+      "id": "t3",
+      "prompt": "New, isolated dry cough without fever, dyspnea, or hypoxia, four weeks into therapy",
+      "correct_index": 1,
+      "rationale": "Labeling directs clinicians to hold IBRANCE and evaluate any new or worsening respiratory symptom suspected to be pneumonitis; dyspnea, hypoxia, or fever are not required for this action to apply.",
+      "citations": [
+        {
+          "title": "Ibrance (palbociclib) dosing, indications, interactions, adverse effects, and more - Medscape",
+          "url": "https://reference.medscape.com/drug/ibrance-palbociclib-999995",
+          "locator": "Warnings section"
+        },
+        {
+          "title": "1 HIGHLIGHTS OF PRESCRIBING INFORMATION - IBRANCE",
+          "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/212436s008lbl.pdf",
+          "locator": "Warnings and Precautions, ILD/Pneumonitis section"
+        }
+      ]
+    },
+    {
+      "id": "t4",
+      "prompt": "Severe renal impairment with creatinine clearance of 20 mL/min identified before starting therapy",
+      "correct_index": 0,
+      "rationale": "The label states no dose adjustment is required for renal impairment of any severity, including severe impairment, as long as creatinine clearance exceeds 15 mL/min, so the standard 125 mg starting dose applies.",
+      "citations": [
+        {
+          "title": "full prescribing information for IBRANCE",
+          "url": "https://labeling.pfizer.com/showlabeling.aspx?id=2191",
+          "locator": "Dosage and Administration / Specific Populations"
+        }
+      ]
+    },
+    {
+      "id": "t5",
+      "prompt": "Ascites and elevated bilirubin meeting Child-Pugh class B (moderate) hepatic impairment before starting therapy",
+      "correct_index": 0,
+      "rationale": "The label specifies no dose adjustment is needed for mild or moderate (Child-Pugh A or B) hepatic impairment; a reduced 75 mg starting dose is reserved for severe (Child-Pugh C) impairment only.",
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib tablet, film coated - DailyMed",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=89a142d5-7e61-48bf-9e77-e2cd124c4792&version=10",
+          "locator": "Hepatic impairment dosing section"
+        }
+      ]
+    },
+    {
+      "id": "t6",
+      "prompt": "Patient starts itraconazole, a strong CYP3A4 inhibitor, while already established on therapy",
+      "correct_index": 1,
+      "rationale": "Itraconazole is listed among the strong CYP3A inhibitors the label says to avoid with IBRANCE; if the combination cannot be avoided, the label calls for reducing the IBRANCE dose rather than leaving it unchanged.",
+      "citations": [
+        {
+          "title": "IBRANCE tablets label (FDA)",
+          "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/212436s008lbl.pdf",
+          "locator": "Drug Interactions and Clinical Pharmacology sections"
+        },
+        {
+          "title": "Label: IBRANCE- palbociclib tablet, film coated - DailyMed",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=89a142d5-7e61-48bf-9e77-e2cd124c4792&version=10",
+          "locator": "Drug Interactions / Clinical Pharmacology"
+        }
+      ]
+    },
+    {
+      "id": "t7",
+      "prompt": "Grade 4 neutropenia, absolute neutrophil count under 500 cells/mm3, identified at any point in a cycle",
+      "correct_index": 1,
+      "rationale": "An ANC under 500 cells/mm3 is Grade 4 neutropenia. The label recommends dose interruption, reduction, or delay for Grade 3 or 4 neutropenia whenever it is identified, not only at scheduled Day 1 or Day 15 monitoring visits.",
+      "citations": [
+        {
+          "title": "Dose Modifications for Adverse Reactions | IBRANCE\u00ae (palbociclib)",
+          "url": "https://ibrance.pfizerpro.com/dosing/modifications",
+          "locator": "Neutropenia dose modification guidance"
+        }
+      ]
+    }
+  ]
+}

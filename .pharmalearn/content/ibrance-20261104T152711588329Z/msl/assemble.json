@@ -1,0 +1,174 @@
+{
+  "title": "IBRANCE (palbociclib): Rebuild the Label's Dosing, Monitoring, and Dose-Modification Instructions",
+  "instruction": "For each clinical scenario, select the phrase for each blank so the completed sentence matches the IBRANCE prescribing information exactly.",
+  "items": [
+    {
+      "id": "a1",
+      "prompt": "Grade 3 (or recurrent Grade 3) neutropenia found on Day 1 of a cycle",
+      "blanks": [
+        {
+          "id": "a1-b1",
+          "before": "Withhold IBRANCE until recovery to Grade ",
+          "options": {
+            "a": "\u22641",
+            "b": "\u22642",
+            "c": "\u22643",
+            "d": "0 (normal)"
+          },
+          "correct_index": 1
+        },
+        {
+          "id": "a1-b2",
+          "before": ", then resume at ",
+          "options": {
+            "a": "the same dose",
+            "b": "the next lower dose",
+            "c": "50% of the current dose",
+            "d": "a delayed cycle start only, with no dose change"
+          },
+          "correct_index": 1
+        }
+      ],
+      "tail": ".",
+      "rationale": "The FDA-approved dose-modification table for hematologic toxicity directs withholding IBRANCE for Grade 3 (or recurrent Grade 3) neutropenia on Day 1 of a cycle until the ANC recovers to Grade \u22642, then resuming at the next lower dose level rather than the same dose.",
+      "citations": [
+        {
+          "title": "IBRANCE\u00ae (palbociclib) capsules, for oral use",
+          "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/207103s021,212436s009lbl.pdf",
+          "locator": "Table 2 - Dose Modification for Hematologic Toxicities"
+        },
+        {
+          "title": "Dose Modifications for Adverse Reactions | IBRANCE\u00ae (palbociclib)",
+          "url": "https://ibrance.pfizerpro.com/dosing/modifications",
+          "locator": "Neutropenia dose modification guidance"
+        }
+      ]
+    },
+    {
+      "id": "a2",
+      "prompt": "Routine complete blood count monitoring schedule while a patient is on IBRANCE",
+      "blanks": [
+        {
+          "id": "a2-b1",
+          "before": "Monitor complete blood count prior to starting IBRANCE therapy, at the beginning of each cycle, on Day ",
+          "options": {
+            "a": "8",
+            "b": "15",
+            "c": "21",
+            "d": "1"
+          },
+          "correct_index": 1
+        },
+        {
+          "id": "a2-b2",
+          "before": " of the first ",
+          "options": {
+            "a": "cycle only",
+            "b": "2 cycles",
+            "c": "3 cycles",
+            "d": "6 cycles"
+          },
+          "correct_index": 1
+        }
+      ],
+      "tail": ", and as clinically indicated.",
+      "rationale": "The label's neutropenia monitoring schedule specifically requires a CBC on Day 15 of the first 2 cycles (in addition to baseline and each cycle start), reflecting the observed early median onset of neutropenia in the PALOMA trials.",
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib capsule - DailyMed - NIH",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e0e6412f-50b4-4fd4-9364-62818d121a07",
+          "locator": "Dosage and Administration / Warnings and Precautions Highlights"
+        },
+        {
+          "title": "Dose Monitoring During Treatment | IBRANCE\u00ae (palbociclib)",
+          "url": "https://ibrance.pfizerpro.com/dosing/monitoring",
+          "locator": "ibrance.pfizerpro.com/dosing/monitoring"
+        }
+      ]
+    },
+    {
+      "id": "a3",
+      "prompt": "Starting IBRANCE dose for a patient with severe hepatic impairment (Child-Pugh class C)",
+      "blanks": [
+        {
+          "id": "a3-b1",
+          "before": "For patients with severe hepatic impairment (Child-Pugh class C), the recommended dose of IBRANCE is ",
+          "options": {
+            "a": "125 mg",
+            "b": "100 mg",
+            "c": "75 mg",
+            "d": "50 mg"
+          },
+          "correct_index": 2
+        },
+        {
+          "id": "a3-b2",
+          "before": " once daily for 21 consecutive days followed by ",
+          "options": {
+            "a": "7 days off treatment",
+            "b": "14 days off treatment",
+            "c": "5 days off treatment",
+            "d": "3 days off treatment"
+          },
+          "correct_index": 0
+        }
+      ],
+      "tail": " to comprise a complete cycle of 28 days.",
+      "rationale": "Severe hepatic impairment (Child-Pugh C) reduces the starting dose to 75 mg once daily while preserving the standard 21-days-on/7-days-off, 28-day cycle structure used at the full 125 mg dose.",
+      "citations": [
+        {
+          "title": "full prescribing information for IBRANCE - Pfizer labeling",
+          "url": "https://labeling.pfizer.com/showlabeling.aspx?id=2191",
+          "locator": "Section 2.2 / 8.6, Hepatic Impairment"
+        },
+        {
+          "title": "Label: IBRANCE- palbociclib tablet, film coated - DailyMed",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=89a142d5-7e61-48bf-9e77-e2cd124c4792&audience=consumer",
+          "locator": "Section 8.6 / 12.3, Hepatic Impairment"
+        }
+      ]
+    },
+    {
+      "id": "a4",
+      "prompt": "New or worsening respiratory symptoms on IBRANCE suspected to be pneumonitis",
+      "blanks": [
+        {
+          "id": "a4-b1",
+          "before": "In a patient with new or worsening respiratory symptoms suspected to be pneumonitis, ",
+          "options": {
+            "a": "interrupt",
+            "b": "reduce the dose of",
+            "c": "continue at the same dose of",
+            "d": "permanently discontinue"
+          },
+          "correct_index": 0
+        },
+        {
+          "id": "a4-b2",
+          "before": " IBRANCE immediately and evaluate the patient; permanently discontinue IBRANCE in patients with ",
+          "options": {
+            "a": "any grade",
+            "b": "Grade 1",
+            "c": "Grade 2",
+            "d": "severe"
+          },
+          "correct_index": 3
+        }
+      ],
+      "tail": " ILD/pneumonitis.",
+      "rationale": "The label distinguishes an immediate, reversible action (interrupt and evaluate for any suspected pneumonitis) from the permanent-discontinuation threshold, which applies only to severe ILD/pneumonitis.",
+      "citations": [
+        {
+          "title": "1 HIGHLIGHTS OF PRESCRIBING INFORMATION - IBRANCE",
+          "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/212436s008lbl.pdf",
+          "locator": "Warnings and Precautions, ILD/Pneumonitis section"
+        },
+        {
+          "title": "Dose Modifications for Adverse Reactions | IBRANCE\u00ae (palbociclib)",
+          "url": "https://ibrance.pfizerpro.com/dosing/modifications",
+          "locator": "ILD/Pneumonitis warning box"
+        }
+      ]
+    }
+  ]
+}

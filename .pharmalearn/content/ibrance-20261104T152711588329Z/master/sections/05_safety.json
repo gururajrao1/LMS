@@ -1,0 +1,20 @@
+{
+  "id": "05_safety",
+  "title": "Safety and risk management",
+  "summary": "Prepared from the bundled Ibrance evidence for the no-key demo run.",
+  "claims": [
+    {
+      "id": "claim-monitoring",
+      "topic": "monitoring",
+      "text": "Complete blood counts are monitored before treatment, at the beginning of each cycle, on Day 15 of the first two cycles, and as clinically indicated.",
+      "citations": [
+        {
+          "source_id": "DM-IBRANCE-2026",
+          "locator": "Section 5.1, Neutropenia"
+        }
+      ]
+    }
+  ],
+  "gaps": [],
+  "warnings": []
+}

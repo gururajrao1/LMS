@@ -314,6 +314,25 @@
         "severity": "blocking",
         "target": "deck"
       }
+    },
+    {
+      "id": "b7782afa14e7",
+      "at": "2026-11-05T05:42:00.505353+00:00",
+      "action": "programme.archived",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman archived the programme",
+      "detail": {
+        "note": "Keeping a single Ibrance in review"
+      }
     }
-  ]
+  ],
+  "archived": {
+    "at": "2026-11-05T05:42:00.505221+00:00",
+    "by_id": "priya-raman",
+    "by_name": "Priya Raman",
+    "note": "Keeping a single Ibrance in review"
+  }
 }

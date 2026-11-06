@@ -1,0 +1,35 @@
+{
+  "id": "08_scientific_narrative",
+  "title": "Scientific narrative and public expert context",
+  "summary": "Prepared from the bundled Ibrance evidence for the no-key demo run.",
+  "claims": [
+    {
+      "id": "claim-moa",
+      "topic": "mechanism",
+      "text": "Palbociclib inhibits CDK4 and CDK6 and blocks progression from G1 into S phase in ER-positive breast cancer cell lines.",
+      "citations": [
+        {
+          "source_id": "DM-IBRANCE-2026",
+          "locator": "Section 12.1, Mechanism of Action"
+        }
+      ]
+    },
+    {
+      "id": "claim-pfs",
+      "topic": "pivotal_evidence",
+      "text": "In PALOMA-2, investigator-assessed median progression-free survival was 24.8 months with IBRANCE plus letrozole and 14.5 months with placebo plus letrozole; overall survival was not statistically significant in the prespecified final analysis.",
+      "citations": [
+        {
+          "source_id": "DM-IBRANCE-2026",
+          "locator": "Section 14, Table 10"
+        },
+        {
+          "source_id": "CT-PALOMA2",
+          "locator": "Study results"
+        }
+      ]
+    }
+  ],
+  "gaps": [],
+  "warnings": []
+}

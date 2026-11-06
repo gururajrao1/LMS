@@ -1,0 +1,31 @@
+{
+  "id": "02_product_science",
+  "title": "Product science",
+  "summary": "Prepared from the bundled Ibrance evidence for the no-key demo run.",
+  "claims": [
+    {
+      "id": "claim-dose",
+      "topic": "dosing",
+      "text": "The recommended starting dose is 125 mg once daily for 21 consecutive days followed by 7 days off treatment in a 28-day cycle.",
+      "citations": [
+        {
+          "source_id": "DM-IBRANCE-2026",
+          "locator": "Section 2.1, Recommended Dose and Schedule"
+        }
+      ]
+    },
+    {
+      "id": "claim-moa",
+      "topic": "mechanism",
+      "text": "Palbociclib inhibits CDK4 and CDK6 and blocks progression from G1 into S phase in ER-positive breast cancer cell lines.",
+      "citations": [
+        {
+          "source_id": "DM-IBRANCE-2026",
+          "locator": "Section 12.1, Mechanism of Action"
+        }
+      ]
+    }
+  ],
+  "gaps": [],
+  "warnings": []
+}
