@@ -213,6 +213,37 @@ def test_about_finding_says_how_to_approve_despite_a_block(monkeypatch):
     assert "sign-off" in reply["answer"]
 
 
+def test_typos_read_as_the_word_they_plainly_meant(run):
+    """"progresion" is not a word, but it is one letter from one — retrieval
+    corrects it instead of reporting no evidence."""
+    assert assistant._correct_terms(run, "What did the phase 3 trial show about progresion?") == {"progresion": "progression"}
+    assert assistant.search(run, "What did the phase 3 trial show about progresion?")
+    assert assistant._correct_terms(run, "What did the phase 3 trials show?") == {"trials": "trial"}
+
+
+def test_what_happens_if_i_fail_is_answered_from_the_recorded_quiz(run, tmp_path, monkeypatch):
+    """Procedural grading questions are record facts, not dossier claims."""
+    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
+    quiz_dir = tmp_path / "content" / "run" / "hcp"
+    quiz_dir.mkdir(parents=True)
+    (quiz_dir / "quiz.json").write_text(json.dumps({"passing_score": 75, "questions": []}))
+    import asyncio
+    reply = asyncio.run(assistant.answer("run", "what happens if i fail?", "hcp"))
+    assert reply["mode"] == "record"
+    assert "75%" in reply["answer"]
+    assert "unlimited" in reply["answer"]
+    assert reply["citations"] == []
+
+
+def test_dossier_failure_questions_stay_with_the_dossier(run, tmp_path):
+    """The grading intent must not hijack questions about treatment failure."""
+    quiz_dir = tmp_path / "content" / "run" / "hcp"
+    quiz_dir.mkdir(parents=True)
+    (quiz_dir / "quiz.json").write_text(json.dumps({"passing_score": 75, "questions": []}))
+    assert assistant._assessment_rules(run, "What are the treatment failure rates?", "hcp") is None
+    assert assistant._assessment_rules(run, "What happens if I fail?", "hcp") is not None
+
+
 def test_partial_match_names_what_is_missing():
     verdict, close = assistant._finding_state({
         "check": "quote_not_verbatim", "match_percent": 60,

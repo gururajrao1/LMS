@@ -6,6 +6,7 @@ the same retrieved claims are handed to the model, which must answer using only
 that evidence; spend lands in the run's existing usage ledger.
 """
 
+import difflib
 import math
 import os
 import re
@@ -130,6 +131,8 @@ def search(run_id: str, question: str, limit: int = 5) -> list[dict]:
     """Rank the run's claims against a question by inverse-document-frequency overlap."""
     pool = claims(run_id)
     query = set(_terms(question))
+    for fixed in _correct_terms(run_id, question).values():
+        query.add(fixed)
     if not pool or not query:
         return []
     documents = [set(_terms(f"{claim['section_title']} {claim['text']}")) for claim in pool]
@@ -338,6 +341,69 @@ def platform_answer(run_id: str, question: str, user_id: str = "") -> dict | Non
     return {"answer": "\n\n".join(lines), "citations": [], "evidence": [], "mode": "record"}
 
 
+def _correct_terms(run_id: str, question: str) -> dict[str, str]:
+    """Map misspelled query terms to their closest dossier term.
+
+    A typo reads as the word it plainly meant, not as zero evidence — so the
+    retrieval below searches the corrected vocabulary too. Only terms the
+    dossier never uses are candidates; exact terms pass through untouched.
+    """
+    query = set(_terms(question))
+    if not query:
+        return {}
+    vocabulary = set()
+    for claim in claims(run_id):
+        vocabulary.update(_terms(f"{claim['section_title']} {claim['text']}"))
+    corrections = {}
+    for term in query:
+        if term not in vocabulary:
+            close = difflib.get_close_matches(term, vocabulary, n=1, cutoff=0.8)
+            if close and close[0] != term:
+                corrections[term] = close[0]
+    return corrections
+
+
+ASSESSMENT_RULES = re.compile(
+    r"\b(what happens if i|if i fail|can i (retake|resubmit|try)|do i (need|have to)|"
+    r"how many (attempts|tries|times can i)|is there a (pass mark|limit)|what is the pass|"
+    r"what('s| is) the pass|will i (have to|need to)|do i get another|second (chance|attempt))\b"
+    r"|\bpass(ing)? (mark|score|grade|criteria)\b|\bretak\w+|\bresubmit\w*|\bresit\w+",
+    re.I)
+
+
+def _assessment_rules(run_id: str, question: str, learner: str = "hcp") -> dict | None:
+    """How grading works here, read off the recorded quiz — never the dossier.
+
+    The baseline maps what you know and is never graded; the final needs its
+    passing score, attempts are unlimited, and the latest attempt counts.
+    """
+    if not ASSESSMENT_RULES.search(question):
+        return None
+    track = learner if learner in {"msl", "hcp"} else "hcp"
+    path = content_path("content", Path(run_id).name, track, "quiz.json")
+    if not path.exists():
+        return None
+    passing = _json(path).get("passing_score", 75)
+    return {
+        "answer": (
+            "The baseline isn't graded — it maps what you know before you start, so answer honestly. "
+            f"The final needs {passing}% to pass and issue your certificate. "
+            "Attempts are unlimited and your latest attempt counts, so if you fall short, "
+            "revise the material and resubmit."
+        ),
+        "citations": [],
+        "evidence": [],
+        "mode": "record",
+    }
+
+
+def _noted(result: dict, corrections: dict[str, str]) -> dict:
+    if not corrections:
+        return result
+    reading = "I read " + ", ".join(f"'{wrong}' as '{right}'" for wrong, right in sorted(corrections.items())) + ". "
+    return {**result, "answer": reading + result["answer"]}
+
+
 async def answer(run_id: str, question: str, learner: str = "hcp", user_id: str = "") -> dict:
     """Answer a course question, preferring the model when a key and budget allow."""
     # Questions about the programme itself are settled by the record, not by
@@ -346,8 +412,12 @@ async def answer(run_id: str, question: str, learner: str = "hcp", user_id: str 
     if from_record:
         return from_record
 
+    rules = _assessment_rules(run_id, question, learner)
+    if rules:
+        return rules
     matches = search(run_id, question)
-    local = _local_answer(question, matches)
+    corrections = _correct_terms(run_id, question)
+    local = _noted(_local_answer(question, matches), corrections)
     if not os.getenv("ANTHROPIC_API_KEY") or not matches:
         return local
 
@@ -386,7 +456,7 @@ async def answer(run_id: str, question: str, learner: str = "hcp", user_id: str 
         )
     except Exception:
         return local
-    return {**value, "evidence": matches, "mode": "model"}
+    return _noted({**value, "evidence": matches, "mode": "model"}, corrections)
 
 
 def _finding_state(evidence: dict) -> tuple[str, str]:
