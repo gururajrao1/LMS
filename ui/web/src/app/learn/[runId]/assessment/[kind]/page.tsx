@@ -15,7 +15,9 @@ import { Progress } from "@/components/ui/progress";
 import {
   AskedQuestion, Assessment, AssessmentResult, getJson, QuestionGroup, ReviewedQuestion, sendJson,
 } from "@/lib/api";
+import { CourseChatDock } from "@/components/course-chat-dock";
 import { useSession } from "@/lib/session";
+import type { Learner } from "@/lib/api";
 
 function optionStyle(chosen: boolean, correct: boolean) {
   if (correct) return "border-brand-600 bg-brand-50 text-brand-800";
@@ -259,6 +261,8 @@ export default function AssessmentPage() {
           </div>
         )}
       </div>
+      <CourseChatDock runId={runId} learner={user.role as Learner} context="assessment" userId={user.id}
+        blurb="Ask about this assessment — due date, scoring, or what to revise. Answers come from your training record or the cited dossier." />
     </AppShell>
   );
 }

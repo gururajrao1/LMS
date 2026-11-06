@@ -596,6 +596,85 @@ def test_certificate_carries_the_template_chosen_at_publish(client):
     assert certificate["template"] == "formal"
 
 
+def test_badges_and_streak_are_derived_from_progress():
+    """Recognition is computed, never stored: a badge cannot outlive the work."""
+    from datetime import date, timedelta
+    today = date.today().isoformat()
+    yesterday = (date.today() - timedelta(days=1)).isoformat()
+    record = {
+        "run_id": RUN_ID, "user_id": LEARNER, "started_at": f"{yesterday}T09:00:00+00:00",
+        "modules": {module["id"]: {"completed": True, "completed_at": f"{today}T09:00:00+00:00"}
+                    for module in learning.MODULES[:2]},
+        "attempts": [{"kind": "baseline", "score": 60, "passed": False,
+                      "created_at": f"{yesterday}T11:00:00+00:00"}],
+        "certificate": None, "feedback": [],
+    }
+    summary = learning.summarize(record)
+    earned = {badge["id"] for badge in summary["badges"] if badge["earned"]}
+    assert earned == {"first-steps", "baseline-complete", "halfway"}
+    assert summary["streak_days"] == 2
+    assert {badge["id"] for badge in summary["badges"]} == {badge_id for badge_id, _ in learning.BADGES}
+
+    idle = dict(record, started_at=None, modules={}, attempts=[])
+    assert learning.summarize(idle)["streak_days"] == 0
+    assert all(not badge["earned"] for badge in learning.summarize(idle)["badges"])
+
+
+def test_content_expiry_is_derived_from_the_publish_audit():
+    from datetime import date
+    assert learning._content_status(None)["content_state"] == "unpublished"
+    fresh = learning._content_status({"published_at": f"{date.today().isoformat()}T09:00:00+00:00"})
+    assert fresh["content_state"] == "current" and fresh["content_valid_until"]
+    stale = learning._content_status({"published_at": "2020-01-01T09:00:00+00:00"})
+    assert stale["content_state"] == "overdue"
+
+
+def test_objections_are_admin_authored_and_learner_visible(client):
+    _publish(client)
+    refused = client.post(f"/api/runs/{RUN_ID}/objections", json={
+        "user_id": LEARNER, "question": "Why not ribociclib?", "answer": "Formulary.",
+    })
+    assert refused.status_code == 400
+
+    created = client.post(f"/api/runs/{RUN_ID}/objections", json={
+        "user_id": ADMIN, "question": "Why not ribociclib?", "answer": "Formulary position per P&T.",
+        "citations": [{"title": "P&T minutes", "url": "https://example.test", "locator": "Q3"}],
+    })
+    assert created.status_code == 201
+    assert [entry["question"] for entry in client.get(f"/api/runs/{RUN_ID}/objections").json()] == [
+        "Why not ribociclib?"]
+
+    retired = client.patch(f"/api/runs/{RUN_ID}/objections/{created.json()['id']}",
+                           json={"user_id": ADMIN, "retired": True})
+    assert retired.status_code == 200
+    assert client.get(f"/api/runs/{RUN_ID}/objections").json() == []
+
+
+def test_safety_reports_are_open_to_learners_and_triaged_by_staff(client):
+    _publish(client)
+    unassigned = client.post(f"/api/runs/{RUN_ID}/safety",
+                           json={"user_id": "tom-becker", "concern": "Rash in clinic"})
+    assert unassigned.status_code == 201
+    stranger = client.post(f"/api/runs/{RUN_ID}/safety",
+                           json={"user_id": "nobody", "concern": "Rash in clinic"})
+    assert stranger.status_code == 400
+
+    reported = client.post(f"/api/runs/{RUN_ID}/safety",
+                           json={"user_id": LEARNER, "concern": "Grade 3 neutropenia in clinic"})
+    assert reported.status_code == 201
+    assert reported.json()["status"] == "new"
+
+    assert client.get(f"/api/runs/{RUN_ID}/safety", params={"user_id": LEARNER}).status_code == 400
+    listed = client.get(f"/api/runs/{RUN_ID}/safety", params={"user_id": ADMIN}).json()
+    assert [entry["reporter_id"] for entry in listed] == ["tom-becker", LEARNER]
+    assert {entry["status"] for entry in listed} == {"new"}
+
+    triaged = client.patch(f"/api/runs/{RUN_ID}/safety/{reported.json()['id']}",
+                           json={"user_id": ADMIN}).json()
+    assert triaged["status"] == "reviewed"
+    assert triaged["reviewed_by"] == "Priya Raman"
+
+
 def test_certificate_defaults_to_classic_without_a_template_choice(client):
     _publish(client)
     quiz = json.loads((agent.DATA / "content" / RUN_ID / "assets" / "quiz.json").read_text())

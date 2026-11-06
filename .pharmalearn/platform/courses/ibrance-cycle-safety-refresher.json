@@ -498,6 +498,84 @@
       "detail": {
         "note": "Keeping a single Ibrance in review"
       }
+    },
+    {
+      "id": "d720cb93e8b1",
+      "at": "2026-11-06T12:45:42.793448+00:00",
+      "action": "objection.added",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman added an approved answer",
+      "detail": {
+        "version": 2
+      }
+    },
+    {
+      "id": "dc97d388a631",
+      "at": "2026-11-06T12:45:46.933438+00:00",
+      "action": "safety.reported",
+      "actor_id": "ken-osei",
+      "actor_name": "Dr. Ken Osei",
+      "actor_title": "Medical oncologist",
+      "actor_role": "hcp",
+      "summary": "Dr. Ken Osei reported a safety concern",
+      "detail": {
+        "version": 2
+      }
+    },
+    {
+      "id": "ca571452c5ca",
+      "at": "2026-11-06T12:46:14.392381+00:00",
+      "action": "objection.updated",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman updated an approved answer",
+      "detail": {
+        "version": 2
+      }
+    },
+    {
+      "id": "051c01f5d21f",
+      "at": "2026-11-06T12:46:14.507982+00:00",
+      "action": "safety.reviewed",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman triaged a safety concern",
+      "detail": {
+        "version": 2
+      }
+    },
+    {
+      "id": "00966d115eab",
+      "at": "2026-11-06T14:17:00.176622+00:00",
+      "action": "safety.reported",
+      "actor_id": "ken-osei",
+      "actor_name": "Dr. Ken Osei",
+      "actor_title": "Medical oncologist",
+      "actor_role": "hcp",
+      "summary": "Dr. Ken Osei reported a safety concern",
+      "detail": {
+        "version": 2
+      }
+    },
+    {
+      "id": "5f430172a063",
+      "at": "2026-11-06T14:18:03.084949+00:00",
+      "action": "safety.reviewed",
+      "actor_id": "anil-shekhar",
+      "actor_name": "Dr. Anil Shekhar",
+      "actor_title": "Therapeutic area expert, oncology",
+      "actor_role": "reviewer",
+      "summary": "Dr. Anil Shekhar triaged a safety concern",
+      "detail": {
+        "version": 2
+      }
     }
   ],
   "archived": {
@@ -505,5 +583,17 @@
     "by_id": "priya-raman",
     "by_name": "Priya Raman",
     "note": "Keeping a single Ibrance in review"
-  }
+  },
+  "objections": [
+    {
+      "id": "1e0a53f05d9f",
+      "question": "Why not ribociclib here?",
+      "answer": "Test answer for smoke.",
+      "citations": [],
+      "author_id": "priya-raman",
+      "author_name": "Priya Raman",
+      "created_at": "2026-11-06T12:45:42.793383+00:00",
+      "retired": true
+    }
+  ]
 }

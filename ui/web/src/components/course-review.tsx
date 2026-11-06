@@ -11,6 +11,16 @@ import { Textarea } from "@/components/ui/textarea";
 import { AuditAction, AuditEntry, Challenge, CommentEvidence, CourseReview, getJson, Override, Person, ReviewComment, sendJson, Severity, Unverified } from "@/lib/api";
 import { ROLE_LABEL } from "@/components/app-shell";
 import { PromptDialog } from "@/components/prompt-dialog";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import { ScanLine } from "lucide-react";
 import { Stat } from "@/components/app-shell";
 
@@ -444,6 +454,7 @@ export function CourseReviewPanel({ runId, user, onChange }: { runId: string; us
   const [note, setNote] = useState("");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
+  const [confirmApprove, setConfirmApprove] = useState(false);
   const [showEvidence, setShowEvidence] = useState<string | null>(null);
   const [repointed, setRepointed] = useState<{ id: string; title: string } | null>(null);
   const [ask, setAsk] = useState<Ask | null>(null);
@@ -497,6 +508,20 @@ export function CourseReviewPanel({ runId, user, onChange }: { runId: string; us
   const addressed = review.comments.filter((comment) => comment.status === "addressed");
   const settled = review.comments.filter((comment) => ["closed", "dismissed"].includes(comment.status));
   const mySignoff = review.signoffs.find((entry) => entry.author_id === user.id && entry.version === review.version);
+  // A recorded decision stands until the review moves: a new version resets it
+  // automatically (lookup is version-scoped), and fresh open activity reopens it.
+  // Otherwise the buttons would invite a no-op re-sign on every visit.
+  const freshOpen = mySignoff
+    ? review.comments.some((comment) => comment.status === "open" && comment.created_at > mySignoff.created_at)
+    : false;
+  const assignment = review.review_assignment;
+  const reassigned = !!(
+    mySignoff && assignment && assignment.version === review.version &&
+    (assignment.reviewers ?? []).includes(user.id) &&
+    assignment.assigned_at && mySignoff.created_at &&
+    assignment.assigned_at > mySignoff.created_at
+  );
+  const signoffLocked = !!mySignoff && !freshOpen && !reassigned;
 
   return (
     <div className="space-y-5">
@@ -661,15 +686,40 @@ export function CourseReviewPanel({ runId, user, onChange }: { runId: string; us
                 {mySignoff
                   ? <p className="rounded-lg bg-brand-50 p-3 text-sm text-brand-800">You recorded <b>{mySignoff.decision === "approved" ? "approval" : "changes requested"}</b> for v{review.version}.{mySignoff.note ? ` “${mySignoff.note}”` : ""}</p>
                   : <p className="text-sm text-stone-600">Record a decision for version {review.version}.</p>}
-                <Textarea value={note} onChange={(event) => setNote(event.target.value)} rows={2} placeholder="Optional note" />
+                <Textarea value={note} onChange={(event) => setNote(event.target.value)} rows={2} placeholder="Optional note" disabled={busy || signoffLocked} />
                 <div className="flex gap-2">
-                  <Button disabled={busy} className="bg-brand-600 hover:bg-brand-800" onClick={() => act(() => sendJson(`/api/runs/${runId}/review/signoff`, { user_id: user.id, decision: "approved", note }))}>
+                  <Button disabled={busy || signoffLocked} className="bg-brand-600 hover:bg-brand-800" onClick={() => setConfirmApprove(true)}>
                     <ShieldCheck /> Approve
                   </Button>
-                  <Button disabled={busy} variant="outline" onClick={() => act(() => sendJson(`/api/runs/${runId}/review/signoff`, { user_id: user.id, decision: "changes_requested", note }))}>
+                  <Button disabled={busy || signoffLocked} variant="outline" onClick={() => act(() => sendJson(`/api/runs/${runId}/review/signoff`, { user_id: user.id, decision: "changes_requested", note }))}>
                     Request changes
                   </Button>
                 </div>
+                {signoffLocked && (
+                  <p className="text-xs leading-5 text-stone-500">Decision recorded — these unlock if you are asked again, new review activity arrives, or a new version is cut.</p>
+                )}
+                <AlertDialog open={confirmApprove} onOpenChange={setConfirmApprove}>
+                  <AlertDialogContent>
+                    <AlertDialogHeader>
+                      <AlertDialogTitle>Approve v{review.version}?</AlertDialogTitle>
+                      <AlertDialogDescription>
+                        This records your approval of version {review.version} under your name, and it counts toward
+                        publication. {review.readiness.open_blocking > 0
+                          ? `${review.readiness.open_blocking} blocking finding(s) are still open, so publication stays held until they close.`
+                          : "No blocking findings are open."}
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>Keep reviewing</AlertDialogCancel>
+                      <AlertDialogAction
+                        className="bg-brand-600 hover:bg-brand-800"
+                        onClick={() => { setConfirmApprove(false); void act(() => sendJson(`/api/runs/${runId}/review/signoff`, { user_id: user.id, decision: "approved", note })); }}
+                      >
+                        Record approval
+                      </AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
               </CardContent>
             </Card>
           )}

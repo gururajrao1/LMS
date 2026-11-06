@@ -1,7 +1,7 @@
 {
   "run_id": "ibrance-20261104T152711588329Z",
-  "version": 1,
-  "status": "in_review",
+  "version": 2,
+  "status": "approved",
   "comments": [
     {
       "id": "1bb50636f433",
@@ -161,92 +161,84 @@
       "target": "quiz",
       "severity": "blocking",
       "body": "Question f1-paloma2-pfs\nCitation \u201cPalbociclib and Letrozole in Advanced Breast Cancer | NEJM\u201d does not match any claim collected during research, so there is no recorded evidence behind it.",
-      "status": "open",
-      "resolution": null,
+      "status": "closed",
+      "resolution": "exists",
       "version": 1,
       "author_id": "pharmalearn-checker",
       "author_name": "PharmaLearn checker",
       "author_title": "Automated pre-review",
       "created_at": "2026-11-04T17:59:34.434573+00:00",
-      "resolved_at": null,
+      "resolved_at": "2026-11-06T08:48:05.956418+00:00",
       "finding_id": "hcp:quiz-f1-paloma2-pfs:untraceable:Question f1-paloma2-pfs#c20aae6b",
       "origin": "automated_check",
       "check": "untraceable",
-      "challenge": {
-        "raised_at": "2026-11-05T12:50:00.657100+00:00",
-        "by_id": "maria-alvarez",
-        "by_name": "Dr. Maria Alvarez",
-        "by_title": "Regulatory and medical affairs",
-        "attempted_reason": "not enough data",
-        "check": "untraceable",
-        "reference": "Question f1-paloma2-pfs",
-        "message": "Citation \u201cPalbociclib and Letrozole in Advanced Breast Cancer | NEJM\u201d does not match any claim collected during research, so there is no recorded evidence behind it.",
-        "asset_text": "Based on the PALOMA-2 primary PFS analysis shown, what is the absolute difference in median PFS between the two arms? 10.3 months The chart shows median PFS of 24.8 months with palbociclib+letrozole versus 14.5 months with placebo+letrozole in the PALOMA-2 primary analysis, an absolute difference of 10.3 months (24.8 - 14.5).",
-        "source_text": ""
-      }
+      "resolved_by_id": "priya-raman",
+      "resolved_by_name": "Priya Raman",
+      "resolved_by_title": "Medical education lead",
+      "closed_in_version": 2
     },
     {
       "id": "e8d0dcedd6c3",
       "target": "quiz",
       "severity": "blocking",
       "body": "Question f2-paloma2-os\nCitation \u201cPfizer Announces Overall Survival Results from Phase 3 PALOMA-2 Trial \u201d does not match any claim collected during research, so there is no recorded evidence behind it.",
-      "status": "open",
-      "resolution": null,
+      "status": "closed",
+      "resolution": "exists",
       "version": 1,
       "author_id": "pharmalearn-checker",
       "author_name": "PharmaLearn checker",
       "author_title": "Automated pre-review",
       "created_at": "2026-11-04T17:59:34.496065+00:00",
-      "resolved_at": null,
+      "resolved_at": "2026-11-06T08:47:55.835733+00:00",
       "finding_id": "hcp:quiz-f2-paloma2-os:untraceable:Question f2-paloma2-os#83b535ad",
       "origin": "automated_check",
       "check": "untraceable",
-      "challenge": {
-        "raised_at": "2026-11-05T12:11:04.182103+00:00",
-        "by_id": "maria-alvarez",
-        "by_name": "Dr. Maria Alvarez",
-        "by_title": "Regulatory and medical affairs",
-        "attempted_reason": "not the same trial",
-        "check": "untraceable",
-        "reference": "Question f2-paloma2-os",
-        "message": "Citation \u201cPfizer Announces Overall Survival Results from Phase 3 PALOMA-2 Trial \u201d does not match any claim collected during research, so there is no recorded evidence behind it.",
-        "asset_text": "Reading the PALOMA-2 final overall survival medians shown, which statement correctly characterizes the result? Median OS was numerically longer with palbociclib+letrozole (53.9 vs 51.2 months), a difference that was not statistically significant (HR 0.956) The chart shows 53.9 vs 51.2 months (a 2.7-month numerical difference), and the reported hazard ratio was 0.956 (95% CI 0.777-1.177), which was",
-        "source_text": ""
-      }
+      "resolved_by_id": "priya-raman",
+      "resolved_by_name": "Priya Raman",
+      "resolved_by_title": "Medical education lead",
+      "closed_in_version": 2
     },
     {
       "id": "fce7f350a820",
       "target": "quiz",
       "severity": "blocking",
       "body": "Question f3-paloma3-pfs\nCitation \u201cFDA Approval of Palbociclib in Combination with Fulvestrant for HR+, H\u201d does not match any claim collected during research, so there is no recorded evidence behind it.",
-      "status": "open",
-      "resolution": null,
+      "status": "closed",
+      "resolution": "exists",
       "version": 1,
       "author_id": "pharmalearn-checker",
       "author_name": "PharmaLearn checker",
       "author_title": "Automated pre-review",
       "created_at": "2026-11-04T17:59:34.555529+00:00",
-      "resolved_at": null,
+      "resolved_at": "2026-11-06T08:47:51.955271+00:00",
       "finding_id": "hcp:quiz-f3-paloma3-pfs:untraceable:Question f3-paloma3-pfs#81b49264",
       "origin": "automated_check",
-      "check": "untraceable"
+      "check": "untraceable",
+      "resolved_by_id": "priya-raman",
+      "resolved_by_name": "Priya Raman",
+      "resolved_by_title": "Medical education lead",
+      "closed_in_version": 2
     },
     {
       "id": "6a9e41fe32ba",
       "target": "quiz",
       "severity": "blocking",
       "body": "Question f4-neutropenia-grades\nCitation \u201cPfizer Announces Overall Survival Results from Phase 3 PALOMA-3 Trial \u201d does not match any claim collected during research, so there is no recorded evidence behind it.",
-      "status": "open",
-      "resolution": null,
+      "status": "closed",
+      "resolution": "exists",
       "version": 1,
       "author_id": "pharmalearn-checker",
       "author_name": "PharmaLearn checker",
       "author_title": "Automated pre-review",
       "created_at": "2026-11-04T17:59:34.611545+00:00",
-      "resolved_at": null,
+      "resolved_at": "2026-11-06T08:47:38.219890+00:00",
       "finding_id": "hcp:quiz-f4-neutropenia-grades:untraceable:Question f4-neutropenia-grades#f0b6e775",
       "origin": "automated_check",
-      "check": "untraceable"
+      "check": "untraceable",
+      "resolved_by_id": "priya-raman",
+      "resolved_by_name": "Priya Raman",
+      "resolved_by_title": "Medical education lead",
+      "closed_in_version": 2
     },
     {
       "id": "d9544b8ba61a",
@@ -678,34 +670,42 @@
       "target": "quiz",
       "severity": "blocking",
       "body": "Question f1-paloma2-pfs\nCitation \u201cPalbociclib and Letrozole in Advanced Breast Cancer | NEJM\u201d does not match any claim collected during research, so there is no recorded evidence behind it.",
-      "status": "open",
-      "resolution": null,
+      "status": "closed",
+      "resolution": "exists",
       "version": 1,
       "author_id": "pharmalearn-checker",
       "author_name": "PharmaLearn checker",
       "author_title": "Automated pre-review",
       "created_at": "2026-11-04T17:59:36.287586+00:00",
-      "resolved_at": null,
+      "resolved_at": "2026-11-06T08:47:46.234258+00:00",
       "finding_id": "msl:quiz-f1-paloma2-pfs:untraceable:Question f1-paloma2-pfs#c20aae6b",
       "origin": "automated_check",
-      "check": "untraceable"
+      "check": "untraceable",
+      "resolved_by_id": "priya-raman",
+      "resolved_by_name": "Priya Raman",
+      "resolved_by_title": "Medical education lead",
+      "closed_in_version": 2
     },
     {
       "id": "1d4b35ec863b",
       "target": "quiz",
       "severity": "blocking",
       "body": "Question f2-paloma3-pfs\nCitation \u201cFDA Approval of Palbociclib in Combination with Fulvestrant for HR+, H\u201d does not match any claim collected during research, so there is no recorded evidence behind it.",
-      "status": "open",
-      "resolution": null,
+      "status": "closed",
+      "resolution": "exists",
       "version": 1,
       "author_id": "pharmalearn-checker",
       "author_name": "PharmaLearn checker",
       "author_title": "Automated pre-review",
       "created_at": "2026-11-04T17:59:36.358691+00:00",
-      "resolved_at": null,
+      "resolved_at": "2026-11-06T08:47:32.981807+00:00",
       "finding_id": "msl:quiz-f2-paloma3-pfs:untraceable:Question f2-paloma3-pfs#81b49264",
       "origin": "automated_check",
-      "check": "untraceable"
+      "check": "untraceable",
+      "resolved_by_id": "priya-raman",
+      "resolved_by_name": "Priya Raman",
+      "resolved_by_title": "Medical education lead",
+      "closed_in_version": 2
     },
     {
       "id": "d18d9059baa4",
@@ -831,17 +831,21 @@
       "target": "quiz",
       "severity": "blocking",
       "body": "Question t6-no-objective-response\nCitation \u201cProgression-free Survival Outcome Is Independent of Objective Response\u201d does not match any claim collected during research, so there is no recorded evidence behind it.",
-      "status": "open",
-      "resolution": null,
+      "status": "closed",
+      "resolution": "exists",
       "version": 1,
       "author_id": "pharmalearn-checker",
       "author_name": "PharmaLearn checker",
       "author_title": "Automated pre-review",
       "created_at": "2026-11-04T17:59:36.992089+00:00",
-      "resolved_at": null,
+      "resolved_at": "2026-11-06T08:47:27.467452+00:00",
       "finding_id": "msl:quiz-t6-no-objective-response:untraceable:Question t6-no-objective-response#3d15cddb",
       "origin": "automated_check",
-      "check": "untraceable"
+      "check": "untraceable",
+      "resolved_by_id": "priya-raman",
+      "resolved_by_name": "Priya Raman",
+      "resolved_by_title": "Medical education lead",
+      "closed_in_version": 2
     },
     {
       "id": "ff5fec8770be",
@@ -882,17 +886,21 @@
       "target": "quiz",
       "severity": "blocking",
       "body": "Question t3\nOnly 0% of the recorded supporting quote appears in the stored source document. Treat this citation as unverified until a reviewer confirms it.",
-      "status": "open",
-      "resolution": null,
+      "status": "closed",
+      "resolution": "exists",
       "version": 1,
       "author_id": "pharmalearn-checker",
       "author_name": "PharmaLearn checker",
       "author_title": "Automated pre-review",
       "created_at": "2026-11-05T11:49:16.393507+00:00",
-      "resolved_at": null,
+      "resolved_at": "2026-11-06T08:47:21.976292+00:00",
       "finding_id": "hcp:quiz-t3:quote_not_found:Question t3#5a836046",
       "origin": "automated_check",
-      "check": "quote_not_found"
+      "check": "quote_not_found",
+      "resolved_by_id": "priya-raman",
+      "resolved_by_name": "Priya Raman",
+      "resolved_by_title": "Medical education lead",
+      "closed_in_version": 2
     }
   ],
   "versions": [
@@ -903,6 +911,24 @@
       "author_name": "PharmaLearn agent",
       "addressed": [],
       "created_at": null
+    },
+    {
+      "version": 2,
+      "summary": "Addressed 8 review comment(s)",
+      "author_id": "priya-raman",
+      "author_name": "Priya Raman",
+      "addressed": [
+        "8e3ae1f2553e",
+        "e8d0dcedd6c3",
+        "fce7f350a820",
+        "6a9e41fe32ba",
+        "84b6df6d0857",
+        "1d4b35ec863b",
+        "d7bb93a0588d",
+        "19775cf1c843"
+      ],
+      "unverified": [],
+      "created_at": "2026-11-06T08:48:49.748357+00:00"
     }
   ],
   "signoffs": [
@@ -915,6 +941,16 @@
       "author_name": "Dr. Maria Alvarez",
       "author_title": "Regulatory and medical affairs",
       "created_at": "2026-11-05T05:35:08.332012+00:00"
+    },
+    {
+      "id": "215bdf6abc0d",
+      "version": 2,
+      "decision": "approved",
+      "note": "",
+      "author_id": "anil-shekhar",
+      "author_name": "Dr. Anil Shekhar",
+      "author_title": "Therapeutic area expert, oncology",
+      "created_at": "2026-11-06T08:56:05.882113+00:00"
     }
   ],
   "publication": null,
@@ -1731,6 +1767,250 @@
         "check": "untraceable",
         "reason": "not enough data"
       }
+    },
+    {
+      "id": "c36422986866",
+      "at": "2026-11-06T08:47:21.976888+00:00",
+      "action": "comment.resolved",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman marked addressed a blocking comment on quiz",
+      "detail": {
+        "comment_id": "19775cf1c843",
+        "severity": "blocking",
+        "target": "quiz",
+        "was": "open",
+        "now": "addressed",
+        "resolution": "exists",
+        "origin": "automated_check",
+        "check": "quote_not_found"
+      }
+    },
+    {
+      "id": "107e6fdec207",
+      "at": "2026-11-06T08:47:27.467550+00:00",
+      "action": "comment.resolved",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman marked addressed a blocking comment on quiz",
+      "detail": {
+        "comment_id": "d7bb93a0588d",
+        "severity": "blocking",
+        "target": "quiz",
+        "was": "open",
+        "now": "addressed",
+        "resolution": "exists",
+        "origin": "automated_check",
+        "check": "untraceable"
+      }
+    },
+    {
+      "id": "dcfe080e8746",
+      "at": "2026-11-06T08:47:32.981899+00:00",
+      "action": "comment.resolved",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman marked addressed a blocking comment on quiz",
+      "detail": {
+        "comment_id": "1d4b35ec863b",
+        "severity": "blocking",
+        "target": "quiz",
+        "was": "open",
+        "now": "addressed",
+        "resolution": "exists",
+        "origin": "automated_check",
+        "check": "untraceable"
+      }
+    },
+    {
+      "id": "4faf7aee913e",
+      "at": "2026-11-06T08:47:38.219970+00:00",
+      "action": "comment.resolved",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman marked addressed a blocking comment on quiz",
+      "detail": {
+        "comment_id": "6a9e41fe32ba",
+        "severity": "blocking",
+        "target": "quiz",
+        "was": "open",
+        "now": "addressed",
+        "resolution": "exists",
+        "origin": "automated_check",
+        "check": "untraceable"
+      }
+    },
+    {
+      "id": "86855627ced1",
+      "at": "2026-11-06T08:47:46.234399+00:00",
+      "action": "comment.resolved",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman marked addressed a blocking comment on quiz",
+      "detail": {
+        "comment_id": "84b6df6d0857",
+        "severity": "blocking",
+        "target": "quiz",
+        "was": "open",
+        "now": "addressed",
+        "resolution": "exists",
+        "origin": "automated_check",
+        "check": "untraceable"
+      }
+    },
+    {
+      "id": "8aaed43bb00f",
+      "at": "2026-11-06T08:47:51.955346+00:00",
+      "action": "comment.resolved",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman marked addressed a blocking comment on quiz",
+      "detail": {
+        "comment_id": "fce7f350a820",
+        "severity": "blocking",
+        "target": "quiz",
+        "was": "open",
+        "now": "addressed",
+        "resolution": "exists",
+        "origin": "automated_check",
+        "check": "untraceable"
+      }
+    },
+    {
+      "id": "c8285f73403e",
+      "at": "2026-11-06T08:47:55.835798+00:00",
+      "action": "comment.resolved",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman marked addressed a blocking comment on quiz",
+      "detail": {
+        "comment_id": "e8d0dcedd6c3",
+        "severity": "blocking",
+        "target": "quiz",
+        "was": "open",
+        "now": "addressed",
+        "resolution": "exists",
+        "origin": "automated_check",
+        "check": "untraceable"
+      }
+    },
+    {
+      "id": "59d87a442bc1",
+      "at": "2026-11-06T08:48:05.956490+00:00",
+      "action": "comment.resolved",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman marked addressed a blocking comment on quiz",
+      "detail": {
+        "comment_id": "8e3ae1f2553e",
+        "severity": "blocking",
+        "target": "quiz",
+        "was": "open",
+        "now": "addressed",
+        "resolution": "exists",
+        "origin": "automated_check",
+        "check": "untraceable"
+      }
+    },
+    {
+      "id": "c3118b3cede9",
+      "at": "2026-11-06T08:48:49.748441+00:00",
+      "action": "version.cut",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman cut version 2, closing 8 comment(s)",
+      "detail": {
+        "version": 2,
+        "closed": [
+          "8e3ae1f2553e",
+          "e8d0dcedd6c3",
+          "fce7f350a820",
+          "6a9e41fe32ba",
+          "84b6df6d0857",
+          "1d4b35ec863b",
+          "d7bb93a0588d",
+          "19775cf1c843"
+        ]
+      }
+    },
+    {
+      "id": "b3da04a491a9",
+      "at": "2026-11-06T08:56:01.922007+00:00",
+      "action": "signoff.recorded",
+      "actor_id": "anil-shekhar",
+      "actor_name": "Dr. Anil Shekhar",
+      "actor_title": "Therapeutic area expert, oncology",
+      "actor_role": "reviewer",
+      "summary": "Dr. Anil Shekhar recorded approval for v2",
+      "detail": {
+        "version": 2,
+        "decision": "approved"
+      }
+    },
+    {
+      "id": "03191929b889",
+      "at": "2026-11-06T08:56:05.882210+00:00",
+      "action": "signoff.recorded",
+      "actor_id": "anil-shekhar",
+      "actor_name": "Dr. Anil Shekhar",
+      "actor_title": "Therapeutic area expert, oncology",
+      "actor_role": "reviewer",
+      "summary": "Dr. Anil Shekhar recorded approval for v2",
+      "detail": {
+        "version": 2,
+        "decision": "approved"
+      }
+    },
+    {
+      "id": "cd8ca06afeac",
+      "at": "2026-11-06T09:11:20.645472+00:00",
+      "action": "review.assigned",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman assigned v2 to Dr. Anil Shekhar",
+      "detail": {
+        "version": 2,
+        "reviewers": [
+          "anil-shekhar"
+        ]
+      }
     }
-  ]
+  ],
+  "review_assignment": {
+    "version": 2,
+    "assigned_at": "2026-11-06T09:11:20.645313+00:00",
+    "assigned_by": "Priya Raman",
+    "reviewers": [
+      "anil-shekhar"
+    ],
+    "note": "",
+    "notifications": [
+      {
+        "to": "anil.shekhar@pharmalearn.local",
+        "name": "Dr. Anil Shekhar",
+        "subject": "Review requested: ibrance-20261104T152711588329Z v2",
+        "sent_at": "2026-11-06T09:11:20.645339+00:00"
+      }
+    ]
+  }
 }

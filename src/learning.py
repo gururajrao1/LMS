@@ -390,6 +390,23 @@ def _audit(record: dict, actor: dict, action: str, summary: str, **detail) -> di
     return entry
 
 
+def _content_status(publication: dict | None) -> dict:
+    """How fresh the published content is: approved training material carries
+    an expiry, so stale content can never pass as current. Derived, like
+    everything else here — the expiry is months after the publish audit."""
+    months = int(os.getenv("PHARMALEARN_CONTENT_VALID_MONTHS", "12"))
+    published_at = (publication or {}).get("published_at")
+    if not published_at:
+        return {"content_valid_until": None, "content_state": "unpublished"}
+    valid_until = date.fromisoformat(published_at[:10]).toordinal() + 30 * months
+    remaining = valid_until - date.today().toordinal()
+    state = "overdue" if remaining < 0 else "due" if remaining <= 30 else "current"
+    return {
+        "content_valid_until": date.fromordinal(valid_until).isoformat(),
+        "content_state": state,
+    }
+
+
 def readiness(record: dict) -> dict:
     version = record["version"]
     open_blocking = [
@@ -413,6 +430,7 @@ def readiness(record: dict) -> dict:
         "changes_requested": len(changes),
         "approved_by": [entry["author_name"] for entry in approvals],
         "can_publish": bool(approvals) and not open_blocking and not changes,
+        **_content_status(record.get("publication")),
     }
 
 
@@ -674,6 +692,116 @@ def add_signoff(run_id: str, user_id: str, decision: str, note: str = "") -> dic
            version=record["version"], decision=decision, note=signoff["note"] or None)
     _save_course(record)
     return signoff
+
+
+def objections(run_id: str) -> list[dict]:
+    """Admin-authored answers to the hard questions HCPs actually ask.
+    Retired entries stay on the record so the audit never loses one."""
+    return [entry for entry in course(run_id).get("objections", []) if not entry.get("retired")]
+
+
+def add_objection(run_id: str, user_id: str, question: str, answer: str,
+                  citations: list[dict] | None = None) -> dict:
+    record = course(run_id)
+    author = require_capability(user_id, "course.publish")
+    if not question.strip() or not answer.strip():
+        raise ValueError("An objection needs both the question and the approved answer")
+    entry = {
+        "id": _id(),
+        "question": question.strip(),
+        "answer": answer.strip(),
+        "citations": citations or [],
+        "author_id": author["id"],
+        "author_name": author["name"],
+        "created_at": _now(),
+        "retired": False,
+    }
+    record.setdefault("objections", []).append(entry)
+    _audit(record, author, "objection.added", f"{author['name']} added an approved answer",
+           version=record["version"])
+    _save_course(record)
+    return entry
+
+
+def update_objection(run_id: str, user_id: str, objection_id: str, question: str | None = None,
+                     answer: str | None = None, retired: bool | None = None) -> dict:
+    record = course(run_id)
+    author = require_capability(user_id, "course.publish")
+    entry = next((item for item in record.get("objections", []) if item["id"] == objection_id), None)
+    if not entry:
+        raise ValueError("Objection not found")
+    if question is not None:
+        if not question.strip():
+            raise ValueError("An objection needs both the question and the approved answer")
+        entry["question"] = question.strip()
+    if answer is not None:
+        if not answer.strip():
+            raise ValueError("An objection needs both the question and the approved answer")
+        entry["answer"] = answer.strip()
+    if retired is not None:
+        entry["retired"] = bool(retired)
+    _audit(record, author, "objection.updated", f"{author['name']} updated an approved answer",
+           version=record["version"])
+    _save_course(record)
+    return entry
+
+
+def _safety_file(run_id: str) -> Path:
+    return _platform("safety", f"{Path(run_id).name}.json")
+
+
+def safety_reports(run_id: str) -> list[dict]:
+    path = _safety_file(run_id)
+    return _json(path).get("reports", []) if path.exists() else []
+
+
+def report_safety(run_id: str, user_id: str, concern: str) -> dict:
+    """Anyone signed in can raise a safety concern; triage is staff work.
+    Reporting stays open on purpose — silence is the failure mode here, so
+    there is no assignment gate, only an identity check."""
+    record = course(run_id)
+    reporter = person(user_id)
+    if not reporter:
+        raise ValueError("Unknown person")
+    if not concern.strip():
+        raise ValueError("Describe the concern")
+    entry = {
+        "id": _id(),
+        "concern": concern.strip(),
+        "reporter_id": reporter["id"],
+        "reporter_name": reporter["name"],
+        "created_at": _now(),
+        "status": "new",
+        "reviewed_by": None,
+        "reviewed_at": None,
+    }
+    path = _safety_file(run_id)
+    payload = _json(path) if path.exists() else {"run_id": record["run_id"], "reports": []}
+    payload["reports"].append(entry)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(payload, indent=2))
+    _audit(record, reporter, "safety.reported", f"{reporter['name']} reported a safety concern",
+           version=record["version"])
+    _save_course(record)
+    return entry
+
+
+def review_safety(run_id: str, user_id: str, report_id: str) -> dict:
+    record = course(run_id)
+    reviewer = require_capability(user_id, "review.resolve")
+    path = _safety_file(run_id)
+    payload = _json(path) if path.exists() else {"reports": []}
+    entry = next((item for item in payload["reports"] if item["id"] == report_id), None)
+    if not entry:
+        raise ValueError("Safety report not found")
+    entry["status"] = "reviewed"
+    entry["reviewed_by"] = reviewer["name"]
+    entry["reviewed_at"] = _now()
+    path.write_text(json.dumps(payload, indent=2))
+    _audit(record, reviewer, "safety.reviewed", f"{reviewer['name']} triaged a safety concern",
+           version=record["version"])
+    _save_course(record)
+    return entry
 
 
 def assign_reviewers(run_id: str, user_id: str, reviewer_ids: list[str], note: str = "") -> dict:
@@ -1164,11 +1292,68 @@ def _attempt(record: dict, kind: str) -> dict | None:
     return attempts[-1] if attempts else None
 
 
+BADGES = [
+    ("first-steps", "First steps"),
+    ("baseline-complete", "Baseline complete"),
+    ("halfway", "Halfway there"),
+    ("course-complete", "Course complete"),
+    ("final-pass", "Final passed"),
+    ("certified", "Certified"),
+    ("high-scorer", "High scorer"),
+]
+
+
+def _badges(record: dict, baseline: dict | None, final: dict | None, percent: int,
+            modules_complete: bool, passed: bool) -> list[dict]:
+    """Earned recognition, derived every call: nothing is stored, so a badge
+    can never disagree with the progress it celebrates."""
+    earned = set()
+    if record["started_at"]:
+        earned.add("first-steps")
+    if baseline:
+        earned.add("baseline-complete")
+    if percent >= 50:
+        earned.add("halfway")
+    if modules_complete:
+        earned.add("course-complete")
+    if passed:
+        earned.add("final-pass")
+    if record["certificate"]:
+        earned.add("certified")
+    if final and final["score"] >= 90:
+        earned.add("high-scorer")
+    return [{"id": badge_id, "label": label, "earned": badge_id in earned}
+            for badge_id, label in BADGES]
+
+
+def _streak_days(record: dict) -> int:
+    """Consecutive calendar days with any activity, ending today or yesterday.
+    Anything older breaks the run, so a returning learner starts a new one."""
+    days = set()
+    for module in record["modules"].values():
+        if module.get("completed_at"):
+            days.add(module["completed_at"][:10])
+    for attempt in record["attempts"]:
+        if attempt.get("created_at"):
+            days.add(attempt["created_at"][:10])
+    if not days:
+        return 0
+    today = date.today().isoformat()
+    cursor = today if today in days else (
+        date.fromordinal(date.today().toordinal() - 1).isoformat())
+    streak = 0
+    while cursor in days:
+        streak += 1
+        cursor = date.fromordinal(date.fromisoformat(cursor).toordinal() - 1).isoformat()
+    return streak
+
+
 def summarize(record: dict) -> dict:
     """Derived learner state: module completion, scores and knowledge uplift."""
     done = [module for module in MODULES if module["id"] in record["modules"]]
     baseline, final = _attempt(record, "baseline"), _attempt(record, "final")
     modules_complete = len(done) == len(MODULES)
+    percent = round(100 * len(done) / len(MODULES))
     passed = bool(final and final["passed"])
     if not record["started_at"]:
         stage = "not_started"
@@ -1184,7 +1369,7 @@ def summarize(record: dict) -> dict:
         "stage": stage,
         "modules_complete": len(done),
         "modules_total": len(MODULES),
-        "percent": round(100 * len(done) / len(MODULES)),
+        "percent": percent,
         "baseline_score": baseline["score"] if baseline else None,
         "final_score": final["score"] if final else None,
         "uplift": final["score"] - baseline["score"] if baseline and final else None,
@@ -1192,6 +1377,8 @@ def summarize(record: dict) -> dict:
         "attempts": len(record["attempts"]),
         "certificate": record["certificate"],
         "points": len(done) * 25 + (final["score"] if final else 0),
+        "badges": _badges(record, baseline, final, percent, modules_complete, passed),
+        "streak_days": _streak_days(record),
     }
 
 

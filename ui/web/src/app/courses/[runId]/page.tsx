@@ -3,12 +3,14 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { ArrowLeft, ChartColumn, CheckCircle2, Download, ExternalLink, FileQuestion, Film, GitBranch, History, Layers, ListChecks, PlayCircle, Presentation, Route, Send, ScanLine, ShieldCheck, TrendingUp, Users } from "lucide-react";
+import { ArrowLeft, ChartColumn, CheckCircle2, Download, ExternalLink, FileQuestion, Film, GitBranch, History, Layers, ListChecks, PlayCircle, Presentation, MessageCircle, Route, Send, ScanLine, ShieldAlert, ShieldCheck, TrendingUp, Users } from "lucide-react";
 import { AppShell, Cites, Loading } from "@/components/app-shell";
 import { CourseChatDock } from "@/components/course-chat-dock";
 import { CourseJourney } from "@/components/course-journey";
 import { DeckGrid } from "@/components/deck";
 import { CourseCohortPanel } from "@/components/course-cohort";
+import { CourseObjectionsPanel } from "@/components/course-objections";
+import { CourseSafetyPanel } from "@/components/course-safety";
 import { CourseChecksPanel } from "@/components/course-checks";
 import { CourseCompletenessPanel } from "@/components/course-completeness";
 import { CourseHistoryPanel } from "@/components/course-history";
@@ -102,6 +104,7 @@ export default function CourseWorkspace() {
       { value: "story", label: "Storyboard", icon: Film },
       { value: "faq", label: "FAQ", icon: FileQuestion },
       { value: "quiz", label: "Quiz", icon: CheckCircle2 },
+      { value: "objections", label: "Objections", icon: MessageCircle },
     ] },
     { label: "Sources", icon: ExternalLink, items: [{ value: "sources", label: "Sources", icon: ExternalLink }] },
     { label: "Governance", icon: ShieldCheck, items: [
@@ -109,6 +112,7 @@ export default function CourseWorkspace() {
       { value: "coverage", label: "Coverage", icon: ListChecks },
       { value: "refresh", label: "Refresh", icon: GitBranch },
       { value: "review", label: "Review", icon: GitBranch, count: review.readiness.open_comments },
+      { value: "safety", label: "Safety", icon: ShieldAlert },
       { value: "history", label: "History", icon: History },
       ...(admin ? [{ value: "publish", label: "Publish", icon: Send }] : []),
     ] },
@@ -135,6 +139,7 @@ export default function CourseWorkspace() {
           <div className="flex flex-wrap gap-3">
             <div className="rounded-xl border border-white/15 bg-white/5 p-4 text-sm"><p className="text-2xl font-semibold">{content.manifest.citation_count}</p><p className="text-stone-300">citations</p></div>
             <div className="rounded-xl border border-white/15 bg-white/5 p-4 text-sm"><p className="text-2xl font-semibold">{review.readiness.open_comments}</p><p className="text-stone-300">open comments</p></div>
+            <div className="rounded-xl border border-white/15 bg-white/5 p-4 text-sm"><p className="text-2xl font-semibold">{review.readiness.content_state === "current" ? "Current" : review.readiness.content_state === "due" ? "Due soon" : review.readiness.content_state === "overdue" ? "Overdue" : "Unpublished"}</p><p className="text-stone-300">content{review.readiness.content_valid_until ? ` · valid until ${review.readiness.content_valid_until}` : ""}</p></div>
           </div>
         </div>
       </div>
@@ -162,6 +167,8 @@ export default function CourseWorkspace() {
 
         {active === "quiz" && <div className="space-y-4"><p className="text-sm text-stone-600">Answers are shown here for review. Learners sit this quiz without them, and must score {track.quiz.passing_score}% to pass.</p>{track.quiz.questions.map((question, index) => <Card key={question.id}><CardHeader><CardTitle className="text-base">{index + 1}. {question.prompt}</CardTitle></CardHeader><CardContent className="space-y-2">{question.options.map((option, optionIndex) => <div key={option} className={`rounded-lg border p-3 text-sm ${optionIndex === question.correct_index ? "border-brand-600 bg-brand-50 text-brand-800" : "text-stone-600"}`}>{option}</div>)}<div className="pt-2"><p className="text-sm leading-6 text-stone-600">{question.rationale}</p><Cites runId={runId} citations={question.citations} /></div></CardContent></Card>)}</div>}
 
+        {active === "objections" && <CourseObjectionsPanel runId={runId} user={user} />}
+
         {active === "sources" && <SourceLibrary runId={runId} />}
 
         {active === "checks" && <CourseChecksPanel runId={runId} user={user} onChange={() => getJson<CourseReview>(`/api/runs/${runId}/review`).then(setReview)} />}
@@ -171,6 +178,8 @@ export default function CourseWorkspace() {
         {active === "refresh" && <CourseRefreshPanel runId={runId} />}
 
         {active === "review" && <CourseReviewPanel runId={runId} user={user} onChange={setReview} />}
+
+        {active === "safety" && <CourseSafetyPanel runId={runId} user={user} />}
 
         {active === "history" && <CourseHistoryPanel runId={runId} />}
 

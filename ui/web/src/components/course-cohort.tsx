@@ -113,11 +113,12 @@ export function CourseCohortPanel({ runId, user }: { runId: string; user?: Perso
                 <th className="pb-3 pr-4">Stage</th>
                 <th className="pb-3 pr-4">Modules</th>
                 <th className="pb-3 pr-4">Baseline → final</th>
+                <th className="pb-3 pr-4">Points</th>
                 <th className="pb-3">Certificate</th>
               </tr>
             </thead>
             <tbody>
-              {cohort.learners.map((learner) => (
+              {[...cohort.learners].sort((left, right) => right.points - left.points).map((learner, position) => (
                 <tr key={learner.user_id} className="border-b last:border-0">
                   <td className="py-4 pr-4">
                     {user?.role === "admin"
@@ -131,6 +132,7 @@ export function CourseCohortPanel({ runId, user }: { runId: string; user?: Perso
                   <td className="py-4 pr-4"><Badge className={STAGE[learner.stage].className}>{STAGE[learner.stage].label}</Badge>{learner.final_score !== null && !learner.passed && <Badge className={`ml-1 ${RAG_BADGE.red}`}>Below required</Badge>}</td>
                   <td className="py-4 pr-4 text-sm tabular-nums text-stone-600">{learner.modules_complete}/{learner.modules_total}</td>
                   <td className="py-4 pr-4"><ScoreTrack baseline={learner.baseline_score} final={learner.final_score} /></td>
+                  <td className="py-4 pr-4 text-sm tabular-nums text-stone-600">{position < 3 ? <span className="mr-1 inline-grid size-5 place-items-center rounded-full bg-brand-600 text-[11px] font-bold text-white">{position + 1}</span> : <span className="mr-1 text-stone-400">#{position + 1}</span>}{learner.points} pts</td>
                   <td className="py-4">
                     {learner.certificate
                       ? <span className="inline-flex items-center gap-1.5 text-sm font-medium text-brand-700"><CheckCircle2 size={15} /> {learner.certificate.code}</span>

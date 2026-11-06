@@ -39,7 +39,7 @@ export function BarRow({ label, value, max, suffix = "", caption, tone = "brand"
   /** Overrides the direct label when the number needs a prefix, like currency. */
   display?: string;
 }) {
-  const width = max > 0 ? Math.max(value > 0 ? 1.5 : 0, (100 * value) / max) : 0;
+  const width = max > 0 ? Math.min(100, Math.max(value > 0 ? 1.5 : 0, (100 * value) / max)) : 0;
   return (
     <div className="group relative py-1.5" title={hint}>
       <div className="flex items-baseline justify-between gap-4">

@@ -156,7 +156,7 @@ export type Publication = {
   overrides?: (Override & { comment_id: string; severity: Severity; target: string })[];
 };
 
-export type Readiness = { open_comments: number; open_blocking: number; challenged: number; overrides: number; addressed_comments: number; approvals: number; changes_requested: number; approved_by: string[]; can_publish: boolean };
+export type Readiness = { open_comments: number; open_blocking: number; challenged: number; overrides: number; addressed_comments: number; approvals: number; changes_requested: number; approved_by: string[]; can_publish: boolean; content_valid_until: string | null; content_state: "current" | "due" | "overdue" | "unpublished" };
 
 /** Who the medical education lead put on this review, and when. */
 export type ReviewAssignment = {
@@ -201,6 +201,8 @@ export type Certificate = {
   course_title?: string;
 };
 
+export type Badge = { id: string; label: string; earned: boolean };
+
 export type LearnerSummary = {
   stage: "not_started" | "baseline" | "learning" | "final" | "complete";
   modules_complete: number;
@@ -213,6 +215,20 @@ export type LearnerSummary = {
   passed: boolean;
   attempts: number;
   certificate: Certificate | null;
+  badges: Badge[];
+  streak_days: number;
+};
+
+export type Objection = {
+  id: string; question: string; answer: string;
+  citations: Citation[];
+  author_id: string; author_name: string; created_at: string; retired: boolean;
+};
+
+export type SafetyReport = {
+  id: string; concern: string; reporter_id: string; reporter_name: string;
+  created_at: string; status: "new" | "reviewed";
+  reviewed_by: string | null; reviewed_at: string | null;
 };
 
 export type ModuleFeedback = { id: string; module_id: string; rating: number; comment: string; created_at: string };

@@ -291,6 +291,29 @@ class FeedbackRequest(BaseModel):
     comment: str = ""
 
 
+class ObjectionRequest(BaseModel):
+    user_id: str
+    question: str
+    answer: str
+    citations: list[dict] = []
+
+
+class ObjectionUpdate(BaseModel):
+    user_id: str
+    question: str | None = None
+    answer: str | None = None
+    retired: bool | None = None
+
+
+class SafetyRequest(BaseModel):
+    user_id: str
+    concern: str
+
+
+class SafetyReviewRequest(BaseModel):
+    user_id: str
+
+
 class ChatRequest(BaseModel):
     question: str
     learner: str = "hcp"
@@ -433,6 +456,43 @@ def review_assign(run_id: str, request: AssignReviewersRequest):
 @app.post("/api/runs/{run_id}/review/versions", status_code=201)
 def review_version(run_id: str, request: VersionRequest):
     return _guard(lambda: learning.publish_version(run_id, request.user_id, request.summary))
+
+
+@app.get("/api/runs/{run_id}/objections")
+def list_objections(run_id: str):
+    """Approved answers to the objections HCPs raise in the field."""
+    return learning.objections(run_id)
+
+
+@app.post("/api/runs/{run_id}/objections", status_code=201)
+def create_objection(run_id: str, request: ObjectionRequest):
+    return _guard(lambda: learning.add_objection(
+        run_id, request.user_id, request.question, request.answer, request.citations))
+
+
+@app.patch("/api/runs/{run_id}/objections/{objection_id}")
+def edit_objection(run_id: str, objection_id: str, request: ObjectionUpdate):
+    return _guard(lambda: learning.update_objection(
+        run_id, request.user_id, objection_id, request.question, request.answer, request.retired))
+
+
+@app.post("/api/runs/{run_id}/safety", status_code=201)
+def report_safety(run_id: str, request: SafetyRequest):
+    """Raise a safety concern from the field; triage is staff work."""
+    return _guard(lambda: learning.report_safety(run_id, request.user_id, request.concern))
+
+
+@app.get("/api/runs/{run_id}/safety")
+def list_safety(run_id: str, user_id: str):
+    def _list():
+        learning.require_capability(user_id, "review.resolve")
+        return learning.safety_reports(run_id)
+    return _guard(_list)
+
+
+@app.patch("/api/runs/{run_id}/safety/{report_id}")
+def triage_safety(run_id: str, report_id: str, request: SafetyReviewRequest):
+    return _guard(lambda: learning.review_safety(run_id, request.user_id, report_id))
 
 
 @app.post("/api/runs/{run_id}/review/signoff", status_code=201)

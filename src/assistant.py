@@ -219,6 +219,11 @@ CONTEXTS: dict[str, list[tuple[str, str]]] = {
         ("record", "Who approved this version, and were there any overrides?"),
         ("dossier", "What is this course teaching the field team?"),
     ],
+    "assessment": [
+        ("record", "When is this training due?"),
+        ("dossier", "What did the phase 3 trials show?"),
+        ("dossier", "What are the unmet needs in this disease?"),
+    ],
     "learner": [
         ("record", "When is this training due?"),
         ("dossier", "What are the unmet needs in this disease?"),

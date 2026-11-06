@@ -3,9 +3,10 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { ALargeSmall, ArrowLeft, ArrowRight, Award, Check, CheckCircle2, ChevronLeft, ChevronRight, Circle, Download, FileQuestion, Film, Layers, Lock, PlayCircle, Presentation, RotateCcw, Search, Shuffle, Star } from "lucide-react";
+import { ALargeSmall, ArrowLeft, ArrowRight, Award, Check, CheckCircle2, ChevronLeft, ChevronRight, Circle, Download, BookOpen, FileQuestion, Film, FlaskConical, Layers, Lock, Medal, MessageCircle, PlayCircle, Presentation, RotateCcw, Search, ShieldAlert, Shuffle, Star } from "lucide-react";
 import { AppShell, Cites, Loading } from "@/components/app-shell";
 import { CourseChatDock } from "@/components/course-chat-dock";
+import { MechanismWalkthrough } from "@/components/mechanism-walkthrough";
 import { DeckGrid } from "@/components/deck";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
@@ -14,7 +15,19 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { API, flushQueue, getJson, LearnerCourse, LearnerModule, outboxDepth, sendJsonQueued } from "@/lib/api";
+import { API, flushQueue, getJson, LearnerCourse, LearnerModule, Library, Objection, outboxDepth, sendJsonQueued } from "@/lib/api";
+import { SourceSidecar } from "@/components/source-sidecar";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import { useSession } from "@/lib/session";
 
 function Journey({ course, runId }: { course: LearnerCourse; runId: string }) {
@@ -141,7 +154,7 @@ function PracticeMissed({ runId, userId }: { runId: string; userId: string }) {
   );
 }
 
-const COURSE_TABS = ["deck", "videos", "storyboard", "faq", "flashcards"] as const;
+const COURSE_TABS = ["deck", "videos", "storyboard", "faq", "flashcards", "mechanism", "objections"] as const;
 
 function readStored(key: string): string | null {
   try { return typeof window === "undefined" ? null : window.localStorage.getItem(key); }
@@ -272,6 +285,13 @@ export default function CoursePlayer() {
   });
   const [simple, setSimple] = useState(() => readStored(`pl-simple-${runId}`) === "1");
   const [synced, setSynced] = useState("");
+  const [objections, setObjections] = useState<Objection[]>([]);
+  const [safetyOpen, setSafetyOpen] = useState(false);
+  const [concern, setConcern] = useState("");
+  const [safetyNote, setSafetyNote] = useState("");
+  const [safetyBusy, setSafetyBusy] = useState(false);
+  const [refUrl, setRefUrl] = useState<string | null>(null);
+  const [library, setLibrary] = useState<Library | null>(null);
 
   function setVideo(index: number) {
     setVideoState(index);
@@ -299,6 +319,18 @@ export default function CoursePlayer() {
     return () => window.clearTimeout(frame);
   }, [pendingAnchor, tab]);
 
+  async function submitSafety() {
+    if (!user || !concern.trim()) return;
+    setSafetyBusy(true); setSafetyNote("");
+    try {
+      await sendJsonQueued(`/api/runs/${runId}/safety`, { user_id: user.id, concern: concern.trim() }, "POST");
+      setConcern(""); setSafetyOpen(false);
+      setSynced("Safety concern recorded — the training team triages every report.");
+    } catch (reason) {
+      setSafetyNote(reason instanceof Error ? reason.message : "Could not record your report");
+    } finally { setSafetyBusy(false); }
+  }
+
   function jumpTo(targetTab: string, anchor: string | null) {
     setPendingAnchor(anchor);
     changeTab(targetTab);
@@ -313,6 +345,8 @@ export default function CoursePlayer() {
   const load = () => {
     if (!user) return;
     getJson<LearnerCourse>(`/api/learn/${user.id}/${runId}`).then(setCourse).catch((reason) => setError(reason instanceof Error ? reason.message : "Could not load this course."));
+    getJson<Objection[]>(`/api/runs/${runId}/objections`).then(setObjections).catch(() => setObjections([]));
+    getJson<Library>(`/api/runs/${runId}/library`).then(setLibrary).catch(() => setLibrary(null));
     void flushQueue().then((result) => {
       const depth = outboxDepth();
       if (result.sent) setSynced(`Back online — synced ${result.sent} saved change${result.sent === 1 ? "" : "s"}.`);
@@ -349,6 +383,14 @@ export default function CoursePlayer() {
           <div className="w-full max-w-xs">
             <div className="flex items-center justify-between text-sm"><span className="text-stone-300">Course progress</span><span className="font-semibold">{course.summary.percent}% · {course.summary.points} pts</span></div>
             <Progress value={course.summary.percent} className="mt-2 bg-white/20" />
+            <div className="mt-3 flex flex-wrap items-center gap-1.5" aria-label="Earned badges">
+              {course.summary.badges.filter((badge) => badge.earned).map((badge) => (
+                <span key={badge.id} title={badge.label} className="inline-flex items-center gap-1 rounded-full bg-brand-600 px-2.5 py-1 text-xs font-semibold text-white"><Medal size={12} /> {badge.label}</span>
+              ))}
+              {course.summary.streak_days > 1 && (
+                <span className="inline-flex items-center gap-1 rounded-full bg-white/10 px-2.5 py-1 text-xs font-semibold text-brand-300" title="Consecutive days with training activity">{course.summary.streak_days}-day streak</span>
+              )}
+            </div>
             {course.summary.certificate && (
               <Button nativeButton={false} render={<Link href={`/learn/${runId}/certificate`} />} className="mt-4 w-full bg-white text-surface-deep hover:bg-stone-100"><Award /> View certificate</Button>
             )}
@@ -368,6 +410,8 @@ export default function CoursePlayer() {
           <TabsTrigger value="storyboard"><Film /> Visual story{step("storyboard").completed && <Check className="text-brand-700" />}</TabsTrigger>
           <TabsTrigger value="faq"><FileQuestion /> FAQ{step("faq").completed && <Check className="text-brand-700" />}</TabsTrigger>
           <TabsTrigger value="flashcards"><Layers /> Flashcards</TabsTrigger>
+          <TabsTrigger value="mechanism"><FlaskConical /> Mechanism</TabsTrigger>
+          <TabsTrigger value="objections"><MessageCircle /> Objections</TabsTrigger>
         </TabsList>
 
         <TabsContent value="deck" className="mt-5">
@@ -457,6 +501,35 @@ export default function CoursePlayer() {
           {footer("faq")}
         </TabsContent>
 
+        <TabsContent value="mechanism" className="mt-5">
+          <Card>
+            <CardHeader><CardTitle>Mechanism walkthrough</CardTitle><p className="mt-2 text-sm text-stone-600">Walk each step of the action, then prove it with a recorded check. A step with no shared citation says so instead of borrowing one.</p></CardHeader>
+            <CardContent>
+              <MechanismWalkthrough runId={runId} scenes={track.storyboard.scenes} questions={track.quiz.questions} />
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        <TabsContent value="objections" className="mt-5">
+          <Card>
+            <CardHeader><CardTitle>Handling objections</CardTitle><p className="mt-2 text-sm text-stone-600">Approved answers to the hard questions you will hear in the field.</p></CardHeader>
+            <CardContent>
+              {objections.length ? (
+                <Accordion>{objections.map((item, index) => (
+                  <AccordionItem key={item.id} value={`obj-${index}`}>
+                    <AccordionTrigger>{item.question}</AccordionTrigger>
+                    <AccordionContent>
+                      <p className="leading-7 text-stone-600">{item.answer}</p>
+                      <p className="mt-3 text-xs text-stone-500">Approved answer · {item.author_name}</p>
+                      <Cites runId={runId} citations={item.citations} />
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}</Accordion>
+              ) : <p className="text-sm text-stone-600">No approved answers have been published for this course yet.</p>}
+            </CardContent>
+          </Card>
+        </TabsContent>
+
         <TabsContent value="flashcards" className="mt-5">
           <Card>
             <CardHeader><CardTitle>Revision flashcards</CardTitle><p className="mt-2 text-sm text-stone-600">Try each question from memory, then flip the card. Your self-grades stay on this device.</p></CardHeader>
@@ -471,6 +544,42 @@ export default function CoursePlayer() {
         </TabsContent>
 
       </Tabs>
+
+      <div className="mt-4 flex flex-wrap gap-2">
+        <Button variant="outline" onClick={() => { setSafetyNote(""); setSafetyOpen(true); }}><ShieldAlert size={16} /> Report a safety concern</Button>
+      </div>
+      <AlertDialog open={safetyOpen} onOpenChange={setSafetyOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Report a safety concern</AlertDialogTitle>
+            <AlertDialogDescription>
+              Seen in clinic or in training: an adverse event, a near miss, unclear safety wording. The training team triages every report. This does not replace your organisation&apos;s pharmacovigilance channel.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <Textarea value={concern} onChange={(event) => setConcern(event.target.value)} rows={4} placeholder="What happened, and where?" />
+          {safetyNote && <p className="text-sm text-danger-600">{safetyNote}</p>}
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction className="bg-brand-600 hover:bg-brand-800" disabled={safetyBusy || !concern.trim()} onClick={() => void submitSafety()}>
+              {safetyBusy ? "Recording…" : "Send report"}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      {(library?.documents ?? []).filter((doc) => doc.held).length > 0 && (
+        <Card className="mt-4">
+          <CardHeader><CardTitle className="flex items-center gap-2"><BookOpen size={18} /> Reference documents</CardTitle><p className="mt-2 text-sm text-stone-600">The sources this course was checked against — read them beside your material.</p></CardHeader>
+          <CardContent>
+            <div className="flex flex-wrap gap-2">
+              {(library?.documents ?? []).filter((doc) => doc.held).map((doc) => (
+                <Button key={doc.url} variant="outline" onClick={() => setRefUrl(doc.url)}>{doc.title}</Button>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      )}
+      {refUrl && <SourceSidecar runId={runId} url={refUrl} onClose={() => setRefUrl(null)} />}
 
       <CourseChatDock runId={runId} learner={course.track} context="learner" userId={user.id}
         blurb="Ask anything about this course. Answers come from the cited dossier, or from your own training record." />

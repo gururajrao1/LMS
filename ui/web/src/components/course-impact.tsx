@@ -118,7 +118,7 @@ function UnitEconomics({ economics, rate, days }: { economics: Analytics["unit_e
             </div>
             <div className="mt-1 h-2 w-full rounded-full bg-stone-100">
               <div className="h-2 rounded-full" style={{
-                width: `${Math.max(1.5, (100 * (point.cost_usd ?? 0)) / best)}%`,
+                width: `${Math.min(100, Math.max(1.5, (100 * (point.cost_usd ?? 0)) / best))}%`,
                 background: point.measured ? "var(--color-brand-600)" : "var(--color-brand-300)",
               }} />
             </div>
@@ -170,7 +170,7 @@ function SpeedToCompetence({ speed }: { speed: Analytics["speed_to_competence"] 
             </div>
             <div className="mt-1 h-2 w-full rounded-full bg-stone-100">
               {learner.days !== null && (
-                <div className="h-2 rounded-full" style={{ width: `${Math.max(2, (100 * learner.days) / scale)}%`, background: "var(--color-brand-600)" }} />
+                <div className="h-2 rounded-full" style={{ width: `${Math.min(100, Math.max(2, (100 * learner.days) / scale))}%`, background: "var(--color-brand-600)" }} />
               )}
             </div>
           </div>
