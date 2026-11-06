@@ -9,7 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Assignment, AssignmentState, getJson, LearnerHome, LearnerSummary } from "@/lib/api";
 
-type DashboardAlert = { user_id: string; name: string; run_id: string; severity: "danger" | "warning"; tier: number; message: string };
+type DashboardAlert = { user_id: string; name: string; run_id: string; kind: "overdue" | "below_requirement" | "unbaselined"; severity: "danger" | "warning"; tier: number; message: string };
 
 type Nudge = { key: string; title: string; message: string; href: string; urgent: boolean };
 
@@ -21,9 +21,9 @@ function buildNudges(courses: Assignment[], alerts: DashboardAlert[]): Nudge[] {
     key: `${alert.run_id}-${alert.message}`,
     title: titleOf(alert.run_id),
     message: alert.message,
-    href: alert.message.startsWith("Overdue")
+    href: alert.kind === "overdue"
       ? `/learn/${alert.run_id}`
-      : alert.message.includes("below the required score")
+      : alert.kind === "below_requirement"
         ? `/learn/${alert.run_id}/assessment/final`
         : `/learn/${alert.run_id}/assessment/baseline`,
     urgent: alert.severity === "danger",

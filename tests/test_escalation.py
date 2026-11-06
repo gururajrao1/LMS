@@ -55,6 +55,7 @@ def test_alerts_carry_run_id_for_learner_deep_links(tmp_path, monkeypatch):
     alerts = learning.noncompliance(run_id)
     assert len(alerts) == 2
     assert all(alert["run_id"] == run_id for alert in alerts)
+    assert {alert["kind"] for alert in alerts} == {"overdue", "below_requirement"}
 
 
 def test_check_stamps_since_and_records_level_changes(tmp_path, monkeypatch):

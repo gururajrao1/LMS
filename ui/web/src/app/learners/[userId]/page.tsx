@@ -50,7 +50,7 @@ export default function LearnerDashboardPage() {
           <CardContent className="space-y-2">
             {dashboard.alerts.map((alert, index) => (
               <p key={index} className="flex items-start gap-2 text-sm">
-                <span className={`mt-0.5 rounded-full px-2 py-0.5 text-xs font-medium ${RAG_BADGE[alert.severity as "danger" | "warning"]}`}>{alert.severity === "danger" ? "Action needed" : "Watch"}</span>
+                <span className={`mt-0.5 rounded-full px-2 py-0.5 text-xs font-medium ${RAG_BADGE[alert.severity === "danger" ? "red" : "amber"]}`}>{alert.severity === "danger" ? "Action needed" : "Watch"}</span>
                 <span>{alert.message}</span>
               </p>
             ))}

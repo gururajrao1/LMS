@@ -152,7 +152,7 @@ export function CourseCohortPanel({ runId, user }: { runId: string; user?: Perso
           <CardContent className="space-y-2">
             {alerts.map((alert, index) => (
               <p key={index} className="flex items-start gap-2 text-sm">
-                <span className={`mt-1.5 rounded-full px-2 py-0.5 text-xs font-medium ${RAG_BADGE[alert.severity]}`}>{alert.severity === "danger" ? "Action needed" : "Watch"}</span>
+                <span className={`mt-1.5 rounded-full px-2 py-0.5 text-xs font-medium ${RAG_BADGE[alert.severity === "danger" ? "red" : "amber"]}`}>{alert.severity === "danger" ? "Action needed" : "Watch"}</span>
                 <span><b>{alert.name}</b> — {alert.message}</span>
               </p>
             ))}

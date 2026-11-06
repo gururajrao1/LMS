@@ -57,7 +57,18 @@ export default function AssessmentPage() {
   const { runId, kind } = useParams<{ runId: string; kind: "baseline" | "final" }>();
   const user = useSession(["msl", "hcp"], { anyLearner: true });
   const [assessment, setAssessment] = useState<Assessment | null>(null);
-  const [answers, setAnswers] = useState<Record<string, number>>({});
+  const draftKey = `pl-draft-${runId}-${kind}`;
+  const [answers, setAnswers] = useState<Record<string, number>>(() => {
+    try {
+      if (typeof window === "undefined") return {};
+      const saved = window.localStorage.getItem(draftKey);
+      return saved ? JSON.parse(saved) as Record<string, number> : {};
+    } catch { return {}; }
+  });
+
+  function stash(next: Record<string, number>) {
+    try { window.localStorage.setItem(draftKey, JSON.stringify(next)); } catch { /* private mode */ }
+  }
   const [result, setResult] = useState<AssessmentResult | null>(null);
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
@@ -87,13 +98,19 @@ export default function AssessmentPage() {
     try {
       setResult(await sendJson<AssessmentResult>(`/api/learn/${user.id}/${runId}/assessment/${kind}`,
         { answers, fill_unanswered: fillUnanswered }));
+      try { window.localStorage.removeItem(draftKey); } catch { /* private mode */ }
       window.scrollTo({ top: 0, behavior: "smooth" });
-    } catch (reason) { setError(reason instanceof Error ? reason.message : "Could not submit your answers"); }
+    } catch (reason) {
+      setError(reason instanceof TypeError
+        ? "You are offline — your answers are saved on this device, not submitted. Reconnect and submit again."
+        : reason instanceof Error ? reason.message : "Could not submit your answers");
+    }
     finally { setBusy(false); }
   }
 
   function retry() {
     setResult(null); setAnswers({});
+    try { window.localStorage.removeItem(draftKey); } catch { /* private mode */ }
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
@@ -116,9 +133,14 @@ export default function AssessmentPage() {
 
   function place(id: string, choice: number | null) {
     setAnswers((current) => {
-      if (choice !== null) return { ...current, [id]: choice };
+      if (choice !== null) {
+        const next = { ...current, [id]: choice };
+        stash(next);
+        return next;
+      }
       const cleared = { ...current };
       delete cleared[id];
+      stash(cleared);
       return cleared;
     });
   }

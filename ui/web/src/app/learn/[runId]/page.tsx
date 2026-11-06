@@ -57,6 +57,14 @@ function ModuleFooter({ module, runId, userId, onChange }: { module: LearnerModu
   const [saved, setSaved] = useState(Boolean(module.feedback));
   const [busy, setBusy] = useState(false);
   const [notice, setNotice] = useState("");
+  const [done, setDone] = useState(module.completed);
+  // A parent reload can land between two fast taps: re-anchor the optimistic
+  // flag when the server truth actually moves, during render, not in an effect.
+  const [prevCompleted, setPrevCompleted] = useState(module.completed);
+  if (prevCompleted !== module.completed) {
+    setPrevCompleted(module.completed);
+    setDone(module.completed);
+  }
 
   function offlineNote(reason: unknown) {
     return (reason as Error & { queued?: boolean }).queued
@@ -65,8 +73,10 @@ function ModuleFooter({ module, runId, userId, onChange }: { module: LearnerModu
   }
 
   async function toggle() {
+    const next = !done;
+    setDone(next);
     setBusy(true);
-    try { await sendJsonQueued(`/api/learn/${userId}/${runId}/modules`, { module_id: module.id, completed: !module.completed }); onChange(); }
+    try { await sendJsonQueued(`/api/learn/${userId}/${runId}/modules`, { module_id: module.id, completed: next }); onChange(); }
     catch (reason) { setNotice(offlineNote(reason)); }
     finally { setBusy(false); }
   }
@@ -90,7 +100,7 @@ function ModuleFooter({ module, runId, userId, onChange }: { module: LearnerModu
   return (
     <div className="mt-5 flex flex-col gap-4 rounded-xl border bg-white p-5 sm:flex-row sm:items-center sm:justify-between">
       <div>
-        <p className="font-semibold">{module.completed ? "Module complete" : `Finished the ${module.title.toLowerCase()}?`}</p>
+        <p className="font-semibold">{done ? "Module complete" : `Finished the ${module.title.toLowerCase()}?`}</p>
         <div className="mt-2 flex items-center gap-1">
           <span className="mr-2 text-sm text-stone-600">Rate this module:</span>
           {[1, 2, 3, 4, 5].map((value) => (
@@ -105,8 +115,8 @@ function ModuleFooter({ module, runId, userId, onChange }: { module: LearnerModu
           <Input value={comment} onChange={(event) => { setComment(event.target.value); setSaved(false); }} onBlur={saveComment} placeholder="What would make this module better?" className="mt-3 max-w-md" />
         )}
       </div>
-      <Button onClick={toggle} disabled={busy} variant={module.completed ? "outline" : "default"} className={module.completed ? "" : "bg-brand-600 hover:bg-brand-800"}>
-        {module.completed ? <><CheckCircle2 /> Completed</> : <><Circle /> Mark complete</>}
+      <Button onClick={toggle} disabled={busy} variant={done ? "outline" : "default"} className={done ? "" : "bg-brand-600 hover:bg-brand-800"}>
+        {done ? <><CheckCircle2 /> Completed</> : <><Circle /> Mark complete</>}
       </Button>
     </div>
   );
@@ -228,7 +238,7 @@ function MaterialSearch({ course, onJump }: { course: LearnerCourse; onJump: (ta
   return (
     <div className="relative">
       <Search size={16} className="pointer-events-none absolute left-3 top-3 text-stone-400" />
-      <Input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search the material — slides, scenes, FAQ…" className="pl-9" aria-label="Search the course material" />
+      <Input value={query} onChange={(event) => setQuery(event.target.value)} onKeyDown={(event) => { if (event.key === "Escape") setQuery(""); }} placeholder="Search the material — slides, scenes, FAQ…" className="pl-9" aria-label="Search the course material" />
       {query.trim().length >= 2 && (
         <div className="absolute z-20 mt-1 max-h-80 w-full overflow-y-auto rounded-xl border bg-white shadow-lg">
           {hits.length ? hits.map((hit, index) => (
@@ -278,16 +288,26 @@ export default function CoursePlayer() {
     } catch { /* ignore */ }
   }
 
+  const [pendingAnchor, setPendingAnchor] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!pendingAnchor) return;
+    const frame = window.setTimeout(() => {
+      document.getElementById(pendingAnchor)?.scrollIntoView({ behavior: "smooth", block: "start" });
+      setPendingAnchor(null);
+    }, 60);
+    return () => window.clearTimeout(frame);
+  }, [pendingAnchor, tab]);
+
   function jumpTo(targetTab: string, anchor: string | null) {
+    setPendingAnchor(anchor);
     changeTab(targetTab);
-    if (anchor) window.setTimeout(() => { document.getElementById(anchor)?.scrollIntoView({ behavior: "smooth", block: "start" }); }, 80);
   }
 
   function toggleSimple() {
-    setSimple((on) => {
-      writeStored(`pl-simple-${runId}`, on ? "0" : "1");
-      return !on;
-    });
+    const next = !simple;
+    setSimple(next);
+    writeStored(`pl-simple-${runId}`, next ? "1" : "0");
   }
 
   const load = () => {
@@ -308,7 +328,7 @@ export default function CoursePlayer() {
   const track = course.content;
   const step = (id: string) => course.modules.find((entry) => entry.id === id)!;
   const footer = (id: string) => <ModuleFooter module={step(id)} runId={runId} userId={user.id} onChange={load} />;
-  const activeVideo = track.videos[video];
+  const activeVideo = track.videos[Math.min(video, Math.max(track.videos.length - 1, 0))];
 
   return (
     <AppShell user={user}>
@@ -442,6 +462,7 @@ export default function CoursePlayer() {
             <CardHeader><CardTitle>Revision flashcards</CardTitle><p className="mt-2 text-sm text-stone-600">Try each question from memory, then flip the card. Your self-grades stay on this device.</p></CardHeader>
             <CardContent>
               <Flashcards
+                key={`pl-flip-${runId}`}
                 items={track.faq.items.map((item) => ({ question: item.question, answer: item.answer, nuance: item.nuance }))}
                 storageKey={`pl-flip-${runId}`}
               />

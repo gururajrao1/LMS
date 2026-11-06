@@ -46,6 +46,7 @@ export default function RolesPage() {
 
   async function create(event: FormEvent) {
     event.preventDefault();
+    if (!user) { setError("Sign in again to manage roles."); return; }
     setBusy(true); setError(""); setNotice("");
     try {
       const entry = await sendJson<RoleEntry>("/api/roles", {
@@ -59,9 +60,10 @@ export default function RolesPage() {
   }
 
   async function assign(person: Person, roleId: string) {
+    if (!user) { setError("Sign in again to manage roles."); return; }
     setError(""); setNotice("");
     try {
-      await sendJson(`/api/people/${person.id}/role`, { by_user_id: user!.id, role_id: roleId });
+      await sendJson(`/api/people/${person.id}/role`, { by_user_id: user.id, role_id: roleId });
       setNotice(`${person.name} is now ${roleLabel(roleId)}.`);
       refresh();
     } catch (reason) { setError(reason instanceof Error ? reason.message : "Could not assign the role"); }
