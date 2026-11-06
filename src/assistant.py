@@ -383,7 +383,14 @@ def _assessment_rules(run_id: str, question: str, learner: str = "hcp") -> dict 
     path = content_path("content", Path(run_id).name, track, "quiz.json")
     if not path.exists():
         return None
-    passing = _json(path).get("passing_score", 75)
+    quiz = _json(path)
+    # `passing_score` is a percentage by contract, but generators sometimes
+    # write a raw count ("8 correct" of 12). Same conversion the grader uses:
+    # a value no larger than the question count is a count, not a percent.
+    passing = int(quiz.get("passing_score", 75))
+    total = len(quiz.get("questions", []))
+    if total and passing <= total:
+        passing = round(100 * passing / total)
     return {
         "answer": (
             "The baseline isn't graded — it maps what you know before you start, so answer honestly. "

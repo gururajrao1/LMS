@@ -235,6 +235,18 @@ def test_what_happens_if_i_fail_is_answered_from_the_recorded_quiz(run, tmp_path
     assert reply["citations"] == []
 
 
+def test_raw_count_pass_mark_is_shown_as_a_percentage(run, tmp_path):
+    """Generators sometimes write "8 correct" instead of a percent; show 67%, not 8%."""
+    quiz_dir = tmp_path / "content" / "run" / "hcp"
+    quiz_dir.mkdir(parents=True)
+    quiz_dir.joinpath("quiz.json").write_text(json.dumps(
+        {"passing_score": 8, "questions": [{"id": f"q{i}"} for i in range(12)]}))
+    rules = assistant._assessment_rules(run, "what happens if i fail?", "hcp")
+    assert rules is not None
+    assert "67%" in rules["answer"]
+    assert "8%" not in rules["answer"]
+
+
 def test_dossier_failure_questions_stay_with_the_dossier(run, tmp_path):
     """The grading intent must not hijack questions about treatment failure."""
     quiz_dir = tmp_path / "content" / "run" / "hcp"
