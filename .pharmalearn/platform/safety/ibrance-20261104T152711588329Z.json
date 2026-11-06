@@ -1,0 +1,15 @@
+{
+  "run_id": "ibrance-20261104T152711588329Z",
+  "reports": [
+    {
+      "id": "0cc9d45ab5fc",
+      "concern": "Test - burning rash, patient week 3, ignorable.",
+      "reporter_id": "ken-osei",
+      "reporter_name": "Dr. Ken Osei",
+      "created_at": "2026-11-06T15:47:41.384390+00:00",
+      "status": "reviewed",
+      "reviewed_by": "Priya Raman",
+      "reviewed_at": "2026-11-06T15:52:03.970116+00:00"
+    }
+  ]
+}

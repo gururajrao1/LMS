@@ -1174,6 +1174,32 @@
       "actor_role": "admin",
       "summary": "Priya Raman restored the programme",
       "detail": {}
+    },
+    {
+      "id": "ef58e405a377",
+      "at": "2026-11-06T15:47:41.486981+00:00",
+      "action": "safety.reported",
+      "actor_id": "ken-osei",
+      "actor_name": "Dr. Ken Osei",
+      "actor_title": "Medical oncologist",
+      "actor_role": "hcp",
+      "summary": "Dr. Ken Osei reported a safety concern",
+      "detail": {
+        "version": 2
+      }
+    },
+    {
+      "id": "6fbdc538806d",
+      "at": "2026-11-06T15:47:46.932301+00:00",
+      "action": "safety.reviewed",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman triaged a safety concern",
+      "detail": {
+        "version": 2
+      }
     }
   ]
 }
