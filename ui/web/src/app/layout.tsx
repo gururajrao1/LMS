@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import { Geist, Inter } from "next/font/google";
 import "./globals.css";
 
@@ -22,15 +21,12 @@ export default function RootLayout({
     // The class on <html> may already be set by the pre-paint script below,
     // so hydration must not complain when React's first render disagrees.
     <html lang="en" suppressHydrationWarning className={`h-full antialiased ${inter.variable} ${geist.variable}`}>
-      {/* Same logic as lib/theme.ts, inlined so the first paint already has
-          the right theme — no light flash on a dark visit. */}
-      <Script
-        id="pl-theme-init"
-        strategy="beforeInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `(function(){try{var t=localStorage.getItem("pl-theme");if(t!=="light"&&t!=="dark")t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";if(t==="dark")document.documentElement.classList.add("dark")}catch(e){}})()`,
-        }}
-      />
+      <head>
+        {/* First paint already has the right theme — no light flash on a dark
+            visit. A plain blocking script in <head>, so it runs before React
+            paints anything; see public/theme-init.js. */}
+        <script src="/theme-init.js" />
+      </head>
       <body className="min-h-full">{children}</body>
     </html>
   );
