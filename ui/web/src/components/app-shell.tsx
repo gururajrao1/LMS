@@ -63,7 +63,7 @@ export function AppShell({ children, user }: { children: React.ReactNode; user?:
   const pathname = usePathname();
   const router = useRouter();
   const links = user ? navFor(user) : [];
-  const { theme, toggle } = useTheme();
+  const { toggle } = useTheme();
 
   function signOut() {
     writeSession(null);
@@ -93,7 +93,7 @@ export function AppShell({ children, user }: { children: React.ReactNode; user?:
               </div>
             )}
             {user && <span className="grid size-9 shrink-0 place-items-center rounded-full bg-brand-50 dark:bg-brand-950 text-sm font-semibold text-brand-700 dark:text-brand-300">{initials(user.name)}</span>}
-            <button type="button" onClick={toggle} aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"} title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"} className="rounded-lg p-2 text-stone-600 dark:text-muted-foreground hover:bg-stone-100 dark:hover:bg-muted">{theme === "dark" ? <Sun size={17} /> : <Moon size={17} />}</button>
+            <button type="button" onClick={toggle} aria-label="Toggle dark mode" title="Toggle dark mode" className="rounded-lg p-2 text-stone-600 dark:text-muted-foreground hover:bg-stone-100 dark:hover:bg-muted"><Sun size={17} className="hidden dark:block" /><Moon size={17} className="dark:hidden" /></button>
             <button type="button" onClick={signOut} aria-label="Sign out" className="rounded-lg p-2 text-stone-600 dark:text-muted-foreground hover:bg-stone-100 dark:hover:bg-muted"><LogOut size={17} /></button>
           </div>
         </div>
