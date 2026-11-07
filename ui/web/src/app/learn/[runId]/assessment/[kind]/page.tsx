@@ -20,9 +20,9 @@ import { useSession } from "@/lib/session";
 import type { Learner } from "@/lib/api";
 
 function optionStyle(chosen: boolean, correct: boolean) {
-  if (correct) return "border-brand-600 bg-brand-50 text-brand-800";
-  if (chosen) return "border-danger-600 bg-danger-50 text-danger-900";
-  return "border-stone-200 text-stone-600";
+  if (correct) return "border-brand-600 bg-brand-50 dark:bg-brand-950 text-brand-800 dark:text-brand-200";
+  if (chosen) return "border-danger-600 bg-danger-50 dark:bg-danger-950 text-danger-900 dark:text-danger-200";
+  return "border-stone-200 dark:border-line text-stone-600 dark:text-muted-foreground";
 }
 
 type Block =
@@ -149,15 +149,15 @@ export default function AssessmentPage() {
 
   return (
     <AppShell user={user}>
-      <Link href={`/learn/${runId}`} className="mb-5 inline-flex items-center gap-2 text-sm font-medium text-stone-600 hover:text-brand-700"><ArrowLeft size={16} /> Back to the course</Link>
+      <Link href={`/learn/${runId}`} className="mb-5 inline-flex items-center gap-2 text-sm font-medium text-stone-600 dark:text-muted-foreground hover:text-brand-700 dark:hover:text-brand-300"><ArrowLeft size={16} /> Back to the course</Link>
 
       <div className="mx-auto max-w-3xl">
         <div className="flex flex-wrap items-center gap-3">
-          <Badge className={baseline ? "bg-stone-100 text-stone-700" : "bg-brand-50 text-brand-700"}>{baseline ? "Baseline knowledge check" : "Final assessment"}</Badge>
-          <button type="button" onClick={() => speak("all", assessment.questions.map((question, index) => `Question ${index + 1}. ${question.prompt}`).join(" "))} className="inline-flex items-center gap-1.5 rounded-lg border px-3 py-1 text-xs font-medium text-stone-600 hover:bg-stone-50"><Volume2 size={14} /> {speaking === "all" ? "Stop" : "Read test aloud"}</button>
+          <Badge className={baseline ? "bg-stone-100 dark:bg-muted text-stone-700 dark:text-stone-200" : "bg-brand-50 dark:bg-brand-950 text-brand-700 dark:text-brand-300"}>{baseline ? "Baseline knowledge check" : "Final assessment"}</Badge>
+          <button type="button" onClick={() => speak("all", assessment.questions.map((question, index) => `Question ${index + 1}. ${question.prompt}`).join(" "))} className="inline-flex items-center gap-1.5 rounded-lg border px-3 py-1 text-xs font-medium text-stone-600 dark:text-muted-foreground hover:bg-stone-50 dark:hover:bg-surface-sunk"><Volume2 size={14} /> {speaking === "all" ? "Stop" : "Read test aloud"}</button>
         </div>
         <h1 className="mt-4 text-3xl font-semibold tracking-tight">{assessment.title}</h1>
-        <p className="mt-2 leading-7 text-stone-600">
+        <p className="mt-2 leading-7 text-stone-600 dark:text-muted-foreground">
           {baseline
             ? "A short check before you start. It is not graded — it measures how much the course teaches you."
             : `Answer every question. You need ${assessment.passing_score}% to pass and earn your certificate.`}
@@ -169,10 +169,10 @@ export default function AssessmentPage() {
               <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
                 <div>
                   <p className="flex items-center gap-2 text-lg font-semibold">
-                    {baseline ? <TrendingUp size={20} className="text-stone-600" /> : passed ? <CheckCircle2 size={20} className="text-brand-700" /> : <XCircle size={20} className="text-warn-600" />}
+                    {baseline ? <TrendingUp size={20} className="text-stone-600 dark:text-muted-foreground" /> : passed ? <CheckCircle2 size={20} className="text-brand-700 dark:text-brand-300" /> : <XCircle size={20} className="text-warn-600 dark:text-warn-400" />}
                     {baseline ? "Baseline recorded" : passed ? "Passed" : "Not passed yet"}
                   </p>
-                  <p className="mt-1 text-sm text-stone-600">
+                  <p className="mt-1 text-sm text-stone-600 dark:text-muted-foreground">
                     {result.attempt.correct} of {result.attempt.total} correct
                     {!baseline && ` · ${assessment.passing_score}% needed`}
                     {result.summary.uplift !== null && ` · knowledge uplift ${result.summary.uplift >= 0 ? "+" : ""}${result.summary.uplift}`}
@@ -190,13 +190,13 @@ export default function AssessmentPage() {
             </CardContent>
           </Card>
         ) : (
-          <div className="mt-7 flex items-center justify-between rounded-xl border bg-white p-4 shadow-sm">
-            <p className="text-sm text-stone-600">{answered} of {assessment.questions.length} answered</p>
+          <div className="mt-7 flex items-center justify-between rounded-xl border bg-white dark:bg-surface p-4 shadow-sm">
+            <p className="text-sm text-stone-600 dark:text-muted-foreground">{answered} of {assessment.questions.length} answered</p>
             <Progress value={Math.round((100 * answered) / assessment.questions.length)} className="ml-4 max-w-xs" />
           </div>
         )}
 
-        {error && <p className="mt-5 text-sm text-danger-600">{error}</p>}
+        {error && <p className="mt-5 text-sm text-danger-600 dark:text-danger-300">{error}</p>}
 
         <div className="mt-6 space-y-4">
           {layout.map((block, blockIndex) => {
@@ -213,7 +213,7 @@ export default function AssessmentPage() {
             const reviewed = reviewedById.get(question.id);
             return (
               <Card key={question.id}>
-                <CardHeader><CardTitle className="flex items-start gap-2 text-base leading-6"><span className="flex-1">{number(blockIndex)}. {question.prompt}</span><button type="button" aria-label={speaking === question.id ? "Stop reading" : "Read question aloud"} onClick={() => speak(question.id, `${question.prompt}. Options: ${question.options.join(", ")}`)} className="mt-0.5 shrink-0 rounded p-1 text-stone-400 hover:bg-stone-100 hover:text-brand-700"><Volume2 size={16} /></button></CardTitle></CardHeader>
+                <CardHeader><CardTitle className="flex items-start gap-2 text-base leading-6"><span className="flex-1">{number(blockIndex)}. {question.prompt}</span><button type="button" aria-label={speaking === question.id ? "Stop reading" : "Read question aloud"} onClick={() => speak(question.id, `${question.prompt}. Options: ${question.options.join(", ")}`)} className="mt-0.5 shrink-0 rounded p-1 text-stone-400 hover:bg-stone-100 dark:hover:bg-muted hover:text-brand-700 dark:hover:text-brand-300"><Volume2 size={16} /></button></CardTitle></CardHeader>
                 <CardContent className="space-y-2">
                   {question.figure && <QuizFigure figure={question.figure} />}
                   {question.options.map((option, optionIndex) => (
@@ -221,13 +221,13 @@ export default function AssessmentPage() {
                       onClick={() => place(question.id, optionIndex)}
                       className={`w-full rounded-lg border p-3 text-left text-sm transition-colors ${reviewed
                         ? optionStyle(reviewed.chosen === optionIndex, optionIndex === reviewed.correct_index)
-                        : answers[question.id] === optionIndex ? "border-brand-600 bg-brand-50" : "hover:bg-stone-50"}`}>
+                        : answers[question.id] === optionIndex ? "border-brand-600 bg-brand-50 dark:bg-brand-950" : "hover:bg-stone-50 dark:hover:bg-surface-sunk"}`}>
                       {option}
                     </button>
                   ))}
                   {reviewed && (
                     <div className="pt-2">
-                      <p className="text-sm leading-6 text-stone-600"><b>{reviewed.correct ? "Correct." : "Not quite."}</b> {reviewed.rationale}</p>
+                      <p className="text-sm leading-6 text-stone-600 dark:text-muted-foreground"><b>{reviewed.correct ? "Correct." : "Not quite."}</b> {reviewed.rationale}</p>
                       <Cites runId={runId} citations={reviewed.citations} />
                     </div>
                   )}

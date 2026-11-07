@@ -97,9 +97,9 @@ export default function KnowledgeHub() {
     <AppShell user={user}>
       <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
         <div>
-          <p className="text-sm font-semibold text-brand-700">DATA STORE</p>
+          <p className="text-sm font-semibold text-brand-700 dark:text-brand-300">DATA STORE</p>
           <h1 className="mt-1 text-3xl font-semibold tracking-tight">Knowledge hub</h1>
-          <p className="mt-2 text-stone-600">Every claim the agent collected, the source behind it, and the documents staged for the next run.</p>
+          <p className="mt-2 text-stone-600 dark:text-muted-foreground">Every claim the agent collected, the source behind it, and the documents staged for the next run.</p>
         </div>
         {courses.length > 1 && (
           <div className="w-full sm:w-64">
@@ -111,7 +111,7 @@ export default function KnowledgeHub() {
         )}
       </div>
 
-      {error && <p className="mt-5 text-sm text-danger-600">{error}</p>}
+      {error && <p className="mt-5 text-sm text-danger-600 dark:text-danger-300">{error}</p>}
 
       <section className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <Stat icon={Layers3} value={knowledge?.sections.length ?? "–"} label="Research sections" tone="brand" />
@@ -121,7 +121,7 @@ export default function KnowledgeHub() {
       </section>
 
       <Tabs defaultValue="dossier" className="mt-7">
-        <TabsList className="h-auto flex-wrap bg-white p-1 shadow-sm">
+        <TabsList className="h-auto flex-wrap bg-white dark:bg-surface p-1 shadow-sm">
           <TabsTrigger value="dossier"><Database /> Dossier</TabsTrigger>
           <TabsTrigger value="sources"><Link2 /> Sources</TabsTrigger>
           <TabsTrigger value="ingest"><Upload /> Add sources</TabsTrigger>
@@ -133,25 +133,25 @@ export default function KnowledgeHub() {
           {!knowledge ? <Loading label="Loading the dossier…" /> : (
             <div className="space-y-5">
               <div className="relative">
-                <Search size={16} className="absolute top-1/2 left-3 -translate-y-1/2 text-stone-500" />
+                <Search size={16} className="absolute top-1/2 left-3 -translate-y-1/2 text-stone-500 dark:text-stone-400" />
                 <Input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search every collected claim…" className="h-10 pl-9" />
               </div>
 
               {(knowledge.gaps.length > 0 || knowledge.warnings.length > 0) && (
                 <div className="grid gap-4 md:grid-cols-2">
                   {knowledge.gaps.length > 0 && (
-                    <Card><CardHeader><CardTitle className="flex items-center gap-2 text-base"><CircleAlert size={16} className="text-warn-600" /> Recorded gaps</CardTitle></CardHeader>
-                      <CardContent><ul className="space-y-2 text-sm leading-6 text-stone-600">{knowledge.gaps.map((gap, index) => <li key={`${index}-${gap}`}>• {gap}</li>)}</ul></CardContent></Card>
+                    <Card><CardHeader><CardTitle className="flex items-center gap-2 text-base"><CircleAlert size={16} className="text-warn-600 dark:text-warn-400" /> Recorded gaps</CardTitle></CardHeader>
+                      <CardContent><ul className="space-y-2 text-sm leading-6 text-stone-600 dark:text-muted-foreground">{knowledge.gaps.map((gap, index) => <li key={`${index}-${gap}`}>• {gap}</li>)}</ul></CardContent></Card>
                   )}
                   {knowledge.warnings.length > 0 && (
-                    <Card><CardHeader><CardTitle className="flex items-center gap-2 text-base"><TriangleAlert size={16} className="text-warn-600" /> Warnings</CardTitle></CardHeader>
-                      <CardContent><ul className="space-y-2 text-sm leading-6 text-stone-600">{knowledge.warnings.map((warning, index) => <li key={`${index}-${warning}`}>• {warning}</li>)}</ul></CardContent></Card>
+                    <Card><CardHeader><CardTitle className="flex items-center gap-2 text-base"><TriangleAlert size={16} className="text-warn-600 dark:text-warn-400" /> Warnings</CardTitle></CardHeader>
+                      <CardContent><ul className="space-y-2 text-sm leading-6 text-stone-600 dark:text-muted-foreground">{knowledge.warnings.map((warning, index) => <li key={`${index}-${warning}`}>• {warning}</li>)}</ul></CardContent></Card>
                   )}
                 </div>
               )}
 
               <Card>
-                <CardHeader><CardTitle>{knowledge.title}</CardTitle><p className="mt-2 text-sm text-stone-600">{sections.length} section(s){query ? ` matching “${query}”` : ""}</p></CardHeader>
+                <CardHeader><CardTitle>{knowledge.title}</CardTitle><p className="mt-2 text-sm text-stone-600 dark:text-muted-foreground">{sections.length} section(s){query ? ` matching “${query}”` : ""}</p></CardHeader>
                 <CardContent>
                   <Accordion>
                     {sections.map((section) => (
@@ -163,12 +163,12 @@ export default function KnowledgeHub() {
                           </span>
                         </AccordionTrigger>
                         <AccordionContent>
-                          {section.summary && <p className="mb-4 leading-7 text-stone-600">{section.summary}</p>}
+                          {section.summary && <p className="mb-4 leading-7 text-stone-600 dark:text-muted-foreground">{section.summary}</p>}
                           <div className="space-y-3">
                             {section.claims.map((claim, index) => (
-                              <div key={`${section.id}-${index}`} className="rounded-xl border bg-stone-50 p-4">
-                                <p className="leading-7 text-stone-700">{claim.text}</p>
-                                <p className="mt-2 text-xs uppercase tracking-wide text-stone-500">{claim.evidence_type}</p>
+                              <div key={`${section.id}-${index}`} className="rounded-xl border bg-stone-50 dark:bg-surface-sunk p-4">
+                                <p className="leading-7 text-stone-700 dark:text-stone-200">{claim.text}</p>
+                                <p className="mt-2 text-xs uppercase tracking-wide text-stone-500 dark:text-stone-400">{claim.evidence_type}</p>
                                 <Cites runId={runId} citations={claim.citations} />
                               </div>
                             ))}
@@ -177,7 +177,7 @@ export default function KnowledgeHub() {
                       </AccordionItem>
                     ))}
                   </Accordion>
-                  {!sections.length && <p className="py-8 text-center text-stone-600">No claims match that search.</p>}
+                  {!sections.length && <p className="py-8 text-center text-stone-600 dark:text-muted-foreground">No claims match that search.</p>}
                 </CardContent>
               </Card>
             </div>
@@ -190,8 +190,8 @@ export default function KnowledgeHub() {
               <Card key={source.source_id ?? source.url}>
                 <CardHeader>{source.source_id && <Badge variant="secondary" className="w-fit">{source.source_id}</Badge>}<CardTitle className="pt-2 text-base leading-6">{source.title}</CardTitle></CardHeader>
                 <CardContent>
-                  {source.publisher && <p className="text-sm text-stone-600">{source.publisher}{source.version ? ` · ${source.version}` : ""}</p>}
-                  <a className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-brand-700 hover:underline" href={source.url} target="_blank" rel="noreferrer">Open authoritative source <ExternalLink size={14} /></a>
+                  {source.publisher && <p className="text-sm text-stone-600 dark:text-muted-foreground">{source.publisher}{source.version ? ` · ${source.version}` : ""}</p>}
+                  <a className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-brand-700 dark:text-brand-300 hover:underline" href={source.url} target="_blank" rel="noreferrer">Open authoritative source <ExternalLink size={14} /></a>
                 </CardContent>
               </Card>
             ))}
@@ -201,10 +201,10 @@ export default function KnowledgeHub() {
         <TabsContent value="ingest" className="mt-5">
           <div className="grid gap-5 lg:grid-cols-2">
             <Card>
-              <CardHeader><CardTitle className="flex items-center gap-2 text-base"><FileUp size={17} className="text-brand-700" /> Upload a document</CardTitle><p className="mt-2 text-sm text-stone-600">Label documents, congress decks or internal guidance for the medical team.</p></CardHeader>
+              <CardHeader><CardTitle className="flex items-center gap-2 text-base"><FileUp size={17} className="text-brand-700 dark:text-brand-300" /> Upload a document</CardTitle><p className="mt-2 text-sm text-stone-600 dark:text-muted-foreground">Label documents, congress decks or internal guidance for the medical team.</p></CardHeader>
               <CardContent>
                 <form onSubmit={upload} className="space-y-4">
-                  <input type="file" name="document" required className="block w-full text-sm text-stone-600 file:mr-3 file:rounded-lg file:border-0 file:bg-brand-50 file:px-3 file:py-2 file:text-sm file:font-medium file:text-brand-700" />
+                  <input type="file" name="document" required className="block w-full text-sm text-stone-600 dark:text-muted-foreground file:mr-3 file:rounded-lg file:border-0 file:bg-brand-50 dark:bg-brand-950 file:px-3 file:py-2 file:text-sm file:font-medium file:text-brand-700 dark:text-brand-300" />
                   <Input value={note} onChange={(event) => setNote(event.target.value)} placeholder="Note (what is this and why)" />
                   <Button type="submit" disabled={busy} className="bg-brand-600 hover:bg-brand-800"><Upload /> Stage document</Button>
                 </form>
@@ -212,7 +212,7 @@ export default function KnowledgeHub() {
             </Card>
 
             <Card>
-              <CardHeader><CardTitle className="flex items-center gap-2 text-base"><Globe size={17} className="text-brand-700" /> Pull from the web</CardTitle><p className="mt-2 text-sm text-stone-600">Fetch a page now and keep a copy with its retrieval date.</p></CardHeader>
+              <CardHeader><CardTitle className="flex items-center gap-2 text-base"><Globe size={17} className="text-brand-700 dark:text-brand-300" /> Pull from the web</CardTitle><p className="mt-2 text-sm text-stone-600 dark:text-muted-foreground">Fetch a page now and keep a copy with its retrieval date.</p></CardHeader>
               <CardContent>
                 <form onSubmit={pull} className="space-y-4">
                   <Input value={url} onChange={(event) => setUrl(event.target.value)} placeholder="https://www.accessdata.fda.gov/…" required />
@@ -224,25 +224,25 @@ export default function KnowledgeHub() {
           </div>
 
           <Card className="mt-5">
-            <CardHeader><CardTitle className="text-base">Staged sources ({staged.length})</CardTitle><p className="mt-2 text-sm text-stone-600">Held in the data store for the medical team. The bundled Ibrance demo run uses its own fixed source set.</p></CardHeader>
+            <CardHeader><CardTitle className="text-base">Staged sources ({staged.length})</CardTitle><p className="mt-2 text-sm text-stone-600 dark:text-muted-foreground">Held in the data store for the medical team. The bundled Ibrance demo run uses its own fixed source set.</p></CardHeader>
             <CardContent className="space-y-3">
               {staged.map((entry) => (
                 <div key={entry.id} className="flex flex-wrap items-start justify-between gap-3 rounded-xl border p-4">
                   <div className="min-w-0">
                     <p className="flex items-center gap-2 font-medium">
-                      {entry.kind === "web" ? <Globe size={15} className="shrink-0 text-stone-500" /> : <FileUp size={15} className="shrink-0 text-stone-500" />}
+                      {entry.kind === "web" ? <Globe size={15} className="shrink-0 text-stone-500 dark:text-stone-400" /> : <FileUp size={15} className="shrink-0 text-stone-500 dark:text-stone-400" />}
                       <span className="truncate">{entry.title || entry.name}</span>
                     </p>
-                    {entry.kind === "web" && <p className="mt-1 truncate text-xs text-stone-600">{entry.name}</p>}
-                    {entry.note && <p className="mt-2 text-sm leading-6 text-stone-600">{entry.note}</p>}
-                    <p className="mt-2 text-xs text-stone-500">{new Date(entry.added_at).toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" })}{entry.bytes ? ` · ${bytes(entry.bytes)}` : ""}</p>
+                    {entry.kind === "web" && <p className="mt-1 truncate text-xs text-stone-600 dark:text-muted-foreground">{entry.name}</p>}
+                    {entry.note && <p className="mt-2 text-sm leading-6 text-stone-600 dark:text-muted-foreground">{entry.note}</p>}
+                    <p className="mt-2 text-xs text-stone-500 dark:text-stone-400">{new Date(entry.added_at).toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" })}{entry.bytes ? ` · ${bytes(entry.bytes)}` : ""}</p>
                   </div>
-                  <Badge className={entry.status === "staged" ? "bg-brand-50 text-brand-700" : "bg-warn-50 text-warn-700"}>
+                  <Badge className={entry.status === "staged" ? "bg-brand-50 dark:bg-brand-950 text-brand-700 dark:text-brand-300" : "bg-warn-50 dark:bg-warn-950 text-warn-700 dark:text-warn-400"}>
                     {entry.status === "staged" ? "Staged" : "Unreachable"}
                   </Badge>
                 </div>
               ))}
-              {!staged.length && <p className="py-6 text-center text-stone-600">Nothing staged yet.</p>}
+              {!staged.length && <p className="py-6 text-center text-stone-600 dark:text-muted-foreground">Nothing staged yet.</p>}
             </CardContent>
           </Card>
         </TabsContent>

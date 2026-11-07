@@ -22,7 +22,7 @@ export function SourceLibrary({ runId }: { runId: string }) {
 
   useEffect(() => { getJson<Library>(`/api/runs/${runId}/library`).then(setLibrary).catch(() => setLibrary(null)); }, [runId]);
 
-  if (!library) return <Card><CardContent className="p-8 text-center text-stone-600">Loading the reference library…</CardContent></Card>;
+  if (!library) return <Card><CardContent className="p-8 text-center text-stone-600 dark:text-muted-foreground">Loading the reference library…</CardContent></Card>;
 
   const held = library.documents.filter((entry) => entry.held);
   const linked = library.documents.filter((entry) => !entry.held);
@@ -33,7 +33,7 @@ export function SourceLibrary({ runId }: { runId: string }) {
       <Card>
         <CardHeader>
           <CardTitle className="text-base">Reference library</CardTitle>
-          <p className="mt-2 text-sm leading-6 text-stone-600">
+          <p className="mt-2 text-sm leading-6 text-stone-600 dark:text-muted-foreground">
             <b>{library.held}</b> of {library.total} cited documents are stored here in full and can be read in
             the app. Those are the ones the checker matches recorded quotes against — a citation to a document
             we hold is verifiable; the rest are links we can only follow.
@@ -43,12 +43,12 @@ export function SourceLibrary({ runId }: { runId: string }) {
           <div className="grid gap-3 md:grid-cols-2">
             {held.map((entry) => (
               <button key={entry.key} type="button" onClick={() => setReading(entry.url)}
-                className="flex h-full flex-col rounded-xl border p-4 text-left transition-colors hover:border-brand-600 hover:bg-brand-50">
+                className="flex h-full flex-col rounded-xl border p-4 text-left transition-colors hover:border-brand-600 hover:bg-brand-50 dark:hover:bg-brand-950">
                 <div className="flex items-start justify-between gap-2">
                   <p className="text-sm font-medium leading-5">{entry.title}</p>
-                  <FileText size={15} className="mt-0.5 shrink-0 text-brand-700" />
+                  <FileText size={15} className="mt-0.5 shrink-0 text-brand-700 dark:text-brand-300" />
                 </div>
-                <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-stone-600">
+                <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-stone-600 dark:text-muted-foreground">
                   {entry.kind && <Badge variant="secondary">{entry.kind.replace(/_/g, " ")}</Badge>}
                   {entry.fetched_at && <span>stored {entry.fetched_at.slice(0, 10)}</span>}
                   {/* One document cited under several URL spellings is still one
@@ -56,7 +56,7 @@ export function SourceLibrary({ runId }: { runId: string }) {
                   {entry.listed_as > 1 && <span>· cited under {entry.listed_as} URLs</span>}
                   {!entry.cited && <span>· fetched to resolve a citation</span>}
                 </div>
-                <p className="mt-3 flex items-center gap-1.5 text-xs font-medium text-brand-700">
+                <p className="mt-3 flex items-center gap-1.5 text-xs font-medium text-brand-700 dark:text-brand-300">
                   <BookOpen size={13} /> Read it here
                 </p>
               </button>
@@ -65,14 +65,14 @@ export function SourceLibrary({ runId }: { runId: string }) {
 
           {linked.length > 0 && (
             <div className="mt-7">
-              <h3 className="text-sm font-semibold">Linked, not stored <span className="font-normal text-stone-500">({linked.length})</span></h3>
-              <p className="mt-1 text-sm text-stone-600">
+              <h3 className="text-sm font-semibold">Linked, not stored <span className="font-normal text-stone-500 dark:text-stone-400">({linked.length})</span></h3>
+              <p className="mt-1 text-sm text-stone-600 dark:text-muted-foreground">
                 Recorded as sources but not held as files, so a quote against them cannot be machine-verified.
               </p>
               <div className="mt-3 space-y-1.5">
                 {visible.map((entry) => (
                   <a key={entry.key} href={entry.url} target="_blank" rel="noreferrer"
-                    className="flex items-start gap-2 rounded-lg px-2 py-1.5 text-sm leading-5 text-stone-700 hover:bg-stone-50">
+                    className="flex items-start gap-2 rounded-lg px-2 py-1.5 text-sm leading-5 text-stone-700 dark:text-stone-200 hover:bg-stone-50 dark:hover:bg-surface-sunk">
                     <Link2 size={14} className="mt-0.5 shrink-0 text-stone-400" />
                     <span className="min-w-0 flex-1">{entry.title || entry.url}</span>
                     <ExternalLink size={12} className="mt-1 shrink-0 text-stone-400" />
@@ -81,7 +81,7 @@ export function SourceLibrary({ runId }: { runId: string }) {
               </div>
               {linked.length > 8 && (
                 <button type="button" onClick={() => setShowAll((value) => !value)}
-                  className="mt-3 text-sm font-medium text-brand-700 hover:underline">
+                  className="mt-3 text-sm font-medium text-brand-700 dark:text-brand-300 hover:underline">
                   {showAll ? "Show fewer" : `Show all ${linked.length}`}
                 </button>
               )}

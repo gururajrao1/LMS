@@ -33,9 +33,9 @@ import { Stat } from "@/components/app-shell";
 const REPOINTABLE = new Set(["quote_not_found", "quote_not_verbatim", "untraceable", "promotional_only"]);
 
 const SEVERITY: Record<Severity, { label: string; className: string }> = {
-  blocking: { label: "Blocking", className: "bg-danger-50 text-danger-700" },
-  major: { label: "Major", className: "bg-warn-50 text-warn-700" },
-  minor: { label: "Minor", className: "bg-stone-100 text-stone-600" },
+  blocking: { label: "Blocking", className: "bg-danger-50 dark:bg-danger-950 text-danger-700 dark:text-danger-300" },
+  major: { label: "Major", className: "bg-warn-50 dark:bg-warn-950 text-warn-700 dark:text-warn-400" },
+  minor: { label: "Minor", className: "bg-stone-100 dark:bg-muted text-stone-600 dark:text-muted-foreground" },
 };
 
 const STATUS: Record<ReviewComment["status"], string> = {
@@ -78,39 +78,40 @@ function EvidencePanel({ runId, commentId }: { runId: string; commentId: string 
   useEffect(() => {
     getJson<CommentEvidence>(`/api/runs/${runId}/review/comments/${commentId}/evidence`)
       .then(setEvidence)
-      .catch(() => setError("No stored evidence for this comment."));
+      .catch(() => setError("No stored evidence for this comment."));
+
   }, [runId, commentId]);
 
-  if (error) return <p className="mt-3 text-sm text-stone-600">{error}</p>;
-  if (!evidence) return <p className="mt-3 text-sm text-stone-600">Loading the evidence…</p>;
+  if (error) return <p className="mt-3 text-sm text-stone-600 dark:text-muted-foreground">{error}</p>;
+  if (!evidence) return <p className="mt-3 text-sm text-stone-600 dark:text-muted-foreground">Loading the evidence…</p>;
 
   return (
     <div className="mt-3 space-y-4 rounded-xl border bg-surface-sunk p-4">
       {evidence.claim && (
         <div>
-          <p className="text-xs font-medium uppercase tracking-wide text-stone-500">As written in the course</p>
-          <p className="mt-1 text-sm leading-6 text-stone-800">{evidence.claim}</p>
+          <p className="text-xs font-medium uppercase tracking-wide text-stone-500 dark:text-stone-400">As written in the course</p>
+          <p className="mt-1 text-sm leading-6 text-stone-800 dark:text-stone-200">{evidence.claim}</p>
         </div>
       )}
 
       {evidence.quote && (
         <div>
-          <p className="text-xs font-medium uppercase tracking-wide text-stone-500">
+          <p className="text-xs font-medium uppercase tracking-wide text-stone-500 dark:text-stone-400">
             Recorded quote
             {evidence.match_percent !== null && (
-              <span className="ml-2 font-semibold tabular-nums text-stone-700">{evidence.match_percent}% in the source</span>
+              <span className="ml-2 font-semibold tabular-nums text-stone-700 dark:text-stone-200">{evidence.match_percent}% in the source</span>
             )}
           </p>
           <p className="mt-1 text-sm leading-7">
             {evidence.spans.map((span, index) => (
               <span key={index} className={span.present
-                ? "bg-brand-50 text-brand-900"
-                : "bg-danger-50 text-danger-800 line-through decoration-danger-400"}>
+                ? "bg-brand-50 dark:bg-brand-950 text-brand-900 dark:text-brand-200"
+                : "bg-danger-50 dark:bg-danger-950 text-danger-800 dark:text-danger-200 line-through decoration-danger-400"}>
                 {span.text}{" "}
               </span>
             ))}
           </p>
-          <p className="mt-2 text-xs text-stone-600">
+          <p className="mt-2 text-xs text-stone-600 dark:text-muted-foreground">
             Struck-through text does not appear in the stored document.
           </p>
         </div>
@@ -118,17 +119,17 @@ function EvidencePanel({ runId, commentId }: { runId: string; commentId: string 
 
       {evidence.passage && (
         <div>
-          <p className="text-xs font-medium uppercase tracking-wide text-stone-500">
+          <p className="text-xs font-medium uppercase tracking-wide text-stone-500 dark:text-stone-400">
             The stored document{evidence.source?.locator ? ` · ${evidence.source.locator}` : ""}
           </p>
-          <p className="mt-1 max-h-40 overflow-y-auto rounded-lg bg-white p-3 text-sm leading-6 text-stone-700">
+          <p className="mt-1 max-h-40 overflow-y-auto rounded-lg bg-white dark:bg-surface p-3 text-sm leading-6 text-stone-700 dark:text-stone-200">
             {evidence.passage}
           </p>
         </div>
       )}
 
       <div>
-        <p className="text-xs font-medium uppercase tracking-wide text-stone-500">
+        <p className="text-xs font-medium uppercase tracking-wide text-stone-500 dark:text-stone-400">
           Citations · {evidence.coverage.held} of {evidence.coverage.total} checkable
         </p>
         <ul className="mt-1 space-y-1.5">
@@ -136,12 +137,12 @@ function EvidencePanel({ runId, commentId }: { runId: string; commentId: string 
             <li key={index} className="flex items-start gap-2 text-sm leading-6">
               <span className={`mt-1.5 size-2 shrink-0 rounded-full ${citation.held ? "bg-brand-600" : "bg-stone-300"}`} />
               <span className="min-w-0">
-                <a href={citation.url} target="_blank" rel="noreferrer" className="text-stone-800 underline-offset-2 hover:underline">
+                <a href={citation.url} target="_blank" rel="noreferrer" className="text-stone-800 dark:text-stone-200 underline-offset-2 hover:underline">
                   {citation.title || citation.url}
                 </a>
-                {citation.locator && <span className="text-stone-600"> · {citation.locator}</span>}
-                {!citation.traceable && <span className="text-danger-700"> · not in the research dossier</span>}
-                {!citation.held && <span className="text-stone-600"> · no stored document, so never checked</span>}
+                {citation.locator && <span className="text-stone-600 dark:text-muted-foreground"> · {citation.locator}</span>}
+                {!citation.traceable && <span className="text-danger-700 dark:text-danger-300"> · not in the research dossier</span>}
+                {!citation.held && <span className="text-stone-600 dark:text-muted-foreground"> · no stored document, so never checked</span>}
               </span>
             </li>
           ))}
@@ -151,8 +152,8 @@ function EvidencePanel({ runId, commentId }: { runId: string; commentId: string 
       <ScopedAsk runId={runId} evidence={evidence} findingId={evidence.finding_id ?? null} />
       {evidence.suggested_rewrite && (
         <div>
-          <p className="text-xs font-medium uppercase tracking-wide text-stone-500">Suggested wording</p>
-          <p className="mt-1 text-sm leading-6 text-stone-800">{evidence.suggested_rewrite}</p>
+          <p className="text-xs font-medium uppercase tracking-wide text-stone-500 dark:text-stone-400">Suggested wording</p>
+          <p className="mt-1 text-sm leading-6 text-stone-800 dark:text-stone-200">{evidence.suggested_rewrite}</p>
         </div>
       )}
     </div>
@@ -188,34 +189,34 @@ function ScopedAsk({ runId, evidence, findingId }: { runId: string; evidence: { 
   }
   return (
     <div>
-      <p className="text-xs font-medium uppercase tracking-wide text-stone-500">Ask about this finding</p>
+      <p className="text-xs font-medium uppercase tracking-wide text-stone-500 dark:text-stone-400">Ask about this finding</p>
       <form className="mt-2 flex gap-2" onSubmit={submit}>
         <input value={scopedQuestion} onChange={(event) => setScopedQuestion(event.target.value)} placeholder="e.g. Does the dossier support this wording?" className="min-w-0 flex-1 rounded-lg border px-3 py-2 text-sm" />
         <button type="submit" disabled={scopedBusy} className="rounded-lg bg-brand-600 px-3 py-2 text-sm font-semibold text-white hover:bg-brand-800 disabled:opacity-50">Ask</button>
       </form>
-      {scopedAnswer && <p className="mt-2 text-sm leading-6 text-stone-700">{scopedAnswer}</p>}
+      {scopedAnswer && <p className="mt-2 text-sm leading-6 text-stone-700 dark:text-stone-200">{scopedAnswer}</p>}
     </div>
   );
 }
 
 function ChallengeBanner({ challenge }: { challenge: Challenge }) {
   return (
-    <div className="mt-3 rounded-xl border border-warn-200 bg-warn-50 p-4">
-      <p className="flex items-center gap-2 font-medium text-warn-800">
+    <div className="mt-3 rounded-xl border border-warn-200 dark:border-warn-800 bg-warn-50 dark:bg-warn-950 p-4">
+      <p className="flex items-center gap-2 font-medium text-warn-800 dark:text-warn-400">
         <ShieldAlert size={16} /> This dismissal was not accepted
       </p>
-      <p className="mt-2 text-sm leading-6 text-warn-800">
+      <p className="mt-2 text-sm leading-6 text-warn-800 dark:text-warn-400">
         {challenge.by_name} dismissed this as “{challenge.attempted_reason}”. The{" "}
-        <code className="rounded bg-warn-100 px-1 py-0.5 text-xs">{challenge.check}</code> check re-ran against the
+        <code className="rounded bg-warn-100 dark:bg-warn-950 px-1 py-0.5 text-xs">{challenge.check}</code> check re-ran against the
         stored sources and still fails, so this is not a judgement call.
       </p>
-      <p className="mt-2 text-sm leading-6 text-stone-700">{challenge.message}</p>
+      <p className="mt-2 text-sm leading-6 text-stone-700 dark:text-stone-200">{challenge.message}</p>
       {challenge.source_text && (
         <p className="mt-2 rounded-lg bg-white/70 p-3 text-xs leading-5 text-stone-600">
-          <b className="text-stone-700">Recorded quote:</b> “{challenge.source_text}”
+          <b className="text-stone-700 dark:text-stone-200">Recorded quote:</b> “{challenge.source_text}”
         </p>
       )}
-      <p className="mt-3 flex items-start gap-2 text-sm leading-6 text-warn-800">
+      <p className="mt-3 flex items-start gap-2 text-sm leading-6 text-warn-800 dark:text-warn-400">
         <ScanSearch size={16} className="mt-1 shrink-0" />
         <span>
           Two ways forward: add the source document that contains this, and the check clears itself — or record an
@@ -232,16 +233,16 @@ function ChallengeBanner({ challenge }: { challenge: Challenge }) {
  */
 function UnverifiedNote({ unverified }: { unverified: Unverified }) {
   return (
-    <div className="mt-3 rounded-xl border border-warn-200 bg-warn-50 p-4">
-      <p className="flex items-center gap-2 font-medium text-warn-800">
+    <div className="mt-3 rounded-xl border border-warn-200 dark:border-warn-800 bg-warn-50 dark:bg-warn-950 p-4">
+      <p className="flex items-center gap-2 font-medium text-warn-800 dark:text-warn-400">
         <ShieldAlert size={16} /> This was marked addressed, but the fix is not in the content
       </p>
-      <p className="mt-2 text-sm leading-6 text-warn-800">
+      <p className="mt-2 text-sm leading-6 text-warn-800 dark:text-warn-400">
         Cutting v{unverified.version} re-read the assets and the{" "}
-        <code className="rounded bg-warn-100 px-1 py-0.5 text-xs">{unverified.check}</code> check still fails, so the
+        <code className="rounded bg-warn-100 dark:bg-warn-950 px-1 py-0.5 text-xs">{unverified.check}</code> check still fails, so the
         comment was reopened rather than closed into the version.
       </p>
-      <p className="mt-2 text-sm leading-6 text-stone-700">{unverified.message}</p>
+      <p className="mt-2 text-sm leading-6 text-stone-700 dark:text-stone-200">{unverified.message}</p>
     </div>
   );
 }
@@ -249,12 +250,12 @@ function UnverifiedNote({ unverified }: { unverified: Unverified }) {
 /** An override that was carried through. Never hidden, including after publication. */
 function OverrideNote({ override }: { override: Override }) {
   return (
-    <div className="mt-3 rounded-xl border border-stone-300 bg-stone-50 p-4">
-      <p className="flex items-center gap-2 text-sm font-medium text-stone-800">
+    <div className="mt-3 rounded-xl border border-stone-300 dark:border-stone-700 bg-stone-50 dark:bg-surface-sunk p-4">
+      <p className="flex items-center gap-2 text-sm font-medium text-stone-800 dark:text-stone-200">
         <ShieldAlert size={15} /> Override recorded — the {override.check} check still fails
       </p>
-      <p className="mt-2 text-sm leading-6 text-stone-700">{override.reason}</p>
-      <p className="mt-1 text-xs text-stone-600">
+      <p className="mt-2 text-sm leading-6 text-stone-700 dark:text-stone-200">{override.reason}</p>
+      <p className="mt-1 text-xs text-stone-600 dark:text-muted-foreground">
         {override.actor_name}{override.actor_title ? ` · ${override.actor_title}` : ""} · {when(override.at)}
       </p>
     </div>
@@ -271,7 +272,7 @@ function AuditTrail({ audit }: { audit: AuditEntry[] }) {
     <Card>
       <CardHeader>
         <CardTitle className="text-base">Activity</CardTitle>
-        <p className="text-sm text-stone-600">Every governance step, in order. Entries are never edited or removed.</p>
+        <p className="text-sm text-stone-600 dark:text-muted-foreground">Every governance step, in order. Entries are never edited or removed.</p>
       </CardHeader>
       <CardContent>
         {audit.length ? (
@@ -283,16 +284,16 @@ function AuditTrail({ audit }: { audit: AuditEntry[] }) {
               return (
                 <li key={entry.id} className="flex gap-3">
                   <span className={`mt-0.5 grid size-7 shrink-0 place-items-center rounded-full ${
-                    machine ? "bg-signal-50 text-signal-700" : "bg-stone-100 text-stone-600"}`}>
+                    machine ? "bg-signal-50 dark:bg-signal-950 text-signal-700 dark:text-signal-300" : "bg-stone-100 dark:bg-muted text-stone-600 dark:text-muted-foreground"}`}>
                     {dismissed ? <X size={14} /> : <Icon size={14} />}
                   </span>
                   <div className="min-w-0">
                     <p className="text-sm leading-5">{entry.summary}</p>
-                    <p className="mt-0.5 text-xs text-stone-600">
+                    <p className="mt-0.5 text-xs text-stone-600 dark:text-muted-foreground">
                       {entry.actor_title || entry.actor_role} · {when(entry.at)}
                     </p>
                     {typeof entry.detail.resolution === "string" && (
-                      <p className="mt-1 text-xs leading-5 text-stone-600">“{entry.detail.resolution}”</p>
+                      <p className="mt-1 text-xs leading-5 text-stone-600 dark:text-muted-foreground">“{entry.detail.resolution}”</p>
                     )}
                   </div>
                 </li>
@@ -300,7 +301,7 @@ function AuditTrail({ audit }: { audit: AuditEntry[] }) {
             })}
           </ol>
         ) : (
-          <p className="text-sm text-stone-600">Nothing recorded yet for this course.</p>
+          <p className="text-sm text-stone-600 dark:text-muted-foreground">Nothing recorded yet for this course.</p>
         )}
       </CardContent>
     </Card>
@@ -347,16 +348,16 @@ function AssignReviewers({ runId, user, review, busy, act }: {
         <CardHeader><CardTitle className="text-base">Review assignment</CardTitle></CardHeader>
         <CardContent className="space-y-3">
           {mine && (
-            <p className="flex items-center gap-2 rounded-lg bg-brand-50 p-3 text-sm text-brand-800">
+            <p className="flex items-center gap-2 rounded-lg bg-brand-50 dark:bg-brand-950 p-3 text-sm text-brand-800 dark:text-brand-200">
               <UserRoundCheck size={16} /> {assignment.assigned_by} asked you to review v{assignment.version}.
             </p>
           )}
-          <ul className="space-y-1 text-sm text-stone-600">
+          <ul className="space-y-1 text-sm text-stone-600 dark:text-muted-foreground">
             {assignment.reviewers.map((id) => (
               <li key={id}>{named(id)?.name ?? id}{id === user.id ? " (you)" : ""}</li>
             ))}
           </ul>
-          {assignment.note && <p className="text-sm leading-6 text-stone-700">“{assignment.note}”</p>}
+          {assignment.note && <p className="text-sm leading-6 text-stone-700 dark:text-stone-200">“{assignment.note}”</p>}
         </CardContent>
       </Card>
     );
@@ -369,15 +370,15 @@ function AssignReviewers({ runId, user, review, busy, act }: {
         <div className="space-y-2">
           {people.map((person) => (
             <label key={person.id}
-              className={`flex cursor-pointer items-start gap-3 rounded-xl border p-3 transition-colors ${chosen.includes(person.id) ? "border-brand-600 bg-brand-50" : "hover:bg-stone-50"}`}>
+              className={`flex cursor-pointer items-start gap-3 rounded-xl border p-3 transition-colors ${chosen.includes(person.id) ? "border-brand-600 bg-brand-50 dark:bg-brand-950" : "hover:bg-stone-50 dark:hover:bg-surface-sunk"}`}>
               <input type="checkbox" checked={chosen.includes(person.id)} onChange={() => toggle(person.id)} className="mt-1 size-4 accent-brand-600" />
               <span>
                 <span className="block text-sm font-medium">{person.name}</span>
-                <span className="block text-xs text-stone-600">{person.title || ROLE_LABEL[person.role]}</span>
+                <span className="block text-xs text-stone-600 dark:text-muted-foreground">{person.title || ROLE_LABEL[person.role]}</span>
               </span>
             </label>
           ))}
-          {!people.length && <p className="text-sm text-stone-600">Loading the reviewer roster…</p>}
+          {!people.length && <p className="text-sm text-stone-600 dark:text-muted-foreground">Loading the reviewer roster…</p>}
         </div>
         <Textarea value={note} onChange={(event) => setNote(event.target.value)} rows={2} placeholder="What should they look at first?" />
         <Button disabled={busy || !chosen.length} className="w-full bg-brand-600 hover:bg-brand-800"
@@ -386,14 +387,14 @@ function AssignReviewers({ runId, user, review, busy, act }: {
         </Button>
         {assignment && (
           <div className="space-y-2 border-t pt-3">
-            <p className="text-xs font-medium uppercase tracking-wide text-stone-600">Notifications sent</p>
+            <p className="text-xs font-medium uppercase tracking-wide text-stone-600 dark:text-muted-foreground">Notifications sent</p>
             {assignment.notifications.map((entry) => (
-              <p key={entry.to} className="flex items-start gap-2 text-xs text-stone-600">
+              <p key={entry.to} className="flex items-start gap-2 text-xs text-stone-600 dark:text-muted-foreground">
                 <Mail size={13} className="mt-0.5 shrink-0" /> {entry.name} · {entry.to}
               </p>
             ))}
             {/* Same honesty as the publication panel: the record is real, the email is not. */}
-            <p className="text-xs text-stone-500">Recorded on the course. Nothing is emailed in the demo.</p>
+            <p className="text-xs text-stone-500 dark:text-stone-400">Recorded on the course. Nothing is emailed in the demo.</p>
           </div>
         )}
       </CardContent>
@@ -494,7 +495,7 @@ export function CourseReviewPanel({ runId, user, onChange }: { runId: string; us
     });
   }
 
-  if (!review) return <Card><CardContent className="p-8 text-center text-stone-600">{error || "Loading the review…"}</CardContent></Card>;
+  if (!review) return <Card><CardContent className="p-8 text-center text-stone-600 dark:text-muted-foreground">{error || "Loading the review…"}</CardContent></Card>;
 
   // Anyone in the workspace can raise a comment, but only a reviewer can clear the
   // course for the field — the admin who addresses the comments must not sign them off.
@@ -540,7 +541,7 @@ export function CourseReviewPanel({ runId, user, onChange }: { runId: string; us
         <Stat icon={ShieldCheck} value={review.readiness.approvals} label="Sign-offs at this version" />
       </section>
 
-      {error && <p className="text-sm text-danger-600">{error}</p>}
+      {error && <p className="text-sm text-danger-600 dark:text-danger-300">{error}</p>}
 
       <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_340px]">
         <div className="space-y-5">
@@ -587,20 +588,20 @@ export function CourseReviewPanel({ runId, user, onChange }: { runId: string; us
                       <div className="flex flex-wrap items-center gap-2">
                         <Badge className={SEVERITY[comment.severity].className}>{SEVERITY[comment.severity].label}</Badge>
                         <Badge variant="outline">{review.targets.find((entry) => entry.id === comment.target)?.title ?? comment.target}</Badge>
-                        <span className="text-xs text-stone-600">v{comment.version} · {STATUS[comment.status]}</span>
+                        <span className="text-xs text-stone-600 dark:text-muted-foreground">v{comment.version} · {STATUS[comment.status]}</span>
                         {/* Signal hue, same as the Checks tab: a machine finding
                             should never read as a colleague's comment. */}
                         {comment.origin === "automated_check" && (
-                          <Badge variant="outline" className="gap-1 border-signal-100 bg-signal-50 text-signal-700"><ScanLine size={11} /> automated</Badge>
+                          <Badge variant="outline" className="gap-1 border-signal-100 dark:border-signal-800 bg-signal-50 dark:bg-signal-950 text-signal-700 dark:text-signal-300"><ScanLine size={11} /> automated</Badge>
                         )}
                       </div>
                       <p className="mt-3 whitespace-pre-line leading-6">{comment.body}</p>
-                      <p className="mt-2 text-xs text-stone-600">{comment.author_name} · {comment.author_title} · {when(comment.created_at)}</p>
+                      <p className="mt-2 text-xs text-stone-600 dark:text-muted-foreground">{comment.author_name} · {comment.author_title} · {when(comment.created_at)}</p>
                       {comment.resolution && (
-                        <div className="mt-3 rounded-lg bg-brand-50 p-3 text-sm text-brand-800">
+                        <div className="mt-3 rounded-lg bg-brand-50 dark:bg-brand-950 p-3 text-sm text-brand-800 dark:text-brand-200">
                           <p><b>Resolution:</b> {comment.resolution}</p>
                           {comment.resolved_by_name && (
-                            <p className="mt-1 text-xs text-brand-700">
+                            <p className="mt-1 text-xs text-brand-700 dark:text-brand-300">
                               {comment.resolved_by_name}
                               {comment.resolved_by_title ? ` · ${comment.resolved_by_title}` : ""}
                               {comment.resolved_at ? ` · ${when(comment.resolved_at)}` : ""}
@@ -613,7 +614,7 @@ export function CourseReviewPanel({ runId, user, onChange }: { runId: string; us
                       {comment.origin === "automated_check" && (
                         <button type="button"
                           onClick={() => setShowEvidence(showEvidence === comment.id ? null : comment.id)}
-                          className="mt-2 flex items-center gap-1.5 text-sm font-medium text-signal-700 hover:text-signal-800">
+                          className="mt-2 flex items-center gap-1.5 text-sm font-medium text-signal-700 dark:text-signal-300 hover:text-signal-800 dark:hover:text-signal-300">
                           <ScanSearch size={15} />
                           {showEvidence === comment.id ? "Hide the evidence" : "Show me the evidence"}
                         </button>
@@ -623,7 +624,7 @@ export function CourseReviewPanel({ runId, user, onChange }: { runId: string; us
                       {comment.unverified && comment.status === "open" && <UnverifiedNote unverified={comment.unverified} />}
                       {comment.override && <OverrideNote override={comment.override} />}
                       {repointed?.id === comment.id && (
-                        <p className="mt-3 flex items-start gap-2 rounded-lg bg-signal-50 p-3 text-sm text-signal-800">
+                        <p className="mt-3 flex items-start gap-2 rounded-lg bg-signal-50 dark:bg-signal-950 p-3 text-sm text-signal-800 dark:text-signal-300">
                           <Link2 size={15} className="mt-0.5 shrink-0" />
                           Now cited to <b>{repointed.title}</b>. Cutting the next version re-runs this
                           check against the changed content, so the fix has to hold.
@@ -637,7 +638,7 @@ export function CourseReviewPanel({ runId, user, onChange }: { runId: string; us
                               a button that implies it can. */}
                           {isAdmin && comment.status === "open" && REPOINTABLE.has(comment.check ?? "") && (
                             <Button size="sm" variant="outline" disabled={busy}
-                              className="border-signal-200 text-signal-700 hover:bg-signal-50"
+                              className="border-signal-200 text-signal-700 dark:text-signal-300 hover:bg-signal-50 dark:hover:bg-signal-950"
                               onClick={() => act(async () => {
                                 const next = await sendJson<{ citation: { title: string } } & CourseReview>(
                                   `/api/runs/${runId}/review/comments/${comment.id}/repoint`, { user_id: user.id });
@@ -654,7 +655,7 @@ export function CourseReviewPanel({ runId, user, onChange }: { runId: string; us
                           )}
                           {comment.status === "open" && comment.challenge && (
                             <Button size="sm" variant="outline" disabled={busy}
-                              className="border-warn-200 text-warn-800 hover:bg-warn-50"
+                              className="border-warn-200 dark:border-warn-800 text-warn-800 dark:text-warn-400 hover:bg-warn-50 dark:hover:bg-warn-950"
                               onClick={() => setAsk({ kind: "override", comment })}><ShieldAlert /> Record an override</Button>
                           )}
                           {comment.status !== "open" && (
@@ -672,7 +673,7 @@ export function CourseReviewPanel({ runId, user, onChange }: { runId: string; us
           })}
 
           {!review.comments.length && (
-            <Card><CardContent className="p-8 text-center text-stone-600">No review comments yet. The first draft is waiting for a domain expert.</CardContent></Card>
+            <Card><CardContent className="p-8 text-center text-stone-600 dark:text-muted-foreground">No review comments yet. The first draft is waiting for a domain expert.</CardContent></Card>
           )}
         </div>
 
@@ -684,8 +685,8 @@ export function CourseReviewPanel({ runId, user, onChange }: { runId: string; us
               <CardHeader><CardTitle className="text-base">Your sign-off</CardTitle></CardHeader>
               <CardContent className="space-y-3">
                 {mySignoff
-                  ? <p className="rounded-lg bg-brand-50 p-3 text-sm text-brand-800">You recorded <b>{mySignoff.decision === "approved" ? "approval" : "changes requested"}</b> for v{review.version}.{mySignoff.note ? ` “${mySignoff.note}”` : ""}</p>
-                  : <p className="text-sm text-stone-600">Record a decision for version {review.version}.</p>}
+                  ? <p className="rounded-lg bg-brand-50 dark:bg-brand-950 p-3 text-sm text-brand-800 dark:text-brand-200">You recorded <b>{mySignoff.decision === "approved" ? "approval" : "changes requested"}</b> for v{review.version}.{mySignoff.note ? ` “${mySignoff.note}”` : ""}</p>
+                  : <p className="text-sm text-stone-600 dark:text-muted-foreground">Record a decision for version {review.version}.</p>}
                 <Textarea value={note} onChange={(event) => setNote(event.target.value)} rows={2} placeholder="Optional note" disabled={busy || signoffLocked} />
                 <div className="flex gap-2">
                   <Button disabled={busy || signoffLocked} className="bg-brand-600 hover:bg-brand-800" onClick={() => setConfirmApprove(true)}>
@@ -696,7 +697,7 @@ export function CourseReviewPanel({ runId, user, onChange }: { runId: string; us
                   </Button>
                 </div>
                 {signoffLocked && (
-                  <p className="text-xs leading-5 text-stone-500">Decision recorded — these unlock if you are asked again, new review activity arrives, or a new version is cut.</p>
+                  <p className="text-xs leading-5 text-stone-500 dark:text-stone-400">Decision recorded — these unlock if you are asked again, new review activity arrives, or a new version is cut.</p>
                 )}
                 <AlertDialog open={confirmApprove} onOpenChange={setConfirmApprove}>
                   <AlertDialogContent>
@@ -728,7 +729,7 @@ export function CourseReviewPanel({ runId, user, onChange }: { runId: string; us
             <Card>
               <CardHeader><CardTitle className="text-base">Cut a new version</CardTitle></CardHeader>
               <CardContent className="space-y-3">
-                <p className="text-sm text-stone-600">{addressed.length ? `${addressed.length} addressed comment(s) will close into v${review.version + 1}.` : "Mark at least one comment addressed first."}</p>
+                <p className="text-sm text-stone-600 dark:text-muted-foreground">{addressed.length ? `${addressed.length} addressed comment(s) will close into v${review.version + 1}.` : "Mark at least one comment addressed first."}</p>
                 <Input value={summary} onChange={(event) => setSummary(event.target.value)} placeholder="What changed in this version?" />
                 <Button disabled={busy || !addressed.length} className="w-full bg-brand-600 hover:bg-brand-800"
                   onClick={() => act(async () => { await sendJson(`/api/runs/${runId}/review/versions`, { user_id: user.id, summary }); setSummary(""); })}>
@@ -743,12 +744,12 @@ export function CourseReviewPanel({ runId, user, onChange }: { runId: string; us
             <CardContent className="space-y-4">
               {[...review.versions].reverse().map((entry) => (
                 <div key={entry.version} className="flex gap-3">
-                  <span className="mt-0.5 grid size-7 shrink-0 place-items-center rounded-full bg-brand-50 text-xs font-semibold text-brand-700">v{entry.version}</span>
+                  <span className="mt-0.5 grid size-7 shrink-0 place-items-center rounded-full bg-brand-50 dark:bg-brand-950 text-xs font-semibold text-brand-700 dark:text-brand-300">v{entry.version}</span>
                   <div>
                     <p className="text-sm font-medium leading-5">{entry.summary}</p>
-                    <p className="mt-1 text-xs text-stone-600">{entry.author_name}{entry.created_at ? ` · ${when(entry.created_at)}` : ""}{entry.addressed.length ? ` · ${entry.addressed.length} comment(s) closed` : ""}</p>
+                    <p className="mt-1 text-xs text-stone-600 dark:text-muted-foreground">{entry.author_name}{entry.created_at ? ` · ${when(entry.created_at)}` : ""}{entry.addressed.length ? ` · ${entry.addressed.length} comment(s) closed` : ""}</p>
                     {entry.unverified?.length ? (
-                      <p className="mt-1 text-xs font-medium text-warn-700">
+                      <p className="mt-1 text-xs font-medium text-warn-700 dark:text-warn-400">
                         {entry.unverified.length} claimed fix(es) did not clear their checks and were reopened
                       </p>
                     ) : null}
@@ -765,11 +766,11 @@ export function CourseReviewPanel({ runId, user, onChange }: { runId: string; us
                 {[...review.signoffs].reverse().map((entry) => (
                   <div key={entry.id} className="rounded-lg border p-3">
                     <p className="text-sm font-medium">{entry.author_name} · v{entry.version}</p>
-                    <p className="text-xs text-stone-600">{entry.author_title}</p>
-                    <Badge className={`mt-2 ${entry.decision === "approved" ? "bg-brand-50 text-brand-700" : "bg-warn-50 text-warn-700"}`}>
+                    <p className="text-xs text-stone-600 dark:text-muted-foreground">{entry.author_title}</p>
+                    <Badge className={`mt-2 ${entry.decision === "approved" ? "bg-brand-50 dark:bg-brand-950 text-brand-700 dark:text-brand-300" : "bg-warn-50 dark:bg-warn-950 text-warn-700 dark:text-warn-400"}`}>
                       {entry.decision === "approved" ? "Approved" : "Changes requested"}
                     </Badge>
-                    {entry.note && <p className="mt-2 text-sm leading-6 text-stone-600">{entry.note}</p>}
+                    {entry.note && <p className="mt-2 text-sm leading-6 text-stone-600 dark:text-muted-foreground">{entry.note}</p>}
                   </div>
                 ))}
               </CardContent>

@@ -45,7 +45,7 @@ export function MechanismWalkthrough({ runId, scenes, questions }: {
     setIndex(0); setPicked({}); setGraded({});
   }
 
-  if (!scenes.length) return <Card><CardContent className="p-8 text-center text-stone-600">No visual story has been recorded for this course yet.</CardContent></Card>;
+  if (!scenes.length) return <Card><CardContent className="p-8 text-center text-stone-600 dark:text-muted-foreground">No visual story has been recorded for this course yet.</CardContent></Card>;
 
   return (
     <div className="space-y-4">
@@ -53,52 +53,52 @@ export function MechanismWalkthrough({ runId, scenes, questions }: {
         {scenes.map((entry, position) => (
           <button key={entry.id} type="button" onClick={() => setIndex(position)}
             aria-label={`Step ${position + 1}: ${entry.title}`}
-            className={`grid size-9 place-items-center rounded-full text-sm font-semibold transition-colors ${position === index ? "bg-brand-600 text-white" : graded[entry.id] ? "bg-brand-100 text-brand-800" : "bg-white text-stone-500 shadow-sm hover:bg-stone-100"}`}>
+            className={`grid size-9 place-items-center rounded-full text-sm font-semibold transition-colors ${position === index ? "bg-brand-600 text-white" : graded[entry.id] ? "bg-brand-100 dark:bg-brand-950 text-brand-800 dark:text-brand-200" : "bg-white dark:bg-surface text-stone-500 dark:text-stone-400 shadow-sm hover:bg-stone-100 dark:hover:bg-muted"}`}>
             {position + 1}
           </button>
         ))}
-        <span className="ml-auto text-sm text-stone-600 tabular-nums">{score}/{scenes.length} steps checked</span>
+        <span className="ml-auto text-sm text-stone-600 dark:text-muted-foreground tabular-nums">{score}/{scenes.length} steps checked</span>
       </div>
 
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2"><FlaskConical size={18} /> Step {index + 1}: {scene.title}</CardTitle>
-          <p className="mt-2 text-sm text-stone-600">{scene.duration_seconds} sec · walk it, then prove it below.</p>
+          <p className="mt-2 text-sm text-stone-600 dark:text-muted-foreground">{scene.duration_seconds} sec · walk it, then prove it below.</p>
         </CardHeader>
         <CardContent>
-          <p className="leading-7 text-stone-600">{scene.narration}</p>
-          <div className="mt-4 rounded-lg bg-stone-50 p-3 text-sm"><b>Visual:</b> {scene.visual}<br /><b>On screen:</b> {scene.on_screen_text}</div>
+          <p className="leading-7 text-stone-600 dark:text-muted-foreground">{scene.narration}</p>
+          <div className="mt-4 rounded-lg bg-stone-50 dark:bg-surface-sunk p-3 text-sm"><b>Visual:</b> {scene.visual}<br /><b>On screen:</b> {scene.on_screen_text}</div>
           <Cites runId={runId} citations={scene.citations} />
         </CardContent>
       </Card>
 
       {check ? (
-        <Card className={answered ? (correct ? "border-brand-600" : "border-danger-300") : ""}>
+        <Card className={answered ? (correct ? "border-brand-600" : "border-danger-300 dark:border-danger-800") : ""}>
           <CardHeader><CardTitle className="text-base">Check: {check.prompt}</CardTitle></CardHeader>
           <CardContent className="space-y-2">
             {check.options.map((option, optionIndex) => {
               const chosen = picked[scene.id] === optionIndex;
               return (
                 <button key={option} type="button" disabled={answered} onClick={() => { setPicked({ ...picked, [scene.id]: optionIndex }); setGraded({ ...graded, [scene.id]: true }); }}
-                  className={`w-full rounded-lg border p-3 text-left text-sm transition-colors ${answered && optionIndex === check.correct_index ? "border-brand-600 bg-brand-50 font-medium text-brand-800" : answered && chosen ? "border-danger-300 bg-danger-50" : chosen ? "border-brand-600" : "hover:bg-stone-50"}`}>
+                  className={`w-full rounded-lg border p-3 text-left text-sm transition-colors ${answered && optionIndex === check.correct_index ? "border-brand-600 bg-brand-50 dark:bg-brand-950 font-medium text-brand-800 dark:text-brand-200" : answered && chosen ? "border-danger-300 dark:border-danger-800 bg-danger-50 dark:bg-danger-950" : chosen ? "border-brand-600" : "hover:bg-stone-50 dark:hover:bg-surface-sunk"}`}>
                   {option}
                 </button>
               );
             })}
             {answered && (
               <div className="pt-2">
-                <p className={`flex items-center gap-2 text-sm font-semibold ${correct ? "text-brand-700" : "text-danger-600"}`}>
+                <p className={`flex items-center gap-2 text-sm font-semibold ${correct ? "text-brand-700 dark:text-brand-300" : "text-danger-600 dark:text-danger-300"}`}>
                   {correct ? <CheckCircle2 size={16} /> : <XCircle size={16} />}
                   {correct ? "Correct — this is the mechanism to carry into the field." : "Not quite — re-read the step above, then try the quiz."}
                 </p>
-                <p className="mt-2 text-sm leading-6 text-stone-600">{check.rationale}</p>
+                <p className="mt-2 text-sm leading-6 text-stone-600 dark:text-muted-foreground">{check.rationale}</p>
                 <Cites runId={runId} citations={check.citations} />
               </div>
             )}
           </CardContent>
         </Card>
       ) : (
-        <Card><CardContent className="p-5 text-sm text-stone-600">No recorded check shares this step&apos;s citations — the quiz covers it elsewhere.</CardContent></Card>
+        <Card><CardContent className="p-5 text-sm text-stone-600 dark:text-muted-foreground">No recorded check shares this step&apos;s citations — the quiz covers it elsewhere.</CardContent></Card>
       )}
 
       <div className="flex items-center justify-between">

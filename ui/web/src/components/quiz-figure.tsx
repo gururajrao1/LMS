@@ -56,7 +56,7 @@ export function QuizFigure({ figure }: { figure: Figure }) {
 
   return (
     <figure className="mt-1">
-      <div className="overflow-x-auto rounded-lg border bg-white p-3">
+      <div className="overflow-x-auto rounded-lg border bg-white dark:bg-surface p-3">
         <svg viewBox={`0 0 ${WIDTH} ${HEIGHT}`} width={WIDTH} height={HEIGHT}
           role="img" aria-label={figure.caption} className="h-auto max-w-full">
           {ticks(max).map((tick) => (
@@ -136,18 +136,18 @@ export function QuizFigure({ figure }: { figure: Figure }) {
         </svg>
       </div>
 
-      <figcaption className="mt-2 text-xs leading-5 text-stone-600">{figure.caption}</figcaption>
+      <figcaption className="mt-2 text-xs leading-5 text-stone-600 dark:text-muted-foreground">{figure.caption}</figcaption>
 
       {/* The same numbers as text. A chart that is the only route to the values
           is unreadable to a screen reader and unusable in a printed pack. */}
       <details className="mt-2">
-        <summary className="cursor-pointer text-xs font-medium text-stone-600 hover:text-brand-700">
+        <summary className="cursor-pointer text-xs font-medium text-stone-600 dark:text-muted-foreground hover:text-brand-700 dark:hover:text-brand-300">
           Show these values as a table
         </summary>
         <div className="mt-2 overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b text-left text-stone-600">
+              <tr className="border-b text-left text-stone-600 dark:text-muted-foreground">
                 <th className="py-1 pr-3 font-medium">{figure.x_title}</th>
                 {figure.series.map((series) => (
                   <th key={series.name} className="py-1 pr-3 text-right font-medium">{series.name}</th>
@@ -157,9 +157,9 @@ export function QuizFigure({ figure }: { figure: Figure }) {
             <tbody>
               {labels.map((label, index) => (
                 <tr key={label} className="border-b last:border-0">
-                  <td className="py-1 pr-3 text-stone-700">{label}</td>
+                  <td className="py-1 pr-3 text-stone-700 dark:text-stone-200">{label}</td>
                   {figure.series.map((series) => (
-                    <td key={series.name} className="py-1 pr-3 text-right tabular-nums text-stone-700">
+                    <td key={series.name} className="py-1 pr-3 text-right tabular-nums text-stone-700 dark:text-stone-200">
                       {series.points[index]?.value ?? "—"}{figure.y_suffix}
                     </td>
                   ))}

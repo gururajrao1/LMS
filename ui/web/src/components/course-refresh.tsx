@@ -21,9 +21,9 @@ function IdList({ title, ids }: { title: string; ids: string[] }) {
   if (!ids.length) return null;
   return (
     <div>
-      <p className="text-xs font-medium uppercase tracking-wide text-stone-500">{title} ({ids.length})</p>
+      <p className="text-xs font-medium uppercase tracking-wide text-stone-500 dark:text-stone-400">{title} ({ids.length})</p>
       <ul className="mt-1 space-y-1 text-sm">
-        {ids.map((id) => <li key={id} className="rounded bg-stone-50 px-2 py-1 font-mono text-xs">{id}</li>)}
+        {ids.map((id) => <li key={id} className="rounded bg-stone-50 dark:bg-surface-sunk px-2 py-1 font-mono text-xs">{id}</li>)}
       </ul>
     </div>
   );
@@ -55,14 +55,14 @@ export function CourseRefreshPanel({ runId }: { runId: string }) {
     <Card>
       <CardHeader>
         <CardTitle>Label-change refresh</CardTitle>
-        <p className="mt-2 text-sm text-stone-600">Compare this version against an earlier run to see what must be re-reviewed.</p>
+        <p className="mt-2 text-sm text-stone-600 dark:text-muted-foreground">Compare this version against an earlier run to see what must be re-reviewed.</p>
       </CardHeader>
       <CardContent className="space-y-4">
         <form className="flex gap-2" onSubmit={compare}>
           <Input value={against} onChange={(event) => setAgainst(event.target.value)} placeholder="Earlier run id, e.g. ibrance-cycle-label-update" className="max-w-md" />
           <Button type="submit" disabled={busy}>Compare</Button>
         </form>
-        {error && <p className="text-sm text-danger-600">{error}</p>}
+        {error && <p className="text-sm text-danger-600 dark:text-danger-300">{error}</p>}
         {diff && (
           <div className="space-y-3 rounded-xl border bg-surface-sunk p-4">
             <p className="text-sm">
@@ -74,7 +74,7 @@ export function CourseRefreshPanel({ runId }: { runId: string }) {
             <IdList title="Changed" ids={diff.changed} />
             <IdList title="Added" ids={diff.added} />
             <IdList title="Removed" ids={diff.removed} />
-            <p className="text-xs text-stone-600">{diff.note}</p>
+            <p className="text-xs text-stone-600 dark:text-muted-foreground">{diff.note}</p>
           </div>
         )}
       </CardContent>

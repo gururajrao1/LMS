@@ -8,9 +8,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Completeness, CoverageCell, CoverageState, getJson, Person, sendJson, Severity } from "@/lib/api";
 
 const SEVERITY: Record<Severity, string> = {
-  blocking: "bg-danger-50 text-danger-700",
-  major: "bg-warn-50 text-warn-700",
-  minor: "bg-stone-100 text-stone-600",
+  blocking: "bg-danger-50 dark:bg-danger-950 text-danger-700 dark:text-danger-300",
+  major: "bg-warn-50 dark:bg-warn-950 text-warn-700 dark:text-warn-400",
+  minor: "bg-stone-100 dark:bg-muted text-stone-600 dark:text-muted-foreground",
 };
 
 /**
@@ -18,9 +18,9 @@ const SEVERITY: Record<Severity, string> = {
  * pointed out, because on a 101-unit course it reads as covered and is not.
  */
 const STATE: Record<CoverageState, { label: string; cell: string; dot: string }> = {
-  covered: { label: "Covered", cell: "bg-brand-50 text-brand-800", dot: "bg-brand-600" },
-  thin: { label: "Mentioned once", cell: "bg-warn-50 text-warn-800", dot: "bg-warn-600" },
-  missing: { label: "Not covered", cell: "bg-danger-50 text-danger-800", dot: "bg-danger-600" },
+  covered: { label: "Covered", cell: "bg-brand-50 dark:bg-brand-950 text-brand-800 dark:text-brand-200", dot: "bg-brand-600" },
+  thin: { label: "Mentioned once", cell: "bg-warn-50 dark:bg-warn-950 text-warn-800 dark:text-warn-400", dot: "bg-warn-600" },
+  missing: { label: "Not covered", cell: "bg-danger-50 dark:bg-danger-950 text-danger-800 dark:text-danger-200", dot: "bg-danger-600" },
 };
 
 function Cell({ cell }: { cell: CoverageCell }) {
@@ -55,18 +55,18 @@ export function CourseCompletenessPanel({ runId, user, onChange }: { runId: stri
       .catch(() => setError("Could not load the coverage matrix."));
   }, [runId]);
 
-  if (!data) return <Card><CardContent className="p-8 text-center text-stone-600">{error || "Reading the course…"}</CardContent></Card>;
+  if (!data) return <Card><CardContent className="p-8 text-center text-stone-600 dark:text-muted-foreground">{error || "Reading the course…"}</CardContent></Card>;
 
   const admin = user.role === "admin";
   const pending = data.gaps.filter((gap) => !gap.promoted);
 
   return (
     <div className="space-y-5">
-      <section className="flex flex-wrap items-center gap-x-4 gap-y-2 rounded-xl border border-line bg-white px-5 py-4">
+      <section className="flex flex-wrap items-center gap-x-4 gap-y-2 rounded-xl border border-line bg-white dark:bg-surface px-5 py-4">
         <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-brand-600 text-white"><Check size={18} /></span>
         <div className="min-w-0 flex-1">
           <p className="font-medium leading-6">Is anything missing?</p>
-          <p className="text-sm leading-6 text-stone-600">
+          <p className="text-sm leading-6 text-stone-600 dark:text-muted-foreground">
             The accuracy checks ask whether what the course says is true. This asks whether anything a knowledgeable
             reader would expect is absent — {data.curriculum.name}, {data.curriculum.topics} required topics,
             last reviewed {data.curriculum.reviewed_on}.
@@ -74,16 +74,16 @@ export function CourseCompletenessPanel({ runId, user, onChange }: { runId: stri
         </div>
         <p className="text-right">
           <span className="block text-2xl font-semibold tabular-nums">{data.stats.percent}%</span>
-          <span className="text-sm text-stone-600">{data.stats.covered} of {data.stats.required} covered</span>
+          <span className="text-sm text-stone-600 dark:text-muted-foreground">{data.stats.covered} of {data.stats.required} covered</span>
         </p>
       </section>
 
-      {error && <p className="text-sm text-danger-600">{error}</p>}
+      {error && <p className="text-sm text-danger-600 dark:text-danger-300">{error}</p>}
 
       <Card>
         <CardHeader>
           <CardTitle className="text-base">Coverage matrix</CardTitle>
-          <p className="mt-2 text-sm text-stone-600">
+          <p className="mt-2 text-sm text-stone-600 dark:text-muted-foreground">
             A topic counts as covered when at least {data.rows[0]?.min_units ?? 2} units address it. Matching detects
             whether a topic is addressed at all, never whether it is addressed well — that judgement stays with you.
           </p>
@@ -92,7 +92,7 @@ export function CourseCompletenessPanel({ runId, user, onChange }: { runId: stri
           <div className="overflow-x-auto">
             <table className="w-full min-w-[34rem] text-sm">
               <thead>
-                <tr className="border-b text-left text-xs uppercase tracking-wide text-stone-500">
+                <tr className="border-b text-left text-xs uppercase tracking-wide text-stone-500 dark:text-stone-400">
                   <th className="py-2 pr-3 font-medium">Required topic</th>
                   {data.tracks.map((track) => (
                     <th key={track} className="px-3 py-2 text-center font-medium">{track.toUpperCase()}</th>
@@ -104,10 +104,10 @@ export function CourseCompletenessPanel({ runId, user, onChange }: { runId: stri
                   <tr key={row.id} className="border-b last:border-0 align-middle">
                     <td className="py-2.5 pr-3">
                       <span className="flex flex-wrap items-center gap-2">
-                        <span className="font-medium text-stone-800">{row.title}</span>
+                        <span className="font-medium text-stone-800 dark:text-stone-200">{row.title}</span>
                         <Badge className={`${SEVERITY[row.severity]} text-[11px]`}>{row.severity}</Badge>
                       </span>
-                      <span className="mt-0.5 block text-xs leading-5 text-stone-600">{row.why}</span>
+                      <span className="mt-0.5 block text-xs leading-5 text-stone-600 dark:text-muted-foreground">{row.why}</span>
                     </td>
                     {data.tracks.map((track) => <Cell key={track} cell={row.tracks[track]} />)}
                   </tr>
@@ -123,9 +123,9 @@ export function CourseCompletenessPanel({ runId, user, onChange }: { runId: stri
           <CardHeader className="flex-row items-start justify-between gap-4">
             <div>
               <CardTitle className="flex items-center gap-2 text-base">
-                <TriangleAlert size={17} className="text-warn-600" /> Gaps ({data.gaps.length})
+                <TriangleAlert size={17} className="text-warn-600 dark:text-warn-400" /> Gaps ({data.gaps.length})
               </CardTitle>
-              <p className="mt-2 text-sm text-stone-600">
+              <p className="mt-2 text-sm text-stone-600 dark:text-muted-foreground">
                 Raise these into the review queue and they behave like any other comment: an expert addresses or
                 dismisses them, and publication waits on the blocking ones.
               </p>
@@ -149,26 +149,26 @@ export function CourseCompletenessPanel({ runId, user, onChange }: { runId: stri
           <CardContent className="space-y-3">
             {data.gaps.map((gap) => (
               <div key={gap.finding_id}
-                className={`rounded-xl border p-4 ${selected.includes(gap.finding_id) ? "border-brand-600 bg-brand-50" : ""}`}>
+                className={`rounded-xl border p-4 ${selected.includes(gap.finding_id) ? "border-brand-600 bg-brand-50 dark:bg-brand-950" : ""}`}>
                 <div className="flex flex-wrap items-center gap-2">
                   <Badge className={SEVERITY[gap.severity]}>{gap.severity}</Badge>
                   <Badge variant="outline">{STATE[gap.state].label}</Badge>
                   <Badge variant="secondary">{gap.track.toUpperCase()}</Badge>
                   {gap.promoted && (
-                    <span className="ml-auto text-xs font-medium text-brand-700">
+                    <span className="ml-auto text-xs font-medium text-brand-700 dark:text-brand-300">
                       in the review queue{gap.promoted !== "open" ? ` · ${gap.promoted}` : ""}
                     </span>
                   )}
                 </div>
                 <p className="mt-3 font-medium leading-6">{gap.title}</p>
-                <p className="mt-1.5 leading-6 text-stone-700">
+                <p className="mt-1.5 leading-6 text-stone-700 dark:text-stone-200">
                   {gap.state === "missing"
                     ? `Nothing in the ${gap.track.toUpperCase()} track addresses this.`
                     : `Only ${gap.units} unit of the ${gap.track.toUpperCase()} track mentions this, below the ${gap.expected} expected. It reads as covered but is not.`}
                 </p>
-                <p className="mt-1.5 text-sm leading-6 text-stone-600">{gap.why}</p>
+                <p className="mt-1.5 text-sm leading-6 text-stone-600 dark:text-muted-foreground">{gap.why}</p>
                 {admin && !gap.promoted && (
-                  <label className="mt-3 inline-flex cursor-pointer items-center gap-2 text-sm font-medium text-stone-700">
+                  <label className="mt-3 inline-flex cursor-pointer items-center gap-2 text-sm font-medium text-stone-700 dark:text-stone-200">
                     <input type="checkbox" className="size-4 accent-brand-600"
                       checked={selected.includes(gap.finding_id)}
                       onChange={() => setSelected((current) => current.includes(gap.finding_id)

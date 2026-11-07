@@ -34,16 +34,16 @@ export function CourseSafetyPanel({ runId, user }: { runId: string; user: Person
 
   return (
     <Card>
-      <CardHeader><CardTitle className="flex items-center gap-2"><ShieldAlert size={18} /> Safety reports {reports.some((entry) => entry.status === "new") && <span className="rounded-full bg-danger-100 px-2 py-0.5 text-xs font-semibold text-danger-700">{reports.filter((entry) => entry.status === "new").length} new</span>}</CardTitle><p className="mt-2 text-sm text-stone-600">Concerns raised by the field. Learners report from training; triage happens here.</p></CardHeader>
+      <CardHeader><CardTitle className="flex items-center gap-2"><ShieldAlert size={18} /> Safety reports {reports.some((entry) => entry.status === "new") && <span className="rounded-full bg-danger-100 px-2 py-0.5 text-xs font-semibold text-danger-700 dark:text-danger-300">{reports.filter((entry) => entry.status === "new").length} new</span>}</CardTitle><p className="mt-2 text-sm text-stone-600 dark:text-muted-foreground">Concerns raised by the field. Learners report from training; triage happens here.</p></CardHeader>
       <CardContent className="space-y-3">
-        {error && <p className="text-sm text-danger-600">{error}</p>}
-        {reports.length === 0 && !error && <p className="text-sm text-stone-600">No safety concerns reported for this course.</p>}
+        {error && <p className="text-sm text-danger-600 dark:text-danger-300">{error}</p>}
+        {reports.length === 0 && !error && <p className="text-sm text-stone-600 dark:text-muted-foreground">No safety concerns reported for this course.</p>}
         {reports.map((report) => (
           <div key={report.id} className="rounded-xl border p-4">
             <p className="leading-7">{report.concern}</p>
-            <p className="mt-2 text-xs text-stone-500">Reported by {report.reporter_name} · {new Date(report.created_at).toLocaleString()}</p>
+            <p className="mt-2 text-xs text-stone-500 dark:text-stone-400">Reported by {report.reporter_name} · {new Date(report.created_at).toLocaleString()}</p>
             {report.status === "reviewed"
-              ? <p className="mt-2 flex items-center gap-1.5 text-sm font-medium text-brand-700"><CheckCircle2 size={15} /> Reviewed by {report.reviewed_by}</p>
+              ? <p className="mt-2 flex items-center gap-1.5 text-sm font-medium text-brand-700 dark:text-brand-300"><CheckCircle2 size={15} /> Reviewed by {report.reviewed_by}</p>
               : canTriage && <Button variant="outline" disabled={busy} onClick={() => void triage(report.id)} className="mt-3">Mark triaged</Button>}
           </div>
         ))}

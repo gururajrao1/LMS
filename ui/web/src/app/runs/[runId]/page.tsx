@@ -45,9 +45,9 @@ export default function RunProgress() {
   return (
     <AppShell user={user}>
       <div className="mx-auto max-w-3xl py-4">
-        <Badge className="bg-brand-50 text-brand-700">{MODE_LABEL[run?.mode ?? "local"]}</Badge>
+        <Badge className="bg-brand-50 dark:bg-brand-950 text-brand-700 dark:text-brand-300">{MODE_LABEL[run?.mode ?? "local"]}</Badge>
         <h1 className="mt-4 text-3xl font-semibold tracking-tight">Building the Ibrance learning course</h1>
-        <p className="mt-2 text-stone-600">Every handoff between the agents, as it happens — research gathers the evidence, an author writes from it, and a checker verifies each citation against the stored sources before anything reaches a reviewer.</p>
+        <p className="mt-2 text-stone-600 dark:text-muted-foreground">Every handoff between the agents, as it happens — research gathers the evidence, an author writes from it, and a checker verifies each citation against the stored sources before anything reaches a reviewer.</p>
         <Card className="mt-7 overflow-hidden"><CardContent className="p-0">
           <div className="bg-surface-deep p-6 text-white"><div className="flex items-center justify-between"><span className="flex items-center gap-2 font-medium">{complete ? <Check size={19} /> : <LoaderCircle className="animate-spin" size={19} />} {complete ? "Generation complete" : "Agent working"}</span><span className="text-2xl font-semibold">{run?.progress ?? 0}%</span></div><Progress value={run?.progress ?? 0} className="mt-4 bg-white/20" /></div>
           <AgentSequence steps={events} running={!complete} />

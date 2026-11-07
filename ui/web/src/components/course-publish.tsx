@@ -58,11 +58,11 @@ export function CoursePublishPanel({ runId, user, review, onChange }: { runId: s
       <Card>
         <CardHeader>
           <CardTitle>{publication ? "Update the training plan" : "Publish and schedule"}</CardTitle>
-          <p className="mt-2 text-sm text-stone-600">Assign the course, set the window, and notify every trainee.</p>
+          <p className="mt-2 text-sm text-stone-600 dark:text-muted-foreground">Assign the course, set the window, and notify every trainee.</p>
         </CardHeader>
         <CardContent>
           {blocked && (
-            <div className="mb-5 flex gap-3 rounded-xl bg-warn-50 p-4 text-sm text-warn-900">
+            <div className="mb-5 flex gap-3 rounded-xl bg-warn-50 dark:bg-warn-950 p-4 text-sm text-warn-900 dark:text-warn-400">
               <CircleAlert size={18} className="mt-0.5 shrink-0" />
               <div>
                 <p className="font-medium">Not ready to publish</p>
@@ -97,9 +97,9 @@ export function CoursePublishPanel({ runId, user, review, onChange }: { runId: s
                 <div>
                   <p className="text-sm font-medium">Assign by group</p>
                   <div className="mt-2 flex flex-wrap gap-2">
-                    <button type="button" onClick={() => setAssignees(people.filter((person) => person.role === "msl").map((person) => person.id))} className="rounded-lg border px-3 py-1 text-xs font-medium hover:bg-stone-50">All MSLs</button>
-                    <button type="button" onClick={() => setAssignees(people.filter((person) => person.role === "hcp").map((person) => person.id))} className="rounded-lg border px-3 py-1 text-xs font-medium hover:bg-stone-50">All HCPs</button>
-                    <button type="button" onClick={() => setAssignees([])} className="rounded-lg border px-3 py-1 text-xs font-medium hover:bg-stone-50">Clear</button>
+                    <button type="button" onClick={() => setAssignees(people.filter((person) => person.role === "msl").map((person) => person.id))} className="rounded-lg border px-3 py-1 text-xs font-medium hover:bg-stone-50 dark:hover:bg-surface-sunk">All MSLs</button>
+                    <button type="button" onClick={() => setAssignees(people.filter((person) => person.role === "hcp").map((person) => person.id))} className="rounded-lg border px-3 py-1 text-xs font-medium hover:bg-stone-50 dark:hover:bg-surface-sunk">All HCPs</button>
+                    <button type="button" onClick={() => setAssignees([])} className="rounded-lg border px-3 py-1 text-xs font-medium hover:bg-stone-50 dark:hover:bg-surface-sunk">Clear</button>
                   </div>
                 </div>
               </div>
@@ -107,10 +107,10 @@ export function CoursePublishPanel({ runId, user, review, onChange }: { runId: s
               <p className="text-sm font-medium">Certificate design</p>
 <div className="mt-2 grid gap-2 sm:grid-cols-3">
   {(templates.length ? templates : [{ id: "classic", label: "Classic", description: "Centered certificate with the brand band." }]).map((option) => (
-    <label key={option.id} className={`cursor-pointer rounded-xl border p-3 transition-colors ${template === option.id ? "border-brand-600 bg-brand-50" : "hover:bg-stone-50"}`}>
+    <label key={option.id} className={`cursor-pointer rounded-xl border p-3 transition-colors ${template === option.id ? "border-brand-600 bg-brand-50 dark:bg-brand-950" : "hover:bg-stone-50 dark:hover:bg-surface-sunk"}`}>
       <input type="radio" name="certificate-template" value={option.id} checked={template === option.id} onChange={() => setTemplate(option.id)} className="size-4 accent-brand-600" />
       <span className="mt-1 block text-sm font-medium">{option.label}</span>
-      <span className="mt-1 block text-xs leading-5 text-stone-600">{option.description}</span>
+      <span className="mt-1 block text-xs leading-5 text-stone-600 dark:text-muted-foreground">{option.description}</span>
     </label>
   ))}
 </div>
@@ -118,11 +118,11 @@ export function CoursePublishPanel({ runId, user, review, onChange }: { runId: s
             <p className="text-sm font-medium">Trainees ({assignees.length} selected)</p>
               <div className="mt-2 grid gap-2 sm:grid-cols-2">
                 {people.map((person) => (
-                  <label key={person.id} className={`flex cursor-pointer items-start gap-3 rounded-xl border p-3 transition-colors ${assignees.includes(person.id) ? "border-brand-600 bg-brand-50" : "hover:bg-stone-50"}`}>
+                  <label key={person.id} className={`flex cursor-pointer items-start gap-3 rounded-xl border p-3 transition-colors ${assignees.includes(person.id) ? "border-brand-600 bg-brand-50 dark:bg-brand-950" : "hover:bg-stone-50 dark:hover:bg-surface-sunk"}`}>
                     <input type="checkbox" checked={assignees.includes(person.id)} onChange={() => toggle(person.id)} className="mt-1 size-4 accent-brand-600" />
                     <span>
                       <span className="block text-sm font-medium">{person.name}</span>
-                      <span className="block text-xs text-stone-600">{ROLE_LABEL[person.role]} · {person.title}</span>
+                      <span className="block text-xs text-stone-600 dark:text-muted-foreground">{ROLE_LABEL[person.role]} · {person.title}</span>
                     </span>
                   </label>
                 ))}
@@ -130,11 +130,11 @@ export function CoursePublishPanel({ runId, user, review, onChange }: { runId: s
             </div>
 
             <div>
-              <div className="flex items-center justify-between"><label htmlFor="publish-message" className="text-sm font-medium">Message to trainees</label><button type="button" onClick={() => setMessage(`Training v${review.version} is ready: work the 4 modules, then pass the final to earn your certificate. Due ${dueOn} — your baseline and uplift are recorded either way.`)} className="text-xs font-medium text-brand-700 hover:underline">Use suggested message</button></div>
+              <div className="flex items-center justify-between"><label htmlFor="publish-message" className="text-sm font-medium">Message to trainees</label><button type="button" onClick={() => setMessage(`Training v${review.version} is ready: work the 4 modules, then pass the final to earn your certificate. Due ${dueOn} — your baseline and uplift are recorded either way.`)} className="text-xs font-medium text-brand-700 dark:text-brand-300 hover:underline">Use suggested message</button></div>
               <Textarea id="publish-message" value={message} onChange={(event) => setMessage(event.target.value)} rows={3} className="mt-2" />
             </div>
 
-            {error && <p className="text-sm text-danger-600">{error}</p>}
+            {error && <p className="text-sm text-danger-600 dark:text-danger-300">{error}</p>}
             <Button type="submit" disabled={busy || blocked || !assignees.length} className="bg-brand-600 hover:bg-brand-800">
               <Send /> {publication ? "Republish schedule" : `Publish v${review.version} to ${assignees.length} trainee(s)`}
             </Button>
@@ -149,12 +149,12 @@ export function CoursePublishPanel({ runId, user, review, onChange }: { runId: s
             {publication ? (
               <div className="space-y-3 text-sm">
                 <Badge className="bg-brand-600">Published v{publication.version}</Badge>
-                <p className="flex items-center gap-2 text-stone-600"><CalendarDays size={15} /> {publication.starts_on} → {publication.due_on}{publication.frequency && publication.frequency !== "once" ? ` · repeats ${publication.frequency}` : ""}{publication.next_due_on ? ` · next due ${publication.next_due_on}` : ""}</p>
-                <p className="flex items-center gap-2 text-stone-600"><Users size={15} /> {publication.assignees.length} trainee(s)</p>
-                <p className="text-stone-600">Certificate: {(templates.find((option) => option.id === publication.certificate_template)?.label ?? publication.certificate_template ?? "Classic")} design</p>
-                <p className="text-xs text-stone-600">Published by {publication.published_by}</p>
+                <p className="flex items-center gap-2 text-stone-600 dark:text-muted-foreground"><CalendarDays size={15} /> {publication.starts_on} → {publication.due_on}{publication.frequency && publication.frequency !== "once" ? ` · repeats ${publication.frequency}` : ""}{publication.next_due_on ? ` · next due ${publication.next_due_on}` : ""}</p>
+                <p className="flex items-center gap-2 text-stone-600 dark:text-muted-foreground"><Users size={15} /> {publication.assignees.length} trainee(s)</p>
+                <p className="text-stone-600 dark:text-muted-foreground">Certificate: {(templates.find((option) => option.id === publication.certificate_template)?.label ?? publication.certificate_template ?? "Classic")} design</p>
+                <p className="text-xs text-stone-600 dark:text-muted-foreground">Published by {publication.published_by}</p>
               </div>
-            ) : <p className="text-sm text-stone-600">This course has not been published yet.</p>}
+            ) : <p className="text-sm text-stone-600 dark:text-muted-foreground">This course has not been published yet.</p>}
           </CardContent>
         </Card>
 
@@ -162,21 +162,21 @@ export function CoursePublishPanel({ runId, user, review, onChange }: { runId: s
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-base">
-                <ShieldAlert size={17} className="text-warn-600" /> Published with {publication.overrides.length} override(s)
+                <ShieldAlert size={17} className="text-warn-600 dark:text-warn-400" /> Published with {publication.overrides.length} override(s)
               </CardTitle>
-              <p className="mt-2 text-sm text-stone-600">
+              <p className="mt-2 text-sm text-stone-600 dark:text-muted-foreground">
                 Checks that still fail against the stored sources, carried through on a named
                 decision. This travels with the course; it is not cleared by publishing.
               </p>
             </CardHeader>
             <CardContent className="space-y-3">
               {publication.overrides.map((override) => (
-                <div key={override.comment_id} className="rounded-xl border border-warn-600/30 bg-warn-50 p-3">
-                  <p className="text-sm font-medium text-warn-900">
+                <div key={override.comment_id} className="rounded-xl border border-warn-600/30 bg-warn-50 dark:bg-warn-950 p-3">
+                  <p className="text-sm font-medium text-warn-900 dark:text-warn-400">
                     {override.check} on {override.target}
                   </p>
-                  <p className="mt-2 text-sm leading-6 text-stone-700">{override.reason}</p>
-                  <p className="mt-2 text-xs text-stone-600">
+                  <p className="mt-2 text-sm leading-6 text-stone-700 dark:text-stone-200">{override.reason}</p>
+                  <p className="mt-2 text-xs text-stone-600 dark:text-muted-foreground">
                     {override.actor_name}{override.actor_title ? ` · ${override.actor_title}` : ""}
                   </p>
                 </div>
@@ -191,15 +191,15 @@ export function CoursePublishPanel({ runId, user, review, onChange }: { runId: s
             <CardContent className="space-y-3">
               {publication.notifications.map((entry) => (
                 <div key={entry.to} className="flex gap-3 rounded-lg border p-3">
-                  <Mail size={15} className="mt-0.5 shrink-0 text-brand-700" />
+                  <Mail size={15} className="mt-0.5 shrink-0 text-brand-700 dark:text-brand-300" />
                   <div className="min-w-0">
                     <p className="text-sm font-medium">{entry.name}</p>
-                    <p className="truncate text-xs text-stone-600">{entry.to}</p>
-                    <p className="mt-1 text-xs leading-5 text-stone-600">{entry.subject}</p>
+                    <p className="truncate text-xs text-stone-600 dark:text-muted-foreground">{entry.to}</p>
+                    <p className="mt-1 text-xs leading-5 text-stone-600 dark:text-muted-foreground">{entry.subject}</p>
                   </div>
                 </div>
               ))}
-              <p className="text-xs text-stone-500">Demo notifications are recorded locally, not emailed.</p>
+              <p className="text-xs text-stone-500 dark:text-stone-400">Demo notifications are recorded locally, not emailed.</p>
             </CardContent>
           </Card>
         )}

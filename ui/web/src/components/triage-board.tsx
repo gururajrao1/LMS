@@ -25,7 +25,7 @@ function Chip({ label, tone, onClick }: { label: string; tone: string; onClick?:
     <Element
       {...(onClick ? { type: "button" as const, onClick } : {})}
       className={`w-full rounded-lg border px-3 py-2 text-left text-sm leading-5 ${tone} ${
-        onClick ? "transition-colors hover:border-stone-400" : ""}`}
+        onClick ? "transition-colors hover:border-stone-400 dark:hover:border-stone-600" : ""}`}
     >
       {label}
     </Element>
@@ -53,25 +53,25 @@ export function TriageBoard({ group, items, answers, onAnswer, reviewed, runId }
 
   return (
     <Card className="overflow-hidden">
-      <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-b bg-stone-50 px-6 py-4">
+      <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-b bg-stone-50 dark:bg-surface-sunk px-6 py-4">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-wide text-brand-700">Sort board</p>
+          <p className="text-xs font-semibold uppercase tracking-wide text-brand-700 dark:text-brand-300">Sort board</p>
           <h3 className="mt-1 font-semibold leading-6">{group.title}</h3>
         </div>
-        <p className="text-sm tabular-nums text-stone-600">{placed} of {items.length} sorted</p>
+        <p className="text-sm tabular-nums text-stone-600 dark:text-muted-foreground">{placed} of {items.length} sorted</p>
       </div>
 
       <CardContent className="p-6">
-        <p className="text-sm leading-6 text-stone-600">{group.instruction}</p>
+        <p className="text-sm leading-6 text-stone-600 dark:text-muted-foreground">{group.instruction}</p>
 
         {current && (
-          <div className="mt-5 rounded-xl border-2 border-brand-600 bg-white p-5 shadow-sm">
+          <div className="mt-5 rounded-xl border-2 border-brand-600 bg-white dark:bg-surface p-5 shadow-sm">
             <p className="text-lg font-medium leading-7">{current.prompt}</p>
             <div className="mt-4 grid gap-3 sm:grid-cols-2">
               {buckets.map((bucket, index) => (
                 <button key={bucket} type="button"
                   onClick={() => { onAnswer(current.id, index); setReopened(null); }}
-                  className="rounded-lg border border-stone-300 bg-white px-4 py-3 text-sm font-medium transition-colors hover:border-brand-600 hover:bg-brand-50 hover:text-brand-800">
+                  className="rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-surface px-4 py-3 text-sm font-medium transition-colors hover:border-brand-600 hover:bg-brand-50 dark:hover:bg-brand-950 hover:text-brand-800 dark:hover:text-brand-200">
                   {bucket}
                 </button>
               ))}
@@ -80,7 +80,7 @@ export function TriageBoard({ group, items, answers, onAnswer, reviewed, runId }
         )}
 
         {!current && !done && (
-          <p className="mt-5 rounded-xl border border-brand-600 bg-brand-50 px-5 py-4 text-sm text-brand-800">
+          <p className="mt-5 rounded-xl border border-brand-600 bg-brand-50 dark:bg-brand-950 px-5 py-4 text-sm text-brand-800 dark:text-brand-200">
             Every item is placed. Tap any card below to move it before you submit.
           </p>
         )}
@@ -91,7 +91,7 @@ export function TriageBoard({ group, items, answers, onAnswer, reviewed, runId }
             return (
               <div key={bucket}>
                 <p className="flex items-baseline justify-between gap-2 border-b pb-2 text-sm font-semibold">
-                  {bucket} <span className="tabular-nums font-normal text-stone-500">{inBucket.length}</span>
+                  {bucket} <span className="tabular-nums font-normal text-stone-500 dark:text-stone-400">{inBucket.length}</span>
                 </p>
                 <div className="mt-2 space-y-2">
                   {inBucket.map((item) => {
@@ -104,25 +104,25 @@ export function TriageBoard({ group, items, answers, onAnswer, reviewed, runId }
                     }
                     return (
                       <div key={item.id} className={`rounded-lg border p-3 text-sm ${result.correct
-                        ? "border-brand-600 bg-brand-50" : "border-danger-600 bg-danger-50"}`}>
+                        ? "border-brand-600 bg-brand-50 dark:bg-brand-950" : "border-danger-600 bg-danger-50 dark:bg-danger-950"}`}>
                         <p className="flex items-start gap-2 leading-5">
                           {result.correct
-                            ? <Check size={15} className="mt-0.5 shrink-0 text-brand-700" />
-                            : <X size={15} className="mt-0.5 shrink-0 text-danger-600" />}
+                            ? <Check size={15} className="mt-0.5 shrink-0 text-brand-700 dark:text-brand-300" />
+                            : <X size={15} className="mt-0.5 shrink-0 text-danger-600 dark:text-danger-300" />}
                           <span>{item.prompt}</span>
                         </p>
                         {!result.correct && (
-                          <p className="mt-2 pl-[1.4rem] text-xs font-medium text-danger-900">
+                          <p className="mt-2 pl-[1.4rem] text-xs font-medium text-danger-900 dark:text-danger-200">
                             Belongs in “{item.options[result.correct_index]}”
                           </p>
                         )}
-                        <p className="mt-2 pl-[1.4rem] text-xs leading-5 text-stone-700">{result.rationale}</p>
+                        <p className="mt-2 pl-[1.4rem] text-xs leading-5 text-stone-700 dark:text-stone-200">{result.rationale}</p>
                         <div className="pl-[1.4rem]"><Cites runId={runId} citations={result.citations} /></div>
                       </div>
                     );
                   })}
                   {!inBucket.length && (
-                    <p className="rounded-lg border border-dashed px-3 py-4 text-center text-xs text-stone-500">
+                    <p className="rounded-lg border border-dashed px-3 py-4 text-center text-xs text-stone-500 dark:text-stone-400">
                       Nothing placed here yet
                     </p>
                   )}
@@ -134,7 +134,7 @@ export function TriageBoard({ group, items, answers, onAnswer, reviewed, runId }
 
         {!done && placed > 0 && (
           <button type="button" onClick={() => { items.forEach((item) => onAnswer(item.id, null)); setReopened(null); }}
-            className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-stone-600 hover:text-brand-700">
+            className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-stone-600 dark:text-muted-foreground hover:text-brand-700 dark:hover:text-brand-300">
             <RotateCcw size={14} /> Start the board again
           </button>
         )}

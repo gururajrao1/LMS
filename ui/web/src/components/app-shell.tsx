@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { BookOpen, Database, GraduationCap, KeyRound, LayoutDashboard, LogOut, ShieldCheck, TrendingUp } from "lucide-react";
+import { BookOpen, Database, GraduationCap, KeyRound, LayoutDashboard, LogOut, Moon, ShieldCheck, Sun, TrendingUp } from "lucide-react";
 import { Person } from "@/lib/api";
 import { writeSession } from "@/lib/session";
+import { useTheme } from "@/lib/theme";
 
 type NavLink = { href: string; label: string; icon: typeof LayoutDashboard };
 
@@ -62,6 +63,7 @@ export function AppShell({ children, user }: { children: React.ReactNode; user?:
   const pathname = usePathname();
   const router = useRouter();
   const links = user ? navFor(user) : [];
+  const { theme, toggle } = useTheme();
 
   function signOut() {
     writeSession(null);
@@ -70,14 +72,14 @@ export function AppShell({ children, user }: { children: React.ReactNode; user?:
 
   return (
     <div className="app-shell min-h-screen bg-surface-sunk text-ink">
-      <header className="border-b bg-white">
+      <header className="border-b bg-white dark:bg-surface">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-6 px-5 lg:px-8">
           <div className="flex items-center gap-8">
             <Brand href={links[0]?.href ?? "/"} />
             <nav className="hidden items-center gap-1 md:flex">
               {links.map(({ href, label, icon: Icon }) => (
                 <Link key={href} href={href} aria-current={pathname.startsWith(href) ? "page" : undefined}
-                  className={`flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${pathname.startsWith(href) ? "bg-brand-50 text-brand-700" : "text-stone-600 hover:bg-stone-100"}`}>
+                  className={`flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${pathname.startsWith(href) ? "bg-brand-50 dark:bg-brand-950 text-brand-700 dark:text-brand-300" : "text-stone-600 dark:text-muted-foreground hover:bg-stone-100 dark:hover:bg-muted"}`}>
                   <Icon size={16} /> {label}
                 </Link>
               ))}
@@ -87,18 +89,19 @@ export function AppShell({ children, user }: { children: React.ReactNode; user?:
             {user && (
               <div className="hidden text-right sm:block">
                 <p className="font-medium leading-5">{user.name}</p>
-                <p className="text-xs text-stone-600">{roleLabel(user.role)} · {user.title}</p>
+                <p className="text-xs text-stone-600 dark:text-muted-foreground">{roleLabel(user.role)} · {user.title}</p>
               </div>
             )}
-            {user && <span className="grid size-9 shrink-0 place-items-center rounded-full bg-brand-50 text-sm font-semibold text-brand-700">{initials(user.name)}</span>}
-            <button type="button" onClick={signOut} aria-label="Sign out" className="rounded-lg p-2 text-stone-600 hover:bg-stone-100"><LogOut size={17} /></button>
+            {user && <span className="grid size-9 shrink-0 place-items-center rounded-full bg-brand-50 dark:bg-brand-950 text-sm font-semibold text-brand-700 dark:text-brand-300">{initials(user.name)}</span>}
+            <button type="button" onClick={toggle} aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"} title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"} className="rounded-lg p-2 text-stone-600 dark:text-muted-foreground hover:bg-stone-100 dark:hover:bg-muted">{theme === "dark" ? <Sun size={17} /> : <Moon size={17} />}</button>
+            <button type="button" onClick={signOut} aria-label="Sign out" className="rounded-lg p-2 text-stone-600 dark:text-muted-foreground hover:bg-stone-100 dark:hover:bg-muted"><LogOut size={17} /></button>
           </div>
         </div>
         {links.length > 1 && (
           <nav className="flex gap-1 overflow-x-auto border-t px-5 py-2 md:hidden">
             {links.map(({ href, label, icon: Icon }) => (
               <Link key={href} href={href} aria-current={pathname.startsWith(href) ? "page" : undefined}
-                className={`flex shrink-0 items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium ${pathname.startsWith(href) ? "bg-brand-50 text-brand-700" : "text-stone-600"}`}>
+                className={`flex shrink-0 items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium ${pathname.startsWith(href) ? "bg-brand-50 dark:bg-brand-950 text-brand-700 dark:text-brand-300" : "text-stone-600 dark:text-muted-foreground"}`}>
                 <Icon size={16} /> {label}
               </Link>
             ))}
@@ -121,20 +124,20 @@ export { CitationChip, Cites } from "@/components/evidence";
  * marks anything the automated checker produced, `warn` is a reserved status.
  */
 export function Stat({ icon: Icon, value, label, tone = "brand" }: { icon: typeof LayoutDashboard; value: string | number; label: string; tone?: "brand" | "signal" | "warn" }) {
-  const tones = { brand: "bg-brand-50 text-brand-700", signal: "bg-signal-50 text-signal-700", warn: "bg-warn-50 text-warn-700" };
+  const tones = { brand: "bg-brand-50 dark:bg-brand-950 text-brand-700 dark:text-brand-300", signal: "bg-signal-50 dark:bg-signal-950 text-signal-700 dark:text-signal-300", warn: "bg-warn-50 dark:bg-warn-950 text-warn-700 dark:text-warn-400" };
   return (
-    <div className="flex items-center gap-4 rounded-xl border border-line bg-white p-5">
+    <div className="flex items-center gap-4 rounded-xl border border-line bg-white dark:bg-surface p-5">
       <span className={`grid size-11 shrink-0 place-items-center rounded-xl ${tones[tone]}`}><Icon size={21} /></span>
       <div>
         <p className="text-2xl font-semibold tracking-tight tabular-nums">{value}</p>
-        <p className="text-sm leading-5 text-stone-600">{label}</p>
+        <p className="text-sm leading-5 text-stone-600 dark:text-muted-foreground">{label}</p>
       </div>
     </div>
   );
 }
 
 function Block({ className = "" }: { className?: string }) {
-  return <div className={`animate-pulse rounded-xl bg-stone-200/70 ${className}`} />;
+  return <div className={`animate-pulse rounded-xl bg-stone-200/70 dark:bg-stone-800/70 ${className}`} />;
 }
 
 /** A layout-shaped placeholder, so a page does not jump when its data lands. */

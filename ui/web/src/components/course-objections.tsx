@@ -54,14 +54,14 @@ export function CourseObjectionsPanel({ runId, user }: { runId: string; user: Pe
 
   return (
     <Card>
-      <CardHeader><CardTitle className="flex items-center gap-2"><MessageCircle size={18} /> Objection handling</CardTitle><p className="mt-2 text-sm text-stone-600">One approved answer per hard question. Trainees read these verbatim on the learning side.</p></CardHeader>
+      <CardHeader><CardTitle className="flex items-center gap-2"><MessageCircle size={18} /> Objection handling</CardTitle><p className="mt-2 text-sm text-stone-600 dark:text-muted-foreground">One approved answer per hard question. Trainees read these verbatim on the learning side.</p></CardHeader>
       <CardContent className="space-y-4">
-        {error && <p className="text-sm text-danger-600">{error}</p>}
+        {error && <p className="text-sm text-danger-600 dark:text-danger-300">{error}</p>}
         {items.map((item) => (
           <div key={item.id} className="rounded-xl border p-4">
             <p className="font-semibold">{item.question}</p>
-            <p className="mt-2 text-sm leading-7 text-stone-600">{item.answer}</p>
-            <p className="mt-2 text-xs text-stone-500">Approved by {item.author_name}</p>
+            <p className="mt-2 text-sm leading-7 text-stone-600 dark:text-muted-foreground">{item.answer}</p>
+            <p className="mt-2 text-xs text-stone-500 dark:text-stone-400">Approved by {item.author_name}</p>
             <Cites runId={runId} citations={item.citations} />
             {canManage && (
               <div className="mt-3 flex gap-2">

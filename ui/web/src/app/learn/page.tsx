@@ -53,11 +53,11 @@ const NEXT_STEP: Record<LearnerSummary["stage"], string> = {
 };
 
 const STAGE_BADGE: Record<LearnerSummary["stage"], string> = {
-  not_started: "bg-stone-100 text-stone-600",
-  baseline: "bg-stone-100 text-stone-700",
-  learning: "bg-stone-100 text-stone-700",
-  final: "bg-warn-50 text-warn-700",
-  complete: "bg-brand-50 text-brand-700",
+  not_started: "bg-stone-100 dark:bg-muted text-stone-600 dark:text-muted-foreground",
+  baseline: "bg-stone-100 dark:bg-muted text-stone-700 dark:text-stone-200",
+  learning: "bg-stone-100 dark:bg-muted text-stone-700 dark:text-stone-200",
+  final: "bg-warn-50 dark:bg-warn-950 text-warn-700 dark:text-warn-400",
+  complete: "bg-brand-50 dark:bg-brand-950 text-brand-700 dark:text-brand-300",
 };
 
 /**
@@ -106,16 +106,16 @@ function Timeline({ course }: { course: Assignment }) {
 
   return (
     <div className="mt-3">
-      <div className="relative h-1.5 w-full rounded-full bg-stone-100">
+      <div className="relative h-1.5 w-full rounded-full bg-stone-100 dark:bg-muted">
         <div className={`h-1.5 rounded-full ${done ? "bg-brand-600" : "bg-stone-300"}`}
           style={{ width: `${(done ? 1 : elapsed) * 100}%` }} />
         {!done && course.state !== "upcoming" && (
           <span aria-hidden title="Today"
-            className="absolute top-1/2 size-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-600 ring-2 ring-white"
+            className="absolute top-1/2 size-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-600 ring-2 ring-white dark:ring-stone-900"
             style={{ left: `${elapsed * 100}%` }} />
         )}
       </div>
-      <div className="mt-1.5 flex items-center justify-between text-xs text-stone-600">
+      <div className="mt-1.5 flex items-center justify-between text-xs text-stone-600 dark:text-muted-foreground">
         <span className="flex items-center gap-1.5"><CalendarDays size={12} /> {shortDate(course.starts_on)}</span>
         <span>{shortDate(course.due_on)}</span>
       </div>
@@ -132,7 +132,7 @@ function AssignmentCard({ course }: { course: Assignment }) {
           <div className="flex items-start justify-between gap-3">
             <div className="min-w-0">
               <CardTitle className="text-xl leading-tight">{course.title ?? course.drug.brand}</CardTitle>
-              <p className="mt-1 text-sm text-stone-600">
+              <p className="mt-1 text-sm text-stone-600 dark:text-muted-foreground">
                 {course.title ? `${course.drug.brand} · ` : ""}{course.drug.generic} · v{course.version}
               </p>
             </div>
@@ -147,17 +147,17 @@ function AssignmentCard({ course }: { course: Assignment }) {
           {due.label && (
             <>
             <p className="mt-3"><span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-medium ${RAG_BADGE[course.state === "overdue" ? "red" : course.state === "upcoming" ? "neutral" : course.summary.certificate ? "green" : "amber"]}`}><span aria-hidden className={`size-1.5 rounded-full ${RAG_DOT[course.state === "overdue" ? "red" : course.state === "upcoming" ? "neutral" : course.summary.certificate ? "green" : "amber"]}`} />{course.state === "overdue" ? "Overdue" : course.state === "upcoming" ? "Not open yet" : course.summary.certificate ? "Complete" : "In progress"}</span></p>
-            <p className={`mt-2 text-sm font-medium ${due.urgent ? "text-warn-700" : "text-stone-600"}`}>{due.label}</p>
+            <p className={`mt-2 text-sm font-medium ${due.urgent ? "text-warn-700 dark:text-warn-400" : "text-stone-600 dark:text-muted-foreground"}`}>{due.label}</p>
             </>
           )}
           {course.summary.uplift !== null && (
-            <p className="mt-3 text-sm text-stone-600">
+            <p className="mt-3 text-sm text-stone-600 dark:text-muted-foreground">
               Baseline {course.summary.baseline_score} → final <b>{course.summary.final_score}</b>{" "}
-              <span className="text-brand-700">({course.summary.uplift >= 0 ? "+" : ""}{course.summary.uplift})</span>
+              <span className="text-brand-700 dark:text-brand-300">({course.summary.uplift >= 0 ? "+" : ""}{course.summary.uplift})</span>
             </p>
           )}
-          <p className="mt-4 flex items-center gap-1.5 text-sm font-medium text-brand-700">
-            {course.state === "upcoming" ? "Opens soon" : NEXT_STEP[course.summary.stage]} <ArrowRight size={14} /> <span className="ml-auto font-semibold text-stone-600">{course.summary.points} pts{course.summary.certificate ? ` · valid until ${course.summary.certificate.expires_at?.slice(0, 10)}` : ""}</span>
+          <p className="mt-4 flex items-center gap-1.5 text-sm font-medium text-brand-700 dark:text-brand-300">
+            {course.state === "upcoming" ? "Opens soon" : NEXT_STEP[course.summary.stage]} <ArrowRight size={14} /> <span className="ml-auto font-semibold text-stone-600 dark:text-muted-foreground">{course.summary.points} pts{course.summary.certificate ? ` · valid until ${course.summary.certificate.expires_at?.slice(0, 10)}` : ""}</span>
           </p>
         </CardContent>
       </Card>
@@ -190,9 +190,9 @@ export default function LearnerHomePage() {
   return (
     <AppShell user={user}>
       <div>
-        <p className="text-sm font-semibold text-brand-700">{home.track.toUpperCase()} TRAINING TRACK</p>
+        <p className="text-sm font-semibold text-brand-700 dark:text-brand-300">{home.track.toUpperCase()} TRAINING TRACK</p>
         <h1 className="mt-1 text-3xl font-semibold tracking-tight">Welcome back, {user.name.replace(/^Dr\.?\s+/i, "").split(" ")[0]}</h1>
-        <p className="mt-2 text-stone-600">
+        <p className="mt-2 text-stone-600 dark:text-muted-foreground">
           {next
             ? <>Your closest deadline is <b>{next.title ?? next.drug.brand}</b>, {timing(next).label.toLowerCase()}.</>
             : "Nothing is outstanding. Everything assigned to you is complete or not yet open."}
@@ -200,18 +200,18 @@ export default function LearnerHomePage() {
       </div>
 
       {nudges.length > 0 && (
-        <Card className="mt-8 border-warn-200 bg-warn-50">
+        <Card className="mt-8 border-warn-200 dark:border-warn-800 bg-warn-50 dark:bg-warn-950">
           <CardContent className="p-5">
-            <p className="flex items-center gap-2 font-semibold"><Bell size={16} className="text-warn-700" /> Needs your attention ({nudges.length})</p>
+            <p className="flex items-center gap-2 font-semibold"><Bell size={16} className="text-warn-700 dark:text-warn-400" /> Needs your attention ({nudges.length})</p>
             <ul className="mt-3 space-y-2">
               {nudges.map((nudge) => (
                 <li key={nudge.key}>
-                  <Link href={nudge.href} className="flex items-center gap-2.5 rounded-lg bg-white p-3 shadow-sm transition-shadow hover:shadow-md">
+                  <Link href={nudge.href} className="flex items-center gap-2.5 rounded-lg bg-white dark:bg-surface p-3 shadow-sm transition-shadow hover:shadow-md">
                     {nudge.urgent
-                      ? <TriangleAlert size={16} className="shrink-0 text-warn-700" />
-                      : <CircleAlert size={16} className="shrink-0 text-brand-700" />}
-                    <span className="min-w-0 text-sm"><b>{nudge.title}</b> <span className="text-stone-600">— {nudge.message}</span></span>
-                    <ArrowRight size={15} className="ml-auto shrink-0 text-brand-700" />
+                      ? <TriangleAlert size={16} className="shrink-0 text-warn-700 dark:text-warn-400" />
+                      : <CircleAlert size={16} className="shrink-0 text-brand-700 dark:text-brand-300" />}
+                    <span className="min-w-0 text-sm"><b>{nudge.title}</b> <span className="text-stone-600 dark:text-muted-foreground">— {nudge.message}</span></span>
+                    <ArrowRight size={15} className="ml-auto shrink-0 text-brand-700 dark:text-brand-300" />
                   </Link>
                 </li>
               ))}
@@ -228,22 +228,22 @@ export default function LearnerHomePage() {
 
       {next && (
         <Link href={`/learn/${next.run_id}`}>
-          <Card className="mt-8 border-brand-200 bg-brand-50 transition-shadow hover:shadow-md">
+          <Card className="mt-8 border-brand-200 dark:border-brand-800 bg-brand-50 dark:bg-brand-950 transition-shadow hover:shadow-md">
             <CardContent className="flex items-center gap-4 p-5">
               <span className="grid size-11 shrink-0 place-items-center rounded-full bg-brand-600 text-white"><GraduationCap size={20} /></span>
               <div className="min-w-0">
-                <p className="text-xs font-semibold uppercase tracking-wide text-brand-700">Up next for you</p>
+                <p className="text-xs font-semibold uppercase tracking-wide text-brand-700 dark:text-brand-300">Up next for you</p>
                 <p className="mt-0.5 truncate text-lg font-semibold">{next.title ?? next.drug.brand} · {timing(next).label}</p>
-                <p className="text-sm text-stone-600">{NEXT_STEP[next.summary.stage]}</p>
+                <p className="text-sm text-stone-600 dark:text-muted-foreground">{NEXT_STEP[next.summary.stage]}</p>
               </div>
-              <ArrowRight size={18} className="ml-auto shrink-0 text-brand-700" />
+              <ArrowRight size={18} className="ml-auto shrink-0 text-brand-700 dark:text-brand-300" />
             </CardContent>
           </Card>
         </Link>
       )}
 
       {!home.courses.length ? (
-        <Card className="mt-9"><CardContent className="flex flex-col items-center gap-3 p-12 text-center text-stone-600">
+        <Card className="mt-9"><CardContent className="flex flex-col items-center gap-3 p-12 text-center text-stone-600 dark:text-muted-foreground">
           <Inbox size={28} className="text-stone-300" />
           <p>Nothing has been assigned to you yet.</p>
           <p className="text-sm">Courses appear here as soon as a medical education lead publishes one to your role.</p>
@@ -256,8 +256,8 @@ export default function LearnerHomePage() {
             <section key={state} className="mt-9">
               <div className="flex flex-wrap items-baseline gap-x-3">
                 <h2 className="text-lg font-semibold">{title}</h2>
-                <span className="text-sm tabular-nums text-stone-500">{courses.length}</span>
-                <p className="text-sm text-stone-600">{blurb}</p>
+                <span className="text-sm tabular-nums text-stone-500 dark:text-stone-400">{courses.length}</span>
+                <p className="text-sm text-stone-600 dark:text-muted-foreground">{blurb}</p>
               </div>
               <div className="mt-4 grid gap-4 lg:grid-cols-2">
                 {courses.map((course) => <AssignmentCard key={course.run_id} course={course} />)}

@@ -53,12 +53,12 @@ function Hero({ roi }: { roi: Analytics["roi"] }) {
           { icon: FileCheck2, label: "Traceable citations", value: measured.citations ?? "–" },
         ].map((item) => (
           <div key={item.label} className="flex items-start gap-3">
-            <span className="mt-0.5 grid size-9 shrink-0 place-items-center rounded-xl bg-brand-50 text-brand-700"><item.icon size={18} /></span>
-            <div><p className="text-xl font-semibold tabular-nums">{item.value}</p><p className="text-sm text-stone-600">{item.label}</p></div>
+            <span className="mt-0.5 grid size-9 shrink-0 place-items-center rounded-xl bg-brand-50 dark:bg-brand-950 text-brand-700 dark:text-brand-300"><item.icon size={18} /></span>
+            <div><p className="text-xl font-semibold tabular-nums">{item.value}</p><p className="text-sm text-stone-600 dark:text-muted-foreground">{item.label}</p></div>
           </div>
         ))}
       </CardContent>
-      <div className="flex items-start gap-2 border-t bg-stone-50 px-6 py-4 text-xs leading-5 text-stone-600">
+      <div className="flex items-start gap-2 border-t bg-stone-50 dark:bg-surface-sunk px-6 py-4 text-xs leading-5 text-stone-600 dark:text-muted-foreground">
         <Info size={14} className="mt-0.5 shrink-0" />
         <p>
           Elapsed time, review cycle, comment count and citations are measured from this course&apos;s own run and review logs.
@@ -96,11 +96,11 @@ function UnitEconomics({ economics, rate, days }: { economics: Analytics["unit_e
       <div className="flex flex-wrap items-end gap-x-8 gap-y-3">
         <div>
           <p className="text-4xl font-semibold tabular-nums">{economics.cost_per_certified_usd === null ? "–" : money(economics.cost_per_certified_usd)}</p>
-          <p className="mt-1 text-sm text-stone-600">now, across {economics.certified} certified</p>
+          <p className="mt-1 text-sm text-stone-600 dark:text-muted-foreground">now, across {economics.certified} certified</p>
         </div>
         <div>
-          <p className="text-2xl font-semibold tabular-nums text-stone-500">{economics.manual_cost_per_certified_usd === null ? "–" : money(economics.manual_cost_per_certified_usd)}</p>
-          <p className="mt-1 text-sm text-stone-600">the same course, built by hand</p>
+          <p className="text-2xl font-semibold tabular-nums text-stone-500 dark:text-stone-400">{economics.manual_cost_per_certified_usd === null ? "–" : money(economics.manual_cost_per_certified_usd)}</p>
+          <p className="mt-1 text-sm text-stone-600 dark:text-muted-foreground">the same course, built by hand</p>
         </div>
       </div>
 
@@ -108,15 +108,15 @@ function UnitEconomics({ economics, rate, days }: { economics: Analytics["unit_e
         {economics.curve.map((point) => (
           <div key={point.learners}>
             <div className="flex items-baseline justify-between gap-4 text-sm">
-              <span className="text-stone-700">
+              <span className="text-stone-700 dark:text-stone-200">
                 {point.learners} learner{point.learners === 1 ? "" : "s"}
                 {point.measured
-                  ? <span className="ml-2 text-xs font-medium text-brand-700">measured</span>
-                  : <span className="ml-2 text-xs text-stone-500">projected</span>}
+                  ? <span className="ml-2 text-xs font-medium text-brand-700 dark:text-brand-300">measured</span>
+                  : <span className="ml-2 text-xs text-stone-500 dark:text-stone-400">projected</span>}
               </span>
               <span className="font-medium tabular-nums">{point.cost_usd === null ? "–" : money(point.cost_usd)}</span>
             </div>
-            <div className="mt-1 h-2 w-full rounded-full bg-stone-100">
+            <div className="mt-1 h-2 w-full rounded-full bg-stone-100 dark:bg-muted">
               <div className="h-2 rounded-full" style={{
                 width: `${Math.min(100, Math.max(1.5, (100 * (point.cost_usd ?? 0)) / best))}%`,
                 background: point.measured ? "var(--color-brand-600)" : "var(--color-brand-300)",
@@ -126,7 +126,7 @@ function UnitEconomics({ economics, rate, days }: { economics: Analytics["unit_e
         ))}
       </div>
 
-      <p className="mt-4 text-xs leading-5 text-stone-600">
+      <p className="mt-4 text-xs leading-5 text-stone-600 dark:text-muted-foreground">
         Build cost is {money(economics.build_cost_usd)}: {economics.expert_days_costed} days of expert effort at{" "}
         {money(rate)}/day plus agent spend.{" "}
         {economics.floored
@@ -146,13 +146,13 @@ function SpeedToCompetence({ speed }: { speed: Analytics["speed_to_competence"] 
       note="Days from the course reaching the field to each learner being certified.">
       <div className="flex flex-wrap items-end gap-x-8 gap-y-3">
         <div>
-          <p className="text-4xl font-semibold tabular-nums">{speed.median_days ?? "–"}<span className="ml-1.5 text-lg font-normal text-stone-600">days</span></p>
-          <p className="mt-1 text-sm text-stone-600">median, {speed.certified} certified</p>
+          <p className="text-4xl font-semibold tabular-nums">{speed.median_days ?? "–"}<span className="ml-1.5 text-lg font-normal text-stone-600 dark:text-muted-foreground">days</span></p>
+          <p className="mt-1 text-sm text-stone-600 dark:text-muted-foreground">median, {speed.certified} certified</p>
         </div>
         {speed.outstanding > 0 && (
           <div>
-            <p className="text-2xl font-semibold tabular-nums text-stone-500">{speed.outstanding}</p>
-            <p className="mt-1 text-sm text-stone-600">still outstanding</p>
+            <p className="text-2xl font-semibold tabular-nums text-stone-500 dark:text-stone-400">{speed.outstanding}</p>
+            <p className="mt-1 text-sm text-stone-600 dark:text-muted-foreground">still outstanding</p>
           </div>
         )}
       </div>
@@ -161,14 +161,14 @@ function SpeedToCompetence({ speed }: { speed: Analytics["speed_to_competence"] 
         {speed.learners.map((learner) => (
           <div key={learner.name}>
             <div className="flex items-baseline justify-between gap-3 text-sm">
-              <span className="min-w-0 truncate text-stone-700">{learner.name} <span className="text-xs text-stone-500">{learner.track}</span></span>
-              <span className="shrink-0 tabular-nums text-stone-700">
+              <span className="min-w-0 truncate text-stone-700 dark:text-stone-200">{learner.name} <span className="text-xs text-stone-500 dark:text-stone-400">{learner.track}</span></span>
+              <span className="shrink-0 tabular-nums text-stone-700 dark:text-stone-200">
                 {learner.days === null
-                  ? <span className="text-stone-500">not yet certified</span>
-                  : <>{learner.days} days{learner.attempts > 1 && <span className="ml-1.5 text-xs text-stone-500">{learner.attempts} attempts</span>}</>}
+                  ? <span className="text-stone-500 dark:text-stone-400">not yet certified</span>
+                  : <>{learner.days} days{learner.attempts > 1 && <span className="ml-1.5 text-xs text-stone-500 dark:text-stone-400">{learner.attempts} attempts</span>}</>}
               </span>
             </div>
-            <div className="mt-1 h-2 w-full rounded-full bg-stone-100">
+            <div className="mt-1 h-2 w-full rounded-full bg-stone-100 dark:bg-muted">
               {learner.days !== null && (
                 <div className="h-2 rounded-full" style={{ width: `${Math.min(100, Math.max(2, (100 * learner.days) / scale))}%`, background: "var(--color-brand-600)" }} />
               )}
@@ -187,12 +187,12 @@ function CheckerLeverage({ leverage }: { leverage: Analytics["checker_leverage"]
       note="Machine findings the experts agreed with. A dismissed finding saved nobody anything and is not counted.">
       <div className="flex flex-wrap items-end gap-x-8 gap-y-3">
         <div>
-          <p className="text-4xl font-semibold tabular-nums">{leverage.reviewer_hours_saved}<span className="ml-1.5 text-lg font-normal text-stone-600">hrs</span></p>
-          <p className="mt-1 text-sm text-stone-600">of expert reading, at {leverage.minutes_per_defect} min per defect</p>
+          <p className="text-4xl font-semibold tabular-nums">{leverage.reviewer_hours_saved}<span className="ml-1.5 text-lg font-normal text-stone-600 dark:text-muted-foreground">hrs</span></p>
+          <p className="mt-1 text-sm text-stone-600 dark:text-muted-foreground">of expert reading, at {leverage.minutes_per_defect} min per defect</p>
         </div>
         <div>
-          <p className="text-2xl font-semibold tabular-nums text-stone-500">{leverage.agreement_percent === null ? "–" : `${leverage.agreement_percent}%`}</p>
-          <p className="mt-1 text-sm text-stone-600">
+          <p className="text-2xl font-semibold tabular-nums text-stone-500 dark:text-stone-400">{leverage.agreement_percent === null ? "–" : `${leverage.agreement_percent}%`}</p>
+          <p className="mt-1 text-sm text-stone-600 dark:text-muted-foreground">
             {leverage.agreement_percent === null
               ? `of its findings accepted — withheld until ${leverage.min_for_rate} are settled`
               : "of its findings were accepted"}
@@ -210,7 +210,7 @@ function CheckerLeverage({ leverage }: { leverage: Analytics["checker_leverage"]
           ["Raised by people", leverage.human_comments],
         ].map(([label, value]) => (
           <div key={label as string}>
-            <dt className="text-stone-600">{label}</dt>
+            <dt className="text-stone-600 dark:text-muted-foreground">{label}</dt>
             <dd className="text-lg font-semibold tabular-nums">{value}</dd>
           </div>
         ))}
@@ -229,9 +229,9 @@ export function CourseImpactPanel({ runId }: { runId: string }) {
     getJson<Cohort>(`/api/runs/${runId}/cohort`).then(setCohort).catch(() => undefined);
   }, [runId]);
 
-  if (!analytics) return <Card><CardContent className="p-8 text-center text-stone-600">{error || "Loading impact…"}</CardContent></Card>;
+  if (!analytics) return <Card><CardContent className="p-8 text-center text-stone-600 dark:text-muted-foreground">{error || "Loading impact…"}</CardContent></Card>;
   if (analytics.roi.measured.days_to_publish === null) {
-    return <Card><CardContent className="p-8 text-center text-stone-600">Publish this course to measure its impact.</CardContent></Card>;
+    return <Card><CardContent className="p-8 text-center text-stone-600 dark:text-muted-foreground">Publish this course to measure its impact.</CardContent></Card>;
   }
 
   const funnelMax = analytics.funnel[0]?.count ?? 1;
@@ -274,30 +274,30 @@ export function CourseImpactPanel({ runId }: { runId: string }) {
             <div className="space-y-5">
               <UpliftMeter baseline={cohort.average_baseline!} final={cohort.average_final!}
                 label={`The same cohort, measured before and after the course.`} />
-              <div className="rounded-xl bg-brand-50 p-4">
+              <div className="rounded-xl bg-brand-50 dark:bg-brand-950 p-4">
                 <p className="text-3xl font-semibold tabular-nums text-ink">+{cohort.average_uplift}</p>
-                <p className="mt-1 text-sm text-stone-600">percentage points gained per learner</p>
+                <p className="mt-1 text-sm text-stone-600 dark:text-muted-foreground">percentage points gained per learner</p>
               </div>
 
               {/* One cohort average hides the case the two tracks exist to handle. */}
               {analytics.uplift_by_track.length > 1 && (
                 <div className="space-y-3 border-t pt-4">
-                  <p className="text-sm font-medium text-stone-700">By track</p>
+                  <p className="text-sm font-medium text-stone-700 dark:text-stone-200">By track</p>
                   {analytics.uplift_by_track.map((entry) => (
                     <div key={entry.track} className="flex items-baseline justify-between gap-4 text-sm">
-                      <span className="text-stone-700">
-                        {entry.track} <span className="text-xs text-stone-500">{entry.learners} learner{entry.learners === 1 ? "" : "s"}</span>
+                      <span className="text-stone-700 dark:text-stone-200">
+                        {entry.track} <span className="text-xs text-stone-500 dark:text-stone-400">{entry.learners} learner{entry.learners === 1 ? "" : "s"}</span>
                       </span>
-                      <span className="tabular-nums text-stone-700">
+                      <span className="tabular-nums text-stone-700 dark:text-stone-200">
                         {entry.baseline} → <b>{entry.final}</b>
-                        <span className="ml-2 font-medium text-brand-700">+{entry.uplift}</span>
+                        <span className="ml-2 font-medium text-brand-700 dark:text-brand-300">+{entry.uplift}</span>
                       </span>
                     </div>
                   ))}
                 </div>
               )}
             </div>
-          ) : <p className="py-8 text-center text-stone-600">No learner has completed both assessments yet.</p>}
+          ) : <p className="py-8 text-center text-stone-600 dark:text-muted-foreground">No learner has completed both assessments yet.</p>}
         </ChartFrame>
 
         <ChartFrame title="Final score distribution" note="Where the cohort landed on the graded assessment.">
@@ -314,7 +314,7 @@ export function CourseImpactPanel({ runId }: { runId: string }) {
                 { label: "Certificates issued", values: analytics.activity.map((entry) => entry.certificates) },
               ],
             }} />
-          ) : <p className="py-8 text-center text-stone-600">No learner activity recorded yet.</p>}
+          ) : <p className="py-8 text-center text-stone-600 dark:text-muted-foreground">No learner activity recorded yet.</p>}
         </ChartFrame>
       </div>
 
@@ -324,7 +324,7 @@ export function CourseImpactPanel({ runId }: { runId: string }) {
         {hardest.length ? (
           <>
             {flagged > 0 && (
-              <p className="mb-3 inline-flex items-center gap-2 rounded-lg bg-warn-50 px-3 py-2 text-sm text-warn-700">
+              <p className="mb-3 inline-flex items-center gap-2 rounded-lg bg-warn-50 dark:bg-warn-950 px-3 py-2 text-sm text-warn-700 dark:text-warn-400">
                 <TriangleAlert size={15} /> {flagged} question{flagged === 1 ? "" : "s"} below {NEEDS_REVIEW}% — worth revisiting in the next version
               </p>
             )}
@@ -337,7 +337,7 @@ export function CourseImpactPanel({ runId }: { runId: string }) {
               ))}
             </div>
           </>
-        ) : <p className="py-8 text-center text-stone-600">No graded answers recorded yet.</p>}
+        ) : <p className="py-8 text-center text-stone-600 dark:text-muted-foreground">No graded answers recorded yet.</p>}
       </ChartFrame>
 
       <ChartFrame title="Module engagement" note="Completions and the rating learners gave each module.">
@@ -357,18 +357,18 @@ export function CourseImpactPanel({ runId }: { runId: string }) {
                 <div className="flex flex-wrap items-center gap-2">
                   <p className="text-sm font-medium">{entry.name}</p>
                   <Badge variant="outline" className="capitalize">{entry.module_id}</Badge>
-                  <span className="ml-auto inline-flex items-center gap-1 text-sm tabular-nums text-stone-700">
+                  <span className="ml-auto inline-flex items-center gap-1 text-sm tabular-nums text-stone-700 dark:text-stone-200">
                     <Star size={14} className="fill-warn-400 text-warn-500" /> {entry.rating}/5
                   </span>
                 </div>
-                {entry.comment && <p className="mt-2 leading-6 text-stone-700">{entry.comment}</p>}
+                {entry.comment && <p className="mt-2 leading-6 text-stone-700 dark:text-stone-200">{entry.comment}</p>}
               </div>
             ))}
           </div>
         </ChartFrame>
       )}
 
-      <p className="flex items-center gap-2 text-xs text-stone-600">
+      <p className="flex items-center gap-2 text-xs text-stone-600 dark:text-muted-foreground">
         <CircleDollarSign size={14} /> Updating this course when the label changes is estimated to save a further{" "}
         {analytics.roi.saving.update_days_saved} days of manual effort per revision.
       </p>

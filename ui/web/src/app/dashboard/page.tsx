@@ -65,13 +65,13 @@ function CourseCard({ course, mine }: { course: Course; mine?: boolean }) {
     <Card className={`h-full transition-shadow ${course.run_id ? "hover:shadow-md" : ""} ${mine ? "border-brand-600" : ""}`}>
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between">
-          <span className="rounded-xl bg-brand-50 p-2.5 text-brand-700"><BookOpenCheck size={20} /></span>
+          <span className="rounded-xl bg-brand-50 dark:bg-brand-950 p-2.5 text-brand-700 dark:text-brand-300"><BookOpenCheck size={20} /></span>
           <div className="flex flex-wrap justify-end gap-1.5">
             {/* Reads before the status chip, because on a shared queue "is this mine"
                 is the question a reviewer opens the page with. */}
             {mine && <Badge className="bg-brand-600"><UserRoundCheck size={12} /> Assigned to you</Badge>}
             <Badge variant={course.review_status === "published" ? "default" : "secondary"} className={`inline-flex items-center gap-1.5 ${course.review_status === "published" ? "bg-brand-600" : ""}`}>
-              <span aria-hidden className={`size-1.5 rounded-full ${!course.review_status || !course.run_id ? "bg-stone-400" : course.review_status === "published" ? "bg-white" : "bg-warn-500"}`} />
+              <span aria-hidden className={`size-1.5 rounded-full ${!course.review_status || !course.run_id ? "bg-stone-400" : course.review_status === "published" ? "bg-white dark:bg-white" : "bg-warn-500"}`} />
               {course.review_status ? REVIEW_LABEL[course.review_status] : course.status}
             </Badge>
           </div>
@@ -79,20 +79,20 @@ function CourseCard({ course, mine }: { course: Course; mine?: boolean }) {
         <CardTitle className="pt-3 text-lg">{course.name}</CardTitle>
         {/* Therapeutic area only, as in the programme list: a card is no place to
             restate a licensed-use claim away from the checks that scrutinise it. */}
-        <p className="text-sm text-stone-600">{course.generic} · {course.area.split(/[–—-]/)[0].trim()}</p>
+        <p className="text-sm text-stone-600 dark:text-muted-foreground">{course.generic} · {course.area.split(/[–—-]/)[0].trim()}</p>
       </CardHeader>
       <CardContent>
         <Progress value={course.progress} />
-        <div className="mt-3 flex justify-between text-xs text-stone-600">
+        <div className="mt-3 flex justify-between text-xs text-stone-600 dark:text-muted-foreground">
           <span>{course.run_id ? `Version ${course.version ?? 1}` : "Content readiness"}</span>
           <span>{course.run_id && course.assigned ? `${course.assigned} assigned` : `${course.progress}%`}</span>
         </div>
         {course.live_version ? (
-          <p className="mt-2 text-xs text-stone-600">
+          <p className="mt-2 text-xs text-stone-600 dark:text-muted-foreground">
             v{course.live_version} is live with {course.live_assigned} trainee(s)
           </p>
         ) : null}
-        {course.run_id && <p className="mt-4 flex items-center gap-1.5 text-sm font-medium text-brand-700">Open course <ArrowRight size={14} /></p>}
+        {course.run_id && <p className="mt-4 flex items-center gap-1.5 text-sm font-medium text-brand-700 dark:text-brand-300">Open course <ArrowRight size={14} /></p>}
       </CardContent>
     </Card>
   );
@@ -149,9 +149,9 @@ export default function Dashboard() {
     <AppShell user={user}>
       <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
         <div>
-          <p className="text-sm font-semibold text-brand-700">{admin ? "CONTENT OPERATIONS" : "MEDICAL REVIEW"}</p>
+          <p className="text-sm font-semibold text-brand-700 dark:text-brand-300">{admin ? "CONTENT OPERATIONS" : "MEDICAL REVIEW"}</p>
           <h1 className="mt-1 text-3xl font-semibold tracking-tight">{admin ? "Training dashboard" : "Review queue"}</h1>
-          <p className="mt-2 text-stone-600">{admin ? "Create, review, publish and monitor evidence-backed learning." : "Open a course to comment on its assets and record your sign-off."}</p>
+          <p className="mt-2 text-stone-600 dark:text-muted-foreground">{admin ? "Create, review, publish and monitor evidence-backed learning." : "Open a course to comment on its assets and record your sign-off."}</p>
         </div>
         {admin && (
           <Dialog>
@@ -160,8 +160,8 @@ export default function Dashboard() {
               <DialogHeader><DialogTitle>Create a training course</DialogTitle><DialogDescription>Search by brand or generic drug name.</DialogDescription></DialogHeader>
               <form onSubmit={create} className="space-y-5 pt-3">
                 <div><label className="text-sm font-medium">Search for a drug</label><Input value={drug} onChange={(event) => setDrug(event.target.value)} className="mt-2" autoFocus /></div>
-                <div className="rounded-xl bg-brand-50 p-4 text-sm text-brand-800">The agent will produce a PPTX, video storyboard, FAQ, and interactive quiz with citations.</div>
-                {error && <p className="text-sm text-danger-600">{error}</p>}
+                <div className="rounded-xl bg-brand-50 dark:bg-brand-950 p-4 text-sm text-brand-800 dark:text-brand-200">The agent will produce a PPTX, video storyboard, FAQ, and interactive quiz with citations.</div>
+                {error && <p className="text-sm text-danger-600 dark:text-danger-300">{error}</p>}
                 <Button type="submit" disabled={busy || !drug.trim()} className="w-full bg-brand-600 hover:bg-brand-800">{busy ? "Starting…" : "Create course"}<ArrowRight /></Button>
               </form>
             </DialogContent>
@@ -169,7 +169,7 @@ export default function Dashboard() {
         )}
       </div>
 
-      {error && <p className="mt-5 text-sm text-danger-600">{error}</p>}
+      {error && <p className="mt-5 text-sm text-danger-600 dark:text-danger-300">{error}</p>}
       {impact && published[0] && (
         <Link href={`/courses/${published[0].run_id}`} className="mt-8 flex flex-col gap-3 rounded-xl bg-surface-deep p-5 text-white transition-colors hover:bg-brand-800 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
@@ -198,16 +198,16 @@ export default function Dashboard() {
       </section>
 
       {results && results.courses.length > 0 && (
-        <section className="mt-8 rounded-xl border bg-white p-5 shadow-sm">
+        <section className="mt-8 rounded-xl border bg-white dark:bg-surface p-5 shadow-sm">
           <div className="flex flex-wrap items-baseline gap-x-6 gap-y-1">
             <h2 className="text-lg font-semibold">Results</h2>
-            <p className="text-sm text-stone-600"><b className="text-ink">{results.certified}</b> of <b className="text-ink">{results.assigned}</b> assigned learners certified</p>
+            <p className="text-sm text-stone-600 dark:text-muted-foreground"><b className="text-ink">{results.certified}</b> of <b className="text-ink">{results.assigned}</b> assigned learners certified</p>
           </div>
           <div className="mt-3 flex flex-wrap gap-2">
             {results.courses.map((course) => (
-              <Link key={course.run_id} href={`/courses/${course.run_id}`} className="inline-flex items-center gap-2 rounded-lg bg-stone-50 px-3 py-1.5 text-sm hover:bg-stone-100">
+              <Link key={course.run_id} href={`/courses/${course.run_id}`} className="inline-flex items-center gap-2 rounded-lg bg-stone-50 dark:bg-surface-sunk px-3 py-1.5 text-sm hover:bg-stone-100 dark:hover:bg-muted">
                 <span className="font-medium">{course.name} v{course.version}</span>
-                <span className="text-stone-600">{course.certified}/{course.assigned} certified{course.average_uplift !== null ? ` · +${course.average_uplift}` : ""}</span>
+                <span className="text-stone-600 dark:text-muted-foreground">{course.certified}/{course.assigned} certified{course.average_uplift !== null ? ` · +${course.average_uplift}` : ""}</span>
               </Link>
             ))}
           </div>
@@ -217,7 +217,7 @@ export default function Dashboard() {
       <section className="mt-9">
         <h2 className="text-lg font-semibold">Courses</h2>
         {!courses.length && !error && (
-          <Card className="mt-4"><CardContent className="flex flex-col items-center gap-3 p-12 text-center text-stone-600">
+          <Card className="mt-4"><CardContent className="flex flex-col items-center gap-3 p-12 text-center text-stone-600 dark:text-muted-foreground">
             <BookOpenCheck size={28} className="text-stone-300" />
             <p>No courses yet.</p>
             <p className="text-sm">{admin ? "Create content for a drug to generate the first one." : "Courses appear here once a medical education lead generates one."}</p>

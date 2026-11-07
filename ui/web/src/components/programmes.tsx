@@ -15,11 +15,11 @@ import { PromptDialog } from "@/components/prompt-dialog";
  * decision, and it reads as neutral rather than negative — filing, not failure.
  */
 const STATE: Record<ProgrammeState, { label: string; className: string }> = {
-  draft: { label: "Not published", className: "bg-stone-100 text-stone-600" },
-  scheduled: { label: "Scheduled", className: "bg-signal-50 text-signal-700" },
-  live: { label: "Live", className: "bg-brand-50 text-brand-700" },
-  completed: { label: "Completed", className: "bg-stone-100 text-stone-700" },
-  archived: { label: "Archived", className: "bg-stone-100 text-stone-500" },
+  draft: { label: "Not published", className: "bg-stone-100 dark:bg-muted text-stone-600 dark:text-muted-foreground" },
+  scheduled: { label: "Scheduled", className: "bg-signal-50 dark:bg-signal-950 text-signal-700 dark:text-signal-300" },
+  live: { label: "Live", className: "bg-brand-50 dark:bg-brand-950 text-brand-700 dark:text-brand-300" },
+  completed: { label: "Completed", className: "bg-stone-100 dark:bg-muted text-stone-700 dark:text-stone-200" },
+  archived: { label: "Archived", className: "bg-stone-100 dark:bg-muted text-stone-500 dark:text-stone-400" },
 };
 
 function when(value: string | null) {
@@ -55,13 +55,13 @@ function ProgrammeRow({ programme, user, onChange }: {
     <div className="flex flex-wrap items-center gap-x-5 gap-y-3 border-b py-4 last:border-0 last:pb-0">
       <div className="min-w-[11rem] flex-1">
         <div className="flex flex-wrap items-center gap-2">
-          <Link href={`/courses/${programme.run_id}`} className="font-medium text-stone-900 hover:underline">
+          <Link href={`/courses/${programme.run_id}`} className="font-medium text-stone-900 dark:text-stone-100 hover:underline">
             {programme.title ?? programme.drug.brand}
           </Link>
           <Badge className={state.className}>{state.label}</Badge>
-          <span className="text-xs text-stone-600">v{programme.version}</span>
+          <span className="text-xs text-stone-600 dark:text-muted-foreground">v{programme.version}</span>
           {programme.overrides > 0 && (
-            <span className="inline-flex items-center gap-1 text-xs font-medium text-warn-700"
+            <span className="inline-flex items-center gap-1 text-xs font-medium text-warn-700 dark:text-warn-400"
               title="Published with a still-failing check, overridden on the record">
               <ShieldAlert size={12} /> {programme.overrides} override{programme.overrides === 1 ? "" : "s"}
             </span>
@@ -70,22 +70,22 @@ function ProgrammeRow({ programme, user, onChange }: {
         {/* The therapeutic area only. The full indication string belongs on the
             course, where it is shown against the checks that scrutinise it — a list
             row repeating a licensed-use claim out of context is how they spread. */}
-        <p className="mt-1 text-sm text-stone-600">
+        <p className="mt-1 text-sm text-stone-600 dark:text-muted-foreground">
           {programme.title ? `${programme.drug.brand} · ` : ""}{programme.drug.generic} ·{" "}
           {programme.drug.area.split(/[–—-]/)[0].trim()}
           {programme.reuses ? " · reuses approved content" : ""}
         </p>
       </div>
 
-      <div className="min-w-[10rem] text-sm text-stone-700">
-        <p className="flex items-center gap-1.5"><CalendarClock size={14} className="text-stone-500" />
+      <div className="min-w-[10rem] text-sm text-stone-700 dark:text-stone-200">
+        <p className="flex items-center gap-1.5"><CalendarClock size={14} className="text-stone-500 dark:text-stone-400" />
           {when(programme.starts_on)} – {when(programme.due_on)}</p>
-        {deadline(programme) && <p className="mt-0.5 pl-[1.375rem] text-xs text-stone-600">{deadline(programme)}</p>}
+        {deadline(programme) && <p className="mt-0.5 pl-[1.375rem] text-xs text-stone-600 dark:text-muted-foreground">{deadline(programme)}</p>}
       </div>
 
-      <div className="min-w-[9rem] text-sm tabular-nums text-stone-700">
+      <div className="min-w-[9rem] text-sm tabular-nums text-stone-700 dark:text-stone-200">
         <p><b>{cohort.certified}</b> of {cohort.assigned} certified</p>
-        <p className="mt-0.5 text-xs text-stone-600">
+        <p className="mt-0.5 text-xs text-stone-600 dark:text-muted-foreground">
           {cohort.average_uplift === null ? "no paired scores yet" : `+${cohort.average_uplift} pts average uplift`}
         </p>
       </div>
@@ -140,7 +140,7 @@ export function ProgrammesPanel({ data, user, onChange }: {
       <CardHeader className="flex-row flex-wrap items-start justify-between gap-4">
         <div>
           <CardTitle className="text-base">{data.client.name} · training programmes</CardTitle>
-          <p className="mt-2 text-sm text-stone-600">
+          <p className="mt-2 text-sm text-stone-600 dark:text-muted-foreground">
             {data.states.live} live · {data.states.scheduled} scheduled · {data.states.completed} completed
             {archived > 0 && ` · ${archived} archived`}. State is read from the schedule and the cohort each time,
             so it is never a label someone forgot to change.
@@ -158,7 +158,7 @@ export function ProgrammesPanel({ data, user, onChange }: {
             <ProgrammeRow key={programme.run_id} programme={programme} user={user} onChange={onChange} />
           ))
         ) : (
-          <p className="py-6 text-center text-sm text-stone-600">
+          <p className="py-6 text-center text-sm text-stone-600 dark:text-muted-foreground">
             No programme is running yet. Publish a course to a cohort and it appears here.
           </p>
         )}

@@ -45,7 +45,7 @@ export function CourseChatDock({ runId, learner, context, userId, title, blurb }
       <aside
         aria-hidden={!open}
         aria-label={title ?? "Ask the course"}
-        className={`fixed inset-y-0 right-0 z-50 w-[min(23rem,100vw)] border-l border-line bg-white shadow-2xl transition-transform duration-200 print:hidden ${open ? "translate-x-0" : "pointer-events-none translate-x-full"}`}
+        className={`fixed inset-y-0 right-0 z-50 w-[min(23rem,100vw)] border-l border-line bg-white dark:bg-surface shadow-2xl transition-transform duration-200 print:hidden ${open ? "translate-x-0" : "pointer-events-none translate-x-full"}`}
       >
         {open && (
           <CourseChat runId={runId} learner={learner} context={context} userId={userId} title={title} blurb={blurb} fill onClose={() => setOpen(false)} />

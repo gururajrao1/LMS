@@ -46,14 +46,14 @@ function Journey({ course, runId }: { course: LearnerCourse; runId: string }) {
       <CardContent className="grid gap-4 p-5 md:grid-cols-4">
         {steps.map((step, index) => {
           const inner = (
-            <div className={`flex h-full gap-3 rounded-xl border p-4 transition-colors ${step.href ? "hover:bg-stone-50" : ""} ${step.done ? "border-brand-200 bg-brand-50" : ""}`}>
-              <span className={`mt-0.5 grid size-7 shrink-0 place-items-center rounded-full text-xs font-semibold ${step.done ? "bg-brand-600 text-white" : step.href ? "bg-brand-50 text-brand-700" : "bg-stone-100 text-stone-500"}`}>
+            <div className={`flex h-full gap-3 rounded-xl border p-4 transition-colors ${step.href ? "hover:bg-stone-50 dark:hover:bg-surface-sunk" : ""} ${step.done ? "border-brand-200 dark:border-brand-800 bg-brand-50 dark:bg-brand-950" : ""}`}>
+              <span className={`mt-0.5 grid size-7 shrink-0 place-items-center rounded-full text-xs font-semibold ${step.done ? "bg-brand-600 text-white" : step.href ? "bg-brand-50 dark:bg-brand-950 text-brand-700 dark:text-brand-300" : "bg-stone-100 dark:bg-muted text-stone-500 dark:text-stone-400"}`}>
                 {step.done ? <Check size={15} /> : step.href ? index + 1 : <Lock size={13} />}
               </span>
               <div className="min-w-0">
                 <p className="text-sm font-semibold">{step.title}</p>
-                <p className="mt-1 text-xs leading-5 text-stone-600">{step.detail}</p>
-                {step.href && !step.done && <p className="mt-2 flex items-center gap-1 text-xs font-medium text-brand-700">Open <ArrowRight size={12} /></p>}
+                <p className="mt-1 text-xs leading-5 text-stone-600 dark:text-muted-foreground">{step.detail}</p>
+                {step.href && !step.done && <p className="mt-2 flex items-center gap-1 text-xs font-medium text-brand-700 dark:text-brand-300">Open <ArrowRight size={12} /></p>}
               </div>
             </div>
           );
@@ -111,18 +111,18 @@ function ModuleFooter({ module, runId, userId, onChange }: { module: LearnerModu
   }
 
   return (
-    <div className="mt-5 flex flex-col gap-4 rounded-xl border bg-white p-5 sm:flex-row sm:items-center sm:justify-between">
+    <div className="mt-5 flex flex-col gap-4 rounded-xl border bg-white dark:bg-surface p-5 sm:flex-row sm:items-center sm:justify-between">
       <div>
         <p className="font-semibold">{done ? "Module complete" : `Finished the ${module.title.toLowerCase()}?`}</p>
         <div className="mt-2 flex items-center gap-1">
-          <span className="mr-2 text-sm text-stone-600">Rate this module:</span>
+          <span className="mr-2 text-sm text-stone-600 dark:text-muted-foreground">Rate this module:</span>
           {[1, 2, 3, 4, 5].map((value) => (
-            <button key={value} type="button" onClick={() => rate(value)} aria-label={`${value} star${value > 1 ? "s" : ""}`} className="rounded p-0.5 hover:bg-stone-100">
-              <Star size={17} className={value <= rating ? "fill-warn-400 text-warn-400" : "text-stone-300"} />
+            <button key={value} type="button" onClick={() => rate(value)} aria-label={`${value} star${value > 1 ? "s" : ""}`} className="rounded p-0.5 hover:bg-stone-100 dark:hover:bg-muted">
+              <Star size={17} className={value <= rating ? "fill-warn-400 text-warn-400" : "text-stone-300 dark:text-stone-600"} />
             </button>
           ))}
-          {saved && <span className="ml-2 text-xs text-brand-700">Saved</span>}
-          {notice && <span className="ml-2 text-xs text-warn-700">{notice}</span>}
+          {saved && <span className="ml-2 text-xs text-brand-700 dark:text-brand-300">Saved</span>}
+          {notice && <span className="ml-2 text-xs text-warn-700 dark:text-warn-400">{notice}</span>}
         </div>
         {rating > 0 && (
           <Input value={comment} onChange={(event) => { setComment(event.target.value); setSaved(false); }} onBlur={saveComment} placeholder="What would make this module better?" className="mt-3 max-w-md" />
@@ -141,12 +141,12 @@ function PracticeMissed({ runId, userId }: { runId: string; userId: string }) {
   if (!practice || !practice.missed_count) return null;
   return (
     <Card className="mt-6">
-      <CardHeader><CardTitle>Practice what you missed ({practice.missed_count})</CardTitle><p className="mt-2 text-sm text-stone-600">No answer key here — try each one, then check the material before retaking the final.</p></CardHeader>
+      <CardHeader><CardTitle>Practice what you missed ({practice.missed_count})</CardTitle><p className="mt-2 text-sm text-stone-600 dark:text-muted-foreground">No answer key here — try each one, then check the material before retaking the final.</p></CardHeader>
       <CardContent className="space-y-3">
         {practice.questions.map((question, index) => (
           <div key={question.id} className="rounded-xl border p-4">
             <p className="text-sm font-medium">{index + 1}. {question.prompt}</p>
-            <ul className="mt-2 space-y-1">{question.options.map((option, optionIndex) => <li key={optionIndex} className="rounded-lg bg-stone-50 px-3 py-2 text-sm text-stone-700">{option}</li>)}</ul>
+            <ul className="mt-2 space-y-1">{question.options.map((option, optionIndex) => <li key={optionIndex} className="rounded-lg bg-stone-50 dark:bg-surface-sunk px-3 py-2 text-sm text-stone-700 dark:text-stone-200">{option}</li>)}</ul>
           </div>
         ))}
       </CardContent>
@@ -176,7 +176,7 @@ function Flashcards({ items, storageKey }: { items: { question: string; answer: 
       return saved ? JSON.parse(saved) as Record<string, "knew" | "missed"> : {};
     } catch { return {}; }
   });
-  if (!items.length) return <Card><CardContent className="p-8 text-center text-stone-600">No revision cards in this course yet.</CardContent></Card>;
+  if (!items.length) return <Card><CardContent className="p-8 text-center text-stone-600 dark:text-muted-foreground">No revision cards in this course yet.</CardContent></Card>;
   const current = items[order[position % order.length]];
   const reviewed = Object.keys(grades).length;
   const knew = Object.values(grades).filter((grade) => grade === "knew").length;
@@ -197,7 +197,7 @@ function Flashcards({ items, storageKey }: { items: { question: string; answer: 
   }
   return (
     <div>
-      <div className="mb-4 flex flex-wrap items-center gap-2 text-sm text-stone-600">
+      <div className="mb-4 flex flex-wrap items-center gap-2 text-sm text-stone-600 dark:text-muted-foreground">
         <span>{reviewed} of {items.length} reviewed · {knew} knew</span>
         <span className="ml-auto flex gap-2">
           <Button variant="outline" onClick={shuffle}><Shuffle /> Shuffle</Button>
@@ -205,11 +205,11 @@ function Flashcards({ items, storageKey }: { items: { question: string; answer: 
         </span>
       </div>
       <button type="button" onClick={() => setFlipped((open) => !open)} aria-live="polite"
-        className="block min-h-56 w-full rounded-2xl border bg-white p-8 text-left shadow-sm transition-shadow hover:shadow-md">
-        <p className="text-xs font-semibold uppercase tracking-wide text-brand-700">{flipped ? "Answer — click to hide" : `Card ${position + 1} of ${order.length} — try it, then click to reveal`}</p>
+        className="block min-h-56 w-full rounded-2xl border bg-white dark:bg-surface p-8 text-left shadow-sm transition-shadow hover:shadow-md">
+        <p className="text-xs font-semibold uppercase tracking-wide text-brand-700 dark:text-brand-300">{flipped ? "Answer — click to hide" : `Card ${position + 1} of ${order.length} — try it, then click to reveal`}</p>
         <p className="mt-3 text-xl font-semibold leading-8">{current.question}</p>
-        {flipped && (<div className="mt-4 border-t pt-4"><p className="leading-7 text-stone-700">{current.answer}</p>
-          {current.nuance && <p className="mt-3 text-sm leading-6 text-stone-600"><b>Important context:</b> {current.nuance}</p>}</div>)}
+        {flipped && (<div className="mt-4 border-t pt-4"><p className="leading-7 text-stone-700 dark:text-stone-200">{current.answer}</p>
+          {current.nuance && <p className="mt-3 text-sm leading-6 text-stone-600 dark:text-muted-foreground"><b>Important context:</b> {current.nuance}</p>}</div>)}
       </button>
       <div className="mt-4 flex flex-wrap items-center gap-2">
         <Button onClick={() => grade("missed")} variant="outline">Still fuzzy</Button>
@@ -253,15 +253,15 @@ function MaterialSearch({ course, onJump }: { course: LearnerCourse; onJump: (ta
       <Search size={16} className="pointer-events-none absolute left-3 top-3 text-stone-400" />
       <Input value={query} onChange={(event) => setQuery(event.target.value)} onKeyDown={(event) => { if (event.key === "Escape") setQuery(""); }} placeholder="Search the material — slides, scenes, FAQ…" className="pl-9" aria-label="Search the course material" />
       {query.trim().length >= 2 && (
-        <div className="absolute z-20 mt-1 max-h-80 w-full overflow-y-auto rounded-xl border bg-white shadow-lg">
+        <div className="absolute z-20 mt-1 max-h-80 w-full overflow-y-auto rounded-xl border bg-white dark:bg-surface shadow-lg">
           {hits.length ? hits.map((hit, index) => (
             <button key={`${hit.tab}-${hit.anchor ?? "top"}-${index}`} type="button"
               onClick={() => { onJump(hit.tab, hit.anchor); setQuery(""); }}
-              className="block w-full border-b p-3 text-left last:border-0 hover:bg-stone-50">
-              <p className="text-sm font-semibold">{hit.title} <span className="ml-1 font-normal text-stone-500">· {hit.tab}</span></p>
-              <p className="mt-1 text-sm text-stone-600">{hit.snippet}</p>
+              className="block w-full border-b p-3 text-left last:border-0 hover:bg-stone-50 dark:hover:bg-surface-sunk">
+              <p className="text-sm font-semibold">{hit.title} <span className="ml-1 font-normal text-stone-500 dark:text-stone-400">· {hit.tab}</span></p>
+              <p className="mt-1 text-sm text-stone-600 dark:text-muted-foreground">{hit.snippet}</p>
             </button>
-          )) : <p className="p-3 text-sm text-stone-600">Nothing in this course matches.</p>}
+          )) : <p className="p-3 text-sm text-stone-600 dark:text-muted-foreground">Nothing in this course matches.</p>}
         </div>
       )}
     </div>
@@ -366,8 +366,8 @@ export default function CoursePlayer() {
 
   return (
     <AppShell user={user}>
-      <Link href="/learn" className="mb-5 inline-flex items-center gap-2 text-sm font-medium text-stone-600 hover:text-brand-700"><ArrowLeft size={16} /> Back to my training</Link>
-      {synced && <p className="mb-4 text-sm text-brand-700" role="status">{synced}</p>}
+      <Link href="/learn" className="mb-5 inline-flex items-center gap-2 text-sm font-medium text-stone-600 dark:text-muted-foreground hover:text-brand-700 dark:hover:text-brand-300"><ArrowLeft size={16} /> Back to my training</Link>
+      {synced && <p className="mb-4 text-sm text-brand-700 dark:text-brand-300" role="status">{synced}</p>}
 
       <div className="rounded-2xl bg-surface-deep p-7 text-white md:p-10">
         <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
@@ -399,16 +399,16 @@ export default function CoursePlayer() {
       </div>
 
       <Journey course={course} runId={runId} />
-      <Card className="mt-6"><CardContent className="flex flex-col gap-3 p-5 text-sm sm:flex-row sm:items-center"><div><p className="font-semibold">Next best action</p><p className="mt-1 text-stone-600">{course.summary.baseline_score === null ? "Start the baseline check to record your starting point." : course.summary.modules_complete !== course.summary.modules_total ? `Continue learning: ${course.summary.modules_complete} of ${course.summary.modules_total} modules done.` : !course.summary.passed ? "Take the final assessment; every module is done." : course.summary.certificate ? `Certified: ${course.summary.certificate.code}.` : "Review the material, then take the final."}</p></div><Button nativeButton={false} render={<Link href={course.summary.baseline_score === null ? `/learn/${runId}/assessment/baseline` : course.summary.modules_complete !== course.summary.modules_total ? `/learn/${runId}?tab=${tab}` : !course.summary.passed ? `/learn/${runId}/assessment/final` : `/learn/${runId}/certificate`} />} className="bg-brand-600 hover:bg-brand-800 sm:ml-auto"><ArrowRight /> Continue</Button></CardContent></Card>
+      <Card className="mt-6"><CardContent className="flex flex-col gap-3 p-5 text-sm sm:flex-row sm:items-center"><div><p className="font-semibold">Next best action</p><p className="mt-1 text-stone-600 dark:text-muted-foreground">{course.summary.baseline_score === null ? "Start the baseline check to record your starting point." : course.summary.modules_complete !== course.summary.modules_total ? `Continue learning: ${course.summary.modules_complete} of ${course.summary.modules_total} modules done.` : !course.summary.passed ? "Take the final assessment; every module is done." : course.summary.certificate ? `Certified: ${course.summary.certificate.code}.` : "Review the material, then take the final."}</p></div><Button nativeButton={false} render={<Link href={course.summary.baseline_score === null ? `/learn/${runId}/assessment/baseline` : course.summary.modules_complete !== course.summary.modules_total ? `/learn/${runId}?tab=${tab}` : !course.summary.passed ? `/learn/${runId}/assessment/final` : `/learn/${runId}/certificate`} />} className="bg-brand-600 hover:bg-brand-800 sm:ml-auto"><ArrowRight /> Continue</Button></CardContent></Card>
       <PracticeMissed runId={runId} userId={user.id} />
 
       <div className="mt-6"><MaterialSearch course={course} onJump={jumpTo} /></div>
       <Tabs value={tab} onValueChange={changeTab} className="mt-4">
-        <TabsList className="h-auto flex-wrap bg-white p-1 shadow-sm">
-          <TabsTrigger value="deck"><Presentation /> Deck{step("deck").completed && <Check className="text-brand-700" />}</TabsTrigger>
-          <TabsTrigger value="videos"><PlayCircle /> Videos{step("videos").completed && <Check className="text-brand-700" />}</TabsTrigger>
-          <TabsTrigger value="storyboard"><Film /> Visual story{step("storyboard").completed && <Check className="text-brand-700" />}</TabsTrigger>
-          <TabsTrigger value="faq"><FileQuestion /> FAQ{step("faq").completed && <Check className="text-brand-700" />}</TabsTrigger>
+        <TabsList className="h-auto flex-wrap bg-white dark:bg-surface p-1 shadow-sm">
+          <TabsTrigger value="deck"><Presentation /> Deck{step("deck").completed && <Check className="text-brand-700 dark:text-brand-300" />}</TabsTrigger>
+          <TabsTrigger value="videos"><PlayCircle /> Videos{step("videos").completed && <Check className="text-brand-700 dark:text-brand-300" />}</TabsTrigger>
+          <TabsTrigger value="storyboard"><Film /> Visual story{step("storyboard").completed && <Check className="text-brand-700 dark:text-brand-300" />}</TabsTrigger>
+          <TabsTrigger value="faq"><FileQuestion /> FAQ{step("faq").completed && <Check className="text-brand-700 dark:text-brand-300" />}</TabsTrigger>
           <TabsTrigger value="flashcards"><Layers /> Flashcards</TabsTrigger>
           <TabsTrigger value="mechanism"><FlaskConical /> Mechanism</TabsTrigger>
           <TabsTrigger value="objections"><MessageCircle /> Objections</TabsTrigger>
@@ -417,7 +417,7 @@ export default function CoursePlayer() {
         <TabsContent value="deck" className="mt-5">
           <Card>
             <CardHeader className="flex-row items-start justify-between gap-4">
-              <div><CardTitle>Clinical deck</CardTitle><p className="mt-2 text-sm text-stone-600">{track.deck.slides.length} slides written for the {course.track.toUpperCase()} track.</p></div>
+              <div><CardTitle>Clinical deck</CardTitle><p className="mt-2 text-sm text-stone-600 dark:text-muted-foreground">{track.deck.slides.length} slides written for the {course.track.toUpperCase()} track.</p></div>
               <Button nativeButton={false} render={<a href={`${API}${track.pptx_url}`} />} className="bg-brand-600 hover:bg-brand-800"><Download /> Download .pptx</Button>
             </CardHeader>
             <CardContent><DeckGrid slides={track.deck.slides} runId={runId} /></CardContent>
@@ -435,13 +435,13 @@ export default function CoursePlayer() {
                   </video>
                   <div className="p-5 text-white"><p className="text-xs font-semibold tracking-wider text-brand-300">VIDEO {video + 1} OF {track.videos.length}</p><h2 className="mt-2 text-xl font-semibold">{activeVideo.title}</h2></div>
                 </div>
-                <div className="max-h-[30rem] overflow-y-auto border-t bg-white lg:border-t-0 lg:border-l">
-                  <div className="sticky top-0 z-10 border-b bg-white p-4"><p className="font-semibold">Playlist</p></div>
+                <div className="max-h-[30rem] overflow-y-auto border-t bg-white dark:bg-surface lg:border-t-0 lg:border-l">
+                  <div className="sticky top-0 z-10 border-b bg-white dark:bg-surface p-4"><p className="font-semibold">Playlist</p></div>
                   <div className="p-2">
                     {track.videos.map((entry, index) => (
                       <button key={entry.id} type="button" onClick={() => setVideo(index)} aria-current={index === video ? "true" : undefined}
-                        className={`flex w-full gap-3 rounded-lg p-3 text-left transition-colors ${index === video ? "bg-brand-50 text-brand-700" : "hover:bg-stone-50"}`}>
-                        <span className={`mt-0.5 grid size-8 shrink-0 place-items-center rounded-full ${index === video ? "bg-brand-600 text-white" : "bg-stone-100 text-stone-600"}`}>{index === video ? <PlayCircle size={17} /> : index + 1}</span>
+                        className={`flex w-full gap-3 rounded-lg p-3 text-left transition-colors ${index === video ? "bg-brand-50 dark:bg-brand-950 text-brand-700 dark:text-brand-300" : "hover:bg-stone-50 dark:hover:bg-surface-sunk"}`}>
+                        <span className={`mt-0.5 grid size-8 shrink-0 place-items-center rounded-full ${index === video ? "bg-brand-600 text-white" : "bg-stone-100 dark:bg-muted text-stone-600 dark:text-muted-foreground"}`}>{index === video ? <PlayCircle size={17} /> : index + 1}</span>
                         <span className="text-sm font-medium leading-5">{entry.title}</span>
                       </button>
                     ))}
@@ -449,13 +449,13 @@ export default function CoursePlayer() {
                 </div>
               </div>
             </Card>
-          ) : <Card><CardContent className="p-8 text-center text-stone-600">No videos have been added to this track yet — the storyboard below is the visual script.</CardContent></Card>}
+          ) : <Card><CardContent className="p-8 text-center text-stone-600 dark:text-muted-foreground">No videos have been added to this track yet — the storyboard below is the visual script.</CardContent></Card>}
           {footer("videos")}
         </TabsContent>
 
         <TabsContent value="storyboard" className="mt-5">
           <div className="mb-4 flex flex-wrap items-center gap-2">
-            <span className="text-sm text-stone-600">Reading level:</span>
+            <span className="text-sm text-stone-600 dark:text-muted-foreground">Reading level:</span>
             <Button variant={simple ? "outline" : "default"} onClick={toggleSimple} className={simple ? "" : "bg-brand-600 hover:bg-brand-800"}><ALargeSmall /> Full detail</Button>
             <Button variant={simple ? "default" : "outline"} onClick={toggleSimple} className={simple ? "bg-brand-600 hover:bg-brand-800" : ""}><ALargeSmall /> Key points</Button>
           </div>
@@ -463,13 +463,13 @@ export default function CoursePlayer() {
             {track.storyboard.scenes.map((scene) => (
               <Card key={scene.id} id={`scene-${scene.id}`}>
                 <CardContent className="grid gap-5 p-5 md:grid-cols-[90px_1fr]">
-                  <div><span className="grid size-11 place-items-center rounded-full bg-surface-deep font-semibold text-white">{scene.id}</span><p className="mt-2 text-xs text-stone-600">{scene.duration_seconds} sec</p></div>
+                  <div><span className="grid size-11 place-items-center rounded-full bg-surface-deep font-semibold text-white">{scene.id}</span><p className="mt-2 text-xs text-stone-600 dark:text-muted-foreground">{scene.duration_seconds} sec</p></div>
                   <div>
                     <h3 className="text-lg font-semibold">{scene.title}</h3>
                     {simple
                       ? <p className="mt-2 text-lg font-medium leading-8">{scene.on_screen_text}</p>
-                      : <p className="mt-2 leading-7 text-stone-600">{scene.narration}</p>}
-                    <div className="mt-4 rounded-lg bg-stone-50 p-3 text-sm"><b>Visual:</b> {scene.visual}<br /><b>On screen:</b> {scene.on_screen_text}</div>
+                      : <p className="mt-2 leading-7 text-stone-600 dark:text-muted-foreground">{scene.narration}</p>}
+                    <div className="mt-4 rounded-lg bg-stone-50 dark:bg-surface-sunk p-3 text-sm"><b>Visual:</b> {scene.visual}<br /><b>On screen:</b> {scene.on_screen_text}</div>
                     <Cites runId={runId} citations={scene.citations} />
                   </div>
                 </CardContent>
@@ -481,16 +481,16 @@ export default function CoursePlayer() {
 
         <TabsContent value="faq" className="mt-5">
           <Card>
-            <CardHeader><CardTitle>Field FAQ</CardTitle><p className="mt-2 text-sm text-stone-600">The questions you will be asked, with the evidence behind each answer.</p></CardHeader>
+            <CardHeader><CardTitle>Field FAQ</CardTitle><p className="mt-2 text-sm text-stone-600 dark:text-muted-foreground">The questions you will be asked, with the evidence behind each answer.</p></CardHeader>
             <CardContent>
               <Accordion>
                 {track.faq.items.map((item, index) => (
                   <AccordionItem key={item.question} value={`faq-${index}`} id={`faq-${index}`}>
                     <AccordionTrigger>{item.question}</AccordionTrigger>
                     <AccordionContent>
-                      <p className="leading-7 text-stone-600">{item.answer}</p>
-                      {item.nuance && <p className="mt-3 text-sm leading-6 text-stone-600"><b>Important context:</b> {item.nuance}</p>}
-                      {item.escalation && <p className="mt-3 text-sm leading-6 text-stone-600"><b>Escalation:</b> {item.escalation}</p>}
+                      <p className="leading-7 text-stone-600 dark:text-muted-foreground">{item.answer}</p>
+                      {item.nuance && <p className="mt-3 text-sm leading-6 text-stone-600 dark:text-muted-foreground"><b>Important context:</b> {item.nuance}</p>}
+                      {item.escalation && <p className="mt-3 text-sm leading-6 text-stone-600 dark:text-muted-foreground"><b>Escalation:</b> {item.escalation}</p>}
                       <Cites runId={runId} citations={item.citations} />
                     </AccordionContent>
                   </AccordionItem>
@@ -503,7 +503,7 @@ export default function CoursePlayer() {
 
         <TabsContent value="mechanism" className="mt-5">
           <Card>
-            <CardHeader><CardTitle>Mechanism walkthrough</CardTitle><p className="mt-2 text-sm text-stone-600">Walk each step of the action, then prove it with a recorded check. A step with no shared citation says so instead of borrowing one.</p></CardHeader>
+            <CardHeader><CardTitle>Mechanism walkthrough</CardTitle><p className="mt-2 text-sm text-stone-600 dark:text-muted-foreground">Walk each step of the action, then prove it with a recorded check. A step with no shared citation says so instead of borrowing one.</p></CardHeader>
             <CardContent>
               <MechanismWalkthrough runId={runId} scenes={track.storyboard.scenes} questions={track.quiz.questions} />
             </CardContent>
@@ -512,27 +512,27 @@ export default function CoursePlayer() {
 
         <TabsContent value="objections" className="mt-5">
           <Card>
-            <CardHeader><CardTitle>Handling objections</CardTitle><p className="mt-2 text-sm text-stone-600">Approved answers to the hard questions you will hear in the field.</p></CardHeader>
+            <CardHeader><CardTitle>Handling objections</CardTitle><p className="mt-2 text-sm text-stone-600 dark:text-muted-foreground">Approved answers to the hard questions you will hear in the field.</p></CardHeader>
             <CardContent>
               {objections.length ? (
                 <Accordion>{objections.map((item, index) => (
                   <AccordionItem key={item.id} value={`obj-${index}`}>
                     <AccordionTrigger>{item.question}</AccordionTrigger>
                     <AccordionContent>
-                      <p className="leading-7 text-stone-600">{item.answer}</p>
-                      <p className="mt-3 text-xs text-stone-500">Approved answer · {item.author_name}</p>
+                      <p className="leading-7 text-stone-600 dark:text-muted-foreground">{item.answer}</p>
+                      <p className="mt-3 text-xs text-stone-500 dark:text-stone-400">Approved answer · {item.author_name}</p>
                       <Cites runId={runId} citations={item.citations} />
                     </AccordionContent>
                   </AccordionItem>
                 ))}</Accordion>
-              ) : <p className="text-sm text-stone-600">No approved answers have been published for this course yet.</p>}
+              ) : <p className="text-sm text-stone-600 dark:text-muted-foreground">No approved answers have been published for this course yet.</p>}
             </CardContent>
           </Card>
         </TabsContent>
 
         <TabsContent value="flashcards" className="mt-5">
           <Card>
-            <CardHeader><CardTitle>Revision flashcards</CardTitle><p className="mt-2 text-sm text-stone-600">Try each question from memory, then flip the card. Your self-grades stay on this device.</p></CardHeader>
+            <CardHeader><CardTitle>Revision flashcards</CardTitle><p className="mt-2 text-sm text-stone-600 dark:text-muted-foreground">Try each question from memory, then flip the card. Your self-grades stay on this device.</p></CardHeader>
             <CardContent>
               <Flashcards
                 key={`pl-flip-${runId}`}
@@ -569,7 +569,7 @@ export default function CoursePlayer() {
 
       {(library?.documents ?? []).filter((doc) => doc.held).length > 0 && (
         <Card className="mt-4">
-          <CardHeader><CardTitle className="flex items-center gap-2"><BookOpen size={18} /> Reference documents</CardTitle><p className="mt-2 text-sm text-stone-600">The sources this course was checked against — read them beside your material.</p></CardHeader>
+          <CardHeader><CardTitle className="flex items-center gap-2"><BookOpen size={18} /> Reference documents</CardTitle><p className="mt-2 text-sm text-stone-600 dark:text-muted-foreground">The sources this course was checked against — read them beside your material.</p></CardHeader>
           <CardContent>
             <div className="flex flex-wrap gap-2">
               {(library?.documents ?? []).filter((doc) => doc.held).map((doc) => (

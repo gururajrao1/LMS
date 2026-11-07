@@ -62,19 +62,19 @@ export default function Login() {
         <p className="relative flex items-center gap-2 text-sm text-stone-300"><CheckCircle2 size={16} /> Every learning claim remains traceable.</p>
       </section>
 
-      <section className="flex items-center justify-center bg-white px-6 py-12">
+      <section className="flex items-center justify-center bg-white dark:bg-surface px-6 py-12">
         <form onSubmit={submit} className="w-full max-w-md">
           <div className="mb-10 lg:hidden"><Brand /></div>
-          <p className="text-sm font-semibold text-brand-700">Welcome back</p>
+          <p className="text-sm font-semibold text-brand-700 dark:text-brand-300">Welcome back</p>
           <h2 className="mt-2 text-3xl font-semibold tracking-tight">Sign in to PharmaLearn</h2>
-          <p className="mt-2 text-sm leading-6 text-stone-600">Choose a role, then the person you want to sign in as.</p>
+          <p className="mt-2 text-sm leading-6 text-stone-600 dark:text-muted-foreground">Choose a role, then the person you want to sign in as.</p>
 
           <div className="mt-7 grid grid-cols-2 gap-2">
             {tabs.map((entry) => (
               <button key={entry.id} type="button" aria-pressed={role === entry.id} onClick={() => { setRole(entry.id); setUserId(""); }}
-                className={`rounded-xl border p-3 text-left transition-colors ${role === entry.id ? "border-brand-600 bg-brand-50" : "hover:bg-stone-50"}`}>
+                className={`rounded-xl border p-3 text-left transition-colors ${role === entry.id ? "border-brand-600 bg-brand-50 dark:bg-brand-950" : "hover:bg-stone-50 dark:hover:bg-surface-sunk"}`}>
                 <p className="text-sm font-semibold">{entry.label}</p>
-                <p className="mt-1 text-xs leading-5 text-stone-600">{entry.description}</p>
+                <p className="mt-1 text-xs leading-5 text-stone-600 dark:text-muted-foreground">{entry.description}</p>
               </button>
             ))}
           </div>
@@ -82,20 +82,20 @@ export default function Login() {
           <div className="mt-5 space-y-2">
             {matching.map((person) => (
               <button key={person.id} type="button" aria-pressed={selected?.id === person.id} onClick={() => setUserId(person.id)}
-                className={`flex w-full items-center justify-between gap-3 rounded-xl border p-3 text-left transition-colors ${selected?.id === person.id ? "border-brand-600 bg-brand-50" : "hover:bg-stone-50"}`}>
+                className={`flex w-full items-center justify-between gap-3 rounded-xl border p-3 text-left transition-colors ${selected?.id === person.id ? "border-brand-600 bg-brand-50 dark:bg-brand-950" : "hover:bg-stone-50 dark:hover:bg-surface-sunk"}`}>
                 <span>
                   <span className="block text-sm font-medium">{person.name}</span>
-                  <span className="block text-xs text-stone-600">{person.title}</span>
+                  <span className="block text-xs text-stone-600 dark:text-muted-foreground">{person.title}</span>
                 </span>
-                {selected?.id === person.id && <CheckCircle2 size={17} className="shrink-0 text-brand-700" />}
+                {selected?.id === person.id && <CheckCircle2 size={17} className="shrink-0 text-brand-700 dark:text-brand-300" />}
               </button>
             ))}
-            {!matching.length && !error && <p className="text-sm text-stone-600">Loading the demo roster…</p>}
+            {!matching.length && !error && <p className="text-sm text-stone-600 dark:text-muted-foreground">Loading the demo roster…</p>}
           </div>
 
-          {error && <p className="mt-5 text-sm text-danger-600">{error}</p>}
+          {error && <p className="mt-5 text-sm text-danger-600 dark:text-danger-300">{error}</p>}
           <Button type="submit" disabled={!selected} className="mt-7 h-11 w-full bg-brand-600 hover:bg-brand-800">Sign in{selected ? ` as ${selected.name}` : ""} <ArrowRight /></Button>
-          <p className="mt-6 text-center text-xs text-stone-500">For authorized medical education use</p>
+          <p className="mt-6 text-center text-xs text-stone-500 dark:text-stone-400">For authorized medical education use</p>
         </form>
       </section>
     </main>

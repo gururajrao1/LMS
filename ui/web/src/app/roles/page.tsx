@@ -83,26 +83,26 @@ export default function RolesPage() {
     <AppShell user={user}>
       <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
         <div>
-          <p className="text-sm font-semibold text-brand-700">TEAM</p>
+          <p className="text-sm font-semibold text-brand-700 dark:text-brand-300">TEAM</p>
           <h1 className="mt-1 text-3xl font-semibold tracking-tight">Roles & permissions</h1>
-          <p className="mt-2 text-stone-600">Built-in roles keep their powers. Custom roles grant exactly the capabilities you tick — and every gated action checks them.</p>
+          <p className="mt-2 text-stone-600 dark:text-muted-foreground">Built-in roles keep their powers. Custom roles grant exactly the capabilities you tick — and every gated action checks them.</p>
         </div>
       </div>
 
       {(error || notice) && (
-        <p className={`mt-5 text-sm ${error ? "text-danger-600" : "text-brand-700"}`}>{error || notice}</p>
+        <p className={`mt-5 text-sm ${error ? "text-danger-600 dark:text-danger-300" : "text-brand-700 dark:text-brand-300"}`}>{error || notice}</p>
       )}
 
       <Card className="mt-7">
-        <CardHeader><CardTitle className="flex items-center gap-2 text-base"><ShieldCheck size={17} className="text-brand-700" /> Built-in roles</CardTitle></CardHeader>
+        <CardHeader><CardTitle className="flex items-center gap-2 text-base"><ShieldCheck size={17} className="text-brand-700 dark:text-brand-300" /> Built-in roles</CardTitle></CardHeader>
         <CardContent className="space-y-3">
           {builtins.map((entry) => (
             <div key={entry.id} className="rounded-xl border p-4">
               <p className="font-medium">{entry.label} <Badge variant="secondary" className="ml-2">built-in</Badge></p>
-              <p className="mt-1 text-sm text-stone-600">{entry.description}</p>
+              <p className="mt-1 text-sm text-stone-600 dark:text-muted-foreground">{entry.description}</p>
               <div className="mt-3 flex flex-wrap gap-1.5">
                 {entry.capabilities.map((cap) => <Badge key={cap} variant="outline">{capabilities.find((option) => option.id === cap)?.label ?? cap}</Badge>)}
-                {!entry.capabilities.length && <span className="text-xs text-stone-500">Learns through assignments — no staff permissions.</span>}
+                {!entry.capabilities.length && <span className="text-xs text-stone-500 dark:text-stone-400">Learns through assignments — no staff permissions.</span>}
               </div>
             </div>
           ))}
@@ -111,8 +111,8 @@ export default function RolesPage() {
 
       <div className="mt-5 grid gap-5 lg:grid-cols-2">
         <Card>
-          <CardHeader><CardTitle className="flex items-center gap-2 text-base"><KeyRound size={17} className="text-brand-700" /> Build a custom role</CardTitle>
-            <p className="mt-2 text-sm text-stone-600">Example: an <b>Instructor</b> with sign-off and settle rights but no roster access; a <b>Trainee nurse</b> learner on the HCP track.</p>
+          <CardHeader><CardTitle className="flex items-center gap-2 text-base"><KeyRound size={17} className="text-brand-700 dark:text-brand-300" /> Build a custom role</CardTitle>
+            <p className="mt-2 text-sm text-stone-600 dark:text-muted-foreground">Example: an <b>Instructor</b> with sign-off and settle rights but no roster access; a <b>Trainee nurse</b> learner on the HCP track.</p>
           </CardHeader>
           <CardContent>
             <form onSubmit={create} className="space-y-4">
@@ -128,11 +128,11 @@ export default function RolesPage() {
                 <p className="text-sm font-medium">Capabilities ({grants.length} selected)</p>
                 <div className="mt-2 space-y-2">
                   {capabilities.map((option) => (
-                    <label key={option.id} className={`flex cursor-pointer items-start gap-3 rounded-xl border p-3 transition-colors ${grants.includes(option.id) ? "border-brand-600 bg-brand-50" : "hover:bg-stone-50"}`}>
+                    <label key={option.id} className={`flex cursor-pointer items-start gap-3 rounded-xl border p-3 transition-colors ${grants.includes(option.id) ? "border-brand-600 bg-brand-50 dark:bg-brand-950" : "hover:bg-stone-50 dark:hover:bg-surface-sunk"}`}>
                       <input type="checkbox" checked={grants.includes(option.id)} onChange={() => toggleGrant(option.id)} className="mt-1 size-4 accent-brand-600" />
                       <span>
                         <span className="block text-sm font-medium">{option.label}</span>
-                        <span className="block text-xs leading-5 text-stone-600">{option.description}</span>
+                        <span className="block text-xs leading-5 text-stone-600 dark:text-muted-foreground">{option.description}</span>
                       </span>
                     </label>
                   ))}
@@ -166,8 +166,8 @@ export default function RolesPage() {
                 <div className="flex items-start justify-between gap-3">
                   <div>
                     <p className="font-medium">{entry.label}</p>
-                    {entry.description && <p className="mt-1 text-sm text-stone-600">{entry.description}</p>}
-                    <p className="mt-1 text-xs text-stone-500">
+                    {entry.description && <p className="mt-1 text-sm text-stone-600 dark:text-muted-foreground">{entry.description}</p>}
+                    <p className="mt-1 text-xs text-stone-500 dark:text-stone-400">
                       {entry.learner ? `Learner · ${entry.track.toUpperCase()} track` : "Staff"} · {entry.capabilities.length} capabilit{entry.capabilities.length === 1 ? "y" : "ies"}
                     </p>
                   </div>
@@ -178,21 +178,21 @@ export default function RolesPage() {
                 </div>
               </div>
             ))}
-            {!custom.length && <p className="py-6 text-center text-sm text-stone-600">No custom roles yet — build the first one.</p>}
+            {!custom.length && <p className="py-6 text-center text-sm text-stone-600 dark:text-muted-foreground">No custom roles yet — build the first one.</p>}
           </CardContent>
         </Card>
       </div>
 
       <Card className="mt-5">
-        <CardHeader><CardTitle className="flex items-center gap-2 text-base"><UserCog size={17} className="text-brand-700" /> Assign roles</CardTitle>
-          <p className="mt-2 text-sm text-stone-600">Moving someone changes what they may do from their next sign-in.</p>
+        <CardHeader><CardTitle className="flex items-center gap-2 text-base"><UserCog size={17} className="text-brand-700 dark:text-brand-300" /> Assign roles</CardTitle>
+          <p className="mt-2 text-sm text-stone-600 dark:text-muted-foreground">Moving someone changes what they may do from their next sign-in.</p>
         </CardHeader>
         <CardContent className="space-y-3">
           {people.map((person) => (
             <div key={person.id} className="flex flex-wrap items-center justify-between gap-3 rounded-xl border p-3">
               <div className="min-w-0">
                 <p className="text-sm font-medium">{person.name}</p>
-                <p className="text-xs text-stone-600">{roleLabel(person.role)} · {person.title}</p>
+                <p className="text-xs text-stone-600 dark:text-muted-foreground">{roleLabel(person.role)} · {person.title}</p>
               </div>
               <NativeSelect value={person.role} onChange={(event) => assign(person, event.target.value)} className="h-9 w-48" aria-label={`Role for ${person.name}`}>
                 {roles.map((entry) => <option key={entry.id} value={entry.id}>{entry.label}{entry.builtin ? "" : " (custom)"}</option>)}

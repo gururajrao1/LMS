@@ -18,7 +18,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`h-full antialiased ${inter.variable} ${geist.variable}`}>
+    // The class on <html> may already be set by the pre-paint script below,
+    // so hydration must not complain when React's first render disagrees.
+    <html lang="en" suppressHydrationWarning className={`h-full antialiased ${inter.variable} ${geist.variable}`}>
+      <head>
+        {/* Same logic as lib/theme.ts, inlined so the first paint already has
+            the right theme — no light flash on a dark visit. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem("pl-theme");if(t!=="light"&&t!=="dark")t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";if(t==="dark")document.documentElement.classList.add("dark")}catch(e){}})()`,
+          }}
+        />
+      </head>
       <body className="min-h-full">{children}</body>
     </html>
   );

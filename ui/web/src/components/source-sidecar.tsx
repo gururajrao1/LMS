@@ -43,7 +43,7 @@ function Marked({ text, query, from }: { text: string; query: string; from: numb
         if (index % 2 === 0) return <span key={index}>{part}</span>;
         const position = hit++;
         return (
-          <mark key={index} data-hit={position} className="rounded bg-warn-100 px-0.5 text-warn-900 [&[data-current=true]]:bg-warn-400">
+          <mark key={index} data-hit={position} className="rounded bg-warn-100 dark:bg-warn-950 px-0.5 text-warn-900 dark:text-warn-400 [&[data-current=true]]:bg-warn-400">
             {part}
           </mark>
         );
@@ -115,25 +115,25 @@ export function SourceSidecar({ runId, url, onClose, find = "" }: {
 
   return (
     <aside aria-label={`Reference document: ${document_?.title ?? "loading"}`}
-      className="fixed inset-y-0 right-0 z-50 flex w-[min(34rem,100vw)] flex-col border-l border-line bg-white shadow-2xl print:hidden">
+      className="fixed inset-y-0 right-0 z-50 flex w-[min(34rem,100vw)] flex-col border-l border-line bg-white dark:bg-surface shadow-2xl print:hidden">
       <div className="border-b p-4">
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
-            <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-brand-700">
+            <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-brand-700 dark:text-brand-300">
               <FileText size={14} /> Held here
             </p>
             <h2 className="mt-1 text-sm font-semibold leading-5">{document_?.title ?? "Loading…"}</h2>
           </div>
           <button type="button" onClick={onClose} aria-label="Close the document"
-            className="-mr-1 shrink-0 rounded-lg p-1 text-stone-500 hover:bg-stone-100"><X size={16} /></button>
+            className="-mr-1 shrink-0 rounded-lg p-1 text-stone-500 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-muted"><X size={16} /></button>
         </div>
         {document_ && (
-          <div className="mt-2 flex flex-wrap items-center gap-2 text-xs text-stone-600">
+          <div className="mt-2 flex flex-wrap items-center gap-2 text-xs text-stone-600 dark:text-muted-foreground">
             {document_.kind && <Badge variant="secondary">{document_.kind.replace(/_/g, " ")}</Badge>}
             <span className="tabular-nums">{document_.characters.toLocaleString()} characters</span>
             {document_.fetched_at && <span>· stored {document_.fetched_at.slice(0, 10)}</span>}
             <a href={document_.url} target="_blank" rel="noreferrer"
-              className="inline-flex items-center gap-1 font-medium text-brand-700 hover:underline">
+              className="inline-flex items-center gap-1 font-medium text-brand-700 dark:text-brand-300 hover:underline">
               original <ExternalLink size={11} />
             </a>
           </div>
@@ -144,26 +144,26 @@ export function SourceSidecar({ runId, url, onClose, find = "" }: {
             <Input value={query} onChange={(event) => { setQuery(event.target.value); setCurrent(0); }}
               placeholder="Find in this document" className="h-9 pl-8 text-sm" />
           </div>
-          <span className="w-16 shrink-0 text-right text-xs tabular-nums text-stone-600">
+          <span className="w-16 shrink-0 text-right text-xs tabular-nums text-stone-600 dark:text-muted-foreground">
             {query.trim() ? (total ? `${Math.min(current + 1, total)} / ${total}` : "none") : ""}
           </span>
           <button type="button" onClick={() => step(-1)} disabled={!total} aria-label="Previous match"
-            className="rounded-md border p-1.5 text-stone-600 disabled:opacity-40 hover:bg-stone-50"><ChevronUp size={14} /></button>
+            className="rounded-md border p-1.5 text-stone-600 dark:text-muted-foreground disabled:opacity-40 hover:bg-stone-50 dark:hover:bg-surface-sunk"><ChevronUp size={14} /></button>
           <button type="button" onClick={() => step(1)} disabled={!total} aria-label="Next match"
-            className="rounded-md border p-1.5 text-stone-600 disabled:opacity-40 hover:bg-stone-50"><ChevronDown size={14} /></button>
+            className="rounded-md border p-1.5 text-stone-600 dark:text-muted-foreground disabled:opacity-40 hover:bg-stone-50 dark:hover:bg-surface-sunk"><ChevronDown size={14} /></button>
         </div>
         {find && !total && query.trim() && (
-          <p className="mt-2 text-xs leading-5 text-warn-700">
+          <p className="mt-2 text-xs leading-5 text-warn-700 dark:text-warn-400">
             Not found in this document. The recorded quote may be paraphrased, or drawn from a different source.
           </p>
         )}
       </div>
 
       <div ref={body} className="min-h-0 flex-1 overflow-y-auto overscroll-contain p-4">
-        {error && <p className="text-sm text-danger-600">{error}</p>}
-        {!document_ && !error && <p className="text-sm text-stone-500">Opening the stored document…</p>}
+        {error && <p className="text-sm text-danger-600 dark:text-danger-300">{error}</p>}
+        {!document_ && !error && <p className="text-sm text-stone-500 dark:text-stone-400">Opening the stored document…</p>}
         {blocks.map((block, index) => (
-          <p key={index} className="mb-3 text-sm leading-6 text-stone-700">
+          <p key={index} className="mb-3 text-sm leading-6 text-stone-700 dark:text-stone-200">
             <Marked text={block} query={query} from={counts.slice(0, index).reduce((sum, value) => sum + value, 0)} />
           </p>
         ))}

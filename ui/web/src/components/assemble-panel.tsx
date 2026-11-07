@@ -34,25 +34,25 @@ export function AssemblePanel({ group, items, answers, onAnswer, reviewed, runId
 
   return (
     <Card className="overflow-hidden">
-      <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-b bg-stone-50 px-6 py-4">
+      <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-b bg-stone-50 dark:bg-surface-sunk px-6 py-4">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-wide text-brand-700">Build the instruction</p>
+          <p className="text-xs font-semibold uppercase tracking-wide text-brand-700 dark:text-brand-300">Build the instruction</p>
           <h3 className="mt-1 font-semibold leading-6">{group.title}</h3>
         </div>
-        <p className="text-sm tabular-nums text-stone-600">{filled} of {slots.length} filled</p>
+        <p className="text-sm tabular-nums text-stone-600 dark:text-muted-foreground">{filled} of {slots.length} filled</p>
       </div>
 
       <CardContent className="space-y-6 p-6">
-        <p className="text-sm leading-6 text-stone-600">{group.instruction}</p>
+        <p className="text-sm leading-6 text-stone-600 dark:text-muted-foreground">{group.instruction}</p>
 
         {sentences.map((sentence) => {
           const results = sentence.blanks.map((blank) => reviewed?.get(blank.id));
           const right = results.every((result) => result?.correct);
           return (
             <div key={sentence.id} className={`rounded-xl border p-5 ${done
-              ? right ? "border-brand-600 bg-brand-50/50" : "border-danger-600 bg-danger-50/40"
-              : "border-stone-200"}`}>
-              <p className="text-xs font-semibold uppercase tracking-wide text-stone-500">{sentence.prompt}</p>
+              ? right ? "border-brand-600 bg-brand-50/50 dark:bg-brand-950/50" : "border-danger-600 bg-danger-50/40 dark:bg-danger-950/40"
+              : "border-stone-200 dark:border-line"}`}>
+              <p className="text-xs font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">{sentence.prompt}</p>
 
               <p className="mt-3 text-base leading-9">
                 {sentence.blanks.map((blank) => {
@@ -67,15 +67,15 @@ export function AssemblePanel({ group, items, answers, onAnswer, reviewed, runId
                         onClick={() => setOpen((current) => (current === blank.id ? null : blank.id))}
                         className={`mx-0.5 rounded-md border px-2 py-1 text-sm font-medium align-baseline ${result
                           ? result.correct
-                            ? "border-brand-600 bg-brand-50 text-brand-800"
-                            : "border-danger-600 bg-danger-50 text-danger-900 line-through"
+                            ? "border-brand-600 bg-brand-50 dark:bg-brand-950 text-brand-800 dark:text-brand-200"
+                            : "border-danger-600 bg-danger-50 dark:bg-danger-950 text-danger-900 dark:text-danger-200 line-through"
                           : label
-                            ? "border-brand-600 bg-brand-50 text-brand-800"
-                            : "border-dashed border-stone-400 bg-white text-stone-500"}`}>
+                            ? "border-brand-600 bg-brand-50 dark:bg-brand-950 text-brand-800 dark:text-brand-200"
+                            : "border-dashed border-stone-400 dark:border-stone-600 bg-white dark:bg-surface text-stone-500 dark:text-stone-400"}`}>
                         {label ?? "choose…"}
                       </button>
                       {result && !result.correct && (
-                        <span className="mx-0.5 rounded-md border border-brand-600 bg-brand-50 px-2 py-1 text-sm font-medium text-brand-800">
+                        <span className="mx-0.5 rounded-md border border-brand-600 bg-brand-50 dark:bg-brand-950 px-2 py-1 text-sm font-medium text-brand-800 dark:text-brand-200">
                           {question?.options[result.correct_index]}
                         </span>
                       )}
@@ -91,7 +91,7 @@ export function AssemblePanel({ group, items, answers, onAnswer, reviewed, runId
                     <button key={option} type="button"
                       onClick={() => { onAnswer(open, index); setOpen(null); }}
                       className={`rounded-lg border px-3 py-2 text-left text-sm transition-colors ${
-                        answers[open] === index ? "border-brand-600 bg-brand-50" : "hover:border-brand-600 hover:bg-brand-50"}`}>
+                        answers[open] === index ? "border-brand-600 bg-brand-50 dark:bg-brand-950" : "hover:border-brand-600 hover:bg-brand-50 dark:hover:bg-brand-950"}`}>
                       {option}
                     </button>
                   ))}
@@ -100,9 +100,9 @@ export function AssemblePanel({ group, items, answers, onAnswer, reviewed, runId
 
               {done && (
                 <div className="mt-3 border-t pt-3">
-                  <p className="flex items-start gap-2 text-sm leading-6 text-stone-700">
-                    {right ? <Check size={15} className="mt-1 shrink-0 text-brand-700" />
-                      : <X size={15} className="mt-1 shrink-0 text-danger-600" />}
+                  <p className="flex items-start gap-2 text-sm leading-6 text-stone-700 dark:text-stone-200">
+                    {right ? <Check size={15} className="mt-1 shrink-0 text-brand-700 dark:text-brand-300" />
+                      : <X size={15} className="mt-1 shrink-0 text-danger-600 dark:text-danger-300" />}
                     <span>{results.find((result) => result)?.rationale}</span>
                   </p>
                   <Cites runId={runId} citations={results.find((result) => result)?.citations ?? []} />

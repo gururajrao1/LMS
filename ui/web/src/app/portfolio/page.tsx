@@ -26,7 +26,7 @@ export default function PortfolioPage() {
   }, []);
 
   if (!user) return <AppShell><Loading /></AppShell>;
-  if (!data) return <AppShell user={user}>{error ? <p className="text-sm text-danger-600">{error}</p> : <Loading />}</AppShell>;
+  if (!data) return <AppShell user={user}>{error ? <p className="text-sm text-danger-600 dark:text-danger-300">{error}</p> : <Loading />}</AppShell>;
 
   const { reach, uplift, speed, cost, governance } = data;
   const live = data.states.live + data.states.scheduled;
@@ -35,15 +35,15 @@ export default function PortfolioPage() {
     <AppShell user={user}>
       <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
         <div>
-          <p className="text-sm font-semibold text-brand-700">CLIENT PORTFOLIO</p>
+          <p className="text-sm font-semibold text-brand-700 dark:text-brand-300">CLIENT PORTFOLIO</p>
           <h1 className="mt-1 text-3xl font-semibold tracking-tight">{data.client.name}</h1>
-          <p className="mt-2 text-stone-600">
+          <p className="mt-2 text-stone-600 dark:text-muted-foreground">
             Every training programme delivered for {data.client.name}, consolidated. {data.programmes.length} programme
             {data.programmes.length === 1 ? "" : "s"} · {live} currently running · {data.client.region}.
           </p>
           {/* Only in the PDF: whoever opens the file was not in the room, so it has
               to say what it is, when it was taken and where the numbers came from. */}
-          <p className="print-only mt-3 text-sm text-stone-600">
+          <p className="print-only mt-3 text-sm text-stone-600 dark:text-muted-foreground">
             Generated {new Date().toLocaleDateString(undefined, { dateStyle: "long" })} from the PharmaLearn
             workspace · measured, not modelled · {data.client.jurisdiction} regulatory scope
           </p>
@@ -73,7 +73,7 @@ export default function PortfolioPage() {
             display={money(cost.per_certified_usd)} caption="per learner" />
           <BarRow label="Manual build" value={cost.manual_per_certified_usd ?? 0} max={cost.manual_per_certified_usd ?? 1}
             display={money(cost.manual_per_certified_usd)} caption="per learner" tone="warning" />
-          <p className="mt-4 border-t pt-4 text-sm text-stone-700">
+          <p className="mt-4 border-t pt-4 text-sm text-stone-700 dark:text-stone-200">
             {money(cost.build_usd)} spent against {money(cost.manual_usd)} manual — <b>{money(cost.saved_usd)} saved</b> across the portfolio.
           </p>
         </ChartFrame>
@@ -88,10 +88,10 @@ export default function PortfolioPage() {
 
         {/* The differentiator, and the only block here that is not about speed or
             money: what never reached the field, and how often the experts agreed. */}
-        <Card className="print-keep border-signal-100 bg-signal-50">
+        <Card className="print-keep border-signal-100 dark:border-signal-800 bg-signal-50 dark:bg-signal-950">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-base"><ScanLine size={17} className="text-signal-700" /> Caught before the field</CardTitle>
-            <p className="mt-2 text-sm text-stone-600">
+            <CardTitle className="flex items-center gap-2 text-base"><ScanLine size={17} className="text-signal-700 dark:text-signal-300" /> Caught before the field</CardTitle>
+            <p className="mt-2 text-sm text-stone-600 dark:text-muted-foreground">
               Across the portfolio, checked against the source documents we hold.
             </p>
           </CardHeader>
@@ -104,9 +104,9 @@ export default function PortfolioPage() {
               ["Published with an override on record", governance.overrides],
               ["Citations checkable against stored sources", governance.coverage_percent === null ? "–" : `${governance.coverage_percent}%`],
             ].map(([label, value]) => (
-              <div key={label as string} className="flex items-baseline justify-between gap-4 border-b border-signal-100 pb-2.5 last:border-0 last:pb-0">
-                <span className="text-stone-700">{label as string}</span>
-                <span className="shrink-0 font-semibold tabular-nums text-stone-900">{value as string | number}</span>
+              <div key={label as string} className="flex items-baseline justify-between gap-4 border-b border-signal-100 dark:border-signal-800 pb-2.5 last:border-0 last:pb-0">
+                <span className="text-stone-700 dark:text-stone-200">{label as string}</span>
+                <span className="shrink-0 font-semibold tabular-nums text-stone-900 dark:text-stone-100">{value as string | number}</span>
               </div>
             ))}
           </CardContent>
@@ -116,13 +116,13 @@ export default function PortfolioPage() {
       <Card className="print-keep mt-5">
         <CardHeader>
           <CardTitle className="text-base">Programme by programme</CardTitle>
-          <p className="mt-2 text-sm text-stone-600">Every row is a course that reached a cohort. Averages above are pooled from these learners, not from these rows.</p>
+          <p className="mt-2 text-sm text-stone-600 dark:text-muted-foreground">Every row is a course that reached a cohort. Averages above are pooled from these learners, not from these rows.</p>
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
             <table className="w-full min-w-[42rem] text-sm">
               <thead>
-                <tr className="border-b text-left text-xs uppercase tracking-wide text-stone-500">
+                <tr className="border-b text-left text-xs uppercase tracking-wide text-stone-500 dark:text-stone-400">
                   <th className="py-2 pr-3 font-medium">Programme</th>
                   <th className="px-3 py-2 text-right font-medium">Certified</th>
                   <th className="px-3 py-2 text-right font-medium">Uplift</th>
@@ -135,8 +135,8 @@ export default function PortfolioPage() {
                 {data.programmes.map((entry) => (
                   <tr key={entry.run_id} className="border-b last:border-0">
                     <td className="py-2.5 pr-3">
-                      <Link href={`/courses/${entry.run_id}`} className="font-medium text-stone-800 hover:underline">{entry.drug}</Link>
-                      <span className="ml-2 text-xs capitalize text-stone-600">{entry.state}</span>
+                      <Link href={`/courses/${entry.run_id}`} className="font-medium text-stone-800 dark:text-stone-200 hover:underline">{entry.drug}</Link>
+                      <span className="ml-2 text-xs capitalize text-stone-600 dark:text-muted-foreground">{entry.state}</span>
                     </td>
                     <td className="px-3 py-2.5 text-right tabular-nums">{entry.certified} / {entry.assigned}</td>
                     <td className="px-3 py-2.5 text-right tabular-nums">{entry.average_uplift === null ? "–" : `+${entry.average_uplift}`}</td>
@@ -146,9 +146,9 @@ export default function PortfolioPage() {
                       {/* A cycle running already-approved content was not built or
                           checked again, and saying "0" would read as "nothing found". */}
                       {entry.findings === null
-                        ? <span className="text-stone-500" title="Runs content built and checked for an earlier programme">reused</span>
+                        ? <span className="text-stone-500 dark:text-stone-400" title="Runs content built and checked for an earlier programme">reused</span>
                         : entry.findings}
-                      {entry.overrides > 0 && <span className="text-warn-700"> · {entry.overrides} override</span>}
+                      {entry.overrides > 0 && <span className="text-warn-700 dark:text-warn-400"> · {entry.overrides} override</span>}
                     </td>
                   </tr>
                 ))}
@@ -158,13 +158,13 @@ export default function PortfolioPage() {
         </CardContent>
       </Card>
 
-      <p className="mt-5 flex items-center gap-2 text-sm text-stone-600">
-        <ShieldCheck size={15} className="text-stone-500" />
+      <p className="mt-5 flex items-center gap-2 text-sm text-stone-600 dark:text-muted-foreground">
+        <ShieldCheck size={15} className="text-stone-500 dark:text-stone-400" />
         Figures are measured from this workspace, not modelled. The manual baseline is stated, not observed —
         {" "}{speed.manual_days} days and {money(cost.manual_usd)} for the same work by hand.
       </p>
-      <p className="mt-2 flex items-center gap-2 text-sm text-stone-600">
-        <Users size={15} className="text-stone-500" />
+      <p className="mt-2 flex items-center gap-2 text-sm text-stone-600 dark:text-muted-foreground">
+        <Users size={15} className="text-stone-500 dark:text-stone-400" />
         Archived programmes are included: they were delivered, and leaving them out would flatter the portfolio.
       </p>
     </AppShell>

@@ -19,9 +19,9 @@ export function ChartFrame({ title, note, children, className = "" }: {
   className?: string;
 }) {
   return (
-    <section className={`rounded-xl border border-line bg-white p-5 ${className}`}>
+    <section className={`rounded-xl border border-line bg-white dark:bg-surface p-5 ${className}`}>
       <h3 className="text-base font-medium">{title}</h3>
-      {note && <p className="mt-1 text-sm text-stone-600">{note}</p>}
+      {note && <p className="mt-1 text-sm text-stone-600 dark:text-muted-foreground">{note}</p>}
       <div className="mt-4">{children}</div>
     </section>
   );
@@ -43,12 +43,12 @@ export function BarRow({ label, value, max, suffix = "", caption, tone = "brand"
   return (
     <div className="group relative py-1.5" title={hint}>
       <div className="flex items-baseline justify-between gap-4">
-        <span className="min-w-0 truncate text-sm text-stone-700">{label}</span>
-        <span className="shrink-0 text-sm font-medium tabular-nums text-stone-700">
-          {display ?? `${value}${suffix}`}{caption && <span className="ml-1.5 font-normal text-stone-600">{caption}</span>}
+        <span className="min-w-0 truncate text-sm text-stone-700 dark:text-stone-200">{label}</span>
+        <span className="shrink-0 text-sm font-medium tabular-nums text-stone-700 dark:text-stone-200">
+          {display ?? `${value}${suffix}`}{caption && <span className="ml-1.5 font-normal text-stone-600 dark:text-muted-foreground">{caption}</span>}
         </span>
       </div>
-      <div className="mt-1.5 h-2 w-full rounded-full bg-stone-100">
+      <div className="mt-1.5 h-2 w-full rounded-full bg-stone-100 dark:bg-muted">
         <div className="h-2 rounded-full transition-[width] duration-500"
           style={{ width: `${width}%`, background: tone === "warning" ? "var(--color-warn-600)" : MARK }} />
       </div>
@@ -63,10 +63,10 @@ export function ColumnChart({ data, unit = "" }: { data: { label: string; value:
     <div className="flex items-end gap-2" style={{ height: 150 }}>
       {data.map((entry) => (
         <div key={entry.label} className="flex flex-1 flex-col items-center justify-end gap-2" title={`${entry.label}: ${entry.value}${unit}`}>
-          <span className="text-sm font-medium tabular-nums text-stone-700">{entry.value}</span>
+          <span className="text-sm font-medium tabular-nums text-stone-700 dark:text-stone-200">{entry.value}</span>
           <div className="w-full rounded-t-[4px] transition-[height] duration-500"
             style={{ height: `${Math.max(entry.value > 0 ? 4 : 2, (100 * entry.value) / max)}%`, minHeight: entry.value > 0 ? 6 : 2, background: entry.value > 0 ? MARK : "var(--color-line)" }} />
-          <span className="text-xs text-stone-600">{entry.label}</span>
+          <span className="text-xs text-stone-600 dark:text-muted-foreground">{entry.label}</span>
         </div>
       ))}
     </div>
@@ -87,8 +87,8 @@ export function ActivityGrid({ series }: { series: { date: string; rows: { label
         return (
           <div key={row.label}>
             <div className="flex items-baseline justify-between">
-              <span className="text-sm text-stone-700">{row.label}</span>
-              <span className="text-sm font-medium tabular-nums text-stone-700">{row.values.reduce((a, b) => a + b, 0)}</span>
+              <span className="text-sm text-stone-700 dark:text-stone-200">{row.label}</span>
+              <span className="text-sm font-medium tabular-nums text-stone-700 dark:text-stone-200">{row.values.reduce((a, b) => a + b, 0)}</span>
             </div>
             <div className="mt-1.5 flex h-8 items-end gap-1">
               {row.values.map((value, index) => (
@@ -99,7 +99,7 @@ export function ActivityGrid({ series }: { series: { date: string; rows: { label
           </div>
         );
       })}
-      <p className="text-xs text-stone-600">{date}</p>
+      <p className="text-xs text-stone-600 dark:text-muted-foreground">{date}</p>
     </div>
   );
 }
@@ -108,16 +108,16 @@ export function ActivityGrid({ series }: { series: { date: string; rows: { label
 export function UpliftMeter({ baseline, final, label }: { baseline: number; final: number; label?: string }) {
   return (
     <div>
-      <div className="relative h-3 w-full rounded-full bg-stone-100">
+      <div className="relative h-3 w-full rounded-full bg-stone-100 dark:bg-muted">
         <div className="h-3 rounded-full" style={{ width: `${final}%`, background: MARK }} />
-        <span aria-hidden className="absolute top-1/2 h-5 w-0.5 -translate-y-1/2 rounded-full bg-stone-500 ring-2 ring-white"
+        <span aria-hidden className="absolute top-1/2 h-5 w-0.5 -translate-y-1/2 rounded-full bg-stone-500 ring-2 ring-white dark:ring-stone-900"
           style={{ left: `calc(${baseline}% - 1px)` }} />
       </div>
       <div className="mt-2 flex items-baseline justify-between text-sm">
-        <span className="text-stone-600">Baseline <b className="tabular-nums text-stone-800">{baseline}%</b></span>
-        <span className="text-stone-600">Final <b className="tabular-nums text-stone-800">{final}%</b></span>
+        <span className="text-stone-600 dark:text-muted-foreground">Baseline <b className="tabular-nums text-stone-800 dark:text-stone-200">{baseline}%</b></span>
+        <span className="text-stone-600 dark:text-muted-foreground">Final <b className="tabular-nums text-stone-800 dark:text-stone-200">{final}%</b></span>
       </div>
-      {label && <p className="mt-1 text-xs text-stone-600">{label}</p>}
+      {label && <p className="mt-1 text-xs text-stone-600 dark:text-muted-foreground">{label}</p>}
     </div>
   );
 }
@@ -143,10 +143,10 @@ export function PhaseComparison({ phases, measuredTotal, manualTotal, format }: 
   const bar = (label: string, total: number, value: (index: number) => number | null, muted: boolean) => (
     <div>
       <div className="flex items-baseline justify-between gap-4">
-        <span className="text-sm font-medium text-stone-700">{label}</span>
+        <span className="text-sm font-medium text-stone-700 dark:text-stone-200">{label}</span>
         <span className="text-sm font-semibold tabular-nums">{format(total)}</span>
       </div>
-      <div className="mt-2 flex h-7 w-full gap-0.5 overflow-hidden rounded-md bg-stone-100">
+      <div className="mt-2 flex h-7 w-full gap-0.5 overflow-hidden rounded-md bg-stone-100 dark:bg-muted">
         {phases.map((phase, index) => {
           const days = value(index) ?? 0;
           return (
@@ -171,12 +171,12 @@ export function PhaseComparison({ phases, measuredTotal, manualTotal, format }: 
         {phases.map((phase, index) => (
           <div key={phase.phase} className="flex flex-wrap items-baseline gap-x-3 gap-y-1 text-sm">
             <span aria-hidden className="size-2.5 shrink-0 translate-y-px rounded-[2px]" style={{ background: steps[index % steps.length] }} />
-            <span className="font-medium text-stone-700">{phase.phase}</span>
-            <span className="ml-auto tabular-nums text-stone-700">
+            <span className="font-medium text-stone-700 dark:text-stone-200">{phase.phase}</span>
+            <span className="ml-auto tabular-nums text-stone-700 dark:text-stone-200">
               <b>{format(phase.measured_days)}</b>
-              <span className="text-stone-500"> vs {format(phase.manual_days)} manually</span>
+              <span className="text-stone-500 dark:text-stone-400"> vs {format(phase.manual_days)} manually</span>
             </span>
-            <p className="w-full pl-[1.375rem] text-xs leading-5 text-stone-600">{phase.detail}</p>
+            <p className="w-full pl-[1.375rem] text-xs leading-5 text-stone-600 dark:text-muted-foreground">{phase.detail}</p>
           </div>
         ))}
       </div>

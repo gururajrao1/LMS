@@ -20,7 +20,7 @@ const IDLE = "text-stone-600 hover:bg-stone-100";
 /** A count that must stay visible once its item is folded into a dropdown. */
 function Count({ value, active }: { value: number; active: boolean }) {
   return (
-    <span className={`grid h-5 min-w-5 place-items-center rounded-full px-1.5 text-xs font-semibold tabular-nums ${active ? "bg-brand-600 text-white" : "bg-stone-200 text-stone-700"}`}>
+    <span className={`grid h-5 min-w-5 place-items-center rounded-full px-1.5 text-xs font-semibold tabular-nums ${active ? "bg-brand-600 text-white" : "bg-stone-200 dark:bg-stone-800 text-stone-700 dark:text-stone-200"}`}>
       {value}
     </span>
   );
@@ -33,7 +33,7 @@ export function SectionNav({ sections, value, onValueChange, className = "" }: {
   className?: string;
 }) {
   return (
-    <nav aria-label="Course workspace sections" className={`flex max-w-full flex-wrap items-center gap-1 rounded-xl border bg-white p-1.5 shadow-sm ${className}`}>
+    <nav aria-label="Course workspace sections" className={`flex max-w-full flex-wrap items-center gap-1 rounded-xl border bg-white dark:bg-surface p-1.5 shadow-sm ${className}`}>
       {sections.map((section) => {
         if (!section.items.length) return null;
 
@@ -67,7 +67,7 @@ export function SectionNav({ sections, value, onValueChange, className = "" }: {
                 {section.items.map((item) => {
                   const ItemIcon = item.icon;
                   return (
-                    <DropdownMenuRadioItem key={item.value} value={item.value} closeOnClick className="gap-2.5 px-1.5 py-2 font-medium data-checked:text-brand-700">
+                    <DropdownMenuRadioItem key={item.value} value={item.value} closeOnClick className="gap-2.5 px-1.5 py-2 font-medium data-checked:text-brand-700 dark:data-checked:text-brand-300">
                       <ItemIcon size={16} />
                       <span className="flex-1">{item.label}</span>
                       {item.count ? <Count value={item.count} active={item.value === value} /> : null}

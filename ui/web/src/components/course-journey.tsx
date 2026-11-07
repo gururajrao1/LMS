@@ -18,8 +18,8 @@ import { getJson, Journey, JourneyStep } from "@/lib/api";
  */
 const DOT: Record<JourneyStep["state"], string> = {
   done: "bg-brand-600 text-white",
-  current: "border-2 border-brand-600 bg-white text-brand-700",
-  waiting: "border border-line bg-white text-stone-400",
+  current: "border-2 border-brand-600 bg-white dark:bg-surface text-brand-700 dark:text-brand-300",
+  waiting: "border border-line bg-white dark:bg-surface text-stone-400",
 };
 
 function Step({ step, index, last }: { step: JourneyStep; index: number; last: boolean }) {
@@ -35,16 +35,16 @@ function Step({ step, index, last }: { step: JourneyStep; index: number; last: b
 
       <div className="min-w-0 flex-1">
         <div className="flex flex-wrap items-center gap-2">
-          <Link href={step.href} className={`font-medium ${waiting ? "text-stone-500" : "text-stone-900 hover:underline"}`}>
+          <Link href={step.href} className={`font-medium ${waiting ? "text-stone-500 dark:text-stone-400" : "text-stone-900 dark:text-stone-100 hover:underline"}`}>
             {step.title}
           </Link>
-          {step.state === "current" && <Badge className="bg-brand-50 text-brand-700">In progress</Badge>}
+          {step.state === "current" && <Badge className="bg-brand-50 dark:bg-brand-950 text-brand-700 dark:text-brand-300">In progress</Badge>}
         </div>
-        <p className={`mt-1 text-sm leading-6 ${waiting ? "text-stone-500" : "text-stone-600"}`}>{step.detail}</p>
+        <p className={`mt-1 text-sm leading-6 ${waiting ? "text-stone-500 dark:text-stone-400" : "text-stone-600 dark:text-muted-foreground"}`}>{step.detail}</p>
         {step.evidence.length > 0 && (
           <p className="mt-2 flex flex-wrap gap-x-2 gap-y-1 text-xs">
             {step.evidence.map((value, position) => (
-              <span key={position} className="rounded-md bg-stone-100 px-2 py-0.5 font-medium tabular-nums text-stone-700">
+              <span key={position} className="rounded-md bg-stone-100 dark:bg-muted px-2 py-0.5 font-medium tabular-nums text-stone-700 dark:text-stone-200">
                 {value}
               </span>
             ))}
@@ -63,7 +63,7 @@ export function CourseJourney({ runId }: { runId: string }) {
     getJson<Journey>(`/api/runs/${runId}/journey`).then(setJourney).catch(() => setError("Could not load the journey."));
   }, [runId]);
 
-  if (!journey) return <Card><CardContent className="p-8 text-center text-stone-600">{error || "Reading the record…"}</CardContent></Card>;
+  if (!journey) return <Card><CardContent className="p-8 text-center text-stone-600 dark:text-muted-foreground">{error || "Reading the record…"}</CardContent></Card>;
 
   return (
     <Card>
@@ -71,14 +71,14 @@ export function CourseJourney({ runId }: { runId: string }) {
         <div className="flex flex-wrap items-end justify-between gap-4 border-b pb-5">
           <div>
             <h3 className="text-lg font-semibold tracking-tight">From a drug name to a certified field team</h3>
-            <p className="mt-1.5 text-sm leading-6 text-stone-600">
+            <p className="mt-1.5 text-sm leading-6 text-stone-600 dark:text-muted-foreground">
               Every step below is read from the record, never stored — a step is done because the evidence for it
               exists, so this cannot run ahead of the work.
             </p>
           </div>
           <p className="text-right">
             <span className="block text-2xl font-semibold tabular-nums">{journey.done}<span className="text-stone-400">/{journey.total}</span></span>
-            <span className="text-sm capitalize text-stone-600">{journey.state}</span>
+            <span className="text-sm capitalize text-stone-600 dark:text-muted-foreground">{journey.state}</span>
           </p>
         </div>
 
@@ -88,7 +88,7 @@ export function CourseJourney({ runId }: { runId: string }) {
           ))}
         </ol>
 
-        <Link href="/portfolio" className="mt-2 inline-flex items-center gap-1.5 text-sm font-medium text-brand-700 hover:underline">
+        <Link href="/portfolio" className="mt-2 inline-flex items-center gap-1.5 text-sm font-medium text-brand-700 dark:text-brand-300 hover:underline">
           See it consolidated across every programme <ArrowRight size={14} />
         </Link>
       </CardContent>

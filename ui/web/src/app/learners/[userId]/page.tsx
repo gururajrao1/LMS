@@ -32,20 +32,20 @@ export default function LearnerDashboardPage() {
   }, [userId]);
 
   if (!user) return <AppShell><Loading /></AppShell>;
-  if (error) return <AppShell user={user}><p className="mt-6 text-sm text-danger-600">{error}</p></AppShell>;
+  if (error) return <AppShell user={user}><p className="mt-6 text-sm text-danger-600 dark:text-danger-300">{error}</p></AppShell>;
   if (!dashboard) return <AppShell user={user}><Loading label="Loading the learner dashboard…" /></AppShell>;
 
   return (
     <AppShell user={user}>
-      <Link href="/dashboard" className="mb-5 inline-flex items-center gap-2 text-sm font-medium text-stone-600 hover:text-brand-700"><ArrowLeft size={16} /> Back to dashboard</Link>
+      <Link href="/dashboard" className="mb-5 inline-flex items-center gap-2 text-sm font-medium text-stone-600 dark:text-muted-foreground hover:text-brand-700 dark:hover:text-brand-300"><ArrowLeft size={16} /> Back to dashboard</Link>
       <div>
-        <p className="text-sm text-stone-600">{dashboard.user.role} · {dashboard.user.title}</p>
+        <p className="text-sm text-stone-600 dark:text-muted-foreground">{dashboard.user.role} · {dashboard.user.title}</p>
         <h1 className="mt-1 text-3xl font-semibold tracking-tight">{dashboard.user.name}</h1>
-        <p className="mt-2 text-sm text-stone-600"><b className="text-ink">{dashboard.points} pts</b> · {dashboard.certified} certified · {dashboard.overdue} overdue</p>
+        <p className="mt-2 text-sm text-stone-600 dark:text-muted-foreground"><b className="text-ink">{dashboard.points} pts</b> · {dashboard.certified} certified · {dashboard.overdue} overdue</p>
       </div>
 
       {dashboard.alerts.length > 0 && (
-        <Card className="mt-7 border-danger-200">
+        <Card className="mt-7 border-danger-200 dark:border-danger-800">
           <CardHeader><CardTitle className="text-base">Needs attention ({dashboard.alerts.length})</CardTitle></CardHeader>
           <CardContent className="space-y-2">
             {dashboard.alerts.map((alert, index) => (
@@ -64,14 +64,14 @@ export default function LearnerDashboardPage() {
             <Card className="transition-shadow hover:shadow-md">
               <CardHeader><CardTitle className="text-base">{course.run_id} · v{course.version}</CardTitle></CardHeader>
               <CardContent>
-                <div className="flex items-center justify-between text-sm"><span className="text-stone-600">{course.stage}</span><span className="font-semibold">{course.percent}% · {course.points} pts</span></div>
+                <div className="flex items-center justify-between text-sm"><span className="text-stone-600 dark:text-muted-foreground">{course.stage}</span><span className="font-semibold">{course.percent}% · {course.points} pts</span></div>
                 <Progress value={course.percent} className="mt-2" />
-                {course.certificate && <p className="mt-2 text-sm text-brand-700">Certified: {course.certificate.code}</p>}
+                {course.certificate && <p className="mt-2 text-sm text-brand-700 dark:text-brand-300">Certified: {course.certificate.code}</p>}
               </CardContent>
             </Card>
           </Link>
         ))}
-        {!dashboard.courses.length && <p className="text-sm text-stone-600">No assignments yet.</p>}
+        {!dashboard.courses.length && <p className="text-sm text-stone-600 dark:text-muted-foreground">No assignments yet.</p>}
       </div>
     </AppShell>
   );

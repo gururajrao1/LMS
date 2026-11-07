@@ -51,11 +51,11 @@ export function MaterialQuizPanel({ staged, refresh }: { staged: StagedSource[];
     finally { setBusy(null); }
   }
 
-  if (!staged.length) return <p className="py-6 text-center text-stone-600">Stage a document first — Q&A pairs are extracted from staged material.</p>;
+  if (!staged.length) return <p className="py-6 text-center text-stone-600 dark:text-muted-foreground">Stage a document first — Q&A pairs are extracted from staged material.</p>;
 
   return (
     <div className="space-y-4">
-      {error && <p className="text-sm text-danger-600">{error}</p>}
+      {error && <p className="text-sm text-danger-600 dark:text-danger-300">{error}</p>}
       {staged.map((entry) => {
         const quiz = quizzes[entry.id];
         const picked = chosen[entry.id] ?? {};
@@ -65,7 +65,7 @@ export function MaterialQuizPanel({ staged, refresh }: { staged: StagedSource[];
           <Card key={entry.id}>
             <CardHeader>
               <CardTitle className="text-base">{entry.title || entry.name}</CardTitle>
-              <p className="mt-1 text-sm text-stone-600">
+              <p className="mt-1 text-sm text-stone-600 dark:text-muted-foreground">
                 {(pairs[entry.id]?.length ?? entry.qa_count ?? 0) === 0
                   ? "No Q&A extracted yet."
                   : `${pairs[entry.id]?.length ?? entry.qa_count} question${(pairs[entry.id]?.length ?? entry.qa_count ?? 0) === 1 ? "" : "s"} extracted`}
@@ -77,9 +77,9 @@ export function MaterialQuizPanel({ staged, refresh }: { staged: StagedSource[];
                 <Button variant="outline" disabled={busy === entry.id} onClick={() => loadQuiz(entry)}>Open quiz</Button>
               </div>
               {(pairs[entry.id] ?? []).slice(0, 5).map((pair) => (
-                <div key={pair.id} className="rounded-xl border bg-stone-50 p-4">
+                <div key={pair.id} className="rounded-xl border bg-stone-50 dark:bg-surface-sunk p-4">
                   <p className="text-sm font-medium">{pair.question}</p>
-                  <p className="mt-1 text-sm leading-6 text-stone-600">{pair.answer.slice(0, 220)}{pair.answer.length > 220 ? "…" : ""}</p>
+                  <p className="mt-1 text-sm leading-6 text-stone-600 dark:text-muted-foreground">{pair.answer.slice(0, 220)}{pair.answer.length > 220 ? "…" : ""}</p>
                 </div>
               ))}
               <div className="flex flex-wrap gap-2">
@@ -90,7 +90,7 @@ export function MaterialQuizPanel({ staged, refresh }: { staged: StagedSource[];
                 <div className="space-y-3 rounded-xl border p-4">
                   <div className="flex items-center justify-between">
                     <p className="font-medium">{quiz.title}</p>
-                    <p className="text-sm text-stone-600">{answered}/{quiz.questions.length} answered{answered === quiz.questions.length && <> · <b className={correct / quiz.questions.length * 100 >= quiz.passing_score ? "text-brand-700" : "text-danger-600"}>{Math.round(correct / quiz.questions.length * 100)}%</b> (pass {quiz.passing_score}%)</>}</p>
+                    <p className="text-sm text-stone-600 dark:text-muted-foreground">{answered}/{quiz.questions.length} answered{answered === quiz.questions.length && <> · <b className={correct / quiz.questions.length * 100 >= quiz.passing_score ? "text-brand-700 dark:text-brand-300" : "text-danger-600 dark:text-danger-300"}>{Math.round(correct / quiz.questions.length * 100)}%</b> (pass {quiz.passing_score}%)</>}</p>
                   </div>
                   {quiz.questions.map((question, index) => {
                     const pick = picked[question.id];
@@ -104,13 +104,13 @@ export function MaterialQuizPanel({ staged, refresh }: { staged: StagedSource[];
                             return (
                               <button key={optionIndex} type="button" disabled={decided}
                                 onClick={() => setChosen((current) => ({ ...current, [entry.id]: { ...(current[entry.id] ?? {}), [question.id]: optionIndex } }))}
-                                className={`w-full rounded-lg border p-3 text-left text-sm ${decided ? (optionIndex === question.correct_index ? "border-brand-600 bg-brand-50" : isPick ? "border-danger-500 bg-danger-50" : "") : "hover:bg-stone-50"}`}>
+                                className={`w-full rounded-lg border p-3 text-left text-sm ${decided ? (optionIndex === question.correct_index ? "border-brand-600 bg-brand-50 dark:bg-brand-950" : isPick ? "border-danger-500 bg-danger-50 dark:bg-danger-950" : "") : "hover:bg-stone-50 dark:hover:bg-surface-sunk"}`}>
                                 {option}
                               </button>
                             );
                           })}
                         </div>
-                        {pick !== undefined && pick !== question.correct_index && <p className="mt-2 text-sm text-stone-600">{question.rationale.slice(0, 300)}</p>}
+                        {pick !== undefined && pick !== question.correct_index && <p className="mt-2 text-sm text-stone-600 dark:text-muted-foreground">{question.rationale.slice(0, 300)}</p>}
                       </div>
                     );
                   })}

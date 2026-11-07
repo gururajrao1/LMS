@@ -23,7 +23,7 @@ function Sources({ citations }: { citations: Citation[] }) {
     <div className="mt-3 space-y-1.5 border-t pt-3">
       {citations.map((citation, index) => (
         <a key={`${citation.title}-${citation.locator}-${index}`} href={citation.url} target="_blank" rel="noreferrer"
-          className="flex items-start gap-2 text-xs leading-5 text-brand-700 hover:underline">
+          className="flex items-start gap-2 text-xs leading-5 text-brand-700 dark:text-brand-300 hover:underline">
           <ExternalLink size={13} className="mt-0.5 shrink-0" />
           <span>{citation.title} · {citation.locator}</span>
         </a>
@@ -86,37 +86,37 @@ export function CourseChat({ runId, learner, context = "material", userId, title
 
   return (
     <Card className={fill ? "flex h-full flex-col gap-0 overflow-hidden rounded-none border-0 p-0 shadow-none" : "overflow-hidden p-0"}>
-      <div className="border-b bg-white p-4">
+      <div className="border-b bg-white dark:bg-surface p-4">
         <div className="flex items-start justify-between gap-3">
-          <p className="flex items-center gap-2 font-semibold"><Sparkles size={17} className="shrink-0 text-brand-700" /> {title}</p>
+          <p className="flex items-center gap-2 font-semibold"><Sparkles size={17} className="shrink-0 text-brand-700 dark:text-brand-300" /> {title}</p>
           <div className="flex shrink-0 items-center gap-2">
             {turns.some((turn) => turn.reply) && (
               <Badge variant="secondary">{MODE[turns.findLast((turn) => turn.reply)!.reply!.mode]}</Badge>
             )}
             {onClose && (
-              <button type="button" onClick={onClose} aria-label="Close the assistant" className="-mr-1 rounded-lg p-1 text-stone-500 hover:bg-stone-100">
+              <button type="button" onClick={onClose} aria-label="Close the assistant" className="-mr-1 rounded-lg p-1 text-stone-500 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-muted">
                 <X size={16} />
               </button>
             )}
           </div>
         </div>
-        <p className="mt-1.5 text-sm leading-5 text-stone-600">{blurb ?? "Answers come only from this course's cited dossier."}</p>
+        <p className="mt-1.5 text-sm leading-5 text-stone-600 dark:text-muted-foreground">{blurb ?? "Answers come only from this course's cited dossier."}</p>
       </div>
 
       <CardContent ref={log} className={`space-y-4 overflow-y-auto overscroll-contain p-4 ${fill ? "min-h-0 flex-1" : "max-h-[min(26rem,55vh)]"}`}>
         {!turns.length && starters.length > 0 && (
           <div className="space-y-3">
-            <p className="flex items-center gap-2 text-sm text-stone-600">
+            <p className="flex items-center gap-2 text-sm text-stone-600 dark:text-muted-foreground">
               <Search size={15} /> Questions this page tends to raise:
             </p>
             <div className="flex flex-col gap-2">
               {starters.map((starter) => (
                 <button key={starter.question} type="button" onClick={() => ask(starter.question)}
-                  className="flex items-start gap-2 rounded-lg border px-3 py-2 text-left text-xs font-medium leading-5 text-stone-700 transition-colors hover:border-brand-600 hover:bg-brand-50">
+                  className="flex items-start gap-2 rounded-lg border px-3 py-2 text-left text-xs font-medium leading-5 text-stone-700 dark:text-stone-200 transition-colors hover:border-brand-600 hover:bg-brand-50 dark:hover:bg-brand-950">
                   <span className="flex-1">{starter.question}</span>
                   {/* Says where the answer will come from before it is asked: the
                       programme's own record, or the cited dossier. */}
-                  <span className="shrink-0 rounded px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-stone-500">
+                  <span className="shrink-0 rounded px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">
                     {starter.kind === "record" ? "record" : "sources"}
                   </span>
                 </button>
@@ -128,18 +128,18 @@ export function CourseChat({ runId, learner, context = "material", userId, title
           <div key={turn.id} className="space-y-3">
             <p className="ml-auto w-fit max-w-[85%] rounded-2xl rounded-br-sm bg-surface-deep px-4 py-2.5 text-sm text-white">{turn.question}</p>
             {turn.reply && (
-              <div className="w-fit max-w-[92%] rounded-2xl rounded-bl-sm bg-stone-50 px-4 py-3">
-                <p className="whitespace-pre-line text-sm leading-6 text-stone-700">{turn.reply.answer}</p>
+              <div className="w-fit max-w-[92%] rounded-2xl rounded-bl-sm bg-stone-50 dark:bg-surface-sunk px-4 py-3">
+                <p className="whitespace-pre-line text-sm leading-6 text-stone-700 dark:text-stone-200">{turn.reply.answer}</p>
                 <Sources citations={turn.reply.citations} />
               </div>
             )}
-            {turn.error && <p className="text-sm text-danger-600">{turn.error}</p>}
-            {!turn.reply && !turn.error && <p className="text-sm text-stone-500">Searching the dossier…</p>}
+            {turn.error && <p className="text-sm text-danger-600 dark:text-danger-300">{turn.error}</p>}
+            {!turn.reply && !turn.error && <p className="text-sm text-stone-500 dark:text-stone-400">Searching the dossier…</p>}
           </div>
         ))}
       </CardContent>
 
-      <form onSubmit={submit} className="flex gap-2 border-t bg-white p-3">
+      <form onSubmit={submit} className="flex gap-2 border-t bg-white dark:bg-surface p-3">
         <Input value={question} onChange={(event) => setQuestion(event.target.value)} placeholder="Ask about dosing, safety, evidence…" className="h-10" />
         <Button type="submit" disabled={busy || !question.trim()} className="h-10 bg-brand-600 hover:bg-brand-800"><Send /> Ask</Button>
       </form>

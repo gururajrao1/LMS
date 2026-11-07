@@ -89,7 +89,7 @@ export function PromptDialog({
                 if (event.key === "Enter" && (event.metaKey || event.ctrlKey)) submit(event);
               }}
             />
-            <p className="text-xs text-stone-600">This is stored on the course and attributed to you.</p>
+            <p className="text-xs text-stone-600 dark:text-muted-foreground">This is stored on the course and attributed to you.</p>
           </div>
 
           <AlertDialogFooter>

@@ -57,7 +57,7 @@ function Row({ step, active }: { step: SequenceStep; active: boolean }) {
   const failed = step.status === "failed";
   const checker = from === "checker" || to === "checker";
   const line = failed ? "bg-danger-500" : checker ? "bg-signal-600" : "bg-stone-400";
-  const dash = failed ? "text-danger-500" : checker ? "text-signal-600" : "text-stone-400";
+  const dash = failed ? "text-danger-500 dark:text-danger-300" : checker ? "text-signal-600 dark:text-signal-300" : "text-stone-400";
   const head = failed ? "border-l-danger-500" : checker ? "border-l-signal-600" : "border-l-stone-400";
 
   // A self-message is its own shape in UML: out, down, and back to the same lane.
@@ -68,7 +68,7 @@ function Row({ step, active }: { step: SequenceStep; active: boolean }) {
           style={{ left: `calc(${X[from]}% + 4.5rem)`, top: 10 }}>
           {step.message}
         </span>
-        <span className={`absolute rounded-r-md border-y border-r ${failed ? "border-danger-500" : "border-stone-400"}`}
+        <span className={`absolute rounded-r-md border-y border-r ${failed ? "border-danger-500" : "border-stone-400 dark:border-stone-600"}`}
           style={{ left: `${X[from]}%`, top: 28, width: "4rem", height: 16 }} />
         <span className={`absolute size-0 border-y-[5px] border-l-[7px] border-y-transparent ${head} rotate-180`}
           style={{ left: `${X[from]}%`, top: 39 }} />
@@ -84,7 +84,7 @@ function Row({ step, active }: { step: SequenceStep; active: boolean }) {
   return (
     <li className="relative motion-safe:animate-in motion-safe:fade-in-0 motion-safe:slide-in-from-top-1" style={{ height: ROW }}>
       <span
-        className={`absolute line-clamp-2 -translate-x-1/2 text-center text-xs leading-4 ${failed ? "text-danger-700" : "text-ink"} ${returns ? "font-normal" : "font-medium"}`}
+        className={`absolute line-clamp-2 -translate-x-1/2 text-center text-xs leading-4 ${failed ? "text-danger-700 dark:text-danger-300" : "text-ink"} ${returns ? "font-normal" : "font-medium"}`}
         style={{ left: `${left + width / 2}%`, top: 4, maxWidth: "17rem", width: "max-content" }}
       >
         {step.message}
@@ -126,13 +126,13 @@ export function AgentSequence({ steps, running }: { steps: SequenceStep[]; runni
   return (
     // Scrolls as one unit so the lifelines stay under their actors on a narrow screen.
     <div className="overflow-x-auto">
-      <div className="relative h-16 min-w-[42rem] border-b bg-stone-50">
+      <div className="relative h-16 min-w-[42rem] border-b bg-stone-50 dark:bg-surface-sunk">
         {LANES.map((lane) => (
           <div key={lane.id}
-            className={`absolute w-28 -translate-x-1/2 rounded-lg border px-2 py-1.5 text-center ${lane.id === "checker" ? "border-signal-600/40 bg-signal-50" : "border-stone-300 bg-white"}`}
+            className={`absolute w-28 -translate-x-1/2 rounded-lg border px-2 py-1.5 text-center ${lane.id === "checker" ? "border-signal-600/40 bg-signal-50 dark:bg-signal-950" : "border-stone-300 dark:border-stone-700 bg-white dark:bg-surface"}`}
             style={{ left: `${lane.x}%`, top: 10 }}>
-            <p className={`text-sm font-semibold leading-4 ${lane.id === "checker" ? "text-signal-700" : "text-ink"}`}>{lane.label}</p>
-            <p className="text-[10px] leading-3 text-stone-500">{lane.blurb}</p>
+            <p className={`text-sm font-semibold leading-4 ${lane.id === "checker" ? "text-signal-700 dark:text-signal-300" : "text-ink"}`}>{lane.label}</p>
+            <p className="text-[10px] leading-3 text-stone-500 dark:text-stone-400">{lane.blurb}</p>
           </div>
         ))}
       </div>
@@ -150,7 +150,7 @@ export function AgentSequence({ steps, running }: { steps: SequenceStep[]; runni
             ))}
           </ol>
           {!steps.length && (
-            <p className="relative py-16 text-center text-sm text-stone-600">Connecting to the agent log…</p>
+            <p className="relative py-16 text-center text-sm text-stone-600 dark:text-muted-foreground">Connecting to the agent log…</p>
           )}
         </div>
       </div>

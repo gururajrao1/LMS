@@ -44,6 +44,8 @@
   --color-signal-400: #818cf8;
   --color-signal-600: #4f46e5;
   --color-signal-700: #4338ca;
+  --color-signal-800: #3730a3;
+  --color-signal-950: #1e1b4b;
 
   /* Status — reserved, never reused as a series colour, always with a label. */
   --color-warn-50: #fffbeb;
@@ -53,6 +55,8 @@
   --color-warn-600: #d97706;
   --color-warn-700: #b45309;
   --color-warn-900: #78350f;
+  --color-warn-950: #451a03;
+  --color-warn-800: #92400e;
 
   /* Rose rather than a pure red: more chroma (0.22 vs 0.16), less alarm-bell. */
   --color-danger-50: #fff1f2;
@@ -60,6 +64,11 @@
   --color-danger-600: #e11d48;
   --color-danger-700: #be123c;
   --color-danger-900: #881337;
+  --color-danger-950: #4c0519;
+  --color-danger-200: #fecdd3;
+  --color-danger-300: #fda4af;
+  --color-danger-400: #fb718c;
+  --color-danger-800: #9f1239;
 
   /* Surfaces. `sunk` is the page behind the cards; `deep` is the brand slab. */
   --color-surface: #ffffff;
@@ -152,37 +161,45 @@
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  color-scheme: dark;
+  /* App surfaces go warm-dark; the deep emerald slabs stay as they are. */
+  --color-surface: #211e1a;
+  --color-surface-sunk: #151311;
+  --color-ink: #ebe6dd;
+  --color-line: #3a352f;
+  --background: var(--color-surface-sunk);
+  --foreground: var(--color-ink);
+  --card: var(--color-surface);
+  --card-foreground: var(--color-ink);
+  --popover: var(--color-surface);
+  --popover-foreground: var(--color-ink);
+  --primary: var(--color-brand-600);
+  --primary-foreground: #ffffff;
+  --secondary: #2b2721;
+  --secondary-foreground: var(--color-ink);
+  --muted: #2b2721;
+  --muted-foreground: #a8a29e;
+  --accent: #2b2721;
+  --accent-foreground: var(--color-ink);
+  --destructive: var(--color-danger-400);
+  --border: var(--color-line);
+  --input: var(--color-line);
+  --ring: var(--color-brand-400);
+  /* Emerald ramp, brightened: on a dark page the light steps carry the weight. */
+  --chart-1: var(--color-brand-200);
+  --chart-2: var(--color-brand-300);
+  --chart-3: var(--color-brand-400);
+  --chart-4: var(--color-brand-500);
+  --chart-5: var(--color-brand-700);
+  --radius: 0.625rem;
+  --sidebar: var(--color-surface);
+  --sidebar-foreground: var(--color-ink);
+  --sidebar-primary: var(--color-brand-600);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #2b2721;
+  --sidebar-accent-foreground: var(--color-ink);
+  --sidebar-border: var(--color-line);
+  --sidebar-ring: var(--color-brand-400);
 }
 
 @layer base {
