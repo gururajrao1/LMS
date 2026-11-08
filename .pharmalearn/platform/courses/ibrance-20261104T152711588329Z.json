@@ -2020,6 +2020,58 @@
       "detail": {
         "version": 2
       }
+    },
+    {
+      "id": "ab75bc507a8a",
+      "at": "2026-11-08T11:54:12.960159+00:00",
+      "action": "safety.reported",
+      "actor_id": "sara-nakamura",
+      "actor_name": "Sara Nakamura",
+      "actor_title": "MSL, oncology East",
+      "actor_role": "msl",
+      "summary": "Sara Nakamura reported a safety concern",
+      "detail": {
+        "version": 2
+      }
+    },
+    {
+      "id": "ad79aaef7078",
+      "at": "2026-11-08T11:54:41.014329+00:00",
+      "action": "safety.reviewed",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman triaged a safety concern",
+      "detail": {
+        "version": 2
+      }
+    },
+    {
+      "id": "9357ae229460",
+      "at": "2026-11-08T11:54:43.096904+00:00",
+      "action": "objection.added",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman added an approved answer",
+      "detail": {
+        "version": 2
+      }
+    },
+    {
+      "id": "c17dbf68a826",
+      "at": "2026-11-08T11:54:45.165654+00:00",
+      "action": "objection.updated",
+      "actor_id": "priya-raman",
+      "actor_name": "Priya Raman",
+      "actor_title": "Medical education lead",
+      "actor_role": "admin",
+      "summary": "Priya Raman updated an approved answer",
+      "detail": {
+        "version": 2
+      }
     }
   ],
   "review_assignment": {
@@ -2038,5 +2090,17 @@
         "sent_at": "2026-11-06T09:11:20.645339+00:00"
       }
     ]
-  }
+  },
+  "objections": [
+    {
+      "id": "d653c75671aa",
+      "question": "TEST 2026-11-07: patient asks about grapefruit?",
+      "answer": "TEST answer: avoid grapefruit products per label.",
+      "citations": [],
+      "author_id": "priya-raman",
+      "author_name": "Priya Raman",
+      "created_at": "2026-11-08T11:54:43.096846+00:00",
+      "retired": true
+    }
+  ]
 }
