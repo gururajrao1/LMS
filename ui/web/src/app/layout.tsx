@@ -25,6 +25,7 @@ export default function RootLayout({
         {/* First paint already has the right theme — no light flash on a dark
             visit. A plain blocking script in <head>, so it runs before React
             paints anything; see public/theme-init.js. */}
+        {/* eslint-disable-next-line @next/next/no-sync-scripts -- pre-paint theme script must run synchronously in <head> */}
         <script src="/theme-init.js" />
       </head>
       <body className="min-h-full">{children}</body>
