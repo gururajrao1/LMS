@@ -508,12 +508,45 @@ def quote_match(supporting: str, corpus_text: str) -> float:
 VERBATIM, PARTIAL = 0.9, 0.35
 
 
+_SENTENCE_SPLIT = re.compile(r"(?<=[.!?])\s+")
+
+
+def sentence_f1(supporting: str, corpus_text: str) -> dict:
+    """Sentence-level citation scores for one recorded quote (LongBench-Cite).
+
+    quote_match grades the whole quote, so one invented sentence hides inside
+    a mostly-verbatim paragraph. Split into sentences and score each with the
+    same shingle matcher: recall is the supported fraction, precision the
+    exactly-verbatim fraction, f1 their harmonic mean. mean_length tracks
+    granularity — finer citations verify more precisely.
+    """
+    sentences = [part.strip() for part in _SENTENCE_SPLIT.split(supporting or "") if part.strip()]
+    if not sentences:
+        return {"sentences": 0, "supported": 0, "verbatim": 0,
+                "recall": 0.0, "precision": 0.0, "f1": 0.0, "mean_length": 0}
+    ratios = [quote_match(sentence, corpus_text) for sentence in sentences]
+    supported = sum(ratio >= PARTIAL for ratio in ratios)
+    verbatim = sum(ratio >= VERBATIM for ratio in ratios)
+    recall = supported / len(sentences)
+    precision = verbatim / len(sentences)
+    return {
+        "sentences": len(sentences),
+        "supported": supported,
+        "verbatim": verbatim,
+        "recall": recall,
+        "precision": precision,
+        "f1": (2 * recall * precision / (recall + precision)) if (recall + precision) else 0.0,
+        "mean_length": round(sum(len(sentence) for sentence in sentences) / len(sentences)),
+    }
+
+
 def deterministic_findings(run_id: str, track: str, drug: str) -> tuple[list[Finding], dict]:
     corpus = source_corpus(drug)
     dossier = _dossier_citations(run_id)
     findings: list[Finding] = []
     stats = {"units": 0, "citations": 0, "traceable": 0, "checkable": 0, "verified": 0, "partial": 0,
-             "unverifiable": 0, "fetched_live": 0, "abstract_only": 0, "human_record": 0}
+             "unverifiable": 0, "fetched_live": 0, "abstract_only": 0, "human_record": 0,
+             "cited_sentences": 0, "supported_sentences": 0, "verbatim_sentences": 0}
 
     for unit in units(run_id, track):
         stats["units"] += 1
@@ -578,6 +611,10 @@ def deterministic_findings(run_id: str, track: str, drug: str) -> tuple[list[Fin
                     stats["unverifiable"] += 1
                     continue
             stats["checkable"] += 1
+            sent = sentence_f1(supporting, corpus_text)
+            stats["cited_sentences"] += sent["sentences"]
+            stats["supported_sentences"] += sent["supported"]
+            stats["verbatim_sentences"] += sent["verbatim"]
             ratio = quote_match(supporting, corpus_text)
             if ratio >= VERBATIM:
                 stats["verified"] += 1

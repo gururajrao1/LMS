@@ -82,6 +82,26 @@ def test_quote_match_scores_how_much_of_a_quote_is_real():
     assert judge.quote_match("Entirely different sentence about something else altogether here", source) == 0.0
 
 
+def test_sentence_f1_separates_supported_from_invented_sentences():
+    """One verbatim sentence plus one invented sentence is half recall and
+    half precision — the average must not hide which half is which."""
+    corpus = judge._norm(f"preamble {QUOTE} trailing text")
+    supporting = f"{QUOTE} Lemurs govern the pharmacy council today."
+    scores = judge.sentence_f1(supporting, corpus)
+    assert scores["sentences"] == 2
+    assert scores["recall"] == 0.5
+    assert scores["precision"] == 0.5
+    assert scores["f1"] == 0.5
+
+
+def test_sentence_counts_accumulate_in_the_check_stats(run):
+    """The suite's verbatim fixture quote is one fully supported sentence."""
+    _findings, stats = judge.deterministic_findings(run, "hcp", "ibrance")
+    assert stats["cited_sentences"] >= 1
+    assert stats["supported_sentences"] == stats["cited_sentences"]
+    assert stats["verbatim_sentences"] == stats["cited_sentences"]
+
+
 def test_front_matter_slides_are_not_flagged_as_uncited(run):
     findings = _report(run)
     uncited = [item.reference for item in findings if item.check == "uncited"]

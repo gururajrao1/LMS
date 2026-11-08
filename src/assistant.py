@@ -152,6 +152,78 @@ def search(run_id: str, question: str, limit: int = 5) -> list[dict]:
     return [claim for _, claim in scored[:limit]]
 
 
+def rerank_by_support(run_id: str, question: str, matches: list[dict]) -> list[dict]:
+    """Order matches by verifiability, then by question coverage.
+
+    A SelfCite-style necessity/sufficiency proxy built from what is on hand:
+    necessity favours matches carrying rare question terms (terms the answer
+    cannot be built without), sufficiency favours matches covering more of
+    the question, and anything with a citation outranks anything without —
+    an uncited match can still be relevant, but it must never be quoted as
+    evidence ahead of a cited one. Stable, so pass-one order breaks ties.
+    """
+    pool = claims(run_id)
+    size = len(pool) or 1
+    frequency: dict[str, int] = {}
+    for claim in pool:
+        for term in set(_terms(f"{claim['section_title']} {claim['text']}")):
+            frequency[term] = frequency.get(term, 0) + 1
+    query = set(_terms(question))
+    for fixed in _correct_terms(run_id, question).values():
+        query.add(fixed)
+
+    def _score(match: dict) -> tuple:
+        document = set(_terms(f"{match['section_title']} {match['text']}"))
+        necessity = sum(
+            math.log(size / frequency[term])
+            for term in query
+            if term in document and frequency.get(term)
+        )
+        sufficiency = (
+            sum(1 for term in query if term in document) / len(query) if query else 0.0
+        )
+        return (bool(match.get("citations")), necessity, sufficiency)
+
+    return sorted(matches, key=_score, reverse=True)
+
+
+def expanded_search(run_id: str, question: str, limit: int = 5) -> list[dict]:
+    """Two-pass retrieval with dedup: the first pass asks the question, the
+    second pass re-asks it in the vocabulary of the best first-pass claims.
+
+    A claim sharing no words with the question is invisible to a single
+    overlap pass even when it is the answer's neighbour (MedCite's
+    re-retrieval finding). Expanding with each top claim's own rare terms
+    pulls those neighbours in; dedup keeps the merge honest, and the
+    support rerank puts verifiable coverage first.
+    """
+    first = search(run_id, question, limit=limit)
+    seen = {claim["text"] for claim in first}
+    merged = list(first)
+    question_terms = set(_terms(question))
+    for claim in first[:3]:
+        extra = sorted(set(_terms(claim["text"])) - question_terms)[:6]
+        if not extra:
+            continue
+        for hit in search(run_id, f"{question} {' '.join(extra)}", limit=limit):
+            if hit["text"] not in seen:
+                seen.add(hit["text"])
+                merged.append(hit)
+    return rerank_by_support(run_id, question, merged)[:limit]
+
+
+def _well_supported(matches: list[dict], need: int = 3) -> bool:
+    """Adaptive gate: when every top match carries a citation, the local
+    answer is served directly and no model is billed.
+
+    Retrieval already found checkable evidence, so a model rewrite can only
+    reword it — at a cost, and with a chance to drift from the quotes. Weak
+    evidence still goes to the model, which sees the same matches.
+    """
+    top = matches[:need]
+    return bool(top) and all(match.get("citations") for match in top)
+
+
 def _citations(matches: list[dict], limit: int = 6) -> list[dict]:
     seen, citations = set(), []
     for match in matches:
@@ -179,6 +251,17 @@ def _local_answer(question: str, matches: list[dict]) -> dict:
             "citations": [],
             "evidence": [],
             "mode": "retrieval",
+        }
+    if not any(match.get("citations") for match in matches[:3]):
+        return {
+            "answer": (
+                "I can't verify an answer to that from this course's dossier — the closest "
+                "material has no cited evidence behind it, and I won't quote uncited text "
+                "as if it were sourced. Please escalate the question to Medical Information."
+            ),
+            "citations": [],
+            "evidence": [],
+            "mode": "refused",
         }
     lead = "The strongest evidence in this course's dossier:"
     body = "\n\n".join(f"• {match['text']}" for match in matches[:3])
@@ -422,10 +505,12 @@ async def answer(run_id: str, question: str, learner: str = "hcp", user_id: str 
     rules = _assessment_rules(run_id, question, learner)
     if rules:
         return rules
-    matches = search(run_id, question)
+    matches = expanded_search(run_id, question)
     corrections = _correct_terms(run_id, question)
     local = _noted(_local_answer(question, matches), corrections)
     if not os.getenv("ANTHROPIC_API_KEY") or not matches:
+        return local
+    if local.get("mode") == "refused" or _well_supported(matches):
         return local
 
     evidence = "\n\n".join(

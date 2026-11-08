@@ -256,6 +256,131 @@ def test_dossier_failure_questions_stay_with_the_dossier(run, tmp_path):
     assert assistant._assessment_rules(run, "What happens if I fail?", "hcp") is not None
 
 
+# --- Citation pipeline, round 2 (shortlist items 1, 3, 4, 5) ---
+
+RETRIEVAL_DOSSIER = {
+    "drug": {"brand": "Ibrance", "generic": "Palbociclib", "area": "Oncology"},
+    "title": "Ibrance",
+    "sections": [
+        {"id": "anchor", "title": "Trial design", "claims": [
+            {"text": "PALOMA-2 randomized palbociclib therapy against endocrine treatment alone.",
+             "evidence_type": "trial",
+             "citations": [{"title": "PALOMA-2", "url": "https://pubmed.ncbi.nlm.nih.gov/2", "locator": "Methods"}]},
+        ]},
+        {"id": "finding", "title": "Outcomes", "claims": [
+            {"text": "Palbociclib therapy extended survival beyond expectations.",
+             "evidence_type": "trial",
+             "citations": [{"title": "PALOMA-2", "url": "https://pubmed.ncbi.nlm.nih.gov/2", "locator": "Results"}]},
+        ]},
+        {"id": "noise", "title": "Logistics", "claims": [
+            {"text": f"The trial logistics note mentions courier {word}.",
+             "evidence_type": "note", "citations": []}
+            for word in ("alpha", "bravo", "cobalt", "delta", "echo")
+        ]},
+    ],
+}
+
+
+def test_second_pass_retrieval_finds_what_the_first_pass_misses(run, tmp_path):
+    """A claim sharing no question words is invisible to pass one; the anchor
+    claim's own vocabulary retrieves it on pass two (MedCite re-retrieval)."""
+    (tmp_path / "content" / "run" / "context.json").write_text(json.dumps(RETRIEVAL_DOSSIER))
+    question = "What did the PALOMA-2 trial show?"
+    first = assistant.search(run, question, limit=3)
+    assert all("extended survival" not in hit["text"] for hit in first)
+    merged = assistant.expanded_search(run, question, limit=4)
+    assert any("extended survival" in hit["text"] for hit in merged)
+    assert len({hit["text"] for hit in merged}) == len(merged)
+
+
+def test_rerank_prefers_cited_matches_that_cover_the_question(run, tmp_path):
+    """IDF alone tops an uncited claim stuffed with question words; the
+    SelfCite-style rerank promotes the cited claim covering them instead."""
+    base = tmp_path / "content" / "run"
+    dossier = json.loads((base / "context.json").read_text())
+    dossier["sections"].append({"id": "fluff", "title": "Notes", "claims": [
+        {"text": "Phase 3 trials show outcomes in enrolled cohorts.",
+         "evidence_type": "note", "citations": []},
+    ]})
+    (base / "context.json").write_text(json.dumps(dossier))
+    question = "What did the phase 3 trials show?"
+    first = assistant.search(run, question, limit=2)
+    assert first[0]["citations"] == []
+    ranked = assistant.rerank_by_support(run, question, first)
+    assert ranked[0]["citations"] != []
+    assert "24.8" in ranked[0]["text"]
+
+
+def test_record_questions_never_touch_retrieval_or_the_model(run, tmp_path, monkeypatch):
+    """Grading answers are record facts: no search, no billed model call."""
+    quiz_dir = tmp_path / "content" / "run" / "hcp"
+    quiz_dir.mkdir(parents=True)
+    (quiz_dir / "quiz.json").write_text(json.dumps({"passing_score": 75, "questions": []}))
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "live-key")
+    def _boom(*args, **kwargs):
+        raise AssertionError("retrieval must not run for a record question")
+    monkeypatch.setattr(assistant, "search", _boom)
+    calls = []
+    async def _spy(*args, **kwargs):
+        calls.append(True)
+        return {"answer": "MODEL", "citations": []}
+    monkeypatch.setattr(assistant, "_message_json", _spy)
+    import asyncio
+    reply = asyncio.run(assistant.answer(run, "what happens if i fail?", "hcp"))
+    assert reply["mode"] == "record"
+    assert "75%" in reply["answer"]
+    assert calls == []
+
+
+def test_strong_local_evidence_answers_without_the_model(run, monkeypatch):
+    """Adaptive gating: fully cited top matches are served directly, so a key
+    in the environment does not mean every question spends on the model."""
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "live-key")
+    calls = []
+    async def _spy(*args, **kwargs):
+        calls.append(True)
+        return {"answer": "MODEL", "citations": []}
+    monkeypatch.setattr(assistant, "_message_json", _spy)
+    import asyncio
+    reply = asyncio.run(assistant.answer(run, "What did the phase 3 trials show?", "hcp"))
+    assert reply["mode"] == "retrieval"
+    assert "24.8" in reply["answer"]
+    assert calls == []
+
+
+def test_matches_without_any_citation_refuse_instead_of_quoting(run, tmp_path):
+    """Quoting uncited claims as evidence is fabrication with extra steps:
+    zero support refuses and names Medical Information."""
+    (tmp_path / "content" / "run" / "context.json").write_text(json.dumps({
+        "drug": {"brand": "Ibrance", "generic": "Palbociclib", "area": "Oncology"},
+        "title": "Ibrance",
+        "sections": [{"id": "notes", "title": "Notes", "claims": [
+            {"text": "Field teams often ask about sequencing after progression.",
+             "evidence_type": "note", "citations": []},
+            # A second claim so IDF weights are non-zero (a one-claim pool
+            # scores everything at log(1/1) = 0 and retrieves nothing).
+            {"text": "Logistics notes mention courier schedules.",
+             "evidence_type": "note", "citations": []},
+        ]}],
+    }))
+    matches = assistant.search(run, "What about sequencing after progression?")
+    assert matches, "fixture must retrieve the uncited claim"
+    reply = assistant._local_answer("What about sequencing after progression?", matches)
+    assert reply["mode"] == "refused"
+    assert "Medical Information" in reply["answer"]
+
+
+def test_an_empty_dossier_still_says_so_plainly(run, tmp_path):
+    """No matches at all keeps the old plain fallback, not the refusal."""
+    (tmp_path / "content" / "run" / "context.json").write_text(json.dumps({
+        "drug": {"brand": "Ibrance", "generic": "Palbociclib", "area": "Oncology"},
+        "title": "Ibrance", "sections": [],
+    }))
+    reply = assistant._local_answer("Anything at all?", [])
+    assert reply["mode"] == "retrieval"
+    assert "does not cover" in reply["answer"]
+
+
 def test_partial_match_names_what_is_missing():
     verdict, close = assistant._finding_state({
         "check": "quote_not_verbatim", "match_percent": 60,
