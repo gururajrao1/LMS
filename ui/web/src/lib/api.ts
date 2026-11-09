@@ -535,6 +535,50 @@ export type Analytics = {
     reviewer_cost_saved_usd: number;
     human_comments: number;
   };
+  evidence_conditioned_accuracy: {
+    measured: boolean;
+    units: number | null;
+    citations: number | null;
+    checkable: number;
+    verified: number;
+    coverage_percent: number | null;
+    /** Null until enough checkable citations exist to make a rate mean anything. */
+    accuracy_percent: number | null;
+    min_for_rate: number;
+    withheld: boolean;
+    findings_by_check: Record<string, number>;
+  };
+  mastery_over_time: { date: string; attempts: number; avg_final: number }[];
+  interaction_gaps: {
+    hardest_questions: { track: string; id: string; prompt: string; attempts: number; correct: number; percent: number }[];
+    lowest_modules: { id: string; title: string; minutes: number; completed: number; rating: number | null; ratings: number }[];
+    feedback_notes: { module_id: string; rating: number; comment: string }[];
+    hypotheses: { question_id: string; question_percent: number; look_at_module: string; note: string }[];
+    causal: boolean;
+  };
+  delayed_retention: {
+    delay_days: number;
+    measured: number;
+    not_yet_measurable: number;
+    avg_baseline: number | null;
+    avg_retained_final: number | null;
+    retained_uplift: number | null;
+  };
+  ask_depth: {
+    questions: number;
+    rationale_percent: number | null;
+    cited_percent: number | null;
+    hardest_quartile_ids: string[];
+    hardest_accuracy_percent: number | null;
+    hardest_attempts: number;
+  };
+  course_rag: {
+    rag: "red" | "amber" | "green";
+    red_learners: string[];
+    amber_reasons: string[];
+    expiring_certificates: number;
+    due_in_days: number | null;
+  };
 };
 
 /** Everything needed to settle one machine finding without leaving the comment. */

@@ -1536,3 +1536,33 @@ def cohort(run_id: str) -> dict:
         "learners": learners,
         "feedback": sorted(feedback, key=lambda entry: entry["created_at"], reverse=True),
     }
+
+
+def grade_free_text(reference: str, answer: str, threshold: float = 0.6,
+                    review_margin: float = 0.15) -> dict:
+    """Semantic short-answer grading, lightweight path (item 15, EvalAI).
+
+    Token-F1 between reference and answer as the embedding-similarity
+    stand-in: no model, no network, deterministic. Scores at or above
+    `threshold` pass; anything below the review line routes to a human
+    reviewer and must never be treated as an auto-fail - the caller keeps
+    the attempt ungraded until review. The LLM-adjudication step from the
+    shortlist stays future work; this is the similarity-only path.
+    """
+    import re as _re
+
+    def _toks(value: str) -> list[str]:
+        return _re.findall(r"[a-z0-9][a-z0-9'-]*", (value or "").lower())
+
+    ref, ans = _toks(reference), _toks(answer)
+    if not ref or not ans:
+        score = 0.0
+    else:
+        from collections import Counter as _Counter
+        overlap = sum((_Counter(ref) & _Counter(ans)).values())
+        score = round(2 * overlap / (len(ref) + len(ans)), 3)
+    review_line = min(1.0, threshold + review_margin)
+    needs_review = score < review_line
+    return {"score": score, "threshold": threshold, "review_line": review_line,
+            "passed": score >= threshold, "needs_review": needs_review,
+            "never_auto_fail": True}

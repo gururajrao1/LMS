@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ROLE_LABEL, Stat } from "@/components/app-shell";
-import { API, Cohort, CohortLearner, getJson, Person } from "@/lib/api";
+import { Analytics, API, Cohort, CohortLearner, getJson, Person } from "@/lib/api";
 import { roleLabel } from "@/components/app-shell";
 import { RAG_BADGE } from "@/lib/rag";
 
@@ -49,12 +49,14 @@ export function CourseCohortPanel({ runId, user }: { runId: string; user?: Perso
   const [checking, setChecking] = useState(false);
   type RetentionClass = { id: string; label: string; description: string; keep_years: number; action: string; items: number; oldest: string | null; newest: string | null; first_due: string | null; due_for_review: number; status: string };
   const [retention, setRetention] = useState<RetentionClass[] | null>(null);
+  const [rag, setRag] = useState<Analytics["course_rag"] | null>(null);
 
   useEffect(() => {
     getJson<Cohort>(`/api/runs/${runId}/cohort`).then(setCohort).catch(() => setError("Could not load cohort progress."));
     getJson<Alert[]>(`/api/runs/${runId}/alerts`).then(setAlerts).catch(() => undefined);
     getJson<{ items: Escalation[]; checked_at: string | null; checked_by: string | null }>(`/api/runs/${runId}/escalations`).then(setLadder).catch(() => undefined);
     getJson<{ classes: RetentionClass[] }>(`/api/runs/${runId}/retention`).then((report) => setRetention(report.classes)).catch(() => undefined);
+    getJson<Analytics>(`/api/runs/${runId}/analytics`).then((report) => setRag(report.course_rag)).catch(() => undefined);
   }, [runId]);
 
   async function runEscalationCheck() {
@@ -89,6 +91,38 @@ export function CourseCohortPanel({ runId, user }: { runId: string; user?: Perso
         <Stat icon={Award} value={cohort.certified} label="Certified" />
         <Stat icon={TrendingUp} value={cohort.average_uplift === null ? "–" : `+${cohort.average_uplift}`} label="Average knowledge uplift" tone="brand" />
       </section>
+
+      {rag && (
+        <Card>
+          <CardContent className="space-y-3 p-5">
+            <div className="flex flex-wrap items-center gap-3">
+              <Badge className={RAG_BADGE[rag.rag]}>
+                {rag.rag === "red" ? "Red — action needed" : rag.rag === "amber" ? "Amber — watch" : "Green — on track"}
+              </Badge>
+              <p className="text-sm text-stone-600 dark:text-muted-foreground">
+                {rag.rag === "green"
+                  ? `Every learner is complete${rag.due_in_days !== null ? `, ${rag.due_in_days} days to the due date` : ""}, and no certificate is expiring.`
+                  : rag.rag === "red"
+                    ? `${rag.red_learners.length} learner${rag.red_learners.length === 1 ? "" : "s"} overdue or below the required score.`
+                    : "Nobody is failing, but something needs watching before it turns red."}
+              </p>
+            </div>
+            {(rag.red_learners.length > 0 || rag.amber_reasons.length > 0 || rag.expiring_certificates > 0) && (
+              <ul className="list-disc space-y-1 pl-5 text-sm text-stone-700 dark:text-stone-200">
+                {rag.red_learners.map((learnerId) => (
+                  <li key={learnerId}><b>{cohort.learners.find((learner) => learner.user_id === learnerId)?.name ?? learnerId}</b> — overdue or below the required score.</li>
+                ))}
+                {rag.amber_reasons.map((reason) => (
+                  <li key={reason}>{reason}</li>
+                ))}
+                {rag.expiring_certificates > 0 && rag.amber_reasons.length === 0 && (
+                  <li>{rag.expiring_certificates} certificate{rag.expiring_certificates === 1 ? "" : "s"} expiring within four months.</li>
+                )}
+              </ul>
+            )}
+          </CardContent>
+        </Card>
+      )}
 
       <Card>
         <CardHeader className="flex-row items-start justify-between gap-4">

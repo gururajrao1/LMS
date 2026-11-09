@@ -664,3 +664,53 @@ async def about_finding(run_id: str, finding_id: str, question: str, learner: st
     except Exception:
         return local
     return {**value, "evidence": evidence, "mode": "model-finding"}
+
+
+def peer_turns(claim_text: str, topic: str = "") -> list[dict]:
+    """PEER-grounded question turns, first cut (item 6, PaniniQA).
+
+    Prompt -> Evaluate -> Expand -> Repeat, generated from one dossier
+    claim without a model: a recall prompt, a self-evaluation check, an
+    expansion to a new case, and a spaced repeat. Callers render these as
+    an interactive QA asset reusing the triage/assemble patterns.
+    """
+    claim = (claim_text or "").strip()
+    label = f" on {topic}" if topic else ""
+    return [
+        {"phase": "prompt", "question": f"In your own words, state the key point{label}: {claim[:160]}"},
+        {"phase": "evaluate", "question": "How confident are you in that answer, and which phrase would you check?"},
+        {"phase": "expand", "question": f"Apply the same point{label} to a patient case you have seen. What changes?"},
+        {"phase": "repeat", "question": f"Without looking back: restate the key point{label} again."},
+    ]
+
+
+def verify_with_rationales(run_id: str, statement: str, limit: int = 3) -> dict:
+    """Rationale-citing verifier, first cut (item 7, SciFact).
+
+    Retrieves supporting claims for `statement` and returns them as
+    rationale sentences alongside a verdict. Honest scoping: overlap
+    retrieval can support or abstain, but it cannot refute - Refutes
+    needs a model or a human, so anything without cited overlap returns
+    NotEnoughInfo rather than a false refutation.
+    """
+    def _stem(word: str) -> str:
+        return word[:-1] if len(word) > 3 and word.endswith("s") else word
+
+    pool = [claim for claim in claims(run_id) if claim.get("citations")]
+    query = {_stem(term) for term in _terms(statement)}
+    ranked = sorted(
+        pool,
+        key=lambda claim: len(query & {_stem(term) for term in _terms(f"{claim['section_title']} {claim['text']}")}),
+        reverse=True,
+    )
+    matches = ranked[:limit]
+    rationales = [
+        {"text": match["text"], "section_title": match["section_title"],
+         "citations": match.get("citations", [])}
+        for match in matches
+        if len(query & {_stem(term) for term in _terms(f"{match['section_title']} {match['text']}")}) >= 2
+    ]
+    supported = bool(rationales)
+    verdict = "Supported" if (supported and rationales) else "NotEnoughInfo"
+    return {"statement": statement, "verdict": verdict,
+            "rationales": rationales[:limit], "refutes_from_overlap": False}

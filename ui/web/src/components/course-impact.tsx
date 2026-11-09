@@ -219,6 +219,163 @@ function CheckerLeverage({ leverage }: { leverage: Analytics["checker_leverage"]
   );
 }
 
+/** Verification accuracy conditioned on evidence quality (item 8, FEVER). */
+function EvidenceAccuracy({ accuracy }: { accuracy: Analytics["evidence_conditioned_accuracy"] }) {
+  const checks = Object.entries(accuracy.findings_by_check);
+  const checkMax = Math.max(1, ...checks.map(([, count]) => count));
+  return (
+    <ChartFrame title="Verification accuracy, conditioned on evidence"
+      note="Label accuracy alone rewards the right verdict for the wrong reason. This counts only verdicts with checkable evidence behind them.">
+      <div className="flex flex-wrap items-end gap-x-8 gap-y-3">
+        <div>
+          <p className="text-4xl font-semibold tabular-nums">{accuracy.accuracy_percent === null ? "–" : `${accuracy.accuracy_percent}%`}</p>
+          <p className="mt-1 text-sm text-stone-600 dark:text-muted-foreground">
+            {accuracy.withheld
+              ? `verified rate withheld until ${accuracy.min_for_rate} citations are checkable`
+              : "of checkable citations verified"}
+          </p>
+        </div>
+        <div>
+          <p className="text-2xl font-semibold tabular-nums text-stone-500 dark:text-stone-400">{accuracy.coverage_percent === null ? "–" : `${accuracy.coverage_percent}%`}</p>
+          <p className="mt-1 text-sm text-stone-600 dark:text-muted-foreground">citation coverage</p>
+        </div>
+      </div>
+
+      <dl className="mt-5 grid grid-cols-2 gap-x-6 gap-y-3 border-t pt-4 text-sm sm:grid-cols-3">
+        {[
+          ["Citable units", accuracy.units ?? "–"],
+          ["Checkable citations", accuracy.checkable],
+          ["Verified", accuracy.verified],
+        ].map(([label, value]) => (
+          <div key={label as string}>
+            <dt className="text-stone-600 dark:text-muted-foreground">{label}</dt>
+            <dd className="text-lg font-semibold tabular-nums">{value}</dd>
+          </div>
+        ))}
+      </dl>
+
+      {checks.length > 0 && (
+        <div className="mt-4 space-y-1 border-t pt-4">
+          {checks.map(([check, count]) => (
+            <BarRow key={check} label={check} value={count} max={checkMax}
+              caption={`${count} finding${count === 1 ? "" : "s"}`} />
+          ))}
+        </div>
+      )}
+      {!accuracy.measured && (
+        <p className="py-4 text-center text-sm text-stone-600 dark:text-muted-foreground">No verification report stored for this course yet.</p>
+      )}
+    </ChartFrame>
+  );
+}
+
+/** Mastery over time (item 9). Each point only ever sees attempts up to its date. */
+function MasteryCurve({ series }: { series: Analytics["mastery_over_time"] }) {
+  return (
+    <ChartFrame title="Mastery over time"
+      note="Cumulative mean final score, one point per attempt date. No future attempts leak into earlier points.">
+      {series.length ? (
+        <ColumnChart data={series.map((row) => ({ label: row.date.slice(5), value: row.avg_final }))} unit="%" />
+      ) : <p className="py-8 text-center text-stone-600 dark:text-muted-foreground">No graded finals recorded yet.</p>}
+    </ChartFrame>
+  );
+}
+
+/** Retention at a fixed delay (item 11). Uplift is learning; this is what stuck. */
+function DelayedRetention({ retention }: { retention: Analytics["delayed_retention"] }) {
+  return (
+    <ChartFrame title={`Retention at ${retention.delay_days} days`}
+      note="Only finals taken at least this long after the baseline count. Everyone else is not-yet-measurable, never counted as retained.">
+      <div className="flex flex-wrap items-end gap-x-8 gap-y-3">
+        <div>
+          <p className="text-4xl font-semibold tabular-nums">{retention.retained_uplift === null ? "–" : `+${retention.retained_uplift}`}</p>
+          <p className="mt-1 text-sm text-stone-600 dark:text-muted-foreground">
+            points retained{retention.measured > 0 && `, across ${retention.measured} learner${retention.measured === 1 ? "" : "s"}`}
+          </p>
+        </div>
+        {retention.not_yet_measurable > 0 && (
+          <div>
+            <p className="text-2xl font-semibold tabular-nums text-stone-500 dark:text-stone-400">{retention.not_yet_measurable}</p>
+            <p className="mt-1 text-sm text-stone-600 dark:text-muted-foreground">final{retention.not_yet_measurable === 1 ? "" : "s"} too soon to measure</p>
+          </div>
+        )}
+      </div>
+
+      {retention.measured > 0 && (
+        <dl className="mt-5 grid grid-cols-2 gap-x-6 gap-y-3 border-t pt-4 text-sm">
+          <div>
+            <dt className="text-stone-600 dark:text-muted-foreground">Average baseline</dt>
+            <dd className="text-lg font-semibold tabular-nums">{retention.avg_baseline}</dd>
+          </div>
+          <div>
+            <dt className="text-stone-600 dark:text-muted-foreground">Average delayed final</dt>
+            <dd className="text-lg font-semibold tabular-nums">{retention.avg_retained_final}</dd>
+          </div>
+        </dl>
+      )}
+    </ChartFrame>
+  );
+}
+
+/** Depth metrics for the Ask surface (item 12). Engagement without depth is recall. */
+function AskDepth({ depth }: { depth: Analytics["ask_depth"] }) {
+  return (
+    <ChartFrame title="Ask depth"
+      note="Whether quiz items carry the precision half of depth — rationales and citations — and how the cohort does on the hardest quartile.">
+      <div className="flex flex-wrap items-end gap-x-8 gap-y-3">
+        <div>
+          <p className="text-4xl font-semibold tabular-nums">{depth.hardest_accuracy_percent === null ? "–" : `${depth.hardest_accuracy_percent}%`}</p>
+          <p className="mt-1 text-sm text-stone-600 dark:text-muted-foreground">
+            on the hardest quartile{depth.hardest_attempts > 0 && ` (${depth.hardest_attempts} answer${depth.hardest_attempts === 1 ? "" : "s"})`}
+          </p>
+        </div>
+        <div>
+          <p className="text-2xl font-semibold tabular-nums text-stone-500 dark:text-stone-400">{depth.rationale_percent === null ? "–" : `${depth.rationale_percent}%`}</p>
+          <p className="mt-1 text-sm text-stone-600 dark:text-muted-foreground">items carry a rationale</p>
+        </div>
+        <div>
+          <p className="text-2xl font-semibold tabular-nums text-stone-500 dark:text-stone-400">{depth.cited_percent === null ? "–" : `${depth.cited_percent}%`}</p>
+          <p className="mt-1 text-sm text-stone-600 dark:text-muted-foreground">items carry citations</p>
+        </div>
+      </div>
+    </ChartFrame>
+  );
+}
+
+/** Hierarchical interaction mining, first cut (item 10). Candidates, not verdicts. */
+function InteractionGaps({ gaps }: { gaps: Analytics["interaction_gaps"] }) {
+  if (!gaps.hypotheses.length) {
+    return (
+      <ChartFrame title="Content gaps to check"
+        note="Hardest questions joined with the least-used material. Co-occurrence is not causation.">
+        <p className="py-8 text-center text-stone-600 dark:text-muted-foreground">No graded answers recorded yet.</p>
+      </ChartFrame>
+    );
+  }
+  return (
+    <ChartFrame title="Content gaps to check"
+      note="Hardest questions joined with the least-used material. Co-occurrence is not causation — check before editing.">
+      <div className="space-y-3">
+        {gaps.hypotheses.map((hypothesis) => (
+          <div key={hypothesis.question_id} className="rounded-xl border p-4">
+            <div className="flex flex-wrap items-center gap-2">
+              <p className="text-sm font-medium">{hypothesis.question_id}</p>
+              <Badge variant="outline">{hypothesis.question_percent}% correct</Badge>
+              {hypothesis.look_at_module && <Badge variant="outline">↳ {hypothesis.look_at_module}</Badge>}
+            </div>
+            <p className="mt-2 text-sm text-stone-600 dark:text-muted-foreground">{hypothesis.note}</p>
+          </div>
+        ))}
+      </div>
+      {gaps.feedback_notes.length > 0 && (
+        <p className="mt-4 text-xs text-stone-600 dark:text-muted-foreground">
+          {gaps.feedback_notes.length} learner comment{gaps.feedback_notes.length === 1 ? "" : "s"} on record feed into these candidates.
+        </p>
+      )}
+    </ChartFrame>
+  );
+}
+
 export function CourseImpactPanel({ runId }: { runId: string }) {
   const [analytics, setAnalytics] = useState<Analytics | null>(null);
   const [cohort, setCohort] = useState<Cohort | null>(null);
@@ -257,6 +414,16 @@ export function CourseImpactPanel({ runId }: { runId: string }) {
       <div className="grid gap-5 lg:grid-cols-2">
         <SpeedToCompetence speed={analytics.speed_to_competence} />
         <CheckerLeverage leverage={analytics.checker_leverage} />
+      </div>
+
+      <div className="grid gap-5 lg:grid-cols-2">
+        <EvidenceAccuracy accuracy={analytics.evidence_conditioned_accuracy} />
+        <DelayedRetention retention={analytics.delayed_retention} />
+      </div>
+
+      <div className="grid gap-5 lg:grid-cols-2">
+        <MasteryCurve series={analytics.mastery_over_time} />
+        <AskDepth depth={analytics.ask_depth} />
       </div>
 
       <div className="grid gap-5 lg:grid-cols-2">
@@ -339,6 +506,8 @@ export function CourseImpactPanel({ runId }: { runId: string }) {
           </>
         ) : <p className="py-8 text-center text-stone-600 dark:text-muted-foreground">No graded answers recorded yet.</p>}
       </ChartFrame>
+
+      <InteractionGaps gaps={analytics.interaction_gaps} />
 
       <ChartFrame title="Module engagement" note="Completions and the rating learners gave each module.">
         <div className="space-y-1">

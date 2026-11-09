@@ -469,6 +469,196 @@ def checker_leverage(run_id: str) -> dict:
     }
 
 
+def evidence_conditioned_accuracy(run_id: str) -> dict:
+    """Verification accuracy conditioned on evidence quality (item 8, FEVER)."""
+    from src import judge
+    report = judge.stored_report(run_id) or {}
+    stats = report.get("stats", {})
+    checkable = stats.get("checkable") or 0
+    verified = stats.get("verified") or 0
+    findings = report.get("findings", [])
+    by_check: dict[str, int] = {}
+    for finding in findings:
+        by_check[finding.get("check", "unknown")] = by_check.get(finding.get("check", "unknown"), 0) + 1
+    return {
+        "measured": bool(report),
+        "units": stats.get("units"),
+        "citations": stats.get("citations"),
+        "checkable": checkable,
+        "verified": verified,
+        "coverage_percent": stats.get("coverage_percent"),
+        "accuracy_percent": (round(100 * verified / checkable)
+                             if checkable >= judge.MIN_FOR_RATE else None),
+        "min_for_rate": judge.MIN_FOR_RATE,
+        "withheld": checkable < judge.MIN_FOR_RATE,
+        "findings_by_check": by_check,
+    }
+
+
+def mastery_over_time(run_id: str) -> list[dict]:
+    """Leakage-free mastery curve (item 9, pyKT warning)."""
+    _record, entries = _progress_records(run_id)
+    dated: list[tuple[str, int]] = []
+    for _user_id, _person, state in entries:
+        for attempt in state["attempts"]:
+            if attempt["kind"] != "final":
+                continue
+            day = _day(attempt.get("created_at"))
+            if day:
+                dated.append((day, attempt["score"]))
+    dated.sort()
+    series = []
+    total, count = 0, 0
+    for day, score in dated:
+        total += score
+        count += 1
+        series.append({"date": day, "attempts": count,
+                       "avg_final": round(total / count)})
+    latest: dict[str, dict] = {}
+    for row in series:
+        latest[row["date"]] = row
+    return sorted(latest.values(), key=lambda row: row["date"])
+
+
+def interaction_gaps(run_id: str, limit: int = 3) -> dict:
+    """Hierarchical interaction mining, first cut (item 10, EdNet)."""
+    hard = [entry for entry in question_difficulty(run_id) if entry["attempts"]][:limit]
+    modules = module_engagement(run_id)
+    low_modules = sorted(
+        modules,
+        key=lambda entry: (entry["completed"], entry["rating"] is None, entry["rating"] or 0),
+    )[:limit]
+    _record, entries = _progress_records(run_id)
+    notes = []
+    for _user_id, _person, state in entries:
+        for item in state["feedback"]:
+            if (item.get("comment") or "").strip():
+                notes.append({"module_id": item["module_id"], "rating": item["rating"],
+                              "comment": item["comment"].strip()[:280]})
+    hypotheses = [
+        {"question_id": question["id"], "question_percent": question["percent"],
+         "look_at_module": low_modules[0]["id"] if low_modules else None,
+         "note": "Candidate gap: hardest question alongside lowest-engagement module."}
+        for question in hard
+    ]
+    return {"hardest_questions": hard, "lowest_modules": low_modules,
+            "feedback_notes": notes[:10], "hypotheses": hypotheses,
+            "causal": False}
+
+
+def next_review_due(score: int, days_since: int, half_life: float = 30.0) -> dict:
+    """Decay-aware re-quiz schedule (item 11, DAS3H)."""
+    import math
+    hl_scale = 0.5 + max(0, min(100, score)) / 100.0
+    hl = max(1.0, half_life * hl_scale)
+    target_days = hl * math.log2(1 / 0.7)
+    due_in = max(0, round(target_days - days_since))
+    return {"half_life_days": round(hl, 1), "predicted_recall_at_due": 0.7,
+            "due_in_days": due_in, "overdue": days_since > target_days}
+
+
+def delayed_retention(run_id: str, delay_days: int = 30) -> dict:
+    """Retention at a fixed delay (item 11): baseline to *delayed* final."""
+    _record, entries = _progress_records(run_id)
+    paired, too_soon = [], 0
+    for _user_id, _person, state in entries:
+        baselines = [a for a in state["attempts"] if a["kind"] == "baseline"]
+        finals = [a for a in state["attempts"] if a["kind"] == "final"]
+        if not baselines or not finals:
+            continue
+        first, last = baselines[0], finals[-1]
+        start, end = _at(first.get("created_at")), _at(last.get("created_at"))
+        if not start or not end:
+            continue
+        gap = (end - start).days
+        if gap < delay_days:
+            too_soon += 1
+            continue
+        paired.append((first["score"], last["score"]))
+    if not paired:
+        return {"delay_days": delay_days, "measured": 0, "not_yet_measurable": too_soon,
+                "avg_baseline": None, "avg_retained_final": None, "retained_uplift": None}
+    avg_base = round(sum(p[0] for p in paired) / len(paired))
+    avg_final = round(sum(p[1] for p in paired) / len(paired))
+    return {"delay_days": delay_days, "measured": len(paired), "not_yet_measurable": too_soon,
+            "avg_baseline": avg_base, "avg_retained_final": avg_final,
+            "retained_uplift": avg_final - avg_base}
+
+
+def ask_depth(run_id: str) -> dict:
+    """Depth metrics for the Ask surface (item 12, LennyAI lesson)."""
+    difficulty = question_difficulty(run_id)
+    quartile = max(1, len(difficulty) // 4) if difficulty else 0
+    hard = sorted(difficulty, key=lambda e: e["percent"])[:quartile]
+    hard_ids = {(e["track"], e["id"]) for e in hard}
+    rationale, cited, total = 0, 0, 0
+    hard_correct, hard_attempts = 0, 0
+    _record, entries = _progress_records(run_id)
+    for _user_id, person, state in entries:
+        track = learning.track_for(person.get("role", "hcp"))
+        quiz = _quiz(run_id, track)
+        if not quiz:
+            continue
+        by_id = {q["id"]: q for q in quiz["questions"]}
+        if total == 0:
+            for q in quiz["questions"]:
+                total += 1
+                rationale += bool((q.get("rationale") or "").strip())
+                cited += bool(q.get("citations"))
+        for attempt in state["attempts"]:
+            if attempt["kind"] != "final":
+                continue
+            for qid, chosen in attempt["answers"].items():
+                if (track, qid) in hard_ids:
+                    q = by_id.get(qid)
+                    if q:
+                        hard_attempts += 1
+                        hard_correct += chosen == q["correct_index"]
+    return {
+        "questions": total,
+        "rationale_percent": round(100 * rationale / total) if total else None,
+        "cited_percent": round(100 * cited / total) if total else None,
+        "hardest_quartile_ids": sorted(f"{t}:{i}" for t, i in hard_ids),
+        "hardest_accuracy_percent": round(100 * hard_correct / hard_attempts) if hard_attempts else None,
+        "hardest_attempts": hard_attempts,
+    }
+
+
+def course_rag(run_id: str, due_warn_days: int = 14, expiry_warn_days: int = 120) -> dict:
+    """Course-criticality RAG rollup (item 14)."""
+    record = learning.course(run_id)
+    publication = record.get("publication") or {}
+    data = learning.cohort(run_id)
+    days = learning.days_until(publication.get("due_on"))
+    red, amber_reasons, expiring = [], [], 0
+    for learner in data["learners"]:
+        state = learning.assignment_state(publication, learner)
+        if state == "overdue" or (learner.get("final_score") is not None and not learner["passed"]):
+            red.append(learner["user_id"])
+        elif state == "due" and days is not None and days <= due_warn_days:
+            amber_reasons.append(f"{learner['user_id']} due in {days}d")
+        if learner["stage"] != "not_started" and learner["baseline_score"] is None:
+            amber_reasons.append(f"{learner['user_id']} unbaselined")
+        certificate = learner.get("certificate") or {}
+        expires = _at(certificate.get("expires_at")) if certificate else None
+        if expires:
+            left = (expires - datetime.now(UTC)).days
+            if left < 0:
+                red.append(learner["user_id"])
+            elif left <= expiry_warn_days:
+                expiring += 1
+                amber_reasons.append(f"{learner['user_id']} certificate expires in {left}d")
+    if red:
+        rag = "red"
+    elif amber_reasons or expiring:
+        rag = "amber"
+    else:
+        rag = "green" if data["learners"] else "amber"
+    return {"rag": rag, "red_learners": sorted(set(red)),
+            "amber_reasons": amber_reasons[:10], "expiring_certificates": expiring,
+            "due_in_days": days}
+
+
 def analytics(run_id: str) -> dict:
     return {
         "run_id": run_id,
@@ -483,4 +673,10 @@ def analytics(run_id: str) -> dict:
         "speed_to_competence": speed_to_competence(run_id),
         "uplift_by_track": uplift_by_track(run_id),
         "checker_leverage": checker_leverage(run_id),
+        "evidence_conditioned_accuracy": evidence_conditioned_accuracy(run_id),
+        "mastery_over_time": mastery_over_time(run_id),
+        "interaction_gaps": interaction_gaps(run_id),
+        "delayed_retention": delayed_retention(run_id),
+        "ask_depth": ask_depth(run_id),
+        "course_rag": course_rag(run_id),
     }
