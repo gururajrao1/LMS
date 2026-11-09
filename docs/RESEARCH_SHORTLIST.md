@@ -122,3 +122,34 @@ generative-video build.
   HRIS sync, multilingual tracks, manager rollups, skills-gap rollups +
   auto-paths**: Docebo/Absorb/TalentLMS/Cornerstone vendor evidence
   (all pages fetched 200); prioritize in that order for enterprise demos.
+
+## E. Follow-up pass closed two gaps (Nov 7)
+
+### 14. Course-criticality RAG rollup — EXTENDS noncompliance RAG tiers
+The first pass found no literal red/amber/green course scheme; targeted
+search did. Access LMS Evo uses RAG per mandatory-training category
+(amber by default within 4 months of certificate expiry); LifeSafety.ai
+defines red as critical gaps needing immediate action, amber as
+approaching deadlines, green as compliant; Skillcast assigns RAG ratings
+to responses; CareShield/Myrus reports compliance in RAG throughout.
+See [Access Evo compliance apps](https://help-accesslmsevo.theaccessgroup.com/en/articles/17264905-compliance-apps),
+[LifeSafety dashboard](https://www.lifesafety.ai/risk-management-dashboard/).
+Build: roll the existing per-learner RAG tiers up to a per-course /
+per-cohort RAG (red = anyone overdue or below pass mark, amber = due or
+expiring within the window, green = all complete) on the Cohort tab and
+portfolio. No invention needed — thresholds mirror the vendors'.
+
+### 15. Semantic short-answer grading — NEW
+Current scoring is multiple-choice only (`correct_index`, server-side).
+EvalAI (BJCNIT 2026) grades theory answers by Sentence-BERT similarity
+to a reference answer: Pearson 0.81, MAE 0.18 against Mohler's
+human-graded benchmark. EDM 2021 shows SBERT grading generalizes to
+out-of-sample questions; EvaluAI (SoftwareX, Apache-2.0, self-hostable)
+does the same with LLMs plus instructor review. See
+[EvalAI paper](https://abjournals.org/bjcnit/9/2/design-and-implementation-of-a-sentence-bert-driven-semantic-matching-model-for-automated-evaluation-of-theory-answers-200.pdf),
+[EDM21 SBERT paper](https://educationaldatamining.org/EDM2021/virtual/static/pdf/EDM21_paper_149.pdf).
+Build: optional free-text questions on baseline/final, scored by
+similarity to the recorded reference answer with a human-review threshold
+(low-confidence scores route to a reviewer, never auto-fail) — consistent
+with the dismissal-challenge ethos. Lightweight path first: embedding
+similarity only; LLM adjudication only for the review queue.
