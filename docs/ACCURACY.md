@@ -320,9 +320,9 @@ learner from $9,000 to $900, checker agreement 90%, coverage stated as-is.
 
 | | Capability | State |
 |---|---|---|
-| 4.1 | Dismissal re-check and challenge | to build |
-| 4.2 | Rewrite re-check before version cut | to build |
-| 4.3 | Attributed resolutions + audit trail | to build |
+| 4.1 | Dismissal re-check and challenge | **built** (`dismissal_challenge`/`still_failing` in `src/judge.py`) |
+| 4.2 | Rewrite re-check before version cut | **built** (`_verify_fixes` in `publish_version`) |
+| 4.3 | Attributed resolutions + audit trail | **built** (`resolve_comment` takes `user_id`, append-only `_audit`) |
 | 4.4 | Per-reviewer calibration | to build |
 | 4.5 | Completeness coverage matrix | to build |
 | 4.6 | Depth floor | to build |

@@ -35,13 +35,25 @@ def curriculum(name: str = DEFAULT_CURRICULUM) -> dict:
     return tomllib.loads(path.read_text())
 
 
+def _recall(pattern: str, text: str) -> float:
+    """Content-word recall of a curriculum pattern in unit text.
+
+    Substring matching misses paraphrase; recall over content words
+    catches it without a model.
+    """
+    words = [word for word in pattern.lower().split() if len(word) > 3]
+    if not words:
+        return 0.0
+    haystack = set(text.lower().split())
+    return sum(word in haystack for word in words) / len(words)
+
 def _covered_by(topic: dict, units: list[dict]) -> list[dict]:
     """Every unit that addresses this topic, in the order a reader meets them."""
     patterns = [pattern.lower() for pattern in topic["patterns"]]
     hits = []
     for unit in units:
         text = f"{unit['reference']} {unit['text']}".lower()
-        matched = [pattern for pattern in patterns if pattern in text]
+        matched = [pattern for pattern in patterns if pattern in text or _recall(pattern, text) >= 0.6]
         if matched:
             hits.append({"id": unit["id"], "reference": unit["reference"],
                          "asset": unit["asset"], "matched": matched})

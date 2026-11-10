@@ -295,7 +295,7 @@ def test_learner_completes_the_course_and_earns_a_certificate(client):
     assert result["attempt"]["score"] == 100
     assert result["attempt"]["passed"] is True
     assert result["summary"]["uplift"] == 100
-    assert result["summary"]["points"] == 4 * 25 + 100
+    assert result["summary"]["points"] == 4 * 25 + 100 + 100  # modules + final + uplift bonus
     assert result["review"][0]["rationale"]
 
     certificate = client.get(f"/api/learn/{LEARNER}/{RUN_ID}/certificate").json()
@@ -551,6 +551,209 @@ def test_reinforce_collects_only_missed_questions(client):
     assert all("rationale" not in question for question in practice["questions"])
 
 
+def test_reinforce_submit_returns_correctness_plus_rationale(client):
+    """Practice stays honest on GET; the POST after the attempt teaches."""
+    _publish(client)
+    quiz = json.loads((agent.DATA / "content" / RUN_ID / "assets" / "quiz.json").read_text())
+    half = {question["id"]: question["correct_index"] if index < 2
+            else (question["correct_index"] + 1) % 4
+            for index, question in enumerate(quiz["questions"])}
+    for module in learning.MODULES:
+        client.post(f"/api/learn/{LEARNER}/{RUN_ID}/modules", json={"module_id": module["id"], "completed": True})
+    client.post(f"/api/learn/{LEARNER}/{RUN_ID}/assessment/final", json={"answers": half})
+    practice = client.get(f"/api/learn/{LEARNER}/{RUN_ID}/reinforce").json()
+    assert practice["missed_count"] >= 1
+    assert all("rationale" not in question and "correct_index" not in question
+               for question in practice["questions"])
+    right = {question["id"]: question["correct_index"] for question in quiz["questions"]}
+    feedback = client.post(f"/api/learn/{LEARNER}/{RUN_ID}/reinforce/submit",
+                           json={"answers": right}).json()
+    assert feedback["correct"] == feedback["total"] == len(quiz["questions"])
+    assert all(item["correct"] and item["rationale"] for item in feedback["items"])
+
+
+def test_audit_exceptions_empty_on_clean_publish_and_verify_passes(client):
+    """Review-by-exception: a clean course shows three empty lists; the chain verifies."""
+    _publish(client)
+    exceptions = client.get(f"/api/runs/{RUN_ID}/audit/exceptions").json()
+    assert exceptions["overrides"] == [] and exceptions["challenged_dismissals"] == []
+    assert exceptions["late_signoffs"] == []
+    report = client.get(f"/api/runs/{RUN_ID}/audit/verify").json()
+    assert report["ok"] is True and report["checked"] >= 5 and report["failed_at"] is None
+
+
+def test_audit_verify_catches_tampering(client):
+    """Editing a recorded entry breaks the chain at that entry."""
+    _publish(client)
+    record = learning.course(RUN_ID)
+    record["audit"][0]["summary"] += " (edited)"
+    learning._save_course(record)
+    report = client.get(f"/api/runs/{RUN_ID}/audit/verify").json()
+    assert report["ok"] is False and report["failed_at"] == record["audit"][0]["id"]
+
+
+def test_attested_signoff_binds_identity_meaning_and_method(client):
+    """Part 11 step: typed-name attestation records who, when, and what it means."""
+    comment = client.post(f"/api/runs/{RUN_ID}/review/comments", json={
+        "user_id": REVIEWER, "target": "deck", "severity": "blocking", "body": "Add the table.",
+    }).json()
+    client.patch(f"/api/runs/{RUN_ID}/review/comments/{comment['id']}", json={
+        "user_id": ADMIN, "status": "addressed", "resolution": "Added."})
+    client.post(f"/api/runs/{RUN_ID}/review/versions", json={"user_id": ADMIN})
+    refused = client.post(f"/api/runs/{RUN_ID}/review/signoff", json={
+        "user_id": REVIEWER, "decision": "approved", "attest": "Someone Else"})
+    assert refused.status_code == 400
+    signoff = client.post(f"/api/runs/{RUN_ID}/review/signoff", json={
+        "user_id": REVIEWER, "decision": "approved", "attest": "Dr. Anil Shekhar"}).json()
+    assert signoff["attested"] is True and signoff["method"] == "typed-name"
+    assert signoff["meaning"] == "approval"
+
+
+def test_reset_revokes_certificate_and_verify_reports_it(client):
+    """A reset code reads as revoked, not as never-issued."""
+    _publish(client)
+    quiz = json.loads((agent.DATA / "content" / RUN_ID / "assets" / "quiz.json").read_text())
+    right = {question["id"]: question["correct_index"] for question in quiz["questions"]}
+    for module in learning.MODULES:
+        client.post(f"/api/learn/{LEARNER}/{RUN_ID}/modules", json={"module_id": module["id"], "completed": True})
+    client.post(f"/api/learn/{LEARNER}/{RUN_ID}/assessment/final", json={"answers": right})
+    code = client.get(f"/api/learn/{LEARNER}/{RUN_ID}/certificate").json()["code"]
+    assert client.get("/api/certificates/verify", params={"code": code}).json()["status"] == "valid"
+    client.delete(f"/api/learn/{LEARNER}/{RUN_ID}/attempts", params={"by": ADMIN})
+    assert client.get("/api/certificates/verify", params={"code": code}).json()["status"] == "revoked"
+    assert client.get("/api/certificates/verify", params={"code": "PL-NOPE-1"}).json()["status"] == "unknown"
+
+
+def test_disposition_needs_dual_control_and_anonymizes_answers(client):
+    """Retention execution: two different approvers, raw answers go, scores stay."""
+    _publish(client)
+    quiz = json.loads((agent.DATA / "content" / RUN_ID / "assets" / "quiz.json").read_text())
+    right = {question["id"]: question["correct_index"] for question in quiz["questions"]}
+    client.post(f"/api/learn/{LEARNER}/{RUN_ID}/assessment/baseline", json={"answers": right})
+    learning.create_role(ADMIN, "Instructor", "Field trainers", ["course.publish"])
+    learning.assign_role(ADMIN, REVIEWER, "instructor")
+    proposed = client.post(f"/api/runs/{RUN_ID}/retention/dispose", json={
+        "by_user_id": ADMIN, "action": "anonymize-assessments"}).json()
+    assert proposed["status"] == "proposed"
+    refused = client.post(f"/api/runs/{RUN_ID}/retention/dispose/{proposed['id']}/approve",
+                          json={"by_user_id": ADMIN})
+    assert refused.status_code == 400
+    done = client.post(f"/api/runs/{RUN_ID}/retention/dispose/{proposed['id']}/approve",
+                       json={"by_user_id": REVIEWER}).json()
+    assert done["status"] == "executed" and done["affected"] >= 1
+    attempts = learning.progress(RUN_ID, LEARNER)["attempts"]
+    assert attempts and all(attempt.get("answers") == {} for attempt in attempts)
+    assert all("score" in attempt for attempt in attempts)
+
+
+def test_reminders_spanish_locale(client):
+    """Human-reviewed templates: Spanish nudges, never a raw key."""
+    _publish(client, assignees=[LEARNER, "lucy-whitfield"])
+    queue = client.get(f"/api/runs/{RUN_ID}/reminders", params={"locale": "es"}).json()
+    assert queue["locale"] == "es"
+    assert any("Recordatorio" in entry["message"] for entry in queue["reminders"])
+
+
+def test_nearby_rank_is_opt_in_and_anonymized(client):
+    """Peer ranks need consent; neighbors render as ranks, never names."""
+    _publish(client, assignees=[LEARNER, "lucy-whitfield"])
+    quiz = json.loads((agent.DATA / "content" / RUN_ID / "assets" / "quiz.json").read_text())
+    right = {question["id"]: question["correct_index"] for question in quiz["questions"]}
+    for module in learning.MODULES:
+        client.post(f"/api/learn/{LEARNER}/{RUN_ID}/modules", json={"module_id": module["id"], "completed": True})
+    client.post(f"/api/learn/{LEARNER}/{RUN_ID}/assessment/final", json={"answers": right})
+    assert client.get("/api/leaderboard/nearby", params={
+        "by_user_id": LEARNER, "user_id": LEARNER}).status_code == 400
+    client.post(f"/api/people/{LEARNER}/board-opt-in", json={"by_user_id": LEARNER, "opt_in": True})
+    client.post("/api/people/lucy-whitfield/board-opt-in",
+                json={"by_user_id": ADMIN, "opt_in": True})
+    board = client.get("/api/leaderboard/nearby", params={
+        "by_user_id": LEARNER, "user_id": LEARNER}).json()
+    assert board["rank"] == 1 and board["of"] == 2
+    others = [entry for entry in board["neighbors"] if not entry["you"]]
+    assert others and all(entry["name"] is None for entry in others)
+
+
+def test_recertification_nudges_stale_certificates(client):
+    """A new published version re-queues certified learners as recertification."""
+    _publish(client)
+    quiz = json.loads((agent.DATA / "content" / RUN_ID / "assets" / "quiz.json").read_text())
+    right = {question["id"]: question["correct_index"] for question in quiz["questions"]}
+    client.post(f"/api/learn/{LEARNER}/{RUN_ID}/assessment/baseline", json={"answers": right})
+    for module in learning.MODULES:
+        client.post(f"/api/learn/{LEARNER}/{RUN_ID}/modules", json={"module_id": module["id"], "completed": True})
+    client.post(f"/api/learn/{LEARNER}/{RUN_ID}/assessment/final", json={"answers": right})
+    comment = client.post(f"/api/runs/{RUN_ID}/review/comments", json={
+        "user_id": REVIEWER, "target": "faq", "severity": "major", "body": "Update the FAQ."}).json()
+    client.patch(f"/api/runs/{RUN_ID}/review/comments/{comment['id']}", json={
+        "user_id": ADMIN, "status": "addressed", "resolution": "Updated."})
+    client.post(f"/api/runs/{RUN_ID}/review/versions", json={"user_id": ADMIN, "summary": "FAQ refresh"})
+    client.post(f"/api/runs/{RUN_ID}/review/signoff", json={"user_id": REVIEWER, "decision": "approved"})
+    republished = client.post(f"/api/runs/{RUN_ID}/publication", json={
+        "user_id": ADMIN, "starts_on": "2026-09-01", "due_on": "2026-12-31",
+        "assignees": [LEARNER], "message": "Recertify on v3."})
+    assert republished.status_code == 200
+    queue = client.get(f"/api/runs/{RUN_ID}/reminders").json()
+    recert = [entry for entry in queue["reminders"] if entry["kind"] == "recertification"]
+    assert len(recert) == 1 and recert[0]["user_id"] == LEARNER
+
+
+def test_skills_mastery_tracks_general_skill_and_schedules_review(client):
+    """BKT-lite: observations move mastery; every skill gets a next review."""
+    _publish(client)
+    quiz = json.loads((agent.DATA / "content" / RUN_ID / "assets" / "quiz.json").read_text())
+    half = {question["id"]: question["correct_index"] if index < 2
+            else (question["correct_index"] + 1) % 4
+            for index, question in enumerate(quiz["questions"])}
+    client.post(f"/api/learn/{LEARNER}/{RUN_ID}/assessment/baseline", json={"answers": half})
+    body = client.get(f"/api/learn/{LEARNER}/{RUN_ID}/skills").json()
+    general = body["skills"]["general"]
+    assert 0 < general["mastery"] < 1
+    assert general["observations"] == len(quiz["questions"])
+    assert general["next_review"]["due_in_days"] >= 0
+
+
+def test_at_risk_flags_stalled_learners_with_reasons(client):
+    """Transparent triage: score plus the reasons, no black box."""
+    _publish(client, assignees=[LEARNER, "lucy-whitfield"])
+    report = client.get(f"/api/runs/{RUN_ID}/at-risk").json()
+    flagged = {entry["user_id"]: entry for entry in report["at_risk"]}
+    assert "lucy-whitfield" in flagged
+    assert flagged["lucy-whitfield"]["reasons"]
+    assert flagged["lucy-whitfield"]["tier"] in ("watch", "high")
+
+
+def test_skills_gap_groups_misses_by_skill(client):
+    """Untagged questions count as general; the shape is what tagging fills."""
+    _publish(client)
+    quiz = json.loads((agent.DATA / "content" / RUN_ID / "assets" / "quiz.json").read_text())
+    half = {question["id"]: question["correct_index"] if index < 2
+            else (question["correct_index"] + 1) % 4
+            for index, question in enumerate(quiz["questions"])}
+    for module in learning.MODULES:
+        client.post(f"/api/learn/{LEARNER}/{RUN_ID}/modules", json={"module_id": module["id"], "completed": True})
+    client.post(f"/api/learn/{LEARNER}/{RUN_ID}/assessment/final", json={"answers": half})
+    body = client.get(f"/api/runs/{RUN_ID}/skills-gap").json()
+    assert body["skills"] and body["skills"][0]["skill"] == "general"
+    assert body["skills"][0]["percent"] == 50
+
+
+def test_reinforce_serves_most_due_first(client):
+    """FSRS ordering: the least retrievable missed question comes first."""
+    _publish(client)
+    quiz = json.loads((agent.DATA / "content" / RUN_ID / "assets" / "quiz.json").read_text())
+    half = {question["id"]: question["correct_index"] if index < 2
+            else (question["correct_index"] + 1) % 4
+            for index, question in enumerate(quiz["questions"])}
+    for module in learning.MODULES:
+        client.post(f"/api/learn/{LEARNER}/{RUN_ID}/modules", json={"module_id": module["id"], "completed": True})
+    client.post(f"/api/learn/{LEARNER}/{RUN_ID}/assessment/final", json={"answers": half})
+    practice = client.get(f"/api/learn/{LEARNER}/{RUN_ID}/reinforce").json()
+    assert practice["missed_count"] >= 1
+    assert all("due_in_days" in question and "retrievability" in question
+               for question in practice["questions"])
+
+
 def test_certificate_templates_are_listed(client):
     templates = client.get("/api/certificate-templates").json()
     assert [template["id"] for template in templates] == ["classic", "modern", "formal"]
@@ -683,3 +886,114 @@ def test_certificate_defaults_to_classic_without_a_template_choice(client):
         client.post(f"/api/learn/{LEARNER}/{RUN_ID}/modules", json={"module_id": module["id"], "completed": True})
     client.post(f"/api/learn/{LEARNER}/{RUN_ID}/assessment/final", json={"answers": right})
     assert client.get(f"/api/learn/{LEARNER}/{RUN_ID}/certificate").json()["template"] == "classic"
+
+
+def test_learner_audit_records_start_and_completion(client):
+    """A13: when did the learner start, and when did they complete."""
+    _publish(client)
+    quiz = json.loads((agent.DATA / "content" / RUN_ID / "assets" / "quiz.json").read_text())
+    right = {question["id"]: question["correct_index"] for question in quiz["questions"]}
+    client.post(f"/api/learn/{LEARNER}/{RUN_ID}/assessment/baseline", json={"answers": right})
+    for module in learning.MODULES:
+        client.post(f"/api/learn/{LEARNER}/{RUN_ID}/modules", json={"module_id": module["id"], "completed": True})
+    client.post(f"/api/learn/{LEARNER}/{RUN_ID}/assessment/final", json={"answers": right})
+    audit = client.get(f"/api/runs/{RUN_ID}/audit/{LEARNER}").json()
+    assert audit["run_id"] == RUN_ID
+    assert audit["started_at"]
+    assert audit["completed_at"]
+    kinds = [entry["event"] for entry in audit["events"]]
+    assert "training.started" in kinds
+    assert "assessment.baseline" in kinds
+    assert "training.completed" in kinds
+    assert [entry["at"] for entry in audit["events"]] == sorted(entry["at"] for entry in audit["events"])
+
+
+def test_reminders_queue_flags_incomplete_learners(client):
+    """A5/A18: who still owes training, with a sendable message per learner."""
+    _publish(client, assignees=[LEARNER, "lucy-whitfield"])
+    queue = client.get(f"/api/runs/{RUN_ID}/reminders").json()
+    assert queue["due_on"] == "2026-09-30"
+    pending = [entry for entry in queue["reminders"] if entry["user_id"] == "lucy-whitfield"]
+    assert pending
+    assert pending[0]["message"]
+    assert pending[0]["state"] in ("due", "overdue")
+
+
+def test_points_follow_uplift_and_mastery_badges_are_earned(client):
+    """Points reward learning, not just completion; mastery badges mark growth."""
+    _publish(client)
+    quiz = json.loads((agent.DATA / "content" / RUN_ID / "assets" / "quiz.json").read_text())
+    wrong = {question["id"]: (question["correct_index"] + 1) % 4 for question in quiz["questions"]}
+    right = {question["id"]: question["correct_index"] for question in quiz["questions"]}
+    client.post(f"/api/learn/{LEARNER}/{RUN_ID}/assessment/baseline", json={"answers": wrong})
+    for module in learning.MODULES:
+        client.post(f"/api/learn/{LEARNER}/{RUN_ID}/modules", json={"module_id": module["id"], "completed": True})
+    result = client.post(f"/api/learn/{LEARNER}/{RUN_ID}/assessment/final", json={"answers": right}).json()
+    assert result["summary"]["uplift"] == 100
+    assert result["summary"]["points"] == 4 * 25 + 100 + 100
+    earned = {badge["id"] for badge in result["summary"]["badges"] if badge["earned"]}
+    assert {"growth", "first-try", "certified"} <= earned
+
+
+def test_streak_forgives_a_single_missed_day():
+    """One gap day keeps the streak; two gaps break it."""
+    from datetime import date, timedelta
+    today = date.today()
+    iso = lambda delta: (today - timedelta(days=delta)).isoformat() + "T09:00:00+00:00"
+    record = {"run_id": RUN_ID, "user_id": LEARNER, "started_at": iso(3),
+              "modules": {"deck": {"completed_at": iso(0)}, "videos": {"completed_at": iso(2)}},
+              "attempts": [], "certificate": None, "feedback": []}
+    assert learning._streak_days(record) == 2
+    record["modules"] = {"deck": {"completed_at": iso(0)}, "videos": {"completed_at": iso(3)}}
+    assert learning._streak_days(record) == 1
+
+
+def test_reminders_carry_an_implementation_intention_prompt(client):
+    """Nudges ask for a when-and-where plan, not just attention."""
+    _publish(client, assignees=[LEARNER, "lucy-whitfield"])
+    queue = client.get(f"/api/runs/{RUN_ID}/reminders").json()
+    pending = [entry for entry in queue["reminders"] if entry["user_id"] == "lucy-whitfield"]
+    assert pending
+    assert "Plan now" in pending[0]["message"]
+
+
+def test_faithfulness_endpoint_reports_per_track_numbers(client):
+    """Wiring: one regression number per track plus the per-asset split."""
+    body = client.get(f"/api/runs/{RUN_ID}/faithfulness").json()
+    assert set(body["tracks"]) == {"hcp", "msl"}
+    for report in body["tracks"].values():
+        assert {"faithfulness", "cited_sentences", "supported_sentences", "assets"} <= set(report)
+    single = client.get(f"/api/runs/{RUN_ID}/faithfulness", params={"track": "hcp"}).json()
+    assert set(single["tracks"]) == {"hcp"}
+
+
+def test_roster_import_upserts_by_email(client):
+    """A1: bulk import toward AD — new people added, known emails updated."""
+    csv_text = "name,email,role,title\nAsha Verma,asha.verma@pharmalearn.local,hcp,Oncologist\nDr. Ken Osei,ken.osei@pharmalearn.local,msl,MSL updated"
+    result = client.post("/api/people/import", json={"by_user_id": ADMIN, "csv": csv_text}).json()
+    assert result["added"] == 1
+    assert result["updated"] == 1
+    assert result["errors"] == []
+    people = {entry["id"]: entry for entry in client.get("/api/people").json()}
+    assert any(entry["email"] == "asha.verma@pharmalearn.local" for entry in people.values())
+
+    refused = client.post("/api/people/import", json={"by_user_id": LEARNER, "csv": csv_text})
+    assert refused.status_code == 400
+
+
+def test_leaderboard_is_admin_only_and_ranks_by_points(client):
+    """A8: points leaderboard, admin eyes only — no peer exposure."""
+    _publish(client)
+    quiz = json.loads((agent.DATA / "content" / RUN_ID / "assets" / "quiz.json").read_text())
+    right = {question["id"]: question["correct_index"] for question in quiz["questions"]}
+    for module in learning.MODULES:
+        client.post(f"/api/learn/{LEARNER}/{RUN_ID}/modules", json={"module_id": module["id"], "completed": True})
+    client.post(f"/api/learn/{LEARNER}/{RUN_ID}/assessment/final", json={"answers": right})
+
+    board = client.get("/api/leaderboard", params={"by_user_id": ADMIN}).json()
+    assert board["entries"]
+    assert board["entries"] == sorted(board["entries"], key=lambda entry: entry["points"], reverse=True)
+    assert LEARNER in {entry["user_id"] for entry in board["entries"]}
+
+    refused = client.get("/api/leaderboard", params={"by_user_id": LEARNER})
+    assert refused.status_code == 400

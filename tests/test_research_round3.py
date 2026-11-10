@@ -55,6 +55,13 @@ def _attempt(kind, score, correct, total, answers, created_at):
             "answers": answers, "created_at": created_at}
 
 
+def test_adjudication_degrades_to_human_without_a_key(monkeypatch):
+    """No key, no guessing: margin cases route to a human, never to a pass."""
+    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
+    result = learning.adjudicate_free_text("monitor blood counts", "check counts")
+    assert result == {"model": "off", "verdict": None, "routed": "human"}
+
+
 def test_grade_free_text_exact_match_passes_no_review():
     result = learning.grade_free_text("neutropenia monitor counts", "neutropenia monitor counts")
     assert result["score"] == 1.0

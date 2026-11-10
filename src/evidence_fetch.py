@@ -633,6 +633,45 @@ def _norm_title(value: str) -> str:
     return re.sub(r"\s+", " ", re.sub(r"[^a-z0-9\s]", " ", (value or "").lower())).strip()
 
 
+SPL_SECTION_HEAD = re.compile(
+    r"(?m)^[ ]*([0-9]{1,2}(?:[.][0-9]+)?)[ ]+([A-Z][A-Z /&.,()-]{3,80})[ ]*$")
+
+
+def label_sections(text):
+    """Split label text into numbered SPL sections (1, 2.1, 5, ...)."""
+    heads = [(m.start(), m.group(1), m.group(2).strip().title())
+             for m in SPL_SECTION_HEAD.finditer(text or "")]
+    if not heads:
+        return {"full": (text or "").strip()}
+    sections = {}
+    for index, (start, number, title) in enumerate(heads):
+        end = heads[index + 1][0] if index + 1 < len(heads) else len(text)
+        sections[number] = {"title": title, "text": text[start:end].strip()}
+    return sections
+
+
+def diff_label_sections(old, new):
+    """Changed/added/removed SPL sections between two label snapshots."""
+    before, after = label_sections(old), label_sections(new)
+    if "full" in before or "full" in after:
+        changed = before != after
+        return {"sections": [], "added": [], "removed": [],
+                "changed": ["full"] if changed else [],
+                "changed_count": 1 if changed else 0,
+                "boxed_warning_touched": False,
+                "recertification_required": changed}
+    changed = [n for n in before.keys() & after.keys()
+               if before[n]["text"] != after[n]["text"]]
+    added = sorted(set(after) - set(before))
+    removed = sorted(set(before) - set(after))
+    boxed = any(n.startswith("5") for n in changed + added)
+    return {"sections": sorted(set(before) | set(after)), "added": added,
+            "removed": removed, "changed": sorted(changed),
+            "changed_count": len(changed) + len(added) + len(removed),
+            "boxed_warning_touched": boxed,
+            "recertification_required": bool(changed or added or removed)}
+
+
 def read_registry(drug: str) -> dict[str, dict]:
     """Drug-level pointer registry: sources/<drug>/registry.json."""
     from src.agent import content_path, _slug

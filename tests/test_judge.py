@@ -94,6 +94,68 @@ def test_sentence_f1_separates_supported_from_invented_sentences():
     assert scores["f1"] == 0.5
 
 
+def test_entails_screens_paraphrase_not_invention():
+    """Heuristic NLI beside quote_match: coverage plus negation polarity."""
+    assert judge.entails(QUOTE, "Blood counts must be checked before therapy starts each cycle.")
+    assert not judge.entails(QUOTE, "Lemurs govern the pharmacy council today.")
+    assert not judge.entails(QUOTE, "Blood counts must never be checked before therapy.")
+    assert not judge.entails("", "Some claim about dosing here today.")
+    assert not judge.entails(QUOTE, "OK.")
+
+
+def test_abstract_only_caps_verification(run):
+    """An abstract match is conditional support, never verification."""
+    from src import agent as _agent
+    dossier_path = _agent.DATA / "content" / run / "master" / "dossier.json"
+    dossier = json.loads(dossier_path.read_text())
+    dossier["sections"][0]["claims"].append({
+        "text": "Abstract-only claim about monitoring.",
+        "evidence_type": "FDA label",
+        "citations": [{"title": "IBRANCE Label", "url": "https://dailymed.test/spl",
+                       "locator": "9.9", "supporting_text": QUOTE,
+                       "access_level": "abstract_only"}],
+    })
+    dossier_path.write_text(json.dumps(dossier))
+    deck_path = _agent.DATA / "content" / run / "hcp" / "ppt" / "deck_spec.json"
+    deck = json.loads(deck_path.read_text())
+    deck["slides"].append({"number": 5, "title": "Abstract evidence", "purpose": "Safety",
+                           "content": [QUOTE],
+                           "citations": [{"title": "IBRANCE Label",
+                                          "url": "https://dailymed.test/spl", "locator": "9.9"}]})
+    deck_path.write_text(json.dumps(deck))
+
+    findings, stats = judge.deterministic_findings(run, "hcp", "ibrance")
+    assert stats["abstract_only"] == 1
+    capped = [finding for finding in findings if finding.check == "abstract_only"]
+    assert len(capped) == 1 and capped[0].severity == "major"
+    assert "abstract_only" in judge.DETERMINISTIC_CHECKS
+
+
+def test_faithfulness_scores_supported_sentences_per_asset(run):
+    """One regression number per track plus the per-asset split."""
+    report = judge.faithfulness(run, "hcp")
+    assert report["faithfulness"] == 1.0
+    assert report["cited_sentences"] == report["supported_sentences"] >= 1
+    assert report["assets"]["deck"]["faithfulness"] == 1.0
+
+
+def test_registry_held_citations_cap_at_conditional_support(run):
+    """Registry pointers count as traced but never verified."""
+    from src import agent as _agent
+    key = judge.source_key("https://www.pfizerpro.com/dosing")
+    registry = _agent.DATA / "sources" / "ibrance" / "registry.json"
+    registry.parent.mkdir(parents=True, exist_ok=True)
+    registry.write_text(json.dumps({"records": [
+        {"source_key": key, "title": "Ibrance dosing",
+         "url": "https://www.pfizerpro.com/dosing", "retrieved_at": "2026-01-01T00:00:00+00:00"},
+    ]}))
+    findings, stats = judge.deterministic_findings(run, "hcp", "ibrance")
+    held = [finding for finding in findings if finding.check == "registry_only"]
+    assert len(held) == 1 and held[0].severity == "major"
+    assert stats["registry_held"] == 1
+    assert "registry_only" in judge.DETERMINISTIC_CHECKS
+
+
 def test_sentence_counts_accumulate_in_the_check_stats(run):
     """The suite's verbatim fixture quote is one fully supported sentence."""
     _findings, stats = judge.deterministic_findings(run, "hcp", "ibrance")

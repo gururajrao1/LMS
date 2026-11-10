@@ -2,8 +2,8 @@
 
 Produces a real .pptx (Open Packaging Conventions zip) from a title plus
 heading/bullet slides: one title slide and one content slide per section.
-Every part needed by the format — content types, relationships, master,
-layout, theme and one slide part per slide — is emitted, so PowerPoint,
+Every part needed by the format â€” content types, relationships, master,
+layout, theme and one slide part per slide â€” is emitted, so PowerPoint,
 Keynote and LibreOffice open the file without repair.
 """
 
@@ -11,6 +11,11 @@ import io
 import re
 import zipfile
 from xml.sax.saxutils import escape
+
+PDF_PAGE_WIDTH = 595
+PDF_PAGE_HEIGHT = 842
+PDF_MARGIN = 56
+PDF_TOP = 786
 
 MAX_SLIDES = 30
 MAX_BULLETS = 8
@@ -56,32 +61,38 @@ GEOM = '<a:prstGeom prst="rect"><a:avLst/></a:prstGeom>'
 
 
 def _textbox(shape_id: int, name: str, placeholder: str, x: int, y: int, cx: int, cy: int,
-             paragraphs: list[tuple[str, int, bool]]) -> str:
+             paragraphs: list[tuple[str, int, bool]], lang: str = "en-US", alt: str = "") -> str:
     """A text box shape; paragraphs are (text, size in 100ths of a point, bold)."""
     runs = []
     for text, size, bold in paragraphs:
         runs.append(
-            f"<a:p><a:pPr><a:buChar char=\"•\"/></a:pPr>"
-            f"<a:r><a:rPr lang=\"en-US\" sz=\"{size}\" dirty=\"0\"{' b=\"1\"' if bold else ''}/>"
+            f"<a:p><a:pPr><a:buChar char=\"â€¢\"/></a:pPr>"
+            f"<a:r><a:rPr lang=\"{lang}\" sz=\"{size}\" dirty=\"0\"{' b=\"1\"' if bold else ''}/>"
             f"<a:t>{escape(text)}</a:t></a:r></a:p>"
         )
     body = "".join(runs)
     return (
-        f"<p:sp><p:nvSpPr><p:cNvPr id=\"{shape_id}\" name=\"{name}\"/><p:cNvSpPr/>"
+        f"<p:sp><p:nvSpPr><p:cNvPr id=\"{shape_id}\" name=\"{name}\" descr=\"{_escape_alt(alt)}\"/><p:cNvSpPr/>"
         f"<p:nvPr>{placeholder}</p:nvPr></p:nvSpPr>"
         f"<p:spPr><a:xfrm><a:off x=\"{x}\" y=\"{y}\"/><a:ext cx=\"{cx}\" cy=\"{cy}\"/></a:xfrm>{GEOM}</p:spPr>"
         f"<p:txBody><a:bodyPr/><a:lstStyle/>{body}</p:txBody></p:sp>"
     )
 
 
-def _slide(heading: str, lines: list[str], big: bool = False) -> str:
+def _escape_alt(text: str) -> str:
+    return escape(" ".join((text or "").split())[:200], {'"': "&quot;"})
+
+
+def _slide(heading: str, lines: list[str], big: bool = False, lang: str = "en-US") -> str:
     title_size, body_size = (4400, 2400) if big else (3600, 2000)
     bullets = [(line, body_size, False) for line in lines[:MAX_BULLETS]]
     shapes = _textbox(2, "Title", "<p:ph type=\"title\"/>", 685800, 342900 if big else 685800,
-                      10801350, 1143000, [(heading, title_size, True)])
+                      10801350, 1143000, [(heading, title_size, True)],
+                      lang=lang, alt=heading)
     if bullets:
         shapes += _textbox(3, "Content", "<p:ph type=\"body\" idx=\"1\"/>", 685800, 1600200 if big else 1828800,
-                           10801350, 4572000, bullets)
+                           10801350, 4572000, bullets, lang=lang,
+                           alt="; ".join(lines[:3]))
     return (
         "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>"
         "<p:sld xmlns:p=\"http://schemas.openxmlformats.org/presentationml/2006/main\" "
@@ -113,7 +124,7 @@ def parse_sections(text: str) -> list[dict]:
         heading, rest = lines[0][:120], lines[1:]
         bullets = []
         for line in rest:
-            cleaned = re.sub(r"^([-*•]|\d+[.)])\s+", "", line).strip()
+            cleaned = re.sub(r"^([-*â€¢]|\d+[.)])\s+", "", line).strip()
             if cleaned:
                 bullets.append(cleaned[:MAX_TEXT])
         slides.append({"heading": heading, "bullets": bullets[:MAX_BULLETS]})
@@ -122,8 +133,12 @@ def parse_sections(text: str) -> list[dict]:
     return slides
 
 
-def build_pptx(title: str, slides: list[dict]) -> bytes:
-    """Assemble a .pptx: a title slide plus one slide per section."""
+def build_pptx(title: str, slides: list[dict], lang: str = "en-US") -> bytes:
+    """Assemble a .pptx: a title slide plus one slide per section.
+
+    Shapes carry alt text for screen readers and the run language so
+    localized decks do not read as the wrong language.
+    """
     title = (title or "Training").strip()[:120] or "Training"
     slides = slides[:MAX_SLIDES]
     parts = [{"heading": title, "bullets": ["PharmaLearn training material"], "big": True}]
@@ -165,8 +180,204 @@ def build_pptx(title: str, slides: list[dict]) -> bytes:
         package.writestr("ppt/slideLayouts/_rels/slideLayout1.xml.rels", LAYOUT_RELS)
         package.writestr("ppt/theme/theme1.xml", THEME)
         for index, part in enumerate(parts):
-            body = _slide(part["heading"], part["bullets"], big=part["big"])
+            body = _slide(part["heading"], part["bullets"], big=part["big"], lang=lang)
             package.writestr(f"ppt/slides/slide{index + 1}.xml", body)
             package.writestr(f"ppt/slides/_rels/slide{index + 1}.xml.rels", SLIDE_RELS)
     buffer.seek(0)
     return buffer.getvalue()
+
+
+def _pdf_escape(text: str) -> str:
+    """Make text safe for a PDF literal: backslash and parens, latin-1 only."""
+    cleaned = "".join(char if ord(char) < 256 else "?" for char in text)
+    return cleaned.replace("\\", "\\\\").replace("(", "\\(").replace(")", "\\)")
+
+
+def _pdf_wrap(text: str, width: int = 88) -> list[str]:
+    words, lines, current = text.split(), [], ""
+    for word in words:
+        candidate = f"{current} {word}".strip()
+        if len(candidate) <= width:
+            current = candidate
+        else:
+            if current:
+                lines.append(current)
+            current = word
+    if current:
+        lines.append(current)
+    return lines or [""]
+
+
+def build_pdf(title: str, sections: list[dict], lang: str = "en-US") -> bytes:
+    """Minimal PDF from the same sections as the PPTX: title plus headings and bullets.
+
+    Dependency-free single text flow with one Helvetica family, so the training
+    text in Phase 1 (A17) downloads as a readable PDF without a new library.
+    Carries a document language and a bookmark outline per section heading so
+    assistive technology can navigate it; full PDF/UA tagging stays future work.
+    """
+    import re as _re
+    if not _re.fullmatch(r"[A-Za-z]{2,3}(-[A-Za-z]{2,4})?", lang or ""):
+        lang = "en-US"
+    title = (title or "Training").strip()[:120] or "Training"
+    sections = sections[:MAX_SLIDES]
+    pages: list[list[tuple[str, int, str]]] = [[]]
+    page_titles: list[str] = [""]
+    cursor = [PDF_TOP]
+
+    def add(font: str, size: int, text: str) -> None:
+        if cursor[0] < 72:
+            pages.append([])
+            page_titles.append("")
+            cursor[0] = PDF_TOP
+        pages[-1].append((font, size, text[:MAX_TEXT]))
+        if font == "F2" and not page_titles[-1]:
+            page_titles[-1] = text[:120]
+        cursor[0] -= size * 1.5
+
+    add("F2", 22, title)
+    cursor[0] -= 8
+    for section in sections:
+        heading = str(section.get("heading", "Untitled"))[:120] or "Untitled"
+        cursor[0] -= 4
+        for line in _pdf_wrap(heading, 80):
+            add("F2", 13, line)
+        for bullet in [str(line)[:MAX_TEXT] for line in section.get("bullets", [])][:MAX_BULLETS]:
+            for line in _pdf_wrap(f"- {bullet}", 88):
+                add("F1", 11, line)
+        cursor[0] -= 4
+
+    outlines_at = 5 + 2 * len(pages)
+    objects: list[bytes] = []
+    objects.append(f"<< /Type /Catalog /Pages 2 0 R /Lang ({lang}) "
+                   f"/Outlines {outlines_at} 0 R /MarkInfo << /Marked true >> >>".encode("latin-1"))
+    page_refs = " ".join(f"{4 + index * 2} 0 R" for index in range(len(pages)))
+    objects.append(f"<< /Type /Pages /Kids [{page_refs}] /Count {len(pages)} >>".encode("latin-1"))
+    objects.append(b"<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>")
+    objects.append(b"<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>")
+    for page_lines in pages:
+        content_lines = []
+        for font, size, text in page_lines:
+            y = 0  # placeholder, replaced below with running position
+            _ = y
+            content_lines.append((font, size, text))
+        stream_lines = []
+        y = PDF_TOP
+        for font, size, text in content_lines:
+            stream_lines.append(f"BT /{font} {size} Tf {PDF_MARGIN} {y:.1f} Td ({_pdf_escape(text)}) Tj ET")
+            y -= size * 1.5
+            if font == "F2" and size == 22:
+                y -= 8
+        stream = "\n".join(stream_lines).encode("latin-1")
+        page_num = len(objects) + 1
+        objects.append(
+            f"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 {PDF_PAGE_WIDTH} {PDF_PAGE_HEIGHT}] "
+            f"/Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents {page_num + 1} 0 R >>".encode("latin-1")
+        )
+        objects.append(f"<< /Length {len(stream)} >>\nstream\n".encode("latin-1") + stream + b"\nendstream")
+
+    outline_items = []
+    for index, heading in enumerate(page_titles):
+        label = heading or f"Page {index + 1}"
+        outline_items.append(
+            f"<< /Title ({_pdf_escape(label)}) /Parent {outlines_at} 0 R "
+            f"/Dest [{5 + index * 2} 0 R /Fit] >>".encode("latin-1"))
+    objects.append(
+        f"<< /Type /Outlines /First {outlines_at + 1 if outline_items else 0} 0 R "
+        f"/Last {outlines_at + len(outline_items)} 0 R "
+        f"/Count {len(outline_items)} >>".encode("latin-1"))
+    objects.extend(outline_items)
+    out = io.BytesIO()
+    out.write(b"%PDF-1.4\n")
+    offsets = [0]
+    for index, body in enumerate(objects, start=1):
+        offsets.append(out.tell())
+        out.write(f"{index} 0 obj\n".encode("latin-1") + body + b"\nendobj\n")
+    xref_at = out.tell()
+    out.write(f"xref\n0 {len(objects) + 1}\n".encode("latin-1"))
+    out.write(b"0000000000 65535 f \n")
+    for offset in offsets[1:]:
+        out.write(f"{offset:010d} 00000 n \n".encode("latin-1"))
+    out.write(
+        f"trailer\n<< /Size {len(objects) + 1} /Root 1 0 R >>\nstartxref\n{xref_at}\n%%EOF".encode("latin-1")
+    )
+    return out.getvalue()
+
+
+NARRATION_CHUNK_CHARS = 180
+NARRATION_WPM = 140
+NARRATION_WPM_MIN, NARRATION_WPM_MAX = 80, 300
+_CLAUSE_SPLIT = re.compile(r"\s*[,;:\u2014\u2013]\s*")
+
+
+def _narration_chunks(texts: list[str], chunk_chars: int = NARRATION_CHUNK_CHARS) -> list[str]:
+    """Split speakable texts into short chunks the browser can voice one by one.
+
+    Clause-first: split on clause boundaries, then greedily merge clauses up to
+    the character budget, so a chunk never starts mid-clause and timing stays
+    honest. Over-long clauses fall back to word packing.
+    """
+    clauses: list[str] = []
+    for text in texts:
+        parts = [part.strip() for part in _CLAUSE_SPLIT.split(text) if part.strip()]
+        clauses.extend(parts or ([text.strip()] if text.strip() else []))
+    chunks, current = [], ""
+    for clause in clauses:
+        words = clause.split()
+        if len(clause) > chunk_chars:
+            if current:
+                chunks.append(current)
+                current = ""
+            piece = ""
+            for word in words:
+                candidate = f"{piece} {word}".strip()
+                if len(candidate) <= chunk_chars:
+                    piece = candidate
+                else:
+                    if piece:
+                        chunks.append(piece)
+                    piece = word
+            if piece:
+                chunks.append(piece)
+            continue
+        candidate = f"{current} {clause}".strip()
+        if len(candidate) <= chunk_chars:
+            current = candidate
+        else:
+            if current:
+                chunks.append(current)
+            current = clause
+    if current:
+        chunks.append(current)
+    return chunks
+
+
+def build_narration(title: str, sections: list[dict], wpm: int = NARRATION_WPM,
+                    chunk_chars: int = NARRATION_CHUNK_CHARS) -> dict:
+    """Full training read-through as speakable chunks with timing (A2, Phase 1).
+
+    No audio bytes are rendered server-side: the browser voices these chunks
+    with speech synthesis, so nothing leaves the device. Rate is adjustable
+    but never faster-only: complex labels are misheard at speed, so the default
+    sits below 150 wpm and callers pick a rate for their audience.
+    """
+    if not NARRATION_WPM_MIN <= wpm <= NARRATION_WPM_MAX:
+        raise ValueError(f"wpm must be between {NARRATION_WPM_MIN} and {NARRATION_WPM_MAX}")
+    if not 60 <= chunk_chars <= 500:
+        raise ValueError("chunk_chars must be between 60 and 500")
+    title = (title or "Training").strip()[:120] or "Training"
+    sections = sections[:MAX_SLIDES]
+    texts = [title]
+    for section in sections:
+        heading = str(section.get("heading", "")).strip()
+        if heading:
+            texts.append(heading)
+        texts.extend(str(line).strip() for line in section.get("bullets", []) if str(line).strip())
+    chunks = []
+    for index, text in enumerate(_narration_chunks(texts, chunk_chars), start=1):
+        words = len(text.split())
+        seconds = max(1.0, round(words / (wpm / 60), 1))
+        chunks.append({"id": f"n{index}", "text": text, "words": words, "seconds": seconds})
+    total_words = sum(chunk["words"] for chunk in chunks)
+    total_seconds = round(sum(chunk["seconds"] for chunk in chunks), 1)
+    return {"title": title, "chunks": chunks, "total_words": total_words, "total_seconds": total_seconds}

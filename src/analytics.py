@@ -197,6 +197,14 @@ def activity(run_id: str) -> list[dict]:
     return series
 
 
+def analytics_uplift(run_id: str) -> int | None:
+    """Mean baseline-to-final uplift across measured learners, if any."""
+    _record, entries = _progress_records(run_id)
+    uplifts = [learning.summarize(state)["uplift"] for _uid, _p, state in entries
+               if learning.summarize(state)["uplift"] is not None]
+    return round(sum(uplifts) / len(uplifts)) if uplifts else None
+
+
 def roi(run_id: str) -> dict:
     """Measured elapsed time against the stated manual baseline."""
     record = learning.course(run_id)
@@ -230,6 +238,11 @@ def roi(run_id: str) -> dict:
     percent_faster = (min(round(100 * days_saved / baseline_days), 99)
                       if days_saved is not None else None)
 
+    feedback = learning.cohort(run_id).get("feedback", []) if publication else []
+    ratings = [entry["rating"] for entry in feedback if entry.get("rating")]
+    certified = sum(1 for _uid, _person, state in _progress_records(run_id)[1]
+                    if learning.summarize(state).get("certificate"))
+    assigned = len(_progress_records(run_id)[1])
     return {
         "measured": {
             "generation_minutes": generation_minutes,
@@ -240,6 +253,18 @@ def roi(run_id: str) -> dict:
             "expert_comments": len(record["comments"]),
             "reviewers": len({entry["author_id"] for entry in record["signoffs"]}),
             "citations": manifest.get("citation_count"),
+        },
+        # Phillips L1-L4 mapped onto already-measured numbers: reaction is
+        # learner ratings, learning is uplift, behavior is certification, and
+        # results is the time/cost saving. Isolation of impact (L4) and
+        # monetised outcomes (L5) stay customer-supplied future work.
+        "levels": {
+            "reaction": {"avg_rating": round(sum(ratings) / len(ratings), 2) if ratings else None,
+                         "responses": len(ratings)},
+            "learning": {"avg_uplift": analytics_uplift(run_id)},
+            "behavior": {"certified": certified, "assigned": assigned},
+            "results": {"days_saved": days_saved, "cost_saved_usd": cost_saved,
+                        "percent_faster": percent_faster},
         },
         "baseline": MANUAL_BASELINE,
         "saving": {
@@ -544,6 +569,149 @@ def interaction_gaps(run_id: str, limit: int = 3) -> dict:
     return {"hardest_questions": hard, "lowest_modules": low_modules,
             "feedback_notes": notes[:10], "hypotheses": hypotheses,
             "causal": False}
+
+
+BKT_INIT, BKT_LEARN, BKT_GUESS, BKT_SLIP = 0.3, 0.3, 0.2, 0.1
+
+
+def skill_mastery(run_id: str, user_id: str) -> dict:
+    """BKT-lite per-skill mastery: interpretable Bayesian tracing per topic.
+
+    Starts simple on purpose: four fixed parameters, one skill per question
+    (defaulting to "general" until the authoring pipeline tags topics). With
+    small pharma cohorts this beats a fitted deep model that would memorize
+    a dozen learners; SAKT/AKT graduate in only with real data volume.
+    """
+    from datetime import date as _date
+    record, entries = _progress_records(run_id)
+    state = next((progress for uid, _person, progress in entries if uid == user_id), None)
+    if state is None:
+        from src.agent import content_path as _cp
+        return {"run_id": Path(run_id).name, "user_id": user_id, "skills": {}}
+    person = next((entry for _uid, entry, _progress in entries if _uid == user_id), {})
+    from src import learning as _learning
+    quiz = _quiz(run_id, _learning.track_for((person or {}).get("role", "hcp"))) or {}
+    skills_of = {question["id"]: question.get("skill", "general")
+                 for question in quiz.get("questions", [])}
+    known: dict[str, float] = {}
+    seen: dict[str, int] = {}
+    last_correct: dict[str, bool] = {}
+    last_day: dict[str, str] = {}
+    for attempt in sorted(state.get("attempts", []), key=lambda a: a.get("created_at", "")):
+        correct_map = {qid: question.get("correct_index")
+                       for qid, question in
+                       ((qid, next((q for q in quiz.get("questions", []) if q["id"] == qid), None))
+                        for qid in (attempt.get("answers") or {}))}
+        for qid, chosen in (attempt.get("answers") or {}).items():
+            skill = skills_of.get(qid, "general")
+            correct_index = correct_map.get(qid)
+            if correct_index is None:
+                continue
+            correct = chosen == correct_index
+            prior = known.get(skill, BKT_INIT)
+            if correct:
+                posterior = prior * (1 - BKT_SLIP) / max(
+                    1e-9, prior * (1 - BKT_SLIP) + (1 - prior) * BKT_GUESS)
+            else:
+                posterior = prior * BKT_SLIP / max(
+                    1e-9, prior * BKT_SLIP + (1 - prior) * (1 - BKT_GUESS))
+            known[skill] = round(posterior + (1 - posterior) * BKT_LEARN, 3)
+            seen[skill] = seen.get(skill, 0) + 1
+            last_correct[skill] = correct
+            day = _day(attempt.get("created_at"))
+            if day:
+                last_day[skill] = day
+    today = _date.today().isoformat()
+    skills = {}
+    for skill, mastery in known.items():
+        days_since = (_date.fromisoformat(today) - _date.fromisoformat(
+            last_day.get(skill, today))).days
+        score = 100 if last_correct.get(skill) else 0
+        review = next_review_due(score, days_since)
+        skills[skill] = {"mastery": mastery, "observations": seen.get(skill, 0),
+                         "last_correct": last_correct.get(skill),
+                         "next_review": review}
+    return {"run_id": Path(run_id).name, "user_id": user_id, "skills": skills}
+
+
+def at_risk(run_id: str) -> dict:
+    """Dropout-risk triage from already-recorded signals — no model, no labels.
+
+    A transparent weighted score (overdue time, missing baseline, failed
+    final, stalled modules) with the reasons attached, so the training lead
+    sees why someone is flagged instead of trusting a black-box tier.
+    """
+    from src import learning as _learning
+    record, entries = _progress_records(run_id)
+    publication = record.get("publication") or {}
+    flagged = []
+    for user_id, person, state in entries:
+        summary = _learning.summarize(state)
+        if summary.get("certificate"):
+            continue
+        reasons, score = [], 0
+        days = _learning.days_until(publication.get("due_on"))
+        if days is not None and days < 0:
+            weeks = min(4, -days // 7 + 1)
+            score += 10 * weeks
+            reasons.append(f"overdue {-days} days")
+        if summary["stage"] != "not_started" and summary["baseline_score"] is None:
+            score += 15
+            reasons.append("started without a baseline")
+        if summary["final_score"] is not None and not summary["passed"]:
+            score += 25
+            reasons.append(f"final {summary['final_score']}% below requirement")
+        if summary["stage"] in ("learning", "final") and summary["percent"] < 50:
+            score += 20
+            reasons.append(f"only {summary['percent']}% through modules")
+        if summary["attempts"] == 0 and summary["stage"] != "not_started":
+            score += 10
+            reasons.append("no assessment attempt yet")
+        if score >= 30:
+            flagged.append({"user_id": user_id,
+                            "name": person.get("name", user_id),
+                            "score": min(100, score),
+                            "tier": "high" if score >= 60 else "watch",
+                            "reasons": reasons,
+                            "state": _learning.assignment_state(publication, summary)})
+    flagged.sort(key=lambda entry: (-entry["score"], entry["name"]))
+    return {"run_id": Path(run_id).name, "at_risk": flagged, "count": len(flagged)}
+
+
+def skills_gap(run_id: str) -> dict:
+    """Per-skill miss rates from final attempts — what to fix in the material.
+
+    Questions without an authoring-pipeline skill tag count as "general";
+    tagging is what turns this from one row into a curriculum map.
+    """
+    record, entries = _progress_records(run_id)
+    seen: dict[str, dict] = {}
+    for _user_id, person, state in entries:
+        from src import learning as _learning
+        quiz = _quiz(run_id, _learning.track_for(person.get("role", "hcp")))
+        if not quiz:
+            continue
+        by_id = {question["id"]: question for question in quiz.get("questions", [])}
+        for attempt in state["attempts"]:
+            if attempt["kind"] != "final":
+                continue
+            for qid, chosen in (attempt.get("answers") or {}).items():
+                question = by_id.get(qid)
+                if not question:
+                    continue
+                skill = question.get("skill", "general")
+                entry = seen.setdefault(skill, {"skill": skill, "attempts": 0,
+                                                "correct": 0, "questions": set()})
+                entry["attempts"] += 1
+                entry["correct"] += chosen == question["correct_index"]
+                entry["questions"].add(qid)
+    rows = [{"skill": entry["skill"], "attempts": entry["attempts"],
+             "correct": entry["correct"],
+             "percent": round(100 * entry["correct"] / entry["attempts"]) if entry["attempts"] else None,
+             "questions": len(entry["questions"])}
+            for entry in seen.values()]
+    rows.sort(key=lambda row: (row["percent"] if row["percent"] is not None else 101, row["skill"]))
+    return {"run_id": Path(run_id).name, "skills": rows}
 
 
 def next_review_due(score: int, days_since: int, half_life: float = 30.0) -> dict:

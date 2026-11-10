@@ -7,6 +7,7 @@ certificate. State is JSON under `.pharmalearn/platform/` so every step of a
 demo stays inspectable, matching the no-database constraint of the run data.
 """
 
+import hashlib
 import json
 import os
 import re
@@ -22,7 +23,7 @@ COURSE_STATUSES = ("draft", "in_review", "approved", "published")
 SEVERITIES = ("blocking", "major", "minor")
 
 # Who may settle a review comment. The checker raises findings and never settles
-# them — the same asymmetry that stops it signing off — and a learner is not part
+# them â€” the same asymmetry that stops it signing off â€” and a learner is not part
 # of the review at all. Without this, any caller could clear a blocking finding.
 CAPABILITIES = (
     ("course.publish", "Publish courses",
@@ -94,7 +95,7 @@ REVIEW_TARGETS = [
     {"id": "sources", "title": "Sources and citations"},
 ]
 
-# The automated checker authors review comments but can never sign off — only a
+# The automated checker authors review comments but can never sign off â€” only a
 # human reviewer clears content, so the machine triages and never approves.
 CHECKER = {
     "id": "pharmalearn-checker", "name": "PharmaLearn checker",
@@ -375,6 +376,8 @@ def _audit(record: dict, actor: dict, action: str, summary: str, **detail) -> di
     entry, because the trail has to be trustworthy exactly when someone would
     prefer it said something else.
     """
+    trail = record.setdefault("audit", [])
+    previous = next((entry.get("hash") for entry in reversed(trail) if entry.get("hash")), None)
     entry = {
         "id": _id(),
         "at": _now(),
@@ -385,15 +388,73 @@ def _audit(record: dict, actor: dict, action: str, summary: str, **detail) -> di
         "actor_role": actor.get("role", ""),
         "summary": summary,
         "detail": {key: value for key, value in detail.items() if value is not None},
+        "prev_hash": previous,
     }
-    record.setdefault("audit", []).append(entry)
+    payload = "|".join(str(entry[key]) for key in ("prev_hash", "at", "action", "actor_id", "summary"))
+    entry["hash"] = hashlib.sha256(payload.encode("utf-8")).hexdigest()[:16]
+    trail.append(entry)
     return entry
+
+
+def verify_audit(run_id: str) -> dict:
+    """Tamper check over the hash-chained governance trail.
+
+    Entries written before chaining carry no hash and are reported as legacy,
+    never failed: the chain starts at the first hashed entry. Any broken link
+    or recomputed mismatch fails the whole trail.
+    """
+    trail = course(Path(run_id).name).get("audit", [])
+    expected, checked, legacy = None, 0, 0
+    for entry in trail:
+        if "hash" not in entry:
+            legacy += 1
+            continue
+        if entry.get("prev_hash") != expected:
+            return {"run_id": Path(run_id).name, "ok": False, "checked": checked,
+                    "legacy": legacy, "failed_at": entry.get("id")}
+        payload = "|".join(str(entry.get(key)) for key in ("prev_hash", "at", "action", "actor_id", "summary"))
+        if hashlib.sha256(payload.encode("utf-8")).hexdigest()[:16] != entry["hash"]:
+            return {"run_id": Path(run_id).name, "ok": False, "checked": checked,
+                    "legacy": legacy, "failed_at": entry.get("id")}
+        expected, checked = entry["hash"], checked + 1
+    return {"run_id": Path(run_id).name, "ok": True, "checked": checked, "legacy": legacy,
+            "failed_at": None}
+
+
+def audit_exceptions(run_id: str) -> dict:
+    """Review-by-exception: overrides, challenged dismissals, late signatures.
+
+    The steady state of a clean course is three empty lists; anything in them
+    is what an auditor actually wants to read, without scrolling the whole trail.
+    """
+    record = course(Path(run_id).name)
+    comments = record.get("comments", [])
+    signoffs = record.get("signoffs", [])
+    published_at = (record.get("publication") or {}).get("published_at")
+    return {
+        "run_id": Path(run_id).name,
+        "overrides": [
+            {"comment_id": comment["id"], "target": comment["target"],
+             "by": comment["override"].get("by_name"), "at": comment["override"].get("at"),
+             "reason": comment["override"].get("reason")}
+            for comment in comments if comment.get("override")],
+        "challenged_dismissals": [
+            {"comment_id": comment["id"], "target": comment["target"], "severity": comment["severity"],
+             "challenge": (comment.get("challenge") or {}).get("note", "")}
+            for comment in comments
+            if comment.get("status") == "open" and comment.get("challenge")],
+        "late_signoffs": [
+            {"by": entry.get("author_name"), "decision": entry.get("decision"),
+             "at": entry.get("created_at"), "version": entry.get("version")}
+            for entry in signoffs
+            if published_at and entry.get("created_at") and entry["created_at"] > published_at],
+    }
 
 
 def _content_status(publication: dict | None) -> dict:
     """How fresh the published content is: approved training material carries
     an expiry, so stale content can never pass as current. Derived, like
-    everything else here — the expiry is months after the publish audit."""
+    everything else here â€” the expiry is months after the publish audit."""
     months = int(os.getenv("PHARMALEARN_CONTENT_VALID_MONTHS", "12"))
     published_at = (publication or {}).get("published_at")
     if not published_at:
@@ -524,7 +585,7 @@ def resolve_comment(run_id: str, comment_id: str, status: str, resolution: str |
     Dismissing a machine finding is re-checked rather than taken on trust. If the
     check still fails against the stored sources the dismissal is *challenged*:
     the comment stays open, so publication stays held, until either the source is
-    added or `override_reason` is given. Overriding is always allowed — it is
+    added or `override_reason` is given. Overriding is always allowed â€” it is
     never silent.
     """
     record = course(run_id)
@@ -623,7 +684,7 @@ def publish_version(run_id: str, user_id: str, summary: str) -> dict:
     cleared, unverified = _verify_fixes(run_id, addressed)
     if not cleared:
         raise ValueError(
-            f"None of the {len(addressed)} addressed comment(s) could be verified — the checks they came "
+            f"None of the {len(addressed)} addressed comment(s) could be verified â€” the checks they came "
             "from still fail against the stored sources. Fix the content, or dismiss with an override.")
 
     record["version"] += 1
@@ -656,19 +717,23 @@ def publish_version(run_id: str, user_id: str, summary: str) -> dict:
     for comment, grounds in unverified:
         _audit(record, author, "fix.unverified",
                f"A {comment['severity']} comment on {comment['target']} was marked addressed, but the "
-               f"{grounds['check']} check still fails — reopened",
+               f"{grounds['check']} check still fails â€” reopened",
                comment_id=comment["id"], severity=comment["severity"], target=comment["target"],
                check=grounds["check"], version=record["version"])
     _save_course(record)
     return record
 
 
-def add_signoff(run_id: str, user_id: str, decision: str, note: str = "") -> dict:
+def add_signoff(run_id: str, user_id: str, decision: str, note: str = "",
+                attest: str = "") -> dict:
     record = course(run_id)
     # Maker-checker: whoever authors and addresses the content cannot clear it.
     author = require_capability(user_id, "review.signoff")
     if decision not in {"approved", "changes_requested"}:
         raise ValueError("Decision must be approved or changes_requested")
+    if attest and attest.strip().lower() != author["name"].lower():
+        raise ValueError("Attestation must exactly match your name")
+    attested = bool(attest)
     record["signoffs"] = [
         entry for entry in record["signoffs"]
         if not (entry["author_id"] == author["id"] and entry["version"] == record["version"])
@@ -682,6 +747,12 @@ def add_signoff(run_id: str, user_id: str, decision: str, note: str = "") -> dic
         "author_name": author["name"],
         "author_title": author.get("title", ""),
         "created_at": _now(),
+        # Part 11 step: a typed-name attestation binds identity, timestamp and
+        # meaning (approval vs change request). Legacy unattested sign-offs
+        # stay valid but are marked as such, never silently upgraded.
+        "attested": attested,
+        "method": "typed-name" if attested else "legacy",
+        "meaning": "approval" if decision == "approved" else "change request",
     }
     record["signoffs"].append(signoff)
     if record["status"] != "published":
@@ -757,7 +828,7 @@ def safety_reports(run_id: str) -> list[dict]:
 
 def report_safety(run_id: str, user_id: str, concern: str) -> dict:
     """Anyone signed in can raise a safety concern; triage is staff work.
-    Reporting stays open on purpose — silence is the failure mode here, so
+    Reporting stays open on purpose â€” silence is the failure mode here, so
     there is no assignment gate, only an identity check."""
     record = course(run_id)
     reporter = person(user_id)
@@ -808,7 +879,7 @@ def assign_reviewers(run_id: str, user_id: str, reviewer_ids: list[str], note: s
     """Put named reviewers on a course, so the queue says who owns what.
 
     A shared queue tells five reviewers that something needs reviewing and none of
-    them that it is theirs. This does not gate anything — any reviewer may still
+    them that it is theirs. This does not gate anything â€” any reviewer may still
     open any course and sign it off, because a hard lock would strand a course
     whose named expert is on leave. What it changes is whose dashboard says so.
     """
@@ -852,15 +923,15 @@ FREQUENCY_MONTHS = {"once": 0, "quarterly": 3, "semiannual": 6, "annual": 12}
 CERTIFICATE_TEMPLATES = {
     "classic": {
         "label": "Classic",
-        "description": "Centered certificate with the brand band — the default wall piece.",
+        "description": "Centered certificate with the brand band â€” the default wall piece.",
     },
     "modern": {
         "label": "Modern",
-        "description": "Dark header band with left-aligned details — reads well on screen.",
+        "description": "Dark header band with left-aligned details â€” reads well on screen.",
     },
     "formal": {
         "label": "Formal",
-        "description": "Framed serif layout with signatory emphasis — for compliance files.",
+        "description": "Framed serif layout with signatory emphasis â€” for compliance files.",
     },
 }
 
@@ -891,10 +962,50 @@ def reset_attempts(run_id: str, user_id: str, user_role: str = "", actor_id: str
     elif user_role and user_role not in {"admin", "reviewer"}:
         raise ValueError("Only the training team can reset answers")
     record = progress(run_id, user_id)
+    if record.get("certificate"):
+        course_record = course(run_id)
+        course_record.setdefault("revocations", []).append({
+            "code": record["certificate"].get("code"),
+            "user_id": user_id,
+            "revoked_at": _now(),
+            "actor_id": actor_id or "",
+            "reason": "answers reset",
+        })
+        _save_course(course_record)
     record["attempts"] = []
     record["certificate"] = None
     _save_progress(record)
     return summarize(record)
+
+
+def verify_certificate(code: str) -> dict:
+    """Check a certificate code: live, revoked, or unknown.
+
+    Revocation is recorded on the course when answers are reset, so a code
+    presented after a reset reads as revoked rather than silently vanishing.
+    """
+    wanted = (code or "").strip().upper()
+    for course_path in _platform("courses").glob("*.json"):
+        record = _json(course_path)
+        for entry in record.get("revocations", []):
+            if (entry.get("code") or "").upper() == wanted:
+                return {"code": code, "valid": False, "status": "revoked",
+                        "revoked_at": entry.get("revoked_at")}
+    root = _platform("progress")
+    if root.exists():
+        for run_dir in root.iterdir():
+            if not run_dir.is_dir():
+                continue
+            for path in run_dir.glob("*.json"):
+                try:
+                    state = _json(path)
+                except (OSError, ValueError):
+                    continue
+                certificate = state.get("certificate") or {}
+                if (certificate.get("code") or "").upper() == wanted:
+                    return {"code": code, "valid": True, "status": "valid",
+                            "certificate": certificate}
+    return {"code": code, "valid": False, "status": "unknown"}
 
 
 def publish_course(
@@ -1300,13 +1411,21 @@ BADGES = [
     ("final-pass", "Final passed"),
     ("certified", "Certified"),
     ("high-scorer", "High scorer"),
+    ("growth", "Uplift +20"),
+    ("first-try", "First-attempt pass"),
 ]
 
 
 def _badges(record: dict, baseline: dict | None, final: dict | None, percent: int,
-            modules_complete: bool, passed: bool) -> list[dict]:
+            modules_complete: bool, passed: bool,
+            uplift: int | None = None, first_final_passed: bool = False) -> list[dict]:
     """Earned recognition, derived every call: nothing is stored, so a badge
-    can never disagree with the progress it celebrates."""
+    can never disagree with the progress it celebrates.
+
+    Completion badges mark progress; mastery badges mark learning: growth for
+    real uplift and first-try for passing the final on the first attempt, both
+    opt-out free because they are derived, never assigned.
+    """
     earned = set()
     if record["started_at"]:
         earned.add("first-steps")
@@ -1322,13 +1441,20 @@ def _badges(record: dict, baseline: dict | None, final: dict | None, percent: in
         earned.add("certified")
     if final and final["score"] >= 90:
         earned.add("high-scorer")
+    if uplift is not None and uplift >= 20:
+        earned.add("growth")
+    if first_final_passed:
+        earned.add("first-try")
     return [{"id": badge_id, "label": label, "earned": badge_id in earned}
             for badge_id, label in BADGES]
 
 
 def _streak_days(record: dict) -> int:
     """Consecutive calendar days with any activity, ending today or yesterday.
-    Anything older breaks the run, so a returning learner starts a new one."""
+
+    One single missed day is forgiven (a freeze): life interrupts training, and
+    a streak that dies on one gap teaches learners to stop rather than resume.
+    A second gap still breaks the run."""
     days = set()
     for module in record["modules"].values():
         if module.get("completed_at"):
@@ -1341,11 +1467,22 @@ def _streak_days(record: dict) -> int:
     today = date.today().isoformat()
     cursor = today if today in days else (
         date.fromordinal(date.today().toordinal() - 1).isoformat())
-    streak = 0
-    while cursor in days:
-        streak += 1
-        cursor = date.fromordinal(date.fromisoformat(cursor).toordinal() - 1).isoformat()
+    streak, frozen = 0, False
+    while True:
+        if cursor in days:
+            streak += 1
+            cursor = _one_day_before(cursor)
+            continue
+        if not frozen and _one_day_before(cursor) in days:
+            frozen = True  # skip exactly one gap day, count no streak day for it
+            cursor = _one_day_before(cursor)
+            continue
+        break
     return streak
+
+
+def _one_day_before(value: str) -> str:
+    return date.fromordinal(date.fromisoformat(value).toordinal() - 1).isoformat()
 
 
 def summarize(record: dict) -> dict:
@@ -1365,6 +1502,10 @@ def summarize(record: dict) -> dict:
         stage = "final"
     else:
         stage = "complete"
+    uplift = final["score"] - baseline["score"] if baseline and final else None
+    uplift_bonus = max(0, uplift) if uplift is not None else 0
+    finals = [entry for entry in record["attempts"] if entry["kind"] == "final"]
+    first_final_passed = bool(finals and finals[0]["passed"])
     return {
         "stage": stage,
         "modules_complete": len(done),
@@ -1372,12 +1513,15 @@ def summarize(record: dict) -> dict:
         "percent": percent,
         "baseline_score": baseline["score"] if baseline else None,
         "final_score": final["score"] if final else None,
-        "uplift": final["score"] - baseline["score"] if baseline and final else None,
+        "uplift": uplift,
         "passed": passed,
         "attempts": len(record["attempts"]),
         "certificate": record["certificate"],
-        "points": len(done) * 25 + (final["score"] if final else 0),
-        "badges": _badges(record, baseline, final, percent, modules_complete, passed),
+        # Completion pays the base; learning pays the bonus: points follow
+        # uplift so cramming without understanding cannot top the board.
+        "points": len(done) * 25 + (final["score"] if final else 0) + uplift_bonus,
+        "badges": _badges(record, baseline, final, percent, modules_complete, passed,
+                          uplift, first_final_passed),
         "streak_days": _streak_days(record),
     }
 
@@ -1413,7 +1557,7 @@ def record_attempt(
     if kind not in {"baseline", "final"}:
         raise ValueError("Assessment kind must be baseline or final")
     if fill_unanswered and not DEMO_FILL:
-        raise ValueError("Filling unanswered questions is off — set PHARMALEARN_DEMO_FILL to enable it")
+        raise ValueError("Filling unanswered questions is off â€” set PHARMALEARN_DEMO_FILL to enable it")
     record = start(run_id, user_id)
     filled = [question["id"] for question in questions if question["id"] not in answers] if fill_unanswered else []
     if filled:
@@ -1515,7 +1659,7 @@ def cohort(run_id: str) -> dict:
             **state,
         })
     # Averages are computed only over learners who have BOTH scores, so
-    # "62 → 91" is one cohort measured twice rather than two different groups.
+    # "62 â†’ 91" is one cohort measured twice rather than two different groups.
     paired = [entry for entry in learners if entry["uplift"] is not None]
     certified = [entry for entry in learners if entry["certificate"]]
     started = [entry for entry in learners if entry["stage"] != "not_started"]
@@ -1537,6 +1681,361 @@ def cohort(run_id: str) -> dict:
         "feedback": sorted(feedback, key=lambda entry: entry["created_at"], reverse=True),
     }
 
+
+def learner_audit(run_id: str, user_id: str) -> dict:
+    """A13: when did this learner start, and when did they complete."""
+    record = progress(Path(run_id).name, Path(user_id).name)
+    events: list[dict] = []
+    if record["started_at"]:
+        events.append({"at": record["started_at"], "event": "training.started", "detail": None})
+    for module_id in sorted(record["modules"]):
+        completed_at = record["modules"][module_id].get("completed_at")
+        if completed_at:
+            events.append({"at": completed_at, "event": "module.completed", "module_id": module_id})
+    for attempt in record["attempts"]:
+        if attempt.get("created_at"):
+            events.append({"at": attempt["created_at"], "event": f"assessment.{attempt['kind']}",
+                           "score": attempt.get("score"), "passed": attempt.get("passed")})
+    certificate = record.get("certificate")
+    completed_at = (certificate or {}).get("issued_at")
+    if completed_at:
+        events.append({"at": completed_at, "event": "training.completed",
+                       "certificate_code": certificate.get("code"), "score": certificate.get("score")})
+    events.sort(key=lambda entry: entry["at"])
+    return {"run_id": Path(run_id).name, "user_id": Path(user_id).name,
+            "started_at": record["started_at"], "completed_at": completed_at,
+            "certificate": certificate, "events": events}
+
+
+STRINGS = {
+    "en": {
+        "reminder": ("Reminder: {name}, your training is {when} (due {due_on}). "
+                     "{done}/{total} modules done. "
+                     "Plan now: decide when and where you will finish it."),
+        "recert": ("{name}, version {version} of this training is published — "
+                   "your certificate is from version {old}. Recertification is due {due_on}. "
+                   "Plan now: decide when and where you will retake it."),
+    },
+    "es": {
+        "reminder": ("Recordatorio: {name}, su capacitacion esta {when} (vence {due_on}). "
+                     "{done}/{total} modulos completados. "
+                     "Planifique ahora: decida cuando y donde la terminara."),
+        "recert": ("{name}, la version {version} de esta capacitacion esta publicada — "
+                   "su certificado es de la version {old}. Debe recertificarse antes del {due_on}. "
+                   "Planifique ahora: decida cuando y donde la retomara."),
+    },
+}
+
+
+def translate(key: str, locale: str, **variables) -> str:
+    """Reviewed UI strings; unknown locales fall back to English, never to a key."""
+    template = STRINGS.get(locale, STRINGS["en"]).get(key, STRINGS["en"][key])
+    return template.format(**variables)
+
+
+def recertification_due(run_id: str) -> list[dict]:
+    """Certified learners whose certificate predates the published version."""
+    record = course(Path(run_id).name)
+    publication = record.get("publication") or {}
+    version = record.get("version")
+    if not publication or version is None:
+        return []
+    due = []
+    for learner in cohort(Path(run_id).name)["learners"]:
+        certificate = learner.get("certificate") or {}
+        if certificate and certificate.get("course_version") != version:
+            due.append({**learner, "published_version": version,
+                        "certificate_version": certificate.get("course_version")})
+    return due
+
+
+def reminders(run_id: str, locale: str = "en") -> dict:
+    """A5/A18: who still owes this training, with a sendable nudge each.
+
+    Entries carry a kind (training-due vs recertification), the escalation
+    level and owner where the ladder has engaged, and a locale for the
+    human-reviewed message templates.
+    """
+    name = Path(run_id).name
+    record = course(name)
+    publication = record.get("publication") or {}
+    due_on = publication.get("due_on")
+    data = cohort(name)
+    people = {entry["id"]: entry for entry in roster()}
+    ladder = {item["user_id"]: {"level": item["level"], "owner": item["owner"],
+                                "level_name": item["level_name"]}
+              for item in escalation_state(name)["items"]}
+    queue = []
+    for learner in data["learners"]:
+        if learner.get("certificate"):
+            continue
+        state = assignment_state(publication, learner)
+        if state not in ("due", "overdue"):
+            continue
+        days = days_until(due_on)
+        when = f"overdue by {-days} days" if days is not None and days < 0 else (
+            f"due in {days} days" if days is not None else "due")
+        queue.append({"user_id": learner["user_id"], "name": learner["name"],
+                      "email": people.get(learner["user_id"], {}).get("email", ""),
+                      "state": state, "stage": learner["stage"],
+                      "kind": "training-due",
+                      "due_on": due_on, "days_until_due": days,
+                      "percent": learner["percent"],
+                      "escalation": ladder.get(learner["user_id"]),
+                      "message": translate(
+                          "reminder", locale, name=learner["name"], when=when,
+                          due_on=due_on, done=learner["modules_complete"],
+                          total=learner["modules_total"])})
+    for learner in recertification_due(name):
+        queue.append({"user_id": learner["user_id"], "name": learner["name"],
+                      "email": people.get(learner["user_id"], {}).get("email", ""),
+                      "state": "due", "stage": learner["stage"],
+                      "kind": "recertification",
+                      "due_on": due_on, "days_until_due": days_until(due_on),
+                      "percent": learner["percent"],
+                      "escalation": ladder.get(learner["user_id"]),
+                      "published_version": learner["published_version"],
+                      "certificate_version": learner["certificate_version"],
+                      "message": translate(
+                          "recert", locale, name=learner["name"],
+                          version=learner["published_version"],
+                          old=learner["certificate_version"], due_on=due_on)})
+    order = {"overdue": 0, "due": 1}
+    queue.sort(key=lambda entry: (order[entry["state"]], entry["kind"], entry["name"]))
+    return {"run_id": name, "due_on": due_on, "reminders": queue, "locale": locale}
+
+
+def set_board_opt_in(by_user_id: str, user_id: str, opt_in: bool) -> dict:
+    """Opt a learner into (or out of) nearby-rank visibility.
+
+    The admin totals board needs no consent; peer-visible ranking does, so
+    nearby ranks only ever include learners who explicitly opted in.
+    """
+    if by_user_id != user_id:
+        require_capability(by_user_id, "roster.manage")
+    people = roster()
+    found = next((entry for entry in people if entry["id"] == user_id), None)
+    if not found:
+        raise ValueError(f"Unknown user {user_id}")
+    found["board_opt_in"] = bool(opt_in)
+    _write(_platform("roster.json"), people)
+    return public_person(found)
+
+
+def nearby_rank(by_user_id: str, user_id: str) -> dict:
+    """Privacy-preserving nearby rank: your position plus anonymized neighbors.
+
+    Only opted-in learners appear at all; neighbors render as ranks and
+    points, never names, so no one learns who sits above or below them.
+    """
+    if not person(by_user_id):
+        raise ValueError(f"Unknown user {by_user_id}")
+    opted_in = {entry["id"] for entry in roster() if entry.get("board_opt_in")}
+    entries = _board_totals()
+    opted = [entry for entry in entries if entry["user_id"] in opted_in]
+    position = next((index for index, entry in enumerate(opted)
+                     if entry["user_id"] == user_id), None)
+    if position is None:
+        raise ValueError("Opt in to the board to see your nearby rank")
+    window = opted[max(0, position - 2):position + 3]
+    return {"user_id": user_id, "rank": position + 1, "of": len(opted),
+            "points": opted[position]["points"],
+            "neighbors": [{"rank": opted.index(entry) + 1, "points": entry["points"],
+                           "you": entry["user_id"] == user_id,
+                           "name": entry["name"] if entry["user_id"] == user_id else None}
+                          for entry in window]}
+
+
+def import_roster(by_user_id: str, rows: list[dict]) -> dict:
+    """A1: bulk roster import — the file-backed step toward AD/HRIS sync.
+
+    Matches on email (case-insensitive): known people keep their id and gain
+    the new name/role/title, unknown emails are added. Nothing is deleted.
+    """
+    require_capability(by_user_id, "roster.manage")
+    people = roster()
+    by_email = {entry["email"].lower(): entry for entry in people if entry.get("email")}
+    added, updated = 0, 0
+    errors = []
+    seen: set[str] = set()
+    for index, row in enumerate(rows, start=1):
+        name = str(row.get("name", "")).strip()
+        email = str(row.get("email", "")).strip()
+        role = str(row.get("role", "")).strip() or "hcp"
+        title = str(row.get("title", "")).strip()
+        if not name or not email or "@" not in email:
+            errors.append({"row": index, "error": "name and a valid email are required"})
+            continue
+        if role not in known_roles():
+            errors.append({"row": index, "error": f"Unknown role {role}"})
+            continue
+        key = email.lower()
+        if key in seen:
+            errors.append({"row": index, "error": f"Duplicate email in import: {email}"})
+            continue
+        seen.add(key)
+        found = by_email.get(key)
+        if found:
+            found["name"] = name
+            found["role"] = role
+            if title:
+                found["title"] = title
+            updated += 1
+        else:
+            base = _slug(email.split("@")[0]) or _id()
+            candidate, suffix = base, 2
+            taken = {entry["id"] for entry in people}
+            while candidate in taken:
+                candidate = f"{base}-{suffix}"
+                suffix += 1
+            entry = {"id": candidate, "name": name, "email": email, "role": role,
+                     "title": title or "Imported trainee"}
+            people.append(entry)
+            by_email[key] = entry
+            taken.add(candidate)
+            added += 1
+    _write(_platform("roster.json"), people)
+    return {"added": added, "updated": updated, "errors": errors}
+
+
+def _board_totals() -> list[dict]:
+    """Points totals across published courses — no gate; callers gate."""
+    people = {entry["id"]: entry for entry in roster() if entry["id"] != CHECKER["id"]}
+    totals: dict[str, dict] = {}
+    for record in published_courses():
+        for learner in cohort(record["run_id"])["learners"]:
+            entry = totals.setdefault(learner["user_id"], {
+                "user_id": learner["user_id"],
+                "name": people.get(learner["user_id"], {}).get("name", learner["user_id"]),
+                "points": 0, "certified": 0, "courses": 0})
+            entry["points"] += learner.get("points", 0)
+            entry["certified"] += 1 if learner.get("certificate") else 0
+            entry["courses"] += 1
+    entries = sorted(totals.values(), key=lambda entry: (-entry["points"], entry["name"]))
+    return entries
+
+
+def leaderboard(by_user_id: str) -> dict:
+    """A8: points leaderboard, admin eyes only (Phase 1, privacy-gated).
+
+    Aggregates across published courses — totals only, never which sensitive
+    course someone took — so a HIPAA completion cannot leak peer to peer.
+    """
+    require_capability(by_user_id, "roster.manage")
+    entries = _board_totals()
+    return {"entries": entries, "count": len(entries)}
+
+
+def reinforce_feedback(questions: list[dict], answers: dict) -> dict:
+    """Immediate corrective feedback for reinforce practice (Butler & Roediger).
+
+    Practice without feedback lets learners retain the wrong option; grading
+    here returns correctness plus the rationale for every item, so the attempt
+    itself becomes the teaching moment. Stateless and pure: callers load the
+    quiz, this only scores.
+    """
+    by_id = {question["id"]: question for question in questions}
+    items = []
+    for qid, question in by_id.items():
+        chosen = answers.get(qid)
+        correct = chosen == question.get("correct_index")
+        items.append({"id": qid, "correct": correct,
+                      "correct_index": question.get("correct_index"),
+                      "rationale": question.get("rationale", "")})
+    correct_count = sum(1 for item in items if item["correct"])
+    return {"score": round(100 * correct_count / len(items)) if items else 0,
+            "correct": correct_count, "total": len(items), "items": items}
+
+
+DISPOSITION_ACTIONS = ("anonymize-assessments",)
+
+
+def propose_disposition(run_id: str, by_user_id: str, action: str) -> dict:
+    """Propose a retention action; a second training-team member must approve.
+
+    Only raw assessment answers are ever removed (scores, certificates and the
+    review trail stay for audit). Nothing happens at proposal time.
+    """
+    require_capability(by_user_id, "course.publish")
+    if action not in DISPOSITION_ACTIONS:
+        raise ValueError(f"Disposition must be one of: {', '.join(DISPOSITION_ACTIONS)}")
+    record = course(Path(run_id).name)
+    author = person(by_user_id)
+    entry = {"id": _id(), "action": action, "status": "proposed",
+             "proposed_by": author["name"] if author else by_user_id,
+             "proposed_by_id": by_user_id, "proposed_at": _now(),
+             "approved_by": None, "approved_at": None, "affected": None}
+    record.setdefault("dispositions", []).append(entry)
+    _audit(record, author or {"id": by_user_id, "name": by_user_id}, "disposition.proposed",
+           f"{entry['proposed_by']} proposed {action}", disposition_action=action)
+    _save_course(record)
+    return entry
+
+
+def approve_disposition(run_id: str, by_user_id: str, disposition_id: str) -> dict:
+    """Second-approver execution: dual control, then anonymize raw answers."""
+    require_capability(by_user_id, "course.publish")
+    record = course(Path(run_id).name)
+    entry = next((item for item in record.get("dispositions", [])
+                  if item["id"] == disposition_id), None)
+    if not entry:
+        raise ValueError(f"Unknown disposition {disposition_id}")
+    if entry["status"] != "proposed":
+        raise ValueError("Disposition is no longer proposed")
+    if entry["proposed_by_id"] == by_user_id:
+        raise ValueError("Dual control: the approver must differ from the proposer")
+    author = person(by_user_id)
+    affected = 0
+    root = _platform("progress", Path(run_id).name)
+    if root.exists():
+        for path in root.glob("*.json"):
+            try:
+                state = _json(path)
+            except (OSError, ValueError):
+                continue
+            for attempt in state.get("attempts", []):
+                if attempt.get("answers"):
+                    attempt["answers"] = {}
+                    attempt["anonymized"] = True
+                    affected += 1
+            _write(path, state)
+    entry.update({"status": "executed", "approved_by": author["name"] if author else by_user_id,
+                  "approved_at": _now(), "affected": affected})
+    _audit(record, author or {"id": by_user_id, "name": by_user_id}, "disposition.executed",
+           f"{entry['approved_by']} approved {entry['action']} ({affected} attempts anonymized)",
+           disposition_action=entry["action"], affected=affected)
+    _save_course(record)
+    return entry
+
+
+def adjudicate_free_text(reference: str, answer: str) -> dict:
+    """Model verdict for short answers the similarity score cannot settle.
+
+    Only runs with an explicit key; without one it degrades to human routing,
+    never to a guessed pass. Capped to a few tokens with no retries.
+    """
+    import os as _os
+    if not _os.getenv("ANTHROPIC_API_KEY"):
+        return {"model": "off", "verdict": None, "routed": "human"}
+    try:
+        import httpx as _httpx
+        sep = chr(10)
+        response = _httpx.post(
+            "https://api.anthropic.com/v1/messages",
+            headers={"x-api-key": _os.getenv("ANTHROPIC_API_KEY"),
+                     "anthropic-version": "2023-06-01",
+                     "content-type": "application/json"},
+            json={"model": "claude-haiku-4-5-20251001", "max_tokens": 8,
+                  "system": "Grade a short clinical answer against the reference.",
+                  "messages": [{"role": "user", "content":
+                                "Reference: " + reference + sep + "Answer: " + answer}]},
+            timeout=20.0)
+        verdict = response.json()["content"][0]["text"].strip().upper()
+        verdict = "PASS" if verdict.startswith("PASS") else "REVIEW"
+        return {"model": "claude-haiku", "verdict": verdict,
+                "routed": "model" if verdict == "PASS" else "human"}
+    except Exception:
+        return {"model": "unavailable", "verdict": None, "routed": "human"}
 
 def grade_free_text(reference: str, answer: str, threshold: float = 0.6,
                     review_margin: float = 0.15) -> dict:

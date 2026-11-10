@@ -453,6 +453,7 @@ export function CourseReviewPanel({ runId, user, onChange }: { runId: string; us
   const [body, setBody] = useState("");
   const [summary, setSummary] = useState("");
   const [note, setNote] = useState("");
+  const [attest, setAttest] = useState("");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
   const [confirmApprove, setConfirmApprove] = useState(false);
@@ -685,14 +686,19 @@ export function CourseReviewPanel({ runId, user, onChange }: { runId: string; us
               <CardHeader><CardTitle className="text-base">Your sign-off</CardTitle></CardHeader>
               <CardContent className="space-y-3">
                 {mySignoff
-                  ? <p className="rounded-lg bg-brand-50 dark:bg-brand-950 p-3 text-sm text-brand-800 dark:text-brand-200">You recorded <b>{mySignoff.decision === "approved" ? "approval" : "changes requested"}</b> for v{review.version}.{mySignoff.note ? ` “${mySignoff.note}”` : ""}</p>
+                  ? <p className="rounded-lg bg-brand-50 dark:bg-brand-950 p-3 text-sm text-brand-800 dark:text-brand-200">You recorded <b>{mySignoff.decision === "approved" ? "approval" : "changes requested"}</b> for v{review.version}.{mySignoff.note ? ` “${mySignoff.note}”` : ""}{mySignoff.attested ? " Attested by typed name." : " Legacy record — sign again with your typed name to attest."}</p>
                   : <p className="text-sm text-stone-600 dark:text-muted-foreground">Record a decision for version {review.version}.</p>}
                 <Textarea value={note} onChange={(event) => setNote(event.target.value)} rows={2} placeholder="Optional note" disabled={busy || signoffLocked} />
+                <div>
+                  <label htmlFor="review-attest" className="text-sm font-medium">Type your full name to attest</label>
+                  <Input id="review-attest" value={attest} onChange={(event) => setAttest(event.target.value)} placeholder={user.name} disabled={busy || signoffLocked} className="mt-2" autoComplete="off" />
+                  <p className="mt-1 text-xs leading-5 text-stone-500 dark:text-stone-400">Attestation binds your identity, this version, and the decision&apos;s meaning. Leave it blank for a legacy record.</p>
+                </div>
                 <div className="flex gap-2">
                   <Button disabled={busy || signoffLocked} className="bg-brand-600 hover:bg-brand-800" onClick={() => setConfirmApprove(true)}>
                     <ShieldCheck /> Approve
                   </Button>
-                  <Button disabled={busy || signoffLocked} variant="outline" onClick={() => act(() => sendJson(`/api/runs/${runId}/review/signoff`, { user_id: user.id, decision: "changes_requested", note }))}>
+                  <Button disabled={busy || signoffLocked} variant="outline" onClick={() => act(() => sendJson(`/api/runs/${runId}/review/signoff`, { user_id: user.id, decision: "changes_requested", note, attest }))}>
                     Request changes
                   </Button>
                 </div>
@@ -705,7 +711,7 @@ export function CourseReviewPanel({ runId, user, onChange }: { runId: string; us
                       <AlertDialogTitle>Approve v{review.version}?</AlertDialogTitle>
                       <AlertDialogDescription>
                         This records your approval of version {review.version} under your name, and it counts toward
-                        publication. {review.readiness.open_blocking > 0
+                        publication. {attest.trim() ? "Your typed name will attest this decision." : "No typed name given: this records as a legacy sign-off."} {review.readiness.open_blocking > 0
                           ? `${review.readiness.open_blocking} blocking finding(s) are still open, so publication stays held until they close.`
                           : "No blocking findings are open."}
                       </AlertDialogDescription>
@@ -714,7 +720,7 @@ export function CourseReviewPanel({ runId, user, onChange }: { runId: string; us
                       <AlertDialogCancel>Keep reviewing</AlertDialogCancel>
                       <AlertDialogAction
                         className="bg-brand-600 hover:bg-brand-800"
-                        onClick={() => { setConfirmApprove(false); void act(() => sendJson(`/api/runs/${runId}/review/signoff`, { user_id: user.id, decision: "approved", note })); }}
+                        onClick={() => { setConfirmApprove(false); void act(() => sendJson(`/api/runs/${runId}/review/signoff`, { user_id: user.id, decision: "approved", note, attest })); }}
                       >
                         Record approval
                       </AlertDialogAction>

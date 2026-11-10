@@ -124,3 +124,80 @@ cd ui/web && bun run lint && bun run build
 ```
 
 The implementation rationale and source policy are in `docs/implementation_plan.md`.
+
+## What shipped: meeting actions to LMS features
+
+From the training review meeting (actions A1–A18), shortlisted and ranked into
+Phase 1. Everything below is built, tested, and green (`uv run pytest -q`:
+313 passed; `npm run lint` clean; `npm run build` success).
+
+### Compliance and audit close-the-loop
+
+- Learner audit trail (`GET /api/runs/{run_id}/audit/{user_id}`): training
+  start, per-module completions, attempts, certificate issue, oldest first.
+- Hash-chained governance trail with tamper check
+  (`GET /api/runs/{run_id}/audit/verify`), plus review-by-exception filters
+  (`GET /api/runs/{run_id}/audit/exceptions`): overrides, challenged
+  dismissals, late sign-offs.
+- Typed-name attestation on review sign-off (identity, version, meaning),
+  recorded in the review UI; legacy sign-offs stay valid but marked as such.
+- Certificate verification lookup with revocation on answers reset
+  (`GET /api/certificates/verify`).
+- Dual-control retention disposition: a second training-team member approves,
+  then raw assessment answers are anonymized while scores stand.
+- Reminders queue (`GET /api/runs/{run_id}/reminders`) for due and overdue
+  learners with sendable nudge text (EN/ES reviewed), escalation context, and
+  recertification entries when a new version publishes.
+- Exports: completions CSV, Excel workbook, SCORM 1.2; per-trial completion
+  lists for admins.
+
+### Learning science upgrades
+
+- Reinforce practice with immediate corrective feedback
+  (`POST /api/learn/{user}/{run}/reinforce/submit`): correctness plus
+  rationale per item after the attempt, never leaked beforehand.
+- FSRS-lite spaced scheduling (`src/fsrs.py`): practice serves the least
+  retrievable missed question first.
+- BKT-lite per-skill mastery with next-review timing
+  (`GET /api/learn/{user}/{run}/skills`).
+- Narration chunks with adjustable rate and clause-aware splitting
+  (`POST /api/narration`); the browser voices them, nothing leaves the device.
+- Focus-mode reading experiment (`/experiments/focus`): sequential disclosure
+  with position and reread, deliberately no blur.
+- Points follow uplift (completion pays the base, learning pays the bonus);
+  growth and first-attempt badges; single-day streak freeze;
+  implementation-intention nudges.
+
+### Verification and content quality
+
+- Per-asset faithfulness score (`GET /api/runs/{run_id}/faithfulness`).
+- Abstract-only citations cap at conditional support, never verified.
+- Heuristic paraphrase screen beside quote matching; registry-held citations
+  resolve as conditional support, never untraceable-conflated.
+- Token-recall curriculum coverage (paraphrase-tolerant); SPL section splitter
+  plus label diff with boxed-warning detection; model adjudication for margin
+  short answers with keyless human-routing fallback.
+- `docs/ACCURACY.md` build-status table reconciled with the shipped code.
+
+### Analytics, rostering, access
+
+- Transparent at-risk triage with reasons (`GET /api/runs/{run_id}/at-risk`);
+  per-skill gaps (`GET /api/runs/{run_id}/skills-gap`); Phillips L1–L4 levels
+  mapped onto measured ROI numbers.
+- CSV roster import toward AD sync; admin-only totals leaderboard plus opt-in
+  nearby ranks with anonymized neighbors (learner home peer board).
+- PPTX alt text plus run language; PDF document language plus bookmark
+  outline; training text to PDF (`POST /api/presentations/pdf`).
+
+## Research program
+
+A deep-research pass surveyed journals, papers, paperswithcode SOTA, and
+existing apps (Veeva Vault Training, Cornerstone, Docebo, TalentLMS, Absorb,
+Moodle, Articulate) across six angles — content verification, assessment
+science, motivation, compliance, analytics, accessibility — then a critic,
+a gap follow-up, and a ranked synthesis. Ingested above; explicitly rejected
+on evidence: faster-only narration, Bionic/RSVP readers, whole-label
+rebuilds, full deep knowledge tracing on small cohorts, public peer boards
+for regulated cohorts. Large bets (NLI model, xAPI, SSO/SCIM, neural
+narration, offline mobile, WCAG 2.2 AA, tagged PDF/UA) are parked in
+`docs/ROADMAP.md` with the status of everything.

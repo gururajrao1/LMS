@@ -1,4 +1,5 @@
 import asyncio
+import csv
 import io
 import json
 import openpyxl
@@ -14,7 +15,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, StreamingResponse
 from pydantic import BaseModel
 
-from src import analytics, assistant, completeness, journey, judge, learning, material, present, programmes
+from src import analytics, assistant, completeness, fsrs, journey, judge, learning, material, present, programmes
 from src.agent import content_path, create_run, get_run, passing_percent, run_agent
 
 app = FastAPI(title="PharmaLearn API")
@@ -252,6 +253,7 @@ class SignoffRequest(BaseModel):
     user_id: str
     decision: str
     note: str = ""
+    attest: str = ""
 
 
 class AssignReviewersRequest(BaseModel):
@@ -321,7 +323,7 @@ class ChatRequest(BaseModel):
     # finding's own state (check, quote, match) instead of dossier search.
     finding_id: str | None = None
     # Set when a trainee is asking, so "when is this due" answers about their own
-    # progress rather than the cohort's — otherwise the bot tells someone their
+    # progress rather than the cohort's â€” otherwise the bot tells someone their
     # overdue course is "completed", because for the cohort it is.
     user_id: str = ""
 
@@ -390,6 +392,23 @@ def assign_person_role(user_id: str, request: AssignRoleRequest):
 @app.delete("/api/roles/{role_id}")
 def delete_role(role_id: str, by_user_id: str = ""):
     return _guard(lambda: learning.delete_role(by_user_id, Path(role_id).name))
+
+
+class PeopleImportRequest(BaseModel):
+    by_user_id: str
+    csv: str = ""
+
+
+@app.post("/api/people/import")
+def import_people(request: PeopleImportRequest):
+    """A1: bulk roster import from a CSV export (name,email,role,title)."""
+    import io as _io
+    reader = _io.StringIO(request.csv or "")
+    rows = list(csv.DictReader(reader))
+    if not rows or not {"name", "email"} <= { (k or "").strip().lower() for k in (rows[0].keys() or []) }:
+        raise HTTPException(400, "CSV needs name and email columns")
+    normalized = [{k.strip().lower(): (v or "").strip() for k, v in row.items()} for row in rows]
+    return _guard(lambda: learning.import_roster(request.by_user_id, normalized))
 
 
 @app.post("/api/session")
@@ -497,7 +516,8 @@ def triage_safety(run_id: str, report_id: str, request: SafetyReviewRequest):
 
 @app.post("/api/runs/{run_id}/review/signoff", status_code=201)
 def review_signoff(run_id: str, request: SignoffRequest):
-    return _guard(lambda: learning.add_signoff(run_id, request.user_id, request.decision, request.note))
+    return _guard(lambda: learning.add_signoff(run_id, request.user_id, request.decision, request.note,
+                                               attest=request.attest))
 
 
 @app.post("/api/runs/{run_id}/publication")
@@ -523,6 +543,30 @@ def cohort(run_id: str):
     return learning.cohort(run_id)
 
 
+@app.get("/api/runs/{run_id}/audit/exceptions")
+def audit_exceptions(run_id: str):
+    """Review-by-exception: overrides, challenged dismissals, late signatures."""
+    return learning.audit_exceptions(Path(run_id).name)
+
+
+@app.get("/api/runs/{run_id}/audit/verify")
+def audit_verify(run_id: str):
+    """Tamper check over the hash-chained governance trail."""
+    return learning.verify_audit(Path(run_id).name)
+
+
+@app.get("/api/runs/{run_id}/audit/{user_id}")
+def learner_audit(run_id: str, user_id: str):
+    """A13: start/completion audit for one learner, oldest event first."""
+    return learning.learner_audit(Path(run_id).name, Path(user_id).name)
+
+
+@app.get("/api/runs/{run_id}/reminders")
+def training_reminders(run_id: str, locale: str = "en"):
+    """A5/A18: due and overdue learners with a sendable nudge each."""
+    return learning.reminders(Path(run_id).name, locale=locale)
+
+
 @app.get("/api/runs/{run_id}/alerts")
 def noncompliance_alerts(run_id: str):
     """Flag every learner falling short: overdue, below-requirement, unbaselined."""
@@ -543,6 +587,29 @@ def escalations(run_id: str):
 def run_escalation_check(run_id: str, request: EscalationCheckRequest):
     """Run the ladder: stamp first-seen dates, record level changes, prune resolved."""
     return _guard(lambda: learning.check_escalations(Path(run_id).name, request.user_id))
+
+
+class DispositionRequest(BaseModel):
+    by_user_id: str
+    action: str
+
+
+class DispositionApproval(BaseModel):
+    by_user_id: str
+
+
+@app.post("/api/runs/{run_id}/retention/dispose", status_code=201)
+def propose_disposition(run_id: str, request: DispositionRequest):
+    """Propose a retention action; a second approver must execute it."""
+    return _guard(lambda: learning.propose_disposition(
+        Path(run_id).name, request.by_user_id, request.action))
+
+
+@app.post("/api/runs/{run_id}/retention/dispose/{disposition_id}/approve")
+def approve_disposition(run_id: str, disposition_id: str, request: DispositionApproval):
+    """Dual-control approval: anonymize raw assessment answers, keep scores."""
+    return _guard(lambda: learning.approve_disposition(
+        Path(run_id).name, request.by_user_id, disposition_id))
 
 
 @app.get("/api/runs/{run_id}/retention")
@@ -600,9 +667,51 @@ def learner_dashboard(user_id: str):
             "alerts": alerts}
 
 
+class BoardOptInRequest(BaseModel):
+    by_user_id: str
+    opt_in: bool = True
+
+
+@app.post("/api/people/{user_id}/board-opt-in")
+def board_opt_in(user_id: str, request: BoardOptInRequest):
+    """Opt into (or out of) peer-visible nearby ranks."""
+    return _guard(lambda: learning.set_board_opt_in(
+        request.by_user_id, Path(user_id).name, request.opt_in))
+
+
+@app.get("/api/leaderboard/nearby")
+def nearby_rank(by_user_id: str = "", user_id: str = ""):
+    """Your rank plus anonymized neighbors; opt-in only."""
+    return _guard(lambda: learning.nearby_rank(by_user_id, Path(user_id).name if user_id else ""))
+
+
+@app.get("/api/leaderboard")
+def leaderboard(by_user_id: str = ""):
+    """A8: points leaderboard, admin eyes only — totals, never course detail."""
+    return _guard(lambda: learning.leaderboard(Path(by_user_id).name if by_user_id else ""))
+
+
 @app.get("/api/runs/{run_id}/analytics")
 def course_analytics(run_id: str):
     return analytics.analytics(run_id)
+
+
+@app.get("/api/learn/{user_id}/{run_id}/skills")
+def learner_skills(user_id: str, run_id: str):
+    """BKT-lite per-skill mastery with next-review timing."""
+    return analytics.skill_mastery(Path(run_id).name, Path(user_id).name)
+
+
+@app.get("/api/runs/{run_id}/at-risk")
+def at_risk(run_id: str):
+    """Transparent dropout-risk triage with reasons attached."""
+    return analytics.at_risk(Path(run_id).name)
+
+
+@app.get("/api/runs/{run_id}/skills-gap")
+def skills_gap(run_id: str):
+    """Per-skill miss rates: the signal for what to fix in the material."""
+    return analytics.skills_gap(Path(run_id).name)
 
 
 @app.get("/api/runs/{run_id}/export/completions")
@@ -692,7 +801,7 @@ def create_presentation(body: PresentationRequest):
     """Training slides (.pptx) from pasted present text, no new dependency.
 
     Blank-line-separated blocks become slides: the first line is the heading,
-    the rest become bullets. Stateless — nothing is stored.
+    the rest become bullets. Stateless â€” nothing is stored.
     """
     sections = present.parse_sections(body.text)
     if not sections:
@@ -702,6 +811,37 @@ def create_presentation(body: PresentationRequest):
     return StreamingResponse(iter([payload]), status_code=201,
                              media_type="application/vnd.openxmlformats-officedocument.presentationml.presentation",
                              headers={"Content-Disposition": f'attachment; filename="{name[:60]}.pptx"'})
+
+
+@app.post("/api/presentations/pdf", status_code=201)
+def create_presentation_pdf(body: PresentationRequest):
+    """Training text as PDF (A17), same sections as the PPTX, no new dependency."""
+    sections = present.parse_sections(body.text)
+    if not sections:
+        raise HTTPException(400, "No slide content found")
+    payload = present.build_pdf(body.title, sections)
+    name = "".join(char if char.isalnum() or char in {"-", "_"} else "-" for char in body.title.strip() or "training")
+    return StreamingResponse(iter([payload]), status_code=201,
+                             media_type="application/pdf",
+                             headers={"Content-Disposition": f'attachment; filename="{name[:60]}.pdf"'})
+
+class NarrationRequest(BaseModel):
+    title: str = "Training"
+    text: str = ""
+    wpm: int | None = None
+    chunk_chars: int | None = None
+
+
+@app.post("/api/narration", status_code=201)
+def create_narration(body: NarrationRequest):
+    """A2: full training read-through as speakable chunks (Phase 1, no audio bytes)."""
+    sections = present.parse_sections(body.text)
+    if not sections:
+        raise HTTPException(400, "No content found")
+    return _guard(lambda: present.build_narration(
+        body.title, sections,
+        wpm=body.wpm if body.wpm is not None else present.NARRATION_WPM,
+        chunk_chars=body.chunk_chars if body.chunk_chars is not None else present.NARRATION_CHUNK_CHARS))
 
 
 @app.get("/api/runs/{run_id}/export/scorm")
@@ -721,6 +861,17 @@ def export_scorm(run_id: str):
         package.writestr("completions.csv", "user_id,stage\n")
     buffer.seek(0)
     return StreamingResponse(iter([buffer.getvalue()]), media_type="application/zip", headers={"Content-Disposition": f'attachment; filename="{Path(run_id).name}-scorm12.zip"'})
+
+
+@app.get("/api/runs/{run_id}/faithfulness")
+def faithfulness(run_id: str, track: str = ""):
+    """Per-asset faithfulness: supported cited sentences over cited ones.
+
+    One regression number per track plus the per-asset split.
+    """
+    tracks = [track] if track in ("hcp", "msl") else ["hcp", "msl"]
+    return {"run_id": Path(run_id).name,
+            "tracks": {name: judge.faithfulness(Path(run_id).name, name) for name in tracks}}
 
 
 def _checks_payload(run_id: str, report: dict | None):
@@ -884,7 +1035,7 @@ def library(run_id: str):
 
     # Collapsed by document identity, not by URL. The same SPL is listed under
     # both drugInfo.cfm and lookup.cfm, and showing it twice would misrepresent
-    # how much we hold — the whole reason `source_key` exists.
+    # how much we hold â€” the whole reason `source_key` exists.
     documents: list[dict] = []
     by_key: dict[str, dict] = {}
     for source in listed.get("sources", []):
@@ -1153,7 +1304,7 @@ def _questions(content_value, track: str, kind: str):
     # at least one figure is asked.
     #
     # Groups are kept intact rather than sampled because a half-board is not a
-    # shorter board, it is a broken one — the buckets stop balancing and the
+    # shorter board, it is a broken one â€” the buckets stop balancing and the
     # learner can infer answers from what is missing. Figure questions *are*
     # independent, so they can be sampled, but they have to be sampled as figures:
     # left to the plain stride they fell off the end entirely and the format was
@@ -1247,6 +1398,12 @@ def learner_feedback(user_id: str, run_id: str, request: FeedbackRequest):
     ))
 
 
+@app.get("/api/certificates/verify")
+def verify_certificate(code: str = ""):
+    """Check a certificate code: live, revoked after an answers reset, or unknown."""
+    return learning.verify_certificate(code)
+
+
 @app.get("/api/learn/{user_id}/{run_id}/certificate")
 def certificate(user_id: str, run_id: str):
     _learner, _record, content_value, _track = _learner_context(user_id, run_id)
@@ -1285,4 +1442,28 @@ def reinforce(user_id: str, run_id: str):
             if qid in by_id and chosen == by_id[qid]["correct_index"]:
                 ever_correct.add(qid)
     missed = [by_id[qid] for qid in ever_seen if qid in by_id and qid not in ever_correct]
-    return {"run_id": run_id, "user_id": user_id, "missed_count": len(missed), "questions": [{k: question[k] for k in ("id", "prompt", "options", "citations") if k in question} for question in missed]}
+    keyed = {question["id"]: question.get("correct_index") for question in questions}
+    plan = fsrs.schedule([{**attempt, "_correct": keyed}
+                          for attempt in learning.progress(run_id, user_id)["attempts"]])
+    missed.sort(key=lambda question: (plan.get(question["id"], {}).get("retrievability", 0),
+                                      question["id"]))
+    return {"run_id": run_id, "user_id": user_id, "missed_count": len(missed), "questions": [
+        {**{k: question[k] for k in ("id", "prompt", "options", "citations") if k in question},
+         "due_in_days": plan.get(question["id"], {}).get("due_in_days", 0),
+         "retrievability": plan.get(question["id"], {}).get("retrievability")}
+        for question in missed]}
+
+
+@app.post("/api/learn/{user_id}/{run_id}/reinforce/submit")
+def submit_reinforcement(user_id: str, run_id: str, request: AnswerRequest):
+    """Corrective feedback on the practice set: correctness plus rationale per item.
+
+    The GET endpoint withholds answers so practice stays honest; this POST is
+    the teaching moment after the attempt, where feedback belongs.
+    """
+    _learner, _record, content_value, track = _learner_context(user_id, run_id)
+    quiz = (content_value.get("learners", {}).get(track) or {}).get("quiz") or {}
+    questions = quiz.get("questions", [])
+    if not questions:
+        raise HTTPException(400, "No practice questions staged for this course")
+    return _guard(lambda: learning.reinforce_feedback(questions, request.answers))

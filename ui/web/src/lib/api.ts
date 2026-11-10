@@ -46,6 +46,13 @@ export type Person = {
   capabilities?: string[];
   /** Whether this person trains as a learner. */
   learner?: boolean;
+  /** Opted into peer-visible nearby ranks; absent means opted out. */
+  board_opt_in?: boolean;
+};
+/** Your rank plus anonymized neighbors; peer names never leave the server. */
+export type NearbyRank = {
+  user_id: string; rank: number; of: number; points: number;
+  neighbors: { rank: number; points: number; you: boolean; name: string | null }[];
 };
 export type Capability = { id: string; label: string; description: string };
 export type RoleEntry = {
@@ -135,7 +142,7 @@ export type AuditEntry = {
   detail: Record<string, unknown>;
 };
 
-export type Signoff = { id: string; version: number; decision: "approved" | "changes_requested"; note: string; author_id: string; author_name: string; author_title: string; created_at: string };
+export type Signoff = { id: string; version: number; decision: "approved" | "changes_requested"; note: string; author_id: string; author_name: string; author_title: string; created_at: string; attested: boolean; method: "typed-name" | "legacy"; meaning: string };
 
 export type CourseVersion = { version: number; summary: string; author_name: string; addressed: string[]; unverified?: string[]; created_at: string | null };
 

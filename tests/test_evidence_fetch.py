@@ -43,6 +43,20 @@ def handler_for(mapping):
     return handle
 
 
+def test_label_sections_split_and_diff_flags_warnings():
+    """Section-level diffs: a warning change re-certifies, not rebuilds."""
+    from src.evidence_fetch import diff_label_sections, label_sections
+    old = "1 INDICATIONS\nIbrance is indicated.\n\n5 WARNINGS\nNeutropenia may occur.\n"
+    new = "1 INDICATIONS\nIbrance is indicated.\n\n5 WARNINGS\nSevere neutropenia may occur.\n"
+    assert set(label_sections(old)) == {"1", "5"}
+    diff = diff_label_sections(old, new)
+    assert diff["changed"] == ["5"] and diff["added"] == [] and diff["removed"] == []
+    assert diff["boxed_warning_touched"] is True
+    assert diff["recertification_required"] is True
+    same = diff_label_sections(old, old)
+    assert same["changed"] == [] and same["recertification_required"] is False
+
+
 def test_version_pin_reads_url_and_metadata():
     assert version_pin("https://x/y?setid=abc&version=10") == "version:10"
     assert version_pin("https://x/y", {"published_date": "2024-01-01"}) == (

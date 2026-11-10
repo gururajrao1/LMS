@@ -485,6 +485,30 @@ def _trace(citation, dossier):
     return None
 
 
+_NEGATIONS = {"no", "not", "never", "none", "neither", "nor", "without",
+                "cannot", "unlikely", "contraindicated", "avoid", "stop", "discontinue"}
+
+
+def entails(premise: str, hypothesis: str) -> bool:
+    """Heuristic paraphrase screen beside quote_match — not a model.
+
+    Content-word coverage with a negation-polarity guard: a hypothesis whose
+    content words mostly appear in the premise with matching polarity reads as
+    paraphrase rather than invention. Reviewers confirm meaning; nothing here
+    verifies on its own, and a full NLI model remains future work.
+    """
+    hyp_words = [word for word in _norm(hypothesis).split() if len(word) > 3]
+    if not hyp_words:
+        return False
+    prem_words = set(_norm(premise).split())
+    coverage = sum(word in prem_words for word in hyp_words) / len(hyp_words)
+    hyp_raw = (hypothesis or "").lower().split()
+    prem_raw = (premise or "").lower().split()
+    hyp_neg = any(word in _NEGATIONS or word.endswith("n't") for word in hyp_raw)
+    prem_neg = any(word in _NEGATIONS or word.endswith("n't") for word in prem_raw)
+    return coverage >= 0.5 and hyp_neg == prem_neg
+
+
 def quote_match(supporting: str, corpus_text: str) -> float:
     """How much of a recorded quote is actually present in the source, 0–1.
 
@@ -546,10 +570,16 @@ def deterministic_findings(run_id: str, track: str, drug: str) -> tuple[list[Fin
     findings: list[Finding] = []
     stats = {"units": 0, "citations": 0, "traceable": 0, "checkable": 0, "verified": 0, "partial": 0,
              "unverifiable": 0, "fetched_live": 0, "abstract_only": 0, "human_record": 0,
-             "cited_sentences": 0, "supported_sentences": 0, "verbatim_sentences": 0}
+             "registry_held": 0,
+             "cited_sentences": 0, "supported_sentences": 0, "verbatim_sentences": 0,
+             "by_asset": {}}
 
     for unit in units(run_id, track):
         stats["units"] += 1
+        asset_stats = stats["by_asset"].setdefault(
+            unit["asset"], {"units": 0, "cited_sentences": 0,
+                            "supported_sentences": 0, "verbatim_sentences": 0})
+        asset_stats["units"] += 1
         citations = unit["citations"]
 
         if not citations:
@@ -586,6 +616,17 @@ def deterministic_findings(run_id: str, track: str, drug: str) -> tuple[list[Fin
             stats["citations"] += 1
             match = _trace(citation, dossier)
             if not match:
+                held = read_registry(drug).get(source_key(citation.get("url", "")))
+                if held:
+                    stats["registry_held"] += 1
+                    findings.append(Finding(
+                        unit["id"], unit["asset"], unit["reference"], "registry_only", "major",
+                        "Citation is held only as a registry pointer and the full text has not "
+                        "been fetched, so this is conditional support, never verification. "
+                        "Fetch the source or confirm against the full text to clear this.",
+                        asset_text=unit["text"][:400], citations=[citation]))
+                    continue
+            if not match:
                 findings.append(Finding(
                     unit["id"], unit["asset"], unit["reference"], "untraceable", "blocking",
                     f"Citation “{citation.get('title', '')[:70]}” does not match any claim collected during "
@@ -615,8 +656,19 @@ def deterministic_findings(run_id: str, track: str, drug: str) -> tuple[list[Fin
             stats["cited_sentences"] += sent["sentences"]
             stats["supported_sentences"] += sent["supported"]
             stats["verbatim_sentences"] += sent["verbatim"]
+            asset_stats["cited_sentences"] += sent["sentences"]
+            asset_stats["supported_sentences"] += sent["supported"]
+            asset_stats["verbatim_sentences"] += sent["verbatim"]
             ratio = quote_match(supporting, corpus_text)
-            if ratio >= VERBATIM:
+            if ratio >= VERBATIM and level == "abstract_only":
+                stats["partial"] += 1
+                findings.append(Finding(
+                    unit["id"], unit["asset"], unit["reference"], "abstract_only", "major",
+                    "This citation resolves only to an abstract or other access-limited record, "
+                    "so even a verbatim match is conditional support, never verification. "
+                    "A reviewer confirming against the full text clears this.",
+                    asset_text=unit["text"][:400], source_text=supporting[:400], citations=[citation]))
+            elif ratio >= VERBATIM:
                 stats["verified"] += 1
             elif ratio >= PARTIAL:
                 stats["partial"] += 1
@@ -626,12 +678,34 @@ def deterministic_findings(run_id: str, track: str, drug: str) -> tuple[list[Fin
                     "not appear in the source document, so it reads as a stitched or paraphrased quotation.",
                     asset_text=unit["text"][:400], source_text=supporting[:400], citations=[citation]))
             else:
+                paraphrase = entails(corpus_text, supporting)
                 findings.append(Finding(
                     unit["id"], unit["asset"], unit["reference"], "quote_not_found", "blocking",
                     f"Only {round(100 * ratio)}% of the recorded supporting quote appears in the stored source "
-                    "document. Treat this citation as unverified until a reviewer confirms it.",
+                    "document. Treat this citation as unverified until a reviewer confirms it."
+                    + (" The wording reads as paraphrase of held text (heuristic screen) — "
+                       "a reviewer confirming the meaning resolves this faster than re-sourcing."
+                       if paraphrase else ""),
                     asset_text=unit["text"][:400], source_text=supporting[:400], citations=[citation]))
+    for asset_stats in stats["by_asset"].values():
+        cited = asset_stats["cited_sentences"]
+        asset_stats["faithfulness"] = round(asset_stats["supported_sentences"] / cited, 3) if cited else None
     return findings, stats
+
+
+def faithfulness(run_id: str, track: str) -> dict:
+    """Per-asset RAGAS-style faithfulness: supported cited sentences over cited ones.
+
+    One regression number per track plus the per-asset split, so a rewrite that
+    fixes the deck cannot hide behind a still-weak quiz.
+    """
+    _findings, stats = deterministic_findings(run_id, track, drug_for(run_id))
+    cited = stats.get("cited_sentences", 0)
+    supported = stats.get("supported_sentences", 0)
+    return {"run_id": Path(run_id).name, "track": track,
+            "faithfulness": round(supported / cited, 3) if cited else None,
+            "cited_sentences": cited, "supported_sentences": supported,
+            "assets": stats.get("by_asset", {})}
 
 
 def _unit_evidence(unit: dict, dossier: dict) -> list[dict]:
@@ -861,7 +935,8 @@ def finding_id(finding: dict) -> str:
 # where a human expert outranks the machine and a dismissal is simply accepted.
 DETERMINISTIC_CHECKS = frozenset({
     "uncited", "promotional_only", "comparative_claim", "imprecise_effect",
-    "untraceable", "quote_not_verbatim", "quote_not_found",
+    "untraceable", "quote_not_verbatim", "quote_not_found", "abstract_only",
+    "registry_only",
 })
 
 

@@ -18,6 +18,8 @@ const CHECK_LABEL: Record<string, string> = {
   unsupported: "Unsupported",
   overreach: "Overreach",
   needs_context: "Missing qualifier",
+  abstract_only: "Abstract only",
+  registry_only: "Registry pointer only",
   under_cited: "Wrong citation attached",
   imprecise_effect: "Effect without its precision",
   not_covered: "Required topic not covered",

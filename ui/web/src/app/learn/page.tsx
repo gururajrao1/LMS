@@ -7,6 +7,7 @@ import { AppShell, Loading, Stat } from "@/components/app-shell";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { PeerBoard } from "@/components/peer-board";
 import { Assignment, AssignmentState, getJson, LearnerHome, LearnerSummary } from "@/lib/api";
 
 type DashboardAlert = { user_id: string; name: string; run_id: string; kind: "overdue" | "below_requirement" | "unbaselined"; severity: "danger" | "warning"; tier: number; message: string };
@@ -225,6 +226,8 @@ export default function LearnerHomePage() {
         <Stat icon={GraduationCap} value={active} label="Open now" tone={active ? "warn" : "brand"} />
         <Stat icon={Award} value={certified} label="Certificates earned" />
       </section>
+
+      <PeerBoard userId={user.id} />
 
       {next && (
         <Link href={`/learn/${next.run_id}`}>

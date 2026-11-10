@@ -34,6 +34,13 @@ def _write(track: str, deck: dict):
     (agent.DATA / "content" / RUN_ID / track / "ppt" / "deck_spec.json").write_text(json.dumps(deck))
 
 
+def test_recall_catches_paraphrase_without_a_model(run):
+    """Token recall tolerates rewording that substring matching misses."""
+    assert completeness._recall("dose reduction protocol", "we reduce the dose per protocol today") >= 0.6
+    assert completeness._recall("neutropenia monitoring counts", "rash and nausea management") < 0.6
+    assert completeness._recall("ok", "ok") == 0.0
+
+
 def test_a_topic_nothing_addresses_is_missing(run):
     _write("hcp", _deck(("Welcome", ["An introduction to the course."])))
     _write("msl", _deck(("Welcome", ["An introduction to the course."])))
