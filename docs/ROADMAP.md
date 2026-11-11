@@ -44,9 +44,9 @@ tests), what was **rejected** on evidence, and what stays **future**.
 
 ## Ingested — medium bets (shipped, honest scope notes)
 
-- Sentence-level citation scoring via `sentence_f1` plus faithfulness; the
-  generation-prompt side (cite-every-sentence instruction) is not yet in the
-  prompt files.
+- Sentence-level citation scoring via `sentence_f1` plus faithfulness, with
+  the cite-every-sentence instruction in `src/prompts/common/citations.md`
+  (pinned by `tests/test_prompts.py`).
 - Registry fetch wired into citation resolution; live DailyMed/openFDA fetch
   stays opt-in (network off by default).
 - Label-change recertification via section diffs plus reminders; Veeva-style
@@ -84,4 +84,3 @@ tests), what was **rejected** on evidence, and what stays **future**.
 - Full WCAG 2.2 AA pass and tagged PDF/UA output.
 - Branching-scenario authoring, isolation-of-impact L4 and monetised L5 ROI.
 - Sequential recommendations (popularity now; SASRec/BERT4Rec later).
-- Frontend wiring for attested sign-off and nearby-rank opt-in (APIs exist).
