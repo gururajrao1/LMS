@@ -1817,9 +1817,81 @@ def set_board_opt_in(by_user_id: str, user_id: str, opt_in: bool) -> dict:
     found = next((entry for entry in people if entry["id"] == user_id), None)
     if not found:
         raise ValueError(f"Unknown user {user_id}")
+    if opt_in and found.get("private_profile"):
+        raise ValueError("Turn off the private profile before opting into a peer board")
     found["board_opt_in"] = bool(opt_in)
     _write(_platform("roster.json"), people)
     return public_person(found)
+
+
+def set_privacy(by_user_id: str, user_id: str, private: bool) -> dict:
+    """Hide-my-completions: a private learner appears on no peer-visible board.
+
+    Managers keep the full picture — the admin totals board and cohort views
+    are unchanged, because compliance needs them. Going private also drops any
+    board opt-in, since showing and hiding at once is a contradiction.
+    """
+    if by_user_id != user_id:
+        require_capability(by_user_id, "roster.manage")
+    people = roster()
+    found = next((entry for entry in people if entry["id"] == user_id), None)
+    if not found:
+        raise ValueError(f"Unknown user {user_id}")
+    found["private_profile"] = bool(private)
+    if private:
+        found["board_opt_in"] = False
+    _write(_platform("roster.json"), people)
+    return public_person(found)
+
+
+def set_team(by_user_id: str, user_id: str, team: str) -> dict:
+    """Assign a learner to a named team; only the training team assigns, so a
+    learner cannot hop teams mid-competition."""
+    require_capability(by_user_id, "roster.manage")
+    people = roster()
+    found = next((entry for entry in people if entry["id"] == user_id), None)
+    if not found:
+        raise ValueError(f"Unknown user {user_id}")
+    found["team"] = str(team or "").strip()
+    _write(_platform("roster.json"), people)
+    return public_person(found)
+
+
+def _peer_visible_ids() -> set[str]:
+    """Learners who consented AND are not hiding: the only ids any peer board
+    may ever rank."""
+    return {entry["id"] for entry in roster()
+            if entry.get("board_opt_in") and not entry.get("private_profile")}
+
+
+def team_board(by_user_id: str, user_id: str, team: str) -> dict:
+    """A private leaderboard for one team: your rank plus anonymized neighbors.
+
+    Same contract as nearby_rank — opted-in teammates only, never names —
+    scoped to a single team so a small group can race without company-wide
+    exposure.
+    """
+    if not person(by_user_id):
+        raise ValueError(f"Unknown user {by_user_id}")
+    name = str(team or "").strip()
+    if not name:
+        raise ValueError("Name a team")
+    members = {entry["id"] for entry in roster()
+               if (entry.get("team") or "").strip() == name}
+    opted = _peer_visible_ids()
+    entries = [entry for entry in _board_totals()
+               if entry["user_id"] in members and entry["user_id"] in opted]
+    position = next((index for index, entry in enumerate(entries)
+                     if entry["user_id"] == user_id), None)
+    if position is None:
+        raise ValueError("Opt in to the board to see your team rank")
+    window = entries[max(0, position - 2):position + 3]
+    return {"user_id": user_id, "team": name, "rank": position + 1, "of": len(entries),
+            "points": entries[position]["points"],
+            "neighbors": [{"rank": entries.index(entry) + 1, "points": entry["points"],
+                           "you": entry["user_id"] == user_id,
+                           "name": entry["name"] if entry["user_id"] == user_id else None}
+                          for entry in window]}
 
 
 def nearby_rank(by_user_id: str, user_id: str) -> dict:
@@ -1830,7 +1902,7 @@ def nearby_rank(by_user_id: str, user_id: str) -> dict:
     """
     if not person(by_user_id):
         raise ValueError(f"Unknown user {by_user_id}")
-    opted_in = {entry["id"] for entry in roster() if entry.get("board_opt_in")}
+    opted_in = _peer_visible_ids()
     entries = _board_totals()
     opted = [entry for entry in entries if entry["user_id"] in opted_in]
     position = next((index for index, entry in enumerate(opted)
@@ -1863,6 +1935,7 @@ def import_roster(by_user_id: str, rows: list[dict]) -> dict:
         email = str(row.get("email", "")).strip()
         role = str(row.get("role", "")).strip() or "hcp"
         title = str(row.get("title", "")).strip()
+        team = str(row.get("team", "") or "").strip()
         if not name or not email or "@" not in email:
             errors.append({"row": index, "error": "name and a valid email are required"})
             continue
@@ -1880,6 +1953,8 @@ def import_roster(by_user_id: str, rows: list[dict]) -> dict:
             found["role"] = role
             if title:
                 found["title"] = title
+            if row.get("team") is not None:
+                found["team"] = team
             updated += 1
         else:
             base = _slug(email.split("@")[0]) or _id()
@@ -1889,7 +1964,7 @@ def import_roster(by_user_id: str, rows: list[dict]) -> dict:
                 candidate = f"{base}-{suffix}"
                 suffix += 1
             entry = {"id": candidate, "name": name, "email": email, "role": role,
-                     "title": title or "Imported trainee"}
+                     "title": title or "Imported trainee", "team": team}
             people.append(entry)
             by_email[key] = entry
             taken.add(candidate)

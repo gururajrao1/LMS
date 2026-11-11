@@ -997,3 +997,67 @@ def test_leaderboard_is_admin_only_and_ranks_by_points(client):
 
     refused = client.get("/api/leaderboard", params={"by_user_id": LEARNER})
     assert refused.status_code == 400
+
+
+def test_private_profile_hides_learner_from_peer_boards(client):
+    """Hiding completions removes the learner from every peer-visible board,
+    while the admin totals keep them for compliance."""
+    _publish(client, assignees=[LEARNER, "lucy-whitfield"])
+    for user in (LEARNER, "lucy-whitfield"):
+        client.post(f"/api/people/{user}/board-opt-in",
+                    json={"by_user_id": user, "opt_in": True})
+    private = client.post(f"/api/people/{LEARNER}/privacy",
+                          json={"by_user_id": LEARNER, "private": True})
+    assert private.status_code == 201
+    board = client.get("/api/leaderboard/nearby", params={
+        "by_user_id": "lucy-whitfield", "user_id": "lucy-whitfield"}).json()
+    assert board["of"] == 1
+    assert len(board["neighbors"]) == 1 and board["neighbors"][0]["you"]
+    assert LEARNER in {entry["user_id"] for entry in
+                       client.get("/api/leaderboard", params={"by_user_id": ADMIN}).json()["entries"]}
+    mine = client.get("/api/leaderboard/nearby", params={
+        "by_user_id": LEARNER, "user_id": LEARNER})
+    assert mine.status_code == 400
+
+
+def test_private_profile_blocks_opt_in(client):
+    """Opting into a peer board while private is a contradiction; the server
+    refuses instead of silently showing the learner."""
+    client.post(f"/api/people/{LEARNER}/privacy",
+                json={"by_user_id": LEARNER, "private": True})
+    refused = client.post(f"/api/people/{LEARNER}/board-opt-in",
+                          json={"by_user_id": LEARNER, "opt_in": True})
+    assert refused.status_code == 400
+    visible = client.post(f"/api/people/{LEARNER}/privacy",
+                          json={"by_user_id": LEARNER, "private": False})
+    assert visible.status_code == 201
+    assert client.post(f"/api/people/{LEARNER}/board-opt-in",
+                       json={"by_user_id": LEARNER, "opt_in": True}).status_code == 200
+
+
+def test_team_board_stays_inside_the_team_and_anonymized(client):
+    """A team board ranks opted-in, non-private teammates only; outsiders and
+    private teammates never appear, and neighbors carry no names."""
+    _publish(client, assignees=[LEARNER, "lucy-whitfield", "tom-becker"])
+    quiz = json.loads((agent.DATA / "content" / RUN_ID / "assets" / "quiz.json").read_text())
+    right = {question["id"]: question["correct_index"] for question in quiz["questions"]}
+    for module in learning.MODULES:
+        client.post(f"/api/learn/{LEARNER}/{RUN_ID}/modules", json={"module_id": module["id"], "completed": True})
+    client.post(f"/api/learn/{LEARNER}/{RUN_ID}/assessment/final", json={"answers": right})
+    for user in (LEARNER, "lucy-whitfield", "tom-becker"):
+        assert client.post(f"/api/people/{user}/team",
+                           json={"by_user_id": ADMIN, "team": "Oncology West"}).status_code == 201
+        client.post(f"/api/people/{user}/board-opt-in",
+                    json={"by_user_id": user, "opt_in": True})
+    client.post("/api/people/tom-becker/privacy",
+                json={"by_user_id": "tom-becker", "private": True})
+    board = client.get("/api/leaderboard/team", params={
+        "by_user_id": LEARNER, "user_id": LEARNER, "team": "Oncology West"}).json()
+    assert board["team"] == "Oncology West"
+    assert board["of"] == 2
+    others = [entry for entry in board["neighbors"] if not entry["you"]]
+    assert others and all(entry["name"] is None for entry in others)
+    assert board["rank"] == 1
+    outsider = client.get("/api/leaderboard/team", params={
+        "by_user_id": LEARNER, "user_id": LEARNER, "team": "Cardiology"})
+    assert outsider.status_code == 400

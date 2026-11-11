@@ -48,12 +48,18 @@ export type Person = {
   learner?: boolean;
   /** Opted into peer-visible nearby ranks; absent means opted out. */
   board_opt_in?: boolean;
+  /** Hiding completions from every peer-visible board; peers see nothing. */
+  private_profile?: boolean;
+  /** Named team for private team boards; absent means unassigned. */
+  team?: string;
 };
 /** Your rank plus anonymized neighbors; peer names never leave the server. */
 export type NearbyRank = {
   user_id: string; rank: number; of: number; points: number;
   neighbors: { rank: number; points: number; you: boolean; name: string | null }[];
 };
+/** Same contract as NearbyRank, scoped to one named team. */
+export type TeamBoard = NearbyRank & { team: string };
 export type Capability = { id: string; label: string; description: string };
 export type RoleEntry = {
   id: string; label: string; description: string; builtin: boolean;

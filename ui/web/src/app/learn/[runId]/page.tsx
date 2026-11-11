@@ -205,11 +205,23 @@ function Flashcards({ items, storageKey }: { items: { question: string; answer: 
         </span>
       </div>
       <button type="button" onClick={() => setFlipped((open) => !open)} aria-live="polite"
-        className="block min-h-56 w-full rounded-2xl border bg-white dark:bg-surface p-8 text-left shadow-sm transition-shadow hover:shadow-md">
-        <p className="text-xs font-semibold uppercase tracking-wide text-brand-700 dark:text-brand-300">{flipped ? "Answer — click to hide" : `Card ${position + 1} of ${order.length} — try it, then click to reveal`}</p>
-        <p className="mt-3 text-xl font-semibold leading-8">{current.question}</p>
-        {flipped && (<div className="mt-4 border-t pt-4"><p className="leading-7 text-stone-700 dark:text-stone-200">{current.answer}</p>
-          {current.nuance && <p className="mt-3 text-sm leading-6 text-stone-600 dark:text-muted-foreground"><b>Important context:</b> {current.nuance}</p>}</div>)}
+        aria-label={flipped ? "Flashcard answer showing. Activate to see the question." : "Flashcard question showing. Activate to reveal the answer."}
+        className="block w-full rounded-2xl border bg-white dark:bg-surface p-8 text-left shadow-sm transition-shadow hover:shadow-md"
+        style={{ perspective: "1200px" }}>
+        <div className="flash-flip-inner" style={{ transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)" }}>
+          <div className="grid">
+            <div className="flash-flip-face [grid-area:1/1]" aria-hidden={flipped}>
+              <p className="text-xs font-semibold uppercase tracking-wide text-brand-700 dark:text-brand-300">Card {position + 1} of {order.length} — try it, then click to reveal</p>
+              <p className="mt-3 min-h-28 text-xl font-semibold leading-8">{current.question}</p>
+            </div>
+            <div className="flash-flip-face flash-flip-back [grid-area:1/1]" aria-hidden={!flipped}>
+              <p className="text-xs font-semibold uppercase tracking-wide text-brand-700 dark:text-brand-300">Answer — click to hide</p>
+              <p className="mt-3 min-h-28 text-xl font-semibold leading-8">{current.question}</p>
+              <div className="mt-4 border-t pt-4"><p className="leading-7 text-stone-700 dark:text-stone-200">{current.answer}</p>
+                {current.nuance && <p className="mt-3 text-sm leading-6 text-stone-600 dark:text-muted-foreground"><b>Important context:</b> {current.nuance}</p>}</div>
+            </div>
+          </div>
+        </div>
       </button>
       <div className="mt-4 flex flex-wrap items-center gap-2">
         <Button onClick={() => grade("missed")} variant="outline">Still fuzzy</Button>

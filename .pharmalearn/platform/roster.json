@@ -46,20 +46,27 @@
     "name": "Dr. Ken Osei",
     "email": "ken.osei@pharmalearn.local",
     "role": "hcp",
-    "title": "Medical oncologist"
+    "title": "Medical oncologist",
+    "board_opt_in": true,
+    "team": "Oncology West",
+    "private_profile": false
   },
   {
     "id": "lucy-whitfield",
     "name": "Dr. Lucy Whitfield",
     "email": "lucy.whitfield@pharmalearn.local",
     "role": "hcp",
-    "title": "Breast oncology, community practice"
+    "title": "Breast oncology, community practice",
+    "board_opt_in": true,
+    "team": "Oncology West"
   },
   {
     "id": "tom-becker",
     "name": "Dr. Tom Becker",
     "email": "tom.becker@pharmalearn.local",
     "role": "hcp",
-    "title": "Oncology nurse practitioner"
+    "title": "Oncology nurse practitioner",
+    "board_opt_in": true,
+    "team": "Oncology West"
   }
 ]

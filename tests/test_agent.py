@@ -308,6 +308,61 @@ def test_citations_carry_optional_evidence_pointers():
         agent.Citation(**{**base, "unknown_field": "nope"})
 
 
+def _tagged_question(qid, citations, **extra):
+    return {"id": qid, "prompt": f"{qid}?", "options": ["a", "b", "c", "d"],
+            "correct_index": 0, "rationale": "r", "citations": citations, **extra}
+
+
+def _tagged_sections():
+    return [{"id": "s1", "title": "Dosing", "claims": [
+        {"topic": "dosing", "citations": [
+            {"title": "Label", "url": "https://example.test/label", "locator": "Section 2.2"}]},
+        {"topic": "monitoring", "citations": [
+            {"title": "Guide", "url": "https://example.test/guide", "locator": "Page 3"}]},
+    ]}]
+
+
+def test_tag_skills_uses_the_cited_claim_topic():
+    """Tags come from the evidence, not the author: a question citing a dosing
+    claim is a dosing question even when nothing else says so."""
+    quiz = {"title": "t", "passing_score": 75, "questions": [
+        _tagged_question("q1", [{"title": "Label", "url": "https://example.test/label",
+                                 "locator": "Section 2.2"}])]}
+    tagged = agent.tag_skills(quiz, _tagged_sections())
+    assert tagged["questions"][0]["skill"] == "dosing"
+
+
+def test_tag_skills_breaks_ties_by_citation_order():
+    """Two topics cited once each: the first citation names the skill, so the
+    tag is deterministic and reviewable."""
+    quiz = {"title": "t", "passing_score": 75, "questions": [
+        _tagged_question("q1", [{"title": "Guide", "url": "https://example.test/guide", "locator": "Page 3"},
+                                {"title": "Label", "url": "https://example.test/label", "locator": "Section 2.2"}])]}
+    assert agent.tag_skills(quiz, _tagged_sections())["questions"][0]["skill"] == "monitoring"
+
+
+def test_tag_skills_matches_on_locator_when_urls_differ():
+    """Mirrors and caches rewrite URLs; the title plus locator still identifies
+    the claim."""
+    quiz = {"title": "t", "passing_score": 75, "questions": [
+        _tagged_question("q1", [{"title": "Label", "url": "https://mirror.test/other",
+                                 "locator": "Section 2.2"}])]}
+    assert agent.tag_skills(quiz, _tagged_sections())["questions"][0]["skill"] == "dosing"
+
+
+def test_tag_skills_falls_back_to_general_and_keeps_format_keys():
+    """An untraceable citation tags as general, and group/figure keys survive
+    tagging untouched so the renderers keep working."""
+    quiz = {"title": "t", "passing_score": 75, "questions": [
+        _tagged_question("q1", [{"title": "Nowhere", "url": "https://example.test/nope",
+                                 "locator": "Lost"}],
+                         group="board-1", figure={"caption": "c"})]}
+    tagged = agent.tag_skills(quiz, _tagged_sections())
+    assert tagged["questions"][0]["skill"] == "general"
+    assert tagged["questions"][0]["group"] == "board-1"
+    assert quiz["questions"][0].get("skill") is None
+
+
 def test_source_manifest_passes_pointer_fields_through():
     """The manifest copies citation dicts, so pointers survive it untouched."""
     master = {"sections": [{"claims": [{"citations": [{

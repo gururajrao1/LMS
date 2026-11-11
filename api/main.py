@@ -679,10 +679,41 @@ def board_opt_in(user_id: str, request: BoardOptInRequest):
         request.by_user_id, Path(user_id).name, request.opt_in))
 
 
+class PrivacyRequest(BaseModel):
+    by_user_id: str
+    private: bool = True
+
+
+@app.post("/api/people/{user_id}/privacy", status_code=201)
+def set_privacy(user_id: str, request: PrivacyRequest):
+    """Hide (or re-show) a learner's completions on every peer-visible board."""
+    return _guard(lambda: learning.set_privacy(
+        request.by_user_id, Path(user_id).name, request.private))
+
+
+class TeamRequest(BaseModel):
+    by_user_id: str
+    team: str = ""
+
+
+@app.post("/api/people/{user_id}/team", status_code=201)
+def set_team(user_id: str, request: TeamRequest):
+    """Assign a learner to a named team; training team only."""
+    return _guard(lambda: learning.set_team(
+        request.by_user_id, Path(user_id).name, request.team))
+
+
 @app.get("/api/leaderboard/nearby")
 def nearby_rank(by_user_id: str = "", user_id: str = ""):
     """Your rank plus anonymized neighbors; opt-in only."""
     return _guard(lambda: learning.nearby_rank(by_user_id, Path(user_id).name if user_id else ""))
+
+
+@app.get("/api/leaderboard/team")
+def team_board(by_user_id: str = "", user_id: str = "", team: str = ""):
+    """Your rank plus anonymized teammates; opt-in, non-private team only."""
+    return _guard(lambda: learning.team_board(
+        by_user_id, Path(user_id).name if user_id else "", team))
 
 
 @app.get("/api/leaderboard")

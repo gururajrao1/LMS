@@ -311,3 +311,29 @@
     content: "";
   }
 }
+
+/* Coursera-style flashcard turn: the inner wrapper rotates in 3D on flip.
+   Faces hide their reverse side so only one reads at a time. Under
+   prefers-reduced-motion the card swaps instantly with no rotation. */
+.flash-flip-inner {
+  transform-style: preserve-3d;
+  transition: transform 0.55s cubic-bezier(0.4, 0.1, 0.2, 1);
+}
+/* The grid that stacks the two faces must also preserve 3D: without this,
+   the browser flattens the faces into one plane and the hidden back of the
+   front face shows through mirrored once the card has turned. */
+.flash-flip-inner > div {
+  transform-style: preserve-3d;
+}
+.flash-flip-face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.flash-flip-back {
+  transform: rotateY(180deg);
+}
+@media (prefers-reduced-motion: reduce) {
+  .flash-flip-inner {
+    transition: none;
+  }
+}

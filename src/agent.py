@@ -374,6 +374,51 @@ def fold_groups(quiz: dict, groups: list[dict], figures: list[dict] | None = Non
     return folded
 
 
+def _norm_cite(value) -> str:
+    return re.sub(r"\s+", " ", str(value or "")).strip().lower().rstrip("/")
+
+
+def tag_skills(quiz: dict, sections: list[dict]) -> dict:
+    """Tag every quiz question with the skill its evidence teaches.
+
+    The tag is derived, not authored: each question's citations are matched
+    against the dossier claims (title plus url, falling back to title plus
+    locator when mirrors rewrite urls), and the most-cited claim topic wins.
+    Ties break toward the first citation so the tag is deterministic. A
+    question whose citations trace to nothing tags as "general" — the same
+    fallback analytics already reads. Group and figure questions tag the same
+    way, and every other key passes through untouched.
+    """
+    index: dict[tuple[str, str], str] = {}
+    for section in sections or []:
+        for claim in section.get("claims", []):
+            topic = claim.get("topic") or "general"
+            for citation in claim.get("citations", []):
+                title = _norm_cite(citation.get("title"))
+                url = _norm_cite(citation.get("url"))
+                locator = _norm_cite(citation.get("locator"))
+                if title and url:
+                    index.setdefault((title, url), topic)
+                if title and locator:
+                    index.setdefault((title, locator), topic)
+    tagged = []
+    for question in quiz.get("questions", []):
+        counts: dict[str, int] = {}
+        first_seen: dict[str, int] = {}
+        for position, citation in enumerate(question.get("citations", [])):
+            title = _norm_cite(citation.get("title"))
+            topic = index.get((title, _norm_cite(citation.get("url")))) or \
+                index.get((title, _norm_cite(citation.get("locator"))))
+            if not topic:
+                continue
+            counts[topic] = counts.get(topic, 0) + 1
+            first_seen.setdefault(topic, position)
+        skill = min(counts, key=lambda topic: (-counts[topic], first_seen[topic]),
+                    default="general")
+        tagged.append({**question, "skill": skill})
+    return {**quiz, "questions": tagged}
+
+
 @dataclass
 class RunBudget:
     run_id: str
@@ -1199,7 +1244,8 @@ async def _build_tracks(
                 figures += asset["questions"]
         if groups or figures:
             outputs[learner]["quiz"] = fold_groups(outputs[learner]["quiz"], groups, figures)
-            _write(paths[learner]["quiz"], outputs[learner]["quiz"])
+        outputs[learner]["quiz"] = tag_skills(outputs[learner]["quiz"], master.get("sections", []))
+        _write(paths[learner]["quiz"], outputs[learner]["quiz"])
 
     ppt_files = {}
     for progress, learner in [(85, "msl"), (87, "hcp")]:
