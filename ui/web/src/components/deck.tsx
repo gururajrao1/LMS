@@ -1,12 +1,42 @@
 "use client";
 
-import { useState } from "react";
-import { Maximize2 } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Maximize2, Play, Square } from "lucide-react";
 import { Cites } from "@/components/evidence";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Citation } from "@/lib/api";
+import {
+  applyPreferredVoice,
+  getPreferredVoiceURI,
+  loadVoices,
+  setPreferredVoiceURI,
+  type VoiceOption,
+} from "@/lib/voice";
 
 export type Slide = { number: number; title: string; purpose: string; content?: string[]; citations?: Citation[] };
+
+export function ListenButton({ text, label }: { text: string; label: string }) {
+  const [speaking, setSpeaking] = useState(false);
+  useEffect(() => () => { try { window.speechSynthesis.cancel(); } catch { /* no voice */ } }, []);
+  if (typeof window === "undefined" || !("speechSynthesis" in window)) return null;
+  function toggle() {
+    try {
+      if (speaking) { window.speechSynthesis.cancel(); setSpeaking(false); return; }
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.onend = () => setSpeaking(false);
+      applyPreferredVoice(utterance);
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(utterance);
+      setSpeaking(true);
+    } catch { /* no voice */ }
+  }
+  return (
+    <button type="button" onClick={toggle} aria-label={speaking ? `Stop reading ${label}` : `Listen to ${label}`}
+      className="inline-flex items-center gap-1.5 rounded-lg border px-2.5 py-1 text-xs font-medium text-brand-700 dark:text-brand-300 hover:bg-brand-50 dark:hover:bg-brand-950">
+      {speaking ? <><Square size={12} /> Stop</> : <><Play size={12} /> Listen</>}
+    </button>
+  );
+}
 
 /** A 16:9 thumbnail that reads as a slide rather than a description of one. */
 function Thumbnail({ slide, onOpen }: { slide: Slide; onOpen: () => void }) {
@@ -36,6 +66,35 @@ function Thumbnail({ slide, onOpen }: { slide: Slide; onOpen: () => void }) {
   );
 }
 
+/** Which voice reads aloud. Device voices differ per machine and arrive late,
+ *  so the picker appears once they load; the choice persists on this device. */
+export function VoicePicker() {
+  const [voices, setVoices] = useState<VoiceOption[]>([]);
+  const [uri, setUri] = useState<string | null>(() => getPreferredVoiceURI());
+  useEffect(() => {
+    void loadVoices().then(setVoices);
+  }, []);
+  if (typeof window === "undefined" || !("speechSynthesis" in window) || !voices.length) return null;
+  function choose(next: string) {
+    setUri(next || null);
+    setPreferredVoiceURI(next || null);
+    try { window.speechSynthesis.cancel(); } catch { /* no voice */ }
+  }
+  return (
+    <label className="inline-flex items-center gap-2 text-xs font-medium text-stone-600 dark:text-muted-foreground">
+      Voice
+      <select value={uri ?? ""} onChange={(event) => choose(event.target.value)}
+        aria-label="Choose the read-aloud voice"
+        className="max-w-56 rounded-lg border bg-white dark:bg-surface px-2 py-1 text-xs">
+        <option value="">System default</option>
+        {voices.map((voice) => (
+          <option key={voice.voiceURI} value={voice.voiceURI}>{voice.name} ({voice.lang})</option>
+        ))}
+      </select>
+    </label>
+  );
+}
+
 export function DeckGrid({ slides, runId }: { slides: Slide[]; runId: string }) {
   const [open, setOpen] = useState<Slide | null>(null);
   return (
@@ -61,7 +120,10 @@ export function DeckGrid({ slides, runId }: { slides: Slide[]; runId: string }) 
               </ul>
               {!open.content?.length && <p className="text-stone-600 dark:text-muted-foreground">This slide has no body copy in the deck specification.</p>}
             </div>
-            <p className="mt-4 text-sm text-stone-600 dark:text-muted-foreground"><b>Why this slide is here:</b> {open.purpose}</p>
+            <div className="mt-4 flex flex-wrap items-start justify-between gap-3">
+              <p className="min-w-0 flex-1 text-sm text-stone-600 dark:text-muted-foreground"><b>Why this slide is here:</b> {open.purpose}</p>
+              <ListenButton label={`slide ${open.number}`} text={`${open.title}. ${(open.content ?? []).join(" ")} ${open.purpose}`} />
+            </div>
             {open.citations && <Cites runId={runId} citations={open.citations} />}
           </DialogContent>
         </Dialog>

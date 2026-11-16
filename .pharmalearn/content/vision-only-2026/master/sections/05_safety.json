@@ -1,0 +1,374 @@
+{
+  "id": "05_safety",
+  "title": "Ibrance (palbociclib): Safety and Risk Management",
+  "summary": "Ibrance (palbociclib) is an oral CDK4/6 inhibitor approved by FDA (initial approval 2015) for HR-positive, HER2-negative advanced or metastatic breast cancer, used in combination with an aromatase inhibitor, fulvestrant, or (more recently) inavolisib plus fulvestrant. Its safety profile is dominated by hematologic toxicity\u2014principally neutropenia, which is the most common adverse reaction across pivotal trials\u2014along with infections, fatigue, GI effects, and rarer but serious risks of interstitial lung disease (ILD)/pneumonitis, embryo-fetal toxicity, and venous thromboembolism. Management relies on routine complete blood count (CBC) monitoring, defined dose-interruption/reduction algorithms for hematologic and non-hematologic toxicity, and prompt discontinuation for severe ILD/pneumonitis. Ibrance does not carry an FDA boxed warning or a REMS program based on the labeling and FDA materials reviewed; adverse events should be reported to FDA MedWatch and/or Pfizer.",
+  "claims": [
+    {
+      "text": "IBRANCE (palbociclib) is indicated for the treatment of adult patients with hormone receptor (HR)-positive, HER2-negative advanced or metastatic breast cancer in combination with an aromatase inhibitor, fulvestrant, or inavolisib plus fulvestrant (the latter for endocrine-resistant, PIK3CA-mutated disease following recurrence on or after adjuvant endocrine therapy).",
+      "evidence_type": "FDA-approved label",
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib capsule - DailyMed",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=e0e6412f-50b4-4fd4-9364-62818d121a07&version=23",
+          "locator": "Indications and Usage (Section 1)",
+          "supporting_text": "IBRANCE is indicated for the treatment of adult patients with hormone receptor (HR)-positive, human epidermal growth factor receptor 2 (HER2)-negative advanced or metastatic breast cancer in combination with... IBRANCE is indicated in combination with inavolisib and fulvestrant for the treatment of adult patients with endocrine-resistant, PIK3CA-mutated, HR-positive, HER2-negative, locally advanced or metastatic breast cancer, as detected by an FDA-approved test, following recurrence on or after completing adjuvant endocrine therapy."
+        }
+      ]
+    },
+    {
+      "text": "The recommended starting dose is 125 mg orally once daily with food for 21 consecutive days followed by 7 days off treatment, comprising a 28-day cycle.",
+      "evidence_type": "FDA-approved label",
+      "citations": [
+        {
+          "title": "Ibrance DailyMed Label - FDA.report",
+          "url": "https://fda.report/DailyMed/86718885-da44-4d3d-b3ca-06cbcedcffd8",
+          "locator": "Dosage and Administration (Section 2)",
+          "supporting_text": "The recommended dose of IBRANCE is a 125 mg capsule taken orally once daily for 21 consecutive days followed by 7 days off treatment to comprise a complete cycle of 28 days."
+        }
+      ]
+    },
+    {
+      "text": "Neutropenia was the most frequently reported adverse reaction in the pivotal trials, occurring in 80% of patients in PALOMA-2 and 83% in PALOMA-3 (any grade).",
+      "evidence_type": "clinical trial data (label-cited)",
+      "citations": [
+        {
+          "title": "IBRANCE\u00ae tablets (palbociclib) Patient information | Pfizer Medical - US",
+          "url": "https://www.pfizermedical.com/patient/ibrance-tablets",
+          "locator": "Warnings and Precautions - Neutropenia",
+          "supporting_text": "Neutropenia was the most frequently reported adverse reaction in PALOMA-2 with an incidence of 80% and PALOMA-3 with an incidence of 83%."
+        }
+      ]
+    },
+    {
+      "text": "Grade 3 or 4 decreased neutrophil counts were reported in 56% (Grade 3) or 10% (Grade 4) of patients receiving IBRANCE plus letrozole in PALOMA-2, and in 55% (Grade 3) or 11% (Grade 4) of patients receiving IBRANCE plus fulvestrant in PALOMA-3.",
+      "evidence_type": "clinical trial data (label-cited)",
+      "citations": [
+        {
+          "title": "Dosing & Administration | IBRANCE\u00ae (palbociclib)",
+          "url": "https://ibrance.pfizerpro.com/dosing/administration",
+          "locator": "Neutropenia monitoring section",
+          "supporting_text": "In PALOMA-2, Grade 3 (56%) or 4 (10%) decreased neutrophil counts were reported in patients receiving IBRANCE plus letrozole... In PALOMA-3, Grade 3 (55%) or Grade 4 (11%) decreased neutrophil counts were reported in patients receiving IBRANCE plus fulvestrant."
+        }
+      ]
+    },
+    {
+      "text": "In PALOMA-2 and PALOMA-3, the median time to first episode of any-grade neutropenia was 15 days, and the median duration of Grade \u22653 neutropenia was 7 days.",
+      "evidence_type": "clinical trial data (label-cited)",
+      "citations": [
+        {
+          "title": "IBRANCE\u00ae capsules (palbociclib) Warnings and Precautions | Pfizer Medical Information - US",
+          "url": "https://www.pfizermedicalinformation.com/ibrance/warnings",
+          "locator": "Neutropenia section",
+          "supporting_text": "In PALOMA-2 and PALOMA-3, the median time to first episode of any grade neutropenia was 15 days and the median duration of Grade \u22653 neutropenia was 7 days."
+        }
+      ]
+    },
+    {
+      "text": "Febrile neutropenia occurred in 1.8% of patients exposed to IBRANCE across PALOMA-2 and PALOMA-3, and one death due to neutropenic sepsis was observed in PALOMA-3; physicians should instruct patients to promptly report fever.",
+      "evidence_type": "clinical trial data (label-cited)",
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib capsule - DailyMed - NIH",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e0e6412f-50b4-4fd4-9364-62818d121a07",
+          "locator": "Warnings and Precautions - Neutropenia",
+          "supporting_text": "Febrile neutropenia has been reported in 1.8% of patients exposed to IBRANCE across PALOMA-2 and PALOMA-3. One death due to neutropenic sepsis was observed in PALOMA-3. Physicians should inform patients to promptly report any episodes of fever."
+        }
+      ]
+    },
+    {
+      "text": "In the PATINA study, febrile neutropenia was reported in 0.8% of IBRANCE-exposed patients.",
+      "evidence_type": "clinical trial data (label-cited)",
+      "citations": [
+        {
+          "title": "IBRANCE\u00ae tablets (palbociclib) Patient information | Pfizer Medical - US",
+          "url": "https://www.pfizermedical.com/patient/ibrance-tablets",
+          "locator": "Warnings and Precautions - Neutropenia",
+          "supporting_text": "Febrile neutropenia has been reported in 0.8% of patients exposed to IBRANCE in the PATINA study."
+        }
+      ]
+    },
+    {
+      "text": "Labeled monitoring requires complete blood count (CBC) prior to starting IBRANCE, at the beginning of each treatment cycle, on Day 15 of the first 2 cycles, and as clinically indicated.",
+      "evidence_type": "FDA-approved label",
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib capsule - DailyMed - NIH",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e0e6412f-50b4-4fd4-9364-62818d121a07",
+          "locator": "Dosage and Administration / Warnings and Precautions Highlights",
+          "supporting_text": "Neutropenia: Monitor complete blood count prior to start of IBRANCE therapy and at the beginning of each cycle, as well as on Day 15 of the first 2 cycles, and as clinically indicated."
+        }
+      ]
+    },
+    {
+      "text": "Dose interruption, dose reduction, or delay in starting a treatment cycle is recommended for patients who develop Grade 3 or 4 neutropenia; for Grade 3 (or recurrent Grade 3) neutropenia on Day 1 of a cycle, IBRANCE should be withheld until recovery to Grade \u22642 and then resumed at the next lower dose.",
+      "evidence_type": "FDA-approved label",
+      "citations": [
+        {
+          "title": "Dose Modifications for Adverse Reactions | IBRANCE\u00ae (palbociclib)",
+          "url": "https://ibrance.pfizerpro.com/dosing/modifications",
+          "locator": "Neutropenia dose modification guidance",
+          "supporting_text": "Dose interruption, dose reduction, or delay in starting treatment cycles is recommended for patients who develop Grade 3 or 4 neutropenia."
+        },
+        {
+          "title": "IBRANCE\u00ae (palbociclib) capsules, for oral use",
+          "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/207103s021,212436s009lbl.pdf",
+          "locator": "Table 2 - Dose Modification for Hematologic Toxicities",
+          "supporting_text": "Grade 3 neutropenia or recurrent Grade 3 neutropenia on Day 1 of ... Withhold IBRANCE until recovery to Grade \u22642. Resume at the next lower dose."
+        }
+      ]
+    },
+    {
+      "text": "Severe, life-threatening, or fatal interstitial lung disease (ILD) and/or pneumonitis can occur in patients treated with CDK4/6 inhibitors, including IBRANCE, when taken in combination with endocrine therapy.",
+      "evidence_type": "FDA-approved label (Warnings and Precautions)",
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib capsule - DailyMed - NIH",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e0e6412f-50b4-4fd4-9364-62818d121a07",
+          "locator": "Warnings and Precautions - ILD/Pneumonitis",
+          "supporting_text": "Severe, life-threatening, or fatal interstitial lung disease (ILD) and/or pneumonitis can occur in patients treated with cyclin-dependent kinase 4/6 (CDK4/6) inhibitors, including IBRANCE when taken in combination with endocrine therapy."
+        }
+      ]
+    },
+    {
+      "text": "Across PALOMA-1, PALOMA-2, and PALOMA-3, 1% of IBRANCE-treated patients had ILD/pneumonitis of any grade, 0.1% had Grade 3 or 4, and no fatal cases were reported in those trials; in the PATINA trial, 1% of IBRANCE-treated patients had ILD/pneumonitis of any grade with no Grade 3, 4, or fatal cases.",
+      "evidence_type": "clinical trial data (label-cited)",
+      "citations": [
+        {
+          "title": "IBRANCE\u00ae tablets (palbociclib) Patient information | Pfizer Medical - US",
+          "url": "https://www.pfizermedical.com/patient/ibrance-tablets",
+          "locator": "Warnings and Precautions - ILD/Pneumonitis",
+          "supporting_text": "Across clinical trials (PALOMA-1, PALOMA-2, PALOMA-3), 1% of IBRANCE-treated patients had ILD/pneumonitis of any grade, 0.1% had Grade 3 or 4 and no fatal cases were reported. In PATINA, 1% of IBRANCE-treated patients had ILD/pneumonitis of any grade. No Grade 3, 4, or fatal cases were reported."
+        }
+      ]
+    },
+    {
+      "text": "Additional cases of ILD/pneumonitis, including fatalities, have been observed in the postmarketing setting.",
+      "evidence_type": "postmarketing surveillance (label-cited)",
+      "citations": [
+        {
+          "title": "IBRANCE\u00ae tablets (palbociclib) Patient information | Pfizer Medical - US",
+          "url": "https://www.pfizermedical.com/patient/ibrance-tablets",
+          "locator": "Warnings and Precautions - ILD/Pneumonitis",
+          "supporting_text": "Additional cases of ILD/pneumonitis have been observed in the postmarketing setting, with fatalities reported."
+        }
+      ]
+    },
+    {
+      "text": "Labeling instructs clinicians to monitor patients for pulmonary symptoms indicative of ILD/pneumonitis (e.g., hypoxia, cough, dyspnea), to interrupt IBRANCE immediately in patients with suspected ILD/pneumonitis, and to permanently discontinue IBRANCE if severe ILD/pneumonitis occurs.",
+      "evidence_type": "FDA-approved label",
+      "citations": [
+        {
+          "title": "IBRANCE\u00ae (palbociclib) tablets, for oral use",
+          "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/212436s008lbl.pdf",
+          "locator": "Warnings and Precautions - ILD/Pneumonitis",
+          "supporting_text": "Monitor patients for pulmonary symptoms indicative of ILD/pneumonitis (e.g. hypoxia, cough, dyspnea)... Permanently discontinue IBRANCE in patients with severe interstitial lung disease (ILD)/pneumonitis."
+        }
+      ]
+    },
+    {
+      "text": "IBRANCE can cause fetal harm (embryo-fetal toxicity); patients should be advised of potential risk to a fetus and use effective contraception. Advise women not to breastfeed during treatment and for 3 weeks after the last dose, and advise male patients with female partners of reproductive potential to use effective contraception during treatment and for 3 months after the last dose.",
+      "evidence_type": "FDA-approved label",
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib capsule - DailyMed - NIH",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e0e6412f-50b4-4fd4-9364-62818d121a07",
+          "locator": "Warnings and Precautions - Embryo-Fetal Toxicity",
+          "supporting_text": "Embryo-Fetal Toxicity: IBRANCE can cause fetal harm. Advise patients of potential risk to a fetus and to use effective contraception."
+        },
+        {
+          "title": "Dose Modifications for Adverse Reactions | IBRANCE\u00ae (palbociclib)",
+          "url": "https://ibrance.pfizerpro.com/dosing/modifications",
+          "locator": "Patient counseling section",
+          "supporting_text": "Advise male patients with female partners of reproductive potential to use effective contraception during IBRANCE treatment and for 3 months after the last dose. Advise women not to breastfeed during IBRANCE treatment and for 3 weeks after the last dose because of the potential for serious adverse reactions in nursing infants."
+        }
+      ]
+    },
+    {
+      "text": "In animal reproduction studies, palbociclib administered to pregnant rats and rabbits during organogenesis resulted in embryo-fetal toxicity at maternal exposures \u22654 times the human clinical exposure (AUC).",
+      "evidence_type": "nonclinical/animal data (label-cited)",
+      "citations": [
+        {
+          "title": "IBRANCE\u00ae capsules (palbociclib) Warnings and Precautions | Pfizer Medical Information - US",
+          "url": "https://www.pfizermedicalinformation.com/ibrance/warnings",
+          "locator": "Embryo-Fetal Toxicity section",
+          "supporting_text": "In animal reproduction studies, administration of palbociclib to pregnant rats and rabbits during organogenesis resulted in embryo-fetal toxicity at maternal exposures that were \u22654 times the human clinical exposure based on area under the curve (AUC)."
+        }
+      ]
+    },
+    {
+      "text": "The most common adverse reactions (incidence \u226510%, any grade) reported in PALOMA-2 for IBRANCE plus letrozole versus placebo plus letrozole were neutropenia (80% vs 6%), infections (60% vs 42%), leukopenia (39% vs 2%), fatigue (37% vs 28%), nausea (35% vs 26%), alopecia (33% vs 16%), stomatitis (30% vs 14%), diarrhea (26% vs 19%), anemia (24% vs 9%), rash (18% vs 12%), asthenia (17% vs 12%), thrombocytopenia (16% vs 1%), and vomiting (16% vs 17%), among others.",
+      "evidence_type": "clinical trial data (label-cited)",
+      "citations": [
+        {
+          "title": "Dose Modifications for Adverse Reactions | IBRANCE\u00ae (palbociclib)",
+          "url": "https://ibrance.pfizerpro.com/dosing/modifications",
+          "locator": "PALOMA-2 adverse reaction table",
+          "supporting_text": "The most common adverse reactions (\u226510%) of any grade reported in PALOMA-2 for IBRANCE plus letrozole vs placebo plus letrozole were neutropenia (80% vs 6%), infections (60% vs 42%), leukopenia (39% vs 2%), fatigue (37% vs 28%), nausea (35% vs 26%), alopecia (33% vs 16%), stomatitis (30% vs 14%), diarrhea (26% vs 19%), anemia (24% vs 9%), rash (18% vs 12%), asthenia (17% vs 12%), thrombocytopenia (16% vs 1%), vomiting (16% vs 17%)."
+        }
+      ]
+    },
+    {
+      "text": "The most frequently reported Grade \u22653 adverse reactions (\u22655%) in PALOMA-2 for IBRANCE plus letrozole versus placebo plus letrozole were neutropenia (66% vs 2%), leukopenia (25% vs 0%), infections (7% vs 3%), and anemia (5% vs 2%).",
+      "evidence_type": "clinical trial data (label-cited)",
+      "citations": [
+        {
+          "title": "Dose Modifications for Adverse Reactions | IBRANCE\u00ae (palbociclib)",
+          "url": "https://ibrance.pfizerpro.com/dosing/modifications",
+          "locator": "PALOMA-2 Grade \u22653 adverse reaction table",
+          "supporting_text": "The most frequently reported Grade \u22653 adverse reactions (\u22655%) in PALOMA-2 for IBRANCE plus letrozole vs placebo plus letrozole were neutropenia (66% vs 2%), leukopenia (25% vs 0%), infections (7% vs 3%), and anemia (5% vs 2%)."
+        }
+      ]
+    },
+    {
+      "text": "Clinically relevant adverse reactions occurring in <10% of patients receiving IBRANCE with trastuzumab (with or without pertuzumab) and endocrine therapy included alopecia, increased lacrimation, dry eye, dysgeusia, blurred vision, palmar-plantar erythrodysesthesia syndrome, ILD/pneumonitis, and febrile neutropenia.",
+      "evidence_type": "clinical trial data (label-cited)",
+      "citations": [
+        {
+          "title": "IBRANCE\u00ae tablets (palbociclib) Patient information | Pfizer Medical - US",
+          "url": "https://www.pfizermedical.com/patient/ibrance-tablets",
+          "locator": "Adverse Reactions section",
+          "supporting_text": "Clinically relevant adverse reactions in <10% of patients who received IBRANCE with trastuzumab, with or without pertuzumab, and endocrine therapy included alopecia, lacrimation increased, dry eye, dysgeusia, vision blurred, palmar-plantar erythrodysesthesia syndrome, interstitial lung disease/pneumonitis, and febrile neutropenia."
+        }
+      ]
+    },
+    {
+      "text": "Venous thromboembolism has been reported following administration of IBRANCE, and is listed as a postmarketing/reported adverse reaction; postmarketing reports have also identified palmar-plantar erythrodysesthesia syndrome (PPES) and ILD/non-infectious pneumonitis. These postmarketing reactions are reported voluntarily from a population of uncertain size, so frequency or causal relationship cannot always be reliably established.",
+      "evidence_type": "postmarketing surveillance (label-cited)",
+      "citations": [
+        {
+          "title": "IBRANCE\u00ae tablets (palbociclib) Patient information | Pfizer Medical - US",
+          "url": "https://www.pfizermedical.com/patient/ibrance-tablets",
+          "locator": "Postmarketing adverse reactions section",
+          "supporting_text": "The following adverse reaction has been reported following administration of IBRANCE: venous thromboembolism. The following adverse reactions have been identified during post-approval use of IBRANCE. Because these reactions are reported voluntarily from a population of uncertain size, it is not always possible to reliably estimate their frequency or establish a causal relationship to drug exposure."
+        },
+        {
+          "title": "IBRANCE\u00ae (palbociclib) capsules, for oral use",
+          "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/207103s021,212436s009lbl.pdf",
+          "locator": "Postmarketing Experience",
+          "supporting_text": "Respiratory Disorders: Interstitial lung disease (ILD)/non-infectious pneumonitis \u00b7 Skin and Subcutaneous Tissue Disorders: Palmar-plantar erythrodysesthesia syndrome (PPES)"
+        }
+      ]
+    },
+    {
+      "text": "Based on limited data from postmarketing reports and electronic health records, the safety profile of IBRANCE in men treated for HR-positive, HER2-negative advanced or metastatic breast cancer is consistent with the safety profile observed in women treated with IBRANCE.",
+      "evidence_type": "postmarketing/real-world data (label-cited)",
+      "citations": [
+        {
+          "title": "IBRANCE\u00ae (palbociclib) capsules, for oral use",
+          "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/207103s021,212436s009lbl.pdf",
+          "locator": "Male patients with HR-positive, HER2-negative advanced or metastatic breast cancer",
+          "supporting_text": "Based on limited data from postmarketing reports and electronic health records, the safety profile for men treated with IBRANCE is consistent with the safety profile in women treated with IBRANCE."
+        }
+      ]
+    },
+    {
+      "text": "IBRANCE is a time-dependent inhibitor of CYP3A in vivo; coadministration with the strong CYP3A inhibitor itraconazole increased palbociclib plasma exposure by 87% in healthy subjects, and strong CYP3A inhibitors (e.g., clarithromycin, itraconazole, ketoconazole, ritonavir, voriconazole, among others) should be avoided; grapefruit products should also be avoided.",
+      "evidence_type": "FDA-approved label (pharmacokinetics/drug interactions)",
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib tablet, film coated - DailyMed",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=89a142d5-7e61-48bf-9e77-e2cd124c4792&version=10",
+          "locator": "Drug Interactions / Clinical Pharmacology",
+          "supporting_text": "In vivo, palbociclib is a time-dependent inhibitor of CYP3A... Coadministration of a strong CYP3A inhibitor (itraconazole) increased the plasma exposure of palbociclib in healthy subjects by 87%. Avoid concomitant use of strong CYP3A inhibitors (e.g., clarithromycin, indinavir, itraconazole, ketoconazole, lopinavir/ritonavir, nefazodone, nelfinavir, posaconazole, ritonavir, saquinavir, telaprevir, telithromycin, and voriconazole)."
+        },
+        {
+          "title": "Label: IBRANCE- palbociclib tablet, film coated - DailyMed",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=89a142d5-7e61-48bf-9e77-e2cd124c4792&version=10",
+          "locator": "Patient Counseling Information",
+          "supporting_text": "Grapefruit may interact with IBRANCE. Patients should not consume grapefruit products while on treatment with IBRANCE."
+        }
+      ]
+    },
+    {
+      "text": "The dose of sensitive CYP3A4 substrates with narrow therapeutic indices may need to be reduced when given concurrently with IBRANCE.",
+      "evidence_type": "FDA-approved label",
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib capsule - DailyMed",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=e0e6412f-50b4-4fd4-9364-62818d121a07&version=23",
+          "locator": "Drug Interactions Highlights (7.3)",
+          "supporting_text": "CYP3A Substrates: The dose of sensitive CYP3A4 substrates with narrow therapeutic indices may need to be reduced when given concurrently with IBRANCE."
+        }
+      ]
+    },
+    {
+      "text": "Safety and effectiveness of IBRANCE in pediatric patients have not been established/studied; in exploratory pediatric trials (98 patients 2 to <17 years given IBRANCE with chemotherapy, and 42 patients 4 to <17 years given IBRANCE as a single agent for recurrent/refractory solid tumors or CNS tumors), no new safety signals were observed and pediatric exposures were within the adult range for a similar body-surface-area-based dose.",
+      "evidence_type": "clinical trial data (label-cited)",
+      "citations": [
+        {
+          "title": "DailyMed - IBRANCE- palbociclib capsule",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=e0e6412f-50b4-4fd4-9364-62818d121a07",
+          "locator": "Use in Specific Populations - Pediatric Use",
+          "supporting_text": "The safety and effectiveness of IBRANCE were assessed but not established in three trials... No new safety signals were observed in these trials. Palbociclib exposures in pediatric patients who received IBRANCE as a single agent or in combination were within range of those observed in adults given a similar dose based on body surface area."
+        }
+      ]
+    },
+    {
+      "text": "In a 27-week repeat-dose toxicology study in immature rats, altered glucose metabolism and changes in pancreas, eye, kidney, and adipose tissue were identified at oral palbociclib doses \u226530 mg/kg/day (approximately 11 times the adult human AUC exposure at the recommended dose); safety and efficacy of IBRANCE in pediatric patients have not been studied clinically per the tablet label.",
+      "evidence_type": "nonclinical/animal data (label-cited)",
+      "citations": [
+        {
+          "title": "IBRANCE\u00ae (palbociclib) tablets, for oral use",
+          "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/212436s008lbl.pdf",
+          "locator": "Pediatric Use / Nonclinical Toxicology",
+          "supporting_text": "The safety and efficacy of IBRANCE in pediatric patients have not been studied. Altered glucose metabolism (glycosuria, hyperglycemia, decreased insulin) associated with changes in the pancreas (islet cell vacuolation), eye (cataracts, lens degeneration), kidney (tubule vacuolation, chronic progressive nephropathy) and adipose tissue (atrophy) were identified in a 27 week repeat-dose toxicology study in rats... at oral palbociclib doses \u226530 mg/kg/day (approximately 11 times the adult human exposure [AUC] at the recommended dose)."
+        }
+      ]
+    },
+    {
+      "text": "IBRANCE tablets should be swallowed whole and not chewed, crushed, or split, and no tablet should be taken if broken, cracked, or otherwise not intact; if a dose is vomited or missed, an additional dose should not be taken and the next prescribed dose should be taken at the usual time. IBRANCE tablets may be taken with or without food, whereas the capsule formulation must be taken with food.",
+      "evidence_type": "FDA-approved label",
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib tablet, film coated - DailyMed",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=89a142d5-7e61-48bf-9e77-e2cd124c4792&version=10",
+          "locator": "Patient Counseling Information",
+          "supporting_text": "Inform patients that IBRANCE tablets may be taken with or without food... If the patient vomits or misses a dose, an additional dose should not be taken. The next prescribed dose should be taken at the usual time. IBRANCE tablets should be swallowed whole (do not chew, crush, or split them prior to swallowing). No tablet should be ingested if it is broken, cracked, or otherwise not intact."
+        },
+        {
+          "title": "Ibrance DailyMed Label - FDA.report",
+          "url": "https://fda.report/DailyMed/86718885-da44-4d3d-b3ca-06cbcedcffd8",
+          "locator": "Dosage and Administration",
+          "supporting_text": "IBRANCE should be taken with food."
+        }
+      ]
+    },
+    {
+      "text": "Patients should be advised to immediately report new or worsening respiratory symptoms, consistent with the labeled risk of ILD/pneumonitis.",
+      "evidence_type": "FDA-approved label (patient counseling)",
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib tablet, film coated - DailyMed",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=89a142d5-7e61-48bf-9e77-e2cd124c4792&version=10",
+          "locator": "Patient Counseling Information",
+          "supporting_text": "Advise patients to immediately report new or worsening respiratory symptoms [see Warnings and Precautions (5.2)]."
+        }
+      ]
+    },
+    {
+      "text": "Suspected adverse reactions to IBRANCE should be reported to Pfizer, Inc. or to FDA via the standard MedWatch/adverse reaction reporting mechanism referenced in the original approved labeling.",
+      "evidence_type": "FDA-approved label",
+      "citations": [
+        {
+          "title": "IBRANCE\u00ae (palbociclib) capsules, for oral use",
+          "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2015/207103s000lbl.pdf",
+          "locator": "Adverse Reactions section",
+          "supporting_text": "To report SUSPECTED ADVERSE REACTIONS, contact Pfizer, Inc."
+        }
+      ]
+    }
+  ],
+  "gaps": [
+    "Search results reviewed did not include an explicit statement confirming whether IBRANCE currently has or lacks an FDA REMS (Risk Evaluation and Mitigation Strategy) program; no REMS materials were located in the sources reviewed, and this should be independently verified against the current FDA REMS database before asserting its absence with certainty.",
+    "Detailed current dose-reduction schedule (e.g., specific mg levels for first/second dose reduction from 125 mg to 100 mg to 75 mg) was referenced in FDA label tables but the full table content/text was not fully captured in search snippets; the complete Table 2/Table 3 dose-modification schedules (hematologic and non-hematologic toxicities, including liver/renal impairment adjustments) should be reviewed directly in the full prescribing information PDF for complete detail.",
+    "No specific quantitative data were found in the reviewed sources on ILD/pneumonitis incidence broken down by combination partner (e.g., inavolisib combination) beyond capsule/tablet label references; PATINA-specific ILD rates were noted but detailed comparative analysis across all combination regimens was not fully available in search results.",
+    "FAERS-based real-world pharmacovigilance signal analyses (e.g., disproportionality/reporting odds ratio studies for ILD) were identified in the literature (e.g., JADER/FAERS study) but full quantitative results were not extracted in this search; interested readers should consult the primary study directly for effect estimates.",
+    "Renal and hepatic impairment-specific dose modification details were referenced in label sections but not fully captured in retrieved snippets and should be verified directly against the current full prescribing information."
+  ],
+  "warnings": [
+    "Adverse event frequency percentages cited (e.g., neutropenia 80%/83%, ILD/pneumonitis 1%) are derived from specific pivotal trials (PALOMA-1/2/3, PATINA) with defined patient populations and combination partners (letrozole, fulvestrant, trastuzumab \u00b1 pertuzumab); these rates should not be extrapolated across different combination regimens, patient populations (e.g., pediatric, male patients with limited data), or treatment settings without caution, per the instruction to avoid estimating event rates across incompatible populations.",
+    "Some content was sourced from Pfizer-affiliated promotional/medical information webpages (pfizermedical.com, pfizerpro.com, pfizermedicalinformation.com) rather than directly from the FDA-hosted label PDF or DailyMed in all instances; where possible, cross-referencing was done against DailyMed and FDA.report label mirrors and the FDA-hosted PDF label, but the FDA-hosted full PDF text was only partially retrievable via search snippets, so some granular label table content (exact dose reduction levels in mg) was not independently confirmed from the primary FDA PDF text in this research pass.",
+    "Postmarketing adverse reaction data (e.g., venous thromboembolism, additional ILD/pneumonitis fatalities) are drawn from voluntary reporting systems where causality and true incidence cannot be reliably established, per the label's own caveat.",
+    "This section reflects information available as of the search date and drug label versions retrieved; because IBRANCE labeling has been updated multiple times (including for new combination indications such as inavolisib/fulvestrant), users should confirm they are referencing the most current FDA-approved label version for clinical decision-making."
+  ]
+}

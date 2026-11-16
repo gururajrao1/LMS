@@ -1,0 +1,156 @@
+{
+  "run_id": "vision-innovation-2026",
+  "version": 2,
+  "status": "published",
+  "comments": [],
+  "versions": [
+    {
+      "version": 1,
+      "summary": "Agent-generated first draft",
+      "author_id": "agent",
+      "author_name": "PharmaLearn agent",
+      "addressed": [],
+      "created_at": null
+    }
+  ],
+  "signoffs": [
+    {
+      "id": "seed-signoff",
+      "version": 2,
+      "decision": "approved",
+      "note": "Approved for Shashi demo.",
+      "author_id": "anil-shekhar",
+      "author_name": "Dr. Anil Shekhar",
+      "author_title": "Therapeutic area expert, oncology",
+      "created_at": "2026-11-10T10:00:00+00:00",
+      "attested": true,
+      "method": "typed-name",
+      "meaning": "Seeded approval for demo"
+    }
+  ],
+  "publication": {
+    "version": 2,
+    "published_at": "2026-11-10T10:00:00+00:00",
+    "published_by": "Priya Raman",
+    "overrides": [],
+    "starts_on": "2026-11-01",
+    "due_on": "2026-11-30",
+    "frequency": "once",
+    "next_due_on": null,
+    "certificate_template": "classic",
+    "message": "Vision and the values behind it. About 10 min plus a 12-question check. You need 80% to pass.",
+    "assignees": [
+      "guru-raja",
+      "pattabhi",
+      "shashidhar-gururao",
+      "parimala"
+    ],
+    "notifications": [
+      {
+        "to": "demo@pharmalearn.local",
+        "name": "Demo cohort",
+        "subject": "Training assigned: complete by 2026-11-30",
+        "sent_at": "2026-11-10T10:00:00+00:00"
+      }
+    ]
+  },
+  "audit": [
+    {
+      "id": "1345762d74ec",
+      "at": "2026-11-14T04:42:00.547564+00:00",
+      "action": "course.typed",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja marked this course induction",
+      "detail": {
+        "course_type": "induction"
+      },
+      "prev_hash": null,
+      "hash": "ab61eb7b0a6c9e4e"
+    },
+    {
+      "id": "7745f6f32d74",
+      "at": "2026-11-14T04:43:51.202166+00:00",
+      "action": "course.typed",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja marked this course induction",
+      "detail": {
+        "course_type": "induction"
+      },
+      "prev_hash": "ab61eb7b0a6c9e4e",
+      "hash": "fe52ae761baa567d"
+    },
+    {
+      "id": "1e67503a8b7a",
+      "at": "2026-11-14T04:48:15.317849+00:00",
+      "action": "course.typed",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja marked this course induction",
+      "detail": {
+        "course_type": "induction"
+      },
+      "prev_hash": "fe52ae761baa567d",
+      "hash": "967017254db07032"
+    },
+    {
+      "id": "81663c2c4257",
+      "at": "2026-11-14T04:49:48.872621+00:00",
+      "action": "course.typed",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja marked this course induction",
+      "detail": {
+        "course_type": "induction"
+      },
+      "prev_hash": "967017254db07032",
+      "hash": "cf371ef4727f7b16"
+    },
+    {
+      "id": "cd534bd83366",
+      "at": "2026-11-14T07:24:10.833035+00:00",
+      "action": "course.typed",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja marked this course induction",
+      "detail": {
+        "course_type": "induction"
+      },
+      "prev_hash": "cf371ef4727f7b16",
+      "hash": "ce2051f9a3e38ad4"
+    },
+    {
+      "id": "f19c514126c2",
+      "at": "2026-11-15T13:11:36.360077+00:00",
+      "action": "course.typed",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja marked this course induction",
+      "detail": {
+        "course_type": "induction"
+      },
+      "prev_hash": "ce2051f9a3e38ad4",
+      "hash": "4f8bbc421aca4e0a"
+    }
+  ],
+  "description": "Covers vision and core values: what we stand for and why. Certifies the learner completed the induction (v2, pass mark 80%).",
+  "course_type": "induction",
+  "topics_covered": [
+    "Organisation vision",
+    "Core values"
+  ],
+  "organization": "Clair Labs"
+}

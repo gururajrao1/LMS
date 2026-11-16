@@ -147,6 +147,7 @@ export function CourseCohortPanel({ runId, user }: { runId: string; user?: Perso
                 <th className="pb-3 pr-4">Stage</th>
                 <th className="pb-3 pr-4">Modules</th>
                 <th className="pb-3 pr-4">Baseline → final</th>
+                <th className="pb-3 pr-4">Attempts</th>
                 <th className="pb-3 pr-4">Points</th>
                 <th className="pb-3">Certificate</th>
               </tr>
@@ -166,6 +167,7 @@ export function CourseCohortPanel({ runId, user }: { runId: string; user?: Perso
                   <td className="py-4 pr-4"><Badge className={STAGE[learner.stage].className}>{STAGE[learner.stage].label}</Badge>{learner.final_score !== null && !learner.passed && <Badge className={`ml-1 ${RAG_BADGE.red}`}>Below required</Badge>}</td>
                   <td className="py-4 pr-4 text-sm tabular-nums text-stone-600 dark:text-muted-foreground">{learner.modules_complete}/{learner.modules_total}</td>
                   <td className="py-4 pr-4"><ScoreTrack baseline={learner.baseline_score} final={learner.final_score} /></td>
+                  <td className="py-4 pr-4 text-sm tabular-nums text-stone-600 dark:text-muted-foreground" title="All assessment attempts on this course">{learner.attempts}</td>
                   <td className="py-4 pr-4 text-sm tabular-nums text-stone-600 dark:text-muted-foreground">{position < 3 ? <span className="mr-1 inline-grid size-5 place-items-center rounded-full bg-brand-600 text-[11px] font-bold text-white">{position + 1}</span> : <span className="mr-1 text-stone-400">#{position + 1}</span>}{learner.points} pts</td>
                   <td className="py-4">
                     {learner.certificate
@@ -252,6 +254,7 @@ export function CourseCohortPanel({ runId, user }: { runId: string; user?: Perso
                 <p className="text-sm font-medium">{entry.name}</p>
                 <Badge variant="outline" className="capitalize">{entry.module_id}</Badge>
                 <span className="ml-auto inline-flex items-center gap-1 text-sm tabular-nums text-stone-600 dark:text-muted-foreground"><Star size={14} className="fill-warn-400 text-warn-500" /> {entry.rating}/5</span>
+                {entry.confused && <Badge className="bg-warn-50 dark:bg-warn-950 text-warn-700 dark:text-warn-400">Confusing — review this</Badge>}
               </div>
               {entry.comment && <p className="mt-2 leading-6 text-stone-600 dark:text-muted-foreground">{entry.comment}</p>}
             </div>

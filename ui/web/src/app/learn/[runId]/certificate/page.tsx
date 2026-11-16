@@ -10,6 +10,28 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Certificate, getJson } from "@/lib/api";
 import { useSession } from "@/lib/session";
 
+function Covered({ certificate, serif }: { certificate: Certificate; serif?: boolean }) {
+  const topics = certificate.topics_covered ?? [];
+  if (!topics.length && !certificate.course_description) return null;
+  const parts = [
+    certificate.modules_done ? `${certificate.modules_done} modules${certificate.modules_minutes ? ` (about ${certificate.modules_minutes} min)` : ""}` : null,
+    certificate.questions_total ? `${certificate.questions_total}-question assessment passed at ${certificate.score}%` : null,
+  ].filter(Boolean);
+  return (
+    <div className={`mx-auto mt-6 max-w-xl rounded-xl border p-4 text-left ${serif ? "font-serif" : ""}`}>
+      <p className="text-xs font-semibold uppercase tracking-wide text-stone-600 dark:text-muted-foreground">What this course covered</p>
+      {topics.length > 0 && (
+        <ul className="mt-2 flex flex-wrap gap-1.5">
+          {topics.map((topic) => (
+            <li key={topic} className="rounded-full bg-brand-50 dark:bg-brand-950 px-2.5 py-1 text-xs font-medium text-brand-700 dark:text-brand-300">{topic}</li>
+          ))}
+        </ul>
+      )}
+      {parts.length > 0 && <p className="mt-2 text-sm text-stone-600 dark:text-muted-foreground">{parts.join(" · ")}</p>}
+    </div>
+  );
+}
+
 export default function CertificatePage() {
   const { runId } = useParams<{ runId: string }>();
   const user = useSession(["msl", "hcp"], { anyLearner: true });
@@ -39,6 +61,10 @@ export default function CertificatePage() {
   const expires = day(certificate.expires_at);
   const design = certificate.template ?? "classic";
   const track = `${certificate.drug?.brand} · ${user.role.toUpperCase()} track`;
+  const induction = certificate.course_type === "induction";
+  const heading = induction
+    ? (certificate.program_title ?? certificate.course_title ?? track)
+    : track;
 
   const facts = (
     <>
@@ -64,9 +90,14 @@ export default function CertificatePage() {
   ) : null;
 
   const code = (
-    <p className="mt-10 flex items-center justify-center gap-2 text-xs text-stone-600 dark:text-muted-foreground">
-      <ShieldCheck size={14} /> Verification code {certificate.code}
-    </p>
+    <>
+      <p className="mt-10 flex items-center justify-center gap-2 text-xs text-stone-600 dark:text-muted-foreground">
+        <ShieldCheck size={14} /> Verification code {certificate.code}
+      </p>
+      {certificate.organization && (
+        <p className="mt-2 text-center text-xs text-stone-600 dark:text-muted-foreground">Offered by {certificate.organization}</p>
+      )}
+    </>
   );
 
   return (
@@ -86,8 +117,10 @@ export default function CertificatePage() {
             </div>
             <CardContent className="px-8 py-10 sm:px-12">
               <p className="text-sm text-stone-600 dark:text-muted-foreground">has successfully completed</p>
-              <h2 className="mt-1 text-2xl font-semibold">{track}</h2>
+              <h2 className="mt-1 text-2xl font-semibold">{heading}</h2>
               {certificate.course_title && <p className="mt-3 max-w-xl text-sm leading-6 text-stone-600 dark:text-muted-foreground">{certificate.course_title}</p>}
+              {certificate.course_description && <p className="mt-2 max-w-xl text-sm leading-6 text-stone-600 dark:text-muted-foreground">{certificate.course_description}</p>}
+              <Covered certificate={certificate} />
               <div className="mt-8 grid grid-cols-2 gap-6 border-t pt-8 text-sm sm:grid-cols-4">{facts}</div>
               {approvers}
               {code}
@@ -102,7 +135,9 @@ export default function CertificatePage() {
                 <h1 className="mt-2 font-serif text-4xl">{certificate.learner_name}</h1>
                 {certificate.learner_title && <p className="mt-1 font-serif text-stone-600 dark:text-muted-foreground">{certificate.learner_title}</p>}
                 <p className="mt-8 font-serif text-sm italic text-stone-600 dark:text-muted-foreground">has successfully completed the training course</p>
-                <h2 className="mt-2 font-serif text-2xl">{track}</h2>
+                <h2 className="mt-2 font-serif text-2xl">{heading}</h2>
+                {certificate.course_description && <p className="mx-auto mt-2 max-w-xl font-serif text-sm leading-6 text-stone-600 dark:text-muted-foreground">{certificate.course_description}</p>}
+                <Covered certificate={certificate} serif />
                 {certificate.course_title && <p className="mx-auto mt-3 max-w-xl font-serif text-sm leading-6 text-stone-600 dark:text-muted-foreground">{certificate.course_title}</p>}
                 <div className="mx-auto mt-10 grid max-w-2xl grid-cols-2 gap-6 border-y border-amber-700/30 py-8 text-sm sm:grid-cols-4">{facts}</div>
                 {approvers}
@@ -120,8 +155,10 @@ export default function CertificatePage() {
               <h1 className="mt-2 text-4xl font-semibold tracking-tight">{certificate.learner_name}</h1>
               {certificate.learner_title && <p className="mt-1 text-stone-600 dark:text-muted-foreground">{certificate.learner_title}</p>}
               <p className="mt-8 text-sm text-stone-600 dark:text-muted-foreground">has successfully completed the training course</p>
-              <h2 className="mt-2 text-2xl font-semibold">{track}</h2>
+              <h2 className="mt-2 text-2xl font-semibold">{heading}</h2>
               {certificate.course_title && <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-stone-600 dark:text-muted-foreground">{certificate.course_title}</p>}
+              {certificate.course_description && <p className="mx-auto mt-2 max-w-xl text-sm leading-6 text-stone-600 dark:text-muted-foreground">{certificate.course_description}</p>}
+              <Covered certificate={certificate} />
 
               <div className="mx-auto mt-10 grid max-w-2xl grid-cols-2 gap-6 border-t pt-8 text-sm sm:grid-cols-4">{facts}</div>
               {approvers}

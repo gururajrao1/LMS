@@ -920,6 +920,30 @@ def assign_reviewers(run_id: str, user_id: str, reviewer_ids: list[str], note: s
 FREQUENCIES = ("once", "quarterly", "semiannual", "annual")
 FREQUENCY_MONTHS = {"once": 0, "quarterly": 3, "semiannual": 6, "annual": 12}
 
+COURSE_TYPES = ("drug", "induction")
+
+
+def course_type(run_id: str) -> str:
+    """Induction courses (vision/mission) hide the drug-course tabs and
+    carry a named finisher board; everything else is a drug course."""
+    return course(Path(run_id).name).get("course_type", "drug")
+
+
+def set_course_type(run_id: str, user_id: str, value: str, organization: str | None = None) -> dict:
+    if value not in COURSE_TYPES:
+        raise ValueError(f"Course type must be one of: {', '.join(COURSE_TYPES)}")
+    record = course(run_id)
+    author = require_capability(user_id, "course.publish")
+    record["course_type"] = value
+    if organization is not None:
+        record["organization"] = organization.strip()
+    _audit(record, author, "course.typed",
+           f"{author['name']} marked this course {value}", course_type=value)
+    _save_course(record)
+    return {"run_id": record["run_id"], "course_type": value,
+            "organization": record.get("organization", "")}
+
+
 CERTIFICATE_TEMPLATES = {
     "classic": {
         "label": "Classic",
@@ -1390,7 +1414,49 @@ def progress(run_id: str, user_id: str) -> dict:
         "attempts": [],
         "certificate": None,
         "feedback": [],
+        "daily_checks": [],
     }
+
+
+def record_daily_check(run_id: str, user_id: str, score: int, total: int) -> dict:
+    """Log a finished 2pm check. Practice only: attempts and certificates
+    never move, so the KPI counts stay clean."""
+    record = start(run_id, user_id)
+    record.setdefault("daily_checks", []).append(
+        {"at": _now(), "score": score, "total": total})
+    return _save_progress(record)
+
+
+def _today() -> str:
+    return date.today().isoformat()
+
+
+def daily_finishers(run_id: str, user_id: str, *, names: bool) -> dict:
+    """Who finished today's check. Names only where naming is allowed
+    (induction boards); drug courses report a count."""
+    seen: dict[str, list] = {}
+    root = _platform("progress", Path(run_id).name)
+    if root.exists():
+        for path in sorted(root.glob("*.json")):
+            try:
+                state = _json(path)
+            except (OSError, ValueError):
+                continue
+            today = [entry for entry in state.get("daily_checks", [])
+                     if (entry.get("at") or "")[:10] == _today()]
+            if today:
+                seen.setdefault(state.get("user_id", path.stem), []).extend(today)
+    mine_entries = seen.pop(user_id, [])
+    firsts = {uid: entries[0].get("at", "") for uid, entries in seen.items()}
+    mine_first = min((entry.get("at", "") for entry in mine_entries), default="")
+    before = sum(1 for at in firsts.values() if not mine_first or at < mine_first)
+    people = {entry["id"]: entry for entry in roster()}
+    ordered = [{"user_id": uid, "name": people.get(uid, {}).get("name", uid),
+                "score": entries[-1]["score"], "total": entries[-1]["total"]}
+               for uid, entries in seen.items()]
+    return {"count": len(ordered) + (1 if mine_entries else 0),
+            "before_you": before,
+            "names": ordered if names else []}
 
 
 def _save_progress(record: dict) -> dict:
@@ -1628,7 +1694,8 @@ def issue_certificate(run_id: str, user_id: str) -> dict | None:
     return record["certificate"]
 
 
-def add_feedback(run_id: str, user_id: str, module_id: str, rating: int, comment: str = "") -> dict:
+def add_feedback(run_id: str, user_id: str, module_id: str, rating: int, comment: str = "",
+                 confused: bool = False) -> dict:
     record = start(run_id, user_id)
     if not 1 <= rating <= 5:
         raise ValueError("Rating must be between 1 and 5")
@@ -1637,6 +1704,7 @@ def add_feedback(run_id: str, user_id: str, module_id: str, rating: int, comment
         "module_id": module_id,
         "rating": rating,
         "comment": comment.strip(),
+        "confused": bool(confused),
         "created_at": _now(),
     }
     record["feedback"] = [item for item in record["feedback"] if item["module_id"] != module_id] + [entry]
@@ -1680,6 +1748,39 @@ def cohort(run_id: str) -> dict:
         "learners": learners,
         "feedback": sorted(feedback, key=lambda entry: entry["created_at"], reverse=True),
     }
+
+
+def course_board(run_id: str, user_id: str) -> dict:
+    """Named finisher board for induction courses only.
+
+    Shashi's "took it before 55 others" notification needs names, which the
+    cross-course nearby board deliberately withholds. Induction content is not
+    regulated, so a graduation list with names is fine here; drug courses
+    expose no board at all and keep the anonymized nearby rank.
+    """
+    record = course(Path(run_id).name)
+    kind = record.get("course_type", "drug")
+    if kind != "induction":
+        return {"run_id": record["run_id"], "course_type": kind,
+                "ranks": [], "your_rank": None}
+    publication = record.get("publication") or {}
+    if user_id not in publication.get("assignees", []):
+        raise ValueError("This course has not been assigned to you")
+    people = {entry["id"]: entry for entry in roster()}
+    finishers = [entry for entry in cohort(record["run_id"])["learners"]
+                 if entry.get("certificate")]
+    finishers.sort(key=lambda entry: (entry["certificate"].get("issued_at") or "",
+                                      entry["user_id"]))
+    ranks = [{
+        "position": index + 1,
+        "user_id": entry["user_id"],
+        "name": people.get(entry["user_id"], {}).get("name", entry["user_id"]),
+        "score": entry["final_score"],
+        "issued_at": entry["certificate"].get("issued_at"),
+    } for index, entry in enumerate(finishers)]
+    yours = next((row["position"] for row in ranks if row["user_id"] == user_id), None)
+    return {"run_id": record["run_id"], "course_type": kind,
+            "ranks": ranks, "your_rank": yours}
 
 
 def learner_audit(run_id: str, user_id: str) -> dict:
@@ -2009,7 +2110,9 @@ def reinforce_feedback(questions: list[dict], answers: dict) -> dict:
     itself becomes the teaching moment. Stateless and pure: callers load the
     quiz, this only scores.
     """
-    by_id = {question["id"]: question for question in questions}
+    # Score only what was actually asked: the daily check posts 3 answers
+    # against a 12-question quiz, and unasked questions are not wrong answers.
+    by_id = {question["id"]: question for question in questions if question["id"] in answers}
     items = []
     for qid, question in by_id.items():
         chosen = answers.get(qid)

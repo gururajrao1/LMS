@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { GitBranch } from "lucide-react";
+import { Download, GitBranch } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { getJson } from "@/lib/api";
+import { API, getJson } from "@/lib/api";
 
 type TimelineEvent = { at: string | null; kind: string; title: string; detail: string; actor: string };
 
@@ -29,6 +29,7 @@ export function CourseHistoryPanel({ runId }: { runId: string }) {
     <Card>
       <CardHeader><CardTitle className="flex items-center gap-2 text-base"><GitBranch size={17} className="text-brand-700 dark:text-brand-300" /> Version history{status ? ` · ${status}` : ""}</CardTitle>
         <p className="mt-2 text-sm text-stone-600 dark:text-muted-foreground">Upversioning on the record: every version, who signed it off, and what was published.</p>
+        <p className="mt-2"><a href={`${API}/api/runs/${runId}/export/audit`} className="inline-flex items-center gap-1.5 text-sm font-medium text-brand-700 dark:text-brand-300 hover:underline"><Download size={14} /> Download audit trail</a></p>
       </CardHeader>
       <CardContent>
         {!events ? <p className="py-4 text-center text-sm text-stone-600 dark:text-muted-foreground">Loading the timeline…</p>

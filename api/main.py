@@ -291,6 +291,7 @@ class FeedbackRequest(BaseModel):
     module_id: str
     rating: int
     comment: str = ""
+    confused: bool = False
 
 
 class ObjectionRequest(BaseModel):
@@ -743,6 +744,20 @@ def at_risk(run_id: str):
 def skills_gap(run_id: str):
     """Per-skill miss rates: the signal for what to fix in the material."""
     return analytics.skills_gap(Path(run_id).name)
+
+
+@app.get("/api/runs/{run_id}/export/audit")
+def export_audit(run_id: str):
+    """The governance trail as a file: every append-only entry plus the chain check."""
+    record = learning.course(Path(run_id).name)
+    report = {"run_id": Path(run_id).name, "version": record.get("version"),
+              "verification": learning.verify_audit(Path(run_id).name),
+              "audit": record.get("audit", [])}
+    body = io.StringIO()
+    json.dump(report, body, indent=2)
+    body.seek(0)
+    return StreamingResponse(iter([body.getvalue()]), media_type="application/json",
+                             headers={"Content-Disposition": f"attachment; filename=audit-{Path(run_id).name}.json"})
 
 
 @app.get("/api/runs/{run_id}/export/completions")
@@ -1281,6 +1296,7 @@ def learner_home(user_id: str):
         summary = learning.summarize(learning.progress(record["run_id"], user_id))
         courses.append({
             "run_id": record["run_id"],
+            "course_type": record.get("course_type", "drug"),
             "drug": manifest["drug"],
             # A cycle names the programme; the drug names the medicine. Keeping them
             # apart means a card can say "Annual recertification" without any card
@@ -1298,6 +1314,53 @@ def learner_home(user_id: str):
     return {"user": learner, "track": learning.track_for(learner["role"]), "courses": courses}
 
 
+@app.get("/api/learn/{user_id}/notifications")
+def learner_notifications(user_id: str):
+    """The inbox behind the bell: assigned, due, daily, certified.
+
+    Computed live from the same state as the home page, so it can never
+    disagree with it. No sender exists yet, so everything lands here first.
+    """
+    learner = learning.person(user_id)
+    if not learner:
+        raise HTTPException(404, "Person not found")
+    items = []
+    for record in learning.assignments(user_id):
+        manifest_path = content_path("content", Path(record["run_id"]).name, "manifest.json")
+        if not manifest_path.exists():
+            continue
+        manifest = json.loads(manifest_path.read_text())
+        publication = record["publication"]
+        summary = learning.summarize(learning.progress(record["run_id"], user_id))
+        state = learning.assignment_state(publication, summary)
+        days = learning.days_until(publication["due_on"])
+        title = manifest.get("program_title") or manifest["drug"]["brand"]
+        href = f"/learn/{record['run_id']}"
+        items.append({"kind": "assigned", "run_id": record["run_id"], "title": title,
+                      "message": publication["message"] or f"Training is open, due {publication['due_on']}.",
+                      "href": href, "at": publication["published_at"]})
+        if state == "overdue":
+            items.append({"kind": "overdue", "run_id": record["run_id"], "title": title,
+                          "message": f"Overdue since {publication['due_on']} — finish it now.",
+                          "href": href, "at": publication["due_on"]})
+        elif state == "due" and days is not None and days <= 7:
+            items.append({"kind": "due-soon", "run_id": record["run_id"], "title": title,
+                          "message": f"Due in {days} day{'s' if days != 1 else ''} — still time to stay on plan.",
+                          "href": href, "at": publication["due_on"]})
+        if summary["certificate"]:
+            items.append({"kind": "certified", "run_id": record["run_id"], "title": title,
+                          "message": f"You're certified — {summary['final_score']}%. Code {summary['certificate']['code']}.",
+                          "href": f"/learn/{record['run_id']}/certificate",
+                          "at": summary["certificate"]["issued_at"]})
+        elif state == "due":
+            items.append({"kind": "daily", "run_id": record["run_id"], "title": title,
+                          "message": "Today's 2pm check is ready: 3 questions, 2 minutes.",
+                          "href": href, "at": publication["starts_on"]})
+    order = {"overdue": 0, "due-soon": 1, "daily": 2, "certified": 3, "assigned": 4}
+    items.sort(key=lambda item: (order.get(item["kind"], 5), item.get("at") or ""))
+    return {"user_id": user_id, "notifications": items}
+
+
 @app.get("/api/learn/{user_id}/{run_id}")
 def learner_course(user_id: str, run_id: str):
     learner, record, content_value, track = _learner_context(user_id, run_id)
@@ -1306,6 +1369,7 @@ def learner_course(user_id: str, run_id: str):
     return {
         "user": learner,
         "track": track,
+        "course_type": record.get("course_type", "drug"),
         "manifest": content_value["manifest"],
         "sources": content_value["sources"],
         "content": content_value["learners"][track],
@@ -1425,7 +1489,8 @@ def submit_assessment(user_id: str, run_id: str, kind: str, request: AnswerReque
 def learner_feedback(user_id: str, run_id: str, request: FeedbackRequest):
     _learner_context(user_id, run_id)
     return _guard(lambda: learning.add_feedback(
-        run_id, user_id, request.module_id, request.rating, request.comment
+        run_id, user_id, request.module_id, request.rating, request.comment,
+        request.confused
     ))
 
 
@@ -1437,11 +1502,21 @@ def verify_certificate(code: str = ""):
 
 @app.get("/api/learn/{user_id}/{run_id}/certificate")
 def certificate(user_id: str, run_id: str):
-    _learner, _record, content_value, _track = _learner_context(user_id, run_id)
+    _learner, record, content_value, _track = _learner_context(user_id, run_id)
     issued = learning.issue_certificate(run_id, user_id)
     if not issued:
         raise HTTPException(404, "Finish every module and pass the final assessment to earn a certificate")
-    return {**issued, "drug": content_value["manifest"]["drug"], "course_title": content_value["blueprint"]["title"]}
+    track = content_value["learners"].get(_track) or {}
+    quiz = (track.get("quiz") or {})
+    return {**issued, "drug": content_value["manifest"]["drug"], "course_title": content_value["blueprint"]["title"],
+            "course_description": record.get("description") or "",
+            "topics_covered": record.get("topics_covered") or [],
+            "modules_done": len(learning.MODULES),
+            "modules_minutes": sum(module["minutes"] for module in learning.MODULES),
+            "questions_total": len(quiz.get("questions", [])),
+            "program_title": content_value["manifest"].get("program_title") or content_value["blueprint"]["title"],
+            "course_type": record.get("course_type", "drug"),
+            "organization": record.get("organization", "")}
 
 
 @app.delete("/api/learn/{user_id}/{run_id}/attempts")
@@ -1451,6 +1526,28 @@ def reset_learner_attempts(user_id: str, run_id: str, by: str = ""):
     return _guard(lambda: learning.reset_attempts(
         Path(run_id).name, Path(user_id).name, (person or {}).get("role", ""),
         actor_id=Path(by).name if by else ""))
+
+
+class CourseTypeRequest(BaseModel):
+    user_id: str
+    course_type: str
+    organization: str | None = None
+
+
+@app.post("/api/runs/{run_id}/course-type")
+def set_run_course_type(run_id: str, request: CourseTypeRequest):
+    """Tag a course as drug or induction. Induction hides the drug-course
+    tabs and carries a named finisher board."""
+    return _guard(lambda: learning.set_course_type(
+        Path(run_id).name, Path(request.user_id).name, request.course_type,
+        request.organization))
+
+
+@app.get("/api/learn/{user_id}/{run_id}/board")
+def induction_board(user_id: str, run_id: str):
+    """Named finisher board for induction courses; empty for drug courses."""
+    _learner, _record, _content, _track = _learner_context(user_id, run_id)
+    return _guard(lambda: learning.course_board(run_id, user_id))
 
 
 @app.get("/api/learn/{user_id}/{run_id}/reinforce")
@@ -1498,3 +1595,63 @@ def submit_reinforcement(user_id: str, run_id: str, request: AnswerRequest):
     if not questions:
         raise HTTPException(400, "No practice questions staged for this course")
     return _guard(lambda: learning.reinforce_feedback(questions, request.answers))
+
+
+def _daily_pick(user_id: str, run_id: str):
+    """Today's 2pm check: 3 questions, missed first then unseen.
+
+    Practice only: never recorded as an assessment attempt, so the KPI
+    attempt counts on the dashboard stay clean.
+    """
+    _learner, _record, content_value, track = _learner_context(user_id, run_id)
+    quiz = (content_value.get("learners", {}).get(track) or {}).get("quiz") or {}
+    questions = quiz.get("questions", [])
+    if not questions:
+        return {"run_id": run_id, "user_id": user_id, "label": "Today's 2pm check",
+                "questions": [], "missed_count": 0}
+    by_id = {question["id"]: question for question in questions}
+    ever_seen: set[str] = set()
+    ever_correct: set[str] = set()
+    for attempt in learning.progress(run_id, user_id)["attempts"]:
+        for qid, chosen in (attempt.get("answers") or {}).items():
+            ever_seen.add(qid)
+            if qid in by_id and chosen == by_id[qid]["correct_index"]:
+                ever_correct.add(qid)
+    missed = [by_id[qid] for qid in ever_seen if qid in by_id and qid not in ever_correct]
+    unseen = [question for question in questions if question["id"] not in ever_seen]
+    picked = (missed + unseen + questions)[:3]
+    record = learning.course(run_id)
+    induction = record.get("course_type", "drug") == "induction"
+    return {"run_id": run_id, "user_id": user_id, "label": "Today's 2pm check",
+            "questions": [{k: question[k] for k in ("id", "prompt", "options") if k in question}
+                          for question in picked],
+            "missed_count": len(missed),
+            "today": learning.daily_finishers(run_id, user_id, names=induction)}
+
+
+@app.get("/api/learn/{user_id}/{run_id}/daily")
+def daily_check(user_id: str, run_id: str):
+    try:
+        return _daily_pick(user_id, run_id)
+    except (FileNotFoundError, KeyError):
+        return {"run_id": run_id, "user_id": user_id, "label": "Today's 2pm check",
+                "questions": [], "missed_count": 0}
+
+
+@app.post("/api/learn/{user_id}/{run_id}/daily/submit")
+def submit_daily(user_id: str, run_id: str, request: AnswerRequest):
+    _learner, record, content_value, track = _learner_context(user_id, run_id)
+    quiz = (content_value.get("learners", {}).get(track) or {}).get("quiz") or {}
+    questions = quiz.get("questions", [])
+    if not questions:
+        raise HTTPException(400, "No practice questions staged for this course")
+    asked = [question for question in questions if question["id"] in (request.answers or {})]
+    if not asked:
+        raise HTTPException(400, "Answer the questions before checking them")
+    result = _guard(lambda: learning.reinforce_feedback(asked, request.answers))
+    learning.record_daily_check(run_id, user_id, result["score"], result["total"])
+    induction = record.get("course_type", "drug") == "induction"
+    today = learning.daily_finishers(run_id, user_id, names=induction)
+    message = (f"You finished before {today['before_you']} other{today['before_you'] == 1 and '' or 's'}."
+               if today["before_you"] else "You finished first — nobody to chase.")
+    return {**result, "today": today, "message": message}

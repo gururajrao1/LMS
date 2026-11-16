@@ -1,0 +1,290 @@
+{
+  "run_id": "vision-only-2026",
+  "version": 2,
+  "status": "published",
+  "comments": [],
+  "versions": [
+    {
+      "version": 1,
+      "summary": "Agent-generated first draft",
+      "author_id": "agent",
+      "author_name": "PharmaLearn agent",
+      "addressed": [],
+      "created_at": null
+    }
+  ],
+  "signoffs": [
+    {
+      "id": "seed-signoff",
+      "version": 2,
+      "decision": "approved",
+      "note": "Approved for Shashi demo.",
+      "author_id": "anil-shekhar",
+      "author_name": "Dr. Anil Shekhar",
+      "author_title": "Therapeutic area expert, oncology",
+      "created_at": "2026-11-10T10:00:00+00:00",
+      "attested": true,
+      "method": "typed-name",
+      "meaning": "Seeded approval for demo"
+    }
+  ],
+  "publication": {
+    "version": 2,
+    "published_at": "2026-11-10T10:00:00+00:00",
+    "published_by": "Priya Raman",
+    "overrides": [],
+    "starts_on": "2026-11-01",
+    "due_on": "2026-11-08",
+    "frequency": "once",
+    "next_due_on": null,
+    "certificate_template": "classic",
+    "message": "The organisation vision, nothing else. About 5 min plus a 12-question check. Due 8 November.",
+    "assignees": [
+      "guru-raja",
+      "pattabhi",
+      "shashidhar-gururao",
+      "parimala"
+    ],
+    "notifications": [
+      {
+        "to": "demo@pharmalearn.local",
+        "name": "Demo cohort",
+        "subject": "Training assigned: complete by 2026-11-08",
+        "sent_at": "2026-11-10T10:00:00+00:00"
+      }
+    ]
+  },
+  "audit": [
+    {
+      "id": "e512c5f715ca",
+      "at": "2026-11-13T19:25:31.834417+00:00",
+      "action": "course.typed",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja marked this course induction",
+      "detail": {
+        "course_type": "induction"
+      },
+      "prev_hash": null,
+      "hash": "8634f1818a74c8ab"
+    },
+    {
+      "id": "47818160c65f",
+      "at": "2026-11-14T04:27:54.060990+00:00",
+      "action": "course.typed",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja marked this course drug",
+      "detail": {
+        "course_type": "drug"
+      },
+      "prev_hash": "8634f1818a74c8ab",
+      "hash": "4013966ded7746d7"
+    },
+    {
+      "id": "88f3b6838efa",
+      "at": "2026-11-14T04:27:56.132154+00:00",
+      "action": "course.typed",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja marked this course induction",
+      "detail": {
+        "course_type": "induction"
+      },
+      "prev_hash": "4013966ded7746d7",
+      "hash": "f9155059534a91b0"
+    },
+    {
+      "id": "e94a30665531",
+      "at": "2026-11-14T04:42:00.602425+00:00",
+      "action": "course.typed",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja marked this course induction",
+      "detail": {
+        "course_type": "induction"
+      },
+      "prev_hash": "f9155059534a91b0",
+      "hash": "df2104a14896c182"
+    },
+    {
+      "id": "b92f0441e1d1",
+      "at": "2026-11-14T04:43:51.268577+00:00",
+      "action": "course.typed",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja marked this course induction",
+      "detail": {
+        "course_type": "induction"
+      },
+      "prev_hash": "df2104a14896c182",
+      "hash": "9971dc2b4d31f7aa"
+    },
+    {
+      "id": "a2706d700d55",
+      "at": "2026-11-14T04:45:00.189507+00:00",
+      "action": "course.typed",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja marked this course drug",
+      "detail": {
+        "course_type": "drug"
+      },
+      "prev_hash": "9971dc2b4d31f7aa",
+      "hash": "4cf49a987bb1d367"
+    },
+    {
+      "id": "4f2cc4e5be61",
+      "at": "2026-11-14T04:45:02.253933+00:00",
+      "action": "course.typed",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja marked this course induction",
+      "detail": {
+        "course_type": "induction"
+      },
+      "prev_hash": "4cf49a987bb1d367",
+      "hash": "47be3ecc613453cf"
+    },
+    {
+      "id": "98ac6fa100fb",
+      "at": "2026-11-14T04:48:15.378610+00:00",
+      "action": "course.typed",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja marked this course induction",
+      "detail": {
+        "course_type": "induction"
+      },
+      "prev_hash": "47be3ecc613453cf",
+      "hash": "bb011118a1000177"
+    },
+    {
+      "id": "f10184f7b528",
+      "at": "2026-11-14T04:49:48.954223+00:00",
+      "action": "course.typed",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja marked this course induction",
+      "detail": {
+        "course_type": "induction"
+      },
+      "prev_hash": "bb011118a1000177",
+      "hash": "eac010016b604d39"
+    },
+    {
+      "id": "7c893c84b92b",
+      "at": "2026-11-14T07:24:10.912321+00:00",
+      "action": "course.typed",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja marked this course induction",
+      "detail": {
+        "course_type": "induction"
+      },
+      "prev_hash": "eac010016b604d39",
+      "hash": "0f10af11f70f53aa"
+    },
+    {
+      "id": "9dc65e8f3ead",
+      "at": "2026-11-15T13:11:36.479219+00:00",
+      "action": "course.typed",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja marked this course induction",
+      "detail": {
+        "course_type": "induction"
+      },
+      "prev_hash": "0f10af11f70f53aa",
+      "hash": "30f8c0e065eafa05"
+    },
+    {
+      "id": "1049cf704c84",
+      "at": "2026-11-15T13:17:21.263180+00:00",
+      "action": "course.typed",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja marked this course drug",
+      "detail": {
+        "course_type": "drug"
+      },
+      "prev_hash": "30f8c0e065eafa05",
+      "hash": "5f3ea90d6df65c8f"
+    },
+    {
+      "id": "f3652910c5e4",
+      "at": "2026-11-15T13:17:23.333276+00:00",
+      "action": "course.typed",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja marked this course induction",
+      "detail": {
+        "course_type": "induction"
+      },
+      "prev_hash": "5f3ea90d6df65c8f",
+      "hash": "297997400599c3bf"
+    },
+    {
+      "id": "283da799d902",
+      "at": "2026-11-15T13:18:53.518075+00:00",
+      "action": "course.typed",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja marked this course drug",
+      "detail": {
+        "course_type": "drug"
+      },
+      "prev_hash": "297997400599c3bf",
+      "hash": "ed26c2ac2e1e1184"
+    },
+    {
+      "id": "4506fe5f43ed",
+      "at": "2026-11-15T13:18:55.609777+00:00",
+      "action": "course.typed",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja marked this course induction",
+      "detail": {
+        "course_type": "induction"
+      },
+      "prev_hash": "ed26c2ac2e1e1184",
+      "hash": "8a5ea574d8547c12"
+    }
+  ],
+  "description": "Covers the organisation vision statement only. Certifies the learner completed the vision induction (v1, pass mark 80%).",
+  "course_type": "induction",
+  "topics_covered": [
+    "Organisation vision"
+  ],
+  "organization": "Clair Labs"
+}

@@ -8,40 +8,37 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { PeerBoard } from "@/components/peer-board";
-import { Assignment, AssignmentState, getJson, LearnerHome, LearnerSummary } from "@/lib/api";
+import { Assignment, AssignmentState, getJson, LearnerHome, LearnerNotification, LearnerSummary } from "@/lib/api";
+import { buildNudges, DashboardAlert, timing } from "@/lib/learner-home";
 
-type DashboardAlert = { user_id: string; name: string; run_id: string; kind: "overdue" | "below_requirement" | "unbaselined"; severity: "danger" | "warning"; tier: number; message: string };
-
-type Nudge = { key: string; title: string; message: string; href: string; urgent: boolean };
-
-/** Server flags plus due-soon courses, each with a deep link to the fix. */
-function buildNudges(courses: Assignment[], alerts: DashboardAlert[]): Nudge[] {
-  const byRun: Record<string, Assignment> = Object.fromEntries(courses.map((course) => [course.run_id, course]));
-  const titleOf = (run_id: string) => byRun[run_id]?.title ?? byRun[run_id]?.drug.brand ?? "Training";
-  const nudges: Nudge[] = alerts.map((alert) => ({
-    key: `${alert.run_id}-${alert.message}`,
-    title: titleOf(alert.run_id),
-    message: alert.message,
-    href: alert.kind === "overdue"
-      ? `/learn/${alert.run_id}`
-      : alert.kind === "below_requirement"
-        ? `/learn/${alert.run_id}/assessment/final`
-        : `/learn/${alert.run_id}/assessment/baseline`,
-    urgent: alert.severity === "danger",
-  }));
-  for (const course of courses) {
-    const left = course.days_remaining;
-    if (course.state === "due" && left !== null && left >= 0 && left <= 7 && !nudges.some((nudge) => nudge.href === `/learn/${course.run_id}`))
-      nudges.push({
-        key: `due-${course.run_id}`,
-        title: course.title ?? course.drug.brand,
-        message: left === 0 ? "Due today — finish it now." : `Due in ${left} ${left === 1 ? "day" : "days"} — still time to stay on plan.`,
-        href: `/learn/${course.run_id}`,
-        urgent: left <= 2,
-      });
-  }
-  return nudges;
+/** The inbox behind the bell: assigned, certified, and the daily nudge. Urgent flags stay in the nudges above. */
+function InboxCard({ userId }: { userId: string }) {
+  const [notes, setNotes] = useState<LearnerNotification[] | null>(null);
+  useEffect(() => {
+    getJson<{ notifications: LearnerNotification[] }>(`/api/learn/${userId}/notifications`)
+      .then((inbox) => setNotes(inbox.notifications)).catch(() => {});
+  }, [userId]);
+  const info = (notes ?? []).filter((note) => note.kind === "assigned" || note.kind === "certified");
+  if (!info.length) return null;
+  return (
+    <Card className="mt-8">
+      <CardContent className="p-5">
+        <p className="flex items-center gap-2 font-semibold"><Bell size={16} className="text-brand-700 dark:text-brand-300" /> Notifications ({info.length})</p>
+        <ul className="mt-3 space-y-2">
+          {info.map((note) => (
+            <li key={`${note.kind}-${note.run_id}`}>
+              <Link href={note.href} className="flex items-center gap-2.5 rounded-lg bg-white dark:bg-surface p-3 shadow-sm transition-shadow hover:shadow-md">
+                <span className="min-w-0 text-sm"><b>{note.title}</b> <span className="text-stone-600 dark:text-muted-foreground">— {note.message}</span></span>
+                <ArrowRight size={15} className="ml-auto shrink-0 text-brand-700 dark:text-brand-300" />
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </CardContent>
+    </Card>
+  );
 }
+
 import { RAG_BADGE, RAG_DOT } from "@/lib/rag";
 import { useSession } from "@/lib/session";
 
@@ -76,16 +73,6 @@ const SECTIONS: { state: AssignmentState; title: string; blurb: string }[] = [
 
 function shortDate(value: string) {
   return new Date(`${value}T12:00:00`).toLocaleDateString(undefined, { day: "numeric", month: "short" });
-}
-
-function timing(course: Assignment) {
-  const { state, days_remaining: left, days_until_start: until } = course;
-  if (state === "completed") return { label: "Complete", urgent: false };
-  if (state === "upcoming") return { label: until === 1 ? "Opens tomorrow" : `Opens in ${until} days`, urgent: false };
-  if (left === null) return { label: "", urgent: false };
-  if (left < 0) return { label: `${Math.abs(left)} ${Math.abs(left) === 1 ? "day" : "days"} overdue`, urgent: true };
-  if (left === 0) return { label: "Due today", urgent: true };
-  return { label: `${left} ${left === 1 ? "day" : "days"} left`, urgent: left <= 7 };
 }
 
 const DAY = 86_400_000;
@@ -220,6 +207,17 @@ export default function LearnerHomePage() {
           </CardContent>
         </Card>
       )}
+
+      {next && (
+        <Card className="mt-8">
+          <CardContent className="flex flex-col gap-3 p-5 text-sm sm:flex-row sm:items-center">
+            <div><p className="font-semibold">Today&apos;s 2pm check · 3 questions, 2 min</p><p className="mt-1 text-stone-600 dark:text-muted-foreground">A short check on <b>{next.title ?? next.drug.brand}</b>. Practice only — it never counts as an assessment attempt.</p></div>
+            <Link href={`/learn/${next.run_id}`} className="inline-flex items-center gap-1.5 rounded-lg bg-brand-600 px-4 py-2 font-medium text-white hover:bg-brand-800 sm:ml-auto">Take today&apos;s check <ArrowRight size={14} /></Link>
+          </CardContent>
+        </Card>
+      )}
+
+      <InboxCard userId={user.id} />
 
       <section className="mt-8 grid gap-4 sm:grid-cols-3">
         <Stat icon={BookOpenCheck} value={home.courses.length} label="Assigned to you" tone="brand" />

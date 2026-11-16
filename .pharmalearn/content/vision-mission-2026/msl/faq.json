@@ -1,0 +1,252 @@
+{
+  "title": "Ibrance (palbociclib) MSL Training FAQ: Mechanism, Pivotal Evidence, Safety, Comparisons, and Off-Label Boundaries",
+  "items": [
+    {
+      "question": "What is palbociclib's mechanism of action, and why is it paired with endocrine therapy in HR+/HER2- breast cancer?",
+      "answer": "Palbociclib is a reversible, orally administered small-molecule inhibitor of CDK4 and CDK6. Cyclin D1-CDK4/6 complexes phosphorylate the retinoblastoma protein (Rb), releasing E2F/DP transcription factors that drive G1-to-S phase entry; by blocking this step, palbociclib produces cell-cycle arrest in susceptible tumor cells. Because cyclin D1 is a direct transcriptional target of the estrogen receptor, cyclin D1-CDK4/6-Rb signaling is frequently hyperactivated in ER-positive breast cancer, providing the biological rationale for pairing a CDK4/6 inhibitor with endocrine therapy. In vitro, combining palbociclib with antiestrogens reduces Rb phosphorylation and E2F signaling more than either agent alone and increases cell senescence versus either drug alone.",
+      "nuance": "This is a preclinical/mechanistic rationale, not a claim about clinical onset of antitumor effect. Palbociclib's antiproliferative activity is Rb-dependent in nonclinical models; there is no validated clinical assay for Rb-loss patient selection, so this remains a mechanistic concept rather than an actionable biomarker.",
+      "escalation": "If an HCP asks about biochemical potency data (e.g., IC50/Ki) beyond label language, or requests guidance on excluding patients based on Rb status, refer to Medical Information/Medical Affairs, as no validated clinical biomarker exists for this purpose.",
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib tablet, film coated - DailyMed",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=fecbdd7d-b729-41b5-9872-231b8fe104ce",
+          "locator": "Section 12.1"
+        },
+        {
+          "title": "PALbociclib CoLlaborative Adjuvant Study (PALLAS) Protocol",
+          "url": "https://cdn.clinicaltrials.gov/large-docs/94/NCT02513394/Prot_SAP_000.pdf",
+          "locator": "Section 1.2, Palbociclib Mechanism of Action"
+        }
+      ]
+    },
+    {
+      "question": "How was PALOMA-2 designed, and what did it show for its primary endpoint?",
+      "answer": "PALOMA-2 was a randomized, double-blind, phase 3 trial that assigned 666 postmenopausal women with ER-positive, HER2-negative advanced breast cancer who had received no prior systemic therapy for advanced disease, in a 2:1 ratio, to palbociclib plus letrozole or placebo plus letrozole. The trial met its primary endpoint: median investigator-assessed PFS was 24.8 months with palbociclib plus letrozole versus 14.5 months with placebo plus letrozole, confirming the magnitude of benefit seen earlier in the phase 2 PALOMA-1 trial.",
+      "nuance": "Overall survival was a secondary endpoint in this trial; at the time of the primary PFS analysis, OS data were immature, and investigators explicitly noted it was uncertain whether the PFS benefit would translate into an OS benefit.",
+      "escalation": "No escalation needed for standard PFS discussion; for questions about updated blinded independent central review PFS figures beyond the primary NEJM publication, direct HCPs to the current peer-reviewed literature.",
+      "citations": [
+        {
+          "title": "Palbociclib and Letrozole in Advanced Breast Cancer | NEJM",
+          "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1607303",
+          "locator": "Methods/design paragraph"
+        },
+        {
+          "title": "Palbociclib and Letrozole in Advanced Breast Cancer | NEJM",
+          "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1607303",
+          "locator": "Results"
+        }
+      ]
+    },
+    {
+      "question": "Did PALOMA-2 show a statistically significant overall survival benefit, and how should I frame this if asked?",
+      "answer": "No. In the final OS analysis, at a median follow-up of 90 months, median OS was numerically longer with palbociclib plus letrozole (53.9 months) than with placebo plus letrozole (51.2 months), but the difference was not statistically significant (HR 0.956, 95% CI 0.777-1.177). OS was a secondary endpoint, and the trial was not statistically powered to detect an OS difference.",
+      "nuance": "The presenting investigator noted that interpretation of this OS analysis is limited by a large and disproportionate percentage of missing/censored survival data between arms. This result should not be conflated with the robust and statistically significant PFS benefit, and should not be used to make comparative claims against other agents.",
+      "escalation": "If an HCP asks whether this implies another CDK4/6 inhibitor is superior, do not offer a comparative opinion \u2014 escalate to Medical Affairs, since no head-to-head trial exists and such claims risk being promotional/comparative without adequate evidentiary support.",
+      "citations": [
+        {
+          "title": "Pfizer Announces Overall Survival Results from Phase 3 PALOMA-2 Trial of IBRANCE",
+          "url": "https://www.pfizer.com/news/press-release/press-release-detail/pfizer-announces-overall-survival-results-phase-3-paloma-2",
+          "locator": "Results summary"
+        },
+        {
+          "title": "PALOMA-2: No Overall Survival Benefit Reported With Palbociclib/Letrozole in Advanced Breast Cancer",
+          "url": "https://ascopost.com/issues/august-10-2022/no-overall-survival-benefit-reported-with-palbociclibletrozole-in-advanced-breast-cancer/",
+          "locator": "Results summary"
+        }
+      ]
+    },
+    {
+      "question": "What did PALOMA-3 show for progression-free and overall survival, and how mature is the OS data?",
+      "answer": "PALOMA-3 enrolled 521 women with HR+/HER2- advanced breast cancer who had progressed on prior endocrine therapy, randomizing them to palbociclib plus fulvestrant versus placebo plus fulvestrant. The primary PFS endpoint was met, with a statistically significant and clinically meaningful improvement (approval basis: 9.5 vs 4.6 months, HR 0.46). The final protocol-specified OS analysis (44.8-month follow-up) showed a numerical ~7-month OS improvement (34.9 vs 28.0 months, HR 0.81, 1-sided p=0.0429) that did not meet the prespecified significance threshold. A later, non-prespecified exploratory analysis at 73.3 months follow-up (75% of patients had died) reported median OS of 34.8 vs 28.0 months with a stratified HR of 0.81 (95% CI 0.65-0.99).",
+      "nuance": "The later OS finding is explicitly described in the source literature as exploratory/updated rather than a confirmatory prespecified analysis; it should be framed as supportive but not as definitively confirmatory. This endocrine-resistant, later-line population differs biologically from the first-line PALOMA-2 population, which is part of why OS findings differ between the two trials.",
+      "escalation": "None typical for accurate framing; escalate only if asked to extrapolate this OS finding to different combination partners or lines of therapy not studied in PALOMA-3.",
+      "citations": [
+        {
+          "title": "Pfizer Presents Overall Survival Data From PALOMA-3 Trial of IBRANCE",
+          "url": "https://www.pfizer.com/news/press-release/press-release-detail/pfizer_presents_overall_survival_data_from_paloma_3_trial_of_ibrance_palbociclib_in_patients_with_hr_her2_metastatic_breast_cancer",
+          "locator": "OS results paragraph"
+        },
+        {
+          "title": "Overall Survival with Palbociclib and Fulvestrant in Women with HR+/HER2\u2212 ABC: Updated Exploratory Analyses of PALOMA-3",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9662922/",
+          "locator": "Abstract/Results"
+        }
+      ]
+    },
+    {
+      "question": "What is the recommended CBC monitoring and dose-modification approach for palbociclib-associated neutropenia?",
+      "answer": "Label-directed monitoring: CBC prior to starting therapy, at the beginning of each cycle, on Day 15 of the first two cycles, and as clinically indicated. Neutropenia is the most common adverse reaction (80% in PALOMA-2, 83% in PALOMA-3, any grade); onset is early (median time to any-grade neutropenia ~15 days; to Grade \u22653, ~28 days) and non-cumulative, with median Grade \u22653 episode duration of 7 days. For Grade 3 (or recurrent Grade 3) neutropenia on Day 1 of a cycle, IBRANCE should be withheld until recovery to Grade \u22642 and resumed at the next lower dose.",
+      "nuance": "Neutropenia is generally reversible and manageable without growth-factor support, but febrile neutropenia occurred in 1.8% of patients across PALOMA-2/3, and one death from neutropenic sepsis occurred in PALOMA-3 \u2014 patients should be instructed to promptly report fever.",
+      "escalation": "For precise numeric ANC thresholds or the complete non-hematologic dose-modification tables, direct the HCP to the current full Prescribing Information rather than reciting from memory; escalate any request for an individualized dosing algorithm to Medical Information.",
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib capsule - DailyMed - NIH",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e0e6412f-50b4-4fd4-9364-62818d121a07",
+          "locator": "Dosage and Administration / Warnings and Precautions Highlights"
+        },
+        {
+          "title": "Palbociclib with Letrozole in Postmenopausal Women with ER+/HER2\u2212 Advanced Breast Cancer: Hematologic Safety Analysis of the Randomized PALOMA-2 Trial",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6975938/",
+          "locator": "Abstract / Results"
+        }
+      ]
+    },
+    {
+      "question": "What do we know about interstitial lung disease (ILD)/pneumonitis risk with palbociclib?",
+      "answer": "ILD/pneumonitis is a labeled warning that can be severe, life-threatening, or fatal, and was flagged as a class effect by FDA in a 2019 safety communication covering palbociclib, ribociclib, and abemaciclib. Across PALOMA-1/2/3, 1% of palbociclib-treated patients had ILD/pneumonitis of any grade and 0.1% had Grade 3/4, with no fatal cases in those trials; additional cases, including fatalities, have been reported postmarketing. The label requires monitoring for pulmonary symptoms (hypoxia, cough, dyspnea), immediate interruption for suspected pneumonitis, and permanent discontinuation for severe ILD/pneumonitis.",
+      "nuance": "Postmarketing reports are voluntary, so incidence and causality cannot be reliably estimated from that data source; the low in-trial incidence should not be presented as a guarantee of safety in individual patients.",
+      "escalation": "If asked to quantitatively compare ILD incidence across the three approved CDK4/6 inhibitors, escalate \u2014 there is only a class-level FDA communication, not comparative trial data.",
+      "citations": [
+        {
+          "title": "Label: IBRANCE- palbociclib capsule - DailyMed - NIH",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e0e6412f-50b4-4fd4-9364-62818d121a07",
+          "locator": "Warnings and Precautions - ILD/Pneumonitis"
+        },
+        {
+          "title": "Treating metastatic breast cancer: Analysis of the Paloma-3 Trial - FORCE XRAYS",
+          "url": "https://www.facingourrisk.org/XRAY/palbociclib-overall-survival-metastatic-breast-cancer",
+          "locator": "Note dated 09/13/19"
+        }
+      ]
+    },
+    {
+      "question": "How does palbociclib compare with ribociclib and abemaciclib on efficacy and overall survival?",
+      "answer": "There are no head-to-head randomized trials comparing palbociclib with ribociclib or abemaciclib. Available comparisons are indirect. A network meta-analysis of seven phase 3 trials found no statistically significant OS differences among the three agents overall, despite differing significance levels within individual trials. A different network meta-analysis (including dalpiciclib) found ribociclib significantly improved OS versus palbociclib \u2014 a conflicting result. Real-world cohorts are similarly mixed: the multicenter PALMARES-2 study found better real-world PFS with abemaciclib and ribociclib versus palbociclib, while a separate US real-world cohort using inverse-probability weighting found no significant OS differences among the three agents.",
+      "nuance": "All of this evidence is indirect (cross-trial network meta-analysis) or observational/real-world (subject to confounding by indication, prescriber selection bias, and differing follow-up), and the literature itself is inconsistent. This must never be presented as proof of comparative superiority or inferiority.",
+      "escalation": "Any HCP question seeking a comparative-effectiveness recommendation should be escalated to Medical Affairs/Compliance; describe the indirect evidence landscape transparently but do not draw or imply a superiority conclusion.",
+      "citations": [
+        {
+          "title": "Comparative overall survival of CDK4/6 inhibitors in combination with endocrine therapy in advanced breast cancer",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10850180/",
+          "locator": "Abstract/results"
+        },
+        {
+          "title": "Real-world effectiveness comparison of first-line palbociclib, ribociclib or abemaciclib plus endocrine therapy in advanced HR-positive/HER2-negative BC patients: results from the multicenter PALMARES-2 study",
+          "url": "https://www.annalsofoncology.org/article/S0923-7534(25)00134-6/fulltext",
+          "locator": "Results"
+        }
+      ]
+    },
+    {
+      "question": "A physician asks about using palbociclib in the adjuvant (early-stage) setting, similar to abemaciclib. How should I respond?",
+      "answer": "Palbociclib is not FDA-approved for adjuvant/early-stage breast cancer. The adjuvant PALLAS trial did not demonstrate an invasive disease-free survival benefit, in contrast to early positive signals reported for abemaciclib in the monarchE trial. PALLAS also showed substantial on-treatment attrition: a 45.1% early discontinuation rate due to adverse events, with cumulative dose reductions to 100 mg in 55.4% and to 75 mg in 34.3% of patients within 2 years, and neutropenia as the leading cause of discontinuation (59.7%).",
+      "nuance": "This is squarely an off-label/unapproved-use topic. The available data (lack of iDFS benefit, high discontinuation) do not support extrapolating the metastatic-setting benefit to the adjuvant setting.",
+      "escalation": "This is an unsolicited off-label question. Do not offer a clinical recommendation; document the request and route to Medical Information/Medical Affairs for a formal, compliant off-label response per company procedure.",
+      "citations": [
+        {
+          "title": "Efficacy of Limited Dose Modifications for Palbociclib-Related Grade 3 Neutropenia in HR-Positive Metastatic Breast Cancer",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10582537/",
+          "locator": "PMC article"
+        },
+        {
+          "title": "PALbociclib CoLlaborative Adjuvant Study (PALLAS) Protocol",
+          "url": "https://cdn.clinicaltrials.gov/large-docs/94/NCT02513394/Prot_SAP_000.pdf",
+          "locator": "Eligibility/design section"
+        }
+      ]
+    },
+    {
+      "question": "What is the new HR+/HER2+ maintenance indication (PATINA), and what evidence supports it?",
+      "answer": "FDA approved palbociclib in combination with trastuzumab, with or without pertuzumab, and endocrine therapy for maintenance treatment of adults with HR-positive, HER2-positive locally advanced or metastatic breast cancer following induction treatment, based on PATINA (NCT02947685), a randomized, open-label trial in 518 patients with no disease progression after induction with a taxane plus trastuzumab \u00b1 pertuzumab. The trial met its primary PFS endpoint, with an investigator-assessed hazard ratio of 0.76 (95% CI 0.59-0.97).",
+      "nuance": "PATINA was open-label (no blinding), which carries some risk of assessment bias for a PFS endpoint. Overall survival was immature/still pending at the time of approval, so no OS conclusion can yet be drawn for this indication.",
+      "escalation": "This is a very recently approved indication; for detailed safety tables, dosing nuances, or OS maturity timing beyond the approval summary, defer to Medical Affairs and confirm against the current DailyMed label given the recency of the approval.",
+      "citations": [
+        {
+          "title": "FDA approves palbociclib with trastuzumab, with or without pertuzumab, and endocrine therapy for the maintenance treatment of HR-positive, HER2-positive metastatic breast cancer | FDA",
+          "url": "https://www.fda.gov/drugs/resources-information-approved-drugs/fda-approves-palbociclib-trastuzumab-or-without-pertuzumab-and-endocrine-therapy-maintenance",
+          "locator": "Approval summary paragraph"
+        },
+        {
+          "title": "FDA Approves Palbociclib for HR+/HER2+ Metastatic Breast Cancer Maintenance",
+          "url": "https://www.oncnursingnews.com/view/fda-approves-palbociclib-for-hr-her2-metastatic-breast-cancer-maintenance",
+          "locator": "PFS results paragraph"
+        }
+      ]
+    },
+    {
+      "question": "What's the evidence for the inavolisib + palbociclib + fulvestrant triplet, and does it require biomarker testing?",
+      "answer": "FDA approved this combination (October 10, 2024) for adults with endocrine-resistant, PIK3CA-mutated, HR-positive, HER2-negative, locally advanced or metastatic breast cancer, as detected by an FDA-approved companion diagnostic test, following recurrence during or within 12 months of completing adjuvant endocrine therapy. Approval was based on INAVO120 (325 patients), which met its PFS endpoint: median PFS 15.0 months for the triplet versus 7.3 months for placebo plus palbociclib and fulvestrant.",
+      "nuance": "This indication is defined by both a specific molecular alteration (PIK3CA mutation, confirmed by an approved test) and a specific clinical scenario (recurrence during/within 12 months of adjuvant endocrine therapy) \u2014 it is not a general endorsement of the triplet in all PIK3CA-mutated or endocrine-resistant patients.",
+      "escalation": "Any question about using this triplet without confirmed PIK3CA mutation testing, or outside the specified recurrence window, is an off-label scenario and should be escalated to Medical Information.",
+      "citations": [
+        {
+          "title": "FDA approves inavolisib with palbociclib and fulvestrant for endocrine-resistant, PIK3CA-mutated, HR-positive, HER2-negative, advanced breast cancer | FDA",
+          "url": "https://www.fda.gov/drugs/resources-information-approved-drugs/fda-approves-inavolisib-palbociclib-and-fulvestrant-endocrine-resistant-pik3ca-mutated-hr-positive",
+          "locator": "Approval and trial description"
+        },
+        {
+          "title": "US Food and Drug Administration Approval Summary: Inavolisib With Palbociclib and Fulvestrant... (JCO)",
+          "url": "https://ascopubs.org/doi/abs/10.1200/JCO-25-00663",
+          "locator": "Results summary"
+        }
+      ]
+    },
+    {
+      "question": "What is the evidence basis for using palbociclib in men with breast cancer?",
+      "answer": "FDA expanded the aromatase-inhibitor and fulvestrant combination indications to include male patients in 2019. Unlike the core female-population indications, this expansion was based on real-world electronic health record and postmarketing safety data (IQVIA Insurance database, Flatiron Health Breast Cancer database, and the Pfizer global safety database) rather than a dedicated randomized controlled trial in men. The label states the safety profile in men treated with IBRANCE is consistent with that observed in women.",
+      "nuance": "No prospective RCT data in men exist; efficacy and safety in this population are extrapolated from a combination of biological rationale, limited real-world evidence, and postmarketing safety surveillance. This is an important evidentiary limitation to disclose transparently if asked.",
+      "escalation": "For male-specific PK or dosing questions beyond what is stated in the label, escalate to Medical Information, since dedicated male-specific clinical trial data are limited.",
+      "citations": [
+        {
+          "title": "U.S. FDA Approves IBRANCE\u00ae (palbociclib) for the Treatment of Men with HR+, HER2- Metastatic Breast Cancer | Pfizer",
+          "url": "https://www.pfizer.com/news/press-release/press-release-detail/u_s_fda_approves_ibrance_palbociclib_for_the_treatment_of_men_with_hr_her2_metastatic_breast_cancer",
+          "locator": "Pfizer press release"
+        },
+        {
+          "title": "IBRANCE\u00ae (palbociclib) capsules, for oral use",
+          "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/207103s021,212436s009lbl.pdf",
+          "locator": "Male patients with HR-positive, HER2-negative advanced or metastatic breast cancer"
+        }
+      ]
+    },
+    {
+      "question": "What key drug-drug interaction guidance should I be able to discuss for palbociclib?",
+      "answer": "Palbociclib is metabolized primarily by CYP3A and the sulfotransferase SULT2A1, and it is itself a weak time-dependent inhibitor of CYP3A. In formal interaction studies, the strong CYP3A inhibitor itraconazole increased palbociclib AUCinf and Cmax by approximately 87% and 34%, respectively, while the strong CYP3A inducer rifampin decreased palbociclib AUCinf and Cmax by approximately 85% and 70%. The label advises avoiding strong CYP3A inhibitors (e.g., clarithromycin, itraconazole, ketoconazole, ritonavir) and strong inducers (e.g., rifampin, phenytoin, carbamazepine, St. John's Wort), avoiding grapefruit products, and reducing the IBRANCE dose if a strong inhibitor cannot be avoided. Because palbociclib increases exposure of sensitive CYP3A substrates, doses of narrow-therapeutic-index CYP3A substrates may need reduction.",
+      "nuance": "These figures come from formal healthy-subject interaction trials; exact recommended dose-reduction amounts for concomitant strong inhibitors should be confirmed against the current full Prescribing Information rather than approximated.",
+      "escalation": "For patient-specific polypharmacy questions (e.g., complex oncology or comorbidity regimens), escalate to Medical Information/pharmacy consultation rather than providing individualized dosing advice.",
+      "citations": [
+        {
+          "title": "full prescribing information for IBRANCE - Pfizer labeling",
+          "url": "https://labeling.pfizer.com/showlabeling.aspx?id=2191",
+          "locator": "Section 12.3, CYP3A Inhibitors"
+        },
+        {
+          "title": "full prescribing information for IBRANCE - Pfizer labeling",
+          "url": "https://labeling.pfizer.com/showlabeling.aspx?id=2191",
+          "locator": "Section 12.3, CYP3A Inducers"
+        }
+      ]
+    },
+    {
+      "question": "Is there a validated biomarker to predict response or resistance to palbociclib?",
+      "answer": "No. Outside of the PIK3CA companion diagnostic required specifically for the inavolisib combination, there is no validated, clinically actionable predictive biomarker or companion diagnostic for palbociclib response or resistance selection in the core HR+/HER2- indications. Translational literature describes that approximately 25% of patients do not respond to CDK4/6 inhibitor plus endocrine therapy, and virtually all responders eventually progress, with ongoing research into mechanisms such as RB1 loss and cyclin E amplification \u2014 but none of these are validated for routine clinical use.",
+      "nuance": "Rb-pathway dependence is well established mechanistically (no preclinical activity in Rb-deficient models), but there is no approved clinical assay to operationalize this for patient selection today; this remains an acknowledged unmet need in the field.",
+      "escalation": "If an HCP requests a specific biomarker-based patient-selection recommendation outside the labeled PIK3CA testing for the inavolisib combination, escalate \u2014 do not speculate or suggest an unvalidated test.",
+      "citations": [
+        {
+          "title": "Longitudinal multi-omics study of palbociclib resistance in HR-positive/HER2-negative metastatic breast cancer",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10360358/",
+          "locator": "PMC article, Background"
+        }
+      ]
+    },
+    {
+      "question": "What counseling points should be reinforced regarding fertility, pregnancy, and lactation with palbociclib?",
+      "answer": "Based on animal data and mechanism of action, IBRANCE can cause fetal harm; embryo-fetal toxicity was seen in pregnant rats and rabbits at maternal exposures \u22654 times human clinical exposure (AUC). Females of reproductive potential should use effective contraception during treatment and for at least 3 weeks after the last dose. Because of potential genotoxicity/fertility impairment, male patients with female partners of reproductive potential should use effective contraception during treatment and for 3 months after the last dose. Because there is no information on presence in human milk or effects on the breastfed infant, breastfeeding should be avoided during treatment and for 3 weeks after the last dose.",
+      "nuance": "All of this risk characterization is derived from animal reproduction studies and mechanism of action; there are no human pregnancy outcome data in the reviewed labeling to directly quantify human risk.",
+      "escalation": "If a pregnancy occurs during treatment (patient or partner), this should be escalated immediately for adverse event/pregnancy reporting per company safety-reporting procedures and FDA MedWatch, not managed as a routine information request.",
+      "citations": [
+        {
+          "title": "full prescribing information for IBRANCE",
+          "url": "https://labeling.pfizer.com/showlabeling.aspx?id=2191",
+          "locator": "Section 8.1/8.3 Pregnancy and Females/Males of Reproductive Potential"
+        },
+        {
+          "title": "full prescribing information for IBRANCE",
+          "url": "https://labeling.pfizer.com/showlabeling.aspx?id=2191",
+          "locator": "Section 8.2 Lactation"
+        }
+      ]
+    }
+  ]
+}

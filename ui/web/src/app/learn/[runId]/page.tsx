@@ -7,7 +7,7 @@ import { ALargeSmall, ArrowLeft, ArrowRight, Award, Check, CheckCircle2, Chevron
 import { AppShell, Cites, Loading } from "@/components/app-shell";
 import { CourseChatDock } from "@/components/course-chat-dock";
 import { MechanismWalkthrough } from "@/components/mechanism-walkthrough";
-import { DeckGrid } from "@/components/deck";
+import { DeckGrid, ListenButton, VoicePicker } from "@/components/deck";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -15,7 +15,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { API, flushQueue, getJson, LearnerCourse, LearnerModule, Library, Objection, outboxDepth, sendJsonQueued } from "@/lib/api";
+import { API, Assessment, CourseBoard, flushQueue, getJson, LearnerCourse, LearnerModule, Library, Objection, outboxDepth, sendJsonQueued } from "@/lib/api";
 import { SourceSidecar } from "@/components/source-sidecar";
 import { Textarea } from "@/components/ui/textarea";
 import {
@@ -70,6 +70,7 @@ function ModuleFooter({ module, runId, userId, onChange }: { module: LearnerModu
   const [saved, setSaved] = useState(Boolean(module.feedback));
   const [busy, setBusy] = useState(false);
   const [notice, setNotice] = useState("");
+  const [confused, setConfused] = useState(Boolean(module.feedback?.confused));
   const [done, setDone] = useState(module.completed);
   // A parent reload can land between two fast taps: re-anchor the optimistic
   // flag when the server truth actually moves, during render, not in an effect.
@@ -102,6 +103,17 @@ function ModuleFooter({ module, runId, userId, onChange }: { module: LearnerModu
     } catch (reason) { setNotice(offlineNote(reason)); return; }
   }
 
+  async function toggleConfused() {
+    const next = !confused;
+    setConfused(next);
+    try {
+      // A stuck learner may not have rated yet: record a low rating rather
+      // than blocking the flag, so the cohort panel sees the struggle.
+      await sendJsonQueued(`/api/learn/${userId}/${runId}/feedback`, { module_id: module.id, rating: rating || 2, comment, confused: next });
+      setSaved(true); onChange();
+    } catch (reason) { setNotice(offlineNote(reason)); setConfused(!next); }
+  }
+
   async function saveComment() {
     if (!rating) return;
     try {
@@ -123,6 +135,7 @@ function ModuleFooter({ module, runId, userId, onChange }: { module: LearnerModu
           ))}
           {saved && <span className="ml-2 text-xs text-brand-700 dark:text-brand-300">Saved</span>}
           {notice && <span className="ml-2 text-xs text-warn-700 dark:text-warn-400">{notice}</span>}
+          <button type="button" onClick={toggleConfused} aria-pressed={confused} title="Flag this module for the training team to review" className={`ml-2 rounded-lg border px-2.5 py-1 text-xs font-medium ${confused ? "border-warn-500 bg-warn-50 dark:bg-warn-950 text-warn-700 dark:text-warn-400" : "text-stone-600 dark:text-muted-foreground hover:bg-stone-100 dark:hover:bg-muted"}`}>{confused ? "Confusing — flagged" : "I'm confused by this"}</button>
         </div>
         {rating > 0 && (
           <Input value={comment} onChange={(event) => { setComment(event.target.value); setSaved(false); }} onBlur={saveComment} placeholder="What would make this module better?" className="mt-3 max-w-md" />
@@ -149,6 +162,101 @@ function PracticeMissed({ runId, userId }: { runId: string; userId: string }) {
             <ul className="mt-2 space-y-1">{question.options.map((option, optionIndex) => <li key={optionIndex} className="rounded-lg bg-stone-50 dark:bg-surface-sunk px-3 py-2 text-sm text-stone-700 dark:text-stone-200">{option}</li>)}</ul>
           </div>
         ))}
+      </CardContent>
+    </Card>
+  );
+}
+
+/** What Shashi asked to see before starting: how long, how many questions, pass mark. */
+function PreBrief({ course, runId, userId }: { course: LearnerCourse; runId: string; userId: string }) {
+  const [meta, setMeta] = useState<Assessment | null>(null);
+  useEffect(() => { getJson<Assessment>(`/api/learn/${userId}/${runId}/assessment/final`).then(setMeta).catch(() => {}); }, [runId, userId]);
+  const minutes = course.modules.reduce((sum, module) => sum + (module.minutes || 0), 0);
+  const due = new Date(`${course.publication.due_on}T12:00:00`).toLocaleDateString(undefined, { dateStyle: "medium" });
+  return (
+    <Card className="mt-6">
+      <CardContent className="grid gap-4 p-5 text-sm sm:grid-cols-4">
+        <div><p className="text-xs font-semibold uppercase tracking-wide text-stone-600 dark:text-muted-foreground">About {minutes} min</p><p className="mt-1 font-semibold">{course.modules.length} modules with voice</p></div>
+        <div><p className="text-xs font-semibold uppercase tracking-wide text-stone-600 dark:text-muted-foreground">Assessment</p><p className="mt-1 font-semibold">{meta ? `${meta.questions.length} questions · pass ${meta.passing_score}%` : "Final check after the modules"}</p></div>
+        <div><p className="text-xs font-semibold uppercase tracking-wide text-stone-600 dark:text-muted-foreground">Due</p><p className="mt-1 font-semibold">{due}</p></div>
+        <div><p className="text-xs font-semibold uppercase tracking-wide text-stone-600 dark:text-muted-foreground">Attempts so far</p><p className="mt-1 font-semibold">{meta ? `${meta.attempts.length} final attempt${meta.attempts.length === 1 ? "" : "s"}` : `${course.summary.attempts} total`}</p></div>
+      </CardContent>
+    </Card>
+  );
+}
+
+function DailyCheck({ runId, userId }: { runId: string; userId: string }) {
+  const [daily, setDaily] = useState<{ label: string; today?: { count: number; before_you: number }; questions: { id: string; prompt: string; options: string[] }[]; missed_count: number } | null>(null);
+  const [answers, setAnswers] = useState<Record<string, number>>({});
+  const [result, setResult] = useState<{ score: number; correct: number; total: number; message: string; today: { count: number; before_you: number }; items: { id: string; correct: boolean; rationale: string }[] } | null>(null);
+  const [busy, setBusy] = useState(false);
+  useEffect(() => { getJson<{ label: string; today?: { count: number; before_you: number }; questions: { id: string; prompt: string; options: string[] }[]; missed_count: number }>(`/api/learn/${userId}/${runId}/daily`).then(setDaily).catch(() => {}); }, [runId, userId]);
+  if (!daily || !daily.questions.length) return null;
+  async function submit() {
+    setBusy(true);
+    try {
+      const response = await fetch(`${API}/api/learn/${userId}/${runId}/daily/submit`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ answers }) });
+      if (response.ok) setResult(await response.json());
+    } finally { setBusy(false); }
+  }
+  return (
+    <Card className="mt-6">
+      <CardHeader><CardTitle>{daily.label} · 3 questions, 2 min</CardTitle><p className="mt-2 text-sm text-stone-600 dark:text-muted-foreground">Practice only — it never counts as an assessment attempt. Missed 2pm sets queue here.{typeof daily.today?.count === "number" && daily.today.count > 0 ? ` ${daily.today.count} finished today's check.` : ""}</p></CardHeader>
+      <CardContent className="space-y-4">
+        {daily.questions.map((question, index) => (
+          <div key={question.id} className="rounded-xl border p-4">
+            <p className="text-sm font-medium">{index + 1}. {question.prompt}</p>
+            <div className="mt-2 grid gap-1.5">
+              {question.options.map((option, optionIndex) => {
+                const picked = answers[question.id] === optionIndex;
+                const reviewed = result?.items.find((item) => item.id === question.id);
+                return (
+                  <button key={optionIndex} type="button" disabled={Boolean(result)} onClick={() => setAnswers((prev) => ({ ...prev, [question.id]: optionIndex }))}
+                    className={`rounded-lg px-3 py-2 text-left text-sm ${reviewed ? (reviewed.correct && picked ? "bg-brand-50 dark:bg-brand-950 text-brand-700 dark:text-brand-300" : picked ? "bg-danger-50 dark:bg-danger-950 text-danger-700 dark:text-danger-300" : "bg-stone-50 dark:bg-surface-sunk text-stone-700 dark:text-stone-200") : picked ? "bg-brand-600 text-white" : "bg-stone-50 dark:bg-surface-sunk text-stone-700 dark:text-stone-200 hover:bg-stone-100 dark:hover:bg-muted"}`}>
+                    {option}
+                  </button>
+                );
+              })}
+            </div>
+            {result?.items.find((item) => item.id === question.id && !item.correct) && (
+              <p className="mt-2 text-sm text-stone-600 dark:text-muted-foreground">{result.items.find((item) => item.id === question.id)?.rationale}</p>
+            )}
+          </div>
+        ))}
+        {!result
+          ? <Button onClick={submit} disabled={busy || Object.keys(answers).length !== daily.questions.length} className="bg-brand-600 hover:bg-brand-800">Check my 3</Button>
+          : <><p className="text-sm font-semibold" role="status">Scored {result.correct} of {result.total} ({result.score}%) — {result.message}</p>
+            {result.today.count > 1 && <p className="mt-1 text-sm text-stone-600 dark:text-muted-foreground">{result.today.count} finished today&apos;s check.</p>}</>}
+      </CardContent>
+    </Card>
+  );
+}
+
+function InductionBoard({ course, runId, userId }: { course: LearnerCourse; runId: string; userId: string }) {
+  const [board, setBoard] = useState<CourseBoard | null>(null);
+  useEffect(() => { getJson<CourseBoard>(`/api/learn/${userId}/${runId}/board`).then(setBoard).catch(() => {}); }, [runId, userId]);
+  if (course.course_type !== "induction" || !board || !board.ranks.length) return null;
+  const before = board.your_rank === null ? board.ranks.length : board.your_rank - 1;
+  return (
+    <Card className="mt-6">
+      <CardHeader><CardTitle>Finished before you</CardTitle><p className="mt-2 text-sm text-stone-600 dark:text-muted-foreground">The induction graduation list — who certified, in order.</p></CardHeader>
+      <CardContent>
+        <ol className="space-y-2">
+          {board.ranks.slice(0, 8).map((row) => (
+            <li key={row.user_id} className={`flex items-center gap-3 rounded-xl border p-3 text-sm ${row.user_id === userId ? "border-brand-200 dark:border-brand-800 bg-brand-50 dark:bg-brand-950" : ""}`}>
+              <span className="grid size-7 shrink-0 place-items-center rounded-full bg-stone-100 dark:bg-muted text-xs font-bold tabular-nums">{row.position}</span>
+              <span className="font-medium">{row.name}{row.user_id === userId ? " (you)" : ""}</span>
+              <span className="ml-auto tabular-nums text-stone-600 dark:text-muted-foreground">{row.score}%</span>
+            </li>
+          ))}
+        </ol>
+        <p className="mt-3 text-sm font-medium" role="status">
+          {board.your_rank === null
+            ? `${before} ${before === 1 ? "person has" : "people have"} finished ahead of you — certify to join the list.`
+            : before === 0
+              ? "You finished first — nobody to chase."
+              : `${before} finished before you did.`}
+        </p>
       </CardContent>
     </Card>
   );
@@ -216,7 +324,6 @@ function Flashcards({ items, storageKey }: { items: { question: string; answer: 
             </div>
             <div className="flash-flip-face flash-flip-back [grid-area:1/1]" aria-hidden={!flipped}>
               <p className="text-xs font-semibold uppercase tracking-wide text-brand-700 dark:text-brand-300">Answer — click to hide</p>
-              <p className="mt-3 min-h-28 text-xl font-semibold leading-8">{current.question}</p>
               <div className="mt-4 border-t pt-4"><p className="leading-7 text-stone-700 dark:text-stone-200">{current.answer}</p>
                 {current.nuance && <p className="mt-3 text-sm leading-6 text-stone-600 dark:text-muted-foreground"><b>Important context:</b> {current.nuance}</p>}</div>
             </div>
@@ -373,6 +480,7 @@ export default function CoursePlayer() {
 
   const track = course.content;
   const step = (id: string) => course.modules.find((entry) => entry.id === id)!;
+  const induction = course.course_type === "induction";
   const footer = (id: string) => <ModuleFooter module={step(id)} runId={runId} userId={user.id} onChange={load} />;
   const activeVideo = track.videos[Math.min(video, Math.max(track.videos.length - 1, 0))];
 
@@ -406,13 +514,17 @@ export default function CoursePlayer() {
             {course.summary.certificate && (
               <Button nativeButton={false} render={<Link href={`/learn/${runId}/certificate`} />} className="mt-4 w-full bg-white text-surface-deep hover:bg-stone-100"><Award /> View certificate</Button>
             )}
+            <div className="mt-3 flex justify-end"><VoicePicker /></div>
           </div>
         </div>
       </div>
 
       <Journey course={course} runId={runId} />
+      <PreBrief course={course} runId={runId} userId={user.id} />
       <Card className="mt-6"><CardContent className="flex flex-col gap-3 p-5 text-sm sm:flex-row sm:items-center"><div><p className="font-semibold">Next best action</p><p className="mt-1 text-stone-600 dark:text-muted-foreground">{course.summary.baseline_score === null ? "Start the baseline check to record your starting point." : course.summary.modules_complete !== course.summary.modules_total ? `Continue learning: ${course.summary.modules_complete} of ${course.summary.modules_total} modules done.` : !course.summary.passed ? "Take the final assessment; every module is done." : course.summary.certificate ? `Certified: ${course.summary.certificate.code}.` : "Review the material, then take the final."}</p></div><Button nativeButton={false} render={<Link href={course.summary.baseline_score === null ? `/learn/${runId}/assessment/baseline` : course.summary.modules_complete !== course.summary.modules_total ? `/learn/${runId}?tab=${tab}` : !course.summary.passed ? `/learn/${runId}/assessment/final` : `/learn/${runId}/certificate`} />} className="bg-brand-600 hover:bg-brand-800 sm:ml-auto"><ArrowRight /> Continue</Button></CardContent></Card>
       <PracticeMissed runId={runId} userId={user.id} />
+      <DailyCheck runId={runId} userId={user.id} />
+      <InductionBoard course={course} runId={runId} userId={user.id} />
 
       <div className="mt-6"><MaterialSearch course={course} onJump={jumpTo} /></div>
       <Tabs value={tab} onValueChange={changeTab} className="mt-4">
@@ -422,8 +534,8 @@ export default function CoursePlayer() {
           <TabsTrigger value="storyboard"><Film /> Visual story{step("storyboard").completed && <Check className="text-brand-700 dark:text-brand-300" />}</TabsTrigger>
           <TabsTrigger value="faq"><FileQuestion /> FAQ{step("faq").completed && <Check className="text-brand-700 dark:text-brand-300" />}</TabsTrigger>
           <TabsTrigger value="flashcards"><Layers /> Flashcards</TabsTrigger>
-          <TabsTrigger value="mechanism"><FlaskConical /> Mechanism</TabsTrigger>
-          <TabsTrigger value="objections"><MessageCircle /> Objections</TabsTrigger>
+          {!induction && <TabsTrigger value="mechanism"><FlaskConical /> Mechanism</TabsTrigger>}
+          {!induction && <TabsTrigger value="objections"><MessageCircle /> Objections</TabsTrigger>}
         </TabsList>
 
         <TabsContent value="deck" className="mt-5">
@@ -477,7 +589,7 @@ export default function CoursePlayer() {
                 <CardContent className="grid gap-5 p-5 md:grid-cols-[90px_1fr]">
                   <div><span className="grid size-11 place-items-center rounded-full bg-surface-deep font-semibold text-white">{scene.id}</span><p className="mt-2 text-xs text-stone-600 dark:text-muted-foreground">{scene.duration_seconds} sec</p></div>
                   <div>
-                    <h3 className="text-lg font-semibold">{scene.title}</h3>
+                    <div className="flex flex-wrap items-center gap-2"><h3 className="text-lg font-semibold">{scene.title}</h3><ListenButton text={`${scene.title}. ${scene.narration}`} label={`scene ${scene.id}`} /></div>
                     {simple
                       ? <p className="mt-2 text-lg font-medium leading-8">{scene.on_screen_text}</p>
                       : <p className="mt-2 leading-7 text-stone-600 dark:text-muted-foreground">{scene.narration}</p>}
@@ -513,7 +625,7 @@ export default function CoursePlayer() {
           {footer("faq")}
         </TabsContent>
 
-        <TabsContent value="mechanism" className="mt-5">
+        {!induction && <TabsContent value="mechanism" className="mt-5">
           <Card>
             <CardHeader><CardTitle>Mechanism walkthrough</CardTitle><p className="mt-2 text-sm text-stone-600 dark:text-muted-foreground">Walk each step of the action, then prove it with a recorded check. A step with no shared citation says so instead of borrowing one.</p></CardHeader>
             <CardContent>
@@ -522,7 +634,8 @@ export default function CoursePlayer() {
           </Card>
         </TabsContent>
 
-        <TabsContent value="objections" className="mt-5">
+        }
+        {!induction && <TabsContent value="objections" className="mt-5">
           <Card>
             <CardHeader><CardTitle>Handling objections</CardTitle><p className="mt-2 text-sm text-stone-600 dark:text-muted-foreground">Approved answers to the hard questions you will hear in the field.</p></CardHeader>
             <CardContent>
@@ -541,6 +654,7 @@ export default function CoursePlayer() {
             </CardContent>
           </Card>
         </TabsContent>
+        }
 
         <TabsContent value="flashcards" className="mt-5">
           <Card>
@@ -554,7 +668,6 @@ export default function CoursePlayer() {
             </CardContent>
           </Card>
         </TabsContent>
-
       </Tabs>
 
       <div className="mt-4 flex flex-wrap gap-2">
@@ -593,8 +706,8 @@ export default function CoursePlayer() {
       )}
       {refUrl && <SourceSidecar runId={runId} url={refUrl} onClose={() => setRefUrl(null)} />}
 
-      <CourseChatDock runId={runId} learner={course.track} context="learner" userId={user.id}
-        blurb="Ask anything about this course. Answers come from the cited dossier, or from your own training record." />
+      {!induction && <CourseChatDock runId={runId} learner={course.track} context="learner" userId={user.id}
+        blurb="Ask anything about this course. Answers come from the cited dossier, or from your own training record." />}
     </AppShell>
   );
 }

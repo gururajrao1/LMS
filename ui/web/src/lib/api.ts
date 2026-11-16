@@ -54,6 +54,8 @@ export type Person = {
   team?: string;
 };
 /** Your rank plus anonymized neighbors; peer names never leave the server. */
+export type BoardRank = { position: number; user_id: string; name: string; score: number | null; issued_at: string };
+export type CourseBoard = { run_id: string; course_type: string; ranks: BoardRank[]; your_rank: number | null };
 export type NearbyRank = {
   user_id: string; rank: number; of: number; points: number;
   neighbors: { rank: number; points: number; you: boolean; name: string | null }[];
@@ -212,6 +214,14 @@ export type Certificate = {
   approved_by?: { name: string; title: string }[];
   drug?: Drug;
   course_title?: string;
+  course_description?: string;
+  course_type?: "drug" | "induction";
+  program_title?: string;
+  organization?: string;
+  topics_covered?: string[];
+  modules_done?: number;
+  modules_minutes?: number;
+  questions_total?: number;
 };
 
 export type Badge = { id: string; label: string; earned: boolean };
@@ -244,7 +254,7 @@ export type SafetyReport = {
   reviewed_by: string | null; reviewed_at: string | null;
 };
 
-export type ModuleFeedback = { id: string; module_id: string; rating: number; comment: string; created_at: string };
+export type ModuleFeedback = { id: string; module_id: string; rating: number; comment: string; confused?: boolean; created_at: string };
 export type LearnerModule = { id: string; title: string; kind: string; minutes: number; completed: boolean; feedback: ModuleFeedback | null };
 
 /** Where a learner stands with one assignment. Derived, like the programme lifecycle. */
@@ -263,9 +273,12 @@ export type Assignment = {
   state: AssignmentState;
   days_remaining: number | null;
   days_until_start: number | null;
+  course_type: "drug" | "induction";
 };
 
 export type LearnerHome = { user: Person; track: Learner; courses: Assignment[] };
+
+export type LearnerNotification = { kind: string; run_id: string; title: string; message: string; href: string; at: string };
 
 export type LearnerCourse = {
   user: Person;
@@ -273,6 +286,7 @@ export type LearnerCourse = {
   manifest: { drug: Drug; citation_count: number };
   sources: SourceList;
   content: CourseTrack;
+  course_type: "drug" | "induction";
   publication: Publication;
   version: number;
   modules: LearnerModule[];

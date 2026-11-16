@@ -1,0 +1,266 @@
+{
+  "id": "01_disease_foundation",
+  "title": "Disease and Therapeutic-Area Foundation: HR-Positive/HER2-Negative Breast Cancer (Context for Ibrance/Palbociclib)",
+  "summary": "Breast cancer is the most commonly diagnosed cancer among U.S. women and a leading cause of cancer death, with hormone receptor-positive (HR+)/HER2-negative disease representing the majority (roughly 65\u201370%) of all breast cancer cases. This subtype is driven by estrogen/progesterone receptor signaling and dysregulated cyclin D-CDK4/6-Rb cell cycle pathway activity, which underlies the rationale for CDK4/6 inhibitors such as palbociclib (Ibrance). In the metastatic setting, the addition of a CDK4/6 inhibitor to endocrine therapy (an aromatase inhibitor or fulvestrant) is the guideline-recommended (NCCN) standard first-line approach, supported by phase III trials (PALOMA-2, MONALEESA-2, MONARCH-3) showing consistent, substantial progression-free survival benefit over endocrine therapy alone. Three CDK4/6 inhibitors \u2014 palbociclib, ribociclib, and abemaciclib \u2014 are FDA-approved in this setting; indirect comparisons suggest broadly similar PFS but have raised questions about differential overall-survival benefit, an area of active clinical and research interest.",
+  "claims": [
+    {
+      "text": "In 2026, an estimated 321,910 women (and 2,670 men) will be diagnosed with breast cancer in the U.S., and an estimated 42,140 women will die of the disease, making it the most common cancer diagnosis in American women (after skin cancers) and the second leading cause of cancer death in women.",
+      "evidence_type": "epidemiologic statistic (NCI SEER / ACS-derived estimate)",
+      "citations": [
+        {
+          "title": "Cancer of the Breast (Female) - Cancer Stat Facts",
+          "url": "https://seer.cancer.gov/statfacts/html/breast.html",
+          "locator": "SEER Stat Facts, Breast (Female)",
+          "supporting_text": "In 2026, it is estimated that there will be 321,910 new cases of female breast cancer and an estimated 42,140 people will die of this disease."
+        },
+        {
+          "title": "Common Cancer Sites \u2014 Cancer Stat Facts",
+          "url": "https://seer.cancer.gov/statfacts/html/common.html",
+          "locator": "SEER Stat Facts, Common Cancer Sites",
+          "supporting_text": "An estimated 321,910 women and 2,670 men will be diagnosed with breast cancer, which makes it the second most common cancer diagnosis."
+        },
+        {
+          "title": "Cancer of the Breast (Female) - Cancer Stat Facts",
+          "url": "https://seer.cancer.gov/statfacts/html/breast.html",
+          "locator": "SEER Stat Facts, Breast (Female)",
+          "supporting_text": "Female breast cancer is the fourth leading cause of cancer death in the United States."
+        }
+      ]
+    },
+    {
+      "text": "The age-adjusted incidence rate of female breast cancer is 132.5 per 100,000 women per year (2019\u20132023 data), and the lifetime risk of a woman being diagnosed with breast cancer is approximately 13.0% (about 1 in 8).",
+      "evidence_type": "epidemiologic statistic (NCI SEER)",
+      "citations": [
+        {
+          "title": "Cancer of the Breast (Female) - Cancer Stat Facts",
+          "url": "https://seer.cancer.gov/statfacts/html/breast.html",
+          "locator": "SEER Stat Facts, Breast (Female)",
+          "supporting_text": "The rate of new cases of female breast cancer was 132.5 per 100,000 women per year. Approximately 13.0 percent of women will be diagnosed with female breast cancer at some point during their lifetime, based on 2021\u20132023 data."
+        }
+      ]
+    },
+    {
+      "text": "Overall 5-year relative survival for breast cancer is strongly stage-dependent: approximately 99\u2013100% for localized disease but only about 30% for distant (metastatic) stage disease at diagnosis, and roughly 64% of cases are diagnosed at a localized stage.",
+      "evidence_type": "epidemiologic statistic (NCI SEER / ACS)",
+      "citations": [
+        {
+          "title": "Cancer of the Breast (Female) - Cancer Stat Facts",
+          "url": "https://seer.cancer.gov/statfacts/html/breast.html",
+          "locator": "SEER Stat Facts, Breast (Female)",
+          "supporting_text": "For female breast cancer, 64.0% are diagnosed at the local stage. The 5-year relative survival for localized female breast cancer is 100.0%."
+        },
+        {
+          "title": "Breast Cancer Statistics And Resources | BCRF",
+          "url": "https://www.bcrf.org/breast-cancer-statistics-and-resources/",
+          "locator": "BCRF Breast Cancer Statistics and Resources",
+          "supporting_text": "The overall five-year relative survival rate is 99 percent for localized disease, 86 percent for regional disease, and 30 percent for distant-stage disease."
+        }
+      ]
+    },
+    {
+      "text": "Hormone receptor-positive (HR+)/HER2-negative breast cancer, defined by presence of estrogen and/or progesterone receptor expression and absence of HER2 gene amplification, is the most common breast cancer subtype, accounting for roughly 65\u201370% of all breast cancers, with incidence increasing with age.",
+      "evidence_type": "peer-reviewed review",
+      "citations": [
+        {
+          "title": "Systemic therapy for hormone receptor\u2010positive/HER2\u2010negative early stage and metastatic breast cancer - Huppert et al., CA: A Cancer Journal for Clinicians",
+          "url": "https://acsjournals.onlinelibrary.wiley.com/doi/full/10.3322/caac.21777",
+          "locator": "Huppert 2023, CA Cancer J Clin",
+          "supporting_text": "Hormone receptor (HR)-positive and human epidermal growth factor receptor 2 (HER2)-negative breast cancer is defined by the presence of the estrogen receptor and/or the progesterone receptor and the absence of HER2 gene amplification. HR-positive/HER2-negative breast cancer accounts for 65%\u201370% of all breast cancers, and incidence increases with increasing age."
+        },
+        {
+          "title": "Hormone Receptor Positive/HER2 Negative Breast Cancer With Isolated Bladder Metastasis: A Rare Case - PMC",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8188964/",
+          "locator": "PMC8188964",
+          "supporting_text": "Hormone receptor positive (HR+) and HER2 negative (HER2\u2212) breast cancers account for at least 60% to 70% of all breast cancer cases."
+        }
+      ]
+    },
+    {
+      "text": "Incidence rates of HR-positive/HER2-negative breast cancer differ by race/ethnicity, being highest in White women (138 per 100,000), about 23% higher than in Black women (112 per 100,000) and about 45% higher than in Hispanic and Asian/Pacific Islander women (94\u201397 per 100,000); the median age at diagnosis is approximately 61 years.",
+      "evidence_type": "peer-reviewed review (population data)",
+      "citations": [
+        {
+          "title": "Systemic therapy for hormone receptor\u2010positive/HER2\u2010negative early stage and metastatic breast cancer - Huppert et al., CA: A Cancer Journal for Clinicians",
+          "url": "https://acsjournals.onlinelibrary.wiley.com/doi/full/10.3322/caac.21777",
+          "locator": "Huppert 2023, CA Cancer J Clin",
+          "supporting_text": "Incidence rates of HR-positive/HER2-negative breast cancer are highest in White women (138 cases per 100,000), with rates 23% higher than in Black women (112 cases per 100,000) and 45% higher than in Hispanic and Asian/Pacific Islander women (94\u201397 cases per 100,000)... the median age at diagnosis of HR-positive/HER2-negative breast cancer is approximately 61 years."
+        }
+      ]
+    },
+    {
+      "text": "Risk factors for HR-positive breast cancer include germline genetic mutations, family history, increased age, obesity, heavy alcohol intake, decreased physical activity, early menarche, late first full-term pregnancy, late menopause, and exogenous hormone use.",
+      "evidence_type": "peer-reviewed review",
+      "citations": [
+        {
+          "title": "Systemic therapy for hormone receptor\u2010positive/HER2\u2010negative early stage and metastatic breast cancer - Huppert et al., CA: A Cancer Journal for Clinicians",
+          "url": "https://acsjournals.onlinelibrary.wiley.com/doi/full/10.3322/caac.21777",
+          "locator": "Huppert 2023, CA Cancer J Clin",
+          "supporting_text": "Risk factors for HR-positive breast cancer include germline genetic mutations, family history, increased age, obesity, heavy alcohol intake, decreased physical activity, early menarche, late first full-term pregnancy, and late menopause."
+        }
+      ]
+    },
+    {
+      "text": "HR+/HER2- tumors most commonly metastasize to lymph nodes, bone, liver, lungs, and brain, reflecting typical patterns of disease spread in this molecular subtype.",
+      "evidence_type": "peer-reviewed case report/review",
+      "citations": [
+        {
+          "title": "Hormone Receptor Positive/HER2 Negative Breast Cancer With Isolated Bladder Metastasis: A Rare Case - PMC",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8188964/",
+          "locator": "PMC8188964",
+          "supporting_text": "They usually metastasize to lymph nodes, bones, liver, lungs, and brain."
+        }
+      ]
+    },
+    {
+      "text": "De novo metastatic breast cancer (disease that is metastatic at initial diagnosis) accounts for approximately 6\u201310% of all breast cancers and about 30% of all metastatic breast cancer, with HR+/HER2- tumors being the most frequent subtype in this de novo presentation.",
+      "evidence_type": "peer-reviewed review",
+      "citations": [
+        {
+          "title": "HR+/HER2\u2212 de novo metastatic breast cancer: a true peculiar entity? - PMC",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10012832/",
+          "locator": "PMC10012832",
+          "supporting_text": "De novo metastatic breast cancer (dnMBC) accounts for ~6\u201310% of all breast cancers and for ~30% of MBC with increasing incidence over time. Hormone receptor-positive/human epidermal growth factor receptor 2-negative (HR+/HER2\u2212) tumours are the most frequent subtype."
+        }
+      ]
+    },
+    {
+      "text": "HER2-low breast cancer (immunohistochemistry [IHC] score of 1+ or 2+ with negative in situ hybridization) is recognized as a distinct biomarker category under 2018 ASCO/CAP guidelines, with reported prevalence ranging from about 31% to 62% across studies, and it has become clinically relevant with the emergence of HER2-targeted antibody-drug conjugates.",
+      "evidence_type": "peer-reviewed review referencing professional guideline (ASCO/CAP)",
+      "citations": [
+        {
+          "title": "Clinicopathological characteristics, evolution, treatment pattern and outcomes of hormone-receptor-positive/HER2-low metastatic breast cancer - PMC",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10595148/",
+          "locator": "PMC10595148",
+          "supporting_text": "Breast cancers with immunohistochemistry (IHC) scores of 1+ or 2+ and negative in situ hybridization (ISH) are termed HER2-low according to the 2018 ASCO/CAP guidelines. The reported prevalence of HER2-low breast cancer spans from 31.0% to 61.6% across various studies and breast cancer types."
+        }
+      ]
+    },
+    {
+      "text": "The cyclin D\u2013CDK4/6\u2013retinoblastoma (Rb) pathway is a key cell-cycle machinery target in HR+/HER2- metastatic breast cancer; CDK4/6 inhibitors are administered with an endocrine therapy backbone and act by inducing cell cycle arrest, providing the pathophysiologic rationale for combination therapy.",
+      "evidence_type": "peer-reviewed review (mechanism)",
+      "citations": [
+        {
+          "title": "The dilemma of selecting a first line CDK4/6 inhibitor for hormone receptor-positive/HER2-negative metastatic breast cancer - PMC",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10033931/",
+          "locator": "PMC10033931 (npj Breast Cancer, 2023)",
+          "supporting_text": "CDK4/6i are usually administered with an endocrine backbone and lead to cell cycle arrest by targeting the cell cycle machinery."
+        }
+      ]
+    },
+    {
+      "text": "During metastatic progression, HR+/HER2- tumors can undergo a biological shift toward a more aggressive, estrogen-independent (non-luminal) phenotype, which has prognostic implications and is associated with reduced sensitivity to endocrine therapy and increased sensitivity to chemotherapy in a subset of tumors.",
+      "evidence_type": "peer-reviewed review",
+      "citations": [
+        {
+          "title": "Clinical implications of the intrinsic molecular subtypes in hormone receptor-positive and HER2-negative metastatic breast cancer - ScienceDirect",
+          "url": "https://www.sciencedirect.com/science/article/pii/S0305737222001724",
+          "locator": "ScienceDirect review, 2022",
+          "supporting_text": "During tumor progression, a shift toward a non-luminal estrogen-independent and more aggressive phenotype has been demonstrated... non-luminal biology has been detected in a substantial proportion (5\u201320%) of hormone receptor-positive (HoR+) tumors, has prognostic value, and identifies reduced and increased sensitivity to endocrine therapy and chemotherapy, respectively."
+        }
+      ]
+    },
+    {
+      "text": "Real-world cohort data indicate a substantial median latency between primary HR+/HER2- breast cancer diagnosis and development of metastatic disease (median 5.4 years in one UK cancer center cohort), and most patients (75.1%) received endocrine therapy as first-line systemic treatment for metastatic disease, with first-line chemotherapy use declining over time.",
+      "evidence_type": "retrospective real-world cohort study",
+      "citations": [
+        {
+          "title": "Systemic treatment of hormone receptor positive, human epidermal growth factor 2 negative metastatic breast cancer: retrospective analysis from Leeds Cancer Centre",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6975018/",
+          "locator": "PMC6975018",
+          "supporting_text": "Median age was 67 years, 85.2% were post-menopausal and median time between primary diagnosis and metastasis was 5.4 years. Most (75.1%) patients received endocrine therapy as first line systemic treatment (1st LoT); use of 1st LoT chemotherapy halved between 2012 and 2017."
+        }
+      ]
+    },
+    {
+      "text": "Current NCCN guidelines recommend first-line treatment of HR+/HER2- metastatic breast cancer with endocrine therapy (an aromatase inhibitor or fulvestrant, with ovarian suppression added for premenopausal patients) combined with a CDK4/6 inhibitor; the three NCCN-listed CDK4/6 inhibitors approved for this setting are palbociclib (Ibrance), ribociclib (Kisqali), and abemaciclib (Verzenio).",
+      "evidence_type": "professional guideline summary (NCCN, as reported in secondary clinical education sources)",
+      "citations": [
+        {
+          "title": "A Nurse's Overview of First-Line Treatment for HR+ Metastatic Breast Cancer",
+          "url": "https://www.oncnursingnews.com/view/a-nurse-s-overview-of-first-line-treatment-for-hr-metastatic-breast-cancer",
+          "locator": "OncNursingNews, Sept 2025",
+          "supporting_text": "In the first line of therapy, the NCCN recommends treating patients with a combination of endocrine therapy\u2014either an aromatase inhibitor or fulvestrant (Faslodex)\u2014and a CDK4/6 inhibitor... The approved CDK4/6 inhibitors recommended by NCCN guidelines for patients with HR-positive, HER2-negative metastatic breast cancer include ribociclib (Kisqali), abemaciclib (Verzenio), and palbociclib (Ibrance)."
+        },
+        {
+          "title": "NCCN Guidelines for HR+/HER2- Metastatic Breast Cancer | OncLive",
+          "url": "https://www.onclive.com/view/nccn-guidelines-for-hr-her2-metastatic-breast-cancer",
+          "locator": "OncLive expert interview",
+          "supporting_text": "The latest NCCN guidelines really call for first-line therapy being an aromatase inhibitor alone or with a CDK4/6 inhibitor... for premenopausal patients, it calls for ovarian suppression, along with either an aromatase inhibitor or fulvestrant."
+        }
+      ]
+    },
+    {
+      "text": "The combination of an endocrine agent with a CDK4/6 inhibitor is considered the standard of care in the first-line metastatic setting for HR+/HER2- breast cancer, based on multiple large randomized phase III trials (including PALOMA-2 for palbociclib, MONALEESA-2 for ribociclib, and MONARCH-3 for abemaciclib) demonstrating consistent, significant improvement in progression-free survival compared with endocrine therapy alone.",
+      "evidence_type": "peer-reviewed review synthesizing pivotal trial data",
+      "citations": [
+        {
+          "title": "The dilemma of selecting a first line CDK4/6 inhibitor for hormone receptor-positive/HER2-negative metastatic breast cancer - PMC",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10033931/",
+          "locator": "PMC10033931",
+          "supporting_text": "The combination of an endocrine agent with a CDK4/6 inhibitor is the standard of care in the first-line setting for patients with hormone receptor-positive, HER2-negative metastatic breast cancer. Randomized trials have demonstrated similar and significant improvements in progression-free survival using the three available CDK4/6 inhibitors and led to regulatory approval."
+        },
+        {
+          "title": "Indirect Treatment Comparison of First-Line CDK4/6-Inhibitors in Post-Menopausal Patients with HR+/HER2\u2212 Metastatic Breast Cancer",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10527344/",
+          "locator": "PMC10527344",
+          "supporting_text": "Landmark randomized controlled trials (RCTs) evaluating this combination in post-menopausal women (PALOMA-2, MONALEESA-2 and MONARCH-3) have demonstrated significant improvements in progression-free survival (PFS), establishing this combination as the standard of care in first line endocrine treatment of patients with HR+/HER2\u2212 MBC."
+        }
+      ]
+    },
+    {
+      "text": "Although the three FDA-approved CDK4/6 inhibitors (palbociclib, ribociclib, abemaciclib) show broadly similar progression-free survival benefit in indirect comparisons, mature overall survival data have raised questions about potential differences among agents, an area of ongoing clinical and research debate; no significant OS or PFS differences were found between the three agents in one graphical reconstructive indirect comparison of postmenopausal patients.",
+      "evidence_type": "peer-reviewed indirect treatment comparison / narrative review (indirect comparison \u2014 interpret cautiously given absence of head-to-head trials)",
+      "citations": [
+        {
+          "title": "The dilemma of selecting a first line CDK4/6 inhibitor for hormone receptor-positive/HER2-negative metastatic breast cancer - PMC",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10033931/",
+          "locator": "PMC10033931",
+          "supporting_text": "However, mature overall survival data now suggest potential differences among the various agents, suggesting an evolution in selection preferences. The three FDA approved agents in the metastatic setting are palbociclib, ribociclib and abemaciclib."
+        },
+        {
+          "title": "Indirect Treatment Comparison of First-Line CDK4/6-Inhibitors in Post-Menopausal Patients with HR+/HER2\u2212 Metastatic Breast Cancer",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10527344/",
+          "locator": "PMC10527344",
+          "supporting_text": "No significant OS and PFS differences were found between palbociclib, ribociclib, and abemaciclib, supporting all three drugs as feasible options in first-line treatment... However, recent updates of overall survival (OS) showed inconsistencies in the OS benefit for palbociclib compared with the other two CDK4/6-inhibitors."
+        }
+      ]
+    },
+    {
+      "text": "In a real-world US claims/EHR dataset (Flatiron Health, 2015\u20132024) of first-line CDK4/6 inhibitor plus aromatase inhibitor use in HR+/HER2- metastatic breast cancer, palbociclib was associated with longer treatment duration than ribociclib or abemaciclib, and patients starting on ribociclib or abemaciclib were more likely to switch CDK4/6 inhibitors, most often to palbociclib.",
+      "evidence_type": "real-world observational cohort study (indirect, non-randomized comparison \u2014 interpret cautiously)",
+      "citations": [
+        {
+          "title": "First-Line CDK4/6 Inhibitors Plus Aromatase Inhibitors: Treatment Duration and Subsequent Therapies in HR-Positive/HER2-Negative Metastatic Breast Cancer",
+          "url": "https://www.conference-correspondent.com/highlights/esmo/esmo-2025-early-breast-cancer/first-line-cdk4-6-inhibitors-plus-aromatase-inhibitors",
+          "locator": "Conference Correspondent, ESMO 2025 summary",
+          "supporting_text": "PAL demonstrated longer treatment duration compared with RIB and ABE. Patients who started 1L RIB and ABE were more likely to switch CDK4/6 inhibitors, most often to PAL."
+        }
+      ]
+    },
+    {
+      "text": "HER2 status materially affects prognosis: among metastatic ER-positive breast cancers nationally, 5-year overall survival is markedly lower for HER2-negative tumors (31.9%) than for HER2-positive tumors (46.0%), illustrating the prognostic importance of accurate HR/HER2 biomarker classification used to identify patients for CDK4/6 inhibitor therapy versus HER2-directed therapy.",
+      "evidence_type": "large registry-based cohort study (National Cancer Database)",
+      "citations": [
+        {
+          "title": "Prognostic implications of HER2NEU\u2010low in metastatic breast cancer",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10839127/",
+          "locator": "PMC10839127",
+          "supporting_text": "Among metastatic ER\u2010positive cancers nationally, 5\u2010year overall survival (OS) for HER2\u2010negative tumors is 31.9% versus 46.0% for HER2\u2010positive disease."
+        }
+      ]
+    }
+  ],
+  "gaps": [
+    "Detailed, primary-source (ASCO/CAP) diagnostic criteria and IHC/ISH scoring thresholds for ER, PR, and HER2 testing were not directly retrieved from ASCO/CAP guideline documents in this search; the HER2-low definition cited is drawn from a secondary peer-reviewed paper referencing the 2018 ASCO/CAP guideline rather than the primary guideline text itself.",
+    "Current full-text NCCN Clinical Practice Guidelines in Oncology for Breast Cancer were not directly accessed (NCCN content is subscription/registration-gated); guideline recommendations here are sourced from secondary clinical-education summaries (OncNursingNews, OncLive) describing NCCN recommendations rather than the primary NCCN document.",
+    "No CDC-specific surveillance or public health guidance document on breast cancer was retrieved in this search beyond general incidence/mortality statistics; CDC's specific screening/policy guidance was not directly reviewed.",
+    "Comparative overall survival data across the three CDK4/6 inhibitors (palbociclib, ribociclib, abemaciclib) are inconsistent across sources and derive largely from indirect (non-head-to-head) comparisons; this should be treated as a gap/area of uncertainty rather than settled evidence.",
+    "Specific patient identification/selection criteria (e.g., biomarker testing algorithms, menopausal status determination, staging workup) beyond general first-line treatment selection factors were not fully detailed in retrieved sources."
+  ],
+  "warnings": [
+    "Several claims regarding NCCN guideline content are sourced from secondary journalistic/clinical-education summaries (OncNursingNews, OncLive) rather than the primary NCCN Guidelines document itself, which was not accessible via web search in this session; these should be verified against the current primary NCCN Breast Cancer Guideline before use in a definitive educational context.",
+    "Comparisons among palbociclib, ribociclib, and abemaciclib (including real-world treatment duration/switching patterns and overall survival differences) are based on indirect comparisons, real-world observational data, or conference-summary sources rather than head-to-head randomized trials, and should be interpreted cautiously per standard evidence hierarchy principles.",
+    "Epidemiologic statistics (SEER/ACS 2026 estimates) are projections/estimates for the year 2026 based on earlier reported data, not final observed counts.",
+    "This section addresses disease background and treatment landscape context; it does not include Ibrance (palbociclib)-specific FDA label information (indication, dosing, efficacy/safety data from PALOMA trials, boxed warnings), which should be covered in a separate product-specific section using DailyMed/FDA label and pivotal trial primary sources."
+  ]
+}
