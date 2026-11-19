@@ -1,0 +1,71 @@
+{
+  "run_id": "patient-recruitment-2026",
+  "version": 1,
+  "status": "published",
+  "comments": [],
+  "versions": [
+    {
+      "version": 1,
+      "summary": "Agent-generated first draft",
+      "author_id": "agent",
+      "author_name": "PharmaLearn agent",
+      "addressed": [],
+      "created_at": null
+    }
+  ],
+  "signoffs": [],
+  "publication": {
+    "version": 1,
+    "published_at": "2026-11-17T00:00:00+00:00",
+    "published_by": "Guru Raja",
+    "overrides": [],
+    "starts_on": "2026-11-17",
+    "due_on": "2026-11-30",
+    "frequency": "once",
+    "next_due_on": null,
+    "certificate_template": "classic",
+    "message": "Complete before the end-of-November review. About 15 min: 17 slides with the visual story, then a 12-question check. You need 70% to pass.",
+    "assignees": [
+      "guru-raja",
+      "pattabhi",
+      "shashidhar-gururao",
+      "parimala"
+    ],
+    "notifications": [
+      {
+        "to": "demo@pharmalearn.local",
+        "name": "Demo cohort",
+        "subject": "Training assigned: complete by 2026-11-30",
+        "sent_at": "2026-11-17T00:00:00+00:00"
+      }
+    ]
+  },
+  "audit": [
+    {
+      "id": "c3d6756be29f",
+      "at": "2026-11-17T05:13:07.338954+00:00",
+      "action": "course.typed",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja marked this course induction",
+      "detail": {
+        "course_type": "induction"
+      },
+      "prev_hash": null,
+      "hash": "df8e01bc4c2b8882"
+    }
+  ],
+  "description": "Covers the ClairLabs patient recruitment programme end to end: the five-step journey from screener to recruited participant, the AI-driven funnel, HCP and advocacy outreach, data intelligence, site activation, patient experience and the go-live roadmap. Certifies the learner completed the patient recruitment induction (v1, pass mark 70%).",
+  "topics_covered": [
+    "Recruitment journey",
+    "AI-driven funnel",
+    "HCP and advocacy outreach",
+    "Site activation",
+    "Patient experience",
+    "Go-live roadmap"
+  ],
+  "organization": "Clair Labs",
+  "course_type": "induction"
+}

@@ -11,14 +11,16 @@ import { PeerBoard } from "@/components/peer-board";
 import { Assignment, AssignmentState, getJson, LearnerHome, LearnerNotification, LearnerSummary } from "@/lib/api";
 import { buildNudges, DashboardAlert, timing } from "@/lib/learner-home";
 
-/** The inbox behind the bell: assigned, certified, and the daily nudge. Urgent flags stay in the nudges above. */
+/** The inbox behind the bell: everything the learner has not acted on yet.
+ * Overdue and due-soon items surface here as well as in the nudges above,
+ * so the bell alone answers "what needs me". */
 function InboxCard({ userId }: { userId: string }) {
   const [notes, setNotes] = useState<LearnerNotification[] | null>(null);
   useEffect(() => {
     getJson<{ notifications: LearnerNotification[] }>(`/api/learn/${userId}/notifications`)
       .then((inbox) => setNotes(inbox.notifications)).catch(() => {});
   }, [userId]);
-  const info = (notes ?? []).filter((note) => note.kind === "assigned" || note.kind === "certified");
+  const info = notes ?? [];
   if (!info.length) return null;
   return (
     <Card className="mt-8">
@@ -212,7 +214,7 @@ export default function LearnerHomePage() {
         <Card className="mt-8">
           <CardContent className="flex flex-col gap-3 p-5 text-sm sm:flex-row sm:items-center">
             <div><p className="font-semibold">Today&apos;s 2pm check · 3 questions, 2 min</p><p className="mt-1 text-stone-600 dark:text-muted-foreground">A short check on <b>{next.title ?? next.drug.brand}</b>. Practice only — it never counts as an assessment attempt.</p></div>
-            <Link href={`/learn/${next.run_id}`} className="inline-flex items-center gap-1.5 rounded-lg bg-brand-600 px-4 py-2 font-medium text-white hover:bg-brand-800 sm:ml-auto">Take today&apos;s check <ArrowRight size={14} /></Link>
+            <Link href={`/learn/${next.run_id}#daily-check`} className="inline-flex items-center gap-1.5 rounded-lg bg-brand-600 px-4 py-2 font-medium text-white hover:bg-brand-800 sm:ml-auto">Take today&apos;s check <ArrowRight size={14} /></Link>
           </CardContent>
         </Card>
       )}
@@ -247,7 +249,7 @@ export default function LearnerHomePage() {
         <Card className="mt-9"><CardContent className="flex flex-col items-center gap-3 p-12 text-center text-stone-600 dark:text-muted-foreground">
           <Inbox size={28} className="text-stone-300" />
           <p>Nothing has been assigned to you yet.</p>
-          <p className="text-sm">Courses appear here as soon as a medical education lead publishes one to your role.</p>
+          <p className="text-sm">Courses appear here as soon as a medical education lead publishes one to your role. If you expected training here, ask your training lead to check your assignment.</p>
         </CardContent></Card>
       ) : (
         SECTIONS.map(({ state, title, blurb }) => {

@@ -52,6 +52,8 @@ export type Person = {
   private_profile?: boolean;
   /** Named team for private team boards; absent means unassigned. */
   team?: string;
+  /** Roster id of the learner's manager for lockout routing; absent means admin on duty. */
+  manager?: string;
 };
 /** Your rank plus anonymized neighbors; peer names never leave the server. */
 export type BoardRank = { position: number; user_id: string; name: string; score: number | null; issued_at: string };
@@ -165,6 +167,8 @@ export type Publication = {
   next_due_on?: string | null;
   certificate_template?: string | null;
   assignees: string[];
+  group_ids?: string[];
+  max_final_attempts?: number;
   notifications: { to: string; name: string; subject: string; sent_at: string }[];
   // Still-failing checks that were carried through deliberately. Absent on courses
   // published before overrides were recorded.
@@ -198,6 +202,8 @@ export type CourseReview = {
 };
 
 export type CertificateTemplate = { id: string; label: string; description: string };
+
+export type LearnerGroup = { id: string; label: string; members: string[] };
 
 export type Certificate = {
   id: string;
@@ -339,6 +345,9 @@ export type Assessment = {
   groups: QuestionGroup[];
   questions: AskedQuestion[];
   attempts: Attempt[];
+  max_attempts?: number | null;
+  attempts_remaining?: number | null;
+  locked?: boolean;
 };
 
 export type ReviewedQuestion = AskedQuestion & {

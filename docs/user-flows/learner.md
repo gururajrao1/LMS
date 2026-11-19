@@ -97,7 +97,7 @@ Gated: submitting before all four modules are complete returns 400, and the jour
 
 The result panel gives the score, pass or fail, and the knowledge uplift against your baseline, then the full per-question review with rationale and citations.
 
-**Failing** offers **Try again** and **Review the material**; attempts are unlimited and every one is recorded. **Passing** issues the certificate immediately and links to it.
+**Failing** offers **Try again** and **Review the material** while attempts remain (3 failed finals by default, per-course setting); every attempt is recorded. Failing the last allowed attempt locks the final until the training team resets it. **Passing** issues the certificate immediately and links to it.
 
 ---
 

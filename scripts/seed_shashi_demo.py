@@ -91,12 +91,12 @@ def clone_content(run_id: str, program_title: str):
     manifest["run_id"] = run_id
     manifest["program_title"] = program_title
     manifest_path.write_text(json.dumps(manifest, indent=2) + "\n")
-    # Shashi: 10-15 questions, 80% pass. Source has 12 questions; set pass to 80%.
+    # Baseline standard: 10-15 questions, 70% pass. Source has 12 questions; set pass to 70%.
     for track in ("hcp", "msl"):
         quiz_path = dst / track / "quiz.json"
         if quiz_path.exists():
             quiz = json.loads(quiz_path.read_text())
-            quiz["passing_score"] = 80
+            quiz["passing_score"] = 70
             quiz_path.write_text(json.dumps(quiz, indent=2) + "\n")
     return dst
 

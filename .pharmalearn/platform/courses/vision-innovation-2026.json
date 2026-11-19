@@ -38,7 +38,7 @@
     "frequency": "once",
     "next_due_on": null,
     "certificate_template": "classic",
-    "message": "Vision and the values behind it. About 10 min plus a 12-question check. You need 80% to pass.",
+    "message": "Vision and the values behind it. About 10 min plus a 12-question check. You need 70% to pass.",
     "assignees": [
       "guru-raja",
       "pattabhi",
@@ -146,7 +146,7 @@
       "hash": "4f8bbc421aca4e0a"
     }
   ],
-  "description": "Covers vision and core values: what we stand for and why. Certifies the learner completed the induction (v2, pass mark 80%).",
+  "description": "Covers vision and core values: what we stand for and why. Certifies the learner completed the induction (v2, pass mark 70%).",
   "course_type": "induction",
   "topics_covered": [
     "Organisation vision",

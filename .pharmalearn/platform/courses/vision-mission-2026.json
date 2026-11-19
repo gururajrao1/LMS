@@ -38,7 +38,7 @@
     "frequency": "once",
     "next_due_on": null,
     "certificate_template": "classic",
-    "message": "Complete this course before the end-of-November review. About 15 min: 13 slides with voice, then a 12-question check. You need 80% to pass.",
+    "message": "Complete this course before the end-of-November review. About 15 min: 13 slides with voice, then a 12-question check. You need 70% to pass.",
     "assignees": [
       "guru-raja",
       "pattabhi",
@@ -161,7 +161,7 @@
       "hash": "ab3a3d35673f5683"
     }
   ],
-  "description": "Covers organisation vision and mission, strategic goals and core values. Certifies the learner completed the induction track (v2, pass mark 80%).",
+  "description": "Covers organisation vision and mission, strategic goals and core values. Certifies the learner completed the induction track (v2, pass mark 70%).",
   "course_type": "induction",
   "topics_covered": [
     "Organisation vision",

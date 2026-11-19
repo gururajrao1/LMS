@@ -9,7 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { NativeSelect } from "@/components/ui/native-select";
 import { Textarea } from "@/components/ui/textarea";
-import { Capability, Person, RoleEntry, getJson, sendJson } from "@/lib/api";
+import { Capability, LearnerGroup, Person, RoleEntry, getJson, sendJson } from "@/lib/api";
 import { useSession } from "@/lib/session";
 
 export default function RolesPage() {
@@ -25,12 +25,18 @@ export default function RolesPage() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
+  const [groups, setGroups] = useState<LearnerGroup[]>([]);
+  const [groupLabel, setGroupLabel] = useState("");
+  const [groupMembers, setGroupMembers] = useState<string[]>([]);
+  const [editingGroup, setEditingGroup] = useState<string | null>(null);
+  const [editMembers, setEditMembers] = useState<string[]>([]);
 
   const refresh = useCallback(() => {
     if (!user) return;
     getJson<RoleEntry[]>("/api/roles").then(setRoles).catch(() => setError("Could not load roles."));
     getJson<Capability[]>("/api/capabilities").then(setCapabilities).catch(() => undefined);
     getJson<Person[]>("/api/people").then(setPeople).catch(() => setError("Could not load the roster."));
+    getJson<LearnerGroup[]>("/api/groups").then(setGroups).catch(() => undefined);
   }, [user]);
 
   useEffect(refresh, [refresh]);
@@ -67,6 +73,55 @@ export default function RolesPage() {
       setNotice(`${person.name} is now ${roleLabel(roleId)}.`);
       refresh();
     } catch (reason) { setError(reason instanceof Error ? reason.message : "Could not assign the role"); }
+  }
+
+  async function setManager(person: Person, managerId: string) {
+    if (!user) { setError("Sign in again to manage the roster."); return; }
+    setError(""); setNotice("");
+    try {
+      await sendJson(`/api/people/${person.id}/manager`, { by_user_id: user.id, manager_id: managerId });
+      const managerName = managerId ? people.find((entry) => entry.id === managerId)?.name ?? managerId : "";
+      setNotice(managerId ? `${person.name} now reports to ${managerName}.` : `Cleared the manager for ${person.name}.`);
+      refresh();
+    } catch (reason) { setError(reason instanceof Error ? reason.message : "Could not set the manager"); }
+  }
+
+  const togglePick = (current: string[], setter: (next: string[]) => void) => (id: string) =>
+    setter(current.includes(id) ? current.filter((entry) => entry !== id) : [...current, id]);
+
+  async function createGroup(event: FormEvent) {
+    event.preventDefault();
+    if (!user) { setError("Sign in again to manage groups."); return; }
+    setBusy(true); setError(""); setNotice("");
+    try {
+      const entry = await sendJson<LearnerGroup>("/api/groups", { by_user_id: user.id, label: groupLabel, member_ids: groupMembers });
+      setGroupLabel(""); setGroupMembers([]);
+      setNotice(`Group “${entry.label}” created with ${entry.members.length} member${entry.members.length === 1 ? "" : "s"}.`);
+      refresh();
+    } catch (reason) { setError(reason instanceof Error ? reason.message : "Could not create the group"); }
+    finally { setBusy(false); }
+  }
+
+  async function saveGroupMembers(entry: LearnerGroup) {
+    if (!user) return;
+    setError(""); setNotice("");
+    try {
+      await sendJson<LearnerGroup>(`/api/groups/${entry.id}/members`, { by_user_id: user.id, label: entry.label, member_ids: editMembers });
+      setEditingGroup(null);
+      setNotice(`Group “${entry.label}” now has ${editMembers.length} member${editMembers.length === 1 ? "" : "s"}.`);
+      refresh();
+    } catch (reason) { setError(reason instanceof Error ? reason.message : "Could not update the group"); }
+  }
+
+  async function removeGroup(entry: LearnerGroup) {
+    if (!user) return;
+    setError(""); setNotice("");
+    try {
+      const response = await fetch(`/api/groups/${entry.id}?by_user_id=${user.id}`, { method: "DELETE" });
+      if (!response.ok) throw new Error((await response.json()).detail ?? "Could not delete the group");
+      setNotice(`Group “${entry.label}” deleted. Published courses keep the members they already had.`);
+      refresh();
+    } catch (reason) { setError(reason instanceof Error ? reason.message : "Could not delete the group"); }
   }
 
   async function remove(entry: RoleEntry) {
@@ -194,11 +249,71 @@ export default function RolesPage() {
                 <p className="text-sm font-medium">{person.name}</p>
                 <p className="text-xs text-stone-600 dark:text-muted-foreground">{roleLabel(person.role)} · {person.title}</p>
               </div>
-              <NativeSelect value={person.role} onChange={(event) => assign(person, event.target.value)} className="h-9 w-48" aria-label={`Role for ${person.name}`}>
-                {roles.map((entry) => <option key={entry.id} value={entry.id}>{entry.label}{entry.builtin ? "" : " (custom)"}</option>)}
-              </NativeSelect>
+              <div className="flex flex-wrap items-center gap-2">
+                <NativeSelect value={person.manager ?? ""} onChange={(event) => setManager(person, event.target.value)} className="h-9 w-48" aria-label={`Manager for ${person.name}`}>
+                  <option value="">No manager set</option>
+                  {people.filter((entry) => entry.id !== person.id).map((entry) => <option key={entry.id} value={entry.id}>{entry.name}</option>)}
+                </NativeSelect>
+                <NativeSelect value={person.role} onChange={(event) => assign(person, event.target.value)} className="h-9 w-48" aria-label={`Role for ${person.name}`}>
+                  {roles.map((entry) => <option key={entry.id} value={entry.id}>{entry.label}{entry.builtin ? "" : " (custom)"}</option>)}
+                </NativeSelect>
+              </div>
             </div>
           ))}
+        </CardContent>
+      </Card>
+
+      <Card className="mt-5">
+        <CardHeader><CardTitle className="flex items-center gap-2 text-base"><UserCog size={17} className="text-brand-700 dark:text-brand-300" /> Learner groups</CardTitle>
+          <p className="mt-2 text-sm text-stone-600 dark:text-muted-foreground">Courses are assigned to groups instead of names. Adding members gives them every group-assigned course; removing never takes training away.</p>
+        </CardHeader>
+        <CardContent className="space-y-3">
+          <form onSubmit={createGroup} className="space-y-3 rounded-xl border p-4">
+            <div>
+              <label htmlFor="group-label" className="text-sm font-medium">Group name</label>
+              <Input id="group-label" value={groupLabel} onChange={(event) => setGroupLabel(event.target.value)} placeholder="Clinical trial team" className="mt-2 h-9" />
+            </div>
+            <div>
+              <p className="text-sm font-medium">Members ({groupMembers.length} selected)</p>
+              <div className="mt-2 grid gap-1.5 sm:grid-cols-2">
+                {people.filter((person) => person.learner ?? (person.role === "msl" || person.role === "hcp")).map((person) => (
+                  <label key={person.id} className="flex cursor-pointer items-center gap-2 rounded-lg border p-2 text-sm hover:bg-stone-50 dark:hover:bg-surface-sunk">
+                    <input type="checkbox" checked={groupMembers.includes(person.id)} onChange={() => togglePick(groupMembers, setGroupMembers)(person.id)} className="size-4 accent-brand-600" />
+                    <span>{person.name}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+            <Button type="submit" disabled={busy || !groupLabel.trim()} className="bg-brand-600 hover:bg-brand-800">Create group</Button>
+          </form>
+          {groups.map((entry) => (
+            <div key={entry.id} className="rounded-xl border p-4">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <div>
+                  <p className="font-medium">{entry.label} <span className="text-xs font-normal text-stone-500 dark:text-stone-400">· {entry.members.length} member{entry.members.length === 1 ? "" : "s"}</span></p>
+                  <p className="mt-1 text-xs text-stone-600 dark:text-muted-foreground">{entry.members.map((id) => people.find((person) => person.id === id)?.name ?? id).join(", ") || "No members yet"}</p>
+                </div>
+                <div className="flex gap-2">
+                  <Button variant="outline" onClick={() => { setEditingGroup(editingGroup === entry.id ? null : entry.id); setEditMembers(entry.members); }}>Edit members</Button>
+                  <Button variant="outline" onClick={() => removeGroup(entry)} aria-label={`Delete ${entry.label}`}><Trash2 size={15} /></Button>
+                </div>
+              </div>
+              {editingGroup === entry.id && (
+                <div className="mt-3 space-y-3 border-t pt-3">
+                  <div className="grid gap-1.5 sm:grid-cols-2">
+                    {people.filter((person) => person.learner ?? (person.role === "msl" || person.role === "hcp")).map((person) => (
+                      <label key={person.id} className="flex cursor-pointer items-center gap-2 rounded-lg border p-2 text-sm hover:bg-stone-50 dark:hover:bg-surface-sunk">
+                        <input type="checkbox" checked={editMembers.includes(person.id)} onChange={() => togglePick(editMembers, setEditMembers)(person.id)} className="size-4 accent-brand-600" />
+                        <span>{person.name}</span>
+                      </label>
+                    ))}
+                  </div>
+                  <Button onClick={() => saveGroupMembers(entry)} className="bg-brand-600 hover:bg-brand-800">Save members</Button>
+                </div>
+              )}
+            </div>
+          ))}
+          {!groups.length && <p className="py-6 text-center text-sm text-stone-600 dark:text-muted-foreground">No groups yet — create the first one above.</p>}
         </CardContent>
       </Card>
     </AppShell>

@@ -132,8 +132,13 @@ export default function AssessmentPage() {
   const numbers = new Map(layout.flatMap((block, index) =>
     block.kind === "question" ? [[index, layout.slice(0, index).filter((b) => b.kind === "question").length + 1]] : []));
   const number = (index: number) => numbers.get(index) ?? index + 1;
+  const maxAttempts = assessment?.max_attempts ?? 3;
+  const failedFinals = (assessment?.attempts.filter((attempt) => !attempt.passed).length ?? 0)
+    + (result && !baseline && !result.attempt.passed ? 1 : 0);
+  const remaining = baseline ? 0 : Math.max(0, maxAttempts - failedFinals);
 
   function place(id: string, choice: number | null) {
+    if (!baseline && assessment?.locked) return;
     setAnswers((current) => {
       if (choice !== null) {
         const next = { ...current, [id]: choice };
@@ -162,6 +167,12 @@ export default function AssessmentPage() {
             ? "A short check before you start. It is not graded — it measures how much the course teaches you."
             : `Answer every question. You need ${assessment.passing_score}% to pass and earn your certificate.`}
         </p>
+        {!baseline && (
+          <p className="mt-1 text-sm font-medium text-stone-600 dark:text-muted-foreground">
+            Attempt {Math.min(assessment.attempts.length + 1, maxAttempts)} of {maxAttempts}
+            {assessment.locked ? " — no attempts left" : remaining === 1 ? " — last chance" : ""}
+          </p>
+        )}
 
         {result ? (
           <Card className={`mt-7 border-2 ${passed ? "border-brand-600" : "border-warn-500"}`}>
@@ -184,8 +195,10 @@ export default function AssessmentPage() {
               <div className="mt-5 flex flex-wrap gap-3">
                 {baseline && <Button nativeButton={false} render={<Link href={`/learn/${runId}`} />} className="bg-brand-600 hover:bg-brand-800">Start the material</Button>}
                 {!baseline && passed && <Button nativeButton={false} render={<Link href={`/learn/${runId}/certificate`} />} className="bg-brand-600 hover:bg-brand-800"><Award /> Get your certificate</Button>}
-                {!baseline && !passed && <Button onClick={retry} className="bg-brand-600 hover:bg-brand-800"><RotateCcw /> Try again</Button>}
+                {!baseline && !passed && remaining > 0 && <Button onClick={retry} className="bg-brand-600 hover:bg-brand-800"><RotateCcw /> Try again</Button>}
                 {!baseline && !passed && <Button nativeButton={false} variant="outline" render={<Link href={`/learn/${runId}`} />}>Review the material</Button>}
+                {!baseline && !passed && remaining === 1 && <p className="w-full text-sm font-medium text-warn-700 dark:text-warn-400">One attempt left — make it count.</p>}
+                {!baseline && !passed && remaining === 0 && <p className="w-full text-sm font-medium text-warn-700 dark:text-warn-400">No attempts left — ask your training lead for another attempt.</p>}
               </div>
             </CardContent>
           </Card>
@@ -197,6 +210,12 @@ export default function AssessmentPage() {
         )}
 
         {error && <p className="mt-5 text-sm text-danger-600 dark:text-danger-300">{error}</p>}
+        {!baseline && assessment.locked && !result && (
+          <Card className="mt-5 border-warn-500"><CardContent className="p-5">
+            <p className="font-semibold">No final attempts left</p>
+            <p className="mt-1 text-sm leading-6 text-stone-600 dark:text-muted-foreground">You have used all {maxAttempts} attempts for this course. Your training lead can grant another attempt — ask them, then come back here.</p>
+          </CardContent></Card>
+        )}
 
         <div className="mt-6 space-y-4">
           {layout.map((block, blockIndex) => {
@@ -217,7 +236,7 @@ export default function AssessmentPage() {
                 <CardContent className="space-y-2">
                   {question.figure && <QuizFigure figure={question.figure} />}
                   {question.options.map((option, optionIndex) => (
-                    <button key={option} type="button" disabled={Boolean(result)}
+                    <button key={option} type="button" disabled={Boolean(result) || (!baseline && assessment.locked)}
                       onClick={() => place(question.id, optionIndex)}
                       className={`w-full rounded-lg border p-3 text-left text-sm transition-colors ${reviewed
                         ? optionStyle(reviewed.chosen === optionIndex, optionIndex === reviewed.correct_index)
@@ -253,7 +272,7 @@ export default function AssessmentPage() {
                   Fill the rest and submit
                 </Button>
               )}
-              <Button onClick={() => submit()} disabled={busy || answered < assessment.questions.length}
+              <Button onClick={() => submit()} disabled={busy || answered < assessment.questions.length || (!baseline && assessment.locked)}
                 className="bg-white text-surface-deep hover:bg-stone-100">
                 {busy ? "Submitting…" : baseline ? "Submit baseline" : "Submit assessment"}
               </Button>

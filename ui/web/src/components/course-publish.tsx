@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { NativeSelect } from "@/components/ui/native-select";
 import { Textarea } from "@/components/ui/textarea";
 import { ROLE_LABEL } from "@/components/app-shell";
-import { CertificateTemplate, CourseReview, getJson, Person, sendJson } from "@/lib/api";
+import { CertificateTemplate, CourseReview, getJson, LearnerGroup, Person, sendJson } from "@/lib/api";
 
 function isoDate(offsetDays: number) {
   const date = new Date();
@@ -21,17 +21,21 @@ export function CoursePublishPanel({ runId, user, review, onChange }: { runId: s
   const published = review.publication;
   const [people, setPeople] = useState<Person[]>([]);
   const [assignees, setAssignees] = useState<string[]>(published?.assignees ?? []);
+  const [groups, setGroups] = useState<LearnerGroup[]>([]);
+  const [groupIds, setGroupIds] = useState<string[]>(published?.group_ids ?? []);
   const [startsOn, setStartsOn] = useState(published?.starts_on ?? isoDate(0));
   const [dueOn, setDueOn] = useState(published?.due_on ?? isoDate(30));
   const [message, setMessage] = useState(published?.message ?? "Complete this course before the next cycle meeting.");
   const [frequency, setFrequency] = useState(published?.frequency ?? "once");
   const [templates, setTemplates] = useState<CertificateTemplate[]>([]);
   const [template, setTemplate] = useState(published?.certificate_template ?? "classic");
+  const [maxAttempts, setMaxAttempts] = useState<number>(published?.max_final_attempts ?? 3);
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
 
   useEffect(() => {
     getJson<CertificateTemplate[]>("/api/certificate-templates").then(setTemplates).catch(() => undefined);
+    getJson<LearnerGroup[]>("/api/groups").then(setGroups).catch(() => undefined);
     getJson<Person[]>("/api/people").then((roster) => {
       const learners = roster.filter((person) => person.learner ?? (person.role === "msl" || person.role === "hcp"));
       setPeople(learners);
@@ -43,7 +47,7 @@ export function CoursePublishPanel({ runId, user, review, onChange }: { runId: s
     event.preventDefault();
     setBusy(true); setError("");
     try {
-      await sendJson(`/api/runs/${runId}/publication`, { user_id: user.id, starts_on: startsOn, due_on: dueOn, assignees, message, frequency, certificate_template: template });
+      await sendJson(`/api/runs/${runId}/publication`, { user_id: user.id, starts_on: startsOn, due_on: dueOn, assignees, group_ids: groupIds, message, frequency, certificate_template: template, max_final_attempts: maxAttempts });
       onChange(await getJson<CourseReview>(`/api/runs/${runId}/review`));
     } catch (reason) { setError(reason instanceof Error ? reason.message : "Could not publish"); }
     finally { setBusy(false); }
@@ -95,12 +99,24 @@ export function CoursePublishPanel({ runId, user, review, onChange }: { runId: s
                   </NativeSelect>
                 </div>
                 <div>
+                  <label htmlFor="max-attempts" className="text-sm font-medium">Final attempts allowed</label>
+                  <Input id="max-attempts" type="number" min={1} max={10} value={maxAttempts} onChange={(event) => setMaxAttempts(Math.max(1, Number(event.target.value) || 3))} className="mt-2 h-9" />
+                  <p className="mt-1 text-xs text-stone-600 dark:text-muted-foreground">Failing all of them locks the learner until the training team resets.</p>
+                </div>
+                <div>
                   <p className="text-sm font-medium">Assign by group</p>
                   <div className="mt-2 flex flex-wrap gap-2">
                     <button type="button" onClick={() => setAssignees(people.filter((person) => person.role === "msl").map((person) => person.id))} className="rounded-lg border px-3 py-1 text-xs font-medium hover:bg-stone-50 dark:hover:bg-surface-sunk">All MSLs</button>
                     <button type="button" onClick={() => setAssignees(people.filter((person) => person.role === "hcp").map((person) => person.id))} className="rounded-lg border px-3 py-1 text-xs font-medium hover:bg-stone-50 dark:hover:bg-surface-sunk">All HCPs</button>
-                    <button type="button" onClick={() => setAssignees([])} className="rounded-lg border px-3 py-1 text-xs font-medium hover:bg-stone-50 dark:hover:bg-surface-sunk">Clear</button>
+                    <button type="button" onClick={() => { setAssignees([]); setGroupIds([]); }} className="rounded-lg border px-3 py-1 text-xs font-medium hover:bg-stone-50 dark:hover:bg-surface-sunk">Clear</button>
                   </div>
+                  {groups.length > 0 && (
+                    <div className="mt-2 flex flex-wrap gap-2">
+                      {groups.map((group) => (
+                        <button key={group.id} type="button" onClick={() => setGroupIds((current) => current.includes(group.id) ? current.filter((entry) => entry !== group.id) : [...current, group.id])} className={`rounded-lg border px-3 py-1 text-xs font-medium hover:bg-stone-50 dark:hover:bg-surface-sunk ${groupIds.includes(group.id) ? "border-brand-600 bg-brand-50 dark:bg-brand-950 text-brand-700 dark:text-brand-300" : ""}`}>{group.label} ({group.members.length})</button>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
 

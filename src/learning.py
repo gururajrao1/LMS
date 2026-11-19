@@ -274,6 +274,88 @@ def delete_role(by_user_id: str, role_id: str) -> dict:
     return {"deleted": role_id}
 
 
+def learner_groups() -> list[dict]:
+    """Named learner groups (tech, management, clinical-trial team): the unit
+    courses are assigned to, so the training team picks groups, not names."""
+    path = _platform("groups.json")
+    return _json(path) if path.exists() else []
+
+
+def _save_learner_groups(entries: list[dict]) -> list[dict]:
+    _write(_platform("groups.json"), entries)
+    return entries
+
+
+def _require_group(group_id: str) -> dict:
+    found = next((entry for entry in learner_groups() if entry["id"] == group_id), None)
+    if not found:
+        raise ValueError(f"Unknown group {group_id}")
+    return found
+
+
+def create_learner_group(by_user_id: str, label: str, member_ids: list[str]) -> dict:
+    """Create a group; every member must already be on the roster."""
+    require_capability(by_user_id, "roster.manage")
+    label = label.strip()
+    group_id = _slug(label)
+    if not group_id:
+        raise ValueError("Name the group")
+    if any(entry["id"] == group_id for entry in learner_groups()):
+        raise ValueError(f"Group already exists: {label}")
+    people = {entry["id"] for entry in roster()}
+    unknown = [user for user in member_ids if user not in people]
+    if unknown:
+        raise ValueError(f"Unknown member(s): {', '.join(unknown)}")
+    entry = {"id": group_id, "label": label, "members": list(dict.fromkeys(member_ids))}
+    _save_learner_groups(learner_groups() + [entry])
+    return entry
+
+
+def set_learner_group_members(by_user_id: str, group_id: str, member_ids: list[str]) -> dict:
+    """Replace a group's membership; added members gain the group's courses
+    without a republish, while removed members keep courses already assigned
+    (assignments only grow, never silently revoke)."""
+    require_capability(by_user_id, "roster.manage")
+    people = {entry["id"] for entry in roster()}
+    unknown = [user for user in member_ids if user not in people]
+    if unknown:
+        raise ValueError(f"Unknown member(s): {', '.join(unknown)}")
+    _require_group(group_id)
+    updated = [{**entry, "members": list(dict.fromkeys(member_ids))} if entry["id"] == group_id else entry
+               for entry in learner_groups()]
+    _save_learner_groups(updated)
+    return next(entry for entry in updated if entry["id"] == group_id)
+
+
+def delete_learner_group(by_user_id: str, group_id: str) -> dict:
+    """Remove a group; published courses keep their expanded assignees, so
+    nobody loses training already assigned."""
+    require_capability(by_user_id, "roster.manage")
+    _require_group(group_id)
+    _save_learner_groups([entry for entry in learner_groups() if entry["id"] != group_id])
+    return {"deleted": group_id}
+
+
+def group_members(group_id: str) -> list[str]:
+    """Current member ids of one group."""
+    return list(_require_group(group_id).get("members", []))
+
+
+def publication_members(publication: dict) -> list[str]:
+    """Everyone a publication reaches: direct assignees plus live group members."""
+    seen = list((publication or {}).get("assignees", []))
+    for group_id in (publication or {}).get("group_ids", []):
+        found = next((entry for entry in learner_groups() if entry["id"] == group_id), None)
+        if found:
+            seen.extend(found.get("members", []))
+    return list(dict.fromkeys(seen))
+
+
+def is_assigned(record: dict, user_id: str) -> bool:
+    """Assignment is live: direct assignees plus current group members."""
+    return user_id in publication_members(record.get("publication") or {})
+
+
 def roster() -> list[dict]:
     path = _platform("roster.json")
     if not path.exists():
@@ -1041,13 +1123,27 @@ def publish_course(
     message: str = "",
     frequency: str = "once",
     certificate_template: str = "classic",
+    group_ids: list[str] | None = None,
+    max_final_attempts: int = 3,
 ) -> dict:
     record = course(run_id)
     author = require_capability(user_id, "course.publish")
     if not readiness(record)["can_publish"]:
         raise ValueError("A course needs an approving sign-off and no open blocking comments")
+    group_ids = list(dict.fromkeys(group_ids or []))
+    unknown_groups = [group for group in group_ids if group not in {entry["id"] for entry in learner_groups()}]
+    if unknown_groups:
+        raise ValueError(f"Unknown group(s): {', '.join(unknown_groups)}")
+    try:
+        max_final_attempts = int(max_final_attempts)
+    except (TypeError, ValueError):
+        raise ValueError("Attempt cap must be a number")
+    if max_final_attempts < 1:
+        raise ValueError("Attempt cap must be at least 1")
+    expanded = list(assignees) + [member for group in group_ids for member in group_members(group)]
+    assignees = list(dict.fromkeys(expanded))
     if not assignees:
-        raise ValueError("Select at least one trainee")
+        raise ValueError("Select at least one trainee or group")
     if frequency not in FREQUENCIES:
         raise ValueError(f"Schedule must be one of: {', '.join(FREQUENCIES)}")
     if certificate_template not in CERTIFICATE_TEMPLATES:
@@ -1078,6 +1174,8 @@ def publish_course(
         "certificate_template": certificate_template,
         "message": message.strip(),
         "assignees": assignees,
+        "group_ids": group_ids,
+        "max_final_attempts": max_final_attempts,
         "notifications": [{
             "to": people[user]["email"],
             "name": people[user]["name"],
@@ -1086,7 +1184,7 @@ def publish_course(
         } for user in assignees],
     }
     _audit(record, author, "course.published",
-           f"{author['name']} published v{record['version']} to {len(assignees)} trainee(s), due {due_on}",
+           f"{author['name']} published v{record['version']} to {len(assignees)} trainee(s), due {due_on}" + (f" via groups {', '.join(group_ids)}" if group_ids else ""),
            version=record["version"], starts_on=starts_on, due_on=due_on,
            assignees=assignees, approved_by=readiness(record)["approved_by"],
            overrides=len(overrides) or None)
@@ -1136,6 +1234,13 @@ def noncompliance(run_id: str) -> list[dict]:
         if learner.get("final_score") is not None and not learner["passed"]:
             alerts.append({**who, "run_id": run_id, "kind": "below_requirement", "severity": "danger", "tier": 2,
                            "message": f"Final {learner['final_score']}% is below the required score"})
+        try:
+            attempts = attempt_state(run_id, learner["user_id"])
+        except (OSError, ValueError, KeyError):
+            attempts = None
+        if attempts and attempts["locked"]:
+            alerts.append({**who, "run_id": run_id, "kind": "locked_out", "severity": "danger", "tier": 3,
+                           "message": f"Locked out after {attempts['max']} failed finals — needs a training-team reset"})
         if learner["stage"] != "not_started" and learner["baseline_score"] is None:
             alerts.append({**who, "run_id": run_id, "kind": "unbaselined", "severity": "warning", "tier": 1,
                            "message": "Started without a recorded baseline"})
@@ -1173,13 +1278,19 @@ def escalation_state(run_id: str) -> dict:
         key = f"{alert['user_id']}:{alert['message']}"
         previous = known.get(key, {})
         level = ESCALATION_LEVELS.get(alert.get("tier", 1), ESCALATION_LEVELS[1])
+        owner, action = level["owner"], level["action"]
+        if alert.get("kind") == "locked_out":
+            manager = (person(alert["user_id"]) or {}).get("manager")
+            if manager and person(manager):
+                owner = person(manager)["name"]
+                action = f"Locked out — {owner} (manager) decides on a fourth attempt."
         items.append({
             **alert,
             "key": key,
             "level": level["level"],
             "level_name": level["name"],
-            "owner": level["owner"],
-            "action": level["action"],
+            "owner": owner,
+            "action": action,
             "since": previous.get("since", date.today().isoformat()),
             "history": previous.get("history", []),
         })
@@ -1398,7 +1509,7 @@ def version_timeline(run_id: str) -> dict:
 def assignments(user_id: str) -> list[dict]:
     return [
         record for record in published_courses()
-        if user_id in record["publication"]["assignees"]
+        if is_assigned(record, user_id)
     ]
 
 
@@ -1611,6 +1722,43 @@ def set_module(run_id: str, user_id: str, module_id: str, completed: bool) -> di
     return _save_progress(record)
 
 
+def max_final_attempts(publication: dict) -> int:
+    """Final attempts allowed per learner per course: 3 unless published otherwise."""
+    try:
+        value = int((publication or {}).get("max_final_attempts", 3))
+    except (TypeError, ValueError):
+        value = 3
+    return max(1, value)
+
+
+def attempt_state(run_id: str, user_id: str) -> dict:
+    """Where a learner stands against the attempt cap: fails used, left, locked.
+
+    Only failed finals consume the allowance; a pass ends the story and a
+    training-team reset clears the count for a fresh run.
+    """
+    record = progress(run_id, user_id)
+    state = summarize(record)
+    maximum = max_final_attempts(course(run_id).get("publication") or {})
+    failed = sum(1 for entry in record["attempts"]
+                 if entry["kind"] == "final" and not entry["passed"])
+    remaining = max(0, maximum - failed)
+    locked = not state["passed"] and remaining <= 0
+    return {"max": maximum, "failed": failed, "remaining": remaining, "locked": locked}
+
+
+def attempt_notices(run_id: str, user_id: str) -> list[dict]:
+    """In-app notices for the attempt cap: last-chance warning and lockout."""
+    state = attempt_state(run_id, user_id)
+    if state["locked"]:
+        return [{"kind": "locked",
+                 "message": f"Locked out after {state['max']} failed finals — your training lead can grant another attempt."}]
+    if state["failed"] > 0 and state["remaining"] == 1:
+        return [{"kind": "last_chance",
+                 "message": f"One final attempt left of {state['max']} — make it count."}]
+    return []
+
+
 def record_attempt(
     run_id: str,
     user_id: str,
@@ -1622,6 +1770,8 @@ def record_attempt(
 ) -> dict:
     if kind not in {"baseline", "final"}:
         raise ValueError("Assessment kind must be baseline or final")
+    if kind == "final" and attempt_state(run_id, user_id)["locked"]:
+        raise ValueError("No final attempts left — ask your training lead for another attempt")
     if fill_unanswered and not DEMO_FILL:
         raise ValueError("Filling unanswered questions is off â€” set PHARMALEARN_DEMO_FILL to enable it")
     record = start(run_id, user_id)
@@ -1945,6 +2095,34 @@ def set_privacy(by_user_id: str, user_id: str, private: bool) -> dict:
     return public_person(found)
 
 
+def set_manager(by_user_id: str, user_id: str, manager_id: str | None) -> dict:
+    """Record a learner's manager for lockout routing; empty clears it.
+
+    The manager must already be on the roster. Until email exists, lockout
+    escalation names the manager on the dashboard; without one it names
+    the admin on duty.
+    """
+    require_capability(by_user_id, "roster.manage")
+    people = roster()
+    found = next((entry for entry in people if entry["id"] == user_id), None)
+    if not found:
+        raise ValueError(f"Unknown user {user_id}")
+    manager_id = (manager_id or "").strip()
+    if manager_id:
+        manager = next((entry for entry in people
+                        if entry["id"] == manager_id
+                        or (entry.get("email") or "").lower() == manager_id.lower()), None)
+        if not manager:
+            raise ValueError(f"Unknown manager {manager_id}")
+        if manager["id"] == user_id:
+            raise ValueError("A learner cannot manage themselves")
+        found["manager"] = manager["id"]
+    else:
+        found.pop("manager", None)
+    _write(_platform("roster.json"), people)
+    return public_person(found)
+
+
 def set_team(by_user_id: str, user_id: str, team: str) -> dict:
     """Assign a learner to a named team; only the training team assigns, so a
     learner cannot hop teams mid-competition."""
@@ -2031,12 +2209,14 @@ def import_roster(by_user_id: str, rows: list[dict]) -> dict:
     added, updated = 0, 0
     errors = []
     seen: set[str] = set()
+    manager_links: list[tuple[str, str, int]] = []
     for index, row in enumerate(rows, start=1):
         name = str(row.get("name", "")).strip()
         email = str(row.get("email", "")).strip()
         role = str(row.get("role", "")).strip() or "hcp"
         title = str(row.get("title", "")).strip()
         team = str(row.get("team", "") or "").strip()
+        manager = str(row.get("manager", "") or "").strip()
         if not name or not email or "@" not in email:
             errors.append({"row": index, "error": "name and a valid email are required"})
             continue
@@ -2056,6 +2236,11 @@ def import_roster(by_user_id: str, rows: list[dict]) -> dict:
                 found["title"] = title
             if row.get("team") is not None:
                 found["team"] = team
+            if row.get("manager") is not None:
+                if manager:
+                    manager_links.append((found["id"], manager, index))
+                else:
+                    found.pop("manager", None)
             updated += 1
         else:
             base = _slug(email.split("@")[0]) or _id()
@@ -2069,7 +2254,18 @@ def import_roster(by_user_id: str, rows: list[dict]) -> dict:
             people.append(entry)
             by_email[key] = entry
             taken.add(candidate)
+            if manager:
+                manager_links.append((candidate, manager, index))
             added += 1
+    by_id = {entry["id"]: entry for entry in people}
+    for user_id, manager_id, row_index in manager_links:
+        if user_id == manager_id:
+            errors.append({"row": row_index, "error": "A learner cannot manage themselves"})
+            continue
+        if manager_id not in by_id:
+            errors.append({"row": row_index, "error": f"Unknown manager {manager_id}"})
+            continue
+        by_id[user_id]["manager"] = manager_id
     _write(_platform("roster.json"), people)
     return {"added": added, "updated": updated, "errors": errors}
 

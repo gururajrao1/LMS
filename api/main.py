@@ -67,7 +67,7 @@ def courses():
             candidate.update({
                 "review_status": record["status"],
                 "version": record["version"],
-                "assigned": len(record["publication"]["assignees"]) if record.get("publication") else 0,
+                "assigned": len(learning.publication_members(record["publication"])) if record.get("publication") else 0,
                 "assigned_reviewers": (record.get("review_assignment") or {}).get("reviewers", []),
             })
             runs.setdefault(key, []).append(candidate)
@@ -267,9 +267,11 @@ class PublishRequest(BaseModel):
     starts_on: str
     due_on: str
     assignees: list[str]
+    group_ids: list[str] = []
     message: str = ""
     frequency: str = "once"
     certificate_template: str = "classic"
+    max_final_attempts: int = 3
 
 
 class ModuleRequest(BaseModel):
@@ -393,6 +395,35 @@ def assign_person_role(user_id: str, request: AssignRoleRequest):
 @app.delete("/api/roles/{role_id}")
 def delete_role(role_id: str, by_user_id: str = ""):
     return _guard(lambda: learning.delete_role(by_user_id, Path(role_id).name))
+
+
+class GroupRequest(BaseModel):
+    by_user_id: str
+    label: str = ""
+    member_ids: list[str] = []
+
+
+@app.get("/api/groups")
+def groups():
+    """Named learner groups courses can be assigned to."""
+    return learning.learner_groups()
+
+
+@app.post("/api/groups", status_code=201)
+def create_group(request: GroupRequest):
+    return _guard(lambda: learning.create_learner_group(
+        request.by_user_id, request.label, request.member_ids))
+
+
+@app.post("/api/groups/{group_id}/members", status_code=201)
+def set_group_members(group_id: str, request: GroupRequest):
+    return _guard(lambda: learning.set_learner_group_members(
+        request.by_user_id, Path(group_id).name, request.member_ids))
+
+
+@app.delete("/api/groups/{group_id}")
+def delete_group(group_id: str, by_user_id: str = ""):
+    return _guard(lambda: learning.delete_learner_group(by_user_id, Path(group_id).name))
 
 
 class PeopleImportRequest(BaseModel):
@@ -527,6 +558,8 @@ def publish(run_id: str, request: PublishRequest):
         run_id, request.user_id, request.starts_on, request.due_on, request.assignees, request.message,
         frequency=request.frequency,
         certificate_template=request.certificate_template,
+        group_ids=request.group_ids,
+        max_final_attempts=request.max_final_attempts,
     ))
 
 
@@ -702,6 +735,18 @@ def set_team(user_id: str, request: TeamRequest):
     """Assign a learner to a named team; training team only."""
     return _guard(lambda: learning.set_team(
         request.by_user_id, Path(user_id).name, request.team))
+
+
+class ManagerRequest(BaseModel):
+    by_user_id: str
+    manager_id: str = ""
+
+
+@app.post("/api/people/{user_id}/manager", status_code=201)
+def set_manager(user_id: str, request: ManagerRequest):
+    """Record a learner's manager for lockout routing; training team only."""
+    return _guard(lambda: learning.set_manager(
+        request.by_user_id, Path(user_id).name, request.manager_id))
 
 
 @app.get("/api/leaderboard/nearby")
@@ -1275,7 +1320,7 @@ def _learner_context(user_id: str, run_id: str):
     if not learner:
         raise HTTPException(404, "Person not found")
     record = learning.course(run_id)
-    if not record.get("publication") or user_id not in record["publication"]["assignees"]:
+    if not record.get("publication") or not learning.is_assigned(record, user_id):
         raise HTTPException(403, "This course has not been assigned to you")
     track = learning.track_for(learner["role"])
     return learner, record, course_content(run_id), track
@@ -1356,7 +1401,10 @@ def learner_notifications(user_id: str):
             items.append({"kind": "daily", "run_id": record["run_id"], "title": title,
                           "message": "Today's 2pm check is ready: 3 questions, 2 minutes.",
                           "href": href, "at": publication["starts_on"]})
-    order = {"overdue": 0, "due-soon": 1, "daily": 2, "certified": 3, "assigned": 4}
+        for notice in learning.attempt_notices(record["run_id"], user_id):
+            items.append({"kind": notice["kind"], "run_id": record["run_id"], "title": title,
+                          "message": notice["message"], "href": href, "at": publication["due_on"]})
+    order = {"locked": 0, "overdue": 1, "last_chance": 2, "due-soon": 3, "daily": 4, "certified": 5, "assigned": 6}
     items.sort(key=lambda item: (order.get(item["kind"], 5), item.get("at") or ""))
     return {"user_id": user_id, "notifications": items}
 
@@ -1432,9 +1480,13 @@ def assessment(user_id: str, run_id: str, kind: str):
     state = learning.progress(run_id, user_id)
     attempts = [attempt for attempt in state["attempts"] if attempt["kind"] == kind]
     asked = _questions(content_value, track, kind)
+    cap = learning.attempt_state(run_id, user_id) if kind == "final" else {"max": 0, "failed": 0, "remaining": 0, "locked": False}
     return {
         "kind": kind,
         "title": quiz["title"],
+        "max_attempts": cap["max"] if kind == "final" else None,
+        "attempts_remaining": cap["remaining"] if kind == "final" else None,
+        "locked": cap["locked"] if kind == "final" else False,
         # Already a percentage: `course_content` normalizes every quiz it reads.
         # Normalizing again read that percentage as a raw count, so one quiz
         # reported 25% in the workspace and 78% to the learner sitting it.

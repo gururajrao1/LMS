@@ -37,7 +37,7 @@ function Journey({ course, runId }: { course: LearnerCourse; runId: string }) {
       // carries — a sort board is added whole rather than sampled — and a number
       // hard-coded here would be wrong for exactly the courses that have one.
       detail: summary.baseline_score !== null ? `Recorded at ${summary.baseline_score}%` : "A short check, not graded", href: `/learn/${runId}/assessment/baseline` },
-    { id: "modules", title: "Learning material", done: summary.modules_complete === summary.modules_total, detail: `${summary.modules_complete} of ${summary.modules_total} modules`, href: null },
+    { id: "modules", title: "Learning material", done: summary.modules_complete === summary.modules_total, detail: `${summary.modules_complete} of ${summary.modules_total} modules`, href: `/learn/${runId}?tab=deck` },
     { id: "final", title: "Final assessment", done: summary.passed, detail: summary.final_score !== null ? `Scored ${summary.final_score}%` : "Unlocks when every module is done", href: summary.modules_complete === summary.modules_total ? `/learn/${runId}/assessment/final` : null },
     { id: "certificate", title: "Certificate", done: Boolean(summary.certificate), detail: summary.certificate ? summary.certificate.code : "Awarded on passing", href: summary.certificate ? `/learn/${runId}/certificate` : null },
   ];
@@ -179,7 +179,7 @@ function PreBrief({ course, runId, userId }: { course: LearnerCourse; runId: str
         <div><p className="text-xs font-semibold uppercase tracking-wide text-stone-600 dark:text-muted-foreground">About {minutes} min</p><p className="mt-1 font-semibold">{course.modules.length} modules with voice</p></div>
         <div><p className="text-xs font-semibold uppercase tracking-wide text-stone-600 dark:text-muted-foreground">Assessment</p><p className="mt-1 font-semibold">{meta ? `${meta.questions.length} questions · pass ${meta.passing_score}%` : "Final check after the modules"}</p></div>
         <div><p className="text-xs font-semibold uppercase tracking-wide text-stone-600 dark:text-muted-foreground">Due</p><p className="mt-1 font-semibold">{due}</p></div>
-        <div><p className="text-xs font-semibold uppercase tracking-wide text-stone-600 dark:text-muted-foreground">Attempts so far</p><p className="mt-1 font-semibold">{meta ? `${meta.attempts.length} final attempt${meta.attempts.length === 1 ? "" : "s"}` : `${course.summary.attempts} total`}</p></div>
+        <div><p className="text-xs font-semibold uppercase tracking-wide text-stone-600 dark:text-muted-foreground">Attempts so far</p><p className="mt-1 font-semibold">{meta ? `${meta.attempts.length} of ${meta.max_attempts ?? 3} final attempts${meta.locked ? " — locked" : meta.attempts_remaining === 1 ? " — last chance" : ""}` : `${course.summary.attempts} total`}</p></div>
       </CardContent>
     </Card>
   );
@@ -200,6 +200,7 @@ function DailyCheck({ runId, userId }: { runId: string; userId: string }) {
     } finally { setBusy(false); }
   }
   return (
+    <div id="daily-check" className="scroll-mt-6">
     <Card className="mt-6">
       <CardHeader><CardTitle>{daily.label} · 3 questions, 2 min</CardTitle><p className="mt-2 text-sm text-stone-600 dark:text-muted-foreground">Practice only — it never counts as an assessment attempt. Missed 2pm sets queue here.{typeof daily.today?.count === "number" && daily.today.count > 0 ? ` ${daily.today.count} finished today's check.` : ""}</p></CardHeader>
       <CardContent className="space-y-4">
@@ -229,6 +230,7 @@ function DailyCheck({ runId, userId }: { runId: string; userId: string }) {
             {result.today.count > 1 && <p className="mt-1 text-sm text-stone-600 dark:text-muted-foreground">{result.today.count} finished today&apos;s check.</p>}</>}
       </CardContent>
     </Card>
+    </div>
   );
 }
 
@@ -501,14 +503,17 @@ export default function CoursePlayer() {
             {course.publication.message && <p className="mt-4 max-w-xl rounded-xl border border-white/15 bg-white/5 p-3 text-sm text-stone-200">{course.publication.message}</p>}
           </div>
           <div className="w-full max-w-xs">
-            <div className="flex items-center justify-between text-sm"><span className="text-stone-300">Course progress</span><span className="font-semibold">{course.summary.percent}% · {course.summary.points} pts</span></div>
+            <div className="flex items-center justify-between text-sm"><span className="text-stone-300">Course progress</span><span className="font-semibold" title={`${course.summary.modules_complete * 25} pts modules + ${course.summary.final_score ?? 0} pts final + ${Math.max(0, course.summary.uplift ?? 0)} pts uplift — effort only, never a substitute for passing`}>{course.summary.percent}% · {course.summary.points} pts</span></div>
             <Progress value={course.summary.percent} className="mt-2 bg-white/20" />
-            <div className="mt-3 flex flex-wrap items-center gap-1.5" aria-label="Earned badges">
+            <div className="mt-3 flex flex-wrap items-center gap-1.5" aria-label="Badges">
               {course.summary.badges.filter((badge) => badge.earned).map((badge) => (
                 <span key={badge.id} title={badge.label} className="inline-flex items-center gap-1 rounded-full bg-brand-600 px-2.5 py-1 text-xs font-semibold text-white"><Medal size={12} /> {badge.label}</span>
               ))}
-              {course.summary.streak_days > 1 && (
-                <span className="inline-flex items-center gap-1 rounded-full bg-white/10 px-2.5 py-1 text-xs font-semibold text-brand-300" title="Consecutive days with training activity">{course.summary.streak_days}-day streak</span>
+              {course.summary.badges.filter((badge) => !badge.earned).map((badge) => (
+                <span key={badge.id} title={`Locked: ${badge.label}`} className="inline-flex items-center gap-1 rounded-full border border-white/20 px-2.5 py-1 text-xs font-medium text-stone-300"><Medal size={12} /> {badge.label}</span>
+              ))}
+              {course.summary.streak_days >= 1 && (
+                <span className="inline-flex items-center gap-1 rounded-full bg-white/10 px-2.5 py-1 text-xs font-semibold text-brand-300" title="Consecutive days with training activity — a private nudge, never a pass requirement">{course.summary.streak_days}-day streak</span>
               )}
             </div>
             {course.summary.certificate && (
@@ -627,7 +632,7 @@ export default function CoursePlayer() {
 
         {!induction && <TabsContent value="mechanism" className="mt-5">
           <Card>
-            <CardHeader><CardTitle>Mechanism walkthrough</CardTitle><p className="mt-2 text-sm text-stone-600 dark:text-muted-foreground">Walk each step of the action, then prove it with a recorded check. A step with no shared citation says so instead of borrowing one.</p></CardHeader>
+            <CardHeader><CardTitle>Mechanism walkthrough</CardTitle><p className="mt-2 text-sm text-stone-600 dark:text-muted-foreground">Walk each step of the action, then prove it with a recorded check. A step with no shared citation says so instead of borrowing one. Practice only — walkthrough checks never affect your score or certificate.</p></CardHeader>
             <CardContent>
               <MechanismWalkthrough runId={runId} scenes={track.storyboard.scenes} questions={track.quiz.questions} />
             </CardContent>
@@ -658,7 +663,7 @@ export default function CoursePlayer() {
 
         <TabsContent value="flashcards" className="mt-5">
           <Card>
-            <CardHeader><CardTitle>Revision flashcards</CardTitle><p className="mt-2 text-sm text-stone-600 dark:text-muted-foreground">Try each question from memory, then flip the card. Your self-grades stay on this device.</p></CardHeader>
+            <CardHeader><CardTitle>Revision flashcards</CardTitle><p className="mt-2 text-sm text-stone-600 dark:text-muted-foreground">Try each question from memory, then flip the card. Your self-grades stay on this device. Practice only — flipping cards never affects your score or certificate.</p></CardHeader>
             <CardContent>
               <Flashcards
                 key={`pl-flip-${runId}`}
