@@ -1,0 +1,33 @@
+Slide 1: ClairLabs - AI-Enabled Digital Solution for Patient Recruitment An AI-enabled digital solution for patient recruitment, covering identification, qualification and warm handover One programme story from first touch to recruited participant
+
+Slide 2: Participant Identification, Qualification and Warm Handover Participant identification: finding potential participants across digital, HCP and data channels Participant qualification: screening and confirming fit, digitally then human Warm handover: referring qualified participants to sites with context, not cold lists
+
+Slide 3: The Recruitment Journey in Five Steps Step 1 - primary digital screening: online screener plus contact details with initial consent Step 2 - platform onboarding: qualified leads enter the centralized Patient Recruitment Platform Step 3 - secondary human screening: RNN personnel connect, secure consent and run a detailed questionnaire Step 4 - site referral and evaluation: referral to the nearest or preferred site for clinical evaluation and informed consent Step 5 - trial recruitment: participants clearing site-specific evaluation are selected and recruited
+
+Slide 4: Addressing Recruitment Challenges Precise digital patient outreach and data-driven outreach find the right people HCP outreach and patient advocacy groups work through trusted voices Swift site alignment and go-live plus enriched patient experience carry participants over the line
+
+Slide 5: The AI-Driven Patient Recruitment Funnel Multichannel awareness: Google, Meta and endemic health sites, bought programmatically with audience segmentation Top and mid-funnel: YouTube, programmatic display and educational content build high-intent consideration Bottom-funnel close: lead forms, pre-screening tools and direct search ads finalize enrollment 70-90% initial non-conversion is why re-engagement and retargeting run throughout
+
+Slide 6: HCP Outreach in Three Motions Digital affinity: NPI-targeted programmatic ads and geo-fencing around medical conferences KOL-based influence: key opinion leaders advocate through peer networks; physician-to-physician trust is the primary credibility driver Offline presence: clinics, centers of excellence, primary care, plus libraries, coffee shops, stadiums and billboards Complex and rare diseases lean hardest on KOL and offline presence
+
+Slide 7: Data and Intelligence Strategies Wearable app ecosystems: behavioral and physiological signals against health thresholds Digital therapeutics populations, pharmacy networks and EHR-embedded matching algorithms AI predictive recruitment: predicting clinical decision windows and triggering messaging as patients seek alternatives The shift: from demographic-based outreach to behavioral and physiological identification
+
+Slide 8: Patient Advocacy Groups and Registries PAG trust opens doors sponsors cannot open alone, including in rare-disease networks Registries plus AI inclusion and exclusion matching filter precisely to hard-to-reach populations Education-led conversion through ambassadors and webinars cuts misinformation and lifts retention
+
+Slide 9: Site Alignment and Go-Live Rapid activation of high-performing sites, with hyper-localized outreach in their vicinity Real-time performance analytics with live data and rolling campaigns monitor site health Investigator engagement programmes and standardized site tools, targeted at high patient-density locations
+
+Slide 10: Patient-Centric Architecture Journey mapping finds and fixes pain points from awareness to trial completion Real-time engagement platforms keep communication consistent and active Concierge-level personalized care: culturally sensitive, language-specific, matched to disease stage Peer-driven community trust and continuous feedback loops instead of end-of-study surveys Site referral compressed to minutes
+
+Slide 11: Accelerated Go-Live Roadmap The roadmap ahead: six weeks from content creation to optimization
+
+Slide 12: The Roadmap: Weeks 1 to 6 Week 1: content creation and review; week 2: sponsor review with IRB-ready submission Week 3: internal preparation, testing and training; week 4: go-live within 2 days of IRB changes Week 6: optimization of non-performing ads and removal of ad fatigability Shorter than the old pattern of 4-week content plus 4-week go-live phases
+
+Slide 13: Why ClairLabs? Key Differentiators Six differentiators, one model: smarter tech with AI, executed with agility
+
+Slide 14: Differentiators in Detail AI-driven patient identification from real-world-data ecosystems 2-tier smart screening: AI matching plus RNN simplification of eligibility for patients Next-gen omnichannel outreach with AI campaign optimization and retargeting Site-aligned executional agility: synchronized activation, lean and fast decisions Patient experience-driven design with personalized communication and RNN retention support High-quality cost advantage: low overheads with no sacrifice of speed or compliance
+
+Slide 15: Success Stories - Case Studies Results from the field: hub-and-spoke delivery with trial-wide transparency
+
+Slide 16: Results That Travel Hub-and-spoke model enriching the patient experience Dashboards giving trial-wide transparency and stakeholder trust Cases including 61% more patients delivered and a 12-month request delivered in 10 months
+
+Slide 17: Thank You and Next Steps Thank the room; next step is the knowledge check and certification

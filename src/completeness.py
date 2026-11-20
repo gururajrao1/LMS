@@ -35,6 +35,33 @@ def curriculum(name: str = DEFAULT_CURRICULUM) -> dict:
     return tomllib.loads(path.read_text())
 
 
+def curriculum_for(run_id: str) -> str:
+    """Which topic list this course is judged against.
+
+    Prefer an explicit content-manifest override (programme-specific courses
+    like patient recruitment), then the client default, then US oncology.
+    """
+    from src import learning, programmes
+
+    manifest_path = content_path("content", Path(run_id).name, "manifest.json")
+    if manifest_path.exists():
+        try:
+            named = (learning._json(manifest_path) or {}).get("curriculum")
+        except Exception:
+            named = None
+        if named:
+            return Path(str(named)).name
+    try:
+        record = learning.course(run_id)
+        client_id = record.get("client_id") or programmes.DEFAULT_CLIENT
+        named = programmes.client(client_id).get("curriculum")
+        if named:
+            return Path(str(named)).name
+    except Exception:
+        pass
+    return DEFAULT_CURRICULUM
+
+
 def _recall(pattern: str, text: str) -> float:
     """Content-word recall of a curriculum pattern in unit text.
 
@@ -72,9 +99,9 @@ def _state(hits: int, minimum: int) -> str:
     return "thin" if hits < minimum else "covered"
 
 
-def matrix(run_id: str, tracks=("hcp", "msl"), name: str = DEFAULT_CURRICULUM) -> dict:
+def matrix(run_id: str, tracks=("hcp", "msl"), name: str | None = None) -> dict:
     """Required topic against what each track actually covers."""
-    spec = curriculum(name)
+    spec = curriculum(name or curriculum_for(run_id))
     rows = []
     for topic in spec["topic"]:
         minimum = topic.get("min_units", 2)
@@ -121,7 +148,7 @@ def gap_id(track: str, topic_id: str) -> str:
     return f"completeness:{track}:{topic_id}"
 
 
-def gaps(run_id: str, tracks=("hcp", "msl"), name: str = DEFAULT_CURRICULUM) -> list[dict]:
+def gaps(run_id: str, tracks=("hcp", "msl"), name: str | None = None) -> list[dict]:
     """Every required topic a track does not properly cover, worst first.
 
     A topic mentioned once is raised a severity lower than one never mentioned:
@@ -150,7 +177,7 @@ def gaps(run_id: str, tracks=("hcp", "msl"), name: str = DEFAULT_CURRICULUM) -> 
 
 
 def promote(run_id: str, finding_ids: list[str] | None = None,
-            tracks=("hcp", "msl"), name: str = DEFAULT_CURRICULUM) -> list[dict]:
+            tracks=("hcp", "msl"), name: str | None = None) -> list[dict]:
     """Raise coverage gaps into the ordinary review queue.
 
     Mirrors `judge.promote`: the checker authors the comment, an expert addresses

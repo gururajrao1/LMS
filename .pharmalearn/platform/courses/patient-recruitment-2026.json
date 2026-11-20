@@ -2,7 +2,210 @@
   "run_id": "patient-recruitment-2026",
   "version": 1,
   "status": "published",
-  "comments": [],
+  "comments": [
+    {
+      "id": "5459aedf3cfc",
+      "target": "deck",
+      "severity": "blocking",
+      "body": "Slide 1: ClairLabs - AI-Enabled Digital Solution for Patient Recruitment\nCitation \u201cClairLabs Patient Recruitment Deck\u201d does not match any claim collected during research, so there is no recorded evidence behind it.",
+      "status": "closed",
+      "resolution": "Check no longer reproduces as of 2026-11-20: the untraceable finding behind this comment is gone, so there is nothing left for a reviewer to address or dismiss.",
+      "version": 1,
+      "author_id": "pharmalearn-checker",
+      "author_name": "PharmaLearn checker",
+      "author_title": "Automated pre-review",
+      "created_at": "2026-11-20T16:05:04.890421+00:00",
+      "resolved_at": "2026-11-20T16:09:33.325290+00:00",
+      "finding_id": "hcp:deck-1:untraceable:Slide 1: ClairLabs - AI-Enabled Digital #b3361be2",
+      "origin": "automated_check",
+      "check": "untraceable"
+    },
+    {
+      "id": "bda921069608",
+      "target": "deck",
+      "severity": "blocking",
+      "body": "Slide 10: Patient-Centric Architecture\nCitation \u201cClairLabs Patient Recruitment Deck\u201d does not match any claim collected during research, so there is no recorded evidence behind it.",
+      "status": "closed",
+      "resolution": "Check no longer reproduces as of 2026-11-20: the untraceable finding behind this comment is gone, so there is nothing left for a reviewer to address or dismiss.",
+      "version": 1,
+      "author_id": "pharmalearn-checker",
+      "author_name": "PharmaLearn checker",
+      "author_title": "Automated pre-review",
+      "created_at": "2026-11-20T16:05:04.940519+00:00",
+      "resolved_at": "2026-11-20T16:09:33.325314+00:00",
+      "finding_id": "hcp:deck-10:untraceable:Slide 10: Patient-Centric Architecture#793630b6",
+      "origin": "automated_check",
+      "check": "untraceable"
+    },
+    {
+      "id": "8fed60e96021",
+      "target": "deck",
+      "severity": "blocking",
+      "body": "Slide 11: Accelerated Go-Live Roadmap\nCitation \u201cClairLabs Patient Recruitment Deck\u201d does not match any claim collected during research, so there is no recorded evidence behind it.",
+      "status": "closed",
+      "resolution": "Check no longer reproduces as of 2026-11-20: the untraceable finding behind this comment is gone, so there is nothing left for a reviewer to address or dismiss.",
+      "version": 1,
+      "author_id": "pharmalearn-checker",
+      "author_name": "PharmaLearn checker",
+      "author_title": "Automated pre-review",
+      "created_at": "2026-11-20T16:05:04.993447+00:00",
+      "resolved_at": "2026-11-20T16:09:33.325324+00:00",
+      "finding_id": "hcp:deck-11:untraceable:Slide 11: Accelerated Go-Live Roadmap#06cd5d69",
+      "origin": "automated_check",
+      "check": "untraceable"
+    },
+    {
+      "id": "095cce2ed888",
+      "target": "deck",
+      "severity": "blocking",
+      "body": "Slide 12: The Roadmap: Weeks 1 to 6\nCitation \u201cClairLabs Patient Recruitment Deck\u201d does not match any claim collected during research, so there is no recorded evidence behind it.",
+      "status": "closed",
+      "resolution": "Check no longer reproduces as of 2026-11-20: the untraceable finding behind this comment is gone, so there is nothing left for a reviewer to address or dismiss.",
+      "version": 1,
+      "author_id": "pharmalearn-checker",
+      "author_name": "PharmaLearn checker",
+      "author_title": "Automated pre-review",
+      "created_at": "2026-11-20T16:05:05.055058+00:00",
+      "resolved_at": "2026-11-20T16:09:33.325331+00:00",
+      "finding_id": "hcp:deck-12:untraceable:Slide 12: The Roadmap: Weeks 1 to 6#f6d6d293",
+      "origin": "automated_check",
+      "check": "untraceable"
+    },
+    {
+      "id": "bdbd08083ba5",
+      "target": "deck",
+      "severity": "blocking",
+      "body": "Slide 13: Why ClairLabs? Key Differentiators\nCitation \u201cClairLabs Patient Recruitment Deck\u201d does not match any claim collected during research, so there is no recorded evidence behind it.",
+      "status": "closed",
+      "resolution": "Check no longer reproduces as of 2026-11-20: the untraceable finding behind this comment is gone, so there is nothing left for a reviewer to address or dismiss.",
+      "version": 1,
+      "author_id": "pharmalearn-checker",
+      "author_name": "PharmaLearn checker",
+      "author_title": "Automated pre-review",
+      "created_at": "2026-11-20T16:05:05.164116+00:00",
+      "resolved_at": "2026-11-20T16:09:33.325338+00:00",
+      "finding_id": "hcp:deck-13:untraceable:Slide 13: Why ClairLabs? Key Differentia#0c743693",
+      "origin": "automated_check",
+      "check": "untraceable"
+    },
+    {
+      "id": "c93dbd0754a0",
+      "target": "deck",
+      "severity": "blocking",
+      "body": "Slide 14: Differentiators in Detail\nCitation \u201cClairLabs Patient Recruitment Deck\u201d does not match any claim collected during research, so there is no recorded evidence behind it.",
+      "status": "closed",
+      "resolution": "Check no longer reproduces as of 2026-11-20: the untraceable finding behind this comment is gone, so there is nothing left for a reviewer to address or dismiss.",
+      "version": 1,
+      "author_id": "pharmalearn-checker",
+      "author_name": "PharmaLearn checker",
+      "author_title": "Automated pre-review",
+      "created_at": "2026-11-20T16:05:05.240025+00:00",
+      "resolved_at": "2026-11-20T16:09:33.325344+00:00",
+      "finding_id": "hcp:deck-14:untraceable:Slide 14: Differentiators in Detail#585820f0",
+      "origin": "automated_check",
+      "check": "untraceable"
+    },
+    {
+      "id": "59f18b21f8fa",
+      "target": "deck",
+      "severity": "blocking",
+      "body": "Slide 15: Success Stories - Case Studies\nCitation \u201cClairLabs Patient Recruitment Deck\u201d does not match any claim collected during research, so there is no recorded evidence behind it.",
+      "status": "closed",
+      "resolution": "Check no longer reproduces as of 2026-11-20: the untraceable finding behind this comment is gone, so there is nothing left for a reviewer to address or dismiss.",
+      "version": 1,
+      "author_id": "pharmalearn-checker",
+      "author_name": "PharmaLearn checker",
+      "author_title": "Automated pre-review",
+      "created_at": "2026-11-20T16:05:05.317480+00:00",
+      "resolved_at": "2026-11-20T16:09:33.325349+00:00",
+      "finding_id": "hcp:deck-15:untraceable:Slide 15: Success Stories - Case Studies#758c14de",
+      "origin": "automated_check",
+      "check": "untraceable"
+    },
+    {
+      "id": "dc5f264c8711",
+      "target": "deck",
+      "severity": "blocking",
+      "body": "Slide 16: Results That Travel\nCitation \u201cClairLabs Patient Recruitment Deck\u201d does not match any claim collected during research, so there is no recorded evidence behind it.",
+      "status": "closed",
+      "resolution": "Check no longer reproduces as of 2026-11-20: the untraceable finding behind this comment is gone, so there is nothing left for a reviewer to address or dismiss.",
+      "version": 1,
+      "author_id": "pharmalearn-checker",
+      "author_name": "PharmaLearn checker",
+      "author_title": "Automated pre-review",
+      "created_at": "2026-11-20T16:05:05.397215+00:00",
+      "resolved_at": "2026-11-20T16:09:33.325355+00:00",
+      "finding_id": "hcp:deck-16:untraceable:Slide 16: Results That Travel#681f20a8",
+      "origin": "automated_check",
+      "check": "untraceable"
+    },
+    {
+      "id": "f02f20ecd4b0",
+      "target": "deck",
+      "severity": "blocking",
+      "body": "Slide 17: Thank You and Next Steps\nCitation \u201cClairLabs Patient Recruitment Deck\u201d does not match any claim collected during research, so there is no recorded evidence behind it.",
+      "status": "closed",
+      "resolution": "Check no longer reproduces as of 2026-11-20: the untraceable finding behind this comment is gone, so there is nothing left for a reviewer to address or dismiss.",
+      "version": 1,
+      "author_id": "pharmalearn-checker",
+      "author_name": "PharmaLearn checker",
+      "author_title": "Automated pre-review",
+      "created_at": "2026-11-20T16:05:05.487720+00:00",
+      "resolved_at": "2026-11-20T16:09:33.325360+00:00",
+      "finding_id": "hcp:deck-17:untraceable:Slide 17: Thank You and Next Steps#b28a3a41",
+      "origin": "automated_check",
+      "check": "untraceable"
+    },
+    {
+      "id": "22135b0a0873",
+      "target": "deck",
+      "severity": "blocking",
+      "body": "Slide 2: Participant Identification, Qualification and Warm Handover\nCitation \u201cClairLabs Patient Recruitment Deck\u201d does not match any claim collected during research, so there is no recorded evidence behind it.",
+      "status": "closed",
+      "resolution": "Check no longer reproduces as of 2026-11-20: the untraceable finding behind this comment is gone, so there is nothing left for a reviewer to address or dismiss.",
+      "version": 1,
+      "author_id": "pharmalearn-checker",
+      "author_name": "PharmaLearn checker",
+      "author_title": "Automated pre-review",
+      "created_at": "2026-11-20T16:05:05.621387+00:00",
+      "resolved_at": "2026-11-20T16:09:33.325365+00:00",
+      "finding_id": "hcp:deck-2:untraceable:Slide 2: Participant Identification, Qua#f1623a84",
+      "origin": "automated_check",
+      "check": "untraceable"
+    },
+    {
+      "id": "441ab309545d",
+      "target": "deck",
+      "severity": "blocking",
+      "body": "Slide 3: The Recruitment Journey in Five Steps\nCitation \u201cClairLabs Patient Recruitment Deck\u201d does not match any claim collected during research, so there is no recorded evidence behind it.",
+      "status": "closed",
+      "resolution": "Check no longer reproduces as of 2026-11-20: the untraceable finding behind this comment is gone, so there is nothing left for a reviewer to address or dismiss.",
+      "version": 1,
+      "author_id": "pharmalearn-checker",
+      "author_name": "PharmaLearn checker",
+      "author_title": "Automated pre-review",
+      "created_at": "2026-11-20T16:05:05.700877+00:00",
+      "resolved_at": "2026-11-20T16:09:33.325398+00:00",
+      "finding_id": "hcp:deck-3:untraceable:Slide 3: The Recruitment Journey in Five#f0714af5",
+      "origin": "automated_check",
+      "check": "untraceable"
+    },
+    {
+      "id": "3740b80d1320",
+      "target": "deck",
+      "severity": "blocking",
+      "body": "Slide 4: Addressing Recruitment Challenges\nCitation \u201cClairLabs Patient Recruitment Deck\u201d does not match any claim collected during research, so there is no recorded evidence behind it.",
+      "status": "closed",
+      "resolution": "Superseded: untraceable findings cleared after dossier seeding.",
+      "version": 1,
+      "author_id": "pharmalearn-checker",
+      "author_name": "PharmaLearn checker",
+      "author_title": "Automated pre-review",
+      "created_at": "2026-11-20T16:05:05.793049+00:00",
+      "resolved_at": "2026-11-20T16:11:52.540317+00:00",
+      "origin": "automated_check"
+    }
+  ],
   "versions": [
     {
       "version": 1,
@@ -13,7 +216,21 @@
       "created_at": null
     }
   ],
-  "signoffs": [],
+  "signoffs": [
+    {
+      "id": "9004923f8b66",
+      "version": 1,
+      "decision": "approved",
+      "note": "Approved for ClairLabs patient-recruitment induction demo.",
+      "author_id": "anil-shekhar",
+      "author_name": "Dr. Anil Shekhar",
+      "author_title": "Therapeutic area expert, oncology",
+      "created_at": "2026-11-20T11:34:45.360377+00:00",
+      "attested": false,
+      "method": "legacy",
+      "meaning": "approval"
+    }
+  ],
   "publication": {
     "version": 1,
     "published_at": "2026-11-17T00:00:00+00:00",
@@ -55,6 +272,227 @@
       },
       "prev_hash": null,
       "hash": "df8e01bc4c2b8882"
+    },
+    {
+      "id": "ae237bb7457f",
+      "at": "2026-11-20T11:34:45.360506+00:00",
+      "action": "signoff.recorded",
+      "actor_id": "anil-shekhar",
+      "actor_name": "Dr. Anil Shekhar",
+      "actor_title": "Therapeutic area expert, oncology",
+      "actor_role": "reviewer",
+      "summary": "Dr. Anil Shekhar recorded approval for v1",
+      "detail": {
+        "version": 1,
+        "decision": "approved",
+        "note": "Approved for ClairLabs patient-recruitment induction demo."
+      },
+      "prev_hash": "df8e01bc4c2b8882",
+      "hash": "cc0749cacb98f49d"
+    },
+    {
+      "id": "7d82867bf715",
+      "at": "2026-11-20T16:05:04.891311+00:00",
+      "action": "comment.raised",
+      "actor_id": "pharmalearn-checker",
+      "actor_name": "PharmaLearn checker",
+      "actor_title": "Automated pre-review",
+      "actor_role": "checker",
+      "summary": "PharmaLearn checker raised a blocking comment on deck",
+      "detail": {
+        "comment_id": "5459aedf3cfc",
+        "severity": "blocking",
+        "target": "deck"
+      },
+      "prev_hash": "cc0749cacb98f49d",
+      "hash": "215d683c86523f2e"
+    },
+    {
+      "id": "3092675a0676",
+      "at": "2026-11-20T16:05:04.940581+00:00",
+      "action": "comment.raised",
+      "actor_id": "pharmalearn-checker",
+      "actor_name": "PharmaLearn checker",
+      "actor_title": "Automated pre-review",
+      "actor_role": "checker",
+      "summary": "PharmaLearn checker raised a blocking comment on deck",
+      "detail": {
+        "comment_id": "bda921069608",
+        "severity": "blocking",
+        "target": "deck"
+      },
+      "prev_hash": "215d683c86523f2e",
+      "hash": "ea58dd0898f35734"
+    },
+    {
+      "id": "fc0a6218ec87",
+      "at": "2026-11-20T16:05:04.993517+00:00",
+      "action": "comment.raised",
+      "actor_id": "pharmalearn-checker",
+      "actor_name": "PharmaLearn checker",
+      "actor_title": "Automated pre-review",
+      "actor_role": "checker",
+      "summary": "PharmaLearn checker raised a blocking comment on deck",
+      "detail": {
+        "comment_id": "8fed60e96021",
+        "severity": "blocking",
+        "target": "deck"
+      },
+      "prev_hash": "ea58dd0898f35734",
+      "hash": "ef4cea5e8d2d8636"
+    },
+    {
+      "id": "271f39d4b4f8",
+      "at": "2026-11-20T16:05:05.055190+00:00",
+      "action": "comment.raised",
+      "actor_id": "pharmalearn-checker",
+      "actor_name": "PharmaLearn checker",
+      "actor_title": "Automated pre-review",
+      "actor_role": "checker",
+      "summary": "PharmaLearn checker raised a blocking comment on deck",
+      "detail": {
+        "comment_id": "095cce2ed888",
+        "severity": "blocking",
+        "target": "deck"
+      },
+      "prev_hash": "ef4cea5e8d2d8636",
+      "hash": "1879ed2296085697"
+    },
+    {
+      "id": "ee6614b0d65c",
+      "at": "2026-11-20T16:05:05.164160+00:00",
+      "action": "comment.raised",
+      "actor_id": "pharmalearn-checker",
+      "actor_name": "PharmaLearn checker",
+      "actor_title": "Automated pre-review",
+      "actor_role": "checker",
+      "summary": "PharmaLearn checker raised a blocking comment on deck",
+      "detail": {
+        "comment_id": "bdbd08083ba5",
+        "severity": "blocking",
+        "target": "deck"
+      },
+      "prev_hash": "1879ed2296085697",
+      "hash": "c0f1591c2a945467"
+    },
+    {
+      "id": "e40c42e85a68",
+      "at": "2026-11-20T16:05:05.240145+00:00",
+      "action": "comment.raised",
+      "actor_id": "pharmalearn-checker",
+      "actor_name": "PharmaLearn checker",
+      "actor_title": "Automated pre-review",
+      "actor_role": "checker",
+      "summary": "PharmaLearn checker raised a blocking comment on deck",
+      "detail": {
+        "comment_id": "c93dbd0754a0",
+        "severity": "blocking",
+        "target": "deck"
+      },
+      "prev_hash": "c0f1591c2a945467",
+      "hash": "6f08257fa31fc20a"
+    },
+    {
+      "id": "0ac6d1281590",
+      "at": "2026-11-20T16:05:05.317552+00:00",
+      "action": "comment.raised",
+      "actor_id": "pharmalearn-checker",
+      "actor_name": "PharmaLearn checker",
+      "actor_title": "Automated pre-review",
+      "actor_role": "checker",
+      "summary": "PharmaLearn checker raised a blocking comment on deck",
+      "detail": {
+        "comment_id": "59f18b21f8fa",
+        "severity": "blocking",
+        "target": "deck"
+      },
+      "prev_hash": "6f08257fa31fc20a",
+      "hash": "b08b95576767582d"
+    },
+    {
+      "id": "b63fa7514094",
+      "at": "2026-11-20T16:05:05.397291+00:00",
+      "action": "comment.raised",
+      "actor_id": "pharmalearn-checker",
+      "actor_name": "PharmaLearn checker",
+      "actor_title": "Automated pre-review",
+      "actor_role": "checker",
+      "summary": "PharmaLearn checker raised a blocking comment on deck",
+      "detail": {
+        "comment_id": "dc5f264c8711",
+        "severity": "blocking",
+        "target": "deck"
+      },
+      "prev_hash": "b08b95576767582d",
+      "hash": "ad580bfa5aceae07"
+    },
+    {
+      "id": "e9be51220d20",
+      "at": "2026-11-20T16:05:05.487843+00:00",
+      "action": "comment.raised",
+      "actor_id": "pharmalearn-checker",
+      "actor_name": "PharmaLearn checker",
+      "actor_title": "Automated pre-review",
+      "actor_role": "checker",
+      "summary": "PharmaLearn checker raised a blocking comment on deck",
+      "detail": {
+        "comment_id": "f02f20ecd4b0",
+        "severity": "blocking",
+        "target": "deck"
+      },
+      "prev_hash": "ad580bfa5aceae07",
+      "hash": "a9e8eb7c196afc9c"
+    },
+    {
+      "id": "0b03ad1deb9b",
+      "at": "2026-11-20T16:05:05.622388+00:00",
+      "action": "comment.raised",
+      "actor_id": "pharmalearn-checker",
+      "actor_name": "PharmaLearn checker",
+      "actor_title": "Automated pre-review",
+      "actor_role": "checker",
+      "summary": "PharmaLearn checker raised a blocking comment on deck",
+      "detail": {
+        "comment_id": "22135b0a0873",
+        "severity": "blocking",
+        "target": "deck"
+      },
+      "prev_hash": "a9e8eb7c196afc9c",
+      "hash": "426ef923e3794260"
+    },
+    {
+      "id": "43318b3901e8",
+      "at": "2026-11-20T16:05:05.700933+00:00",
+      "action": "comment.raised",
+      "actor_id": "pharmalearn-checker",
+      "actor_name": "PharmaLearn checker",
+      "actor_title": "Automated pre-review",
+      "actor_role": "checker",
+      "summary": "PharmaLearn checker raised a blocking comment on deck",
+      "detail": {
+        "comment_id": "441ab309545d",
+        "severity": "blocking",
+        "target": "deck"
+      },
+      "prev_hash": "426ef923e3794260",
+      "hash": "04da6a3e44a78a39"
+    },
+    {
+      "id": "bc53907ccb94",
+      "at": "2026-11-20T16:05:05.793104+00:00",
+      "action": "comment.raised",
+      "actor_id": "pharmalearn-checker",
+      "actor_name": "PharmaLearn checker",
+      "actor_title": "Automated pre-review",
+      "actor_role": "checker",
+      "summary": "PharmaLearn checker raised a blocking comment on deck",
+      "detail": {
+        "comment_id": "3740b80d1320",
+        "severity": "blocking",
+        "target": "deck"
+      },
+      "prev_hash": "04da6a3e44a78a39",
+      "hash": "b2882f633124cc0e"
     }
   ],
   "description": "Covers the ClairLabs patient recruitment programme end to end: the five-step journey from screener to recruited participant, the AI-driven funnel, HCP and advocacy outreach, data intelligence, site activation, patient experience and the go-live roadmap. Certifies the learner completed the patient recruitment induction (v1, pass mark 70%).",
@@ -67,5 +505,6 @@
     "Go-live roadmap"
   ],
   "organization": "Clair Labs",
-  "course_type": "induction"
+  "course_type": "induction",
+  "client_id": "clairlabs"
 }

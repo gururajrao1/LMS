@@ -11,7 +11,17 @@ Potential Demo Drugs:
 
 ## Run locally
 
-Requirements: Python 3.13+, [uv](https://docs.astral.sh/uv/), [Bun](https://bun.sh/), and Node.js 20.9+.
+Requirements: Python 3.13+, [uv](https://docs.astral.sh/uv/), [Bun](https://bun.sh/) (or npm), and Node.js 20.9+.
+
+**One command** (clone/pull on any machine, then):
+
+```bash
+uv run python scripts/start.py
+```
+
+That copies `.env` if missing, syncs Python + UI deps, frees stale ports, and starts API + UI together. Open `http://localhost:3000`. Ctrl+C stops both.
+
+Manual two-terminal path (same as before):
 
 ```bash
 cp .env.example .env
@@ -27,7 +37,9 @@ bun install
 bun dev
 ```
 
-Open `http://localhost:3000`. Pick a role and a person from the demo roster to sign in. An API key is not needed for this local-data end-to-end path.
+Pick a role and a person from the demo roster to sign in. An API key is not needed for this local-data end-to-end path.
+
+**Switching machines:** push from the machine you used, then on the other: `git pull` → `uv run python scripts/start.py`. Keep `.env` local (gitignored); everything else lives in the repo.
 
 ## Pre-populate the demo
 

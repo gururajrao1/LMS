@@ -1,1 +1,155 @@
-{"accessed_at": "2026-11-18T00:00:00+00:00", "scope": "Course authored from the programme training deck; deck model cross-checked against recruitment literature Nov 2026", "sources": [{"locator": "docs/Patient Recruitment Deck.pptx, Slides 1-17", "supporting_text": "ClairLabs - AI-Enabled Digital Solution for Patient Recruitment: participant identification, qualification and warm handover across the journey; AI-driven funnel; HCP, data-driven and advocacy outreach; site alignment and go-live; patient-centric architecture; go-live roadmap; differentiators and case studies. Deck case figures (61% more patients, 70-90% non-conversion) are vendor-reported and cited as deck figures in training, not independent findings.", "title": "ClairLabs Patient Recruitment Deck"}, {"locator": "JMIR 2020 systematic review and meta-analysis; Cambridge JCTS meta-analysis", "supporting_text": "Online recruitment is effective vs traditional methods; social media about twice as cost-effective as non-social methods, with high variability between studies. Supports the deck's multichannel/programmatic funnel and retargeting logic.", "title": "Online recruitment effectiveness literature", "url": "https://www.jmir.org/2020/11/e22179"}, {"locator": "SMA advocacy case (60% timeline improvement); PRISM rare-disease DTC study (40.1% lead generation); GO2 lung cancer advocacy-led site network", "supporting_text": "Advocacy-group partnerships materially improve recruitment timelines and lead generation, especially in rare disease; registries connect pre-identified, opted-in patients. Supports the deck's PAG-and-registry model.", "title": "Patient advocacy and registry evidence", "url": "https://link.springer.com/article/10.1186/s12913-024-11376-3"}, {"locator": "Tufts CSDD via TrialNotice 2026: 11% zero-enroll, 37% under-enroll, 36.3% screen failure, 19.1% dropout; ACRP 2025: median activation 140-167 days vs 90-120 target", "supporting_text": "Recruitment is the rate-limiting step; most sites under-enroll and activation is slow. Supports the deck's rapid-activation, hyper-localized, live-analytics site model and the screen-failure reduction claim directionally.", "title": "Site activation and enrollment benchmarks", "url": "https://www.trialnotice.com/blog/clinical-trial-enrollment-statistics/"}]}
+{
+  "accessed_at": "2026-11-20T14:31:47.859322+00:00",
+  "scope": "Course deck plus locally fetched recruitment literature (JMIR / PMC / benchmarks) for offline demo use",
+  "sources": [
+    {
+      "locator": "docs/Patient Recruitment Deck.pptx, Slides 1-17",
+      "supporting_text": "ClairLabs - AI-Enabled Digital Solution for Patient Recruitment: participant identification, qualification and warm handover across the journey; AI-driven funnel; HCP, data-driven and advocacy outreach; site alignment and go-live; patient-centric architecture; go-live roadmap; differentiators and case studies. Deck case figures (61% more patients, 70-90% non-conversion) are vendor-reported and cited as deck figures in training, not independent findings.",
+      "title": "ClairLabs Patient Recruitment Deck"
+    },
+    {
+      "title": "Online Patient Recruitment in Clinical Trials: Systematic Review and Meta-Analysis",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7673977/",
+      "locator": "JMIR 2020;22(11):e22179 / PMC7673977",
+      "supporting_text": "Recruitment for clinical trials continues to be a challenge, as patient recruitment is the single biggest cause of trial delays. Around 80% of trials fail to meet the initial enrollment target and timeline, and these delays can result in lost revenue of as much as US $8 million per day for drug developing companies. This study aimed to conduct a systematic review and meta-analysis examining the effectiveness of online recruitment of participants for clinical trials compared with traditional in-clinic/offline recruitment methods. Data on recruitment rates (the average number of patients enrolle\u2026",
+      "held_locally": true,
+      "access_level": "abstract_only",
+      "retrieved_at": "2026-11-20T14:35:50.787804+00:00"
+    },
+    {
+      "title": "Patient advocacy and community engagement in clinical trial recruitment",
+      "url": "https://link.springer.com/article/10.1186/s12913-024-11376-3",
+      "locator": "BMC Health Serv Res 2024",
+      "supporting_text": "Increased engagement with community-based practices is a promising strategy for increasing clinical trials access of diverse patient populations. In this study we assessed the ability to utilize a patient-advocacy organization led clinical network to engage diverse practices as field sites for clinical research. GO2 for Lung Cancer led recruitment efforts of 17 field sites from their Centers of Excellence in Lung Cancer Screening Network for participation in an implementation-effectiveness trial focused on smoking cessation integration into screening programs for lung cancer. Sites were engag\u2026",
+      "held_locally": true,
+      "access_level": "abstract_only",
+      "retrieved_at": "2026-11-20T14:31:39.942867+00:00"
+    },
+    {
+      "title": "Clinical trial enrollment statistics and site performance benchmarks",
+      "url": "https://www.trialnotice.com/blog/clinical-trial-enrollment-statistics/",
+      "locator": "TrialNotice / Tufts CSDD benchmarks",
+      "supporting_text": "Clinical Trial Enrollment Statistics: The Complete Reference | TrialNotice TrialNotice Menu Home Patient recruitment Physician outreach Direct mail Blog Contact Home / Blog / Benchmarks and tools Benchmarks and tools Clinical trial enrollment statistics: the complete reference By TrialNotice \u00b7 Updated October 4, 2026 Short answer In a typical Phase II or III trial, 11% of sites enroll no patients, 37% under enroll, 39% meet their target, and 13% exceed it, according to Tufts CSDD. The average screen failure rate is 36.3% and the average dropout rate is 19.1%. Only 62% of North American sites\u2026",
+      "held_locally": true,
+      "access_level": "fetched_live",
+      "retrieved_at": "2026-11-20T14:31:15.252741+00:00"
+    },
+    {
+      "title": "The Role of Social Media in Enhancing Clinical Trial Recruitment: Scoping Review",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7652693/",
+      "locator": "JMIR 2020;22(10):e22810 / PMC7652693",
+      "supporting_text": "Recruiting participants into clinical trials continues to be a challenge, which can result in study delay or termination. Recent studies have used social media to enhance recruitment outcomes. An assessment of the literature on the use of social media for this purpose is required. This study aims to answer the following questions: (1) How is the use of social media, in combination with traditional approaches to enhance clinical trial recruitment and enrollment, represented in the literature? and (2) Do the data on recruitment and enrollment outcomes presented in the literature allow for compar\u2026",
+      "held_locally": true,
+      "access_level": "abstract_only",
+      "retrieved_at": "2026-11-20T14:35:52.764211+00:00"
+    },
+    {
+      "title": "Digital technologies used in clinical trial recruitment and enrollment including application to trial diversity and inclusion",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10981266/",
+      "locator": "PMC10981266",
+      "supporting_text": "Digital technologies used in clinical trial recruitment and enrollment including application to trial diversity and inclusion: A systematic review - PMC Skip to main content An official website of the United States government Here's how you know Here's how you know Official websites use .gov A .gov website belongs to an official government organization in the United States. Secure .gov websites use HTTPS A lock ( Lock Locked padlock icon ) or https:// means you've safely connected to the .gov website. Share sensitive information only on official, secure websites. Search Log in Dashboard Publi\u2026",
+      "held_locally": true,
+      "access_level": "fetched_live",
+      "retrieved_at": "2026-11-20T14:31:06.036833+00:00"
+    },
+    {
+      "title": "Digital tools for the recruitment and retention of participants in randomised controlled trials: a systematic map",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7273688/",
+      "locator": "PMC7273688",
+      "supporting_text": "Digital tools for the recruitment and retention of participants in randomised controlled trials: a systematic map - PMC Skip to main content An official website of the United States government Here's how you know Here's how you know Official websites use .gov A .gov website belongs to an official government organization in the United States. Secure .gov websites use HTTPS A lock ( Lock Locked padlock icon ) or https:// means you've safely connected to the .gov website. Share sensitive information only on official, secure websites. Search Log in Dashboard Publications Account settings Log out\u2026",
+      "held_locally": true,
+      "access_level": "fetched_live",
+      "retrieved_at": "2026-11-20T14:31:08.421408+00:00"
+    },
+    {
+      "title": "Interventions to increase racial and ethnic minority accrual into cancer clinical trials",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10456972/",
+      "locator": "PMC10456972",
+      "supporting_text": "Interventions to increase racial and ethnic minority accrual into cancer clinical trials: A systematic review - PMC Skip to main content An official website of the United States government Here's how you know Here's how you know Official websites use .gov A .gov website belongs to an official government organization in the United States. Secure .gov websites use HTTPS A lock ( Lock Locked padlock icon ) or https:// means you've safely connected to the .gov website. Share sensitive information only on official, secure websites. Search Log in Dashboard Publications Account settings Log out Sear\u2026",
+      "held_locally": true,
+      "access_level": "fetched_live",
+      "retrieved_at": "2026-11-20T14:31:10.083274+00:00"
+    },
+    {
+      "title": "Use of Video Education Interventions to Increase Racial and Ethnic Diversity in Cancer Clinical Trials",
+      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8483572/",
+      "locator": "PMC8483572",
+      "supporting_text": "It is clinically important to deliver a sustained-release mucoadhesive dosage of local anesthetic and antimicrobial agents for pain control. The current study aimed to develop and evaluate chitosan (CHI) based buccal mucoadhesive delivery for the local release of tibezonium iodide (TBN) and lignocaine hydrochloride (LGN). Direct compression technique was employed, aided by other mucoadhesive polymers like hydroxypropylmethylcellulose (HPMC) and sodium alginate (SA) and evaluated for physicochemical and in&#xa0;vivo character. Fourier transform infrared spectral analysis (FTIR), powdered X-ray \u2026",
+      "held_locally": true,
+      "access_level": "abstract_only",
+      "retrieved_at": "2026-11-20T14:35:54.781518+00:00"
+    },
+    {
+      "title": "Leveraging digital tools to enhance diversity and inclusion in clinical trial recruitment",
+      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11550947/",
+      "locator": "PMC11550947",
+      "supporting_text": "Clinical research is pivotal in assessing the safety and efficacy of new treatments in healthcare. However, the success of such research depends on the inclusion of a diverse and representative participant sample, which is currently lacking. This lack of diversity in biomedical research participants has significant repercussions, limiting the real-world applicability and accessibility of medical interventions, especially for underrepresented groups. Barriers to diverse participation include historical mistrust, logistical challenges, and financial constraints. Recent guidelines by government a\u2026",
+      "held_locally": true,
+      "access_level": "abstract_only",
+      "retrieved_at": "2026-11-20T14:35:57.268877+00:00"
+    },
+    {
+      "title": "Graph-augmented LLMs for social media-based clinical trial recruitment.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42767584/",
+      "locator": "PMID 42767584",
+      "supporting_text": "Europe PMC discovery: TITLE:\"clinical trial recruitment\" AND TITLE:\"social media\" (fetch: HTTP 203)",
+      "held_locally": true,
+      "access_level": "unavailable",
+      "retrieved_at": "2026-11-20T14:31:40.783388+00:00"
+    },
+    {
+      "title": "Social Media Influencer Marketing as a Clinical Trial Recruitment Modality: Tutorial Informed by One Study's Approach.",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13482797/",
+      "locator": "PMC13482797",
+      "supporting_text": "Social Media Influencer Marketing as a Clinical Trial Recruitment Modality: Tutorial Informed by One Study\u2019s Approach - PMC Skip to main content An official website of the United States government Here's how you know Here's how you know Official websites use .gov A .gov website belongs to an official government organization in the United States. Secure .gov websites use HTTPS A lock ( Lock Locked padlock icon ) or https:// means you've safely connected to the .gov website. Share sensitive information only on official, secure websites. Search Log in Dashboard Publications Account settings Log\u2026",
+      "held_locally": true,
+      "access_level": "fetched_live",
+      "retrieved_at": "2026-11-20T14:31:41.698634+00:00"
+    },
+    {
+      "title": "Reddit for research recruitment? Social media as a novel clinical trial recruitment tool for adolescent and young adult (AYA) cancer survivors.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39636575/",
+      "locator": "PMID 39636575",
+      "supporting_text": "Europe PMC discovery: TITLE:\"clinical trial recruitment\" AND TITLE:\"social media\" (fetch: HTTP 203)",
+      "held_locally": true,
+      "access_level": "unavailable",
+      "retrieved_at": "2026-11-20T14:31:42.780959+00:00"
+    },
+    {
+      "title": "The Role of Social Media in Enhancing Clinical Trial Recruitment: Scoping Review.",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7652693/",
+      "locator": "PMC7652693",
+      "supporting_text": "Checking your browser - reCAPTCHA Checking your browser before accessing pmc.ncbi.nlm.nih.gov ... Click here if you are not automatically redirected after 5 seconds.",
+      "held_locally": true,
+      "access_level": "fetched_live",
+      "retrieved_at": "2026-11-20T14:31:43.636586+00:00"
+    },
+    {
+      "title": "Clinical Trial Recruitment and Retention of College Students with Type 1 Diabetes via Social Media: An Implementation Case Study.",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6501540/",
+      "locator": "PMC6501540",
+      "supporting_text": "Clinical Trial Recruitment and Retention of College Students with Type 1 Diabetes via Social Media: An Implementation Case Study - PMC Skip to main content An official website of the United States government Here's how you know Here's how you know Official websites use .gov A .gov website belongs to an official government organization in the United States. Secure .gov websites use HTTPS A lock ( Lock Locked padlock icon ) or https:// means you've safely connected to the .gov website. Share sensitive information only on official, secure websites. Search Log in Dashboard Publications Account se\u2026",
+      "held_locally": true,
+      "access_level": "fetched_live",
+      "retrieved_at": "2026-11-20T14:31:46.022401+00:00"
+    },
+    {
+      "title": "Response to the Letter to the Editor From Mayen et al Regarding \"Clinical Trial Recruitment and Retention of College Students With Type 1 Diabetes via Social Media: An Implementati",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7189160/",
+      "locator": "PMC7189160",
+      "supporting_text": "Response to the Letter to the Editor From Mayen et al Regarding \u201cClinical Trial Recruitment and Retention of College Students With Type 1 Diabetes via Social Media: An Implementation Case Study\u201d - PMC Skip to main content An official website of the United States government Here's how you know Here's how you know Official websites use .gov A .gov website belongs to an official government organization in the United States. Secure .gov websites use HTTPS A lock ( Lock Locked padlock icon ) or https:// means you've safely connected to the .gov website. Share sensitive information only on official\u2026",
+      "held_locally": true,
+      "access_level": "fetched_live",
+      "retrieved_at": "2026-11-20T14:31:47.779283+00:00"
+    },
+    {
+      "title": "Online recruitment effectiveness literature",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7673977/",
+      "locator": "JMIR 2020;22(11):e22179 / PMC7673977",
+      "supporting_text": "Recruitment for clinical trials continues to be a challenge, as patient recruitment is the single biggest cause of trial delays. Around 80% of trials fail to meet the initial enrollment target and timeline, and these delays can result in lost revenue of as much as US $8 million per day for drug developing companies. This study aimed to conduct a systematic review and meta-analysis examining the effectiveness of online recruitment of participants for clinical trials compared with traditional in-clinic/offline recruitment methods. Data on recruitment rates (the average number of patients enrolle\u2026",
+      "held_locally": true,
+      "access_level": "abstract_only",
+      "retrieved_at": "2026-11-20T14:35:50.787804+00:00"
+    }
+  ]
+}

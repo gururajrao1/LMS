@@ -29,6 +29,12 @@ SEED_CLIENTS = [{
     "region": "United States",
     "jurisdiction": "US",
     "curriculum": "us_oncology",
+}, {
+    "id": "clairlabs",
+    "name": "ClairLabs",
+    "region": "Global",
+    "jurisdiction": "Global",
+    "curriculum": "patient_recruitment",
 }]
 
 DEFAULT_CLIENT = SEED_CLIENTS[0]["id"]

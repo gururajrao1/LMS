@@ -1,0 +1,19 @@
+{
+  "run_id": "patient-recruitment-2026",
+  "model_status": {
+    "": "skipped: deterministic checks only"
+  },
+  "stats": {
+    "units": 98,
+    "citations": 110,
+    "traceable": 110,
+    "checkable": 110,
+    "verified": 110,
+    "partial": 0,
+    "flagged_units": 0,
+    "coverage_percent": 100,
+    "verified_percent": 100
+  },
+  "findings": [],
+  "checked_at": "2026-11-20T16:12:14.621029+00:00"
+}

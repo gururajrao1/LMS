@@ -1,0 +1,14 @@
+{
+  "source_id": "trialnotice-enrollment-stats",
+  "title": "Clinical trial enrollment statistics and site performance benchmarks",
+  "url": "https://www.trialnotice.com/blog/clinical-trial-enrollment-statistics/",
+  "locator": "TrialNotice / Tufts CSDD benchmarks",
+  "why": "Zero-enroll / under-enroll / screen-failure / dropout benchmarks.",
+  "fetched_at": "2026-11-20T14:31:15.252741+00:00",
+  "access_level": "fetched_live",
+  "fetch_tier": "direct",
+  "sha256": "3015d74e9a159c4af7c4cf471287ef490f803efe8c8ae4095c74d63d7d81d203",
+  "characters": 5202,
+  "note": "",
+  "final_url": "https://www.trialnotice.com/blog/clinical-trial-enrollment-statistics/"
+}

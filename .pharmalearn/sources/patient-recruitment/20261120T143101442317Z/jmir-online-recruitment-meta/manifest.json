@@ -1,0 +1,14 @@
+{
+  "source_id": "jmir-online-recruitment-meta",
+  "title": "Online Patient Recruitment in Clinical Trials: Systematic Review and Meta-Analysis",
+  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7673977/",
+  "locator": "JMIR 2020;22(11):e22179 / PMC7673977",
+  "why": "Online vs offline recruitment rate and cost-per-enrollee.",
+  "fetched_at": "2026-11-20T14:35:50.787804+00:00",
+  "access_level": "abstract_only",
+  "fetch_tier": "abstract_only",
+  "sha256": "4fcac090c135703737fd2592647c63b7189727df1d3146ef921ade8dd1c81544",
+  "characters": 2524,
+  "note": "",
+  "final_url": "https://pubmed.ncbi.nlm.nih.gov/33146627/"
+}

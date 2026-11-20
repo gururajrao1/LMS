@@ -1,0 +1,78 @@
+{
+  "run_id": "patient-recruitment-2026",
+  "user_id": "guru-raja",
+  "started_at": "2026-11-20T11:29:24.399344+00:00",
+  "modules": {
+    "deck": {
+      "completed_at": "2026-11-20T11:29:24.404644+00:00"
+    },
+    "videos": {
+      "completed_at": "2026-11-20T11:29:24.429547+00:00"
+    },
+    "storyboard": {
+      "completed_at": "2026-11-20T11:29:24.482773+00:00"
+    },
+    "faq": {
+      "completed_at": "2026-11-20T11:29:24.519008+00:00"
+    }
+  },
+  "attempts": [
+    {
+      "id": "2686ee0a6416",
+      "kind": "baseline",
+      "score": 100,
+      "correct": 5,
+      "total": 5,
+      "passing_score": 70,
+      "passed": true,
+      "answers": {
+        "q1": 1,
+        "q2": 2,
+        "q3": 0,
+        "q4": 3,
+        "q5": 1
+      },
+      "created_at": "2026-11-20T11:29:24.540328+00:00"
+    },
+    {
+      "id": "6c459d5be3d5",
+      "kind": "final",
+      "score": 100,
+      "correct": 12,
+      "total": 12,
+      "passing_score": 70,
+      "passed": true,
+      "answers": {
+        "q1": 1,
+        "q2": 2,
+        "q3": 0,
+        "q4": 3,
+        "q5": 1,
+        "q6": 2,
+        "q7": 1,
+        "q8": 1,
+        "q9": 1,
+        "q10": 1,
+        "q11": 1,
+        "q12": 0
+      },
+      "created_at": "2026-11-20T11:29:24.579970+00:00"
+    }
+  ],
+  "certificate": {
+    "id": "387b28bc2edd",
+    "code": "PL-PATIENT-2026-DE7231",
+    "user_id": "guru-raja",
+    "learner_name": "Guru Raja",
+    "learner_title": "PharmaLearn builder",
+    "run_id": "patient-recruitment-2026",
+    "course_version": 1,
+    "template": "classic",
+    "score": 100,
+    "issued_at": "2026-11-20T11:29:24.616846+00:00",
+    "expires_at": "2027-11-20T11:29:24.616846+00:00",
+    "approved_by": []
+  },
+  "feedback": [],
+  "daily_checks": []
+}

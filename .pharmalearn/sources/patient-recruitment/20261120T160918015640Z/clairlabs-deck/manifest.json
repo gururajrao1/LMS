@@ -1,0 +1,17 @@
+{
+  "source_id": "clairlabs-deck",
+  "title": "ClairLabs Patient Recruitment Deck",
+  "url": "https://clairlabs.local/sources/patient-recruitment-deck",
+  "locator": "docs/Patient Recruitment Deck.pptx, Slides 1-17",
+  "registry": {
+    "url": "https://clairlabs.local/sources/patient-recruitment-deck",
+    "title": "ClairLabs Patient Recruitment Deck",
+    "kind": "programme_deck"
+  },
+  "fetched_at": "2026-11-20T16:09:18.015710+00:00",
+  "access_level": "human_record",
+  "fetch_tier": "human_record",
+  "sha256": "17e66e083d0fdd6fe910bc41db0dc704c437f684149c433cb586e4a70ed8a811",
+  "characters": 5424,
+  "note": "Extracted from course deck_spec.json for offline citation checks"
+}

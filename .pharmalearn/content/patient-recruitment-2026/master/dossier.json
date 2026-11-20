@@ -1,0 +1,604 @@
+{
+  "drug": {
+    "brand": "Patient Recruitment",
+    "generic": "Clinical trial participant recruitment",
+    "manufacturer": "ClairLabs",
+    "area": "Clinical Operations - Patient Recruitment"
+  },
+  "title": "ClairLabs Patient Recruitment Learning Dossier: Recruitment Journey, AI-Driven Outreach, Site Activation, Patient Experience and Go-Live",
+  "gaps": [
+    "Vendor case figures (61% more patients, 12-month request in 10 months, 70-90% non-conversion) are deck-reported and should be re-verified before external sponsor quotation.",
+    "Independent literature was held for digital recruitment, advocacy and site-enrollment benchmarks; not every deck claim has a peer-reviewed twin."
+  ],
+  "warnings": [
+    "The ClairLabs deck is a programme training source, not an independent clinical study. Quote deck case outcomes only inside training unless re-verified."
+  ],
+  "sections": [
+    {
+      "id": "01_programme_deck",
+      "title": "Programme training deck claims",
+      "summary": "Every factual unit in the induction cites the ClairLabs patient recruitment deck. Supporting quotes below are taken verbatim from the authored deck_spec so the checker can verify them offline.",
+      "claims": [
+        {
+          "text": "Programme claim covering Slide 1: ClairLabs - AI-Enabled Digital Solution for Patient Recruitment.",
+          "evidence_type": "programme training deck (vendor source)",
+          "citations": [
+            {
+              "title": "ClairLabs Patient Recruitment Deck",
+              "url": "https://clairlabs.local/sources/patient-recruitment-deck",
+              "locator": "Slide 1",
+              "supporting_text": "ClairLabs   AI Enabled Digital Solution for Patient Recruitment An AI enabled digital solution for patient recruitment, covering identification, qualification and warm handover One programme story from first touch to recruited participant",
+              "access_level": "human_record",
+              "source_id": "clairlabs-deck"
+            }
+          ]
+        },
+        {
+          "text": "Programme claim covering Slides 1-2: ClairLabs - AI-Enabled Digital Solution for Patient Recruitment.",
+          "evidence_type": "programme training deck (vendor source)",
+          "citations": [
+            {
+              "title": "ClairLabs Patient Recruitment Deck",
+              "url": "https://clairlabs.local/sources/patient-recruitment-deck",
+              "locator": "Slides 1-2",
+              "supporting_text": "ClairLabs   AI Enabled Digital Solution for Patient Recruitment An AI enabled digital solution for patient recruitment, covering identification, qualification and warm handover One programme story from first touch to recruited participant Participant Identification, Qualification and Warm Handover Participant identification: finding potential participants across digital, HCP and data channels Participant qualification: screening and confirming fit, digitally then human Warm handover: referring qualified participants to sites with context, not cold lists",
+              "access_level": "human_record",
+              "source_id": "clairlabs-deck"
+            }
+          ]
+        },
+        {
+          "text": "Programme claim covering Slides 1-3: ClairLabs - AI-Enabled Digital Solution for Patient Recruitment.",
+          "evidence_type": "programme training deck (vendor source)",
+          "citations": [
+            {
+              "title": "ClairLabs Patient Recruitment Deck",
+              "url": "https://clairlabs.local/sources/patient-recruitment-deck",
+              "locator": "Slides 1-3",
+              "supporting_text": "ClairLabs   AI Enabled Digital Solution for Patient Recruitment An AI enabled digital solution for patient recruitment, covering identification, qualification and warm handover One programme story from first touch to recruited participant Participant Identification, Qualification and Warm Handover Participant identification: finding potential participants across digital, HCP and data channels Participant qualification: screening and confirming fit, digitally then human Warm handover: referring qualified participants to sites with context, not cold lists The Recruitment Journey in Five Steps Step 1   primary digital screening: online screener plus contact details with initial consent Step 2   platform onboarding: qualified leads enter the centralized Patient Recruitment Platform Step 3   secondary human screening: RNN personnel connect, secure consent and run a detailed questionnaire Step 4   site referral and evaluation: referral to the nearest or preferred site for clinical evaluation and informed consent Step 5   trial recruitment: participants clearing site specific evaluation are selected and recruited",
+              "access_level": "human_record",
+              "source_id": "clairlabs-deck"
+            }
+          ]
+        },
+        {
+          "text": "Programme claim covering Slides 1-17: ClairLabs - AI-Enabled Digital Solution for Patient Recruitment.",
+          "evidence_type": "programme training deck (vendor source)",
+          "citations": [
+            {
+              "title": "ClairLabs Patient Recruitment Deck",
+              "url": "https://clairlabs.local/sources/patient-recruitment-deck",
+              "locator": "Slides 1-17",
+              "supporting_text": "ClairLabs   AI Enabled Digital Solution for Patient Recruitment An AI enabled digital solution for patient recruitment, covering identification, qualification and warm handover One programme story from first touch to recruited participant Participant Identification, Qualification and Warm Handover Participant identification: finding potential participants across digital, HCP and data channels Participant qualification: screening and confirming fit, digitally then human Warm handover: referring qualified participants to sites with context, not cold lists The Recruitment Journey in Five Steps Step 1   primary digital screening: online screener plus contact details with initial consent Step 2   platform onboarding: qualified leads enter the centralized Patient Recruitment Platform Step 3   secondary human screening: RNN personnel connect, secure consent and run a detailed questionnaire Step 4   site referral and evaluation: referral to the nearest or preferred site for clinical evaluation and informed consent Step 5   trial recruitment: participants clearing site specific evaluation are selected and recruited Addressing Recruitment Challenges Precise digital patient outreach and data driven outreach find the right people HCP outreach and patient advocacy groups work through trusted voices Swift site alignment and go live plus enriched patient experience carry participants over the line The AI Driven Patient Recruitment Funnel Multichannel awareness: Google, Meta and endemic health sites, bought programmatically with audience segmentation Top and mid funnel: YouTube, programmatic display and educational content build high intent consideration Bottom funnel close: lead forms, pre screening tools and direct search ads finalize enrollment 70 90% initial non conversion is why",
+              "access_level": "human_record",
+              "source_id": "clairlabs-deck"
+            }
+          ]
+        },
+        {
+          "text": "Programme claim covering Slide 2: Participant Identification, Qualification and Warm Handover.",
+          "evidence_type": "programme training deck (vendor source)",
+          "citations": [
+            {
+              "title": "ClairLabs Patient Recruitment Deck",
+              "url": "https://clairlabs.local/sources/patient-recruitment-deck",
+              "locator": "Slide 2",
+              "supporting_text": "Participant Identification, Qualification and Warm Handover Participant identification: finding potential participants across digital, HCP and data channels Participant qualification: screening and confirming fit, digitally then human Warm handover: referring qualified participants to sites with context, not cold lists",
+              "access_level": "human_record",
+              "source_id": "clairlabs-deck"
+            }
+          ]
+        },
+        {
+          "text": "Programme claim covering Slide 3: The Recruitment Journey in Five Steps.",
+          "evidence_type": "programme training deck (vendor source)",
+          "citations": [
+            {
+              "title": "ClairLabs Patient Recruitment Deck",
+              "url": "https://clairlabs.local/sources/patient-recruitment-deck",
+              "locator": "Slide 3",
+              "supporting_text": "The Recruitment Journey in Five Steps Step 1   primary digital screening: online screener plus contact details with initial consent Step 2   platform onboarding: qualified leads enter the centralized Patient Recruitment Platform Step 3   secondary human screening: RNN personnel connect, secure consent and run a detailed questionnaire Step 4   site referral and evaluation: referral to the nearest or preferred site for clinical evaluation and informed consent Step 5   trial recruitment: participants clearing site specific evaluation are selected and recruited",
+              "access_level": "human_record",
+              "source_id": "clairlabs-deck"
+            }
+          ]
+        },
+        {
+          "text": "Programme claim covering Slide 4: Addressing Recruitment Challenges.",
+          "evidence_type": "programme training deck (vendor source)",
+          "citations": [
+            {
+              "title": "ClairLabs Patient Recruitment Deck",
+              "url": "https://clairlabs.local/sources/patient-recruitment-deck",
+              "locator": "Slide 4",
+              "supporting_text": "Addressing Recruitment Challenges Precise digital patient outreach and data driven outreach find the right people HCP outreach and patient advocacy groups work through trusted voices Swift site alignment and go live plus enriched patient experience carry participants over the line",
+              "access_level": "human_record",
+              "source_id": "clairlabs-deck"
+            }
+          ]
+        },
+        {
+          "text": "Programme claim covering Slide 5: The AI-Driven Patient Recruitment Funnel.",
+          "evidence_type": "programme training deck (vendor source)",
+          "citations": [
+            {
+              "title": "ClairLabs Patient Recruitment Deck",
+              "url": "https://clairlabs.local/sources/patient-recruitment-deck",
+              "locator": "Slide 5",
+              "supporting_text": "The AI Driven Patient Recruitment Funnel Multichannel awareness: Google, Meta and endemic health sites, bought programmatically with audience segmentation Top and mid funnel: YouTube, programmatic display and educational content build high intent consideration Bottom funnel close: lead forms, pre screening tools and direct search ads finalize enrollment 70 90% initial non conversion is why re engagement and retargeting run throughout",
+              "access_level": "human_record",
+              "source_id": "clairlabs-deck"
+            }
+          ]
+        },
+        {
+          "text": "Programme claim covering Slide 6: HCP Outreach in Three Motions.",
+          "evidence_type": "programme training deck (vendor source)",
+          "citations": [
+            {
+              "title": "ClairLabs Patient Recruitment Deck",
+              "url": "https://clairlabs.local/sources/patient-recruitment-deck",
+              "locator": "Slide 6",
+              "supporting_text": "HCP Outreach in Three Motions Digital affinity: NPI targeted programmatic ads and geo fencing around medical conferences KOL based influence: key opinion leaders advocate through peer networks; physician to physician trust is the primary credibility driver Offline presence: clinics, centers of excellence, primary care, plus libraries, coffee shops, stadiums and billboards Complex and rare diseases lean hardest on KOL and offline presence",
+              "access_level": "human_record",
+              "source_id": "clairlabs-deck"
+            }
+          ]
+        },
+        {
+          "text": "Programme claim covering Slides 6-8: HCP Outreach in Three Motions.",
+          "evidence_type": "programme training deck (vendor source)",
+          "citations": [
+            {
+              "title": "ClairLabs Patient Recruitment Deck",
+              "url": "https://clairlabs.local/sources/patient-recruitment-deck",
+              "locator": "Slides 6-8",
+              "supporting_text": "HCP Outreach in Three Motions Digital affinity: NPI targeted programmatic ads and geo fencing around medical conferences KOL based influence: key opinion leaders advocate through peer networks; physician to physician trust is the primary credibility driver Offline presence: clinics, centers of excellence, primary care, plus libraries, coffee shops, stadiums and billboards Complex and rare diseases lean hardest on KOL and offline presence Data and Intelligence Strategies Wearable app ecosystems: behavioral and physiological signals against health thresholds Digital therapeutics populations, pharmacy networks and EHR embedded matching algorithms AI predictive recruitment: predicting clinical decision windows and triggering messaging as patients seek alternatives The shift: from demographic based outreach to behavioral and physiological identification Patient Advocacy Groups and Registries PAG trust opens doors sponsors cannot open alone, including in rare disease networks Registries plus AI inclusion and exclusion matching filter precisely to hard to reach populations Education led conversion through ambassadors and webinars cuts misinformation and lifts retention",
+              "access_level": "human_record",
+              "source_id": "clairlabs-deck"
+            }
+          ]
+        },
+        {
+          "text": "Programme claim covering Slide 7: Data and Intelligence Strategies.",
+          "evidence_type": "programme training deck (vendor source)",
+          "citations": [
+            {
+              "title": "ClairLabs Patient Recruitment Deck",
+              "url": "https://clairlabs.local/sources/patient-recruitment-deck",
+              "locator": "Slide 7",
+              "supporting_text": "Data and Intelligence Strategies Wearable app ecosystems: behavioral and physiological signals against health thresholds Digital therapeutics populations, pharmacy networks and EHR embedded matching algorithms AI predictive recruitment: predicting clinical decision windows and triggering messaging as patients seek alternatives The shift: from demographic based outreach to behavioral and physiological identification",
+              "access_level": "human_record",
+              "source_id": "clairlabs-deck"
+            }
+          ]
+        },
+        {
+          "text": "Programme claim covering Slide 8: Patient Advocacy Groups and Registries.",
+          "evidence_type": "programme training deck (vendor source)",
+          "citations": [
+            {
+              "title": "ClairLabs Patient Recruitment Deck",
+              "url": "https://clairlabs.local/sources/patient-recruitment-deck",
+              "locator": "Slide 8",
+              "supporting_text": "Patient Advocacy Groups and Registries PAG trust opens doors sponsors cannot open alone, including in rare disease networks Registries plus AI inclusion and exclusion matching filter precisely to hard to reach populations Education led conversion through ambassadors and webinars cuts misinformation and lifts retention",
+              "access_level": "human_record",
+              "source_id": "clairlabs-deck"
+            }
+          ]
+        },
+        {
+          "text": "Programme claim covering Slide 9: Site Alignment and Go-Live.",
+          "evidence_type": "programme training deck (vendor source)",
+          "citations": [
+            {
+              "title": "ClairLabs Patient Recruitment Deck",
+              "url": "https://clairlabs.local/sources/patient-recruitment-deck",
+              "locator": "Slide 9",
+              "supporting_text": "Site Alignment and Go Live Rapid activation of high performing sites, with hyper localized outreach in their vicinity Real time performance analytics with live data and rolling campaigns monitor site health Investigator engagement programmes and standardized site tools, targeted at high patient density locations",
+              "access_level": "human_record",
+              "source_id": "clairlabs-deck"
+            }
+          ]
+        },
+        {
+          "text": "Programme claim covering Slides 9-10: Site Alignment and Go-Live.",
+          "evidence_type": "programme training deck (vendor source)",
+          "citations": [
+            {
+              "title": "ClairLabs Patient Recruitment Deck",
+              "url": "https://clairlabs.local/sources/patient-recruitment-deck",
+              "locator": "Slides 9-10",
+              "supporting_text": "Site Alignment and Go Live Rapid activation of high performing sites, with hyper localized outreach in their vicinity Real time performance analytics with live data and rolling campaigns monitor site health Investigator engagement programmes and standardized site tools, targeted at high patient density locations Patient Centric Architecture Journey mapping finds and fixes pain points from awareness to trial completion Real time engagement platforms keep communication consistent and active Concierge level personalized care: culturally sensitive, language specific, matched to disease stage Peer driven community trust and continuous feedback loops instead of end of study surveys Site referral compressed to minutes",
+              "access_level": "human_record",
+              "source_id": "clairlabs-deck"
+            }
+          ]
+        },
+        {
+          "text": "Programme claim covering Slide 10: Patient-Centric Architecture.",
+          "evidence_type": "programme training deck (vendor source)",
+          "citations": [
+            {
+              "title": "ClairLabs Patient Recruitment Deck",
+              "url": "https://clairlabs.local/sources/patient-recruitment-deck",
+              "locator": "Slide 10",
+              "supporting_text": "Patient Centric Architecture Journey mapping finds and fixes pain points from awareness to trial completion Real time engagement platforms keep communication consistent and active Concierge level personalized care: culturally sensitive, language specific, matched to disease stage Peer driven community trust and continuous feedback loops instead of end of study surveys Site referral compressed to minutes",
+              "access_level": "human_record",
+              "source_id": "clairlabs-deck"
+            }
+          ]
+        },
+        {
+          "text": "Programme claim covering Slide 11: Accelerated Go-Live Roadmap.",
+          "evidence_type": "programme training deck (vendor source)",
+          "citations": [
+            {
+              "title": "ClairLabs Patient Recruitment Deck",
+              "url": "https://clairlabs.local/sources/patient-recruitment-deck",
+              "locator": "Slide 11",
+              "supporting_text": "Accelerated Go Live Roadmap The roadmap ahead: six weeks from content creation to optimization",
+              "access_level": "human_record",
+              "source_id": "clairlabs-deck"
+            }
+          ]
+        },
+        {
+          "text": "Programme claim covering Slides 11-12: Accelerated Go-Live Roadmap.",
+          "evidence_type": "programme training deck (vendor source)",
+          "citations": [
+            {
+              "title": "ClairLabs Patient Recruitment Deck",
+              "url": "https://clairlabs.local/sources/patient-recruitment-deck",
+              "locator": "Slides 11-12",
+              "supporting_text": "Accelerated Go Live Roadmap The roadmap ahead: six weeks from content creation to optimization The Roadmap: Weeks 1 to 6 Week 1: content creation and review; week 2: sponsor review with IRB ready submission Week 3: internal preparation, testing and training; week 4: go live within 2 days of IRB changes Week 6: optimization of non performing ads and removal of ad fatigability Shorter than the old pattern of 4 week content plus 4 week go live phases",
+              "access_level": "human_record",
+              "source_id": "clairlabs-deck"
+            }
+          ]
+        },
+        {
+          "text": "Programme claim covering Slides 11-16: Accelerated Go-Live Roadmap.",
+          "evidence_type": "programme training deck (vendor source)",
+          "citations": [
+            {
+              "title": "ClairLabs Patient Recruitment Deck",
+              "url": "https://clairlabs.local/sources/patient-recruitment-deck",
+              "locator": "Slides 11-16",
+              "supporting_text": "Accelerated Go Live Roadmap The roadmap ahead: six weeks from content creation to optimization The Roadmap: Weeks 1 to 6 Week 1: content creation and review; week 2: sponsor review with IRB ready submission Week 3: internal preparation, testing and training; week 4: go live within 2 days of IRB changes Week 6: optimization of non performing ads and removal of ad fatigability Shorter than the old pattern of 4 week content plus 4 week go live phases Why ClairLabs? Key Differentiators Six differentiators, one model: smarter tech with AI, executed with agility Differentiators in Detail AI driven patient identification from real world data ecosystems 2 tier smart screening: AI matching plus RNN simplification of eligibility for patients Next gen omnichannel outreach with AI campaign optimization and retargeting Site aligned executional agility: synchronized activation, lean and fast decisions Patient experience driven design with personalized communication and RNN retention support High quality cost advantage: low overheads with no sacrifice of speed or compliance Success Stories   Case Studies Results from the field: hub and spoke delivery with trial wide transparency Results That Travel Hub and spoke model enriching the patient experience Dashboards giving trial wide transparency and stakeholder trust Cases including 61% more patients delivered and a 12 month request delivered in 10 months",
+              "access_level": "human_record",
+              "source_id": "clairlabs-deck"
+            }
+          ]
+        },
+        {
+          "text": "Programme claim covering Slide 12: The Roadmap: Weeks 1 to 6.",
+          "evidence_type": "programme training deck (vendor source)",
+          "citations": [
+            {
+              "title": "ClairLabs Patient Recruitment Deck",
+              "url": "https://clairlabs.local/sources/patient-recruitment-deck",
+              "locator": "Slide 12",
+              "supporting_text": "The Roadmap: Weeks 1 to 6 Week 1: content creation and review; week 2: sponsor review with IRB ready submission Week 3: internal preparation, testing and training; week 4: go live within 2 days of IRB changes Week 6: optimization of non performing ads and removal of ad fatigability Shorter than the old pattern of 4 week content plus 4 week go live phases",
+              "access_level": "human_record",
+              "source_id": "clairlabs-deck"
+            }
+          ]
+        },
+        {
+          "text": "Programme claim covering Slide 13: Why ClairLabs? Key Differentiators.",
+          "evidence_type": "programme training deck (vendor source)",
+          "citations": [
+            {
+              "title": "ClairLabs Patient Recruitment Deck",
+              "url": "https://clairlabs.local/sources/patient-recruitment-deck",
+              "locator": "Slide 13",
+              "supporting_text": "Why ClairLabs? Key Differentiators Six differentiators, one model: smarter tech with AI, executed with agility",
+              "access_level": "human_record",
+              "source_id": "clairlabs-deck"
+            }
+          ]
+        },
+        {
+          "text": "Programme claim covering Slides 13-14: Why ClairLabs? Key Differentiators.",
+          "evidence_type": "programme training deck (vendor source)",
+          "citations": [
+            {
+              "title": "ClairLabs Patient Recruitment Deck",
+              "url": "https://clairlabs.local/sources/patient-recruitment-deck",
+              "locator": "Slides 13-14",
+              "supporting_text": "Why ClairLabs? Key Differentiators Six differentiators, one model: smarter tech with AI, executed with agility Differentiators in Detail AI driven patient identification from real world data ecosystems 2 tier smart screening: AI matching plus RNN simplification of eligibility for patients Next gen omnichannel outreach with AI campaign optimization and retargeting Site aligned executional agility: synchronized activation, lean and fast decisions Patient experience driven design with personalized communication and RNN retention support High quality cost advantage: low overheads with no sacrifice of speed or compliance",
+              "access_level": "human_record",
+              "source_id": "clairlabs-deck"
+            }
+          ]
+        },
+        {
+          "text": "Programme claim covering Slide 14: Differentiators in Detail.",
+          "evidence_type": "programme training deck (vendor source)",
+          "citations": [
+            {
+              "title": "ClairLabs Patient Recruitment Deck",
+              "url": "https://clairlabs.local/sources/patient-recruitment-deck",
+              "locator": "Slide 14",
+              "supporting_text": "Differentiators in Detail AI driven patient identification from real world data ecosystems 2 tier smart screening: AI matching plus RNN simplification of eligibility for patients Next gen omnichannel outreach with AI campaign optimization and retargeting Site aligned executional agility: synchronized activation, lean and fast decisions Patient experience driven design with personalized communication and RNN retention support High quality cost advantage: low overheads with no sacrifice of speed or compliance",
+              "access_level": "human_record",
+              "source_id": "clairlabs-deck"
+            }
+          ]
+        },
+        {
+          "text": "Programme claim covering Slide 15: Success Stories - Case Studies.",
+          "evidence_type": "programme training deck (vendor source)",
+          "citations": [
+            {
+              "title": "ClairLabs Patient Recruitment Deck",
+              "url": "https://clairlabs.local/sources/patient-recruitment-deck",
+              "locator": "Slide 15",
+              "supporting_text": "Success Stories   Case Studies Results from the field: hub and spoke delivery with trial wide transparency",
+              "access_level": "human_record",
+              "source_id": "clairlabs-deck"
+            }
+          ]
+        },
+        {
+          "text": "Programme claim covering Slides 15-16: Success Stories - Case Studies.",
+          "evidence_type": "programme training deck (vendor source)",
+          "citations": [
+            {
+              "title": "ClairLabs Patient Recruitment Deck",
+              "url": "https://clairlabs.local/sources/patient-recruitment-deck",
+              "locator": "Slides 15-16",
+              "supporting_text": "Success Stories   Case Studies Results from the field: hub and spoke delivery with trial wide transparency Results That Travel Hub and spoke model enriching the patient experience Dashboards giving trial wide transparency and stakeholder trust Cases including 61% more patients delivered and a 12 month request delivered in 10 months",
+              "access_level": "human_record",
+              "source_id": "clairlabs-deck"
+            }
+          ]
+        },
+        {
+          "text": "Programme claim covering Slide 16: Results That Travel.",
+          "evidence_type": "programme training deck (vendor source)",
+          "citations": [
+            {
+              "title": "ClairLabs Patient Recruitment Deck",
+              "url": "https://clairlabs.local/sources/patient-recruitment-deck",
+              "locator": "Slide 16",
+              "supporting_text": "Results That Travel Hub and spoke model enriching the patient experience Dashboards giving trial wide transparency and stakeholder trust Cases including 61% more patients delivered and a 12 month request delivered in 10 months",
+              "access_level": "human_record",
+              "source_id": "clairlabs-deck"
+            }
+          ]
+        },
+        {
+          "text": "Programme claim covering Slide 17: Thank You and Next Steps.",
+          "evidence_type": "programme training deck (vendor source)",
+          "citations": [
+            {
+              "title": "ClairLabs Patient Recruitment Deck",
+              "url": "https://clairlabs.local/sources/patient-recruitment-deck",
+              "locator": "Slide 17",
+              "supporting_text": "Thank You and Next Steps Thank the room; next step is the knowledge check and certification",
+              "access_level": "human_record",
+              "source_id": "clairlabs-deck"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "02_recruitment_literature",
+      "title": "External recruitment literature held for cross-check",
+      "summary": "Open literature and enrollment benchmarks fetched into the local evidence registry so demos and quote checks do not depend on the network.",
+      "claims": [
+        {
+          "text": "Online Patient Recruitment in Clinical Trials: Systematic Review and Meta-Analysis",
+          "evidence_type": "open literature / benchmark (held locally)",
+          "citations": [
+            {
+              "title": "Online Patient Recruitment in Clinical Trials: Systematic Review and Meta-Analysis",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7673977/",
+              "locator": "JMIR 2020;22(11):e22179 / PMC7673977",
+              "supporting_text": "Recruitment for clinical trials continues to be a challenge, as patient recruitment is the single biggest cause of trial delays. Around 80% of trials fail to meet the initial enrollment target and timeline, and these delays can result in lost revenue of as much as US $8 million per day for drug developing companies. This study aimed to conduct a systematic review and meta-analysis examining the effectiveness of online recruitment of participants for clinical trials compared with traditional in-clinic/offline recruitment methods. Data on recruitment rates (the average number of patients enrolle\u2026",
+              "access_level": "fetched_live"
+            }
+          ]
+        },
+        {
+          "text": "Patient advocacy and community engagement in clinical trial recruitment",
+          "evidence_type": "open literature / benchmark (held locally)",
+          "citations": [
+            {
+              "title": "Patient advocacy and community engagement in clinical trial recruitment",
+              "url": "https://link.springer.com/article/10.1186/s12913-024-11376-3",
+              "locator": "BMC Health Serv Res 2024",
+              "supporting_text": "Increased engagement with community-based practices is a promising strategy for increasing clinical trials access of diverse patient populations. In this study we assessed the ability to utilize a patient-advocacy organization led clinical network to engage diverse practices as field sites for clinical research. GO2 for Lung Cancer led recruitment efforts of 17 field sites from their Centers of Excellence in Lung Cancer Screening Network for participation in an implementation-effectiveness trial focused on smoking cessation integration into screening programs for lung cancer. Sites were engag\u2026",
+              "access_level": "fetched_live"
+            }
+          ]
+        },
+        {
+          "text": "Clinical trial enrollment statistics and site performance benchmarks",
+          "evidence_type": "open literature / benchmark (held locally)",
+          "citations": [
+            {
+              "title": "Clinical trial enrollment statistics and site performance benchmarks",
+              "url": "https://www.trialnotice.com/blog/clinical-trial-enrollment-statistics/",
+              "locator": "TrialNotice / Tufts CSDD benchmarks",
+              "supporting_text": "Clinical Trial Enrollment Statistics: The Complete Reference | TrialNotice TrialNotice Menu Home Patient recruitment Physician outreach Direct mail Blog Contact Home / Blog / Benchmarks and tools Benchmarks and tools Clinical trial enrollment statistics: the complete reference By TrialNotice \u00b7 Updated October 4, 2026 Short answer In a typical Phase II or III trial, 11% of sites enroll no patients, 37% under enroll, 39% meet their target, and 13% exceed it, according to Tufts CSDD. The average screen failure rate is 36.3% and the average dropout rate is 19.1%. Only 62% of North American sites\u2026",
+              "access_level": "fetched_live"
+            }
+          ]
+        },
+        {
+          "text": "The Role of Social Media in Enhancing Clinical Trial Recruitment: Scoping Review",
+          "evidence_type": "open literature / benchmark (held locally)",
+          "citations": [
+            {
+              "title": "The Role of Social Media in Enhancing Clinical Trial Recruitment: Scoping Review",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7652693/",
+              "locator": "JMIR 2020;22(10):e22810 / PMC7652693",
+              "supporting_text": "Recruiting participants into clinical trials continues to be a challenge, which can result in study delay or termination. Recent studies have used social media to enhance recruitment outcomes. An assessment of the literature on the use of social media for this purpose is required. This study aims to answer the following questions: (1) How is the use of social media, in combination with traditional approaches to enhance clinical trial recruitment and enrollment, represented in the literature? and (2) Do the data on recruitment and enrollment outcomes presented in the literature allow for compar\u2026",
+              "access_level": "fetched_live"
+            }
+          ]
+        },
+        {
+          "text": "Digital technologies used in clinical trial recruitment and enrollment including application to trial diversity and inclusion",
+          "evidence_type": "open literature / benchmark (held locally)",
+          "citations": [
+            {
+              "title": "Digital technologies used in clinical trial recruitment and enrollment including application to trial diversity and inclusion",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10981266/",
+              "locator": "PMC10981266",
+              "supporting_text": "Digital technologies used in clinical trial recruitment and enrollment including application to trial diversity and inclusion: A systematic review - PMC Skip to main content An official website of the United States government Here's how you know Here's how you know Official websites use .gov A .gov website belongs to an official government organization in the United States. Secure .gov websites use HTTPS A lock ( Lock Locked padlock icon ) or https:// means you've safely connected to the .gov website. Share sensitive information only on official, secure websites. Search Log in Dashboard Publi\u2026",
+              "access_level": "fetched_live"
+            }
+          ]
+        },
+        {
+          "text": "Digital tools for the recruitment and retention of participants in randomised controlled trials: a systematic map",
+          "evidence_type": "open literature / benchmark (held locally)",
+          "citations": [
+            {
+              "title": "Digital tools for the recruitment and retention of participants in randomised controlled trials: a systematic map",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7273688/",
+              "locator": "PMC7273688",
+              "supporting_text": "Digital tools for the recruitment and retention of participants in randomised controlled trials: a systematic map - PMC Skip to main content An official website of the United States government Here's how you know Here's how you know Official websites use .gov A .gov website belongs to an official government organization in the United States. Secure .gov websites use HTTPS A lock ( Lock Locked padlock icon ) or https:// means you've safely connected to the .gov website. Share sensitive information only on official, secure websites. Search Log in Dashboard Publications Account settings Log out\u2026",
+              "access_level": "fetched_live"
+            }
+          ]
+        },
+        {
+          "text": "Interventions to increase racial and ethnic minority accrual into cancer clinical trials",
+          "evidence_type": "open literature / benchmark (held locally)",
+          "citations": [
+            {
+              "title": "Interventions to increase racial and ethnic minority accrual into cancer clinical trials",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10456972/",
+              "locator": "PMC10456972",
+              "supporting_text": "Interventions to increase racial and ethnic minority accrual into cancer clinical trials: A systematic review - PMC Skip to main content An official website of the United States government Here's how you know Here's how you know Official websites use .gov A .gov website belongs to an official government organization in the United States. Secure .gov websites use HTTPS A lock ( Lock Locked padlock icon ) or https:// means you've safely connected to the .gov website. Share sensitive information only on official, secure websites. Search Log in Dashboard Publications Account settings Log out Sear\u2026",
+              "access_level": "fetched_live"
+            }
+          ]
+        },
+        {
+          "text": "Use of Video Education Interventions to Increase Racial and Ethnic Diversity in Cancer Clinical Trials",
+          "evidence_type": "open literature / benchmark (held locally)",
+          "citations": [
+            {
+              "title": "Use of Video Education Interventions to Increase Racial and Ethnic Diversity in Cancer Clinical Trials",
+              "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8483572/",
+              "locator": "PMC8483572",
+              "supporting_text": "It is clinically important to deliver a sustained-release mucoadhesive dosage of local anesthetic and antimicrobial agents for pain control. The current study aimed to develop and evaluate chitosan (CHI) based buccal mucoadhesive delivery for the local release of tibezonium iodide (TBN) and lignocaine hydrochloride (LGN). Direct compression technique was employed, aided by other mucoadhesive polymers like hydroxypropylmethylcellulose (HPMC) and sodium alginate (SA) and evaluated for physicochemical and in&#xa0;vivo character. Fourier transform infrared spectral analysis (FTIR), powdered X-ray \u2026",
+              "access_level": "fetched_live"
+            }
+          ]
+        },
+        {
+          "text": "Leveraging digital tools to enhance diversity and inclusion in clinical trial recruitment",
+          "evidence_type": "open literature / benchmark (held locally)",
+          "citations": [
+            {
+              "title": "Leveraging digital tools to enhance diversity and inclusion in clinical trial recruitment",
+              "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11550947/",
+              "locator": "PMC11550947",
+              "supporting_text": "Clinical research is pivotal in assessing the safety and efficacy of new treatments in healthcare. However, the success of such research depends on the inclusion of a diverse and representative participant sample, which is currently lacking. This lack of diversity in biomedical research participants has significant repercussions, limiting the real-world applicability and accessibility of medical interventions, especially for underrepresented groups. Barriers to diverse participation include historical mistrust, logistical challenges, and financial constraints. Recent guidelines by government a\u2026",
+              "access_level": "fetched_live"
+            }
+          ]
+        },
+        {
+          "text": "Graph-augmented LLMs for social media-based clinical trial recruitment.",
+          "evidence_type": "open literature / benchmark (held locally)",
+          "citations": [
+            {
+              "title": "Graph-augmented LLMs for social media-based clinical trial recruitment.",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/42767584/",
+              "locator": "PMID 42767584",
+              "supporting_text": "Europe PMC discovery: TITLE:\"clinical trial recruitment\" AND TITLE:\"social media\" (fetch: HTTP 203)",
+              "access_level": "unavailable"
+            }
+          ]
+        },
+        {
+          "text": "Social Media Influencer Marketing as a Clinical Trial Recruitment Modality: Tutorial Informed by One Study's Approach.",
+          "evidence_type": "open literature / benchmark (held locally)",
+          "citations": [
+            {
+              "title": "Social Media Influencer Marketing as a Clinical Trial Recruitment Modality: Tutorial Informed by One Study's Approach.",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13482797/",
+              "locator": "PMC13482797",
+              "supporting_text": "Social Media Influencer Marketing as a Clinical Trial Recruitment Modality: Tutorial Informed by One Study\u2019s Approach - PMC Skip to main content An official website of the United States government Here's how you know Here's how you know Official websites use .gov A .gov website belongs to an official government organization in the United States. Secure .gov websites use HTTPS A lock ( Lock Locked padlock icon ) or https:// means you've safely connected to the .gov website. Share sensitive information only on official, secure websites. Search Log in Dashboard Publications Account settings Log\u2026",
+              "access_level": "fetched_live"
+            }
+          ]
+        },
+        {
+          "text": "Reddit for research recruitment? Social media as a novel clinical trial recruitment tool for adolescent and young adult (AYA) cancer survivors.",
+          "evidence_type": "open literature / benchmark (held locally)",
+          "citations": [
+            {
+              "title": "Reddit for research recruitment? Social media as a novel clinical trial recruitment tool for adolescent and young adult (AYA) cancer survivors.",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/39636575/",
+              "locator": "PMID 39636575",
+              "supporting_text": "Europe PMC discovery: TITLE:\"clinical trial recruitment\" AND TITLE:\"social media\" (fetch: HTTP 203)",
+              "access_level": "unavailable"
+            }
+          ]
+        },
+        {
+          "text": "The Role of Social Media in Enhancing Clinical Trial Recruitment: Scoping Review.",
+          "evidence_type": "open literature / benchmark (held locally)",
+          "citations": [
+            {
+              "title": "The Role of Social Media in Enhancing Clinical Trial Recruitment: Scoping Review.",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7652693/",
+              "locator": "PMC7652693",
+              "supporting_text": "Checking your browser - reCAPTCHA Checking your browser before accessing pmc.ncbi.nlm.nih.gov ... Click here if you are not automatically redirected after 5 seconds.",
+              "access_level": "fetched_live"
+            }
+          ]
+        },
+        {
+          "text": "Clinical Trial Recruitment and Retention of College Students with Type 1 Diabetes via Social Media: An Implementation Case Study.",
+          "evidence_type": "open literature / benchmark (held locally)",
+          "citations": [
+            {
+              "title": "Clinical Trial Recruitment and Retention of College Students with Type 1 Diabetes via Social Media: An Implementation Case Study.",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6501540/",
+              "locator": "PMC6501540",
+              "supporting_text": "Clinical Trial Recruitment and Retention of College Students with Type 1 Diabetes via Social Media: An Implementation Case Study - PMC Skip to main content An official website of the United States government Here's how you know Here's how you know Official websites use .gov A .gov website belongs to an official government organization in the United States. Secure .gov websites use HTTPS A lock ( Lock Locked padlock icon ) or https:// means you've safely connected to the .gov website. Share sensitive information only on official, secure websites. Search Log in Dashboard Publications Account se\u2026",
+              "access_level": "fetched_live"
+            }
+          ]
+        },
+        {
+          "text": "Response to the Letter to the Editor From Mayen et al Regarding \"Clinical Trial Recruitment and Retention of College Students With Type 1 Diabetes via Social Media: An Implementati",
+          "evidence_type": "open literature / benchmark (held locally)",
+          "citations": [
+            {
+              "title": "Response to the Letter to the Editor From Mayen et al Regarding \"Clinical Trial Recruitment and Retention of College Students With Type 1 Diabetes via Social Media: An Implementati",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7189160/",
+              "locator": "PMC7189160",
+              "supporting_text": "Response to the Letter to the Editor From Mayen et al Regarding \u201cClinical Trial Recruitment and Retention of College Students With Type 1 Diabetes via Social Media: An Implementation Case Study\u201d - PMC Skip to main content An official website of the United States government Here's how you know Here's how you know Official websites use .gov A .gov website belongs to an official government organization in the United States. Secure .gov websites use HTTPS A lock ( Lock Locked padlock icon ) or https:// means you've safely connected to the .gov website. Share sensitive information only on official\u2026",
+              "access_level": "fetched_live"
+            }
+          ]
+        },
+        {
+          "text": "Online recruitment effectiveness literature",
+          "evidence_type": "open literature / benchmark (held locally)",
+          "citations": [
+            {
+              "title": "Online recruitment effectiveness literature",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7673977/",
+              "locator": "JMIR 2020;22(11):e22179 / PMC7673977",
+              "supporting_text": "Recruitment for clinical trials continues to be a challenge, as patient recruitment is the single biggest cause of trial delays. Around 80% of trials fail to meet the initial enrollment target and timeline, and these delays can result in lost revenue of as much as US $8 million per day for drug developing companies. This study aimed to conduct a systematic review and meta-analysis examining the effectiveness of online recruitment of participants for clinical trials compared with traditional in-clinic/offline recruitment methods. Data on recruitment rates (the average number of patients enrolle\u2026",
+              "access_level": "fetched_live"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+# What a ClairLabs patient-recruitment induction course has to cover.
+#
+# Accuracy asks whether what the course says is true. This asks whether anything
+# a programme / ops learner would expect is missing. Patterns detect whether a
+# topic is addressed at all — never whether it is addressed well.
+
+schema_version = 1
+name = "Patient recruitment induction"
+jurisdiction = "Global"
+reviewed_on = "2026-11-20"
+
+[[topic]]
+id = "scope_and_handover"
+title = "Identification, qualification and warm handover"
+why = "Learners must know where ClairLabs responsibility ends and the site takes over."
+severity = "blocking"
+audiences = ["hcp", "msl"]
+patterns = ["warm handover", "identification", "qualification", "officially selected"]
+min_units = 2
+
+[[topic]]
+id = "journey_steps"
+title = "Five-step recruitment journey"
+why = "The ordered handoffs are the operating model; skipping a step breaks consent quality."
+severity = "blocking"
+audiences = ["hcp", "msl"]
+patterns = ["primary digital screening", "secondary human screening", "platform onboarding", "site referral", "five steps"]
+min_units = 2
+
+[[topic]]
+id = "digital_funnel"
+title = "AI-driven multichannel funnel"
+why = "Awareness-to-enrollment logic, including why retargeting is structural."
+severity = "blocking"
+audiences = ["hcp", "msl"]
+patterns = ["multichannel", "retargeting", "non-conversion", "programmatic", "bottom-funnel"]
+min_units = 2
+
+[[topic]]
+id = "hcp_outreach"
+title = "HCP outreach motions"
+why = "Digital affinity, KOL influence and offline presence are matched to disease complexity."
+severity = "major"
+audiences = ["hcp", "msl"]
+patterns = ["kol", "physician-to-physician", "npi-targeted", "geo-fencing", "hcp outreach"]
+min_units = 2
+
+[[topic]]
+id = "data_intelligence"
+title = "Data and intelligence sources"
+why = "Recruitment has shifted from demographics to behavioral and physiological signals."
+severity = "major"
+audiences = ["hcp", "msl"]
+patterns = ["ehr", "wearable", "pharmacy", "predictive recruitment", "digital therapeutics"]
+min_units = 2
+
+[[topic]]
+id = "advocacy_registries"
+title = "Patient advocacy groups and registries"
+why = "Trust plus registry matching is how hard-to-reach and rare-disease populations are reached."
+severity = "blocking"
+audiences = ["hcp", "msl"]
+patterns = ["advocacy", "registry", "registries", "patient ambassadors", "rare-disease"]
+min_units = 2
+
+[[topic]]
+id = "site_alignment"
+title = "Site alignment and go-live"
+why = "Activation speed and live analytics decide whether sites enroll."
+severity = "blocking"
+audiences = ["hcp", "msl"]
+patterns = ["site activation", "hyper-localized", "investigator engagement", "site alignment", "performance analytics"]
+min_units = 2
+
+[[topic]]
+id = "patient_experience"
+title = "Patient-centric architecture"
+why = "Experience design is what keeps referred participants from dropping out."
+severity = "major"
+audiences = ["hcp", "msl"]
+patterns = ["journey mapping", "concierge", "feedback loops", "patient-centric", "peer-driven"]
+min_units = 2
+
+[[topic]]
+id = "go_live_roadmap"
+title = "Accelerated go-live roadmap"
+why = "Week-by-week timing (IRB, go-live, optimization) is what ops commits to."
+severity = "blocking"
+audiences = ["hcp", "msl"]
+patterns = ["week 4", "irb", "go-live", "week 6", "roadmap"]
+min_units = 2
+
+[[topic]]
+id = "two_tier_screening"
+title = "Two-tier smart screening"
+why = "AI finds candidates; RNN staff simplify eligibility and secure consent."
+severity = "blocking"
+audiences = ["hcp", "msl"]
+patterns = ["2-tier", "two-tier", "smart screening", "rnn", "eligibility"]
+min_units = 2
+
+[[topic]]
+id = "case_figures_caveat"
+title = "Deck case figures treated as vendor-reported"
+why = "61% more patients / 10-month delivery figures are deck cases for training, not independent findings."
+severity = "major"
+audiences = ["hcp", "msl"]
+patterns = ["61%", "12-month", "10 months", "case studies", "deck reports"]
+min_units = 1
