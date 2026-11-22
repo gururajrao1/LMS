@@ -32,14 +32,15 @@ import { useSession } from "@/lib/session";
 
 function Journey({ course, runId }: { course: LearnerCourse; runId: string }) {
   const { summary } = course;
+  // Shashi's Part 1 / 2 / 3: baseline → material → final; certificate is the award after Part 3.
   const steps = [
-    { id: "baseline", title: "Baseline check", done: summary.baseline_score !== null, // Not a question count: how many the baseline asks depends on what the course
+    { id: "baseline", part: "Part 1", title: "Baseline check", done: summary.baseline_score !== null, // Not a question count: how many the baseline asks depends on what the course
       // carries — a sort board is added whole rather than sampled — and a number
       // hard-coded here would be wrong for exactly the courses that have one.
       detail: summary.baseline_score !== null ? `Recorded at ${summary.baseline_score}%` : "A short check, not graded", href: `/learn/${runId}/assessment/baseline` },
-    { id: "modules", title: "Learning material", done: summary.modules_complete === summary.modules_total, detail: `${summary.modules_complete} of ${summary.modules_total} modules`, href: `/learn/${runId}?tab=deck` },
-    { id: "final", title: "Final assessment", done: summary.passed, detail: summary.final_score !== null ? `Scored ${summary.final_score}%` : "Unlocks when every module is done", href: summary.modules_complete === summary.modules_total ? `/learn/${runId}/assessment/final` : null },
-    { id: "certificate", title: "Certificate", done: Boolean(summary.certificate), detail: summary.certificate ? summary.certificate.code : "Awarded on passing", href: summary.certificate ? `/learn/${runId}/certificate` : null },
+    { id: "modules", part: "Part 2", title: "Learning material", done: summary.modules_complete === summary.modules_total, detail: `${summary.modules_complete} of ${summary.modules_total} modules`, href: `/learn/${runId}?tab=deck` },
+    { id: "final", part: "Part 3", title: "Final assessment", done: summary.passed, detail: summary.final_score !== null ? `Scored ${summary.final_score}%` : "Unlocks when every module is done", href: summary.modules_complete === summary.modules_total ? `/learn/${runId}/assessment/final` : null },
+    { id: "certificate", part: "Award", title: "Certificate", done: Boolean(summary.certificate), detail: summary.certificate ? summary.certificate.code : "Awarded on passing", href: summary.certificate ? `/learn/${runId}/certificate` : null },
   ];
   return (
     <Card className="mt-6">
@@ -51,6 +52,7 @@ function Journey({ course, runId }: { course: LearnerCourse; runId: string }) {
                 {step.done ? <Check size={15} /> : step.href ? index + 1 : <Lock size={13} />}
               </span>
               <div className="min-w-0">
+                <p className="text-[11px] font-semibold uppercase tracking-wide text-stone-500 dark:text-stone-400">{step.part}</p>
                 <p className="text-sm font-semibold">{step.title}</p>
                 <p className="mt-1 text-xs leading-5 text-stone-600 dark:text-muted-foreground">{step.detail}</p>
                 {step.href && !step.done && <p className="mt-2 flex items-center gap-1 text-xs font-medium text-brand-700 dark:text-brand-300">Open <ArrowRight size={12} /></p>}

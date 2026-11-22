@@ -103,6 +103,16 @@ def _ensure_env() -> None:
     if not env.exists() and example.exists():
         shutil.copy(example, env)
         print("> created .env from .env.example")
+    # Pilot / audit walks need human-scored attempts. Warn loudly if fill is on.
+    raw = ""
+    if env.exists():
+        for line in env.read_text(encoding="utf-8").splitlines():
+            if line.startswith("PHARMALEARN_DEMO_FILL="):
+                raw = line.split("=", 1)[1].strip().strip('"').strip("'")
+                break
+    if raw and raw.lower() not in {"0", "false", ""}:
+        print("! PHARMALEARN_DEMO_FILL is on — quiz auto-fill is enabled (demo only)")
+        print("! Set PHARMALEARN_DEMO_FILL=0 in .env for real trainee scores")
 
 
 def _ensure_tools() -> None:

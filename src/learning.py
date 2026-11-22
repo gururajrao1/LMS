@@ -2017,10 +2017,32 @@ def reminders(run_id: str, locale: str = "en") -> dict:
                                 "level_name": item["level_name"]}
               for item in escalation_state(name)["items"]}
     queue = []
+    starts_on = publication.get("starts_on")
     for learner in data["learners"]:
         if learner.get("certificate"):
             continue
         state = assignment_state(publication, learner)
+        # Month-ahead upcoming (Shashi): surface before the window opens.
+        if state == "upcoming":
+            until_start = days_until(starts_on)
+            if until_start is None or until_start < 0 or until_start > 30:
+                continue
+            when = ("opens tomorrow" if until_start == 1
+                    else f"opens in {until_start} days" if until_start else "opens today")
+            queue.append({"user_id": learner["user_id"], "name": learner["name"],
+                          "email": people.get(learner["user_id"], {}).get("email", ""),
+                          "state": state, "stage": learner["stage"],
+                          "kind": "training-upcoming",
+                          "due_on": due_on, "starts_on": starts_on,
+                          "days_until_start": until_start,
+                          "days_until_due": days_until(due_on),
+                          "percent": learner["percent"],
+                          "escalation": ladder.get(learner["user_id"]),
+                          "message": (
+                              f"{learner['name']}, training opens soon ({when}). "
+                              f"Window {starts_on} → {due_on}."
+                          )})
+            continue
         if state not in ("due", "overdue"):
             continue
         days = days_until(due_on)
@@ -2051,9 +2073,10 @@ def reminders(run_id: str, locale: str = "en") -> dict:
                           "recert", locale, name=learner["name"],
                           version=learner["published_version"],
                           old=learner["certificate_version"], due_on=due_on)})
-    order = {"overdue": 0, "due": 1}
-    queue.sort(key=lambda entry: (order[entry["state"]], entry["kind"], entry["name"]))
-    return {"run_id": name, "due_on": due_on, "reminders": queue, "locale": locale}
+    order = {"overdue": 0, "due": 1, "upcoming": 2}
+    queue.sort(key=lambda entry: (order.get(entry["state"], 9), entry["kind"], entry["name"]))
+    return {"run_id": name, "due_on": due_on, "starts_on": starts_on,
+            "reminders": queue, "locale": locale}
 
 
 def set_board_opt_in(by_user_id: str, user_id: str, opt_in: bool) -> dict:

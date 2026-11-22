@@ -255,6 +255,9 @@
         "subject": "Training assigned: complete by 2026-11-30",
         "sent_at": "2026-11-17T00:00:00+00:00"
       }
+    ],
+    "group_ids": [
+      "clinical-trial"
     ]
   },
   "audit": [

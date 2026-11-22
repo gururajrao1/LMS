@@ -71,4 +71,14 @@ describe("buildNudges", () => {
     expect(nudges[0].message).toBe("Due today — finish it now.");
     expect(nudges[0].urgent).toBe(true);
   });
+
+  it("adds a month-ahead upcoming nudge without marking it urgent", () => {
+    const nudges = buildNudges([
+      course({ run_id: "r2", state: "upcoming", days_remaining: null, days_until_start: 12 }),
+    ], []);
+    expect(nudges).toHaveLength(1);
+    expect(nudges[0].key).toBe("upcoming-r2");
+    expect(nudges[0].message).toContain("Opens in 12 days");
+    expect(nudges[0].urgent).toBe(false);
+  });
 });

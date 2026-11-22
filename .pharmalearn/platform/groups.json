@@ -1,0 +1,39 @@
+[
+  {
+    "id": "tech",
+    "label": "Tech",
+    "members": [
+      "guru-raja"
+    ]
+  },
+  {
+    "id": "management",
+    "label": "Management",
+    "members": [
+      "shashidhar-gururao",
+      "pattabhi"
+    ]
+  },
+  {
+    "id": "senior-leadership",
+    "label": "Senior leadership",
+    "members": []
+  },
+  {
+    "id": "genomic",
+    "label": "Genomic team",
+    "members": [
+      "parimala"
+    ]
+  },
+  {
+    "id": "clinical-trial",
+    "label": "Clinical trial team",
+    "members": [
+      "guru-raja",
+      "pattabhi",
+      "shashidhar-gururao",
+      "parimala"
+    ]
+  }
+]

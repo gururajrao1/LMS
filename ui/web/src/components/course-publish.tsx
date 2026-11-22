@@ -35,13 +35,31 @@ export function CoursePublishPanel({ runId, user, review, onChange }: { runId: s
 
   useEffect(() => {
     getJson<CertificateTemplate[]>("/api/certificate-templates").then(setTemplates).catch(() => undefined);
-    getJson<LearnerGroup[]>("/api/groups").then(setGroups).catch(() => undefined);
-    getJson<Person[]>("/api/people").then((roster) => {
-      const learners = roster.filter((person) => person.learner ?? (person.role === "msl" || person.role === "hcp"));
-      setPeople(learners);
-      setAssignees((current) => (current.length ? current : learners.map((person) => person.id)));
+    Promise.all([
+      getJson<LearnerGroup[]>("/api/groups"),
+      getJson<Person[]>("/api/people"),
+    ]).then(([rosterGroups, roster]) => {
+      setGroups(rosterGroups);
+      const inGroups = new Set(rosterGroups.flatMap((group) => group.members));
+      // Include admins/others who sit on a learner group so group picks show checkboxes.
+      const assignable = roster.filter((person) =>
+        person.role !== "checker" && (
+          person.learner
+          || person.role === "msl"
+          || person.role === "hcp"
+          || inGroups.has(person.id)
+        ));
+      setPeople(assignable);
+      setAssignees((current) => {
+        if (current.length) return current;
+        const fromGroups = rosterGroups
+          .filter((group) => (published?.group_ids ?? []).includes(group.id))
+          .flatMap((group) => group.members);
+        if (fromGroups.length) return [...new Set(fromGroups)];
+        return assignable.map((person) => person.id);
+      });
     }).catch(() => setError("Could not load the trainee roster."));
-  }, []);
+  }, [published?.group_ids]);
 
   async function publish(event: FormEvent) {
     event.preventDefault();
@@ -54,6 +72,29 @@ export function CoursePublishPanel({ runId, user, review, onChange }: { runId: s
   }
 
   const toggle = (id: string) => setAssignees((current) => current.includes(id) ? current.filter((entry) => entry !== id) : [...current, id]);
+
+  function toggleGroup(group: LearnerGroup) {
+    const turningOn = !groupIds.includes(group.id);
+    const nextGroupIds = turningOn
+      ? [...groupIds, group.id]
+      : groupIds.filter((entry) => entry !== group.id);
+    setGroupIds(nextGroupIds);
+    if (turningOn) {
+      setAssignees((current) => [...new Set([...current, ...group.members])]);
+    } else {
+      const stillCovered = new Set(
+        groups.filter((entry) => nextGroupIds.includes(entry.id)).flatMap((entry) => entry.members),
+      );
+      setAssignees((current) =>
+        current.filter((id) => stillCovered.has(id) || !group.members.includes(id)));
+    }
+  }
+
+  const reach = [...new Set([
+    ...assignees,
+    ...groups.filter((group) => groupIds.includes(group.id)).flatMap((group) => group.members),
+  ])];
+  const canSubmit = reach.length > 0;
   const blocked = !review.readiness.can_publish;
   const publication = published;
 
@@ -113,32 +154,44 @@ export function CoursePublishPanel({ runId, user, review, onChange }: { runId: s
                   {groups.length > 0 && (
                     <div className="mt-2 flex flex-wrap gap-2">
                       {groups.map((group) => (
-                        <button key={group.id} type="button" onClick={() => setGroupIds((current) => current.includes(group.id) ? current.filter((entry) => entry !== group.id) : [...current, group.id])} className={`rounded-lg border px-3 py-1 text-xs font-medium hover:bg-stone-50 dark:hover:bg-surface-sunk ${groupIds.includes(group.id) ? "border-brand-600 bg-brand-50 dark:bg-brand-950 text-brand-700 dark:text-brand-300" : ""}`}>{group.label} ({group.members.length})</button>
+                        <button
+                          key={group.id}
+                          type="button"
+                          onClick={() => toggleGroup(group)}
+                          className={`rounded-lg border px-3 py-1 text-xs font-medium hover:bg-stone-50 dark:hover:bg-surface-sunk ${groupIds.includes(group.id) ? "border-brand-600 bg-brand-50 dark:bg-brand-950 text-brand-700 dark:text-brand-300" : ""}`}
+                        >
+                          {group.label} ({group.members.length})
+                        </button>
                       ))}
                     </div>
+                  )}
+                  {groupIds.length > 0 && (
+                    <p className="mt-2 text-xs text-stone-600 dark:text-muted-foreground">
+                      Selected groups also tick their members below. Publish reaches {reach.length} people.
+                    </p>
                   )}
                 </div>
               </div>
 
               <p className="text-sm font-medium">Certificate design</p>
-<div className="mt-2 grid gap-2 sm:grid-cols-3">
-  {(templates.length ? templates : [{ id: "classic", label: "Classic", description: "Centered certificate with the brand band." }]).map((option) => (
-    <label key={option.id} className={`cursor-pointer rounded-xl border p-3 transition-colors ${template === option.id ? "border-brand-600 bg-brand-50 dark:bg-brand-950" : "hover:bg-stone-50 dark:hover:bg-surface-sunk"}`}>
-      <input type="radio" name="certificate-template" value={option.id} checked={template === option.id} onChange={() => setTemplate(option.id)} className="size-4 accent-brand-600" />
-      <span className="mt-1 block text-sm font-medium">{option.label}</span>
-      <span className="mt-1 block text-xs leading-5 text-stone-600 dark:text-muted-foreground">{option.description}</span>
-    </label>
-  ))}
-</div>
+              <div className="mt-2 grid gap-2 sm:grid-cols-3">
+                {(templates.length ? templates : [{ id: "classic", label: "Classic", description: "Centered certificate with the brand band." }]).map((option) => (
+                  <label key={option.id} className={`cursor-pointer rounded-xl border p-3 transition-colors ${template === option.id ? "border-brand-600 bg-brand-50 dark:bg-brand-950" : "hover:bg-stone-50 dark:hover:bg-surface-sunk"}`}>
+                    <input type="radio" name="certificate-template" value={option.id} checked={template === option.id} onChange={() => setTemplate(option.id)} className="size-4 accent-brand-600" />
+                    <span className="mt-1 block text-sm font-medium">{option.label}</span>
+                    <span className="mt-1 block text-xs leading-5 text-stone-600 dark:text-muted-foreground">{(option.description || "").replace(/\u00e2\u20ac\u201c|\u00e2\u20ac\u201d/g, "–").replace(/â€“/g, "–")}</span>
+                  </label>
+                ))}
+              </div>
 
-            <p className="text-sm font-medium">Trainees ({assignees.length} selected)</p>
+              <p className="text-sm font-medium">Trainees ({assignees.length} selected{groupIds.length ? ` · ${groupIds.length} group(s)` : ""})</p>
               <div className="mt-2 grid gap-2 sm:grid-cols-2">
                 {people.map((person) => (
                   <label key={person.id} className={`flex cursor-pointer items-start gap-3 rounded-xl border p-3 transition-colors ${assignees.includes(person.id) ? "border-brand-600 bg-brand-50 dark:bg-brand-950" : "hover:bg-stone-50 dark:hover:bg-surface-sunk"}`}>
                     <input type="checkbox" checked={assignees.includes(person.id)} onChange={() => toggle(person.id)} className="mt-1 size-4 accent-brand-600" />
                     <span>
                       <span className="block text-sm font-medium">{person.name}</span>
-                      <span className="block text-xs text-stone-600 dark:text-muted-foreground">{ROLE_LABEL[person.role]} · {person.title}</span>
+                      <span className="block text-xs text-stone-600 dark:text-muted-foreground">{ROLE_LABEL[person.role] ?? person.role} · {person.title}</span>
                     </span>
                   </label>
                 ))}
@@ -151,8 +204,8 @@ export function CoursePublishPanel({ runId, user, review, onChange }: { runId: s
             </div>
 
             {error && <p className="text-sm text-danger-600 dark:text-danger-300">{error}</p>}
-            <Button type="submit" disabled={busy || blocked || !assignees.length} className="bg-brand-600 hover:bg-brand-800">
-              <Send /> {publication ? "Republish schedule" : `Publish v${review.version} to ${assignees.length} trainee(s)`}
+            <Button type="submit" disabled={busy || blocked || !canSubmit} className="bg-brand-600 hover:bg-brand-800">
+              <Send /> {publication ? "Republish schedule" : `Publish v${review.version} to ${reach.length} trainee(s)`}
             </Button>
           </form>
         </CardContent>

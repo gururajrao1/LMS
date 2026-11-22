@@ -37,6 +37,21 @@ export function buildNudges(courses: Assignment[], alerts: DashboardAlert[]): Nu
         href: `/learn/${course.run_id}`,
         urgent: left <= 2,
       });
+    // Month-ahead upcoming (in-app Done for Shashi's alert ask).
+    const until = course.days_until_start;
+    if (course.state === "upcoming" && until !== null && until >= 0 && until <= 30
+        && !nudges.some((nudge) => nudge.href === `/learn/${course.run_id}`))
+      nudges.push({
+        key: `upcoming-${course.run_id}`,
+        title: course.title ?? course.drug.brand,
+        message: until === 0
+          ? "Opens today — you can start when ready."
+          : until === 1
+            ? "Opens tomorrow — one month-ahead heads-up."
+            : `Opens in ${until} days — on your upcoming list.`,
+        href: `/learn/${course.run_id}`,
+        urgent: false,
+      });
   }
   return nudges;
 }

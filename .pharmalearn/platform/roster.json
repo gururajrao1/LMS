@@ -74,27 +74,31 @@
     "name": "Guru Raja",
     "email": "guru.raja@pharmalearn.local",
     "role": "admin",
-    "title": "PharmaLearn builder"
+    "title": "PharmaLearn builder",
+    "manager": "shashidhar-gururao"
   },
   {
     "id": "pattabhi",
     "name": "Pattabhi",
     "email": "pattabhi@pharmalearn.local",
     "role": "msl",
-    "title": "MSL, oncology East"
+    "title": "MSL, oncology East",
+    "manager": "shashidhar-gururao"
   },
   {
     "id": "shashidhar-gururao",
     "name": "Shashidhar Gururao",
     "email": "shashidhar@pharmalearn.local",
     "role": "msl",
-    "title": "Training stakeholder"
+    "title": "Training stakeholder",
+    "manager": "priya-raman"
   },
   {
     "id": "parimala",
     "name": "Parimala",
     "email": "parimala@pharmalearn.local",
     "role": "hcp",
-    "title": "Medical oncologist"
+    "title": "Medical oncologist",
+    "manager": "shashidhar-gururao"
   }
 ]

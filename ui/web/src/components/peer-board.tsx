@@ -81,7 +81,7 @@ export function PeerBoard({ userId }: { userId: string }) {
             checked={isPrivate} disabled={busy}
             onChange={(event) => void togglePrivacy(event.target.checked)} />
           <span>Keep my completions private
-            <span className="text-stone-600 dark:text-muted-foreground"> — hides you from every peer board. Managers still see their own reports.</span>
+            <span className="text-stone-600 dark:text-muted-foreground"> — other employees cannot see that you finished this training (e.g. sensitive compliance courses). Training leads and managers still see assignment reports.</span>
           </span>
         </label>
         {!isPrivate && (
@@ -90,13 +90,13 @@ export function PeerBoard({ userId }: { userId: string }) {
               checked={!!optedIn} disabled={busy || optedIn === null}
               onChange={(event) => void toggleOptIn(event.target.checked)} />
             <span>Show me against nearby learners
-              <span className="text-stone-600 dark:text-muted-foreground"> — opt-in only, neighbors stay anonymous, and opting out removes you entirely.</span>
+              <span className="text-stone-600 dark:text-muted-foreground"> — opt-in only; neighbors stay anonymous; opting out removes you. Drug courses keep boards off by default.</span>
             </span>
           </label>
         )}
         {isPrivate && (
           <p className="rounded-lg bg-stone-100 dark:bg-muted p-3 text-sm text-stone-600 dark:text-muted-foreground">
-            Your completions are hidden from peers. Turn this off to compete again.
+            Your completions are hidden from peers. Admins still see who is assigned and certified for audit. Turn this off only if you want to appear on opt-in boards again.
           </p>
         )}
         {optedIn && nearby && !isPrivate && (
