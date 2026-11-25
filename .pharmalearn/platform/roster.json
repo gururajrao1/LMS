@@ -31,15 +31,15 @@
     "id": "jordan-feld",
     "name": "Jordan Feld",
     "email": "jordan.feld@pharmalearn.local",
-    "role": "msl",
-    "title": "MSL, oncology West"
+    "role": "hcp",
+    "title": "Trainee, oncology West"
   },
   {
     "id": "sara-nakamura",
     "name": "Sara Nakamura",
     "email": "sara.nakamura@pharmalearn.local",
-    "role": "msl",
-    "title": "MSL, oncology East"
+    "role": "hcp",
+    "title": "Trainee, oncology East"
   },
   {
     "id": "ken-osei",
@@ -81,15 +81,15 @@
     "id": "pattabhi",
     "name": "Pattabhi",
     "email": "pattabhi@pharmalearn.local",
-    "role": "msl",
-    "title": "MSL, oncology East",
+    "role": "hcp",
+    "title": "Trainee, oncology East",
     "manager": "shashidhar-gururao"
   },
   {
     "id": "shashidhar-gururao",
     "name": "Shashidhar Gururao",
     "email": "shashidhar@pharmalearn.local",
-    "role": "msl",
+    "role": "hcp",
     "title": "Training stakeholder",
     "manager": "priya-raman"
   },

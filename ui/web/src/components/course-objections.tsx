@@ -10,7 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { getJson, Objection, Person, sendJson } from "@/lib/api";
 
 /**
- * Approved answers to the objections HCPs raise in the field.
+ * Approved answers to the objections trainees hear in the field.
  *
  * Written once by the training team, read by every trainee and shown on the
  * learner side verbatim. Retirement keeps the record — a retracted answer
@@ -74,7 +74,7 @@ export function CourseObjectionsPanel({ runId, user }: { runId: string; user: Pe
         {canManage && (
           <div className="rounded-xl border border-dashed p-4">
             <p className="font-semibold">{editing ? "Edit approved answer" : "Add an approved answer"}</p>
-            <Input className="mt-3" value={question} onChange={(event) => setQuestion(event.target.value)} placeholder="The objection, in the HCP's words" />
+            <Input className="mt-3" value={question} onChange={(event) => setQuestion(event.target.value)} placeholder="The objection, in the trainee's words" />
             <Textarea className="mt-3" value={answer} onChange={(event) => setAnswer(event.target.value)} rows={3} placeholder="The approved response, with the evidence behind it" />
             <div className="mt-3 flex gap-2">
               <Button disabled={busy || !question.trim() || !answer.trim()} onClick={() => void submit()} className="bg-brand-600 hover:bg-brand-800"><Plus size={16} /> {editing ? "Save changes" : "Publish answer"}</Button>

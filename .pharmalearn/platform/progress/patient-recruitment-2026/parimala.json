@@ -1,83 +1,32 @@
 {
   "run_id": "patient-recruitment-2026",
   "user_id": "parimala",
-  "started_at": "2026-11-20T11:34:45.849303+00:00",
+  "started_at": "2026-11-24T11:01:27.115874+00:00",
   "modules": {
-    "deck": {
-      "completed_at": "2026-11-20T11:34:45.865292+00:00"
-    },
     "videos": {
-      "completed_at": "2026-11-20T11:34:45.891486+00:00"
-    },
-    "storyboard": {
-      "completed_at": "2026-11-20T11:34:45.922264+00:00"
-    },
-    "faq": {
-      "completed_at": "2026-11-20T11:34:45.949798+00:00"
+      "completed_at": "2026-11-24T11:01:27.147238+00:00"
     }
   },
   "attempts": [
     {
-      "id": "4089691c6837",
+      "id": "578fc42dfaa7",
       "kind": "baseline",
-      "score": 100,
-      "correct": 5,
+      "score": 40,
+      "correct": 2,
       "total": 5,
       "passing_score": 70,
       "passed": true,
       "answers": {
         "q1": 1,
-        "q2": 2,
-        "q3": 0,
-        "q4": 3,
-        "q5": 1
-      },
-      "created_at": "2026-11-20T11:34:45.986072+00:00"
-    },
-    {
-      "id": "cf4ec885be6d",
-      "kind": "final",
-      "score": 100,
-      "correct": 12,
-      "total": 12,
-      "passing_score": 70,
-      "passed": true,
-      "answers": {
-        "q1": 1,
-        "q2": 2,
-        "q3": 0,
-        "q4": 3,
+        "q9": 2,
+        "q7": 2,
         "q5": 1,
-        "q6": 2,
-        "q7": 1,
-        "q8": 1,
-        "q9": 1,
-        "q10": 1,
-        "q11": 1,
-        "q12": 0
+        "q3": 1
       },
-      "created_at": "2026-11-20T11:34:46.023726+00:00"
+      "created_at": "2026-11-24T11:11:24.537427+00:00"
     }
   ],
-  "certificate": {
-    "id": "629fd99c6616",
-    "code": "PL-PATIENT-2026-2C6284",
-    "user_id": "parimala",
-    "learner_name": "Parimala",
-    "learner_title": "Medical oncologist",
-    "run_id": "patient-recruitment-2026",
-    "course_version": 1,
-    "template": "classic",
-    "score": 100,
-    "issued_at": "2026-11-20T11:34:46.060181+00:00",
-    "expires_at": "2027-11-20T11:34:46.060181+00:00",
-    "approved_by": [
-      {
-        "name": "Dr. Anil Shekhar",
-        "title": "Therapeutic area expert, oncology"
-      }
-    ]
-  },
+  "certificate": null,
   "feedback": [],
   "daily_checks": []
 }

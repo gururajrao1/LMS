@@ -386,6 +386,7 @@ export type ChatReply = {
 
 /** A reference document, and whether we hold it here rather than only linking to it. */
 export type LibraryDocument = {
+  /** Document identity from the server (source_key); preferred over url for React keys. */
   key: string;
   title: string;
   url: string;

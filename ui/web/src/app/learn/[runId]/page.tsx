@@ -479,6 +479,11 @@ export default function CoursePlayer() {
 
   useEffect(load, [user, runId]);
 
+  const hasVideos = Boolean(course?.content?.videos?.length);
+  useEffect(() => {
+    if (course && tab === "videos" && !hasVideos) changeTab("deck");
+  }, [course, tab, hasVideos]);
+
   if (!user) return <AppShell><Loading /></AppShell>;
   if (!course) return <AppShell user={user}><Loading label={error || "Loading your course…"} /></AppShell>;
 
@@ -486,7 +491,15 @@ export default function CoursePlayer() {
   const step = (id: string) => course.modules.find((entry) => entry.id === id)!;
   const induction = course.course_type === "induction";
   const footer = (id: string) => <ModuleFooter module={step(id)} runId={runId} userId={user.id} onChange={load} />;
-  const activeVideo = track.videos[Math.min(video, Math.max(track.videos.length - 1, 0))];
+  const activeVideo = hasVideos ? track.videos[Math.min(video, Math.max(track.videos.length - 1, 0))] : null;
+  // Same PMC URL can land twice (manifest + held snapshot); one chip per URL.
+  const heldRefs: Library["documents"] = [];
+  const seenRefUrls = new Set<string>();
+  for (const doc of library?.documents ?? []) {
+    if (!doc.held || !doc.url || seenRefUrls.has(doc.url)) continue;
+    seenRefUrls.add(doc.url);
+    heldRefs.push(doc);
+  }
 
   return (
     <AppShell user={user}>
@@ -537,7 +550,7 @@ export default function CoursePlayer() {
       <Tabs value={tab} onValueChange={changeTab} className="mt-4">
         <TabsList className="h-auto flex-wrap bg-white dark:bg-surface p-1 shadow-sm">
           <TabsTrigger value="deck"><Presentation /> Deck{step("deck").completed && <Check className="text-brand-700 dark:text-brand-300" />}</TabsTrigger>
-          <TabsTrigger value="videos"><PlayCircle /> Videos{step("videos").completed && <Check className="text-brand-700 dark:text-brand-300" />}</TabsTrigger>
+          {hasVideos && <TabsTrigger value="videos"><PlayCircle /> Videos{step("videos").completed && <Check className="text-brand-700 dark:text-brand-300" />}</TabsTrigger>}
           <TabsTrigger value="storyboard"><Film /> Visual story{step("storyboard").completed && <Check className="text-brand-700 dark:text-brand-300" />}</TabsTrigger>
           <TabsTrigger value="faq"><FileQuestion /> FAQ{step("faq").completed && <Check className="text-brand-700 dark:text-brand-300" />}</TabsTrigger>
           <TabsTrigger value="flashcards"><Layers /> Flashcards</TabsTrigger>
@@ -556,8 +569,7 @@ export default function CoursePlayer() {
           {footer("deck")}
         </TabsContent>
 
-        <TabsContent value="videos" className="mt-5">
-          {track.videos.length ? (
+        {hasVideos && activeVideo && <TabsContent value="videos" className="mt-5">
             <Card className="overflow-hidden p-0">
               <div className="grid lg:grid-cols-[minmax(0,1fr)_320px]">
                 <div className="min-w-0 bg-surface-deeper">
@@ -580,9 +592,8 @@ export default function CoursePlayer() {
                 </div>
               </div>
             </Card>
-          ) : <Card><CardContent className="p-8 text-center text-stone-600 dark:text-muted-foreground">No videos have been added to this track yet — the storyboard below is the visual script.</CardContent></Card>}
           {footer("videos")}
-        </TabsContent>
+        </TabsContent>}
 
         <TabsContent value="storyboard" className="mt-5">
           <div className="mb-4 flex flex-wrap items-center gap-2">
@@ -699,13 +710,13 @@ export default function CoursePlayer() {
         </AlertDialogContent>
       </AlertDialog>
 
-      {(library?.documents ?? []).filter((doc) => doc.held).length > 0 && (
+      {heldRefs.length > 0 && (
         <Card className="mt-4">
           <CardHeader><CardTitle className="flex items-center gap-2"><BookOpen size={18} /> Reference documents</CardTitle><p className="mt-2 text-sm text-stone-600 dark:text-muted-foreground">The sources this course was checked against — read them beside your material.</p></CardHeader>
           <CardContent>
             <div className="flex flex-wrap gap-2">
-              {(library?.documents ?? []).filter((doc) => doc.held).map((doc) => (
-                <Button key={doc.url} variant="outline" onClick={() => setRefUrl(doc.url)}>{doc.title}</Button>
+              {heldRefs.map((doc, index) => (
+                <Button key={doc.key || doc.source_id || `${doc.url}#${index}`} variant="outline" onClick={() => setRefUrl(doc.url)}>{doc.title}</Button>
               ))}
             </div>
           </CardContent>

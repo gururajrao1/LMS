@@ -59,7 +59,12 @@ def test_group_membership_changes_apply_without_republish(tmp_path, monkeypatch)
     learning.publish_course("group-live", "priya-raman", "2026-03-01", "2026-03-31", [], group_ids=["tech"])
     learning.set_learner_group_members("priya-raman", "tech", ["jordan-feld", "sara-nakamura"])
     assert learning.is_assigned(learning.course("group-live"), "sara-nakamura")
+    # Cohort/board follow live membership so Measure matches /learn.
+    assert {row["user_id"] for row in learning.cohort("group-live")["learners"]} >= {
+        "jordan-feld", "sara-nakamura",
+    }
     learning.set_learner_group_members("priya-raman", "tech", ["sara-nakamura"])
+    # Removed members stay assigned via the publish-time assignee snapshot.
     assert learning.is_assigned(learning.course("group-live"), "jordan-feld")
 
 

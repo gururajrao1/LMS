@@ -43,7 +43,9 @@ export default function RolesPage() {
 
   if (!user) return <AppShell><Loading /></AppShell>;
 
-  const builtins = roles.filter((entry) => entry.builtin);
+  // One Trainee row in the UI — pack A/B stay under the hood for content routing.
+  const builtins = roles.filter((entry) => entry.builtin && entry.id !== "msl");
+  const assignableRoles = roles.filter((entry) => entry.id !== "msl");
   const custom = roles.filter((entry) => !entry.builtin);
 
   function toggleGrant(id: string) {
@@ -167,7 +169,7 @@ export default function RolesPage() {
       <div className="mt-5 grid gap-5 lg:grid-cols-2">
         <Card>
           <CardHeader><CardTitle className="flex items-center gap-2 text-base"><KeyRound size={17} className="text-brand-700 dark:text-brand-300" /> Build a custom role</CardTitle>
-            <p className="mt-2 text-sm text-stone-600 dark:text-muted-foreground">Example: an <b>Instructor</b> with sign-off and settle rights but no roster access; a <b>Trainee nurse</b> learner on the HCP track.</p>
+            <p className="mt-2 text-sm text-stone-600 dark:text-muted-foreground">Example: an <b>Instructor</b> with sign-off and settle rights but no roster access; a <b>Trainee nurse</b> who only takes assigned courses.</p>
           </CardHeader>
           <CardContent>
             <form onSubmit={create} className="space-y-4">
@@ -202,8 +204,8 @@ export default function RolesPage() {
                   <div>
                     <label htmlFor="role-track" className="text-sm font-medium">Content track</label>
                     <NativeSelect id="role-track" value={track} onChange={(event) => setTrack(event.target.value)} className="mt-2 h-9">
-                      <option value="msl">MSL track</option>
-                      <option value="hcp">HCP track</option>
+                      <option value="hcp">Trainee · pack A</option>
+                      <option value="msl">Trainee · pack B</option>
                     </NativeSelect>
                   </div>
                 )}
@@ -223,7 +225,7 @@ export default function RolesPage() {
                     <p className="font-medium">{entry.label}</p>
                     {entry.description && <p className="mt-1 text-sm text-stone-600 dark:text-muted-foreground">{entry.description}</p>}
                     <p className="mt-1 text-xs text-stone-500 dark:text-stone-400">
-                      {entry.learner ? `Learner · ${entry.track.toUpperCase()} track` : "Staff"} · {entry.capabilities.length} capabilit{entry.capabilities.length === 1 ? "y" : "ies"}
+                      {entry.learner ? "Learner · trainee content" : "Staff"} · {entry.capabilities.length} capabilit{entry.capabilities.length === 1 ? "y" : "ies"}
                     </p>
                   </div>
                   <Button variant="outline" onClick={() => remove(entry)} aria-label={`Delete ${entry.label}`}><Trash2 size={15} /></Button>
@@ -254,8 +256,15 @@ export default function RolesPage() {
                   <option value="">No manager set</option>
                   {people.filter((entry) => entry.id !== person.id).map((entry) => <option key={entry.id} value={entry.id}>{entry.name}</option>)}
                 </NativeSelect>
-                <NativeSelect value={person.role} onChange={(event) => assign(person, event.target.value)} className="h-9 w-48" aria-label={`Role for ${person.name}`}>
-                  {roles.map((entry) => <option key={entry.id} value={entry.id}>{entry.label}{entry.builtin ? "" : " (custom)"}</option>)}
+                <NativeSelect
+                  value={person.role === "msl" ? "hcp" : person.role}
+                  onChange={(event) => assign(person, event.target.value)}
+                  className="h-9 w-48"
+                  aria-label={`Role for ${person.name}`}
+                >
+                  {assignableRoles.map((entry) => (
+                    <option key={entry.id} value={entry.id}>{entry.label}{entry.builtin ? "" : " (custom)"}</option>
+                  ))}
                 </NativeSelect>
               </div>
             </div>

@@ -169,3 +169,33 @@ def test_assessment_endpoint_reports_cap_and_notifications(tmp_path, monkeypatch
     refused = client.post("/api/learn/ken-osei/cap-api/assessment/final",
                           json={"answers": {"q0": 0}})
     assert refused.status_code == 400
+
+
+def test_cohort_reset_wipes_all_assignees(tmp_path, monkeypatch):
+    monkeypatch.setattr(agent, "DATA", tmp_path)
+    _ready(tmp_path, "cohort-reset")
+    for module in learning.MODULES:
+        learning.set_module("cohort-reset", "ken-osei", module["id"], True)
+        learning.set_module("cohort-reset", "lucy-whitfield", module["id"], True)
+    learning.record_attempt("cohort-reset", "ken-osei", "baseline", {}, [], 70)
+    _fail("cohort-reset", "lucy-whitfield")
+    client = TestClient(app)
+    missing = client.post("/api/runs/cohort-reset/cohort/reset",
+                          json={"user_id": "priya-raman", "confirm_email": "not-an-email"})
+    assert missing.status_code == 400
+    response = client.post("/api/runs/cohort-reset/cohort/reset", json={
+        "user_id": "priya-raman",
+        "confirm_email": "priya@example.com",
+    })
+    assert response.status_code == 200
+    assert response.json()["reset"] == 2
+    for user_id in ("ken-osei", "lucy-whitfield"):
+        summary = learning.summarize(learning.progress("cohort-reset", user_id))
+        assert summary["modules_complete"] == 0
+        assert summary["attempts"] == 0
+        assert summary["certificate"] is None
+    refused = client.post("/api/runs/cohort-reset/cohort/reset", json={
+        "user_id": "ken-osei",
+        "confirm_email": "ken@example.com",
+    })
+    assert refused.status_code == 400

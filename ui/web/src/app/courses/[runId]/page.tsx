@@ -28,10 +28,11 @@ import { API, CourseContent, CourseReview, getJson, Learner } from "@/lib/api";
 import { useSession } from "@/lib/session";
 
 const STATUS_LABEL = { draft: "Draft", in_review: "In review", approved: "Approved", published: "Published" } as const;
+const PACK_LABEL: Record<Learner, string> = { hcp: "Pack A", msl: "Pack B" };
 
 function VideoPlaylist({ videos, learner }: { videos: CourseContent["learners"]["hcp"]["videos"]; learner: Learner }) {
   const [current, setCurrent] = useState(0);
-  if (!videos.length) return <Card><CardContent className="p-8 text-center text-stone-600 dark:text-muted-foreground">No {learner.toUpperCase()} videos have been added yet.</CardContent></Card>;
+  if (!videos.length) return <Card><CardContent className="p-8 text-center text-stone-600 dark:text-muted-foreground">No {PACK_LABEL[learner]} videos have been added yet.</CardContent></Card>;
   const active = videos[current];
   return (
     <Card className="overflow-hidden p-0">
@@ -40,7 +41,7 @@ function VideoPlaylist({ videos, learner }: { videos: CourseContent["learners"][
           <video key={active.url} controls preload="metadata" onEnded={() => current < videos.length - 1 && setCurrent(current + 1)} className="aspect-video w-full bg-black" aria-label={active.title}>
             <source src={`${API}${active.url}`} />
           </video>
-          <div className="p-5 text-white"><p className="text-xs font-semibold tracking-wider text-brand-300">{learner.toUpperCase()} VIDEO {current + 1} OF {videos.length}</p><h2 className="mt-2 text-xl font-semibold">{active.title}</h2></div>
+          <div className="p-5 text-white"><p className="text-xs font-semibold tracking-wider text-brand-300">{PACK_LABEL[learner].toUpperCase()} VIDEO {current + 1} OF {videos.length}</p><h2 className="mt-2 text-xl font-semibold">{active.title}</h2></div>
         </div>
         <div className="max-h-[36rem] overflow-y-auto border-t bg-white dark:bg-surface lg:border-t-0 lg:border-l">
           <div className="sticky top-0 z-10 border-b bg-white dark:bg-surface p-4"><p className="font-semibold">Course playlist</p><p className="mt-1 text-xs text-stone-600 dark:text-muted-foreground">The next video plays automatically.</p></div>
@@ -134,7 +135,7 @@ export default function CourseWorkspace() {
               <Badge className="bg-white/10 text-white">v{review.version} · {STATUS_LABEL[review.status]}</Badge>
             </div>
             <h1 className="mt-4 text-4xl font-semibold tracking-tight">{content.manifest.drug.brand} course workspace</h1>
-            <p className="mt-2 text-stone-300">{content.manifest.drug.generic} · previewing the {learner.toUpperCase()} track</p>
+            <p className="mt-2 text-stone-300">{content.manifest.drug.generic} · previewing {PACK_LABEL[learner]}</p>
           </div>
           <div className="flex flex-wrap gap-3">
             <div className="rounded-xl border border-white/15 bg-white/5 p-4 text-sm"><p className="text-2xl font-semibold">{content.manifest.citation_count}</p><p className="text-stone-300">citations</p></div>
@@ -145,8 +146,8 @@ export default function CourseWorkspace() {
       </div>
 
       <div className="mt-6 flex flex-col justify-between gap-4 rounded-xl border bg-white dark:bg-surface p-4 shadow-sm sm:flex-row sm:items-center">
-        <div><p className="font-semibold">Preview a learning track</p><p className="mt-1 text-sm text-stone-600 dark:text-muted-foreground">Assets and knowledge checks adapt to the selected role.</p></div>
-        <div className="inline-flex rounded-lg bg-stone-100 dark:bg-muted p-1">{(["hcp", "msl"] as const).map((value) => <button key={value} type="button" aria-pressed={learner === value} onClick={() => setLearner(value)} className={`rounded-md px-5 py-2 text-sm font-semibold transition-colors ${learner === value ? "bg-white dark:bg-surface text-brand-700 dark:text-brand-300 shadow-sm" : "text-stone-600 dark:text-muted-foreground hover:text-stone-800 dark:hover:text-stone-200"}`}>{value.toUpperCase()}</button>)}</div>
+        <div><p className="font-semibold">Preview trainee content</p><p className="mt-1 text-sm text-stone-600 dark:text-muted-foreground">Assets and knowledge checks for each content pack.</p></div>
+        <div className="inline-flex rounded-lg bg-stone-100 dark:bg-muted p-1">{(["hcp", "msl"] as const).map((value) => <button key={value} type="button" aria-pressed={learner === value} onClick={() => setLearner(value)} className={`rounded-md px-5 py-2 text-sm font-semibold transition-colors ${learner === value ? "bg-white dark:bg-surface text-brand-700 dark:text-brand-300 shadow-sm" : "text-stone-600 dark:text-muted-foreground hover:text-stone-800 dark:hover:text-stone-200"}`}>{PACK_LABEL[value]}</button>)}</div>
       </div>
 
       <div className="mt-6 rounded-xl border bg-white dark:bg-surface p-4 shadow-sm"><div className="flex flex-wrap items-center gap-2 text-sm"><span className="font-semibold">Content</span><span aria-hidden>→</span><span className={review.status === "draft" ? "font-semibold text-brand-700 dark:text-brand-300" : ""}>Review</span><span aria-hidden>→</span><span className={review.readiness.can_publish || review.status === "published" ? "font-semibold text-brand-700 dark:text-brand-300" : ""}>Publish</span><span aria-hidden>→</span><span>Measure</span><span className="ml-auto text-stone-600 dark:text-muted-foreground">v{review.version} · {STATUS_LABEL[review.status]}</span></div>{admin && (<div className="mt-3 border-t pt-3 text-sm"><p className="font-semibold">What blocks publishing</p><ul className="mt-2 space-y-1 text-stone-600 dark:text-muted-foreground"><li>{review.readiness.approvals > 0 ? "Done" : "To do"}: approval at v{review.version} ({review.readiness.approvals})</li><li>{review.readiness.open_blocking === 0 ? "Done" : "To do"}: no open blocking comments ({review.readiness.open_blocking} open)</li><li>{review.readiness.changes_requested === 0 ? "Done" : "To do"}: no outstanding change requests ({review.readiness.changes_requested})</li></ul></div>)}</div>
@@ -157,13 +158,13 @@ export default function CourseWorkspace() {
 
         {active === "journey" && <CourseJourney runId={runId} />}
 
-        {active === "ppt" && <Card><CardHeader className="flex-row items-start justify-between gap-4"><div><CardTitle>{learner.toUpperCase()} clinical presentation</CardTitle><p className="mt-2 text-sm text-stone-600 dark:text-muted-foreground">A role-specific, citation-backed PowerPoint.</p></div><Button nativeButton={false} render={<a href={`${API}${track.pptx_url}`} />} className="bg-brand-600 hover:bg-brand-800"><Download /> Download .pptx</Button></CardHeader><CardContent><DeckGrid slides={track.deck.slides} runId={runId} /></CardContent></Card>}
+        {active === "ppt" && <Card><CardHeader className="flex-row items-start justify-between gap-4"><div><CardTitle>{PACK_LABEL[learner]} clinical presentation</CardTitle><p className="mt-2 text-sm text-stone-600 dark:text-muted-foreground">A pack-specific, citation-backed PowerPoint.</p></div><Button nativeButton={false} render={<a href={`${API}${track.pptx_url}`} />} className="bg-brand-600 hover:bg-brand-800"><Download /> Download .pptx</Button></CardHeader><CardContent><DeckGrid slides={track.deck.slides} runId={runId} /></CardContent></Card>}
 
         {active === "videos" && <VideoPlaylist key={learner} videos={track.videos} learner={learner} />}
 
         {active === "story" && <div className="space-y-4">{track.storyboard.scenes.map((scene) => <Card key={scene.id}><CardContent className="grid gap-5 p-5 md:grid-cols-[90px_1fr]"><div><span className="grid size-11 place-items-center rounded-full bg-surface-deep font-semibold text-white">{scene.id}</span><p className="mt-2 text-xs text-stone-600 dark:text-muted-foreground">{scene.duration_seconds} sec</p></div><div><h3 className="text-lg font-semibold">{scene.title}</h3><p className="mt-2 leading-7 text-stone-600 dark:text-muted-foreground">{scene.narration}</p><div className="mt-4 rounded-lg bg-stone-50 dark:bg-surface-sunk p-3 text-sm"><b>Visual:</b> {scene.visual}<br /><b>On screen:</b> {scene.on_screen_text}</div><Cites runId={runId} citations={scene.citations} /></div></CardContent></Card>)}</div>}
 
-        {active === "faq" && <Card><CardHeader><CardTitle>{learner.toUpperCase()} FAQ</CardTitle></CardHeader><CardContent><Accordion>{track.faq.items.map((item, index) => <AccordionItem key={item.question} value={`faq-${index}`}><AccordionTrigger>{item.question}</AccordionTrigger><AccordionContent><p className="leading-7 text-stone-600 dark:text-muted-foreground">{item.answer}</p>{item.nuance && <p className="mt-3 text-sm leading-6 text-stone-600 dark:text-muted-foreground"><b>Important context:</b> {item.nuance}</p>}{item.escalation && <p className="mt-3 text-sm leading-6 text-stone-600 dark:text-muted-foreground"><b>Escalation:</b> {item.escalation}</p>}<Cites runId={runId} citations={item.citations} /></AccordionContent></AccordionItem>)}</Accordion></CardContent></Card>}
+        {active === "faq" && <Card><CardHeader><CardTitle>{PACK_LABEL[learner]} FAQ</CardTitle></CardHeader><CardContent><Accordion>{track.faq.items.map((item, index) => <AccordionItem key={item.question} value={`faq-${index}`}><AccordionTrigger>{item.question}</AccordionTrigger><AccordionContent><p className="leading-7 text-stone-600 dark:text-muted-foreground">{item.answer}</p>{item.nuance && <p className="mt-3 text-sm leading-6 text-stone-600 dark:text-muted-foreground"><b>Important context:</b> {item.nuance}</p>}{item.escalation && <p className="mt-3 text-sm leading-6 text-stone-600 dark:text-muted-foreground"><b>Escalation:</b> {item.escalation}</p>}<Cites runId={runId} citations={item.citations} /></AccordionContent></AccordionItem>)}</Accordion></CardContent></Card>}
 
         {active === "quiz" && <div className="space-y-4"><p className="text-sm text-stone-600 dark:text-muted-foreground">Answers are shown here for review. Learners sit this quiz without them, and must score {track.quiz.passing_score}% to pass.</p>{track.quiz.questions.map((question, index) => <Card key={question.id}><CardHeader><CardTitle className="text-base">{index + 1}. {question.prompt}</CardTitle></CardHeader><CardContent className="space-y-2">{question.options.map((option, optionIndex) => <div key={option} className={`rounded-lg border p-3 text-sm ${optionIndex === question.correct_index ? "border-brand-600 bg-brand-50 dark:bg-brand-950 text-brand-800 dark:text-brand-200" : "text-stone-600 dark:text-muted-foreground"}`}>{option}</div>)}<div className="pt-2"><p className="text-sm leading-6 text-stone-600 dark:text-muted-foreground">{question.rationale}</p><Cites runId={runId} citations={question.citations} /></div></CardContent></Card>)}</div>}
 

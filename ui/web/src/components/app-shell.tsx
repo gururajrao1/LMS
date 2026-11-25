@@ -30,7 +30,14 @@ const NAV: Record<string, NavLink[]> = {
   hcp: [{ href: "/learn", label: "My training", icon: GraduationCap }],
 };
 
-export const ROLE_LABEL: Record<string, string> = { admin: "Admin", reviewer: "Reviewer", checker: "Automated check", msl: "MSL", hcp: "HCP" };
+export const ROLE_LABEL: Record<string, string> = {
+  admin: "Admin",
+  reviewer: "Reviewer",
+  checker: "Automated check",
+  msl: "Trainee",
+  hcp: "Trainee",
+  trainee: "Trainee",
+};
 
 /** Navigation for anyone: built-in mapping first, then learnerhood, then staff fallback. */
 export function navFor(user: Person): NavLink[] {

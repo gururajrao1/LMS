@@ -63,15 +63,16 @@ BUILTIN_ROLE_LABELS = {
     "admin": "Admin",
     "reviewer": "Reviewer",
     "checker": "Automated check",
-    "msl": "MSL",
-    "hcp": "HCP",
+    # Login/UI present these as "Trainee"; ids stay for content-pack routing.
+    "msl": "Trainee",
+    "hcp": "Trainee",
 }
 BUILTIN_ROLE_DESCRIPTIONS = {
     "admin": "Full control: courses, reviews, people and roles.",
     "reviewer": "Reviews and signs off content, settles findings, resets answers.",
     "checker": "Machine identity that raises findings and never approves.",
-    "msl": "Field medical training track.",
-    "hcp": "Clinical training track.",
+    "msl": "Takes assigned training and earns a certificate.",
+    "hcp": "Takes assigned training and earns a certificate.",
 }
 
 # Lets a submitted attempt have its unanswered questions filled with the correct
@@ -108,8 +109,8 @@ SEED_PEOPLE = [
     {"id": "priya-raman", "name": "Priya Raman", "email": "priya.raman@pharmalearn.local", "role": "admin", "title": "Medical education lead"},
     {"id": "anil-shekhar", "name": "Dr. Anil Shekhar", "email": "anil.shekhar@pharmalearn.local", "role": "reviewer", "title": "Therapeutic area expert, oncology"},
     {"id": "maria-alvarez", "name": "Dr. Maria Alvarez", "email": "maria.alvarez@pharmalearn.local", "role": "reviewer", "title": "Regulatory and medical affairs"},
-    {"id": "jordan-feld", "name": "Jordan Feld", "email": "jordan.feld@pharmalearn.local", "role": "msl", "title": "MSL, oncology West"},
-    {"id": "sara-nakamura", "name": "Sara Nakamura", "email": "sara.nakamura@pharmalearn.local", "role": "msl", "title": "MSL, oncology East"},
+    {"id": "jordan-feld", "name": "Jordan Feld", "email": "jordan.feld@pharmalearn.local", "role": "hcp", "title": "Trainee, oncology West"},
+    {"id": "sara-nakamura", "name": "Sara Nakamura", "email": "sara.nakamura@pharmalearn.local", "role": "hcp", "title": "Trainee, oncology East"},
     {"id": "ken-osei", "name": "Dr. Ken Osei", "email": "ken.osei@pharmalearn.local", "role": "hcp", "title": "Medical oncologist"},
     {"id": "lucy-whitfield", "name": "Dr. Lucy Whitfield", "email": "lucy.whitfield@pharmalearn.local", "role": "hcp", "title": "Breast oncology, community practice"},
     {"id": "tom-becker", "name": "Dr. Tom Becker", "email": "tom.becker@pharmalearn.local", "role": "hcp", "title": "Oncology nurse practitioner"},
@@ -1084,6 +1085,61 @@ def reset_attempts(run_id: str, user_id: str, user_role: str = "", actor_id: str
     return summarize(record)
 
 
+def reset_learner_progress(run_id: str, user_id: str, actor_id: str) -> dict:
+    """Full wipe for one learner: modules, attempts, certificate, feedback, daily checks."""
+    require_capability(actor_id, "learn.reset")
+    record = progress(run_id, user_id)
+    if record.get("certificate"):
+        course_record = course(run_id)
+        course_record.setdefault("revocations", []).append({
+            "code": record["certificate"].get("code"),
+            "user_id": user_id,
+            "revoked_at": _now(),
+            "actor_id": actor_id,
+            "reason": "full progress reset",
+        })
+        _save_course(course_record)
+    wiped = {
+        "run_id": run_id,
+        "user_id": user_id,
+        "started_at": None,
+        "modules": {},
+        "attempts": [],
+        "certificate": None,
+        "feedback": [],
+        "daily_checks": [],
+    }
+    _save_progress(wiped)
+    return summarize(wiped)
+
+
+def reset_cohort_progress(run_id: str, actor_id: str, confirm_email: str = "") -> dict:
+    """Reset every assignee's learning progress on this publication.
+
+    Does not touch course content (deck, storyboard, FAQ, quiz, sources) or the
+    publication itself — only learner progress records. confirm_email is a typed
+    attestation (any address with an @); it is recorded on the audit trail.
+    """
+    actor = require_capability(actor_id, "learn.reset")
+    typed = (confirm_email or "").strip()
+    # Demo roster uses .local addresses; accept any non-empty local@domain shape.
+    if "@" not in typed or typed.startswith("@") or typed.endswith("@") or " " in typed:
+        raise ValueError("Type an email address to confirm the reset")
+    record = course(run_id)
+    publication = record.get("publication") or {}
+    members = publication_members(publication)
+    if not members:
+        raise ValueError("Publish the course to a cohort before resetting progress")
+    for user_id in members:
+        reset_learner_progress(run_id, user_id, actor_id)
+    record = course(run_id)
+    _audit(record, actor, "cohort.progress_reset",
+           f"{actor['name']} reset progress for {len(members)} trainee(s)",
+           trainees=len(members), confirm_email=typed)
+    _save_course(record)
+    return {"run_id": run_id, "reset": len(members), "learners": members}
+
+
 def verify_certificate(code: str) -> dict:
     """Check a certificate code: live, revoked, or unknown.
 
@@ -1751,8 +1807,11 @@ def attempt_notices(run_id: str, user_id: str) -> list[dict]:
     """In-app notices for the attempt cap: last-chance warning and lockout."""
     state = attempt_state(run_id, user_id)
     if state["locked"]:
+        manager_id = (person(user_id) or {}).get("manager")
+        manager = person(manager_id) if manager_id else None
+        who = f"{manager['name']} (your manager)" if manager else "your training lead"
         return [{"kind": "locked",
-                 "message": f"Locked out after {state['max']} failed finals — your training lead can grant another attempt."}]
+                 "message": f"Locked out after {state['max']} failed finals — ask {who} for another attempt."}]
     if state["failed"] > 0 and state["remaining"] == 1:
         return [{"kind": "last_chance",
                  "message": f"One final attempt left of {state['max']} — make it count."}]
@@ -1864,7 +1923,9 @@ def add_feedback(run_id: str, user_id: str, module_id: str, rating: int, comment
 
 def cohort(run_id: str) -> dict:
     record = course(run_id)
-    assigned = record["publication"]["assignees"] if record.get("publication") else []
+    # Match learn assignment: live group members + snapshot assignees, not the
+    # publish-time list alone (new joiners otherwise vanish from Measure).
+    assigned = publication_members(record["publication"]) if record.get("publication") else []
     people = {entry["id"]: entry for entry in roster()}
     learners = []
     for user_id in assigned:
@@ -1914,7 +1975,7 @@ def course_board(run_id: str, user_id: str) -> dict:
         return {"run_id": record["run_id"], "course_type": kind,
                 "ranks": [], "your_rank": None}
     publication = record.get("publication") or {}
-    if user_id not in publication.get("assignees", []):
+    if user_id not in publication_members(publication):
         raise ValueError("This course has not been assigned to you")
     people = {entry["id"]: entry for entry in roster()}
     finishers = [entry for entry in cohort(record["run_id"])["learners"]

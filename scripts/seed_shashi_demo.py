@@ -14,8 +14,8 @@ from src.agent import content_path
 
 DEMO_USERS = [
     {"id": "guru-raja", "name": "Guru Raja", "email": "guru.raja@pharmalearn.local", "role": "admin", "title": "PharmaLearn builder"},
-    {"id": "pattabhi", "name": "Pattabhi", "email": "pattabhi@pharmalearn.local", "role": "msl", "title": "MSL, oncology East"},
-    {"id": "shashidhar-gururao", "name": "Shashidhar Gururao", "email": "shashidhar@pharmalearn.local", "role": "msl", "title": "Training stakeholder"},
+    {"id": "pattabhi", "name": "Pattabhi", "email": "pattabhi@pharmalearn.local", "role": "hcp", "title": "Trainee, oncology East"},
+    {"id": "shashidhar-gururao", "name": "Shashidhar Gururao", "email": "shashidhar@pharmalearn.local", "role": "hcp", "title": "Training stakeholder"},
     {"id": "parimala", "name": "Parimala", "email": "parimala@pharmalearn.local", "role": "hcp", "title": "Medical oncologist"},
 ]
 

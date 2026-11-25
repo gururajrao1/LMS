@@ -511,7 +511,7 @@ def review_version(run_id: str, request: VersionRequest):
 
 @app.get("/api/runs/{run_id}/objections")
 def list_objections(run_id: str):
-    """Approved answers to the objections HCPs raise in the field."""
+    """Approved answers to the objections trainees hear in the field."""
     return learning.objections(run_id)
 
 
@@ -575,6 +575,18 @@ def certificate_templates():
 @app.get("/api/runs/{run_id}/cohort")
 def cohort(run_id: str):
     return learning.cohort(run_id)
+
+
+class CohortResetRequest(BaseModel):
+    user_id: str
+    confirm_email: str
+
+
+@app.post("/api/runs/{run_id}/cohort/reset")
+def reset_cohort(run_id: str, request: CohortResetRequest):
+    """Wipe learner progress for every published assignee (not course content)."""
+    return _guard(lambda: learning.reset_cohort_progress(
+        Path(run_id).name, Path(request.user_id).name, request.confirm_email))
 
 
 @app.get("/api/runs/{run_id}/audit/exceptions")
@@ -1150,12 +1162,20 @@ def library(run_id: str):
         by_key[key] = entry
         documents.append(entry)
     seen = set(by_key)
+    seen_urls = {entry.get("url", "") for entry in documents if entry.get("url")}
     # Documents fetched to resolve citations are held but were never in the
     # original manifest. Hiding them would understate what the reviewer can read.
+    # Skip when the same URL is already listed under another source_key — duplicate
+    # buttons / React keys confuse the learner pane.
     for key, stored in held.items():
         if key in seen or not stored["readable"]:
             continue
+        url = stored.get("url", "")
+        if url and url in seen_urls:
+            continue
         documents.append({**stored, "publisher": "", "cited": False, "held": True, "listed_as": 0})
+        if url:
+            seen_urls.add(url)
 
     documents.sort(key=lambda entry: (not entry["held"], not entry["cited"], entry["title"].lower()))
     return {
@@ -1413,6 +1433,11 @@ def learner_notifications(user_id: str):
 def learner_course(user_id: str, run_id: str):
     learner, record, content_value, track = _learner_context(user_id, run_id)
     state = learning.progress(run_id, user_id)
+    # Empty video tracks still require the "videos" module in MODULES — auto-clear
+    # that gate so induction decks without media are not a dead-end tab.
+    track_content = content_value["learners"][track]
+    if not track_content.get("videos") and "videos" not in state["modules"]:
+        state = learning.set_module(run_id, user_id, "videos", True)
     feedback = {entry["module_id"]: entry for entry in state["feedback"]}
     return {
         "user": learner,
@@ -1420,7 +1445,7 @@ def learner_course(user_id: str, run_id: str):
         "course_type": record.get("course_type", "drug"),
         "manifest": content_value["manifest"],
         "sources": content_value["sources"],
-        "content": content_value["learners"][track],
+        "content": track_content,
         "publication": record["publication"],
         "version": record["version"],
         "modules": [{

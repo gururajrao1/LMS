@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { NativeSelect } from "@/components/ui/native-select";
 import { Textarea } from "@/components/ui/textarea";
 import { ROLE_LABEL } from "@/components/app-shell";
+import { CertificatePreviewThumb } from "@/components/certificate-preview";
 import { CertificateTemplate, CourseReview, getJson, LearnerGroup, Person, sendJson } from "@/lib/api";
 
 function isoDate(offsetDays: number) {
@@ -147,8 +148,13 @@ export function CoursePublishPanel({ runId, user, review, onChange }: { runId: s
                 <div>
                   <p className="text-sm font-medium">Assign by group</p>
                   <div className="mt-2 flex flex-wrap gap-2">
-                    <button type="button" onClick={() => setAssignees(people.filter((person) => person.role === "msl").map((person) => person.id))} className="rounded-lg border px-3 py-1 text-xs font-medium hover:bg-stone-50 dark:hover:bg-surface-sunk">All MSLs</button>
-                    <button type="button" onClick={() => setAssignees(people.filter((person) => person.role === "hcp").map((person) => person.id))} className="rounded-lg border px-3 py-1 text-xs font-medium hover:bg-stone-50 dark:hover:bg-surface-sunk">All HCPs</button>
+                    <button
+                      type="button"
+                      onClick={() => setAssignees(people.filter((person) => person.learner ?? (person.role === "msl" || person.role === "hcp")).map((person) => person.id))}
+                      className="rounded-lg border px-3 py-1 text-xs font-medium hover:bg-stone-50 dark:hover:bg-surface-sunk"
+                    >
+                      All trainees
+                    </button>
                     <button type="button" onClick={() => { setAssignees([]); setGroupIds([]); }} className="rounded-lg border px-3 py-1 text-xs font-medium hover:bg-stone-50 dark:hover:bg-surface-sunk">Clear</button>
                   </div>
                   {groups.length > 0 && (
@@ -174,12 +180,20 @@ export function CoursePublishPanel({ runId, user, review, onChange }: { runId: s
               </div>
 
               <p className="text-sm font-medium">Certificate design</p>
+              <p className="mt-1 text-xs text-stone-600 dark:text-muted-foreground">Preview under each name — pick the look trainees will receive.</p>
               <div className="mt-2 grid gap-2 sm:grid-cols-3">
                 {(templates.length ? templates : [{ id: "classic", label: "Classic", description: "Centered certificate with the brand band." }]).map((option) => (
                   <label key={option.id} className={`cursor-pointer rounded-xl border p-3 transition-colors ${template === option.id ? "border-brand-600 bg-brand-50 dark:bg-brand-950" : "hover:bg-stone-50 dark:hover:bg-surface-sunk"}`}>
                     <input type="radio" name="certificate-template" value={option.id} checked={template === option.id} onChange={() => setTemplate(option.id)} className="size-4 accent-brand-600" />
                     <span className="mt-1 block text-sm font-medium">{option.label}</span>
                     <span className="mt-1 block text-xs leading-5 text-stone-600 dark:text-muted-foreground">{(option.description || "").replace(/\u00e2\u20ac\u201c|\u00e2\u20ac\u201d/g, "–").replace(/â€“/g, "–")}</span>
+                    <div className="mt-3">
+                      <CertificatePreviewThumb
+                        templateId={option.id}
+                        courseTitle={runId.includes("patient-recruitment") ? "Patient recruitment induction" : runId}
+                        selected={template === option.id}
+                      />
+                    </div>
                   </label>
                 ))}
               </div>

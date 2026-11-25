@@ -6,6 +6,15 @@ import { Award, CheckCircle2, MessageSquare, RotateCcw, Star, TrendingUp, UserCh
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
 import { ROLE_LABEL, Stat } from "@/components/app-shell";
 import { Analytics, API, Cohort, CohortLearner, getJson, Person } from "@/lib/api";
 import { roleLabel } from "@/components/app-shell";
@@ -47,9 +56,17 @@ export function CourseCohortPanel({ runId, user }: { runId: string; user?: Perso
   type Escalation = { key: string; user_id: string; name: string; severity: "danger" | "warning"; tier: number; message: string; level: number; level_name: string; owner: string; action: string; since: string; history: { at: string; note: string }[] };
   const [ladder, setLadder] = useState<{ items: Escalation[]; checked_at: string | null; checked_by: string | null } | null>(null);
   const [checking, setChecking] = useState(false);
+  const [resetting, setResetting] = useState(false);
+  const [resetOpen, setResetOpen] = useState(false);
+  const [confirmEmail, setConfirmEmail] = useState("");
   type RetentionClass = { id: string; label: string; description: string; keep_years: number; action: string; items: number; oldest: string | null; newest: string | null; first_due: string | null; due_for_review: number; status: string };
   const [retention, setRetention] = useState<RetentionClass[] | null>(null);
   const [rag, setRag] = useState<Analytics["course_rag"] | null>(null);
+  const typedEmail = confirmEmail.trim();
+  const emailOk = typedEmail.includes("@")
+    && !typedEmail.startsWith("@")
+    && !typedEmail.endsWith("@")
+    && !typedEmail.includes(" ");
 
   useEffect(() => {
     getJson<Cohort>(`/api/runs/${runId}/cohort`).then(setCohort).catch(() => setError("Could not load cohort progress."));
@@ -78,6 +95,37 @@ export function CourseCohortPanel({ runId, user }: { runId: string; user?: Perso
     if (!response.ok) { setError("Could not reset those answers."); return; }
     setCohort(await getJson<Cohort>(`/api/runs/${runId}/cohort`));
     setAlerts(await getJson<Alert[]>(`/api/runs/${runId}/alerts`));
+  }
+
+  function openResetDialog() {
+    setConfirmEmail("");
+    setError("");
+    setResetOpen(true);
+  }
+
+  async function resetAllProgress() {
+    if (!user || !emailOk) return;
+    setResetting(true); setError("");
+    try {
+      const response = await fetch(`${API}/api/runs/${runId}/cohort/reset`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ user_id: user.id, confirm_email: confirmEmail.trim() }),
+      });
+      if (!response.ok) {
+        const payload = await response.json().catch(() => null) as { detail?: string } | null;
+        throw new Error(typeof payload?.detail === "string" ? payload.detail : "Could not reset the cohort.");
+      }
+      setCohort(await getJson<Cohort>(`/api/runs/${runId}/cohort`));
+      setAlerts(await getJson<Alert[]>(`/api/runs/${runId}/alerts`));
+      getJson<Analytics>(`/api/runs/${runId}/analytics`).then((report) => setRag(report.course_rag)).catch(() => undefined);
+      setResetOpen(false);
+      setConfirmEmail("");
+    } catch (reason) {
+      setError(reason instanceof Error ? reason.message : "Could not reset the cohort.");
+    } finally {
+      setResetting(false);
+    }
   }
 
   if (!cohort) return <Card><CardContent className="p-8 text-center text-stone-600 dark:text-muted-foreground">{error || "Loading cohort progress…"}</CardContent></Card>;
@@ -133,6 +181,13 @@ export function CourseCohortPanel({ runId, user }: { runId: string; user?: Perso
               <a href={`${API}/api/runs/${runId}/export/completions`} className="rounded-lg border px-3 py-1.5 text-sm font-medium hover:bg-stone-50 dark:hover:bg-surface-sunk">Download CSV</a>
               <a href={`${API}/api/runs/${runId}/export/scorm`} className="rounded-lg border px-3 py-1.5 text-sm font-medium hover:bg-stone-50 dark:hover:bg-surface-sunk">Download SCORM</a>
               <a href={`${API}/api/runs/${runId}/export/xls`} className="rounded-lg border px-3 py-1.5 text-sm font-medium hover:bg-stone-50 dark:hover:bg-surface-sunk">Download Excel</a>
+              {user && (user.role === "admin" || user.role === "reviewer" || (user.capabilities ?? []).includes("learn.reset")) && (
+                <Button type="button" variant="outline" disabled={resetting || !cohort.assigned}
+                  onClick={openResetDialog}
+                  className="h-auto gap-1.5 px-3 py-1.5 text-sm text-danger-700 dark:text-danger-300 hover:bg-danger-50 dark:hover:bg-danger-950">
+                  <RotateCcw size={14} /> Reset all progress
+                </Button>
+              )}
             </div>
           </div>
           {cohort.average_baseline !== null && (
@@ -261,6 +316,54 @@ export function CourseCohortPanel({ runId, user }: { runId: string; user?: Perso
           )) : <p className="text-sm text-stone-600 dark:text-muted-foreground">No feedback yet. Learners can rate each module as they work through it.</p>}
         </CardContent>
       </Card>
+
+      <Dialog open={resetOpen} onOpenChange={(open) => { setResetOpen(open); if (!open) { setConfirmEmail(""); setError(""); } }}>
+        <DialogContent className="sm:max-w-md" showCloseButton={!resetting}>
+          <DialogHeader>
+            <DialogTitle>Reset all trainee progress?</DialogTitle>
+            <DialogDescription>
+              This clears modules completed, baselines, finals and certificates for{" "}
+              <b>{cohort.assigned}</b> assigned trainee{cohort.assigned === 1 ? "" : "s"}.
+              {" "}Deck, storyboard, FAQ, quiz, sources and the publish schedule are{" "}
+              <b>not</b> removed — only learner progress.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-3">
+            <p className="text-sm text-stone-600 dark:text-muted-foreground">
+              To confirm, type any email address (work or personal). This is recorded on the audit trail — it does not have to match the demo roster.
+            </p>
+            <Input
+              type="text"
+              inputMode="email"
+              autoComplete="off"
+              spellCheck={false}
+              placeholder="you@company.com"
+              value={confirmEmail}
+              disabled={resetting}
+              onChange={(event) => setConfirmEmail(event.target.value)}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" && emailOk && !resetting) void resetAllProgress();
+              }}
+            />
+            {error && resetOpen && (
+              <p className="text-sm text-danger-600 dark:text-danger-300">{error}</p>
+            )}
+          </div>
+          <DialogFooter>
+            <Button type="button" variant="outline" disabled={resetting} onClick={() => setResetOpen(false)}>
+              Cancel
+            </Button>
+            <Button
+              type="button"
+              disabled={!emailOk || resetting}
+              onClick={() => void resetAllProgress()}
+              className="bg-danger-600 text-white hover:bg-danger-700 disabled:opacity-50"
+            >
+              {resetting ? "Resetting…" : "I understand — reset progress"}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

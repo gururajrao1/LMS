@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowRight, CheckCircle2, FileText, Presentation, Video } from "lucide-react";
 import { Brand, ROLE_LABEL } from "@/components/app-shell";
@@ -11,9 +11,15 @@ import { homeFor, writeSession } from "@/lib/session";
 const BUILTIN_BLURBS: Record<string, string> = {
   admin: "Create courses, publish and schedule training",
   reviewer: "Review content and sign it off",
-  msl: "Field medical training track",
-  hcp: "Clinical training track",
+  trainee: "Take assigned courses and earn a certificate",
+  checker: "Machine identity that raises findings and never approves",
 };
+
+const LEARNER_ROLE_IDS = new Set(["msl", "hcp", "trainee"]);
+
+function isLearnerPerson(person: Person) {
+  return person.learner ?? LEARNER_ROLE_IDS.has(person.role);
+}
 
 export default function Login() {
   const router = useRouter();
@@ -28,8 +34,35 @@ export default function Login() {
     getJson<RoleEntry[]>("/api/roles").then(setEntries).catch(() => undefined);
   }, []);
 
-  const matching = people.filter((person) => person.role === role);
-  const tabs = entries.length ? entries : ["admin", "reviewer", "msl", "hcp"].map((id) => ({ id, label: ROLE_LABEL[id] ?? id, description: BUILTIN_BLURBS[id] ?? "" }));
+  const tabs = useMemo(() => {
+    const source = entries.length
+      ? entries
+      : ["admin", "reviewer", "msl", "hcp", "checker"].map((id) => ({
+          id,
+          label: ROLE_LABEL[id] ?? id,
+          description: BUILTIN_BLURBS[id] ?? BUILTIN_BLURBS.trainee,
+        }));
+    const staff = source.filter((entry) => !LEARNER_ROLE_IDS.has(entry.id) && !(entry as RoleEntry).learner);
+    const hasLearners = source.some((entry) => LEARNER_ROLE_IDS.has(entry.id) || (entry as RoleEntry).learner)
+      || people.some(isLearnerPerson);
+    const merged = [...staff];
+    if (hasLearners) {
+      const checkerIdx = merged.findIndex((entry) => entry.id === "checker");
+      const traineeTab = {
+        id: "trainee",
+        label: "Trainee",
+        description: BUILTIN_BLURBS.trainee,
+      };
+      if (checkerIdx >= 0) merged.splice(checkerIdx, 0, traineeTab);
+      else merged.push(traineeTab);
+    }
+    return merged;
+  }, [entries, people]);
+
+  const matching = people.filter((person) => {
+    if (role === "trainee") return isLearnerPerson(person);
+    return person.role === role;
+  });
   const selected = matching.find((person) => person.id === userId) ?? matching[0];
 
   async function submit(event: FormEvent) {
@@ -74,7 +107,7 @@ export default function Login() {
               <button key={entry.id} type="button" aria-pressed={role === entry.id} onClick={() => { setRole(entry.id); setUserId(""); }}
                 className={`rounded-xl border p-3 text-left transition-colors ${role === entry.id ? "border-brand-600 bg-brand-50 dark:bg-brand-950" : "hover:bg-stone-50 dark:hover:bg-surface-sunk"}`}>
                 <p className="text-sm font-semibold">{entry.label}</p>
-                <p className="mt-1 text-xs leading-5 text-stone-600 dark:text-muted-foreground">{entry.description}</p>
+                <p className="mt-1 text-xs leading-5 text-stone-600 dark:text-muted-foreground">{entry.description || BUILTIN_BLURBS[entry.id] || ""}</p>
               </button>
             ))}
           </div>

@@ -233,31 +233,83 @@
   ],
   "publication": {
     "version": 1,
-    "published_at": "2026-11-17T00:00:00+00:00",
+    "published_at": "2026-11-24T11:52:21.309484+00:00",
     "published_by": "Guru Raja",
     "overrides": [],
-    "starts_on": "2026-11-17",
-    "due_on": "2026-11-30",
+    "starts_on": "2026-11-24",
+    "due_on": "2026-12-24",
     "frequency": "once",
     "next_due_on": null,
     "certificate_template": "classic",
-    "message": "Complete before the end-of-November review. About 15 min: 17 slides with the visual story, then a 12-question check. You need 70% to pass.",
+    "message": "Complete this course before the next cycle meeting.",
     "assignees": [
+      "jordan-feld",
+      "sara-nakamura",
+      "ken-osei",
+      "lucy-whitfield",
+      "tom-becker",
       "guru-raja",
       "pattabhi",
       "shashidhar-gururao",
       "parimala"
     ],
+    "group_ids": [],
+    "max_final_attempts": 3,
     "notifications": [
       {
-        "to": "demo@pharmalearn.local",
-        "name": "Demo cohort",
-        "subject": "Training assigned: complete by 2026-11-30",
-        "sent_at": "2026-11-17T00:00:00+00:00"
+        "to": "jordan.feld@pharmalearn.local",
+        "name": "Jordan Feld",
+        "subject": "Training assigned: complete by 2026-12-24",
+        "sent_at": "2026-11-24T11:52:21.309665+00:00"
+      },
+      {
+        "to": "sara.nakamura@pharmalearn.local",
+        "name": "Sara Nakamura",
+        "subject": "Training assigned: complete by 2026-12-24",
+        "sent_at": "2026-11-24T11:52:21.309701+00:00"
+      },
+      {
+        "to": "ken.osei@pharmalearn.local",
+        "name": "Dr. Ken Osei",
+        "subject": "Training assigned: complete by 2026-12-24",
+        "sent_at": "2026-11-24T11:52:21.309713+00:00"
+      },
+      {
+        "to": "lucy.whitfield@pharmalearn.local",
+        "name": "Dr. Lucy Whitfield",
+        "subject": "Training assigned: complete by 2026-12-24",
+        "sent_at": "2026-11-24T11:52:21.310368+00:00"
+      },
+      {
+        "to": "tom.becker@pharmalearn.local",
+        "name": "Dr. Tom Becker",
+        "subject": "Training assigned: complete by 2026-12-24",
+        "sent_at": "2026-11-24T11:52:21.310398+00:00"
+      },
+      {
+        "to": "guru.raja@pharmalearn.local",
+        "name": "Guru Raja",
+        "subject": "Training assigned: complete by 2026-12-24",
+        "sent_at": "2026-11-24T11:52:21.310409+00:00"
+      },
+      {
+        "to": "pattabhi@pharmalearn.local",
+        "name": "Pattabhi",
+        "subject": "Training assigned: complete by 2026-12-24",
+        "sent_at": "2026-11-24T11:52:21.310420+00:00"
+      },
+      {
+        "to": "shashidhar@pharmalearn.local",
+        "name": "Shashidhar Gururao",
+        "subject": "Training assigned: complete by 2026-12-24",
+        "sent_at": "2026-11-24T11:52:21.310430+00:00"
+      },
+      {
+        "to": "parimala@pharmalearn.local",
+        "name": "Parimala",
+        "subject": "Training assigned: complete by 2026-12-24",
+        "sent_at": "2026-11-24T11:52:21.310440+00:00"
       }
-    ],
-    "group_ids": [
-      "clinical-trial"
     ]
   },
   "audit": [
@@ -496,6 +548,819 @@
       },
       "prev_hash": "04da6a3e44a78a39",
       "hash": "b2882f633124cc0e"
+    },
+    {
+      "id": "c3d4de70c4b8",
+      "at": "2026-11-23T04:53:38.310918+00:00",
+      "action": "course.published",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja published v1 to 4 trainee(s), due 2026-11-30 via groups clinical-trial",
+      "detail": {
+        "version": 1,
+        "starts_on": "2026-11-17",
+        "due_on": "2026-11-30",
+        "assignees": [
+          "guru-raja",
+          "pattabhi",
+          "shashidhar-gururao",
+          "parimala"
+        ],
+        "approved_by": [
+          "Dr. Anil Shekhar"
+        ]
+      },
+      "prev_hash": "b2882f633124cc0e",
+      "hash": "3f742e4b96e35a7f"
+    },
+    {
+      "id": "4a8138c33614",
+      "at": "2026-11-23T04:53:57.328006+00:00",
+      "action": "course.published",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja published v1 to 4 trainee(s), due 2026-11-30 via groups clinical-trial",
+      "detail": {
+        "version": 1,
+        "starts_on": "2026-11-17",
+        "due_on": "2026-11-30",
+        "assignees": [
+          "guru-raja",
+          "pattabhi",
+          "shashidhar-gururao",
+          "parimala"
+        ],
+        "approved_by": [
+          "Dr. Anil Shekhar"
+        ]
+      },
+      "prev_hash": "3f742e4b96e35a7f",
+      "hash": "f6ae37724044cfff"
+    },
+    {
+      "id": "8227df9ea55b",
+      "at": "2026-11-23T05:09:32.839740+00:00",
+      "action": "course.published",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja published v1 to 4 trainee(s), due 2026-11-30 via groups clinical-trial",
+      "detail": {
+        "version": 1,
+        "starts_on": "2026-11-17",
+        "due_on": "2026-11-30",
+        "assignees": [
+          "guru-raja",
+          "pattabhi",
+          "shashidhar-gururao",
+          "parimala"
+        ],
+        "approved_by": [
+          "Dr. Anil Shekhar"
+        ]
+      },
+      "prev_hash": "f6ae37724044cfff",
+      "hash": "e7d615616314b5e1"
+    },
+    {
+      "id": "c8fd68dc9936",
+      "at": "2026-11-23T05:13:24.281880+00:00",
+      "action": "course.published",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja published v1 to 4 trainee(s), due 2026-11-30 via groups clinical-trial",
+      "detail": {
+        "version": 1,
+        "starts_on": "2026-11-17",
+        "due_on": "2026-11-30",
+        "assignees": [
+          "guru-raja",
+          "pattabhi",
+          "shashidhar-gururao",
+          "parimala"
+        ],
+        "approved_by": [
+          "Dr. Anil Shekhar"
+        ]
+      },
+      "prev_hash": "e7d615616314b5e1",
+      "hash": "f16005adaa68996c"
+    },
+    {
+      "id": "0b634eac1d4e",
+      "at": "2026-11-23T05:13:26.238151+00:00",
+      "action": "course.published",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja published v1 to 4 trainee(s), due 2026-11-30 via groups clinical-trial",
+      "detail": {
+        "version": 1,
+        "starts_on": "2026-11-17",
+        "due_on": "2026-11-30",
+        "assignees": [
+          "guru-raja",
+          "pattabhi",
+          "shashidhar-gururao",
+          "parimala"
+        ],
+        "approved_by": [
+          "Dr. Anil Shekhar"
+        ]
+      },
+      "prev_hash": "f16005adaa68996c",
+      "hash": "de0204372cfa0ec7"
+    },
+    {
+      "id": "26e0f8640744",
+      "at": "2026-11-23T05:13:56.841868+00:00",
+      "action": "course.published",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja published v1 to 4 trainee(s), due 2026-11-30 via groups clinical-trial",
+      "detail": {
+        "version": 1,
+        "starts_on": "2026-11-17",
+        "due_on": "2026-11-30",
+        "assignees": [
+          "guru-raja",
+          "pattabhi",
+          "shashidhar-gururao",
+          "parimala"
+        ],
+        "approved_by": [
+          "Dr. Anil Shekhar"
+        ]
+      },
+      "prev_hash": "de0204372cfa0ec7",
+      "hash": "15e29d23e35c70ca"
+    },
+    {
+      "id": "b1bd7426c230",
+      "at": "2026-11-23T05:13:58.669149+00:00",
+      "action": "course.published",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja published v1 to 4 trainee(s), due 2026-11-30 via groups clinical-trial",
+      "detail": {
+        "version": 1,
+        "starts_on": "2026-11-17",
+        "due_on": "2026-11-30",
+        "assignees": [
+          "guru-raja",
+          "pattabhi",
+          "shashidhar-gururao",
+          "parimala"
+        ],
+        "approved_by": [
+          "Dr. Anil Shekhar"
+        ]
+      },
+      "prev_hash": "15e29d23e35c70ca",
+      "hash": "3dbee7cd02503c01"
+    },
+    {
+      "id": "03152bc7c0ff",
+      "at": "2026-11-23T05:17:56.590660+00:00",
+      "action": "course.published",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja published v1 to 4 trainee(s), due 2026-11-30 via groups clinical-trial",
+      "detail": {
+        "version": 1,
+        "starts_on": "2026-11-17",
+        "due_on": "2026-11-30",
+        "assignees": [
+          "guru-raja",
+          "pattabhi",
+          "shashidhar-gururao",
+          "parimala"
+        ],
+        "approved_by": [
+          "Dr. Anil Shekhar"
+        ]
+      },
+      "prev_hash": "3dbee7cd02503c01",
+      "hash": "d2601d70d6523e01"
+    },
+    {
+      "id": "53c6dd9edcbb",
+      "at": "2026-11-23T05:24:27.585680+00:00",
+      "action": "course.published",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja published v1 to 4 trainee(s), due 2026-11-30 via groups clinical-trial",
+      "detail": {
+        "version": 1,
+        "starts_on": "2026-11-17",
+        "due_on": "2026-11-30",
+        "assignees": [
+          "guru-raja",
+          "pattabhi",
+          "shashidhar-gururao",
+          "parimala"
+        ],
+        "approved_by": [
+          "Dr. Anil Shekhar"
+        ]
+      },
+      "prev_hash": "d2601d70d6523e01",
+      "hash": "7e0afc2bbf304d85"
+    },
+    {
+      "id": "b589a62ef378",
+      "at": "2026-11-23T05:26:34.513136+00:00",
+      "action": "course.published",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja published v1 to 4 trainee(s), due 2026-11-30 via groups clinical-trial",
+      "detail": {
+        "version": 1,
+        "starts_on": "2026-11-17",
+        "due_on": "2026-11-30",
+        "assignees": [
+          "guru-raja",
+          "pattabhi",
+          "shashidhar-gururao",
+          "parimala"
+        ],
+        "approved_by": [
+          "Dr. Anil Shekhar"
+        ]
+      },
+      "prev_hash": "7e0afc2bbf304d85",
+      "hash": "61071dbf6f86ad2c"
+    },
+    {
+      "id": "998dd3861246",
+      "at": "2026-11-23T05:28:17.802789+00:00",
+      "action": "course.published",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja published v1 to 4 trainee(s), due 2026-11-30 via groups clinical-trial",
+      "detail": {
+        "version": 1,
+        "starts_on": "2026-11-17",
+        "due_on": "2026-11-30",
+        "assignees": [
+          "guru-raja",
+          "pattabhi",
+          "shashidhar-gururao",
+          "parimala"
+        ],
+        "approved_by": [
+          "Dr. Anil Shekhar"
+        ]
+      },
+      "prev_hash": "61071dbf6f86ad2c",
+      "hash": "5876ac6923f13ae2"
+    },
+    {
+      "id": "032f37f0a2f1",
+      "at": "2026-11-23T05:28:21.303399+00:00",
+      "action": "course.published",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja published v1 to 4 trainee(s), due 2026-11-30 via groups clinical-trial",
+      "detail": {
+        "version": 1,
+        "starts_on": "2026-11-17",
+        "due_on": "2026-11-30",
+        "assignees": [
+          "guru-raja",
+          "pattabhi",
+          "shashidhar-gururao",
+          "parimala"
+        ],
+        "approved_by": [
+          "Dr. Anil Shekhar"
+        ]
+      },
+      "prev_hash": "5876ac6923f13ae2",
+      "hash": "f23268c76f28bfca"
+    },
+    {
+      "id": "f7e4d3574fa4",
+      "at": "2026-11-23T05:28:33.909565+00:00",
+      "action": "course.published",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja published v1 to 4 trainee(s), due 2026-11-30 via groups clinical-trial",
+      "detail": {
+        "version": 1,
+        "starts_on": "2026-11-17",
+        "due_on": "2026-11-30",
+        "assignees": [
+          "guru-raja",
+          "pattabhi",
+          "shashidhar-gururao",
+          "parimala"
+        ],
+        "approved_by": [
+          "Dr. Anil Shekhar"
+        ]
+      },
+      "prev_hash": "f23268c76f28bfca",
+      "hash": "fdc68bae14548fa1"
+    },
+    {
+      "id": "eb575a3ec963",
+      "at": "2026-11-23T05:30:23.339585+00:00",
+      "action": "course.published",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja published v1 to 4 trainee(s), due 2026-11-30 via groups clinical-trial",
+      "detail": {
+        "version": 1,
+        "starts_on": "2026-11-17",
+        "due_on": "2026-11-30",
+        "assignees": [
+          "guru-raja",
+          "pattabhi",
+          "shashidhar-gururao",
+          "parimala"
+        ],
+        "approved_by": [
+          "Dr. Anil Shekhar"
+        ]
+      },
+      "prev_hash": "fdc68bae14548fa1",
+      "hash": "ccb68fa5f9e04ef2"
+    },
+    {
+      "id": "1a8846561209",
+      "at": "2026-11-23T05:30:27.160658+00:00",
+      "action": "course.published",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja published v1 to 4 trainee(s), due 2026-11-30 via groups clinical-trial",
+      "detail": {
+        "version": 1,
+        "starts_on": "2026-11-17",
+        "due_on": "2026-11-30",
+        "assignees": [
+          "guru-raja",
+          "pattabhi",
+          "shashidhar-gururao",
+          "parimala"
+        ],
+        "approved_by": [
+          "Dr. Anil Shekhar"
+        ]
+      },
+      "prev_hash": "ccb68fa5f9e04ef2",
+      "hash": "a6bf170697753ef4"
+    },
+    {
+      "id": "3af4a4062618",
+      "at": "2026-11-23T05:30:39.921843+00:00",
+      "action": "course.published",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja published v1 to 4 trainee(s), due 2026-11-30 via groups clinical-trial",
+      "detail": {
+        "version": 1,
+        "starts_on": "2026-11-17",
+        "due_on": "2026-11-30",
+        "assignees": [
+          "guru-raja",
+          "pattabhi",
+          "shashidhar-gururao",
+          "parimala"
+        ],
+        "approved_by": [
+          "Dr. Anil Shekhar"
+        ]
+      },
+      "prev_hash": "a6bf170697753ef4",
+      "hash": "2e33d0c26a25bbe1"
+    },
+    {
+      "id": "aae51c1b6b8d",
+      "at": "2026-11-23T05:32:00.688966+00:00",
+      "action": "course.published",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja published v1 to 4 trainee(s), due 2026-11-30 via groups clinical-trial",
+      "detail": {
+        "version": 1,
+        "starts_on": "2026-11-17",
+        "due_on": "2026-11-30",
+        "assignees": [
+          "guru-raja",
+          "pattabhi",
+          "shashidhar-gururao",
+          "parimala"
+        ],
+        "approved_by": [
+          "Dr. Anil Shekhar"
+        ]
+      },
+      "prev_hash": "2e33d0c26a25bbe1",
+      "hash": "ccee3c6ab0118e9c"
+    },
+    {
+      "id": "711e1154f923",
+      "at": "2026-11-23T05:32:05.238325+00:00",
+      "action": "course.published",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja published v1 to 4 trainee(s), due 2026-11-30 via groups clinical-trial",
+      "detail": {
+        "version": 1,
+        "starts_on": "2026-11-17",
+        "due_on": "2026-11-30",
+        "assignees": [
+          "guru-raja",
+          "pattabhi",
+          "shashidhar-gururao",
+          "parimala"
+        ],
+        "approved_by": [
+          "Dr. Anil Shekhar"
+        ]
+      },
+      "prev_hash": "ccee3c6ab0118e9c",
+      "hash": "aea37f66dc8726b7"
+    },
+    {
+      "id": "6d0f063c91d6",
+      "at": "2026-11-23T05:32:17.879645+00:00",
+      "action": "course.published",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja published v1 to 4 trainee(s), due 2026-11-30 via groups clinical-trial",
+      "detail": {
+        "version": 1,
+        "starts_on": "2026-11-17",
+        "due_on": "2026-11-30",
+        "assignees": [
+          "guru-raja",
+          "pattabhi",
+          "shashidhar-gururao",
+          "parimala"
+        ],
+        "approved_by": [
+          "Dr. Anil Shekhar"
+        ]
+      },
+      "prev_hash": "aea37f66dc8726b7",
+      "hash": "ad00cf6235b15cc4"
+    },
+    {
+      "id": "375de20e1e65",
+      "at": "2026-11-23T06:01:55.305793+00:00",
+      "action": "course.published",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja published v1 to 4 trainee(s), due 2026-11-30 via groups clinical-trial",
+      "detail": {
+        "version": 1,
+        "starts_on": "2026-11-17",
+        "due_on": "2026-11-30",
+        "assignees": [
+          "guru-raja",
+          "pattabhi",
+          "shashidhar-gururao",
+          "parimala"
+        ],
+        "approved_by": [
+          "Dr. Anil Shekhar"
+        ]
+      },
+      "prev_hash": "ad00cf6235b15cc4",
+      "hash": "d9c02039adf35288"
+    },
+    {
+      "id": "581f8c94c315",
+      "at": "2026-11-23T06:02:26.211091+00:00",
+      "action": "course.published",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja published v1 to 4 trainee(s), due 2026-11-30 via groups clinical-trial",
+      "detail": {
+        "version": 1,
+        "starts_on": "2026-11-17",
+        "due_on": "2026-11-30",
+        "assignees": [
+          "guru-raja",
+          "pattabhi",
+          "shashidhar-gururao",
+          "parimala"
+        ],
+        "approved_by": [
+          "Dr. Anil Shekhar"
+        ]
+      },
+      "prev_hash": "d9c02039adf35288",
+      "hash": "975b29f901eed8a6"
+    },
+    {
+      "id": "1e45fd7ab6f3",
+      "at": "2026-11-23T06:03:46.490075+00:00",
+      "action": "course.published",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja published v1 to 4 trainee(s), due 2026-11-30 via groups clinical-trial",
+      "detail": {
+        "version": 1,
+        "starts_on": "2026-11-17",
+        "due_on": "2026-11-30",
+        "assignees": [
+          "pattabhi",
+          "guru-raja",
+          "shashidhar-gururao",
+          "parimala"
+        ],
+        "approved_by": [
+          "Dr. Anil Shekhar"
+        ]
+      },
+      "prev_hash": "975b29f901eed8a6",
+      "hash": "add902977b1c994d"
+    },
+    {
+      "id": "b5e656050f72",
+      "at": "2026-11-23T06:05:08.814901+00:00",
+      "action": "course.published",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja published v1 to 4 trainee(s), due 2026-11-30 via groups clinical-trial",
+      "detail": {
+        "version": 1,
+        "starts_on": "2026-11-17",
+        "due_on": "2026-11-30",
+        "assignees": [
+          "guru-raja",
+          "pattabhi",
+          "shashidhar-gururao",
+          "parimala"
+        ],
+        "approved_by": [
+          "Dr. Anil Shekhar"
+        ]
+      },
+      "prev_hash": "add902977b1c994d",
+      "hash": "a6c9d064d870faf3"
+    },
+    {
+      "id": "56f84e6b6f52",
+      "at": "2026-11-23T06:05:41.099327+00:00",
+      "action": "course.published",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja published v1 to 4 trainee(s), due 2026-11-30 via groups clinical-trial",
+      "detail": {
+        "version": 1,
+        "starts_on": "2026-11-17",
+        "due_on": "2026-11-30",
+        "assignees": [
+          "guru-raja",
+          "pattabhi",
+          "shashidhar-gururao",
+          "parimala"
+        ],
+        "approved_by": [
+          "Dr. Anil Shekhar"
+        ]
+      },
+      "prev_hash": "a6c9d064d870faf3",
+      "hash": "f2dbbb864d9ff53c"
+    },
+    {
+      "id": "9f43720959cc",
+      "at": "2026-11-23T06:08:07.621522+00:00",
+      "action": "course.published",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja published v1 to 4 trainee(s), due 2026-11-30 via groups clinical-trial",
+      "detail": {
+        "version": 1,
+        "starts_on": "2026-11-17",
+        "due_on": "2026-11-30",
+        "assignees": [
+          "guru-raja",
+          "pattabhi",
+          "shashidhar-gururao",
+          "parimala"
+        ],
+        "approved_by": [
+          "Dr. Anil Shekhar"
+        ]
+      },
+      "prev_hash": "f2dbbb864d9ff53c",
+      "hash": "fe53ebd657e99f20"
+    },
+    {
+      "id": "6663a83db77f",
+      "at": "2026-11-23T06:08:39.676443+00:00",
+      "action": "course.published",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja published v1 to 4 trainee(s), due 2026-11-30 via groups clinical-trial",
+      "detail": {
+        "version": 1,
+        "starts_on": "2026-11-17",
+        "due_on": "2026-11-30",
+        "assignees": [
+          "guru-raja",
+          "pattabhi",
+          "shashidhar-gururao",
+          "parimala"
+        ],
+        "approved_by": [
+          "Dr. Anil Shekhar"
+        ]
+      },
+      "prev_hash": "fe53ebd657e99f20",
+      "hash": "a9aabaae2832d231"
+    },
+    {
+      "id": "2d9adf44ea39",
+      "at": "2026-11-23T06:10:20.720073+00:00",
+      "action": "course.published",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja published v1 to 4 trainee(s), due 2026-11-30 via groups clinical-trial",
+      "detail": {
+        "version": 1,
+        "starts_on": "2026-11-17",
+        "due_on": "2026-11-30",
+        "assignees": [
+          "guru-raja",
+          "pattabhi",
+          "shashidhar-gururao",
+          "parimala"
+        ],
+        "approved_by": [
+          "Dr. Anil Shekhar"
+        ]
+      },
+      "prev_hash": "a9aabaae2832d231",
+      "hash": "f453e26251d14ab8"
+    },
+    {
+      "id": "525e7e66a176",
+      "at": "2026-11-23T06:10:51.405138+00:00",
+      "action": "course.published",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja published v1 to 4 trainee(s), due 2026-11-30 via groups clinical-trial",
+      "detail": {
+        "version": 1,
+        "starts_on": "2026-11-17",
+        "due_on": "2026-11-30",
+        "assignees": [
+          "guru-raja",
+          "pattabhi",
+          "shashidhar-gururao",
+          "parimala"
+        ],
+        "approved_by": [
+          "Dr. Anil Shekhar"
+        ]
+      },
+      "prev_hash": "f453e26251d14ab8",
+      "hash": "21e4781b3c1e6a04"
+    },
+    {
+      "at": "2026-11-24T06:25:04.535472+00:00",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "kind": "publication.reset",
+      "detail": "Publication cleared for manual A2 publish retest"
+    },
+    {
+      "id": "916221da5dd3",
+      "at": "2026-11-24T10:46:49.989471+00:00",
+      "action": "course.published",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja published v1 to 9 trainee(s), due 2026-12-24",
+      "detail": {
+        "version": 1,
+        "starts_on": "2026-11-24",
+        "due_on": "2026-12-24",
+        "assignees": [
+          "jordan-feld",
+          "sara-nakamura",
+          "ken-osei",
+          "lucy-whitfield",
+          "tom-becker",
+          "guru-raja",
+          "pattabhi",
+          "shashidhar-gururao",
+          "parimala"
+        ],
+        "approved_by": [
+          "Dr. Anil Shekhar"
+        ]
+      },
+      "prev_hash": "21e4781b3c1e6a04",
+      "hash": "e764fbd73baf833b"
+    },
+    {
+      "id": "f24c33e1f229",
+      "at": "2026-11-24T10:54:53.496391+00:00",
+      "action": "cohort.progress_reset",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja reset progress for 9 trainee(s)",
+      "detail": {
+        "trainees": 9,
+        "confirm_email": "anyone@company.com"
+      },
+      "prev_hash": "e764fbd73baf833b",
+      "hash": "c92f37db14de76e9"
+    },
+    {
+      "id": "6a778d197d7f",
+      "at": "2026-11-24T11:52:21.315106+00:00",
+      "action": "course.published",
+      "actor_id": "guru-raja",
+      "actor_name": "Guru Raja",
+      "actor_title": "PharmaLearn builder",
+      "actor_role": "admin",
+      "summary": "Guru Raja published v1 to 9 trainee(s), due 2026-12-24",
+      "detail": {
+        "version": 1,
+        "starts_on": "2026-11-24",
+        "due_on": "2026-12-24",
+        "assignees": [
+          "jordan-feld",
+          "sara-nakamura",
+          "ken-osei",
+          "lucy-whitfield",
+          "tom-becker",
+          "guru-raja",
+          "pattabhi",
+          "shashidhar-gururao",
+          "parimala"
+        ],
+        "approved_by": [
+          "Dr. Anil Shekhar"
+        ]
+      },
+      "prev_hash": "c92f37db14de76e9",
+      "hash": "4bc16fa8dc0c72e9"
     }
   ],
   "description": "Covers the ClairLabs patient recruitment programme end to end: the five-step journey from screener to recruited participant, the AI-driven funnel, HCP and advocacy outreach, data intelligence, site activation, patient experience and the go-live roadmap. Certifies the learner completed the patient recruitment induction (v1, pass mark 70%).",
@@ -509,5 +1374,63 @@
   ],
   "organization": "Clair Labs",
   "course_type": "induction",
-  "client_id": "clairlabs"
+  "client_id": "clairlabs",
+  "revocations": [
+    {
+      "code": "PL-PATIENT-2026-080297",
+      "user_id": "pattabhi",
+      "revoked_at": "2026-11-23T05:17:56.623128+00:00",
+      "actor_id": "guru-raja",
+      "reason": "answers reset"
+    },
+    {
+      "code": "PL-PATIENT-2026-F13F4D",
+      "user_id": "pattabhi",
+      "revoked_at": "2026-11-23T05:24:27.657492+00:00",
+      "actor_id": "guru-raja",
+      "reason": "answers reset"
+    },
+    {
+      "code": "PL-PATIENT-2026-0286FA",
+      "user_id": "pattabhi",
+      "revoked_at": "2026-11-23T05:28:17.883786+00:00",
+      "actor_id": "guru-raja",
+      "reason": "answers reset"
+    },
+    {
+      "code": "PL-PATIENT-2026-835A14",
+      "user_id": "pattabhi",
+      "revoked_at": "2026-11-23T05:30:23.390439+00:00",
+      "actor_id": "guru-raja",
+      "reason": "answers reset"
+    },
+    {
+      "code": "PL-PATIENT-2026-2DC955",
+      "user_id": "pattabhi",
+      "revoked_at": "2026-11-23T05:32:00.762586+00:00",
+      "actor_id": "guru-raja",
+      "reason": "answers reset"
+    },
+    {
+      "code": "PL-PATIENT-2026-C28341",
+      "user_id": "pattabhi",
+      "revoked_at": "2026-11-23T06:01:55.369834+00:00",
+      "actor_id": "guru-raja",
+      "reason": "answers reset"
+    },
+    {
+      "code": "PL-PATIENT-2026-ADAED1",
+      "user_id": "pattabhi",
+      "revoked_at": "2026-11-23T06:08:07.676325+00:00",
+      "actor_id": "guru-raja",
+      "reason": "answers reset"
+    },
+    {
+      "code": "PL-PATIENT-2026-BFF1C3",
+      "user_id": "pattabhi",
+      "revoked_at": "2026-11-23T06:10:20.759871+00:00",
+      "actor_id": "guru-raja",
+      "reason": "answers reset"
+    }
+  ]
 }
